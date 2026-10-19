@@ -34,6 +34,24 @@ if ($manifest.schemaVersion -ne 1 -or $manifest.checklists.Count -ne 12) {
     throw 'Manifest must use schema version 1 and contain exactly 12 checklists.'
 }
 
+# DE: Nur aktive Header vergleichen; historische Versionsangaben bleiben unveraendert.
+# EN: Compare active headers only; retain historical version statements.
+foreach ($relative in @('README.md') + @($manifest.checklists.path) + @($manifest.relatedDocuments.path) + @($manifest.learningDocuments.path)) {
+    $path = Join-Path $DocRoot $relative
+    if (-not (Test-Path $path -PathType Leaf)) { throw "Controlled document missing: ${relative}" }
+    $expected = "**Baseline-Version / Baseline version:** $($manifest.baselineVersion)"
+    if (@(Get-Content $path) -cnotcontains $expected) { throw "Baseline reference mismatch: ${relative}" }
+}
+$actualIds = @($manifest.checklists.id | Sort-Object)
+$expectedIds = @(1..12 | ForEach-Object { 'CL-{0:00}' -f $_ })
+if (($actualIds -join ',') -cne ($expectedIds -join ',')) { throw 'Expected unique checklist IDs CL-01..CL-12.' }
+if ($manifest.guideline.version -cne $manifest.baselineVersion) { throw 'Guideline/baseline version mismatch.' }
+$catalog = Get-Content (Join-Path $PSScriptRoot 'config/spec-kit-preset-profiles.json') -Raw | ConvertFrom-Json
+$alignment = Get-Content (Join-Path $DocRoot 'mitgeltende-dokumente/Verzahnung_Richtlinie_Checklisten_Spec-Kit-Presets.md') -Raw
+foreach ($presetProfileName in $catalog.profiles.PSObject.Properties.Name | Where-Object { $_ -ne 'none' }) {
+    if (-not $alignment.Contains('`' + $presetProfileName + '`')) { throw "Profile missing from alignment: ${presetProfileName}" }
+}
+
 $guidelinePath = Join-Path $DocRoot $manifest.guideline.path
 if (-not (Test-Path $guidelinePath)) { throw "Guideline missing: $($manifest.guideline.path)" }
 $guideline = Get-Content $guidelinePath -Raw

@@ -1,8 +1,8 @@
 # Leitlinie Sichere Entwicklungs-Sandbox / Secure Development Sandbox Guideline
 
-**Stand / Date:** 2026-07-10
-**Version / Version:** 1.0.0
-**Baseline-Version / Baseline version:** 3.0.0
+**Stand / Date:** 2026-10-19
+**Version / Version:** 1.0.1
+**Baseline-Version / Baseline version:** 3.4.0
 **Verantwortliche Rolle / Responsible role:** Projekt- oder Ausbildungsverantwortung mit Security-Review / Project or training owner with security review
 **Review-Zyklus / Review cycle:** jährlich und bei wesentlichen Änderungen / annually and after material changes
 **Zielgruppe / Audience:** Fachinformatiker*innen in Ausbildung, Entwickler*innen, Reviewer und KI-Agenten / IT specialist apprentices, developers, reviewers, and AI agents
@@ -158,3 +158,4 @@ Der Lauf wird sofort beendet, wenn Secrets sichtbar werden, unerwartete Host-Pfa
 | Version | Datum / Date | Änderung / Change |
 |---|---|---|
 | 1.0.0 | 2026-07-10 | Erstes kontrolliertes Release als mitgeltendes Dokument der sichere-Entwicklung-Basis 3.0.0. / First controlled release as a related document of secure-development baseline 3.0.0. |
+| 1.0.1 | 2026-10-19 | Level-0-Konsolidierung: Baseline-Bindung und fachliche Konsistenz geprüft; Grenzen im Reviewbericht. / Level-0 consolidation: baseline binding and consistency reviewed; limitations recorded in the review report. |

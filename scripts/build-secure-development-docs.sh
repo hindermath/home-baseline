@@ -37,6 +37,25 @@ command -v jq >/dev/null 2>&1 || { printf 'jq is required.\n' >&2; exit 1; }
 jq -e '.schemaVersion == 1 and (.checklists | length) == 12' "$MANIFEST" >/dev/null
 
 baseline_version="$(jq -r '.baselineVersion' "$MANIFEST")"
+# DE: Aktive Metadaten werden gegen das Manifest gebunden, nicht gegen historische Changelogs.
+# EN: Bind active metadata to the manifest, never to historical changelog entries.
+metadata_files=("README.md")
+while IFS= read -r relative; do metadata_files+=("$relative"); done < <(
+  jq -r '(.checklists + .relatedDocuments + .learningDocuments)[].path' "$MANIFEST")
+for relative in "${metadata_files[@]}"; do
+  grep -Fxq "**Baseline-Version / Baseline version:** $baseline_version" "$DOC_ROOT/$relative" || {
+    printf 'Baseline reference mismatch: %s\n' "$relative" >&2; exit 1;
+  }
+done
+actual_checklist_ids="$(jq -r '.checklists[].id' "$MANIFEST" | LC_ALL=C sort)"
+expected_checklist_ids="$(printf 'CL-%02d\n' {1..12})"
+[ "$actual_checklist_ids" = "$expected_checklist_ids" ] || { printf 'Expected unique checklist IDs CL-01..CL-12.\n' >&2; exit 1; }
+[ "$(jq -r '.guideline.version' "$MANIFEST")" = "$baseline_version" ] || { printf 'Guideline/baseline version mismatch.\n' >&2; exit 1; }
+alignment="$DOC_ROOT/mitgeltende-dokumente/Verzahnung_Richtlinie_Checklisten_Spec-Kit-Presets.md"
+while IFS= read -r profile; do
+  grep -Fq "\`$profile\`" "$alignment" || { printf 'Profile missing from alignment: %s\n' "$profile" >&2; exit 1; }
+done < <(jq -r '.profiles | keys[] | select(. != "none")' "$SCRIPT_DIR/config/spec-kit-preset-profiles.json")
+
 compendium_version="$(jq -r '.compendium.version' "$MANIFEST")"
 release_date="$(jq -r '.releaseDate' "$MANIFEST")"
 expected_item_count="$(jq -r '.checklistItemCount' "$MANIFEST")"

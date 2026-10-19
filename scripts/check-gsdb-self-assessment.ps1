@@ -3,11 +3,15 @@
 Prueft die GSDB-Bereitschaft und bereitet ein Spec-Kit-Intake vor.
 
 Checks GSDB readiness and prepares a Spec Kit intake.
+.PARAMETER PresetProfile
+DE: Profil explizit waehlen; sonst Registry-Eintrag, danach Katalogstandard.
+EN: Explicit profile; otherwise registry entry, then catalog default.
 #>
 [CmdletBinding(SupportsShouldProcess)]
 param(
     [string[]]$Repo = @(),
     [string]$Registry = '',
+    [string]$PresetProfile = '',
     [string]$HomeDir = $HOME,
     [switch]$CheckOnly,
     [switch]$FailOnOpen
@@ -21,7 +25,6 @@ $LibFile = Join-Path $ScriptDir 'lib/secure-development-hardening.ps1'
 if (-not (Test-Path $LibFile)) { throw "Hilfsbibliothek nicht gefunden: $LibFile" }
 . $LibFile
 
-$PresetConfig = Join-Path $ScriptDir 'config/spec-kit-governance-presets.json'
 
 function Resolve-HBPath {
     param([string]$Path)
@@ -144,11 +147,6 @@ function Test-GsdbNonMslJustification {
     return ($hasJustification -and $hasControls)
 }
 
-function Get-PresetIds {
-    if (-not (Test-Path $PresetConfig)) { return @() }
-    $data = Get-Content $PresetConfig -Raw | ConvertFrom-Json
-    return @($data.presets | ForEach-Object { [string]$_.id })
-}
 
 function Write-GsdbIntake {
     param([string]$Repository, [string]$ProjectName)
@@ -275,26 +273,28 @@ function Invoke-GsdbRepoCheck {
         $open++
     }
 
-    $presetOutput = ''
-    Push-Location $Repository
-    try {
-        if (Get-Command specify -ErrorAction SilentlyContinue) {
-            $presetOutput = (specify preset list 2>$null | Out-String)
-        }
-    } finally {
-        Pop-Location
-    }
-
     if ($registryLevel -eq '1') {
         Add-ReportRow $lines 'N/A' 'Governance-Presets' '.specify/presets/' 'Koordinationsrepo ohne eigene Preset-Installation' '-'
     } else {
-        foreach ($presetId in Get-PresetIds) {
-            $presetDir = Join-Path $Repository '.specify/presets'
-            $localMatch = if (Test-Path $presetDir) { Get-ChildItem $presetDir -Recurse -Directory -Filter $presetId -ErrorAction SilentlyContinue | Select-Object -First 1 } else { $null }
-            if (($presetOutput -match "\($([regex]::Escape($presetId))\)") -or $localMatch) {
-                Add-ReportRow $lines 'OK' "Preset $presetId" '.specify/presets/' 'nachweisbar' '-'
+        $catalog = Get-Content (Join-Path $ScriptDir 'config/spec-kit-preset-profiles.json') -Raw | ConvertFrom-Json
+        $presetProfileName = $PresetProfile
+        if (-not $presetProfileName -and $registryEntry -and $registryEntry.PSObject.Properties['presetProfile']) { $presetProfileName = [string]$registryEntry.presetProfile }
+        if (-not $presetProfileName) { $presetProfileName = [string]$catalog.defaultProfile }
+        $entry = $catalog.profiles.PSObject.Properties[$presetProfileName]
+        if (-not $entry) { throw "Unbekanntes Preset-Profil / unknown preset profile: ${presetProfileName}" }
+        if ($null -eq $entry.Value.presetConfig) {
+            Add-ReportRow $lines 'N/A' 'Governance-Presets' 'presetProfile' 'Profil none ist explizit zugeordnet' '-'
+        } else {
+            $configPath = Join-Path (Split-Path -Parent $ScriptDir) $entry.Value.presetConfig
+            # Native output must not become part of this function's numeric finding count.
+            $matrixOutput = (& pwsh -NoProfile -File (Join-Path $ScriptDir 'install-spec-kit-governance-presets.ps1') -Repo $Repository -PresetConfig $configPath -CheckOnly 2>&1 | Out-String)
+            $matrixExit = $LASTEXITCODE
+            Write-Host $matrixOutput
+            if ($matrixExit -eq 0) {
+                Add-ReportRow $lines 'OK' "Governance-Presets ${presetProfileName}" '.specify/presets/' 'exakte Matrix mit Versionen und Prioritaeten geprueft' '-'
             } else {
-                Add-ReportRow $lines 'Open' "Preset $presetId" '.specify/presets/' 'nicht nachweisbar' 'Governance-Presets installieren oder Ausnahme dokumentieren'
+                Write-Host '  Matrixabweichung / matrix drift'
+                Add-ReportRow $lines 'Open' "Governance-Presets ${presetProfileName}" '.specify/presets/' 'Matrixabweichung; siehe Konsolenausgabe' 'Profilgebundene Installation pruefen'
                 $open++
             }
         }

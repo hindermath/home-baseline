@@ -12,8 +12,8 @@ This document is organization-neutral and written as a generic training and revi
 ## Checkliste 07 – EU Cyber Resilience Act – Anwendbarkeit / EU Cyber Resilience Act – Applicability
 
 **Dokument-ID / Document ID:** CL-07
-**Version / Version:** 2.0.0
-**Baseline-Version / Baseline version:** 3.0.0
+**Version / Version:** 2.0.1
+**Baseline-Version / Baseline version:** 3.4.0
 **Dokumenttyp / Document type:** Kanonische, wiederverwendbare Pruefvorlage / Canonical reusable review template
 
 ### Nachweisinstanz / Evidence Instance
@@ -603,83 +603,9 @@ checked if they are shared with external parties.
 
 #### CL-07-06: Konformitätsbewertung / Conformity Assessment
 
-- **DE:** Der passende Bewertungspfad ist gewählt: Selbstbewertung,
-  EU-Baumusterprüfung oder vollständige Qualitätssicherung. Die Wahl ist
-  begründet.
-  Konformitätsbewertungsmodule (CRA Anhang VIII):
-  - **Modul A — Interne Produktionskontrolle (Selbstbewertung)**:
-    - Geeignet für Standard-Produkte (nicht Anhang III oder IV).
-    - Hersteller dokumentiert Konformität intern.
-    - Keine Notified Body erforderlich.
-  - **Modul B — EU-Baumusterprüfung + Modul C — Konformität mit Baumuster**:
-    - Pflicht für Anhang IV und Klasse II nach Anhang III ohne
-      harmonisierte Normen.
-    - Notified Body prüft Baumuster und Serienfertigung.
-  - **Modul H — Vollständige Qualitätssicherung**:
-    - Alternative für Klasse II und kritische Produkte.
-    - Notified Body zertifiziert das gesamte Qualitätsmanagementsystem.
-  - **Europäisches Cybersicherheitszertifikat (CSA, EUCC)**:
-    - Für kritische Produkte nach Anhang IV mit höchsten Anforderungen.
-  Auswahl-Workflow:
-  1. Klasse bestimmen (Anhang III/IV/Standard).
-  2. Harmonisierte Normen verfügbar?
-     - Ja → Modul A (mit Konformitätsvermutung) für Standard und
-       Klasse I möglich.
-     - Nein → externe Bewertung (Modul B+C oder H).
-  3. Klasse II oder Anhang IV → externe Bewertung verpflichtend.
-  4. Bei kritischen Funktionen: zusätzliches CSA/EUCC-Zertifikat.
-  Notified-Body-Auswahl:
-  - [NANDO-Datenbank für Notified and Designated Organisations](https://ec.europa.eu/growth/tools-databases/nando/).
-  - Bekannte CRA-notifizierte Bodies (Stand 2026): TÜV Rheinland,
-    DEKRA, Bureau Veritas, SGS, BSI Group.
-  - Auswahlkriterien: Akkreditierung, Sprache (DE), Branchenexpertise,
-    Lieferzeit, Kosten.
-  Begründungs-Dokument:
-  - Welche Klasse?
-  - Welches Modul?
-  - Welcher Notified Body? (falls anwendbar)
-  - Welche harmonisierten Normen?
-  - Geplanter Zeitplan für Erst-Zertifizierung und Re-Zertifizierung.
-- **EN:** The right assessment route is chosen: self-assessment, EU type-
-  examination, or full quality assurance. The choice is justified.
-  Conformity assessment modules (CRA Annex VIII):
-  - **Module A — internal production control (self-assessment)**:
-    - Suitable for standard products (not Annex III or IV).
-    - Manufacturer documents conformity internally.
-    - No notified body required.
-  - **Module B — EU type-examination + Module C — conformity to type**:
-    - Mandatory for Annex IV and Annex III Class II without harmonised
-      standards.
-    - Notified body assesses type and serial production.
-  - **Module H — full quality assurance**:
-    - Alternative for Class II and critical products.
-    - Notified body certifies the complete quality management system.
-  - **European Cybersecurity Certificate (CSA, EUCC)**:
-    - For critical products per Annex IV with highest requirements.
-  Selection workflow:
-  1. Determine class (Annex III/IV/standard).
-  2. Are harmonised standards available?
-     - Yes → Module A (with presumption of conformity) for standard and
-       Class I possible.
-     - No → external assessment (Module B+C or H).
-  3. Class II or Annex IV → external assessment mandatory.
-  4. For critical functions: additional CSA/EUCC certificate.
-  Notified-body selection:
-  - [NANDO database for Notified and Designated Organisations](https://ec.europa.eu/growth/tools-databases/nando/).
-  - Known CRA-notified bodies (status 2026): TÜV Rheinland, DEKRA,
-    Bureau Veritas, SGS, BSI Group.
-  - Selection criteria: accreditation, language (German), domain
-    expertise, lead time, cost.
-  Justification document:
-  - Which class?
-  - Which module?
-  - Which notified body? (if applicable)
-  - Which harmonised standards?
-  - Planned schedule for initial and re-certification.
-- **Akzeptanz / Acceptance:** Bewertungspfad und Notified Body (falls
-  anwendbar) in `docs/security/cra-conformity-assessment.md` mit
-  Begründung; harmonisierte Normen referenziert; Zeitplan für Zertifizierung
-  enthalten.
+- **DE:** Den Bewertungspfad anhand Produktkategorie, anwendbaren harmonisierten Standards und geltenden Sonderregeln bestimmen. Bei Klasse I kann Selbstbewertung an Bedingungen gebunden sein; Klasse II und kritische Produkte benötigen grundsätzlich externe Bewertung beziehungsweise ein zulässiges Zertifizierungsschema. Die offizielle Kommissionsübersicht nennt zudem eine FOSS-Ausnahme für Klasse I/II bei öffentlich zugänglicher technischer Dokumentation. Keine pauschale Entscheidung aus einer Beispieltabelle ableiten.
+- **EN:** Choose the assessment path from product category, applicable harmonised standards, and current exceptions. Class I self-assessment may be conditional; class II and critical products generally require external assessment or an eligible certification scheme. The Commission summary also describes an FOSS exception for class I/II with public technical documentation. Do not decide from an example table alone.
+- **Akzeptanz / Acceptance:** Begründeter Pfad mit zuständiger Entscheidung; https://digital-strategy.ec.europa.eu/en/policies/cra-summary / Justified route with responsible decision and primary institutional source.
 - **Lernstufe / Learning stage:** _Grundlage, Aufbau oder Vertiefung gemaess Lernpfad dokumentieren. / Record foundation, intermediate, or advanced according to the learning path._
 - **Verantwortliche Rolle / Responsible role:** _Lernende Person, ausbildende Person, Projektverantwortung oder Security-Rolle benennen. / Name learner, instructor, project owner, or security role._
 - **Anwendbarkeit / Applicability:**
@@ -1046,43 +972,9 @@ checked if they are shared with external parties.
 
 #### CL-07-10: Lebenszyklus und Support / Lifecycle and Support
 
-- **DE:** Die erwartete Nutzungsdauer (Expected Product Lifetime) und der
-  Support-Zeitraum sind festgelegt und öffentlich kommuniziert. Gemäß CRA
-  Art. 13(8) sind Sicherheits-Updates mindestens über den Support-Zeitraum
-  oder mindestens 5 Jahre (je nachdem, was länger ist) bereitzustellen.
-  Lifecycle-Modelle: Semantic Versioning (Major/Minor/Patch) mit klarer
-  Deprecation-Policy; Long-Term-Support (LTS) für stabile Versionen mit
-  definiertem Sicherheits-Patch-Zeitraum (z. B. Ubuntu LTS 5–10 Jahre, .NET
-  LTS 3 Jahre); N/N-1-Support (aktuelle und vorherige Major-Version).
-  Beispieltabelle: `v1.0` Released 2025-01, EOS (End of Sale) 2027-01, EOL
-  (End of Life) 2030-01, EOSS (End of Security Support) 2030-01. Mindestens
-  12 Monate vor EOL angekündigt (EOL-Notice). Kommunikationskanäle:
-  Produkt-Website unter `Lifecycle Policy`, Release Notes, Customer Portal,
-  E-Mail-Verteiler, Security Advisories. Migrationsleitfaden zur Nachfolge-
-  Version mitgeliefert. Einstellung der Sicherheits-Updates dokumentiert
-  in `docs/lifecycle-policy.md` mit Versionsmatrix.
-- **EN:** Expected product lifetime and support period are defined and
-  publicly communicated. Per CRA Art. 13(8), security updates must be
-  provided for at least the support period or at least 5 years (whichever
-  is longer). Lifecycle models: Semantic Versioning (Major/Minor/Patch)
-  with clear deprecation policy; Long-Term Support (LTS) for stable
-  versions with defined security patch window (e.g. Ubuntu LTS 5–10 years,
-  .NET LTS 3 years); N/N-1 support (current and previous major version).
-  Example table: `v1.0` Released 2025-01, EOS (End of Sale) 2027-01, EOL
-  (End of Life) 2030-01, EOSS (End of Security Support) 2030-01. Announced
-  at least 12 months before EOL (EOL notice). Communication channels:
-  product website under `Lifecycle Policy`, release notes, customer
-  portal, email distribution list, security advisories. Migration guide
-  to successor version provided. End of security updates documented in
-  `docs/lifecycle-policy.md` with version matrix.
-- **Akzeptanz / Acceptance:** `docs/lifecycle-policy.md` mit Versions-
-  Matrix (Released, EOS, EOL, EOSS); öffentliche Lifecycle-Seite mit
-  Mindestsupport ≥ 5 Jahre gemäß CRA Art. 13(8); EOL-Notice ≥ 12 Monate
-  vor Abschaltung; Migrationsleitfaden für Nachfolge-Version. /
-  `docs/lifecycle-policy.md` with version matrix (Released, EOS, EOL,
-  EOSS); public lifecycle page with minimum support ≥ 5 years per CRA
-  Art. 13(8); EOL notice ≥ 12 months before shutdown; migration guide
-  for successor version.
+- **DE:** Supportdauer anhand erwarteter Nutzung, Produktart und geltender CRA-Fassung bestimmen. Die Fünfjahresregel aus Art. 13(8) enthält eine Ausnahme für Produkte mit erwarteter Nutzung unter fünf Jahren; die pauschale Aussage „immer mindestens fünf Jahre“ ist unvollständig. Rechtsquelle, konkrete Dauer, Updates, EOL-Kommunikation und Ausnahmebegründung dokumentieren. Die vollständige Rechtsprüfung bleibt bei fehlendem Primärtext offen.
+- **EN:** Determine support from expected use, product type, and the applicable CRA text. The five-year rule in Article 13(8) has an exception for products expected to be used for less than five years; an unconditional five-year statement is incomplete. Record legal source, period, updates, end-of-life communication, and any exception. Full legal review remains open when the primary text is unavailable.
+- **Akzeptanz / Acceptance:** Freigegebene Supportentscheidung mit Rechtsquelle und Wiedervorlage. / Approved support decision with legal source and reevaluation.
 - **Lernstufe / Learning stage:** _Grundlage, Aufbau oder Vertiefung gemaess Lernpfad dokumentieren. / Record foundation, intermediate, or advanced according to the learning path._
 - **Verantwortliche Rolle / Responsible role:** _Lernende Person, ausbildende Person, Projektverantwortung oder Security-Rolle benennen. / Name learner, instructor, project owner, or security role._
 - **Anwendbarkeit / Applicability:**
@@ -1325,3 +1217,4 @@ in an audit-ready way.
 ---
 
 - **Version 2.0.0 (2026-07-10):** Einheitliches zweiachsiges Statusmodell, stabile CL-IDs, Lernstufe, Rollen-, Evidenz-, Restrisiko- und Neubewertungsfelder sowie klare Trennung zwischen Vorlage und Projektnachweis eingeführt; synchron mit sichere-Entwicklung-Basis 3.0.0. / Added the unified two-axis status model, stable CL IDs, learning-stage, role, evidence, residual-risk, and re-evaluation fields, plus clear separation between template and project evidence; synchronized with secure-development baseline 3.0.0.
+| 2.0.1 | 2026-10-19 | Level-0-Konsolidierung: Baseline-Bindung und fachliche Konsistenz geprüft; Grenzen im Reviewbericht. / Level-0 consolidation: baseline binding and consistency reviewed; limitations recorded in the review report. |

@@ -1,8 +1,8 @@
 # Richtlinie Secure Development Life Cycle / Secure Development Life Cycle Policy
 
-**Stand / Date:** 2026-07-19
-**Version / Version:** 1.2.0
-**Baseline-Version / Baseline version:** 3.2.0
+**Stand / Date:** 2026-10-19
+**Version / Version:** 1.2.1
+**Baseline-Version / Baseline version:** 3.4.0
 **Verantwortliche Rolle / Responsible role:** Projekt- oder Ausbildungsverantwortung mit Security-Review / Project or training owner with security review
 **Review-Zyklus / Review cycle:** jährlich und bei wesentlichen Änderungen / annually and after material changes
 
@@ -74,3 +74,4 @@ Eine Ausnahme nennt Regel, Grund, Risiko, Ersatzmaßnahme, Owner, Ablaufdatum un
 | 1.0.0 | 2026-07-10 | Erstes kontrolliertes Release als mitgeltendes Dokument der sichere-Entwicklung-Basis 3.0.0. / First controlled release as a related document of secure-development baseline 3.0.0. |
 | 1.1.0 | 2026-07-17 | Spec-Kit-Rahmen auf das verbindliche Siebenerprofil einschließlich `autonomous-run-governance` erweitert; synchron mit sichere-Entwicklung-Basis 3.1.0. / Extended the Spec Kit framework to the binding seven-preset profile including `autonomous-run-governance`; synchronized with secure-development baseline 3.1.0. |
 | 1.2.0 | 2026-07-19 | Spec-Kit-Rahmen auf das verbindliche Achterprofil einschließlich `parallel-autonomous-run-governance` erweitert; synchron mit sichere-Entwicklung-Basis 3.2.0. / Extended the Spec Kit framework to the binding eight-preset profile including `parallel-autonomous-run-governance`; synchronized with secure-development baseline 3.2.0. |
+| 1.2.1 | 2026-10-19 | Level-0-Konsolidierung: Baseline-Bindung und fachliche Konsistenz geprüft; Grenzen im Reviewbericht. / Level-0 consolidation: baseline binding and consistency reviewed; limitations recorded in the review report. |

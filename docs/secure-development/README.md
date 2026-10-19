@@ -1,7 +1,7 @@
 # Generischer Leitfaden Sichere Entwicklung / Generic Secure Development Guide
 
-**Stand / Date:** 2026-07-19
-**Baseline-Version / Baseline version:** 3.3.0
+**Stand / Date:** 2026-10-19
+**Baseline-Version / Baseline version:** 3.4.0
 **Zielgruppe / Audience:** Fachinformatik-Auszubildende, Entwickler*innen, Reviewer und KI-Agenten in Level-2-Projekten / IT specialist apprentices, developers, reviewers, and AI agents in level-2 projects
 
 ## Zweck / Purpose
@@ -72,3 +72,9 @@
 **DE:** Diese Dokumente ersetzen keine projektspezifischen Sicherheitsartefakte in `docs/security/`, sondern liefern die wiederverwendbare Pruefgrundlage. Projektspezifische Nachweise bleiben im jeweiligen Projektkontext zu fuehren.
 
 **EN:** These documents do not replace project-specific security artefacts in `docs/security/`; they provide the reusable review baseline. Project-specific evidence remains part of the respective project context.
+
+## Reviewstand / Review State
+
+DE: Der Level-0-Review vom 19. Oktober 2026 korrigiert strukturelle und fachliche Befunde. Nicht erreichbare Primärquellen bleiben offen; die Baseline ist deshalb nicht uneingeschränkt fachlich freigegeben. [Prüfbericht](../maintenance/gsdb-level0-review-2026-10-19.md).
+
+EN: The Level-0 review of 19 October 2026 corrects structural and technical findings. Unavailable primary sources remain open; the baseline therefore has no unconditional subject-matter approval. [Review report](../maintenance/gsdb-level0-review-2026-10-19.md).

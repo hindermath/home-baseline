@@ -12,8 +12,8 @@ This document is organization-neutral and written as a generic training and revi
 ## Checkliste 01 – Standards-Anwendbarkeit / Standards Applicability
 
 **Dokument-ID / Document ID:** CL-01
-**Version / Version:** 2.0.0
-**Baseline-Version / Baseline version:** 3.0.0
+**Version / Version:** 2.0.1
+**Baseline-Version / Baseline version:** 3.4.0
 **Dokumenttyp / Document type:** Kanonische, wiederverwendbare Pruefvorlage / Canonical reusable review template
 
 ### Nachweisinstanz / Evidence Instance
@@ -154,44 +154,9 @@ change in architecture or delivery model.
 
 #### CL-01-01: NIST SSDF und CWE Top 25 / NIST SSDF and CWE Top 25
 
-- **DE:** Dieser Punkt legt die Sicherheitsbasis für jedes Projekt fest.
-  NIST SSDF (NIST SP 800-218) beschreibt, wie sichere Software
-  geplant, gebaut und gepflegt wird. Die CWE Top 25 sind eine Liste
-  häufiger und gefährlicher Programmierfehler, zum Beispiel Cross-Site
-  Scripting, SQL Injection, unsichere Speicherzugriffe und Path
-  Traversal. Für das Projekt bedeutet das: Im Projektplan steht,
-  welche SSDF-Praktiken genutzt werden. In der Code-Review-Vorlage,
-  im Linter oder im Security-Scan steht, wie die CWE Top 25 geprüft
-  werden.
-- **EN:** This item defines the security baseline for every project.
-  NIST SSDF (NIST SP 800-218) describes how secure software is planned,
-  built, and maintained. The CWE Top 25 are a list of common and
-  dangerous programming mistakes, for example cross-site scripting,
-  SQL injection, unsafe memory access, and path traversal. For the
-  project this means: the project plan states which SSDF practices are
-  used. The code review template, linter, or security scan states how
-  the CWE Top 25 are checked.
-- **Mindestprüfung / Minimum check:** PO.1 dokumentiert
-  Sicherheitsanforderungen im Plan. PS.1 schützt die Integrität des
-  Quellcodes, zum Beispiel durch signierte Commits (`git commit -S`,
-  GPG oder Sigstore). PW.4 verankert sichere Codierungsregeln im
-  Style-Guide. PW.7 verlangt Code-Review mit Sicherheits-Fokus. PW.8
-  nutzt statische Analyse, zum Beispiel Semgrep, SonarQube oder
-  CodeQL. RV.1 verfolgt Schwachstellen in einem Issue-System mit
-  Reaktionsfrist. / PO.1 documents security requirements in the plan.
-  PS.1 protects source-code integrity, for example with signed commits
-  (`git commit -S`, GPG, or Sigstore). PW.4 places secure coding rules
-  in the style guide. PW.7 requires security-focused code review. PW.8
-  uses static analysis, for example Semgrep, SonarQube, or CodeQL.
-  RV.1 tracks vulnerabilities in an issue system with a response time.
-- **Akzeptanz / Acceptance:** Der Projektplan nennt die genutzten
-  SSDF-Praktiken mit ID und kurzer Alltagserklärung. Die Code-Review-
-  Vorlage, der Linter-Regelsatz oder der Scan-Bericht zeigt, wie die
-  CWE Top 25 geprüft werden. / The project plan lists the used SSDF
-  practices with ID and a short plain-language explanation. The code
-  review template, linter rule set, or scan report shows how the CWE
-  Top 25 are checked.
-- **Referenz / Reference:** ISO 27002 A.8.28; Verfassung XII, XIV.
+- **DE:** NIST SSDF 1.1 ist die veröffentlichte Basis; 1.2 ist als Entwurf getrennt zu bewerten. PO.1 betrifft Sicherheitsanforderungen, PS.1 den Schutz von Code gegen unberechtigte Änderung, PW.4 die Wiederverwendung gesicherter Komponenten, PW.5 sichere Codierung, PW.7 die Analyse menschenlesbaren Codes und PW.8 Tests ausführbaren Codes. Statische Analyse gehört zu PW.7. Signierte Commits sind ein mögliches Mittel, keine alleinige SSDF-Pflicht. CWE-Jahrgang und ausgewählte Prüfungen dokumentieren.
+- **EN:** NIST SSDF 1.1 is the published baseline; assess draft 1.2 separately. PO.1 concerns security requirements, PS.1 code protection, PW.4 reuse of secured components, PW.5 secure coding, PW.7 analysis of human-readable code, and PW.8 executable-code testing. Static analysis belongs to PW.7. Signed commits are one possible measure, not a standalone SSDF mandate. Record the CWE edition and chosen checks.
+- **Akzeptanz / Acceptance:** Versioniertes SSDF-/CWE-Mapping mit Nachweisen im Projektplan. / Versioned SSDF/CWE mapping with evidence in the project plan.
 - **Lernstufe / Learning stage:** _Grundlage, Aufbau oder Vertiefung gemaess Lernpfad dokumentieren. / Record foundation, intermediate, or advanced according to the learning path._
 - **Verantwortliche Rolle / Responsible role:** _Lernende Person, ausbildende Person, Projektverantwortung oder Security-Rolle benennen. / Name learner, instructor, project owner, or security role._
 - **Anwendbarkeit / Applicability:**
@@ -263,7 +228,7 @@ change in architecture or delivery model.
   Generator, viele Sprachen), `cyclonedx-bom` (Python),
   `cyclonedx-dotnet` (.NET), `cyclonedx-maven-plugin` (Java),
   `@cyclonedx/cyclonedx-npm` (Node.js), `cyclonedx-gomod` (Go).
-  Container-SBOM mit `docker sbom` (Docker Desktop), `syft` oder
+  Container-SBOM mit `syft` oder
   `trivy sbom`. Pflichtfelder: Komponenten-Name, Version, Lizenz,
   Hash (SHA-256), Lieferant, Beziehungs-Typ. Die SBOM wird im
   CI/CD-Pipeline-Build erzeugt, signiert (z. B. Cosign) und zusammen
@@ -275,7 +240,7 @@ change in architecture or delivery model.
   (CycloneDX Generator, many languages), `cyclonedx-bom` (Python),
   `cyclonedx-dotnet` (.NET), `cyclonedx-maven-plugin` (Java),
   `@cyclonedx/cyclonedx-npm` (Node.js), `cyclonedx-gomod` (Go).
-  Container SBOM via `docker sbom` (Docker Desktop), `syft`, or
+  Container SBOM via `syft` or
   `trivy sbom`. Required fields: component name, version, licence,
   hash (SHA-256), supplier, relationship type. The SBOM is generated
   in the CI/CD pipeline build, signed (e.g. Cosign), and published
@@ -504,7 +469,7 @@ change in architecture or delivery model.
 
 #### CL-01-08: OWASP SAMM / OWASP SAMM
 
-- **DE:** OWASP SAMM (Software Assurance Maturity Model, derzeit Version 2.x)
+- **DE:** OWASP SAMM (Software Assurance Maturity Model, Version 2)
   bewertet die Sicherheitsreife eines Projekts oder einer Organisation in
   fünf Geschäftsfunktionen: **Governance** (Strategy & Metrics, Policy &
   Compliance, Education & Guidance), **Design** (Threat Assessment,
@@ -612,43 +577,9 @@ change in architecture or delivery model.
 
 #### CL-01-10: OWASP Cheat Sheets und Proactive Controls / OWASP Cheat Sheets and Proactive Controls
 
-- **DE:** **OWASP Cheat Sheet Series** liefert über 80 thematische
-  Anleitungen mit konkreten Empfehlungen, z. B. „Authentication Cheat
-  Sheet", „Cross-Site Scripting Prevention", „SQL Injection Prevention",
-  „Password Storage", „Input Validation", „Secure Headers", „REST
-  Security", „GraphQL Security", „File Upload", „Cryptographic
-  Storage", „Session Management". **OWASP Proactive Controls** (aktuell
-  v3.0) gibt zehn entwicklerorientierte Kontrollen vor: C1
-  Implementierungsstandards, C2 Bibliotheken und Frameworks, C3
-  Authentifizierung, C4 Sitzungsmanagement, C5 Zugriffskontrolle, C6
-  Verschlüsselung, C7 Validierung & Sanitization, C8 Logging & Audit,
-  C9 Sicherheitskonfigurationen, C10 Fehler- und Ausnahmebehandlung.
-  Im Review-Leitfaden werden die thematisch relevanten Cheat Sheets
-  pro Pull-Request-Typ (Auth-Änderung, neue Endpoint, Crypto-Code)
-  als Pflichtlektüre verlinkt; Proactive Controls erscheinen als
-  Definition-of-Done-Checkliste. PR-Templates verweisen direkt auf
-  die jeweils anzuwendenden Cheat-Sheet-URLs.
-- **EN:** **OWASP Cheat Sheet Series** offers over 80 topic guides with
-  concrete recommendations, e.g. "Authentication Cheat Sheet",
-  "Cross-Site Scripting Prevention", "SQL Injection Prevention",
-  "Password Storage", "Input Validation", "Secure Headers", "REST
-  Security", "GraphQL Security", "File Upload", "Cryptographic
-  Storage", "Session Management". **OWASP Proactive Controls**
-  (currently v3.0) defines ten developer-focused controls: C1
-  implementation standards, C2 libraries and frameworks, C3
-  authentication, C4 session management, C5 access control, C6
-  encryption, C7 validation & sanitization, C8 logging & audit, C9
-  security configuration, C10 error and exception handling. In the
-  review guide, the topical Cheat Sheets per pull request type (auth
-  change, new endpoint, crypto code) are linked as required reading;
-  Proactive Controls appear as a Definition-of-Done checklist. PR
-  templates link directly to the applicable Cheat Sheet URLs.
-- **Akzeptanz / Acceptance:** Code-Review-Leitfaden bzw. PR-Template
-  enthält direkte Links zu den thematisch relevanten Cheat Sheets
-  und Proactive Controls. / Code review guide or PR template
-  contains direct links to the topical Cheat Sheets and Proactive
-  Controls.
-- **Referenz / Reference:** Verfassung XII.
+- **DE:** Die OWASP Cheat Sheet Series dient als laufend gepflegte Implementierungshilfe. Proactive Controls wird als Ausgabe 2024 referenziert; Kontrollnummern dürfen nicht mit 2018 vermischt werden. Relevante Kontrollen mit Name, Ausgabe und direkter Quelle den Anforderungen und Tests zuordnen. Die Sammlung ist kein Beweis für eine sichere Implementierung.
+- **EN:** Use the continuously maintained OWASP Cheat Sheet Series for implementation guidance. Reference Proactive Controls edition 2024 and do not mix its identifiers with 2018. Map relevant controls by name, edition, and direct source to requirements and tests. Using guidance does not prove implementation security.
+- **Akzeptanz / Acceptance:** Verlinkte Kontrollauswahl und Tests; Quelle: https://top10proactive.owasp.org/the-top-10/ / Linked control selection and tests; same primary source.
 - **Lernstufe / Learning stage:** _Grundlage, Aufbau oder Vertiefung gemaess Lernpfad dokumentieren. / Record foundation, intermediate, or advanced according to the learning path._
 - **Verantwortliche Rolle / Responsible role:** _Lernende Person, ausbildende Person, Projektverantwortung oder Security-Rolle benennen. / Name learner, instructor, project owner, or security role._
 - **Anwendbarkeit / Applicability:**
@@ -668,37 +599,9 @@ change in architecture or delivery model.
 
 #### CL-01-11: Nichtanwendbarkeit dokumentieren / Document Non-Applicability
 
-- **DE:** Jeder nicht angewandte Standard wird ausdrücklich als „N/A" mit
-  ein bis zwei Sätzen Begründung dokumentiert. Beispiele: „ASVS = N/A,
-  weil das Projekt eine reine CLI ohne HTTP- oder Auth-Komponenten ist";
-  „SBOM = N/A, weil dieses Repository nur Konfigurationsdateien
-  enthält und keine ausführbaren Artefakte erzeugt"; „Zero Trust = N/A,
-  weil das System ein lokal laufendes Single-User-Tool ohne
-  Netzwerk-Komponenten ist"; „Scorecard = N/A, weil keine externen
-  OSS-Abhängigkeiten genutzt werden". Die N/A-Einträge stehen im
-  selben Dokument wie die erfüllten Anforderungen
-  (`docs/security/standards-applicability.md` oder die jeweilige
-  Standard-Datei). Stille Auslassung würde im Audit als Lücke
-  bewertet. Bei Unsicherheit lieber „nicht erfüllt" als „N/A" wählen
-  und eine Folgeaufgabe anlegen.
-- **EN:** Every standard that does not apply is explicitly recorded as
-  "N/A" with a one- or two-sentence justification. Examples: "ASVS =
-  N/A because this project is a pure CLI with no HTTP or auth
-  components"; "SBOM = N/A because this repository only contains
-  configuration files and produces no executable artefacts"; "Zero
-  Trust = N/A because the system is a locally running single-user
-  tool without network components"; "Scorecard = N/A because no
-  external OSS dependencies are used". N/A entries live in the same
-  document as the fulfilled requirements
-  (`docs/security/standards-applicability.md` or the respective
-  standard file). Silent omission would be treated as a gap during
-  audit. When uncertain, prefer "not fulfilled" over "N/A" and
-  create a follow-up task.
-- **Akzeptanz / Acceptance:** Jeder Punkt der Anwendbarkeits-Checkliste
-  hat einen Status; N/A-Einträge tragen eine kurze Begründung. /
-  Every item of the applicability checklist has a status; N/A
-  entries carry a short justification.
-- **Referenz / Reference:** Verfassung XIV.
+- **DE:** Nichtanwendbarkeit erfordert eine projektspezifische Begründung. Anwendbarkeit und Umsetzung bleiben getrennt: Applicable, N/A oder Open sowie Fulfilled, Partly Fulfilled, Not Fulfilled oder Not Assessed. Unsicherheit wird als Open mit Folgeaufgabe dokumentiert; N/A bekommt Not Assessed. Ein CLI- oder Konfigurationsprojekt ist nicht allein wegen seiner Artefaktart von Lieferkettenprüfungen ausgenommen.
+- **EN:** Non-applicability needs a project-specific rationale. Keep applicability separate from implementation: Applicable, N/A, or Open and Fulfilled, Partly Fulfilled, Not Fulfilled, or Not Assessed. Record uncertainty as Open with follow-up; N/A uses Not Assessed. CLI or configuration artefacts do not automatically exempt a project from supply-chain review.
+- **Akzeptanz / Acceptance:** Begründung, Owner, Evidence, Restrisiko, Wiedervorlage und nächste Maßnahme. / Rationale, owner, evidence, residual risk, review trigger, and next action.
 - **Lernstufe / Learning stage:** _Grundlage, Aufbau oder Vertiefung gemaess Lernpfad dokumentieren. / Record foundation, intermediate, or advanced according to the learning path._
 - **Verantwortliche Rolle / Responsible role:** _Lernende Person, ausbildende Person, Projektverantwortung oder Security-Rolle benennen. / Name learner, instructor, project owner, or security role._
 - **Anwendbarkeit / Applicability:**
@@ -915,3 +818,4 @@ questions have an owner and re-review trigger.
 ---
 
 - **Version 2.0.0 (2026-07-10):** Einheitliches zweiachsiges Statusmodell, stabile CL-IDs, Lernstufe, Rollen-, Evidenz-, Restrisiko- und Neubewertungsfelder sowie klare Trennung zwischen Vorlage und Projektnachweis eingeführt; synchron mit sichere-Entwicklung-Basis 3.0.0. / Added the unified two-axis status model, stable CL IDs, learning-stage, role, evidence, residual-risk, and re-evaluation fields, plus clear separation between template and project evidence; synchronized with secure-development baseline 3.0.0.
+| 2.0.1 | 2026-10-19 | Level-0-Konsolidierung: Baseline-Bindung und fachliche Konsistenz geprüft; Grenzen im Reviewbericht. / Level-0 consolidation: baseline binding and consistency reviewed; limitations recorded in the review report. |

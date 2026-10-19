@@ -1,0 +1,139 @@
+{
+  "schemaVersion": "1.1",
+  "feature": "gsdb-level0-consolidation",
+  "entries": [
+    {
+      "changeId": "CHG901",
+      "scope": "GSDB normative consolidation and quarterly-review operating policy",
+      "decision": "UpdateRequired",
+      "rationale": "Correct source-backed findings and preserve explicit source-review and human-approval boundaries.",
+      "documents": [
+        "docs/secure-development/README.md",
+        "docs/maintenance/gsdb-level0-review-2026-10-19.md",
+        "docs/maintenance/governance-review-and-rollout.md"
+      ],
+      "owner": "Thorsten Hindermann",
+      "audiences": [
+        "Maintainers",
+        "Learners",
+        "Reviewers"
+      ],
+      "readerPaths": [
+        "README -> GSDB -> alignment -> review evidence"
+      ],
+      "canonicalSource": "docs/secure-development/baseline-manifest.json",
+      "navigationImpact": "GSDB entry links current review report and source/coverage records.",
+      "documentClass": "ActiveSemantic",
+      "languageStrategy": "German first, English second.",
+      "languagePartners": [],
+      "platformAndExampleProof": "Bash then PowerShell on macOS; fixture checks in CI on Linux/macOS/Windows; no unexecuted native proof claimed.",
+      "distributionClass": "sourceOnly",
+      "homeSyncRequired": false,
+      "evidence": "docs/maintenance/gsdb-validation-2026-10-19.md",
+      "risk": "Source-access gaps block unconditional approval; no risk acceptance inferred.",
+      "criticality": "Security",
+      "reevaluationTrigger": "Primary source, preset, baseline, profile or authority change; quarterly review."
+    },
+    {
+      "changeId": "CHG902",
+      "scope": "Compendium regenerated from canonical checklists",
+      "decision": "GeneratedUpdate",
+      "rationale": "Correct source-backed findings and preserve explicit source-review and human-approval boundaries.",
+      "documents": [
+        "docs/secure-development/Checklistensammelband_Sichere-Entwicklung.md"
+      ],
+      "owner": "Thorsten Hindermann",
+      "audiences": [
+        "Maintainers",
+        "Learners",
+        "Reviewers"
+      ],
+      "readerPaths": [
+        "README -> GSDB -> alignment -> review evidence"
+      ],
+      "canonicalSource": "docs/secure-development/checklisten/",
+      "navigationImpact": "GSDB entry links current review report and source/coverage records.",
+      "documentClass": "GeneratedReference",
+      "languageStrategy": "German first, English second.",
+      "languagePartners": [],
+      "platformAndExampleProof": "Bash then PowerShell on macOS; fixture checks in CI on Linux/macOS/Windows; no unexecuted native proof claimed.",
+      "distributionClass": "sourceOnly",
+      "homeSyncRequired": false,
+      "evidence": "docs/maintenance/gsdb-validation-2026-10-19.md",
+      "risk": "Source-access gaps block unconditional approval; no risk acceptance inferred.",
+      "criticality": "Security",
+      "reevaluationTrigger": "Primary source, preset, baseline, profile or authority change; quarterly review.",
+      "generatedSource": {
+        "renderer": "scripts/build-secure-development-docs.sh",
+        "path": "docs/secure-development/checklisten/"
+      }
+    },
+    {
+      "changeId": "CHG903",
+      "scope": "Profile-bound preflight and metadata regression checks",
+      "decision": "UpdateRequired",
+      "rationale": "Correct source-backed findings and preserve explicit source-review and human-approval boundaries.",
+      "documents": [
+        "docs/man/build-secure-development-docs.1.md",
+        "docs/man/check-gsdb-self-assessment.1.md",
+        "docs/man/install-spec-kit-governance-presets.1.md",
+        "docs/man/test-gsdb-consolidation.1.md"
+      ],
+      "owner": "Thorsten Hindermann",
+      "audiences": [
+        "Maintainers",
+        "Learners",
+        "Reviewers"
+      ],
+      "readerPaths": [
+        "README -> GSDB -> alignment -> review evidence"
+      ],
+      "canonicalSource": "scripts/build-secure-development-docs.sh",
+      "navigationImpact": "GSDB entry links current review report and source/coverage records.",
+      "documentClass": "ActiveSemantic",
+      "languageStrategy": "German first, English second.",
+      "languagePartners": [],
+      "platformAndExampleProof": "Bash then PowerShell on macOS; fixture checks in CI on Linux/macOS/Windows; no unexecuted native proof claimed.",
+      "distributionClass": "homeRuntime",
+      "homeSyncRequired": true,
+      "evidence": "docs/maintenance/gsdb-validation-2026-10-19.md",
+      "risk": "Source-access gaps block unconditional approval; no risk acceptance inferred.",
+      "criticality": "Security",
+      "reevaluationTrigger": "Primary source, preset, baseline, profile or authority change; quarterly review."
+    },
+    {
+      "changeId": "CHG904",
+      "scope": "Living statistics update",
+      "decision": "GeneratedUpdate",
+      "rationale": "Correct source-backed findings and preserve explicit source-review and human-approval boundaries.",
+      "documents": [
+        "docs/project-statistics.md"
+      ],
+      "owner": "Thorsten Hindermann",
+      "audiences": [
+        "Maintainers",
+        "Learners",
+        "Reviewers"
+      ],
+      "readerPaths": [
+        "README -> GSDB -> alignment -> review evidence"
+      ],
+      "canonicalSource": "docs/project-statistics.config.json",
+      "navigationImpact": "GSDB entry links current review report and source/coverage records.",
+      "documentClass": "GeneratedReference",
+      "languageStrategy": "German first, English second.",
+      "languagePartners": [],
+      "platformAndExampleProof": "Bash then PowerShell on macOS; fixture checks in CI on Linux/macOS/Windows; no unexecuted native proof claimed.",
+      "distributionClass": "sourceOnly",
+      "homeSyncRequired": false,
+      "evidence": "docs/maintenance/gsdb-validation-2026-10-19.md",
+      "risk": "Source-access gaps block unconditional approval; no risk acceptance inferred.",
+      "criticality": "Normal",
+      "reevaluationTrigger": "Primary source, preset, baseline, profile or authority change; quarterly review.",
+      "generatedSource": {
+        "renderer": "scripts/render-project-statistics.sh",
+        "path": "docs/project-statistics.config.json"
+      }
+    }
+  ]
+}

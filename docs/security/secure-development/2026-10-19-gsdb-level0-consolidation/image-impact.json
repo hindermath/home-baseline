@@ -1,0 +1,42 @@
+{
+  "schemaVersion": "1.0",
+  "documentType": "SecureDevelopmentGateEvidence",
+  "contextId": "gsdb-level0-consolidation",
+  "gate": "image-impact",
+  "mode": "development",
+  "createdAt": "2026-10-19T20:58:19.817323+00:00",
+  "review": {
+    "owner": "Thorsten Hindermann",
+    "reviewer": "Codex under explicit technical implementation authority; independent human review pending",
+    "reviewedAt": "2026-10-19T20:58:19.817323+00:00",
+    "reviewDue": "2027-01-10",
+    "residualRisk": "Unresolved primary-source review prevents unconditional subject-matter approval. No risk acceptance is inferred.",
+    "reevaluationTrigger": "Baseline, primary source, preset, scope or authority change; quarterly review."
+  },
+  "assessments": [
+    {
+      "id": "NO-IMAGE-CHANGE",
+      "applicability": "N/A",
+      "implementation": "Not Assessed",
+      "reason": "No OCI image, deployment, toolchain installation, mounts or networking changed. Home Runtime scripts were changed in the source checkout but have not been distributed.",
+      "reevaluationTrigger": "Any image or deployment change.",
+      "evidence": "docs/maintenance/gsdb-level0-review-2026-10-19.md"
+    }
+  ],
+  "outcome": "Ready",
+  "externalComparisonBoundary": "HOSK/GWDG: ExternalComparison only; never local evidence",
+  "verificationScope": "Level-0 document consistency and source review; no independent human, pilot, product, release or fleet approval.",
+  "runbookApplicability": "N/A",
+  "runbookRationale": "Level-0 governance maintenance in development mode; bounded report and validation log provide the reproducible procedure.",
+  "imageChecks": {
+    "build": "N/A",
+    "compose": "N/A",
+    "toolchain": "N/A",
+    "ociDigest": "N/A",
+    "sbom": "N/A",
+    "secrets": "N/A",
+    "mounts": "N/A",
+    "network": "N/A",
+    "ci": "N/A"
+  }
+}

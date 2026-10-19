@@ -16,13 +16,13 @@ This document is organization-neutral and written as a generic training and revi
 | Feld | Wert |
 |---|---|
 | Titel | Richtlinie zur sicheren Softwareentwicklung |
-| Versionsnummer | 3.3.0 |
-| Freigabedatum | 19.07.2026 |
-| Inkrafttreten | 19.07.2026 |
+| Versionsnummer | 3.4.0 |
+| Freigabedatum | Ausstehend: menschliche PR-Prüfung |
+| Inkrafttreten | Nach menschlicher Freigabe |
 | Dokumentenklassifikation | öffentlich nutzbare Ausbildungs- und Prüfgrundlage |
 | Verantwortliche Stelle | Projekt- oder Ausbildungsverantwortliche mit Security-Review |
 | Freigegeben durch | Projekt- oder Ausbildungsverantwortliche nach Sicherheitsreview |
-| Nächster Review-Termin | 19.07.2027 (jährlich, ungeplant bei wesentlichen Änderungen) |
+| Nächster Review-Termin | 10.01.2027 (quartalsweise und anlassbezogen) |
 | Dokumentennummer / Aktenzeichen | RL-SE-001 |
 | Nutzungskontext | Generischer Leitfaden fuer sichere Entwicklung und Ausbildungsprojekte |
 
@@ -695,6 +695,8 @@ Die Versionshistorie dokumentiert wesentliche Änderungen dieser Richtlinie gem�
 | 3.1.0 | 17.07.2026 | Projekt- oder Ausbildungsverantwortung mit Security-Review | Verbindliches Spec-Kit-Standardprofil von sechs auf sieben Governance-Presets erweitert; `autonomous-run-governance` v0.2.2 standardmäßig installiert, ausdrückliche Delegation und bestehende Berechtigungsgrenzen beibehalten; CL_09, CL_12 und Preset-Verzahnung synchronisiert. |
 | 3.2.0 | 19.07.2026 | Projekt- oder Ausbildungsverantwortung mit Security-Review | Verbindliches Spec-Kit-Standardprofil auf acht Governance-Presets erweitert; `parallel-autonomous-run-governance` v0.2.0 ergänzt und Installation klar von Kampagnenstart und Berechtigungen getrennt; CL_09, CL_12 und Preset-Verzahnung synchronisiert. |
 
+| 3.4.0 | 19.10.2026 | Level-0 Maintainer | Konsolidierung von Quellenstand, Statuslogik und Profilverzahnung; menschliche Freigabe ausstehend. |
+
 **Genehmigung der aktuellen Fassung:**
 
 - Fachliche Erstellung und Pflege: Projekt- oder Ausbildungsverantwortung mit Security-Review
@@ -709,13 +711,13 @@ Die Versionshistorie dokumentiert wesentliche Änderungen dieser Richtlinie gem�
 | Field | Value |
 |---|---|
 | Title | Secure Software Development Guideline |
-| Version | 3.3.0 |
-| Release date | 2026-07-19 |
-| Effective date | 2026-07-19 |
+| Version | 3.4.0 |
+| Release date | Pending human PR review |
+| Effective date | Pending human PR review |
 | Document classification | publicly usable training and review baseline |
 | Responsible unit | Project or training owner with security review |
 | Approved by | Project or training owner after security review |
-| Next review date | 2027-07-19 (annually, and ad hoc after material changes) |
+| Next review date | 2027-01-10 (quarterly and after material changes) |
 | Document number / file reference | RL-SE-001 |
 | Usage context | Generic guideline for secure development and training projects |
 
@@ -1415,6 +1417,8 @@ The version history documents material changes to this guideline according to IS
 | 3.1.0 | 2026-07-17 | Project or training owner with security review | Expanded the binding standard Spec Kit profile from six to seven governance presets; installed `autonomous-run-governance` v0.2.2 by default while preserving explicit delegation and permission boundaries; synchronized CL_09, CL_12, and preset alignment. |
 | 3.2.0 | 2026-07-19 | Project or training owner with security review | Expanded the binding Spec Kit standard profile to eight governance presets; added `parallel-autonomous-run-governance` v0.2.0 and clearly separated installation from campaign start and permissions; synchronized CL_09, CL_12, and preset alignment. |
 
+| 3.4.0 | 2026-10-19 | Level-0 Maintainer | Consolidated source review, status logic, and profile alignment; human approval pending. |
+
 **Approval of the current version:**
 
 - Subject-matter creation and maintenance: project or training owner with security review
@@ -1423,3 +1427,9 @@ The version history documents material changes to this guideline according to IS
 - Storage of approval documentation: defined evidence location
 
 **Distribution and publication:** The controlled version is stored in the repository or defined evidence location. People and external contributors receive access before security-relevant work starts.
+
+## Konsolidierungsnachweis 3.4.0 / Consolidation Record 3.4.0
+
+DE: Bearbeitungsstand 2026-10-19. Fachliche Aktualität und Quellenzugang stehen im [Standardsregister](mitgeltende-dokumente/Standardsregister_Sichere-Entwicklung.md). Der quartalsweise GSDB-Review ergänzt den jährlichen Preset-Review. Ein technischer Erfolg ersetzt keine menschliche Freigabe. Die [Verzahnung](mitgeltende-dokumente/Verzahnung_Richtlinie_Checklisten_Spec-Kit-Presets.md) beschreibt die Profile 8/12/13/14 und die getrennten Aufgaben von GSDB, Security Governance, Assurance und Statistik.
+
+EN: Working revision 2026-10-19. Subject-matter currency and source access are recorded in the standards register. Quarterly GSDB review supplements annual preset review. Technical success does not replace human approval. The alignment document describes profiles 8/12/13/14 and separates GSDB, Security Governance, Assurance, and statistics responsibilities.

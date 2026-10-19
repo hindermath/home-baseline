@@ -1,8 +1,8 @@
 # Lernpfad Sichere Entwicklung für Lehrjahr 1 bis 3 / Secure Development Learning Path for Training Years 1 to 3
 
-**Version / Version:** 1.0.0
-**Baseline-Version / Baseline version:** 3.0.0
-**Stand / Date:** 2026-07-10
+**Version / Version:** 1.0.1
+**Baseline-Version / Baseline version:** 3.4.0
+**Stand / Date:** 2026-10-19
 **Zielgruppe / Audience:** Fachinformatik-Auszubildende, ausbildende Personen und Reviewer / IT specialist apprentices, instructors, and reviewers
 
 ## Grundsatz: Sicherheit ab Tag 1 / Principle: Security From Day One
@@ -105,3 +105,4 @@ Noten oder Zertifikate werden nicht automatisch aus Checklistenstatus abgeleitet
 | Version | Datum | Änderung |
 |---|---|---|
 | 1.0.0 | 2026-07-10 | Lernpfad und Einstiegsprofil für sichere-Entwicklung-Basis 3.0.0 eingeführt. |
+| 1.0.1 | 2026-10-19 | Level-0-Konsolidierung: Baseline-Bindung und fachliche Konsistenz geprüft; Grenzen im Reviewbericht. / Level-0 consolidation: baseline binding and consistency reviewed; limitations recorded in the review report. |

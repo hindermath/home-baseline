@@ -12,8 +12,8 @@ This document is organization-neutral and written as a generic training and revi
 ## Checkliste 08 – Sicherheits-Code-Review / Security Code Review
 
 **Dokument-ID / Document ID:** CL-08
-**Version / Version:** 2.0.0
-**Baseline-Version / Baseline version:** 3.0.0
+**Version / Version:** 2.0.1
+**Baseline-Version / Baseline version:** 3.4.0
 **Dokumenttyp / Document type:** Kanonische, wiederverwendbare Pruefvorlage / Canonical reusable review template
 
 ### Nachweisinstanz / Evidence Instance
@@ -186,43 +186,9 @@ configuration. Pure documentation changes are exempt.
 
 #### CL-08-02: Ausgabe-Codierung / Output Encoding
 
-- **DE:** Ausgaben werden kontextgerecht codiert (HTML-Body, HTML-Attribut,
-  JavaScript-String, URL-Parameter, CSS, SQL, LDAP, XML/XPath, Shell), um
-  Injektionen (XSS, SQLi, LDAPi, OS-Command-Injection) zu verhindern.
-  Konkrete Hilfsmittel: Java OWASP Encoder (`Encode.forHtml(...)`,
-  `Encode.forHtmlAttribute(...)`, `Encode.forJavaScript(...)`,
-  `Encode.forUriComponent(...)`); Spring `HtmlUtils.htmlEscape`; JSP/JSF
-  Auto-Escaping in Templates (`<c:out>`, `EL ${value}`); C#/.NET
-  `System.Web.HttpUtility.HtmlEncode`, `JavaScriptEncoder.Default.Encode`,
-  `UrlEncoder.Default`, Razor `@variable` Auto-Escaping; Python
-  `markupsafe.escape`, Jinja2 Auto-Escape (`autoescape=True`); Go
-  `html/template` (kontextsensitives Auto-Escaping) statt `text/template`;
-  JavaScript DOM-API (`textContent` statt `innerHTML`), Frameworks React/
-  Vue/Angular escapen per Default in JSX/Templates (Vorsicht bei
-  `dangerouslySetInnerHTML`, `v-html`, `[innerHTML]`). Content-Security-
-  Policy (CSP) als zweite Verteidigungsschicht: `Content-Security-Policy:
-  default-src 'self'; script-src 'self' 'nonce-{random}'`. SQL: ausschließ-
-  lich Prepared Statements / parametrisierte Queries (siehe Punkt SQL).
-  Referenzen: OWASP XSS Prevention Cheat Sheet, OWASP Output Encoding,
-  CWE-79, CWE-89.
-- **EN:** Outputs are encoded for the right context (HTML body, HTML
-  attribute, JavaScript string, URL parameter, CSS, SQL, LDAP, XML/XPath,
-  shell) to prevent injection (XSS, SQLi, LDAPi, OS command injection).
-  Concrete helpers: Java OWASP Encoder (`Encode.forHtml(...)`,
-  `Encode.forHtmlAttribute(...)`, `Encode.forJavaScript(...)`,
-  `Encode.forUriComponent(...)`); Spring `HtmlUtils.htmlEscape`; JSP/JSF
-  auto-escaping in templates (`<c:out>`, `EL ${value}`); C#/.NET
-  `System.Web.HttpUtility.HtmlEncode`, `JavaScriptEncoder.Default.Encode`,
-  `UrlEncoder.Default`, Razor `@variable` auto-escaping; Python
-  `markupsafe.escape`, Jinja2 auto-escape (`autoescape=True`); Go
-  `html/template` (context-aware auto-escaping) instead of `text/template`;
-  JavaScript DOM API (`textContent` instead of `innerHTML`), frameworks
-  React/Vue/Angular escape by default in JSX/templates (caution with
-  `dangerouslySetInnerHTML`, `v-html`, `[innerHTML]`). Content Security
-  Policy (CSP) as second defence layer: `Content-Security-Policy:
-  default-src 'self'; script-src 'self' 'nonce-{random}'`. SQL:
-  parameterised queries only (see SQL item). References: OWASP XSS
-  Prevention Cheat Sheet, OWASP Output Encoding, CWE-79, CWE-89.
+- **DE:** HTML-, Attribut-, JavaScript- und URL-Ausgaben kontextgerecht codieren; Rich Content nur mit geeigneter Sanitization. Für SQL parametrisierte Statements verwenden. Für Prozesse strukturierte Argumentlisten ohne Shell-Auswertung nutzen. Allgemeines Escaping ersetzt weder Parametrisierung noch sichere APIs. Positiv-, Negativ- und Kontextwechseltests ausführen.
+- **EN:** Encode HTML, attribute, JavaScript, and URL output for its context; sanitize rich content appropriately. Use parameterized SQL statements. Invoke processes with structured argument lists without shell evaluation. Generic escaping replaces neither parameterization nor safe APIs. Test valid, malicious, and cross-context input.
+- **Akzeptanz / Acceptance:** Tests belegen sichere Senken; keine SQL- oder Shell-Interpolation aus untrusted Input. / Tests cover safe sinks; no untrusted SQL or shell interpolation.
 - **Lernstufe / Learning stage:** _Grundlage, Aufbau oder Vertiefung gemaess Lernpfad dokumentieren. / Record foundation, intermediate, or advanced according to the learning path._
 - **Verantwortliche Rolle / Responsible role:** _Lernende Person, ausbildende Person, Projektverantwortung oder Security-Rolle benennen. / Name learner, instructor, project owner, or security role._
 - **Anwendbarkeit / Applicability:**
@@ -242,42 +208,9 @@ configuration. Pure documentation changes are exempt.
 
 #### CL-08-03: Authentifizierung / Authentication
 
-- **DE:** Es wird ein etabliertes Authentifizierungsverfahren genutzt
-  (OAuth 2.1, OpenID Connect, SAML 2.0, WebAuthn/Passkeys, Kerberos für
-  interne Domänen). Eigene Krypto- oder Passwort-Implementierungen werden
-  vermieden. Konkrete Frameworks: Spring Security 6 (`SecurityFilterChain`
-  mit `oauth2Login`, `formLogin`); Keycloak / Authentik / Auth0 / Azure AD /
-  Entra ID als Identity Provider; ASP.NET Core Identity mit `Microsoft.
-  AspNetCore.Authentication.JwtBearer` und `OpenIdConnect`; Python `Authlib`,
-  `python-social-auth`, FastAPI `OAuth2PasswordBearer`; Node.js `passport.js`
-  mit Strategien (`passport-oauth2`, `passport-saml`, `passport-jwt`).
-  Passwort-Hashing nur mit modernen KDFs: Argon2id (RFC 9106) als bevorzugt
-  (z. B. `argon2-cffi` Python, `Argon2.NET`, `argon2-jvm`); alternativ
-  bcrypt mit cost ≥ 12 oder scrypt; PBKDF2-SHA256 mit ≥ 600 000 Iterationen
-  (OWASP-Empfehlung 2024). Multi-Faktor-Authentifizierung (MFA) für
-  privilegierte Zugänge Pflicht (TOTP per RFC 6238, FIDO2/WebAuthn). Brute-
-  Force-Schutz: Account-Lockout nach 5 Fehlversuchen, Delay-basiertes
-  Rate-Limiting (z. B. `bucket4j` Java, `slowapi` Python, `IpRateLimit`
-  ASP.NET). Referenzen: OWASP Authentication Cheat Sheet, NIST SP 800-63B,
-  OWASP ASVS V2, CWE-287, CWE-307.
-- **EN:** An established authentication method is used (OAuth 2.1, OpenID
-  Connect, SAML 2.0, WebAuthn/Passkeys, Kerberos for internal domains).
-  Custom crypto or password implementations are avoided. Concrete
-  frameworks: Spring Security 6 (`SecurityFilterChain` with `oauth2Login`,
-  `formLogin`); Keycloak / Authentik / Auth0 / Azure AD / Entra ID as
-  identity providers; ASP.NET Core Identity with
-  `Microsoft.AspNetCore.Authentication.JwtBearer` and `OpenIdConnect`;
-  Python `Authlib`, `python-social-auth`, FastAPI `OAuth2PasswordBearer`;
-  Node.js `passport.js` with strategies (`passport-oauth2`,
-  `passport-saml`, `passport-jwt`). Password hashing only with modern KDFs:
-  Argon2id (RFC 9106) as preferred (e.g. `argon2-cffi` Python, `Argon2.NET`,
-  `argon2-jvm`); alternatively bcrypt with cost ≥ 12 or scrypt;
-  PBKDF2-SHA256 with ≥ 600,000 iterations (OWASP recommendation 2024).
-  Multi-factor authentication (MFA) for privileged access mandatory (TOTP
-  per RFC 6238, FIDO2/WebAuthn). Brute-force protection: account lockout
-  after 5 failed attempts, delay-based rate limiting (e.g. `bucket4j` Java,
-  `slowapi` Python, `IpRateLimit` ASP.NET). References: OWASP Authentication
-  Cheat Sheet, NIST SP 800-63B, OWASP ASVS V2, CWE-287, CWE-307.
+- **DE:** Etablierte Authentifizierung verwenden, etwa OpenID Connect oder WebAuthn. OAuth 2.0 betrifft delegierte Autorisierung und ist allein kein Anmeldeprotokoll; aktuelle Sicherheitspraktiken nach RFC 9700 anwenden. Issuer, Audience, Signatur, Ablauf und Redirect-URI prüfen, PKCE einsetzen, wo erforderlich. Protokollfassungen und Framework-Defaults vor Umsetzung verifizieren; Entwürfe nicht als fertigen Standard bezeichnen.
+- **EN:** Use established authentication such as OpenID Connect or WebAuthn. OAuth 2.0 provides delegated authorization and alone is not a login protocol; apply RFC 9700 security practice. Validate issuer, audience, signature, expiry, and redirect URI, using PKCE where required. Verify protocol versions and framework defaults; do not describe drafts as final standards.
+- **Akzeptanz / Acceptance:** Positive und negative Authentifizierungstests; https://www.rfc-editor.org/rfc/rfc9700.html / Positive and negative authentication tests; primary source.
 - **Lernstufe / Learning stage:** _Grundlage, Aufbau oder Vertiefung gemaess Lernpfad dokumentieren. / Record foundation, intermediate, or advanced according to the learning path._
 - **Verantwortliche Rolle / Responsible role:** _Lernende Person, ausbildende Person, Projektverantwortung oder Security-Rolle benennen. / Name learner, instructor, project owner, or security role._
 - **Anwendbarkeit / Applicability:**
@@ -677,57 +610,9 @@ configuration. Pure documentation changes are exempt.
 
 #### CL-08-10: Datei- und Netzwerk-I/O / File and Network I/O
 
-- **DE:** Pfade werden gegen Path-Traversal (`../`-Sequenzen, absolute
-  Pfade, Unicode-Tricks, NULL-Bytes) geschützt: Eingaben kanonisieren
-  (`Path.toAbsolutePath().normalize()` Java, `Path.GetFullPath` C#,
-  `os.path.realpath` Python, `filepath.Clean` Go), gegen erlaubtes Basis-
-  Verzeichnis prüfen (`startsWith(BASE_DIR)`), Allowlist von
-  Dateinamen-Mustern, Container/Chroot oder seccomp für Hard-Limits.
-  URLs werden gegen Server-Side Request Forgery (SSRF) abgesichert:
-  Allowlist erlaubter Hosts, Verbot von privaten IP-Ranges
-  (RFC 1918: 10/8, 172.16/12, 192.168/16; Loopback 127/8; Link-Local
-  169.254/16; Cloud-Metadata 169.254.169.254 AWS/Azure, metadata.google.
-  internal GCP), DNS-Rebinding-Schutz (Resolved-IP nach DNS-Auflösung
-  validieren), keine Redirects ohne Re-Validation. Bibliotheken: Java
-  `java.net.http.HttpClient` mit Custom `Authenticator`, Python
-  `requests` mit `allowed_hosts`, Go `net/http` mit Custom `Transport`,
-  Node.js `ssrf-req-filter`. Up- und Downloads prüfen Größe (Maximum vor
-  Empfang über `Content-Length`-Header und Streaming-Limit), MIME-Typ
-  (Magic-Byte-Erkennung mit `Apache Tika`, `python-magic`, `file(1)`
-  statt nur Header-Vertrauen), Dateierweiterung-Allowlist, Antivirus-Scan
-  (ClamAV, VirusTotal API), Speicherung außerhalb des Webroots oder mit
-  zufälligen Dateinamen, Image-Stripping von Metadaten (EXIF) und
-  Re-Encoding (ImageMagick mit Policy gegen RCE-CVEs). XML/JSON Parser:
-  XXE-Schutz (`DocumentBuilderFactory.setFeature("http://apache.org/xml/
-  features/disallow-doctype-decl", true)` Java; `defusedxml` Python),
-  JSON-Bomben-Schutz (Tiefen- und Größenlimit). Referenzen: OWASP File
-  Upload Cheat Sheet, OWASP SSRF Cheat Sheet, CWE-22, CWE-918, CWE-434,
-  CWE-611.
-- **EN:** Paths are protected against path traversal (`../` sequences,
-  absolute paths, Unicode tricks, NULL bytes): canonicalise inputs
-  (`Path.toAbsolutePath().normalize()` Java, `Path.GetFullPath` C#,
-  `os.path.realpath` Python, `filepath.Clean` Go), check against allowed
-  base directory (`startsWith(BASE_DIR)`), allowlist of filename patterns,
-  container/chroot or seccomp for hard limits. URLs are protected against
-  Server-Side Request Forgery (SSRF): allowlist of allowed hosts,
-  prohibition of private IP ranges (RFC 1918: 10/8, 172.16/12, 192.168/16;
-  loopback 127/8; link-local 169.254/16; cloud metadata 169.254.169.254
-  AWS/Azure, metadata.google.internal GCP), DNS rebinding protection
-  (validate resolved IP after DNS resolution), no redirects without
-  re-validation. Libraries: Java `java.net.http.HttpClient` with custom
-  `Authenticator`, Python `requests` with `allowed_hosts`, Go `net/http`
-  with custom `Transport`, Node.js `ssrf-req-filter`. Uploads and
-  downloads check size (maximum before receiving via `Content-Length`
-  header and streaming limit), MIME type (magic-byte detection with
-  `Apache Tika`, `python-magic`, `file(1)` instead of trusting headers
-  only), file-extension allowlist, antivirus scan (ClamAV, VirusTotal
-  API), storage outside the webroot or with random filenames, image
-  metadata stripping (EXIF) and re-encoding (ImageMagick with policy
-  against RCE CVEs). XML/JSON parser: XXE protection
-  (`DocumentBuilderFactory.setFeature("http://apache.org/xml/features/
-  disallow-doctype-decl", true)` Java; `defusedxml` Python), JSON-bomb
-  protection (depth and size limits). References: OWASP File Upload Cheat
-  Sheet, OWASP SSRF Cheat Sheet, CWE-22, CWE-918, CWE-434, CWE-611.
+- **DE:** Dateipfade mit pfadkomponentenbewusstem Vergleich innerhalb eines erlaubten Basisverzeichnisses halten; ein einfacher Zeichenketten-Präfixvergleich genügt nicht. Symlinks, Reparse Points und Rennen zwischen Prüfung und Öffnung berücksichtigen und sichere Dateioperationen verwenden. Netzwerkziele einschließlich Redirects und aufgelöster IP-Adressen auf erlaubte Ziele begrenzen; Timeouts und Größenlimits setzen.
+- **EN:** Confine files with a path-component-aware check against an allowed base directory; a string-prefix check is insufficient. Account for symlinks, reparse points, and check/open races, and use safe file operations. Restrict network destinations including redirects and resolved IP addresses; set timeouts and size limits.
+- **Akzeptanz / Acceptance:** Negativtests für Geschwisterpräfix, Traversal, Symlink und Redirect/SSRF. / Negative tests for sibling prefixes, traversal, symlinks, redirects, and SSRF.
 - **Lernstufe / Learning stage:** _Grundlage, Aufbau oder Vertiefung gemaess Lernpfad dokumentieren. / Record foundation, intermediate, or advanced according to the learning path._
 - **Verantwortliche Rolle / Responsible role:** _Lernende Person, ausbildende Person, Projektverantwortung oder Security-Rolle benennen. / Name learner, instructor, project owner, or security role._
 - **Anwendbarkeit / Applicability:**
@@ -1701,3 +1586,4 @@ pull request.
 ---
 
 - **Version 2.0.0 (2026-07-10):** Einheitliches zweiachsiges Statusmodell, stabile CL-IDs, Lernstufe, Rollen-, Evidenz-, Restrisiko- und Neubewertungsfelder sowie klare Trennung zwischen Vorlage und Projektnachweis eingeführt; synchron mit sichere-Entwicklung-Basis 3.0.0. / Added the unified two-axis status model, stable CL IDs, learning-stage, role, evidence, residual-risk, and re-evaluation fields, plus clear separation between template and project evidence; synchronized with secure-development baseline 3.0.0.
+| 2.0.1 | 2026-10-19 | Level-0-Konsolidierung: Baseline-Bindung und fachliche Konsistenz geprüft; Grenzen im Reviewbericht. / Level-0 consolidation: baseline binding and consistency reviewed; limitations recorded in the review report. |

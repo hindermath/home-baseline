@@ -12,8 +12,8 @@ This document is organization-neutral and written as a generic training and revi
 ## Checkliste 02 – Sichere Softwarearchitektur / Secure Software Architecture
 
 **Dokument-ID / Document ID:** CL-02
-**Version / Version:** 2.0.0
-**Baseline-Version / Baseline version:** 3.0.0
+**Version / Version:** 2.0.1
+**Baseline-Version / Baseline version:** 3.4.0
 **Dokumenttyp / Document type:** Kanonische, wiederverwendbare Pruefvorlage / Canonical reusable review template
 
 ### Nachweisinstanz / Evidence Instance
@@ -200,7 +200,7 @@ impact.
   Eingangsvalidierung im Application-Code (Bean Validation, Pydantic,
   FluentValidation); (3) parametrisierte SQL-Queries; (4) Datenbank-
   Berechtigungen mit Read-Only-Rollen je nach Anwendungsfall; (5)
-  Datenbank-Verschlüsselung at-rest (TDE in PostgreSQL/SQL Server,
+  Datenbank-Verschlüsselung at-rest (plattformgeeignete Speicherverschlüsselung / platform-appropriate storage encryption,
   AWS RDS Encryption); (6) Audit-Logging mit unveränderlichem Speicher
   (Append-Only-Log, S3 Object Lock). Beispiel für ein API-Token:
   HTTPS + kurze TTL + Audience-Claim + Token-Revocation-Liste.
@@ -216,7 +216,7 @@ impact.
   application code (Bean Validation, Pydantic, FluentValidation);
   (3) parameterised SQL queries; (4) database privileges with
   read-only roles per use case; (5) database encryption at rest
-  (TDE in PostgreSQL/SQL Server, AWS RDS encryption); (6) audit
+  (plattformgeeignete Speicherverschlüsselung / platform-appropriate storage encryption, AWS RDS encryption); (6) audit
   logging with immutable storage (append-only log, S3 Object Lock).
   Example for an API token: HTTPS + short TTL + audience claim +
   token revocation list. Example for containers: signed image
@@ -959,3 +959,4 @@ rationale.
 ---
 
 - **Version 2.0.0 (2026-07-10):** Einheitliches zweiachsiges Statusmodell, stabile CL-IDs, Lernstufe, Rollen-, Evidenz-, Restrisiko- und Neubewertungsfelder sowie klare Trennung zwischen Vorlage und Projektnachweis eingeführt; synchron mit sichere-Entwicklung-Basis 3.0.0. / Added the unified two-axis status model, stable CL IDs, learning-stage, role, evidence, residual-risk, and re-evaluation fields, plus clear separation between template and project evidence; synchronized with secure-development baseline 3.0.0.
+| 2.0.1 | 2026-10-19 | Level-0-Konsolidierung: Baseline-Bindung und fachliche Konsistenz geprüft; Grenzen im Reviewbericht. / Level-0 consolidation: baseline binding and consistency reviewed; limitations recorded in the review report. |

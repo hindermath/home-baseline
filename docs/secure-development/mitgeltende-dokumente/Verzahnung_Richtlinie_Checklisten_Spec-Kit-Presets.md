@@ -1,17 +1,17 @@
 # Verzahnung Richtlinie, Checklisten und Spec-Kit-Presets
 
-**Stand / Date:** 2026-08-10
-**Version / Version:** 1.4.0
-**Baseline-Version / Baseline version:** 3.2.0
+**Stand / Date:** 2026-10-19
+**Version / Version:** 1.5.0
+**Baseline-Version / Baseline version:** 3.4.0
 **Verantwortliche Rolle / Responsible role:** Projekt- oder Ausbildungsverantwortung mit Security-Review / Project or training owner with security review
 **Review-Zyklus / Review cycle:** jährlich und bei wesentlichen Änderungen / annually and after material changes
 **Zielgruppe / Audience:** Alle vier IT-Ausbildungsberufe ab dem ersten Ausbildungsjahr, Entwickler*innen, Reviewer und KI-Agenten / All four IT training occupations from the first training year, developers, reviewers, and AI agents
 
 ## Zweck / Purpose
 
-**DE:** Diese Datei zeigt die Verbindung zur Richtlinie Sichere Entwicklung, zu den zwoelf Checklisten und zu den Spec-Kit-Preset-Profilen. Das oeffentliche Standardprofil umfasst acht Presets. Thorstens verwaltetes Zwölf-Preset-Profil ergaenzt Model Routing und drei optionale Intake-Presets. Die Datei ist eine Lese- und Pruefbruecke und ersetzt keine projektspezifischen Nachweise.
+**DE:** Diese Datei zeigt die Verbindung zur Richtlinie Sichere Entwicklung, zu den zwoelf Checklisten und zu den Spec-Kit-Preset-Profilen. Das oeffentliche Standardprofil umfasst acht Presets. Das verwaltete Zwölf-Preset-Profil ergänzt Model Routing und drei Intake-Presets; Profil 13 ergänzt Assurance, Profil 14 Project Statistics. Die Datei ist eine Lese- und Pruefbruecke und ersetzt keine projektspezifischen Nachweise.
 
-**EN:** This file connects the related documents to the Secure Development Guideline, the twelve checklists, and the Spec Kit preset profiles. The public default contains eight presets. Thorsten's managed twelve-preset profile adds Model Routing and three optional Intake presets. The file is a reading and review bridge and does not replace project-specific evidence.
+**EN:** This file connects the related documents to the Secure Development Guideline, the twelve checklists, and the Spec Kit preset profiles. The public default contains eight presets. The managed twelve-preset profile adds Model Routing and three Intake presets; profile 13 adds Assurance and profile 14 Project Statistics. The file is a reading and review bridge and does not replace project-specific evidence.
 
 ## Preset-Profile und Prioritaet / Preset Profiles and Priority
 
@@ -109,3 +109,34 @@ Eine Statusangabe ohne Begründung und Evidenzpfad ist kein Auditnachweis. / A s
 | 1.2.0 | 2026-07-19 | Preset-Verzahnung auf das verbindliche Achterprofil einschließlich `parallel-autonomous-run-governance` erweitert. / Extended preset alignment to the binding eight-preset profile including `parallel-autonomous-run-governance`. |
 | 1.3.0 | 2026-08-02 | Oeffentliches Achterprofil und verwaltetes Elf-Preset-Profil getrennt; optionale Intake-Presets und vier Ausbildungsberufe ergaenzt. / Separated public eight-preset and managed eleven-preset profiles; added optional intake presets and four training occupations. |
 | 1.4.0 | 2026-08-10 | Thorstens verwaltetes Flottenprofil auf zwoelf Presets angehoben; Model Routing auf Prioritaet 61 und seine lokale Modellgrenze ergaenzt. / Raised Thorsten's managed fleet profile to twelve presets; added Model Routing at priority 61 and its local-model boundary. |
+| 1.5.0 | 2026-10-19 | Level-0-Konsolidierung: Baseline-Bindung und fachliche Konsistenz geprüft; Grenzen im Reviewbericht. / Level-0 consolidation: baseline binding and consistency reviewed; limitations recorded in the review report. |
+
+## Vollständige Profilkomposition / Complete Profile Composition
+
+Kanonische Quelle / canonical source: `scripts/config/spec-kit-preset-profiles.json` und die dort gebundenen Matrizen / and its bound matrices. Versionen und Prioritäten werden dort gepflegt; keine zweite Versionsliste in dieser Datei. / Maintain versions and priorities there, not in a second list here.
+
+| Profil / Profile | Anzahl / Count | Ergänzung / Addition |
+|---|---:|---|
+| `standard-eight-governance-presets` | 8 | Öffentliches Standardprofil / public default |
+| `intake-review-nine-governance-presets` | 9 | Intake Review |
+| `intake-authoring-ten-governance-presets` | 10 | Intake Authoring |
+| `intake-sequencing-eleven-governance-presets` | 11 | Intake Sequencing |
+| `model-routing-twelve-governance-presets` | 12 | Model Routing |
+| `secure-development-assurance-thirteen-governance-presets` | 13 | Secure Development Assurance, Priorität / priority 15 |
+| `project-statistics-fourteen-governance-presets` | 14 | Project Statistics |
+| `none` | 0 | Explizite Profilentscheidung, kein stiller Fallback / explicit decision, no silent fallback |
+
+DE: Level 0 verwendet das zugewiesene Vierzehnerprofil. Andere Repositories behalten ihre ausdrücklich zugeordnete Matrix. Die Registrierung allein beweist keine Installation. Eine höhere Profilzahl ist keine höhere Sicherheitsbewertung.
+
+EN: Level 0 uses its assigned fourteen-preset profile. Other repositories retain their explicitly assigned matrix. Registration alone does not prove installation. A higher profile count is not a higher security rating.
+
+| Bestandteil / Component | Zuständigkeit / Responsibility | Grenze / Boundary |
+|---|---|---|
+| GSDB | Fachliche Anforderungen und CL-IDs / subject-matter requirements and checklist IDs | Projektspezifische Anwendbarkeit bleibt erforderlich / project applicability still required |
+| `security-governance` | Sicherheitsanforderungen in Spec-Kit-Artefakten / security in Spec Kit artefacts | Keine vollständige GSDB-Abnahme / no full GSDB acceptance |
+| `secure-development-assurance-governance` | Manifest-, Versions-, Hash- und Evidence-Bindung; Baseline, Delta, Closure, Image Impact / manifest, version, hash and evidence binding; four gates | Besitzt oder aktualisiert die GSDB nicht; kein menschlicher Freigabeersatz / does not own or update GSDB or replace human approval |
+| `project-statistics-governance` | Reproduzierbare Statistik und Methodik / reproducible statistics and methodology | Aktivität ist kein Sicherheitsnachweis / activity is not security proof |
+
+DE: Der quartalsweise GSDB-Review prüft alle aktiven Presets auf Bezug und Aktualität. Die jährliche vertiefte Preset-Prüfung am 3. Oktober bleibt zusätzlich bestehen. Ein technischer Pass ohne semantischen Review ist kein fachlicher Pass. Der aktuelle Befundstand steht im [Level-0-Reviewbericht](../../maintenance/gsdb-level0-review-2026-10-19.md).
+
+EN: Quarterly GSDB review includes every active preset's relevance and currency. Annual in-depth preset review on 3 October remains additional. Technical validation without semantic review is not a subject-matter pass. Current findings are recorded in the linked Level-0 report.

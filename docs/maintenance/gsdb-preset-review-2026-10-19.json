@@ -1,0 +1,174 @@
+{
+  "checkedAt": "2026-10-19",
+  "profile": "project-statistics-fourteen-governance-presets",
+  "presets": [
+    {
+      "id": "security-governance",
+      "pinned": "v0.7.2",
+      "installedVersion": "0.7.2",
+      "priority": 10,
+      "release": {
+        "publishedAt": "2026-10-18T16:32:08Z",
+        "tag": "v0.7.2",
+        "target": "21df666b0742d164a7f090ff5f5e3c136fef721d"
+      },
+      "error": null
+    },
+    {
+      "id": "secure-development-assurance-governance",
+      "pinned": "v0.1.4",
+      "installedVersion": "0.1.4",
+      "priority": 15,
+      "release": {
+        "publishedAt": "2026-10-18T16:49:38Z",
+        "tag": "v0.1.4",
+        "target": "9b2a45776e6bd09a3ebecb575ad76da833c8b61d"
+      },
+      "error": null
+    },
+    {
+      "id": "architecture-governance",
+      "pinned": "v0.6.3",
+      "installedVersion": "0.6.3",
+      "priority": 20,
+      "release": {
+        "publishedAt": "2026-10-18T16:33:22Z",
+        "tag": "v0.6.3",
+        "target": "55106cb5e68294055f95d4fdc29a27720f04a74f"
+      },
+      "error": null
+    },
+    {
+      "id": "isaqb-architecture-governance",
+      "pinned": "v0.2.3",
+      "installedVersion": "0.2.3",
+      "priority": 30,
+      "release": {
+        "publishedAt": "2026-10-18T16:33:34Z",
+        "tag": "v0.2.3",
+        "target": "c63f9867769c70b1858d0280f3b3d88adf333f9f"
+      },
+      "error": null
+    },
+    {
+      "id": "a11y-governance",
+      "pinned": "v0.4.4",
+      "installedVersion": "0.4.4",
+      "priority": 40,
+      "release": {
+        "publishedAt": "2026-10-18T16:36:01Z",
+        "tag": "v0.4.4",
+        "target": "bc3f819cb11ab8985d75a631661d6298acdc3ed9"
+      },
+      "error": null
+    },
+    {
+      "id": "cross-platform-governance",
+      "pinned": "v0.2.3",
+      "installedVersion": "0.2.3",
+      "priority": 50,
+      "release": {
+        "publishedAt": "2026-10-18T16:36:20Z",
+        "tag": "v0.2.3",
+        "target": "3837a6010c78b15e51b843fc7d20679adea23f5a"
+      },
+      "error": null
+    },
+    {
+      "id": "agent-parity-governance",
+      "pinned": "v0.4.3",
+      "installedVersion": "0.4.3",
+      "priority": 60,
+      "release": {
+        "publishedAt": "2026-10-18T16:36:33Z",
+        "tag": "v0.4.3",
+        "target": "a11fb0f4cd40f00dff27cc6b36d614477bd2129e"
+      },
+      "error": null
+    },
+    {
+      "id": "model-routing-governance",
+      "pinned": "v0.1.5",
+      "installedVersion": "0.1.5",
+      "priority": 61,
+      "release": {
+        "publishedAt": "2026-10-18T16:36:47Z",
+        "tag": "v0.1.5",
+        "target": "accae165176dc948b95a22fb68650c7db62c4079"
+      },
+      "error": null
+    },
+    {
+      "id": "intake-authoring-governance",
+      "pinned": "v0.3.8",
+      "installedVersion": "0.3.8",
+      "priority": 64,
+      "release": {
+        "publishedAt": "2026-10-18T16:41:56Z",
+        "tag": "v0.3.8",
+        "target": "40e609e359ef0b4337b3f0e1781708dbeedc6eb9"
+      },
+      "error": null
+    },
+    {
+      "id": "intake-review-governance",
+      "pinned": "v0.2.5",
+      "installedVersion": "0.2.5",
+      "priority": 65,
+      "release": {
+        "publishedAt": "2026-10-18T16:37:00Z",
+        "tag": "v0.2.5",
+        "target": "bbf63e79becf11bfd6002352b493c12700d970ec"
+      },
+      "error": null
+    },
+    {
+      "id": "intake-sequencing-governance",
+      "pinned": "v0.2.9",
+      "installedVersion": "0.2.9",
+      "priority": 66,
+      "release": {
+        "publishedAt": "2026-10-18T16:43:50Z",
+        "tag": "v0.2.9",
+        "target": "0165082b3146ca2bd6834303129e802e83daa78d"
+      },
+      "error": null
+    },
+    {
+      "id": "autonomous-run-governance",
+      "pinned": "v0.4.5",
+      "installedVersion": "0.4.5",
+      "priority": 70,
+      "release": {
+        "publishedAt": "2026-10-18T16:37:15Z",
+        "tag": "v0.4.5",
+        "target": "8026572a37f967d2603f8a942d5bfd1ccbf2dca2"
+      },
+      "error": null
+    },
+    {
+      "id": "parallel-autonomous-run-governance",
+      "pinned": "v0.2.7",
+      "installedVersion": "0.2.7",
+      "priority": 80,
+      "release": {
+        "publishedAt": "2026-10-18T16:44:02Z",
+        "tag": "v0.2.7",
+        "target": "08ec8d96211592fbd6c000397f20a2f0a0f783e5"
+      },
+      "error": null
+    },
+    {
+      "id": "project-statistics-governance",
+      "pinned": "v0.1.1",
+      "installedVersion": "0.1.1",
+      "priority": 90,
+      "release": {
+        "publishedAt": "2026-10-18T16:42:50Z",
+        "tag": "v0.1.1",
+        "target": "5effc8a87d73b88949601951ae0933372c90ed34"
+      },
+      "error": null
+    }
+  ]
+}

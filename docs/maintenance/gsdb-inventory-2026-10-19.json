@@ -1,0 +1,229 @@
+{
+  "sourceCommit": "63ab18d636cd1499fcc33463bbafdadb0346afb0",
+  "scope": "Level 0 only; no downstream changes",
+  "managedFileCount": 37,
+  "files": [
+    {
+      "path": "docs/secure-development/Checklistensammelband_Sichere-Entwicklung.md",
+      "sourceSha256": "701c695b800111684223e597bd463e68889cbce656de258ea6247a88eb6bf164",
+      "consolidatedSha256": "281be025004ab293a9679e38e47ff72927253de35812428c16c98932616e8ad5",
+      "reviewDisposition": "Generated from canonical checklists; parity checked"
+    },
+    {
+      "path": "docs/secure-development/Lernpfad_Sichere-Entwicklung_Lehrjahr-1-bis-3.md",
+      "sourceSha256": "ab1eb29b864b40f539d92e888684c2c485324ce72b747119d7e3b7ff46d1197b",
+      "consolidatedSha256": "42729181376047f7adc18ad8fbfd1aaa143c0991d19fe0d2a46da2432c734bbb",
+      "reviewDisposition": "Active metadata/content consistency reviewed; external source limitations recorded in source-review log"
+    },
+    {
+      "path": "docs/secure-development/README.md",
+      "sourceSha256": "0e8690322d051dcfde83ae529bde1d1371bfd6ef8bf553d27384bf3269a8c300",
+      "consolidatedSha256": "7e95b75d4a39f15ba566fd04778422a45d741b9da30cf23e260b4b889a670e36",
+      "reviewDisposition": "Active metadata/content consistency reviewed; external source limitations recorded in source-review log"
+    },
+    {
+      "path": "docs/secure-development/Richtlinie_Sichere-Entwicklung.md",
+      "sourceSha256": "80d1b72f5648e2a948803767dabdfea491ed2c5b936dc8179c081389b32aa469",
+      "consolidatedSha256": "af9731a748527b7a097db54bb3e9f515f7b6e279044c77bbfc2169fb07af0ab7",
+      "reviewDisposition": "Active metadata/content consistency reviewed; external source limitations recorded in source-review log"
+    },
+    {
+      "path": "docs/secure-development/baseline-manifest.json",
+      "sourceSha256": "9c1c925d6a70991b182ccb2a9745637eae13742f35ecd8aaedad9ff132c8f442",
+      "consolidatedSha256": "6d266fb9ccbad4f03e201f1c231c35241e982ee9c17a2be80286b6b98bb0506f",
+      "reviewDisposition": "Active metadata/content consistency reviewed; external source limitations recorded in source-review log"
+    },
+    {
+      "path": "docs/secure-development/checklisten/CL_01_Standards-Anwendbarkeit.md",
+      "sourceSha256": "b0b3b15c1ad7d46a8f83f563583d9538d72332787f4468d63e691ec37fc4decf",
+      "consolidatedSha256": "3a1abfaad7c9c49b67ce9902ae5cb1445f00a399e214b8a58009f4bb5e43a972",
+      "reviewDisposition": "Active metadata/content consistency reviewed; external source limitations recorded in source-review log"
+    },
+    {
+      "path": "docs/secure-development/checklisten/CL_02_Sichere-Softwarearchitektur.md",
+      "sourceSha256": "1b387329009286ce7a0a67b7af1f4bd3f60d290413f57c2eab307ca4b257ec9d",
+      "consolidatedSha256": "6b32be4389bf55b1ef05fb265c7c8160d83a6474d33b7d9053ab4507956f363d",
+      "reviewDisposition": "Active metadata/content consistency reviewed; external source limitations recorded in source-review log"
+    },
+    {
+      "path": "docs/secure-development/checklisten/CL_03_Krypto-Mindestvorgaben.md",
+      "sourceSha256": "031cc40fa44877e34cafc1b398f4ea582c1088647cae4659824e8ff7b5e6b5e9",
+      "consolidatedSha256": "45a7031e1556026bab445cda787066d8046b9de453d5776712a62e8f73cc646d",
+      "reviewDisposition": "Active metadata/content consistency reviewed; external source limitations recorded in source-review log"
+    },
+    {
+      "path": "docs/secure-development/checklisten/CL_04_Bedrohungsmodellierung.md",
+      "sourceSha256": "12d26d0051f4b6de966c7c67c5f0004e25c3136a269fd586a4a3f0f9418d512e",
+      "consolidatedSha256": "5d4a1754243610349c6638fb6defcbc2e4c91ad88c84f89fed54ea0a7274417b",
+      "reviewDisposition": "Active metadata/content consistency reviewed; external source limitations recorded in source-review log"
+    },
+    {
+      "path": "docs/secure-development/checklisten/CL_05_Lieferkette-Build-Integritaet.md",
+      "sourceSha256": "058f9118d955f710953c1ef352189aaad2dda2dd833f82f26d350c5ae54260ec",
+      "consolidatedSha256": "3e8905ba6952dfbbc18fc181a0dcbad0d3e6f25dfb70c93d89de9815541ae7bd",
+      "reviewDisposition": "Active metadata/content consistency reviewed; external source limitations recorded in source-review log"
+    },
+    {
+      "path": "docs/secure-development/checklisten/CL_06_Schwachstellenoffenlegung.md",
+      "sourceSha256": "b5392a2109a08770aa06d5c2a318653058b9687029cdb404ebb08c615b81b972",
+      "consolidatedSha256": "5ded18482b3f250d40a69d2ac63af4a997112a4524399bf8f3a95e885274b827",
+      "reviewDisposition": "Active metadata/content consistency reviewed; external source limitations recorded in source-review log"
+    },
+    {
+      "path": "docs/secure-development/checklisten/CL_07_CRA-Anwendbarkeit.md",
+      "sourceSha256": "b661bb1ab93a5d8a4105f39ab77e2738d80664ac0c1057be04dfa02069de9874",
+      "consolidatedSha256": "f338883a1c11b294035d6ddf71b1d1198f817e352713e3c445f62ab6d95cbbe5",
+      "reviewDisposition": "Active metadata/content consistency reviewed; external source limitations recorded in source-review log"
+    },
+    {
+      "path": "docs/secure-development/checklisten/CL_08_Sicherheits-Code-Review.md",
+      "sourceSha256": "59e55eba03904d1a1e80f2ad4fd67c700b998006adda6a0be838f60d09a17207",
+      "consolidatedSha256": "bc42b6e90fbefb9a65414edcda07ac79e4b7043cff8829e350769f77520e7fff",
+      "reviewDisposition": "Active metadata/content consistency reviewed; external source limitations recorded in source-review log"
+    },
+    {
+      "path": "docs/secure-development/checklisten/CL_09_KI-Codeerzeugung.md",
+      "sourceSha256": "071ed93b5c2bcdfa585f54e7c5386db8cc265d92c6b0bc018ed77d0adfabb766",
+      "consolidatedSha256": "ff9f38b0618010b6dae3b8a0b5225bf26b3415428a8956c9c211be7d93d55ece",
+      "reviewDisposition": "Active metadata/content consistency reviewed; external source limitations recorded in source-review log"
+    },
+    {
+      "path": "docs/secure-development/checklisten/CL_10_Sichere-Entwicklungsumgebung.md",
+      "sourceSha256": "f99e707e4a4186c6ab4031cccdb796981b766ff3d4e09f43798d223e37715f25",
+      "consolidatedSha256": "98c4be29f281aebfdd95ce96fac6c3622df252764319281c5f016f06b0effc6b",
+      "reviewDisposition": "Active metadata/content consistency reviewed; external source limitations recorded in source-review log"
+    },
+    {
+      "path": "docs/secure-development/checklisten/CL_11_Datenschutz-Folgenabschaetzung.md",
+      "sourceSha256": "f04655647392351e1fd283d39c7ac874a5974eb597068e286d11508fc4c16381",
+      "consolidatedSha256": "027db5b8ab64fa39f43b65510d2af2ac6466a99d65e7432e372239d399efebb9",
+      "reviewDisposition": "Active metadata/content consistency reviewed; external source limitations recorded in source-review log"
+    },
+    {
+      "path": "docs/secure-development/checklisten/CL_12_Agentische-KI-Sandbox.md",
+      "sourceSha256": "2ef55845c8d66e7cd1da1ef4a3cb36c7c29b79a3ec1bc6b3a7edb4b4a0505784",
+      "consolidatedSha256": "25d6c9d822dc18775f6c96184022187b1f8a875a0f404ef1587449e63b316d0e",
+      "reviewDisposition": "Active metadata/content consistency reviewed; external source limitations recorded in source-review log"
+    },
+    {
+      "path": "docs/secure-development/mitgeltende-dokumente/BCM-Notfallhandbuch.md",
+      "sourceSha256": "215c3ce2663ac50929d05d42c853e6419d0b5df24b0261b04244fc4537520432",
+      "consolidatedSha256": "051b40067334194bd9a11e25b4b49ff5d8a49a7dcd355e73fa1af8df61d4448a",
+      "reviewDisposition": "Active metadata/content consistency reviewed; external source limitations recorded in source-review log"
+    },
+    {
+      "path": "docs/secure-development/mitgeltende-dokumente/Checkliste_Secure-Development-Life-Cycle.md",
+      "sourceSha256": "7f04bcf5fa25af9d7ef518d7198b87ac9e54db747445ee1b8aa42199421b0830",
+      "consolidatedSha256": "55bc7f763e4312a2e8521be7b1088b0b2f4ce5446995a38fec20779c7181d22a",
+      "reviewDisposition": "Active metadata/content consistency reviewed; external source limitations recorded in source-review log"
+    },
+    {
+      "path": "docs/secure-development/mitgeltende-dokumente/Datenschutzleitlinie.md",
+      "sourceSha256": "867941dcb41cdfa870c514ed8906ba6cc39ac40116f86839ddba5da0daf4150f",
+      "consolidatedSha256": "26a483a47237eeb300427473fdde490499785635235db8b4f6541f4223b7346a",
+      "reviewDisposition": "Active metadata/content consistency reviewed; external source limitations recorded in source-review log"
+    },
+    {
+      "path": "docs/secure-development/mitgeltende-dokumente/Gebrauch_kryptografischer_Massnahmen.md",
+      "sourceSha256": "d61943b4a3c1ba61f9524b6c1b30fee548c5a7c93afbf3219e80e323df59018a",
+      "consolidatedSha256": "f9bd46db870304ec5822c2a41a01bd51fce1757c7967dcdee79f95a30e5e164c",
+      "reviewDisposition": "Active metadata/content consistency reviewed; external source limitations recorded in source-review log"
+    },
+    {
+      "path": "docs/secure-development/mitgeltende-dokumente/Kompetenzprofile_und_Schulungsplan_Sichere-Entwicklung.md",
+      "sourceSha256": "d48b8a49f1e2d28491b91e9c0b65bb1715e278ce79618647ea38aba32a6e70f0",
+      "consolidatedSha256": "463a2b9a031885dca9e7c1bb9ebe75d71c5b6d81c35b9576471bb8eb85cd70e6",
+      "reviewDisposition": "Active metadata/content consistency reviewed; external source limitations recorded in source-review log"
+    },
+    {
+      "path": "docs/secure-development/mitgeltende-dokumente/Leitlinie_Sichere-Entwicklungs-Sandbox.md",
+      "sourceSha256": "8b808faacad06e354d962bc3cfa6c93be1ca349603115f534cfaaecb40be2582",
+      "consolidatedSha256": "ce82ef30a95dc627b2b199907c80f97cbd81f5fbcc271007d84e981ec31f794a",
+      "reviewDisposition": "Active metadata/content consistency reviewed; external source limitations recorded in source-review log"
+    },
+    {
+      "path": "docs/secure-development/mitgeltende-dokumente/Leitlinie_Sichere-Programmierung.md",
+      "sourceSha256": "37d095a65fa498e170cf6a0e21e303a5ad1d5cdd09b3275b8c8e8fff3cb3d805",
+      "consolidatedSha256": "8b53fc887a299f465201628a9103f7f867309be9d7528903a79306dca69cd07b",
+      "reviewDisposition": "Active metadata/content consistency reviewed; external source limitations recorded in source-review log"
+    },
+    {
+      "path": "docs/secure-development/mitgeltende-dokumente/Leitlinie_Sicheres-Softwaredesign.md",
+      "sourceSha256": "ac9135ddeb4afbf66bc626988325817d22d9e3b1fadea27193b05858e455900b",
+      "consolidatedSha256": "60f8d18d17eff8bb44aa606c0f7dc64e4cf2c212cd32c8d83c063a7c9eb1cf17",
+      "reviewDisposition": "Active metadata/content consistency reviewed; external source limitations recorded in source-review log"
+    },
+    {
+      "path": "docs/secure-development/mitgeltende-dokumente/README.md",
+      "sourceSha256": "878eb90c9118666c7d9f1d6dc758423745e70504822bdf14e7c64f2024651eea",
+      "consolidatedSha256": "b105bcd66ed03cc323801ca350fff4e7a3cc7a5b7df3ad1d68e20c3b08d846bd",
+      "reviewDisposition": "Active metadata/content consistency reviewed; external source limitations recorded in source-review log"
+    },
+    {
+      "path": "docs/secure-development/mitgeltende-dokumente/Richtlinie_Changemanagement.md",
+      "sourceSha256": "8db6c57dfb68d153cf32af5cdd9cf62549bc2d4817002ce3f2b08c6833313a55",
+      "consolidatedSha256": "047b713be4abc7bab572f9e4c29f44214730d711e11a73342c4dccaa5317dccd",
+      "reviewDisposition": "Active metadata/content consistency reviewed; external source limitations recorded in source-review log"
+    },
+    {
+      "path": "docs/secure-development/mitgeltende-dokumente/Richtlinie_Dienstleister-und-Lieferantenbeziehungen.md",
+      "sourceSha256": "07456bf83731b8fd9dbb6e40a685cf65066ff163928315dfd30cad942a9aad23",
+      "consolidatedSha256": "603134b15f2c01fedceb6cf330ea07c9d4a796e7758036a006ed5f94448f4333",
+      "reviewDisposition": "Active metadata/content consistency reviewed; external source limitations recorded in source-review log"
+    },
+    {
+      "path": "docs/secure-development/mitgeltende-dokumente/Richtlinie_Secure-Development-Life-Cycle.md",
+      "sourceSha256": "52808b36e49db9a85f3f95866995ca7dacfd79e1a5a3622ecca324615584fd49",
+      "consolidatedSha256": "23cf77b04ba157fc9e65e296733be1f80335f348d8bbefc80f1001c3f76e78bc",
+      "reviewDisposition": "Active metadata/content consistency reviewed; external source limitations recorded in source-review log"
+    },
+    {
+      "path": "docs/secure-development/mitgeltende-dokumente/Richtlinie_Testmanagement.md",
+      "sourceSha256": "7f45078247cf4776e0d14f3a89e3e5a7617d49ea475a9d04ed61c09267f84199",
+      "consolidatedSha256": "2e8bb71bf766dc934f1c7a4df0620e7231dd0c9e3950099bfbd75e406a8d769e",
+      "reviewDisposition": "Active metadata/content consistency reviewed; external source limitations recorded in source-review log"
+    },
+    {
+      "path": "docs/secure-development/mitgeltende-dokumente/Richtlinie_Zugangssteuerung.md",
+      "sourceSha256": "872541b8135315963b246c7678e6244a17dd44013ef5ad2bde30f41bcd0dfc41",
+      "consolidatedSha256": "a8aaf50a7cfec2569e60dc4c912012af8a8f9f6cfedf0fd5021d4c0abffe4085",
+      "reviewDisposition": "Active metadata/content consistency reviewed; external source limitations recorded in source-review log"
+    },
+    {
+      "path": "docs/secure-development/mitgeltende-dokumente/Standardsregister_Sichere-Entwicklung.md",
+      "sourceSha256": "f0aae0f1448d8bc800470804185974ef50b92be08de9f255f29864da6038709e",
+      "consolidatedSha256": "fb759870df78645c56ae8c8d1ee9bc38db348c305cf41943ed963b3037d2548c",
+      "reviewDisposition": "Active metadata/content consistency reviewed; external source limitations recorded in source-review log"
+    },
+    {
+      "path": "docs/secure-development/mitgeltende-dokumente/THE-CASE-FOR-MEMORY-SAFE-ROADMAPS-TLP-CLEAR.DE.md",
+      "sourceSha256": "286fbb3277b438668146fb40e827ef3beeb6654ffc403a1ab5670d982d19ae76",
+      "consolidatedSha256": "286fbb3277b438668146fb40e827ef3beeb6654ffc403a1ab5670d982d19ae76",
+      "reviewDisposition": "Historical reference retained; original-source currency unresolved"
+    },
+    {
+      "path": "docs/secure-development/mitgeltende-dokumente/THE-CASE-FOR-MEMORY-SAFE-ROADMAPS-TLP-CLEAR.EN.md",
+      "sourceSha256": "2898e053a0bf03cfc42f32089a91fb45860afc956dfa45a3f2fc099b849e86a7",
+      "consolidatedSha256": "2898e053a0bf03cfc42f32089a91fb45860afc956dfa45a3f2fc099b849e86a7",
+      "reviewDisposition": "Historical reference retained; original-source currency unresolved"
+    },
+    {
+      "path": "docs/secure-development/mitgeltende-dokumente/THE-CASE-FOR-MEMORY-SAFE-ROADMAPS-TLP-CLEAR.pdf",
+      "sourceSha256": "dfe3e72e075738e345aab81a541f72ab4c0cd149235426108090bf48787bc34b",
+      "consolidatedSha256": "dfe3e72e075738e345aab81a541f72ab4c0cd149235426108090bf48787bc34b",
+      "reviewDisposition": "Local integrity verified; online source unresolved"
+    },
+    {
+      "path": "docs/secure-development/mitgeltende-dokumente/THE-CASE-FOR-MEMORY-SAFE-ROADMAPS-TLP-CLEAR.sha256",
+      "sourceSha256": "fc62c1f879c6e17739e17c5114ccc38dea7e8552ddbad55e606e130dd5b696de",
+      "consolidatedSha256": "fc62c1f879c6e17739e17c5114ccc38dea7e8552ddbad55e606e130dd5b696de",
+      "reviewDisposition": "Local integrity verified; online source unresolved"
+    },
+    {
+      "path": "docs/secure-development/mitgeltende-dokumente/Verzahnung_Richtlinie_Checklisten_Spec-Kit-Presets.md",
+      "sourceSha256": "65ea3815188c27acd000d14a908eb095ed53c782aee6556b6fcd6390cc2c4567",
+      "consolidatedSha256": "48cd3994c3dd5bdb3ca8e635cd4f33e1fa5f77dbb145a0e00ebe03adef7d75bf",
+      "reviewDisposition": "Active metadata/content consistency reviewed; external source limitations recorded in source-review log"
+    }
+  ]
+}

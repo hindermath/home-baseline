@@ -12,8 +12,8 @@ This document is organization-neutral and written as a generic training and revi
 ## Checkliste 03 – Kryptografische Mindestvorgaben / Cryptographic Minimum Requirements
 
 **Dokument-ID / Document ID:** CL-03
-**Version / Version:** 2.0.0
-**Baseline-Version / Baseline version:** 3.0.0
+**Version / Version:** 2.0.1
+**Baseline-Version / Baseline version:** 3.4.0
 **Dokumenttyp / Document type:** Kanonische, wiederverwendbare Pruefvorlage / Canonical reusable review template
 
 ### Nachweisinstanz / Evidence Instance
@@ -527,34 +527,9 @@ indirectly via libraries, frameworks, or external services.
 
 #### CL-03-10: Schlüsselrotation / Key Rotation
 
-- **DE:** Festgelegte Rotationsfristen je Schlüsseltyp: TLS-Server-Zertifikate
-  ≤ 397 Tage (Browser-Limit ab 2020), idealerweise per ACME (Let's Encrypt,
-  ZeroSSL) alle 60–90 Tage automatisiert; API- und Service-Tokens 90 Tage;
-  Datenbank-Verschlüsselungsschlüssel (DEK) jährlich oder häufiger;
-  Master-/Wrapping-Keys (KEK) im KMS jährlich mit Versionierung;
-  Signaturschlüssel projektabhängig (oft mehrere Jahre, aber mit
-  Migrationspfad). Rotation funktioniert mit überlappender Gültigkeit
-  (Old-Key + New-Key gleichzeitig akzeptieren), bis alle Verbraucher
-  umgestellt sind. Werkzeuge: AWS KMS Automatic Key Rotation, Azure Key
-  Vault Auto-Rotation, HashiCorp Vault `vault rotate`, cert-manager unter
-  Kubernetes. Bei Verdacht auf Kompromittierung wird sofort rotiert,
-  betroffene Sitzungen werden invalidiert, und der Vorfall geht in
-  Incident Response.
-- **EN:** Defined rotation periods per key type: TLS server certificates
-  ≤ 397 days (browser limit since 2020), ideally automated via ACME
-  (Let's Encrypt, ZeroSSL) every 60–90 days; API and service tokens 90
-  days; database encryption keys (DEK) yearly or more often; master /
-  wrapping keys (KEK) in the KMS yearly with versioning; signing keys
-  project-dependent (often multi-year, but with a migration path).
-  Rotation uses overlapping validity (old + new key both accepted) until
-  all consumers have switched. Tools: AWS KMS Automatic Key Rotation,
-  Azure Key Vault Auto-Rotation, HashiCorp Vault `vault rotate`,
-  cert-manager on Kubernetes. On suspected compromise, immediate
-  rotation, invalidate affected sessions, escalate to incident response.
-- **Akzeptanz / Acceptance:** Rotationsplan mit Frist je Schlüsseltyp,
-  Werkzeug, letztem Rotations-Datum und Verantwortlicher Person
-  dokumentiert. / Rotation plan with period per key type, tooling, last
-  rotation date, and owner documented.
+- **DE:** Rotationsfristen werden je Schlüsseltyp, Schutzbedarf und geltendem Standard festgelegt. Für öffentlich vertrauenswürdige TLS-Serverzertifikate gelten ausstellungsabhängige CA/Browser-Fristen: ab 15.03.2026 höchstens 200 Tage, ab 15.03.2027 100 Tage, ab 15.03.2029 47 Tage. Interne PKI getrennt bewerten. Erneuerung automatisieren und vor Ablauf testen; bei Kompromittierung sofort widerrufen beziehungsweise rotieren. Statische Tokenfristen sind lokale Risikopolicy, keine allgemeine Normvorgabe.
+- **EN:** Set rotation periods by key type, risk, and applicable standard. Publicly trusted TLS server certificates have issuance-dependent CA/Browser limits: at most 200 days from 2026-03-15, 100 days from 2027-03-15, and 47 days from 2029-03-15. Assess internal PKI separately. Automate renewal and test before expiry; revoke or rotate immediately after compromise. Static token periods are local risk policy, not universal standard requirements.
+- **Akzeptanz / Acceptance:** Rotations- und Wiederherstellungstest; Quelle: https://cabforum.org/working-groups/server/baseline-requirements/requirements/ Abschnitt / section 6.3.2.
 - **Lernstufe / Learning stage:** _Grundlage, Aufbau oder Vertiefung gemaess Lernpfad dokumentieren. / Record foundation, intermediate, or advanced according to the learning path._
 - **Verantwortliche Rolle / Responsible role:** _Lernende Person, ausbildende Person, Projektverantwortung oder Security-Rolle benennen. / Name learner, instructor, project owner, or security role._
 - **Anwendbarkeit / Applicability:**
@@ -949,3 +924,4 @@ stored in the security evidence set.
 ---
 
 - **Version 2.0.0 (2026-07-10):** Einheitliches zweiachsiges Statusmodell, stabile CL-IDs, Lernstufe, Rollen-, Evidenz-, Restrisiko- und Neubewertungsfelder sowie klare Trennung zwischen Vorlage und Projektnachweis eingeführt; synchron mit sichere-Entwicklung-Basis 3.0.0. / Added the unified two-axis status model, stable CL IDs, learning-stage, role, evidence, residual-risk, and re-evaluation fields, plus clear separation between template and project evidence; synchronized with secure-development baseline 3.0.0.
+| 2.0.1 | 2026-10-19 | Level-0-Konsolidierung: Baseline-Bindung und fachliche Konsistenz geprüft; Grenzen im Reviewbericht. / Level-0 consolidation: baseline binding and consistency reviewed; limitations recorded in the review report. |

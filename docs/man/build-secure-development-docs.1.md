@@ -34,3 +34,15 @@ Das Werkzeug liest `docs/secure-development/baseline-manifest.json`, prueft die 
 - `0`: Manifest, IDs, Versionen und Sammelband sind konsistent.
 - `1`: Eine Quelle fehlt, IDs oder Versionen widersprechen sich oder der Sammelband ist veraltet.
 - `2`: Unbekannte Kommandozeilenoption.
+
+## Aktive Metadaten / Active Metadata
+
+DE: Prüft zusätzlich aktive Baseline-Header, eindeutige CL-01 bis CL-12,
+Richtlinien-/Baseline-Version und die vollständigen Profilnamen aus dem
+Profilkatalog in der Verzahnungsdatei. Historische Versionsangaben bleiben
+unverändert. Fachliche Richtigkeit und Quellenaktualität erfordern Review.
+
+EN: Also validates active baseline headers, unique CL-01 through CL-12,
+guideline/baseline version, and all catalog profile names in the alignment
+document. Historical versions remain unchanged. Subject-matter correctness
+and primary-source currency still require review.

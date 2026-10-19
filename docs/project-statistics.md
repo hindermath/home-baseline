@@ -1432,6 +1432,21 @@ repair does not constitute another Spec Kit run.
 
 | 2026-10-19 | Begrenzter 14-Preset-Rollout: Abschluss / Bounded fourteen-preset rollout closeout | Zentrale Evidence fuer Level 0/Home Runtime und ausschliesslich TinyCalc, Show-CommandTui400 und absdd-image-sandbox zusammengefuehrt: exakte PR-/Merge-Bindungen, technische GSDB-/Assurance-Nachpruefung, macOS-PTY-Korrektur ohne abgeschwaechte Orakel und dokumentierte Provider-Ausnahme. Echter Statistik-Drift am Tageswechsel bleibt mit gesonderter generierter Korrektur nachvollziehbar; keine Methodikaenderung, Produktfreigabe, Community-Einreichung oder weitere Flotte. [Nachweis / Evidence](maintenance/preset-readme-patch-rollout-2026-10-18.md). / Consolidate exact delivery and execution evidence, preserve failed history and human boundaries; canonical statistics follow the clean closeout source commit. |
 
+### 2026-10-19 - GSDB-Konsolidierung in Level 0 / GSDB Level-0 consolidation
+
+37 GSDB-Dateien inventarisiert; Baseline 3.4.0 mit unveränderten 157 stabilen
+Prüfpunkt-IDs, profilgebundener Preset-Prüfung und regeneriertem Sammelband
+vorbereitet. Quellen-, Abdeckungs-, Assurance- und Regressionsevidence liegen
+im Repository. Der fachliche Gesamtausgang bleibt wegen offener Primärquellen
+Blocked; menschliche PR-Prüfung, Merge, Home-Sync und Flottenrollouts stehen aus.
+Quartalsreview ab 10.01.2027 eingerichtet; kein Testmailversand.
+
+Inventoried 37 GSDB files; prepared baseline 3.4.0 with all 157 stable item IDs,
+profile-bound preset checks and regenerated compendium. Source, coverage,
+assurance and regression evidence is versioned. Subject-matter outcome remains
+Blocked by unresolved primary sources; human PR review, merge, Home sync and
+fleet rollout remain pending. Quarterly review starts 2027-01-10; no test mail.
+
 ## Gesamtstatistik / Overall Statistics
 
 <!-- project-statistics-v2:begin -->
