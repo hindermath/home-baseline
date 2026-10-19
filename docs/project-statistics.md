@@ -1430,6 +1430,8 @@ repair does not constitute another Spec Kit run.
 
 | 2026-10-18 | Begrenzter 14-Preset-Rollout: Level 0 / Bounded fourteen-preset rollout: Level 0 | Autorisierte Installation der 14 README-Patch-Pakete; bytegleiches Home-only-Runner-Overlay, vollstaendige Agentenkomposition und eigener technischer Assurance-Kontext. Installation, Evidence und Lieferpruefung getrennt von menschlicher Produkt-/Releasefreigabe. Home Runtime erst nach Level-0-Lieferung; drei benannte Verbraucher folgen getrennt, keine Community-Einreichung. [Nachweis / Evidence](maintenance/preset-readme-patch-rollout-2026-10-18.md). / Authorized Level-0 installation with preserved overlay, full agent composition and scoped technical evidence; bounded consumer/runtime follow-up only. |
 
+| 2026-10-19 | Begrenzter 14-Preset-Rollout: Abschluss / Bounded fourteen-preset rollout closeout | Zentrale Evidence fuer Level 0/Home Runtime und ausschliesslich TinyCalc, Show-CommandTui400 und absdd-image-sandbox zusammengefuehrt: exakte PR-/Merge-Bindungen, technische GSDB-/Assurance-Nachpruefung, macOS-PTY-Korrektur ohne abgeschwaechte Orakel und dokumentierte Provider-Ausnahme. Echter Statistik-Drift am Tageswechsel bleibt mit gesonderter generierter Korrektur nachvollziehbar; keine Methodikaenderung, Produktfreigabe, Community-Einreichung oder weitere Flotte. [Nachweis / Evidence](maintenance/preset-readme-patch-rollout-2026-10-18.md). / Consolidate exact delivery and execution evidence, preserve failed history and human boundaries; canonical statistics follow the clean closeout source commit. |
+
 ## Gesamtstatistik / Overall Statistics
 
 <!-- project-statistics-v2:begin -->
