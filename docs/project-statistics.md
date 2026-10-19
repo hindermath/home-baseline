@@ -1457,27 +1457,27 @@ Profil 2 verwendet Git-getrackte Textdateien und sichtbare Git-Aktivitaet. Die W
 
 | Kennzahl / Metric | Wert / Value |
 |---|---:|
-| Textbasis / Text base | 719025 lines |
-| Textdateien / Text files | 3395 |
+| Textbasis / Text base | 719027 lines |
+| Textdateien / Text files | 3409 |
 | Beobachtbarer Zeitraum / Observable period | 2025-10-26..2026-10-19 |
 | Aktivtage / Active days | 127 |
-| Relevante Commits / Relevant commits | 930 |
+| Relevante Commits / Relevant commits | 931 |
 | Zeilen je Aktivtag / Lines per active day | 5661.6 |
 | Peak-Tag im Fenster / Peak day in window | 2026-08-01 / 161357 |
 | Peak-Woche im Fenster / Peak week in window | 2026-07-26 / 284516 |
 | Laengste Serie / Longest streak | 38 days |
 | Speedup vs. 80 lines/day | 70.8x |
 | Speedup vs. 100 lines/day | 56.6x |
-| Methodik / Methodology | v2; source `cf13688a76cd` |
+| Methodik / Methodology | v2; source `978acbca3516` |
 
 ### Artefaktmix / Artifact Mix
 
 ```text
 Produktiv / Production          [#...................]   0.3% | 2237
-Tests                           [#...................]   3.8% | 27678
-Dokumentation / Documentation   [###########.........]  52.5% | 377767
-Skripte / Scripts               [##..................]   8.1% | 58370
-Konfiguration / Configuration   [#######.............]  35.1% | 252617
+Tests                           [#...................]   3.9% | 27780
+Dokumentation / Documentation   [###########.........]  52.5% | 377607
+Skripte / Scripts               [##..................]   8.1% | 58426
+Konfiguration / Configuration   [#######.............]  35.1% | 252621
 Daten und Medien / Data and media [....................]   0.0% | 0
 Sonstiger Text / Other text     [#...................]   0.0% | 356
 ```
@@ -1502,7 +1502,7 @@ Sa/Sa  0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 4 3 4
 ```text
 Wochen / Weeks 27..52 | 2026-04-26..2026-10-24
 So/Su  4 0 0 0 0 2 0 4 0 4 4 4 4 4 4 4 4 4 0 4 4 4 2 4 0 4
-Mo/Mo  0 3 0 0 0 0 0 0 0 4 4 4 4 3 0 2 1 0 0 3 3 0 3 2 0 3
+Mo/Mo  0 3 0 0 0 0 0 0 0 4 4 4 4 3 0 2 1 0 0 3 3 0 3 2 0 4
 Di/Tu  2 0 0 0 3 0 0 0 0 2 4 4 4 4 0 0 0 0 4 2 4 0 0 3 0 -
 Mi/We  3 0 0 0 0 1 0 4 0 4 4 4 4 4 4 0 4 3 0 4 2 0 0 0 0 -
 Do/Th  4 0 0 3 2 1 4 0 0 2 4 3 4 4 0 4 4 0 4 4 0 0 3 0 0 -
@@ -1780,6 +1780,6 @@ DE: Das Fenster beginnt am 2025-10-26 und endet am 2026-10-19. Es enthaelt 127 a
 | 2026-07 | 385430 |
 | 2026-08 | 278228 |
 | 2026-09 | 144845 |
-| 2026-10 | 23226 |
+| 2026-10 | 27660 |
 
 <!-- project-statistics-v2:end -->
