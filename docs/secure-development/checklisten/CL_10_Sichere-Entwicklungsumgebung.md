@@ -13,7 +13,7 @@ This document is organization-neutral and written as a generic training and revi
 
 **Dokument-ID / Document ID:** CL-10
 **Version / Version:** 2.0.2
-**Baseline-Version / Baseline version:** 3.4.1
+**Baseline-Version / Baseline version:** 3.4.2
 **Dokumenttyp / Document type:** Kanonische, wiederverwendbare Pruefvorlage / Canonical reusable review template
 
 ### Nachweisinstanz / Evidence Instance

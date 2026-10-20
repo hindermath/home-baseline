@@ -1461,6 +1461,24 @@ EN: Close seven Open and three Partial source checks using official texts;
 correct canonical bilingual requirements and create new bound evidence.
 Human review pending; no merge, Home sync, package change, mail or rollout.
 
+### 2026-10-20 - GSDB-Reviewkorrektur / GSDB review remediation
+
+DE: Vier Befunde aus unabhaengiger Nachpruefung korrigiert: getrenntes
+KI-Rollenscreening ohne pauschales Werkzeug-N/A, vollstaendige bedingte
+CRA-Zertifizierungspfade, eindeutige aktive Metadatenpruefung in beiden Shells
+und gleichwertige englische Meldefristen. Baseline 3.4.2, Sammelband 2.4.2,
+157 IDs erhalten; sechs weitere Regressionen je Shell und neuer Assurance-Kontext.
+Historische Evidence bleibt erhalten; menschliche Freigabe, Merge und jede
+Runtime-/Flottenausfuehrung bleiben offen.
+[Nachweis / Evidence](maintenance/gsdb-review-remediation-2026-10-20.md).
+
+EN: Correct four independent-review findings: separate AI-role screening,
+complete conditional CRA certification routes, exact active metadata checks in
+both shells and equivalent English reporting clocks. Baseline 3.4.2,
+compendium 2.4.2, retain 157 IDs; add six cases per shell and a new assurance
+context. Preserve historical evidence; human approval, merge and all runtime
+or fleet execution remain pending.
+
 ## Gesamtstatistik / Overall Statistics
 
 <!-- project-statistics-v2:begin -->

@@ -1,0 +1,231 @@
+{
+  "sourceCommit": "64508d265ac5c3163de9521e61cf21c168eafbe8",
+  "scope": "Level 0 four-finding remediation; no merge, Home sync or rollout",
+  "managedFileCount": 37,
+  "files": [
+    {
+      "path": "docs/secure-development/Checklistensammelband_Sichere-Entwicklung.md",
+      "sourceSha256": "bf525e5e8748f9545e4b989f306526dfec0ea2459fc154c04336cb1d9393d239",
+      "consolidatedSha256": "53a948792058cd71f4d811a26cfd6aca67add4405bfa37b3d9fb56a4781329ca",
+      "reviewDisposition": "Baseline 3.4.2; semantic changes and metadata-only bindings distinguished in remediation report; historical evidence unchanged."
+    },
+    {
+      "path": "docs/secure-development/Lernpfad_Sichere-Entwicklung_Lehrjahr-1-bis-3.md",
+      "sourceSha256": "1de3e853b0ac0f09cf333923f445938b00332b5c6be684f335e78093469191de",
+      "consolidatedSha256": "995f3caa9db9da4c07920ee2e905293a87ff40a065d97829f89d52146b09d634",
+      "reviewDisposition": "Baseline 3.4.2; semantic changes and metadata-only bindings distinguished in remediation report; historical evidence unchanged."
+    },
+    {
+      "path": "docs/secure-development/README.md",
+      "sourceSha256": "5a79a50695a8986621b2cf4c28d553b53ec09fca4a6cf2d679cfadf4d39872dc",
+      "consolidatedSha256": "08b0a120ee2c8fe24dad1e3616c83b169c0d0870b13376cd91654d4fe35c4ab8",
+      "reviewDisposition": "Baseline 3.4.2; semantic changes and metadata-only bindings distinguished in remediation report; historical evidence unchanged."
+    },
+    {
+      "path": "docs/secure-development/Richtlinie_Sichere-Entwicklung.md",
+      "sourceSha256": "95000adf289df7e6947d1b355407638c7980827f62e316e6ed2fe6923c8d3a3d",
+      "consolidatedSha256": "3c5eacfbc3846969dfb2b4eeaa605c499df27803fbf1d07edda5d06cf1934b5c",
+      "reviewDisposition": "Baseline 3.4.2; semantic changes and metadata-only bindings distinguished in remediation report; historical evidence unchanged."
+    },
+    {
+      "path": "docs/secure-development/baseline-manifest.json",
+      "sourceSha256": "2942867c4f546bf155fb4daf7fbefa201218631ab14cfc821929ff107bb2cc40",
+      "consolidatedSha256": "232478d3c3a1b525fb8a1f801506c317c7b2075dac53bfc639a1d151b80f6a39",
+      "reviewDisposition": "Baseline 3.4.2; semantic changes and metadata-only bindings distinguished in remediation report; historical evidence unchanged."
+    },
+    {
+      "path": "docs/secure-development/checklisten/CL_01_Standards-Anwendbarkeit.md",
+      "sourceSha256": "7e1c06d0131aae1467046f24c783fdac08272dbe4fca2c3deeee0659b7b4c775",
+      "consolidatedSha256": "3d7f91d67bcf8591f53fa3520b811bc1f837d750538cceae24f565d77a6cdbd4",
+      "reviewDisposition": "Baseline 3.4.2; semantic changes and metadata-only bindings distinguished in remediation report; historical evidence unchanged."
+    },
+    {
+      "path": "docs/secure-development/checklisten/CL_02_Sichere-Softwarearchitektur.md",
+      "sourceSha256": "81a870613857d39c5703b0a180ae640e66494cceb9d14a01738a747de1502923",
+      "consolidatedSha256": "1304aa790e92c78b439a30d9c6e6094954237d5653269617729862438d69014e",
+      "reviewDisposition": "Baseline 3.4.2; semantic changes and metadata-only bindings distinguished in remediation report; historical evidence unchanged."
+    },
+    {
+      "path": "docs/secure-development/checklisten/CL_03_Krypto-Mindestvorgaben.md",
+      "sourceSha256": "2ac4cacefe4428a17dac8d71c4a8aa8fa5af137783b943281abe937eac42a546",
+      "consolidatedSha256": "dca397a024e8e713df7df085c00a97a24c25565f91e6582a536db7126a6e8566",
+      "reviewDisposition": "Baseline 3.4.2; semantic changes and metadata-only bindings distinguished in remediation report; historical evidence unchanged."
+    },
+    {
+      "path": "docs/secure-development/checklisten/CL_04_Bedrohungsmodellierung.md",
+      "sourceSha256": "297474c7077b785ba0f1a653e0b6ca6464bb9c6eeea233c37805dd676319eca7",
+      "consolidatedSha256": "49e9e1cb4052064aafed56b3d84230eebba1569d94972fbde1c124fd532a7226",
+      "reviewDisposition": "Baseline 3.4.2; semantic changes and metadata-only bindings distinguished in remediation report; historical evidence unchanged."
+    },
+    {
+      "path": "docs/secure-development/checklisten/CL_05_Lieferkette-Build-Integritaet.md",
+      "sourceSha256": "c0d89bd24da07018341710c83b4fa58ea71f6b0fa377fc2edfaef892194c8d32",
+      "consolidatedSha256": "09adee73d1020eda375a3817c69e1b164dc2b7c656f0541e9d48a9a2b8e3392f",
+      "reviewDisposition": "Baseline 3.4.2; semantic changes and metadata-only bindings distinguished in remediation report; historical evidence unchanged."
+    },
+    {
+      "path": "docs/secure-development/checklisten/CL_06_Schwachstellenoffenlegung.md",
+      "sourceSha256": "647ebdce62d482e7a061866d37f7e33a63cd0119c885f9f6aff3e5495e240f18",
+      "consolidatedSha256": "62dd6e60c924bce5656210704d2b666557b1c9e725c76e4c5522f7bb42d3e617",
+      "reviewDisposition": "Baseline 3.4.2; semantic changes and metadata-only bindings distinguished in remediation report; historical evidence unchanged."
+    },
+    {
+      "path": "docs/secure-development/checklisten/CL_07_CRA-Anwendbarkeit.md",
+      "sourceSha256": "43dcb323a613b871bf0aee75ad4a17d2ae12991e1a52c5fe9fd8387aa58cec69",
+      "consolidatedSha256": "28d3bce1c8fa41c5b9677723f20bd4ae434c7361a04ef053771e0c2227bc539f",
+      "reviewDisposition": "Baseline 3.4.2; semantic changes and metadata-only bindings distinguished in remediation report; historical evidence unchanged."
+    },
+    {
+      "path": "docs/secure-development/checklisten/CL_08_Sicherheits-Code-Review.md",
+      "sourceSha256": "3538444f2e30788060f8b115493a598c2a353d3bbcfbfb33f8cf0f8769d3c0f4",
+      "consolidatedSha256": "ba412f8a73c9a19d4f39551d9ed576d5b850dfe846871e4deb888a97bb6ba810",
+      "reviewDisposition": "Baseline 3.4.2; semantic changes and metadata-only bindings distinguished in remediation report; historical evidence unchanged."
+    },
+    {
+      "path": "docs/secure-development/checklisten/CL_09_KI-Codeerzeugung.md",
+      "sourceSha256": "b626784a0517d67ffa30e14dc158529e15b65c84e77f7c2a426ae5d1660d2b2a",
+      "consolidatedSha256": "eed22bc90f122b6359feb982af8809996b2231c40f3d6e3bd57aa26772013a6e",
+      "reviewDisposition": "Baseline 3.4.2; semantic changes and metadata-only bindings distinguished in remediation report; historical evidence unchanged."
+    },
+    {
+      "path": "docs/secure-development/checklisten/CL_10_Sichere-Entwicklungsumgebung.md",
+      "sourceSha256": "837522ecc47b239d1ba548310124897b21196753fe353ebe51cc8eef82ec608e",
+      "consolidatedSha256": "a8fd82220a95bfca70221a7da932e32e98a93127fc0aa1660c888ee3447c7fcc",
+      "reviewDisposition": "Baseline 3.4.2; semantic changes and metadata-only bindings distinguished in remediation report; historical evidence unchanged."
+    },
+    {
+      "path": "docs/secure-development/checklisten/CL_11_Datenschutz-Folgenabschaetzung.md",
+      "sourceSha256": "d9269f81456be3fc486025241fcbb5a33a915dbe176e21f043217ebdb536c76b",
+      "consolidatedSha256": "73473d87d1f8b90c1e59752e8190da83603d3f9d06c3f8e01912d2bc4e54637c",
+      "reviewDisposition": "Baseline 3.4.2; semantic changes and metadata-only bindings distinguished in remediation report; historical evidence unchanged."
+    },
+    {
+      "path": "docs/secure-development/checklisten/CL_12_Agentische-KI-Sandbox.md",
+      "sourceSha256": "856f16f41cabf1f97a2cd668d4cd425fe955f88122b2893b956f77769c5a6ba7",
+      "consolidatedSha256": "7416625812c63dada21985e54cde81e937e96f7f46074ca9955b6f0578f7b86a",
+      "reviewDisposition": "Baseline 3.4.2; semantic changes and metadata-only bindings distinguished in remediation report; historical evidence unchanged."
+    },
+    {
+      "path": "docs/secure-development/mitgeltende-dokumente/BCM-Notfallhandbuch.md",
+      "sourceSha256": "18da243e7e40d597612fdf3b4bef1400e7b1329abbe231354dff9d2e0455a129",
+      "consolidatedSha256": "015f42f33644278e46798964ef915d6703cb3bb289acff4bc1a8dba6175f841f",
+      "reviewDisposition": "Baseline 3.4.2; semantic changes and metadata-only bindings distinguished in remediation report; historical evidence unchanged."
+    },
+    {
+      "path": "docs/secure-development/mitgeltende-dokumente/Checkliste_Secure-Development-Life-Cycle.md",
+      "sourceSha256": "ef5ba86e5b3626bc28e77a84680acea7e8b55c250d8d06986a4f8ab5be19d6e8",
+      "consolidatedSha256": "15e130f6940d4d37d1988feaa4651baefe153202276f5daa79bd04f21ef75130",
+      "reviewDisposition": "Baseline 3.4.2; semantic changes and metadata-only bindings distinguished in remediation report; historical evidence unchanged."
+    },
+    {
+      "path": "docs/secure-development/mitgeltende-dokumente/Datenschutzleitlinie.md",
+      "sourceSha256": "24c3a375aaedde1a8139f6b840b3b327a5de9ce6d8bf5a58f25bc36f4c28b5e5",
+      "consolidatedSha256": "9b8986c07d655ee6b86cf9370120f9914ef478dcfdc2596294320fa9702e4853",
+      "reviewDisposition": "Baseline 3.4.2; semantic changes and metadata-only bindings distinguished in remediation report; historical evidence unchanged."
+    },
+    {
+      "path": "docs/secure-development/mitgeltende-dokumente/Gebrauch_kryptografischer_Massnahmen.md",
+      "sourceSha256": "41539a05392f4ca904a45e9bd8594614765753eaa7e1234b6e99406e1e701b6c",
+      "consolidatedSha256": "5effa35cdc097e48dd6fd374d37a270598f9b295f27ad9cd54015b7c59e846f2",
+      "reviewDisposition": "Baseline 3.4.2; semantic changes and metadata-only bindings distinguished in remediation report; historical evidence unchanged."
+    },
+    {
+      "path": "docs/secure-development/mitgeltende-dokumente/Kompetenzprofile_und_Schulungsplan_Sichere-Entwicklung.md",
+      "sourceSha256": "b66e80b85865814e636e8c3dd67aa5461e3acc538a897097757b9435e9d881d6",
+      "consolidatedSha256": "f9f1282e3d027cae308f3bb0b54b24277f318323b918ff8521b819695826480f",
+      "reviewDisposition": "Baseline 3.4.2; semantic changes and metadata-only bindings distinguished in remediation report; historical evidence unchanged."
+    },
+    {
+      "path": "docs/secure-development/mitgeltende-dokumente/Leitlinie_Sichere-Entwicklungs-Sandbox.md",
+      "sourceSha256": "14eb99fa9427263894a96ce6de84677d415245ab5202ff0fba8a5d828dcaa1fd",
+      "consolidatedSha256": "dc455a5fc38d46b5a9c4c0702a00dd9dd39e6c93e7f4ced427cf9bec99349973",
+      "reviewDisposition": "Baseline 3.4.2; semantic changes and metadata-only bindings distinguished in remediation report; historical evidence unchanged."
+    },
+    {
+      "path": "docs/secure-development/mitgeltende-dokumente/Leitlinie_Sichere-Programmierung.md",
+      "sourceSha256": "0d4bdf123343dfb6edda852d3a08a9935cecb9c0fbdfe13cda433433d60c25e4",
+      "consolidatedSha256": "cafd1ade2faac548b9426ca61ec02db7e80425e46ba4d8bfbac0965865454b86",
+      "reviewDisposition": "Baseline 3.4.2; semantic changes and metadata-only bindings distinguished in remediation report; historical evidence unchanged."
+    },
+    {
+      "path": "docs/secure-development/mitgeltende-dokumente/Leitlinie_Sicheres-Softwaredesign.md",
+      "sourceSha256": "ed24448fe5eb0eb31504b0bdf92b81c3e39c326bd110d27642669e204a5ae85a",
+      "consolidatedSha256": "2b48110b7b9ab84513d46bece3b43b5340e7b48f27d4d501761b06e967ef2d41",
+      "reviewDisposition": "Baseline 3.4.2; semantic changes and metadata-only bindings distinguished in remediation report; historical evidence unchanged."
+    },
+    {
+      "path": "docs/secure-development/mitgeltende-dokumente/README.md",
+      "sourceSha256": "8fca36f4778c5d38ecf17d38e237737ace57480aba37cc0567686d5e016fa24e",
+      "consolidatedSha256": "8fca36f4778c5d38ecf17d38e237737ace57480aba37cc0567686d5e016fa24e",
+      "reviewDisposition": "Baseline 3.4.2; semantic changes and metadata-only bindings distinguished in remediation report; historical evidence unchanged."
+    },
+    {
+      "path": "docs/secure-development/mitgeltende-dokumente/Richtlinie_Changemanagement.md",
+      "sourceSha256": "2120caa471a70c40bb038c0041185f808fd2aaf47657bccca5ce093f9b0b3e4d",
+      "consolidatedSha256": "f071b56a35b9de01f3a9e12518845c144616b28b16b322fe850149d59315073e",
+      "reviewDisposition": "Baseline 3.4.2; semantic changes and metadata-only bindings distinguished in remediation report; historical evidence unchanged."
+    },
+    {
+      "path": "docs/secure-development/mitgeltende-dokumente/Richtlinie_Dienstleister-und-Lieferantenbeziehungen.md",
+      "sourceSha256": "fd40ac697e55f0cbcfad657e800c1bc5a1570db688666bdcc3452baa31dbdae9",
+      "consolidatedSha256": "795220b4d717b9bfcc6c599602626506c55d93cf92c6d7daf79cec1dd58cc9a9",
+      "reviewDisposition": "Baseline 3.4.2; semantic changes and metadata-only bindings distinguished in remediation report; historical evidence unchanged."
+    },
+    {
+      "path": "docs/secure-development/mitgeltende-dokumente/Richtlinie_Secure-Development-Life-Cycle.md",
+      "sourceSha256": "0d6af6af22baf5677aa76bdee1423bb8316005566413ca050401f7fff26d0bf9",
+      "consolidatedSha256": "1634ffd02244bccfbd06a9835b2084a73814dcc44e634d6008690ffc52fade74",
+      "reviewDisposition": "Baseline 3.4.2; semantic changes and metadata-only bindings distinguished in remediation report; historical evidence unchanged."
+    },
+    {
+      "path": "docs/secure-development/mitgeltende-dokumente/Richtlinie_Testmanagement.md",
+      "sourceSha256": "00142a0c82e22000caaf327b8c0330aca85a0218063d6cc438c9dc283e84e1f4",
+      "consolidatedSha256": "cf475b03f385960b00d3ac4e4ba101ac9f7809bb7915691a1c438e1ecf5ad1a6",
+      "reviewDisposition": "Baseline 3.4.2; semantic changes and metadata-only bindings distinguished in remediation report; historical evidence unchanged."
+    },
+    {
+      "path": "docs/secure-development/mitgeltende-dokumente/Richtlinie_Zugangssteuerung.md",
+      "sourceSha256": "db00ffefcffc0d658f2dff654d2a717f0421c34d20a3a9b7d877ecb873c2d7b0",
+      "consolidatedSha256": "0fd8287d8e841452a5afd2bdaa33dbd9488010a2efb614619a6fb6b8288a0d07",
+      "reviewDisposition": "Baseline 3.4.2; semantic changes and metadata-only bindings distinguished in remediation report; historical evidence unchanged."
+    },
+    {
+      "path": "docs/secure-development/mitgeltende-dokumente/Standardsregister_Sichere-Entwicklung.md",
+      "sourceSha256": "a0b753c75f9f42d6ef367d3ce4f3433817d9d10af42b2b7566d154fae6165331",
+      "consolidatedSha256": "4506a1fe05caaa63aa5230a8bb8f8bca314b1892eb97323b3b5d777f3dac43de",
+      "reviewDisposition": "Baseline 3.4.2; semantic changes and metadata-only bindings distinguished in remediation report; historical evidence unchanged."
+    },
+    {
+      "path": "docs/secure-development/mitgeltende-dokumente/THE-CASE-FOR-MEMORY-SAFE-ROADMAPS-TLP-CLEAR.DE.md",
+      "sourceSha256": "867542e599f946d1a42c1dc1fe0a30455744fea852d43a3dcc84140ee370a719",
+      "consolidatedSha256": "867542e599f946d1a42c1dc1fe0a30455744fea852d43a3dcc84140ee370a719",
+      "reviewDisposition": "Baseline 3.4.2; semantic changes and metadata-only bindings distinguished in remediation report; historical evidence unchanged."
+    },
+    {
+      "path": "docs/secure-development/mitgeltende-dokumente/THE-CASE-FOR-MEMORY-SAFE-ROADMAPS-TLP-CLEAR.EN.md",
+      "sourceSha256": "f1eded9f9c858e874ede948b354e618a4e264298f3c4a3e3753a6627d9231e3c",
+      "consolidatedSha256": "f1eded9f9c858e874ede948b354e618a4e264298f3c4a3e3753a6627d9231e3c",
+      "reviewDisposition": "Baseline 3.4.2; semantic changes and metadata-only bindings distinguished in remediation report; historical evidence unchanged."
+    },
+    {
+      "path": "docs/secure-development/mitgeltende-dokumente/THE-CASE-FOR-MEMORY-SAFE-ROADMAPS-TLP-CLEAR.pdf",
+      "sourceSha256": "dfe3e72e075738e345aab81a541f72ab4c0cd149235426108090bf48787bc34b",
+      "consolidatedSha256": "dfe3e72e075738e345aab81a541f72ab4c0cd149235426108090bf48787bc34b",
+      "reviewDisposition": "Baseline 3.4.2; semantic changes and metadata-only bindings distinguished in remediation report; historical evidence unchanged."
+    },
+    {
+      "path": "docs/secure-development/mitgeltende-dokumente/THE-CASE-FOR-MEMORY-SAFE-ROADMAPS-TLP-CLEAR.sha256",
+      "sourceSha256": "fc62c1f879c6e17739e17c5114ccc38dea7e8552ddbad55e606e130dd5b696de",
+      "consolidatedSha256": "fc62c1f879c6e17739e17c5114ccc38dea7e8552ddbad55e606e130dd5b696de",
+      "reviewDisposition": "Baseline 3.4.2; semantic changes and metadata-only bindings distinguished in remediation report; historical evidence unchanged."
+    },
+    {
+      "path": "docs/secure-development/mitgeltende-dokumente/Verzahnung_Richtlinie_Checklisten_Spec-Kit-Presets.md",
+      "sourceSha256": "c61e3058b05a38235ae2427a0a1d3edc23f24884a24f17b2793fb6b9ae013ec6",
+      "consolidatedSha256": "80a9f7563934be8af10393c78b63b8677f3f12465dd2827ebf01d755e88a32bc",
+      "reviewDisposition": "Baseline 3.4.2; semantic changes and metadata-only bindings distinguished in remediation report; historical evidence unchanged."
+    }
+  ],
+  "reviewedAt": "2026-10-20",
+  "previousInventory": "docs/maintenance/gsdb-inventory-2026-10-19.json"
+}

@@ -1,7 +1,7 @@
 # Lernpfad Sichere Entwicklung für Lehrjahr 1 bis 3 / Secure Development Learning Path for Training Years 1 to 3
 
 **Version / Version:** 1.0.2
-**Baseline-Version / Baseline version:** 3.4.1
+**Baseline-Version / Baseline version:** 3.4.2
 **Stand / Date:** 2026-10-20
 **Zielgruppe / Audience:** Fachinformatik-Auszubildende, ausbildende Personen und Reviewer / IT specialist apprentices, instructors, and reviewers
 

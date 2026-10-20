@@ -16,7 +16,7 @@ This document is organization-neutral and written as a generic training and revi
 | Feld | Wert |
 |---|---|
 | Titel | Richtlinie zur sicheren Softwareentwicklung |
-| Versionsnummer | 3.4.1 |
+| Versionsnummer | 3.4.2 |
 | Freigabedatum | Ausstehend: menschliche PR-Prüfung |
 | Inkrafttreten | Nach menschlicher Freigabe |
 | Dokumentenklassifikation | öffentlich nutzbare Ausbildungs- und Prüfgrundlage |
@@ -1190,14 +1190,20 @@ pruefen; normale ICT-Zulieferer erben nicht alle Pflichten der Finanzunternehmen
 Nach 2025/301: Erstmeldung 4 Stunden nach Einstufung und spaetestens 24 Stunden
 nach Kenntnis; spaetere Einstufung mit eigener 4-Stunden-Regel; Zwischenmeldung
 72 Stunden nach Erstmeldung, Abschluss einen Monat nach letzter Zwischenmeldung.
-EN: Verify national NIS2 implementation and its trust-service exception.
-Assess DORA roles and equivalent obligations individually. Reporting clocks
-use their own trigger and applicable exceptions under Regulation 2025/301.
+EN: Verify national NIS2 implementation and its EU 24/72-hour reporting chain;
+significant incidents affecting trust services have a special 24-hour incident
+notification under Article 23(4). Assess DORA roles and equivalent duties
+individually; ordinary ICT suppliers do not inherit all financial-entity duties.
+Under 2025/301: initial notification within four hours after classification and
+at most 24 hours after awareness; later classification has its own four-hour
+rule; intermediate report within 72 hours after initial notification, final
+report within one month after the latest intermediate report.
 
 DE: CRA Art. 14: aktiv ausgenutzte Schwachstelle: 24/72 Stunden nach Kenntnis,
 Abschluss 14 Tage nach verfuegbarer Abhilfe. Schwerwiegender Sicherheitsvorfall:
 24/72 Stunden nach Kenntnis, Abschluss einen Monat nach Vorfallmeldung.
 EN: CRA vulnerability and severe-incident reporting have distinct final clocks:
+early warning/notification within 24/72 hours after awareness in both cases;
 14 days after available mitigation versus one month after incident notification.
 
 Quellen / Sources: [CRA](https://eur-lex.europa.eu/eli/reg/2024/2847/oj),
@@ -1444,3 +1450,15 @@ EN: Working revision 2026-10-19. Subject-matter currency and source access are r
 **EN:** Regulatory screening uses the current CL-01-12 context, including the 2026-07-27 AI Act consolidation and German BSIG in force. Check CRA annex numbering, support/update/retention clocks and conformity paths individually under CL-07. TR-02102 parts 1–4 use edition 2026-01; CL-03-14 binds PQC planning to protection needs and migration horizons. BSI C3A v1.0 (2026-04-27) addresses cloud autonomy (SOV-1 to SOV-6), presupposes C5 and is not binding itself. C5:2026 v1.1.0 (2026-08-11) addresses cloud security assurance. C3A replaces neither C5 assessment nor GDPR transfer review; C5 does not provide blanket sovereign-cloud approval. Evidence identifies service/region, report type, period, exceptions, complementary customer controls and selected autonomy criteria.
 
 [Quellenabschluss mit Primärnachweisen / Source closure with primary evidence](../maintenance/gsdb-source-closure-2026-10-20.md).
+
+## Reviewkorrektur 20.10.2026 / Review Remediation 2026-10-20
+
+DE: Baseline 3.4.2 korrigiert KI-Werkzeug-Screening und CRA-Konformitaetspfade
+und vervollstaendigt die englischen Meldefristen. Die Korrektur und ihre
+Pruefgrenzen stehen im [Reviewnachweis](../maintenance/gsdb-review-remediation-2026-10-20.md).
+
+EN: Baseline 3.4.2 corrects AI tool screening and CRA conformity routes and
+completes the English reporting deadlines. See the linked remediation report
+for corrections, validation and remaining proof boundaries.
+
+| 3.4.2 | 2026-10-20 | Reviewkorrektur: KI-Rollen, CRA-Pfade und Sprachgleichwertigkeit. / Review correction: AI roles, CRA routes and language equivalence. |

@@ -46,3 +46,14 @@ EN: Also validates active baseline headers, unique CL-01 through CL-12,
 guideline/baseline version, and all catalog profile names in the alignment
 document. Historical versions remain unchanged. Subject-matter correctness
 and primary-source currency still require review.
+
+DE: Baseline, Dokumentversion und Dokument-ID muessen im ersten zusammenhaengenden
+Metadatenblock stehen und mit dem vollstaendigen Manifestwert uebereinstimmen.
+Doppelte gleichnamige Felder, Ersatztreffer im Fliesstext und Versionspraefixe
+werden abgelehnt. Historische Tabelleneintraege bleiben erlaubt; CRLF und LF
+sind fuer den Metadatenvergleich gleichwertig.
+
+EN: Baseline, document version and document ID must occur in the first contiguous
+metadata block and match the complete manifest value. Duplicate fields,
+replacement matches in body text and version prefixes are rejected. Historical
+table entries remain allowed; CRLF and LF are equivalent for metadata checks.

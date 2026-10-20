@@ -1,0 +1,35 @@
+{
+  "schemaVersion": "1.0",
+  "documentType": "SecureDevelopmentGateEvidence",
+  "contextId": "gsdb-review-remediation",
+  "gate": "delta",
+  "mode": "development",
+  "createdAt": "2026-10-20T09:17:36.3714050+00:00",
+  "review": {
+    "owner": "Thorsten Hindermann",
+    "reviewer": "Codex under explicit four-finding remediation authority; independent human approval pending",
+    "reviewedAt": "2026-10-20T09:17:36.3714050+00:00",
+    "reviewDue": "2027-01-10",
+    "residualRisk": "Four review findings corrected and revalidated within Level 0. NCSC NZ publisher bytes not re-retrieved; co-author HTML corroborates content. ISO remains bibliographic; no human approval or product conformity inferred.",
+    "reevaluationTrigger": "Primary source, baseline, preset, scope or authority change; quarterly review."
+  },
+  "assessments": [
+    {
+      "id": "SEMANTIC-AND-METADATA-CORRECTIONS",
+      "applicability": "Applicable",
+      "implementation": "Fulfilled",
+      "evidence": "docs/maintenance/gsdb-review-remediation-2026-10-20.md"
+    },
+    {
+      "id": "STABLE-CHECKLIST-IDS",
+      "applicability": "Applicable",
+      "implementation": "Fulfilled",
+      "evidence": "docs/maintenance/gsdb-review-remediation-2026-10-20.md"
+    }
+  ],
+  "outcome": "Ready",
+  "externalComparisonBoundary": "HOSK/GWDG: ExternalComparison only; never local evidence",
+  "verificationScope": "Level-0 four-finding remediation; no product, licensed ISO, human, Home runtime or fleet acceptance.",
+  "runbookApplicability": "N/A",
+  "runbookRationale": "Bounded development-mode Level-0 corrections; remediation report records procedure, tests and boundaries."
+}

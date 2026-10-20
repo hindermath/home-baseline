@@ -1,8 +1,8 @@
 # Standardsregister Sichere Entwicklung / Secure Development Standards Register
 
-**Version / Version:** 1.1.1
+**Version / Version:** 1.1.2
 **Stand / Date:** 2026-10-20
-**Baseline-Version / Baseline version:** 3.4.1
+**Baseline-Version / Baseline version:** 3.4.2
 **Verantwortliche Rolle / Responsible role:** Projekt- oder Ausbildungsverantwortung mit Security-Review / Project or training owner with security review
 **Review-Zyklus / Review cycle:** mindestens quartalsweise und bei neuen Fassungen / at least quarterly and when new versions are published
 
@@ -98,6 +98,7 @@ EN: An attempt date does not establish successful full-text review. Reviewed cov
 | 1.0.0 | 2026-07-10 | Erstes kontrolliertes Register für sichere-Entwicklung-Basis 3.0.0. |
 | 1.1.0 | 2026-10-19 | Level-0-Konsolidierung: Baseline-Bindung und fachliche Konsistenz geprüft; Grenzen im Reviewbericht. / Level-0 consolidation: baseline binding and consistency reviewed; limitations recorded in the review report. |
 | 1.1.1 | 2026-10-20 | Primärquellen-Nachprüfung und Baseline-Bindung 3.4.1; Details im Quellenabschluss. / Primary-source follow-up and baseline binding 3.4.1; see source closure report. |
+| 1.1.2 | 2026-10-20 | Reviewkorrektur und Quellen-Zugangsgrenze dokumentiert; Baseline 3.4.2. / Record remediation and source-access boundary; baseline 3.4.2. |
 
 ## Feste Wiedervorlage / Fixed Review Schedule
 
@@ -109,3 +110,17 @@ EN: Quarterly on 10 January, April, July, and October at 10:00 Europe/Berlin; ne
 **DE:** Die zehn früher offenen/teilweisen Prüfungen sind für die verwendeten GSDB-Aussagen abgeschlossen; [Quellenabschluss](../../maintenance/gsdb-source-closure-2026-10-20.md). Die 15 übrigen Reviewed-Einträge behalten ihren Prüftag 19.10.2026; ISO bleibt BibliographyVerified.
 
 **EN:** The ten previous gaps are closed for GSDB-used assertions; see source closure. The other 15 Reviewed entries retain their 2026-10-19 date; ISO remains BibliographyVerified.
+
+
+DE: Baseline 3.4.2 berichtigt die abgeschlossenen KI-VO-/CRA-Zuordnungen und
+Melde-Sprachpartner im [Reviewnachweis](../../maintenance/gsdb-review-remediation-2026-10-20.md).
+Die historischen Capture-Hashes bleiben erhalten. Der NCSC-NZ-PDF-Abruf war
+bei der unabhaengigen Nachpruefung nicht erneut erreichbar; Inhalte wurden
+ueber die offizielle australische Mitherausgeberseite bestaetigt. Dies ist
+keine neue Bestaetigung der frueheren Publisher-Bytes.
+
+EN: Baseline 3.4.2 corrects AI Act/CRA mapping and reporting-language parity;
+see the linked remediation report. Historical capture hashes remain intact.
+The NCSC NZ PDF was inaccessible during independent re-review; content was
+confirmed using the official Australian co-author page. This does not newly
+confirm the earlier publisher bytes.

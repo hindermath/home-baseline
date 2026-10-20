@@ -43,7 +43,7 @@ try {
     $shells = if ($IsWindows) { @('pwsh') } else { @('bash','pwsh') }
     foreach ($shell in $shells) {
         if (-not (Get-Command $shell -ErrorAction SilentlyContinue)) { throw "Required shell missing: ${shell}" }
-        foreach ($case in @('valid','missing','duplicate-item','duplicate-id','version','baseline','profile-doc','compendium','matrix','manifest-version','priority','profile-unknown','profile-registry','manifest-crlf')) {
+        foreach ($case in @('valid','missing','duplicate-item','duplicate-id','version','baseline','baseline-duplicate','baseline-body-only','version-prefix','version-duplicate','metadata-crlf','historical-version','profile-doc','compendium','matrix','manifest-version','priority','profile-unknown','profile-registry','manifest-crlf')) {
             $fixture = Join-Path $temp "${shell}-${case}"
             Copy-Item $seed $fixture -Recurse
             & git -C $fixture init --quiet
@@ -79,6 +79,24 @@ try {
                     $staleVersion = if ($manifest.baselineVersion -eq '0.0.0') { '0.0.1' } else { '0.0.0' }
                     Set-FixtureText $path ($source.Replace($header, "**Baseline-Version / Baseline version:** ${staleVersion}"))
                 }
+                { $_ -in @('baseline-duplicate','baseline-body-only','version-prefix','version-duplicate','metadata-crlf','historical-version') } {
+                    $document = $manifest.relatedDocuments[0]
+                    $path = Join-Path $docRoot $document.path
+                    $source = Get-Content $path -Raw
+                    $baselineHeader = "**Baseline-Version / Baseline version:** $($manifest.baselineVersion)"
+                    $versionHeader = "**Version / Version:** $($document.version)"
+                    if (-not $source.Contains($baselineHeader) -or -not $source.Contains($versionHeader)) { throw 'Metadata fixture header not found.' }
+                    # Exact-field mutations expose substring/body false positives without changing the compendium.
+                    $source = switch ($case) {
+                        'baseline-duplicate' { $source.Replace($baselineHeader, '**Baseline-Version / Baseline version:** 999.0.0') + "`n${baselineHeader}`n" }
+                        'baseline-body-only' { $source.Replace($baselineHeader, '') + "`n${baselineHeader}`n" }
+                        'version-prefix' { $source.Replace($versionHeader, "${versionHeader}0") }
+                        'version-duplicate' { $source.Replace($versionHeader, '**Version / Version:** 999.0.0') + "`n${versionHeader}`n" }
+                        'metadata-crlf' { $source.Replace("`r`n", "`n").Replace("`n", "`r`n") }
+                        'historical-version' { $source + "`n| 0.0.0 | 2020-01-01 | Historical fixture / Historischer Test |`n" }
+                    }
+                    Set-FixtureText $path $source
+                }
                 'profile-doc' { $path=Join-Path $docRoot 'mitgeltende-dokumente/Verzahnung_Richtlinie_Checklisten_Spec-Kit-Presets.md'; Set-FixtureText $path ((Get-Content $path -Raw).Replace('project-statistics-fourteen-governance-presets','removed-profile')) }
                 'compendium' { Add-Content (Join-Path $docRoot $manifest.compendium.path) 'drift' }
                 'matrix' { $installed.presets.Remove('secure-development-assurance-governance') }
@@ -99,8 +117,9 @@ try {
                 if ($isProfile) { $arguments = @('-NoProfile','-File',"${file}.ps1",'-Repo',$fixture,'-Registry',$registryPath,'-CheckOnly'); if ($case -eq 'profile-unknown') { $arguments += @('-PresetProfile','missing-profile') } }
             }
             $before = @(Get-ChildItem $fixture -File -Recurse -Force | Sort-Object FullName | ForEach-Object { $_.FullName + ':' + (Get-FileHash $_.FullName -Algorithm SHA256).Hash }) -join "`n"
-            $success = $case -in @('valid','matrix','manifest-version','priority','profile-registry','manifest-crlf')
+            $success = $case -in @('valid','matrix','manifest-version','priority','profile-registry','manifest-crlf','metadata-crlf','historical-version')
             $expected = switch ($case) { 'valid' { 'generated documents are current' } 'profile-registry' { '14 Presets' } 'manifest-crlf' { '14 Presets' } 'matrix' { 'Matrixabweichung' } 'manifest-version' { 'Matrixabweichung' } 'priority' { 'Matrixabweichung' } default { '' } }
+            if ($case -in @('baseline-duplicate','baseline-body-only','version-prefix','version-duplicate')) { $expected = 'Active metadata mismatch or duplicate' }
             Invoke-FixtureCommand $shell $arguments $success $expected
             $after = @(Get-ChildItem $fixture -File -Recurse -Force | Sort-Object FullName | ForEach-Object { $_.FullName + ':' + (Get-FileHash $_.FullName -Algorithm SHA256).Hash }) -join "`n"
             if ($before -cne $after) { throw "Read-only mutation in ${shell}/${case}" }

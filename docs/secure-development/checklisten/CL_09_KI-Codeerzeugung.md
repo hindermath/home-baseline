@@ -12,8 +12,8 @@ This document is organization-neutral and written as a generic training and revi
 ## Checkliste 09 – KI-gestuetzte Codeerzeugung / AI-Assisted Code Generation
 
 **Dokument-ID / Document ID:** CL-09
-**Version / Version:** 2.2.2
-**Baseline-Version / Baseline version:** 3.4.1
+**Version / Version:** 2.2.3
+**Baseline-Version / Baseline version:** 3.4.2
 **Dokumenttyp / Document type:** Kanonische, wiederverwendbare Pruefvorlage / Canonical reusable review template
 
 ### Nachweisinstanz / Evidence Instance
@@ -1268,25 +1268,28 @@ whose output flows into production code or production-near scripts.
 
 #### CL-09-16: KI-Regulierungs-Screening / AI Regulatory Screening
 
-- **DE:** Bei KI-Werkzeugen, KI-Diensten, Modellen oder KI-Komponenten wird
-  geprüft, ob neben dieser Checkliste auch regulatorische Anforderungen aus
-  CL_Standards-Anwendbarkeit anwendbar sind. Das betrifft insbesondere EU
-  AI Act, CRA, NIS2, DORA sowie Kunden- oder Sektorvorgaben. Reine Nutzung
-  von KI als Entwicklungswerkzeug kann als `nicht anwendbar` dokumentiert
-  werden, wenn kein KI-System, Modell oder Dienst Teil des ausgelieferten
-  oder betriebenen Systems ist.
-- **EN:** For AI tools, AI services, models, or AI components, check
-  whether regulatory requirements from CL_Standards-Anwendbarkeit also
-  apply. This covers in particular the EU AI Act, CRA, NIS2, DORA, and
-  customer or sector rules. Pure use of AI as a development tool may be
-  documented as `not applicable` when no AI system, model, or service is
-  part of the released or operated system.
-- **Akzeptanz / Acceptance:** KI-Inventar, Lieferkettennachweis oder
-  Spec-Kit-Artefakt verlinkt das CL_01-Regulatory-Screening und nennt, ob
-  die KI-Nutzung nur Werkzeugnutzung oder Bestandteil des Produkts bzw.
-  Dienstes ist. / AI inventory, supply-chain evidence, or Spec Kit artefact
-  links the CL_01 regulatory screening and states whether the AI use is
-  tool-only use or part of the product or service.
+- **DE:** Regulatorische Anwendbarkeit nach CL-01-12 fuer Produkt, KI-Werkzeugbetrieb
+  und Organisation getrennt pruefen. Je Rechtsregime (KI-VO, CRA, NIS2/BSIG,
+  DORA sowie Kunden-/Sektorvorgaben) Land, Rolle, Scope und Anwendungsdatum
+  dokumentieren. Auch reine KI-Werkzeugnutzung kann Betreiberpflichten ausloesen,
+  etwa Massnahmen zur KI-Kompetenz nach KI-VO Art. 4; das Fehlen einer
+  KI-Komponente im ausgelieferten Produkt begruendet kein pauschales N/A.
+  N/A nur fuer den einzeln begruendeten Rechts-/Rollenumfang; unbekannte
+  Anwendbarkeit bleibt Open.
+- **EN:** Assess regulatory applicability under CL-01-12 separately for the
+  product, AI tool operation and organisation. For each regime (AI Act, CRA,
+  NIS2/German BSIG, DORA and customer/sector rules), record jurisdiction, role,
+  scope and application date. Tool-only AI use can still trigger deployer duties,
+  such as measures supporting AI literacy under AI Act Article 4; absence of
+  AI in the released product establishes no blanket N/A. Use N/A only for an
+  individually justified legal/role scope; unknown applicability remains Open.
+- **Akzeptanz / Acceptance:** Verlinktes CL-01-12-Screening mit getrennten
+  Produkt-/Werkzeug-/Organisationsentscheidungen je Rechtsregime, Rolle,
+  Begruendung, Quellenfassung, Evidence, Owner/Reviewer und Wiedervorlage;
+  KI-Kompetenzmassnahmen soweit anwendbar nachgewiesen. / Link CL-01-12 screening
+  with separate product/tool/organisation decisions per regime, role, rationale,
+  source version, evidence, owner/reviewer and re-review date; evidence AI-literacy
+  measures where applicable.
 - **Lernstufe / Learning stage:** _Grundlage, Aufbau oder Vertiefung gemaess Lernpfad dokumentieren. / Record foundation, intermediate, or advanced according to the learning path._
 - **Verantwortliche Rolle / Responsible role:** _Lernende Person, ausbildende Person, Projektverantwortung oder Security-Rolle benennen. / Name learner, instructor, project owner, or security role._
 - **Anwendbarkeit / Applicability:**
@@ -1504,3 +1507,5 @@ justified as not applicable.
 - **Version 2.2.0 (2026-07-19):** Nachweisrahmen auf das verbindliche Achterprofil einschließlich `parallel-autonomous-run-governance` erweitert; parallele autonome Kampagnen bleiben ausdrücklich delegationspflichtig; synchron mit sichere-Entwicklung-Basis 3.2.0. / Extended the evidence framework to the binding eight-preset profile including `parallel-autonomous-run-governance`; parallel autonomous campaigns still require explicit delegation; synchronized with secure-development baseline 3.2.0.
 | 2.2.1 | 2026-10-19 | Level-0-Konsolidierung: Baseline-Bindung und fachliche Konsistenz geprüft; Grenzen im Reviewbericht. / Level-0 consolidation: baseline binding and consistency reviewed; limitations recorded in the review report. |
 | 2.2.2 | 2026-10-20 | Primärquellen-Nachprüfung und Baseline-Bindung 3.4.1; Details im Quellenabschluss. / Primary-source follow-up and baseline binding 3.4.1; see source closure report. |
+
+- **Version 2.2.3 (2026-10-20):** KI-Werkzeugbetrieb getrennt vom Produkt auf regulatorische Rollen pruefen; Baseline 3.4.2. / Screen AI tool operation separately from product regulatory roles; baseline 3.4.2.

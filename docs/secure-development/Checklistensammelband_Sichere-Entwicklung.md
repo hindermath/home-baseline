@@ -2,8 +2,8 @@
 
 > **GENERATED FILE / GENERIERTE DATEI:** Nicht manuell bearbeiten. Der Sammelband wird aus den zwölf Dateien unter `checklisten/` erzeugt. / Do not edit manually. This compendium is generated from the twelve files under `checklisten/`.
 
-**Baseline-Version / Baseline version:** 3.4.1
-**Dokumentversion / Document version:** 2.4.1
+**Baseline-Version / Baseline version:** 3.4.2
+**Dokumentversion / Document version:** 2.4.2
 **Stand / Date:** 2026-10-20
 **Quelle / Source:** `baseline-manifest.json` und / and `checklisten/`
 
@@ -62,7 +62,7 @@ This document is organization-neutral and written as a generic training and revi
 
 **Dokument-ID / Document ID:** CL-01
 **Version / Version:** 2.0.2
-**Baseline-Version / Baseline version:** 3.4.1
+**Baseline-Version / Baseline version:** 3.4.2
 **Dokumenttyp / Document type:** Kanonische, wiederverwendbare Pruefvorlage / Canonical reusable review template
 
 ### Nachweisinstanz / Evidence Instance
@@ -890,7 +890,7 @@ This document is organization-neutral and written as a generic training and revi
 
 **Dokument-ID / Document ID:** CL-02
 **Version / Version:** 2.0.2
-**Baseline-Version / Baseline version:** 3.4.1
+**Baseline-Version / Baseline version:** 3.4.2
 **Dokumenttyp / Document type:** Kanonische, wiederverwendbare Pruefvorlage / Canonical reusable review template
 
 ### Nachweisinstanz / Evidence Instance
@@ -1856,7 +1856,7 @@ This document is organization-neutral and written as a generic training and revi
 
 **Dokument-ID / Document ID:** CL-03
 **Version / Version:** 2.0.2
-**Baseline-Version / Baseline version:** 3.4.1
+**Baseline-Version / Baseline version:** 3.4.2
 **Dokumenttyp / Document type:** Kanonische, wiederverwendbare Pruefvorlage / Canonical reusable review template
 
 ### Nachweisinstanz / Evidence Instance
@@ -2769,7 +2769,7 @@ This document is organization-neutral and written as a generic training and revi
 
 **Dokument-ID / Document ID:** CL-04
 **Version / Version:** 2.0.2
-**Baseline-Version / Baseline version:** 3.4.1
+**Baseline-Version / Baseline version:** 3.4.2
 **Dokumenttyp / Document type:** Kanonische, wiederverwendbare Pruefvorlage / Canonical reusable review template
 
 ### Nachweisinstanz / Evidence Instance
@@ -3635,7 +3635,7 @@ This document is organization-neutral and written as a generic training and revi
 
 **Dokument-ID / Document ID:** CL-05
 **Version / Version:** 2.0.2
-**Baseline-Version / Baseline version:** 3.4.1
+**Baseline-Version / Baseline version:** 3.4.2
 **Dokumenttyp / Document type:** Kanonische, wiederverwendbare Pruefvorlage / Canonical reusable review template
 
 ### Nachweisinstanz / Evidence Instance
@@ -4927,7 +4927,7 @@ This document is organization-neutral and written as a generic training and revi
 
 **Dokument-ID / Document ID:** CL-06
 **Version / Version:** 2.0.2
-**Baseline-Version / Baseline version:** 3.4.1
+**Baseline-Version / Baseline version:** 3.4.2
 **Dokumenttyp / Document type:** Kanonische, wiederverwendbare Pruefvorlage / Canonical reusable review template
 
 ### Nachweisinstanz / Evidence Instance
@@ -6019,8 +6019,8 @@ This document is organization-neutral and written as a generic training and revi
 ## Checkliste 07 – EU Cyber Resilience Act – Anwendbarkeit / EU Cyber Resilience Act – Applicability
 
 **Dokument-ID / Document ID:** CL-07
-**Version / Version:** 2.0.2
-**Baseline-Version / Baseline version:** 3.4.1
+**Version / Version:** 2.0.3
+**Baseline-Version / Baseline version:** 3.4.2
 **Dokumenttyp / Document type:** Kanonische, wiederverwendbare Pruefvorlage / Canonical reusable review template
 
 ### Nachweisinstanz / Evidence Instance
@@ -6200,8 +6200,8 @@ checked if they are shared with external parties.
 
 #### CL-07-03: Kritisch nach Anhang IV / Critical per Annex IV
 
-- **DE:** Anhang IV auf kritische Produkte prüfen: Hardware mit Sicherheitsboxen, Smart-Meter-Gateways und weitere Geräte für fortgeschrittene Sicherheitszwecke einschließlich sicherer Kryptoverarbeitung sowie Smartcards oder ähnliche Geräte einschließlich sicherer Elemente. Art. 8 und Art. 32(4) bestimmen den Pfad: einschlägige delegierte Rechtsakte und verfügbare europäische Zertifizierungsschemata prüfen; soweit die Zertifizierungspflicht nicht greift, Modul B+C oder H anwenden. Aus dem CRA folgt kein allgemeines EAL4+-Gebot. Produktzertifizierung, Laborakkreditierung und CRA-Notifizierung sind verschiedene Nachweise; konkrete Stelle im offiziellen Notifizierungsregister prüfen.
-- **EN:** Check Annex IV for critical products: hardware devices with security boxes, smart-meter gateways and other devices for advanced security purposes including secure cryptoprocessing, and smartcards or similar devices including secure elements. Articles 8 and 32(4) determine the path: assess applicable delegated acts and available European certification schemes; where the certification requirement does not apply, use Module B+C or H. The CRA does not impose a universal EAL4+ requirement. Product certification, laboratory accreditation and CRA notification are separate proofs; verify any selected body in the official notification register.
+- **DE:** Anhang IV auf kritische Produkte prüfen: Hardware mit Sicherheitsboxen, Smart-Meter-Gateways und weitere Geräte für fortgeschrittene Sicherheitszwecke einschließlich sicherer Kryptoverarbeitung sowie Smartcards oder ähnliche Geräte einschließlich sicherer Elemente. Art. 8 und Art. 32(4) bestimmen den Pfad: einschlägige delegierte Rechtsakte und verfügbare europäische Zertifizierungsschemata prüfen; soweit die Bedingungen aus Art. 8(1) nicht vorliegen, ist nach Art. 32(4)(b) jeder Pfad aus Art. 32(3) zulaessig: Modul B+C, Modul H oder, soweit verfuegbar und anwendbar, ein europaeisches Cybersicherheitszertifizierungsschema nach Art. 27(9) mit mindestens Vertrauenswuerdigkeitsstufe „substanziell“. Aus dem CRA folgt kein allgemeines EAL4+-Gebot. Produktzertifizierung, Laborakkreditierung und CRA-Notifizierung sind verschiedene Nachweise; konkrete Stelle im offiziellen Notifizierungsregister prüfen.
+- **EN:** Check Annex IV for critical products: hardware devices with security boxes, smart-meter gateways and other devices for advanced security purposes including secure cryptoprocessing, and smartcards or similar devices including secure elements. Articles 8 and 32(4) determine the path: assess applicable delegated acts and available European certification schemes; where Article 8(1) conditions are not met, Article 32(4)(b) allows any Article 32(3) route: Module B+C, Module H, or, where available and applicable, a European cybersecurity certification scheme under Article 27(9) at assurance level at least substantial. The CRA does not impose a universal EAL4+ requirement. Product certification, laboratory accreditation and CRA notification are separate proofs; verify any selected body in the official notification register.
 - **Akzeptanz / Acceptance:** Anhang-IV-Treffer oder begründetes N/A, geprüfte Rechtsakte/Schemata und Konformitätspfad im CRA-Dossier. / Record Annex IV match or justified N/A, checked acts/schemes and conformity path in the CRA dossier.
 - **Lernstufe / Learning stage:** _Grundlage, Aufbau oder Vertiefung gemaess Lernpfad dokumentieren. / Record foundation, intermediate, or advanced according to the learning path._
 - **Verantwortliche Rolle / Responsible role:** _Lernende Person, ausbildende Person, Projektverantwortung oder Security-Rolle benennen. / Name learner, instructor, project owner, or security role._
@@ -6519,6 +6519,8 @@ in an audit-ready way.
 | 2.0.1 | 2026-10-19 | Level-0-Konsolidierung: Baseline-Bindung und fachliche Konsistenz geprüft; Grenzen im Reviewbericht. / Level-0 consolidation: baseline binding and consistency reviewed; limitations recorded in the review report. |
 | 2.0.2 | 2026-10-20 | Primärquellen-Nachprüfung und Baseline-Bindung 3.4.1; Details im Quellenabschluss. / Primary-source follow-up and baseline binding 3.4.1; see source closure report. |
 
+- **Version 2.0.3 (2026-10-20):** Bedingten Zertifizierungspfad nach Art. 32(3)(c)/(4)(b) ergaenzt; Baseline 3.4.2. / Added conditional certification route under Article 32(3)(c)/(4)(b); baseline 3.4.2.
+
 ---
 
 <!--
@@ -6536,7 +6538,7 @@ This document is organization-neutral and written as a generic training and revi
 
 **Dokument-ID / Document ID:** CL-08
 **Version / Version:** 2.0.2
-**Baseline-Version / Baseline version:** 3.4.1
+**Baseline-Version / Baseline version:** 3.4.2
 **Dokumenttyp / Document type:** Kanonische, wiederverwendbare Pruefvorlage / Canonical reusable review template
 
 ### Nachweisinstanz / Evidence Instance
@@ -8128,8 +8130,8 @@ This document is organization-neutral and written as a generic training and revi
 ## Checkliste 09 – KI-gestuetzte Codeerzeugung / AI-Assisted Code Generation
 
 **Dokument-ID / Document ID:** CL-09
-**Version / Version:** 2.2.2
-**Baseline-Version / Baseline version:** 3.4.1
+**Version / Version:** 2.2.3
+**Baseline-Version / Baseline version:** 3.4.2
 **Dokumenttyp / Document type:** Kanonische, wiederverwendbare Pruefvorlage / Canonical reusable review template
 
 ### Nachweisinstanz / Evidence Instance
@@ -9384,25 +9386,28 @@ whose output flows into production code or production-near scripts.
 
 #### CL-09-16: KI-Regulierungs-Screening / AI Regulatory Screening
 
-- **DE:** Bei KI-Werkzeugen, KI-Diensten, Modellen oder KI-Komponenten wird
-  geprüft, ob neben dieser Checkliste auch regulatorische Anforderungen aus
-  CL_Standards-Anwendbarkeit anwendbar sind. Das betrifft insbesondere EU
-  AI Act, CRA, NIS2, DORA sowie Kunden- oder Sektorvorgaben. Reine Nutzung
-  von KI als Entwicklungswerkzeug kann als `nicht anwendbar` dokumentiert
-  werden, wenn kein KI-System, Modell oder Dienst Teil des ausgelieferten
-  oder betriebenen Systems ist.
-- **EN:** For AI tools, AI services, models, or AI components, check
-  whether regulatory requirements from CL_Standards-Anwendbarkeit also
-  apply. This covers in particular the EU AI Act, CRA, NIS2, DORA, and
-  customer or sector rules. Pure use of AI as a development tool may be
-  documented as `not applicable` when no AI system, model, or service is
-  part of the released or operated system.
-- **Akzeptanz / Acceptance:** KI-Inventar, Lieferkettennachweis oder
-  Spec-Kit-Artefakt verlinkt das CL_01-Regulatory-Screening und nennt, ob
-  die KI-Nutzung nur Werkzeugnutzung oder Bestandteil des Produkts bzw.
-  Dienstes ist. / AI inventory, supply-chain evidence, or Spec Kit artefact
-  links the CL_01 regulatory screening and states whether the AI use is
-  tool-only use or part of the product or service.
+- **DE:** Regulatorische Anwendbarkeit nach CL-01-12 fuer Produkt, KI-Werkzeugbetrieb
+  und Organisation getrennt pruefen. Je Rechtsregime (KI-VO, CRA, NIS2/BSIG,
+  DORA sowie Kunden-/Sektorvorgaben) Land, Rolle, Scope und Anwendungsdatum
+  dokumentieren. Auch reine KI-Werkzeugnutzung kann Betreiberpflichten ausloesen,
+  etwa Massnahmen zur KI-Kompetenz nach KI-VO Art. 4; das Fehlen einer
+  KI-Komponente im ausgelieferten Produkt begruendet kein pauschales N/A.
+  N/A nur fuer den einzeln begruendeten Rechts-/Rollenumfang; unbekannte
+  Anwendbarkeit bleibt Open.
+- **EN:** Assess regulatory applicability under CL-01-12 separately for the
+  product, AI tool operation and organisation. For each regime (AI Act, CRA,
+  NIS2/German BSIG, DORA and customer/sector rules), record jurisdiction, role,
+  scope and application date. Tool-only AI use can still trigger deployer duties,
+  such as measures supporting AI literacy under AI Act Article 4; absence of
+  AI in the released product establishes no blanket N/A. Use N/A only for an
+  individually justified legal/role scope; unknown applicability remains Open.
+- **Akzeptanz / Acceptance:** Verlinktes CL-01-12-Screening mit getrennten
+  Produkt-/Werkzeug-/Organisationsentscheidungen je Rechtsregime, Rolle,
+  Begruendung, Quellenfassung, Evidence, Owner/Reviewer und Wiedervorlage;
+  KI-Kompetenzmassnahmen soweit anwendbar nachgewiesen. / Link CL-01-12 screening
+  with separate product/tool/organisation decisions per regime, role, rationale,
+  source version, evidence, owner/reviewer and re-review date; evidence AI-literacy
+  measures where applicable.
 - **Lernstufe / Learning stage:** _Grundlage, Aufbau oder Vertiefung gemaess Lernpfad dokumentieren. / Record foundation, intermediate, or advanced according to the learning path._
 - **Verantwortliche Rolle / Responsible role:** _Lernende Person, ausbildende Person, Projektverantwortung oder Security-Rolle benennen. / Name learner, instructor, project owner, or security role._
 - **Anwendbarkeit / Applicability:**
@@ -9621,6 +9626,8 @@ justified as not applicable.
 | 2.2.1 | 2026-10-19 | Level-0-Konsolidierung: Baseline-Bindung und fachliche Konsistenz geprüft; Grenzen im Reviewbericht. / Level-0 consolidation: baseline binding and consistency reviewed; limitations recorded in the review report. |
 | 2.2.2 | 2026-10-20 | Primärquellen-Nachprüfung und Baseline-Bindung 3.4.1; Details im Quellenabschluss. / Primary-source follow-up and baseline binding 3.4.1; see source closure report. |
 
+- **Version 2.2.3 (2026-10-20):** KI-Werkzeugbetrieb getrennt vom Produkt auf regulatorische Rollen pruefen; Baseline 3.4.2. / Screen AI tool operation separately from product regulatory roles; baseline 3.4.2.
+
 ---
 
 <!--
@@ -9638,7 +9645,7 @@ This document is organization-neutral and written as a generic training and revi
 
 **Dokument-ID / Document ID:** CL-10
 **Version / Version:** 2.0.2
-**Baseline-Version / Baseline version:** 3.4.1
+**Baseline-Version / Baseline version:** 3.4.2
 **Dokumenttyp / Document type:** Kanonische, wiederverwendbare Pruefvorlage / Canonical reusable review template
 
 ### Nachweisinstanz / Evidence Instance
@@ -11191,7 +11198,7 @@ This document is organization-neutral and written as a generic training and revi
 
 **Dokument-ID / Document ID:** CL-11
 **Version / Version:** 2.0.2
-**Baseline-Version / Baseline version:** 3.4.1
+**Baseline-Version / Baseline version:** 3.4.2
 **Dokumenttyp / Document type:** Kanonische, wiederverwendbare Pruefvorlage / Canonical reusable review template
 
 ### Nachweisinstanz / Evidence Instance
@@ -12094,7 +12101,7 @@ This document is organization-neutral and written as a generic training and revi
 
 **Dokument-ID / Document ID:** CL-12
 **Version / Version:** 2.2.2
-**Baseline-Version / Baseline version:** 3.4.1
+**Baseline-Version / Baseline version:** 3.4.2
 **Dokumenttyp / Document type:** Kanonische, wiederverwendbare Pruefvorlage / Canonical reusable review template
 
 ### Nachweisinstanz / Evidence Instance
@@ -12639,4 +12646,4 @@ Diese Datei ist eine wiederverwendbare Vorlage. Ausgefüllte Projektnachweise we
 
 | Version | Datum / Date | Änderung / Change |
 |---|---|---|
-| 2.4.1 | 2026-10-20 | Aus den zwölf kanonischen Einzelchecklisten der sicheren-Entwicklung-Basis 3.4.1 erzeugt; einheitliches zweiachsiges Statusmodell und klare Trennung zwischen Vorlage und Projektnachweis. / Generated from the twelve canonical individual checklists of secure-development baseline 3.4.1; unified two-axis status model and clear separation between template and project evidence. |
+| 2.4.2 | 2026-10-20 | Aus den zwölf kanonischen Einzelchecklisten der sicheren-Entwicklung-Basis 3.4.2 erzeugt; einheitliches zweiachsiges Statusmodell und klare Trennung zwischen Vorlage und Projektnachweis. / Generated from the twelve canonical individual checklists of secure-development baseline 3.4.2; unified two-axis status model and clear separation between template and project evidence. |

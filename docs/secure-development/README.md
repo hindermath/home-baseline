@@ -1,7 +1,7 @@
 # Generischer Leitfaden Sichere Entwicklung / Generic Secure Development Guide
 
 **Stand / Date:** 2026-10-20
-**Baseline-Version / Baseline version:** 3.4.1
+**Baseline-Version / Baseline version:** 3.4.2
 **Zielgruppe / Audience:** Fachinformatik-Auszubildende, Entwickler*innen, Reviewer und KI-Agenten in Level-2-Projekten / IT specialist apprentices, developers, reviewers, and AI agents in level-2 projects
 
 ## Zweck / Purpose
@@ -84,3 +84,15 @@ EN: The Level-0 review of 19 October 2026 corrects structural and technical find
 **DE:** Baseline 3.4.1 schließt die sieben offenen und drei teilweisen Quellenprüfungen des Erstreviews. [Aktueller Bericht](../maintenance/gsdb-source-closure-2026-10-20.md), [Quellenregister](../maintenance/gsdb-source-review-2026-10-20.json), [Abdeckungsmatrix](../maintenance/gsdb-coverage-2026-10-20.md). Die alten Nachweise dokumentieren den damaligen Stand. Menschliche PR-Prüfung und ISO-Volltextprüfung bleiben getrennt; kein Merge, Home-Sync oder Rollout.
 
 **EN:** Baseline 3.4.1 closes the initial seven Open and three Partial source checks. See current report, source record and coverage above. Historical evidence retains its original result. Human PR review and licensed ISO-text review remain separate; no merge, Home sync or rollout.
+
+## Reviewkorrektur / Review Remediation
+
+DE: Aktuell ist Baseline 3.4.2 mit Sammelband 2.4.2. Die frueheren Berichte
+oben bleiben historische Nachweise. [Aktuelle Korrektur und Validierung](../maintenance/gsdb-review-remediation-2026-10-20.md)
+mit neuer Quellenzuordnung, Abdeckungsmatrix und Assurance-Bindung.
+Menschliche Freigabe bleibt offen; kein Merge, Home-Sync oder Rollout.
+
+EN: Current baseline is 3.4.2 with compendium 2.4.2. Earlier reports above
+remain historical evidence. The linked current remediation report includes
+validation, corrected source mapping, coverage and new assurance binding.
+Human approval remains pending; no merge, Home sync or rollout.

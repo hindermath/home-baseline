@@ -2,7 +2,7 @@
 
 **Stand / Date:** 2026-10-20
 **Version / Version:** 1.5.1
-**Baseline-Version / Baseline version:** 3.4.1
+**Baseline-Version / Baseline version:** 3.4.2
 **Verantwortliche Rolle / Responsible role:** Projekt- oder Ausbildungsverantwortung mit Security-Review / Project or training owner with security review
 **Review-Zyklus / Review cycle:** jährlich und bei wesentlichen Änderungen / annually and after material changes
 **Zielgruppe / Audience:** Alle vier IT-Ausbildungsberufe ab dem ersten Ausbildungsjahr, Entwickler*innen, Reviewer und KI-Agenten / All four IT training occupations from the first training year, developers, reviewers, and AI agents
