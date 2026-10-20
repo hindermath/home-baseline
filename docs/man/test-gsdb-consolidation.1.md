@@ -46,18 +46,21 @@ test; new baseline releases must not silently disable the mutation.
 
 DE: Zusaetzliche Metadatenfaelle pruefen veraltete Header mit gueltigem Zweitfeld,
 einen nur im Fliesstext vorhandenen Header, Versionspraefixe, doppelte Versionen,
-CRLF-Metadaten und erlaubte historische Versionstabellen. 20 Faelle je Shell,
-auf macOS/Linux insgesamt 40. Die vier negativen Faelle muessen ausdruecklich
-am Metadatenfehler scheitern; ein veralteter Sammelband allein genuegt nicht.
+CRLF-Metadaten und erlaubte historische Versionstabellen. Negative Fälle
+müssen ausdrücklich am vorgesehenen Metadatenfehler scheitern; ein veralteter
+Sammelband allein genügt nicht.
 
 EN: Additional metadata cases cover stale headers with a valid duplicate,
 body-only headers, version prefixes, duplicate versions, CRLF metadata and
-allowed historical version tables. There are 20 cases per shell, 40 on
-macOS/Linux. The four negative cases must fail with a metadata error rather
-than merely detecting a stale compendium.
+allowed historical version tables. Negative cases must fail with the intended
+metadata error rather than merely detecting a stale compendium.
 
 ## Exit-Status / Exit Status
 
 0: alle Fälle bestanden / all cases passed. Non-zero: Regression oder fehlendes
 Werkzeug / regression or missing tool. Der Test ist kein fachlicher Normreview.
 The test does not replace a subject-matter standards review.
+
+DE: Beide aktiven Richtlinien-Metadatentabellen werden abschnittsgebunden und exakt gegen das Manifest geprüft. Veraltete DE-/EN-Werte, Präfixe, Duplikate, doppelte Sprachabschnitte und nur im Text vorhandene Felder scheitern; CRLF und historische Versionszeilen bleiben zulässig. Negative Regressionen prüfen den konkreten Fehler samt betroffenem Feld/Pfad. Ein anzahlgleiches ID-Duplikat prüft die eigentliche Duplikaterkennung. Insgesamt 30 Fälle je Shell, 60 auf macOS/Linux.
+
+EN: Both active guideline metadata tables are section-bound and checked exactly against the manifest. Stale DE/EN values, prefixes, duplicate fields/sections and body-only fields fail; CRLF and historical version rows remain valid. Negative regressions assert the specific error and affected field/path. A count-preserving duplicate exercises actual ID detection. There are 30 cases per shell, 60 on macOS/Linux.

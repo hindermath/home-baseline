@@ -12,8 +12,8 @@ This document is organization-neutral and written as a generic training and revi
 ## Checkliste 03 – Kryptografische Mindestvorgaben / Cryptographic Minimum Requirements
 
 **Dokument-ID / Document ID:** CL-03
-**Version / Version:** 2.0.2
-**Baseline-Version / Baseline version:** 3.4.2
+**Version / Version:** 2.0.3
+**Baseline-Version / Baseline version:** 3.4.3
 **Dokumenttyp / Document type:** Kanonische, wiederverwendbare Pruefvorlage / Canonical reusable review template
 
 ### Nachweisinstanz / Evidence Instance
@@ -407,40 +407,9 @@ indirectly via libraries, frameworks, or external services.
 
 #### CL-03-07: TLS-Konfiguration / TLS Configuration
 
-- **DE:** TLS 1.2 ist das Mindestmaß, TLS 1.3 ist bevorzugt. SSLv2, SSLv3,
-  TLS 1.0 und TLS 1.1 sind deaktiviert. Empfohlene TLS 1.3 Cipher-Suites:
-  `TLS_AES_256_GCM_SHA384`, `TLS_CHACHA20_POLY1305_SHA256`,
-  `TLS_AES_128_GCM_SHA256`. Empfohlene TLS 1.2 Suites mit Forward Secrecy:
-  `ECDHE-ECDSA-AES256-GCM-SHA384`, `ECDHE-RSA-AES256-GCM-SHA384`,
-  `ECDHE-ECDSA-CHACHA20-POLY1305`, `ECDHE-RSA-CHACHA20-POLY1305`.
-  Konfigurationsbeispiele: in nginx `ssl_protocols TLSv1.2 TLSv1.3;
-  ssl_ciphers ECDHE+AESGCM:ECDHE+CHACHA20; ssl_prefer_server_ciphers on;`,
-  in Apache `SSLProtocol -all +TLSv1.2 +TLSv1.3`, in Spring Boot
-  `server.ssl.enabled-protocols=TLSv1.2,TLSv1.3`, in Kestrel
-  `SslProtocols = SslProtocols.Tls12 | SslProtocols.Tls13`. HSTS
-  (`Strict-Transport-Security: max-age=31536000; includeSubDomains`) ist
-  für öffentliche Endpunkte gesetzt. Zertifikate aus einer CA, die im
-  CT-Log (Certificate Transparency) erscheint; selbstsignierte Zertifikate
-  nur in geschlossenen Test-/Entwicklungsumgebungen.
-- **EN:** TLS 1.2 is the minimum, TLS 1.3 is preferred. SSLv2, SSLv3,
-  TLS 1.0, and TLS 1.1 are disabled. Recommended TLS 1.3 cipher suites:
-  `TLS_AES_256_GCM_SHA384`, `TLS_CHACHA20_POLY1305_SHA256`,
-  `TLS_AES_128_GCM_SHA256`. Recommended TLS 1.2 suites with forward
-  secrecy: `ECDHE-ECDSA-AES256-GCM-SHA384`, `ECDHE-RSA-AES256-GCM-SHA384`,
-  `ECDHE-ECDSA-CHACHA20-POLY1305`, `ECDHE-RSA-CHACHA20-POLY1305`.
-  Configuration examples: nginx `ssl_protocols TLSv1.2 TLSv1.3;
-  ssl_ciphers ECDHE+AESGCM:ECDHE+CHACHA20; ssl_prefer_server_ciphers on;`,
-  Apache `SSLProtocol -all +TLSv1.2 +TLSv1.3`, Spring Boot
-  `server.ssl.enabled-protocols=TLSv1.2,TLSv1.3`, Kestrel
-  `SslProtocols = SslProtocols.Tls12 | SslProtocols.Tls13`. HSTS
-  (`Strict-Transport-Security: max-age=31536000; includeSubDomains`) is
-  set for public endpoints. Certificates from a CA that appears in CT
-  logs (Certificate Transparency); self-signed certificates only in closed
-  test or development environments.
-- **Akzeptanz / Acceptance:** TLS-Scan-Bericht pro Endpunkt (z. B.
-  `testssl.sh`, Qualys SSL Labs, `sslyze`) mit Mindest-Note A oder
-  vergleichbar. / TLS scan report per endpoint (e.g. `testssl.sh`,
-  Qualys SSL Labs, `sslyze`) with at least an "A" rating or equivalent.
+- **DE:** TLS 1.3 bevorzugen; TLS 1.2 ist nach TR-02102-2 (2026-01), Kap. 3, nur bis Ende 2031 empfohlen. SSLv2/v3 und TLS 1.0/1.1 deaktivieren. Für das BSI-Profil TLS-1.3-Suites aus Tabelle 13 verwenden, etwa `TLS_AES_256_GCM_SHA384` oder `TLS_AES_128_GCM_SHA256`; TLS-1.2-Beispiele aus Tabelle 3 sind `TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384` und `TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384`. Signaturverfahren, Gruppen und Schlüssellängen zusätzlich nach Tabellen 7–12 und Kap. 3.6 prüfen: bei RSA PSS verwenden; TLS-1.2-RSA mit PKCS#1-v1.5-Padding wurde nur bis 2025 empfohlen. ChaCha20-Suites stehen nicht in Tabellen 3/13 dieser Ausgabe; eine lokal gewählte Abweichung ist gesondert zu begründen und darf nicht als BSI-konform ausgegeben werden. Ein Cipher-String allein erzwingt weder PSS noch alle BSI-Parameter. Effektive Konfiguration und Handshake je Zielplattform prüfen; CL-03-14/15 steuern Migration und Quellenabgleich. HSTS für öffentliche Web-Endpunkte nach geprüfter Subdomain-Policy setzen. Öffentliche Web-Zertifikate über eine vertrauenswürdige CA mit anwendbarer CT-Policy; geschlossene Test-/Entwicklungsumgebungen dürfen dokumentierte eigene Vertrauensanker verwenden.
+- **EN:** Prefer TLS 1.3; TR-02102-2 (2026-01), Chapter 3 recommends TLS 1.2 only through 2031. Disable SSLv2/v3 and TLS 1.0/1.1. For the BSI profile use TLS 1.3 suites from Table 13, such as `TLS_AES_256_GCM_SHA384` or `TLS_AES_128_GCM_SHA256`; TLS 1.2 examples from Table 3 are `TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384` and `TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384`. Also assess signature schemes, groups and key sizes under Tables 7–12 and Chapter 3.6: use PSS for RSA; TLS 1.2 RSA with PKCS#1 v1.5 padding was recommended only through 2025. ChaCha20 suites do not appear in Tables 3/13 of this edition; justify any locally chosen deviation separately and do not label it BSI-conformant. A cipher string alone enforces neither PSS nor all BSI parameters. Check effective configuration and handshakes per target platform; CL-03-14/15 govern migration and source review. Apply HSTS to public web endpoints with a reviewed subdomain policy. Use a trusted CA with applicable CT policy for public web certificates; closed test/development environments may use documented private trust anchors.
+- **Akzeptanz / Acceptance:** TLS-Scan und Handshake-Nachweis je Endpunkt, Protokoll/Suite/Gruppe/Signatur/Schlüssellänge gegen die datierte BSI-Ausgabe bewertet, Abweichungen begründet und Migration terminiert; ein Scanner-Rating allein genügt nicht. / Per-endpoint TLS scan and handshake evidence assess protocol, suite, group, signature and key size against the dated BSI edition, justify deviations and schedule migration; a scanner rating alone is insufficient.
 - **Lernstufe / Learning stage:** _Grundlage, Aufbau oder Vertiefung gemaess Lernpfad dokumentieren. / Record foundation, intermediate, or advanced according to the learning path._
 - **Verantwortliche Rolle / Responsible role:** _Lernende Person, ausbildende Person, Projektverantwortung oder Security-Rolle benennen. / Name learner, instructor, project owner, or security role._
 - **Anwendbarkeit / Applicability:**
@@ -906,5 +875,8 @@ stored in the security evidence set.
 ---
 
 - **Version 2.0.0 (2026-07-10):** Einheitliches zweiachsiges Statusmodell, stabile CL-IDs, Lernstufe, Rollen-, Evidenz-, Restrisiko- und Neubewertungsfelder sowie klare Trennung zwischen Vorlage und Projektnachweis eingeführt; synchron mit sichere-Entwicklung-Basis 3.0.0. / Added the unified two-axis status model, stable CL IDs, learning-stage, role, evidence, residual-risk, and re-evaluation fields, plus clear separation between template and project evidence; synchronized with secure-development baseline 3.0.0.
-| 2.0.1 | 2026-10-19 | Level-0-Konsolidierung: Baseline-Bindung und fachliche Konsistenz geprüft; Grenzen im Reviewbericht. / Level-0 consolidation: baseline binding and consistency reviewed; limitations recorded in the review report. |
-| 2.0.2 | 2026-10-20 | Primärquellen-Nachprüfung und Baseline-Bindung 3.4.1; Details im Quellenabschluss. / Primary-source follow-up and baseline binding 3.4.1; see source closure report. |
+- **Version 2.0.1 (2026-10-19):** Level-0-Konsolidierung: Baseline-Bindung und fachliche Konsistenz geprüft; Grenzen im Reviewbericht. / Level-0 consolidation: baseline binding and consistency reviewed; limitations recorded in the review report.
+- **Version 2.0.2 (2026-10-20):** Primärquellen-Nachprüfung und Baseline-Bindung 3.4.1; Details im Quellenabschluss. / Primary-source follow-up and baseline binding 3.4.1; see source closure report.
+
+
+- **Version 2.0.3 (2026-10-20):** Unabhängige Reviewkorrekturen und Baseline 3.4.3; siehe [Prüfbericht](../../maintenance/gsdb-independent-fixes-2026-10-20.md). / Independent review corrections and baseline 3.4.3; see review report.

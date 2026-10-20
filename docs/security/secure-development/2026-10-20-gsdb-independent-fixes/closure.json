@@ -1,0 +1,61 @@
+{
+  "schemaVersion": "1.0",
+  "documentType": "SecureDevelopmentGateEvidence",
+  "contextId": "gsdb-independent-fixes",
+  "gate": "closure",
+  "mode": "development",
+  "createdAt": "2026-10-20T11:10:54.0846550+00:00",
+  "review": {
+    "owner": "Thorsten Hindermann",
+    "reviewer": "Codex implementing independent Claude findings under explicit correction authority; separate human decisions pending",
+    "reviewedAt": "2026-10-20T11:10:54.0846550+00:00",
+    "reviewDue": "2027-01-10",
+    "residualRisk": "Corrected scoped P1/P2/P3 assertions, mappings and metadata validation. Licensed ISO text and product conformity remain outside evidence. Assurance package 0.1.4 substring validation is a separate package finding; Level-0 generator is an additional mandatory gate. Human approval remains Open.",
+    "reevaluationTrigger": "Primary source, baseline, preset, scope or authority change; quarterly review."
+  },
+  "assessments": [
+    {
+      "id": "INDEPENDENT-REVIEW-CORRECTIONS",
+      "applicability": "Applicable",
+      "implementation": "Fulfilled",
+      "evidence": "docs/maintenance/gsdb-independent-fixes-2026-10-20.md"
+    },
+    {
+      "id": "INDEPENDENT-HUMAN-REVIEW",
+      "applicability": "Applicable",
+      "implementation": "Not Fulfilled",
+      "evidence": "docs/maintenance/gsdb-independent-fixes-2026-10-20.md",
+      "owner": "Thorsten Hindermann",
+      "dueAt": "2026-10-31",
+      "nextAction": "Complete independent human PR review before any merge or release decision."
+    }
+  ],
+  "outcome": "Blocked",
+  "externalComparisonBoundary": "HOSK/GWDG: ExternalComparison only; never local evidence",
+  "verificationScope": "Level-0 independent-review corrections only; no product, physical A11Y, fleet or Home-runtime acceptance.",
+  "runbookApplicability": "N/A",
+  "runbookRationale": "Bounded Level-0 correction; current report describes validation and remaining evidence/authority limits.",
+  "humanDecisions": {
+    "technicalValidation": {
+      "status": "Open",
+      "authority": "Thorsten Hindermann",
+      "evidence": "Human decision pending; source review and CI do not confer approval."
+    },
+    "pilotAuthorization": {
+      "status": "Open",
+      "authority": "Thorsten Hindermann",
+      "evidence": "Human decision pending; source review and CI do not confer approval."
+    },
+    "projectAcceptance": {
+      "status": "Open",
+      "authority": "Thorsten Hindermann",
+      "evidence": "Human decision pending; source review and CI do not confer approval."
+    },
+    "generalRelease": {
+      "status": "Open",
+      "authority": "Thorsten Hindermann",
+      "evidence": "Human decision pending; source review and CI do not confer approval."
+    }
+  },
+  "nextAction": "Independent Claude re-review and independent human review of PR #337; no merge, Home sync or rollout authorized."
+}

@@ -1,0 +1,503 @@
+{
+  "reviewedAt": "2026-10-20",
+  "owner": "Thorsten Hindermann",
+  "reviewer": "Codex; technical and document review under explicit user instruction",
+  "overallOutcome": "Ready",
+  "reason": "Independent Claude review identified one P1, five P2 and scoped P3 findings. Current records correct mappings and assertions, preserve historical captures and distinguish source access from semantic verification.",
+  "sources": [
+    {
+      "standard": "ISO/IEC 27001",
+      "edition": "2022 + Amd 1:2024",
+      "url": "https://www.iso.org/standard/27001",
+      "outcome": "BibliographyVerified",
+      "finding": "Katalog und Amendment bestätigt; lizenzierter Normtext nicht vollständig geprüft. / Catalogue and amendment confirmed; licensed text not fully reviewed.",
+      "reviewedAt": "2026-10-19"
+    },
+    {
+      "standard": "ISO/IEC 27002",
+      "edition": "2022",
+      "url": "https://www.iso.org/standard/75652.html",
+      "outcome": "BibliographyVerified",
+      "finding": "Katalog bestätigt, kein vollständiger Normtextnachweis. / Catalogue confirmed, no full normative-text proof.",
+      "reviewedAt": "2026-10-19"
+    },
+    {
+      "standard": "NIST SSDF SP 800-218",
+      "edition": "1.1 Final; 1.2 Initial Public Draft",
+      "url": "https://csrc.nist.gov/pubs/sp/800/218/final",
+      "outcome": "Reviewed",
+      "finding": "SSDF-Praktikzuordnung korrigiert; Entwurf separat: https://csrc.nist.gov/pubs/sp/800/218/r1/ipd / Practice mapping corrected; draft tracked separately.",
+      "reviewedAt": "2026-10-19"
+    },
+    {
+      "standard": "NIST Zero Trust SP 800-207",
+      "edition": "2020 Final",
+      "url": "https://csrc.nist.gov/pubs/sp/800/207/final",
+      "outcome": "Reviewed",
+      "finding": "Referenz bleibt; keine pauschale VPN- oder Produktvorgabe. / Retain reference; no universal VPN or product mandate.",
+      "reviewedAt": "2026-10-19"
+    },
+    {
+      "standard": "NIST AI RMF",
+      "edition": "1.0",
+      "url": "https://www.nist.gov/itl/ai-risk-management-framework",
+      "outcome": "Reviewed",
+      "finding": "Referenzrahmen für Risiko, keine Freigabe. / Risk reference, no approval.",
+      "reviewedAt": "2026-10-19"
+    },
+    {
+      "standard": "CWE Top 25",
+      "edition": "2025 auf Projektseite / on project page",
+      "url": "https://cwe.mitre.org/top25/",
+      "outcome": "Reviewed",
+      "finding": "Konkreter Jahrgang statt unbestimmtem aktuell. / Record concrete edition instead of unspecified latest.",
+      "reviewedAt": "2026-10-19"
+    },
+    {
+      "standard": "OWASP ASVS",
+      "edition": "5.0.0",
+      "url": "https://owasp.org/projects/asvs",
+      "outcome": "Reviewed",
+      "finding": "Stabile Fassung beibehalten. / Retain stable edition.",
+      "reviewedAt": "2026-10-19"
+    },
+    {
+      "standard": "OWASP Top 10 Web",
+      "edition": "2025",
+      "url": "https://top10.owasp.org/2025/",
+      "outcome": "Reviewed",
+      "finding": "Awareness, kein Verifikationsersatz. / Awareness, not verification.",
+      "reviewedAt": "2026-10-19"
+    },
+    {
+      "standard": "OWASP Top 10 for LLM Applications",
+      "edition": "2025",
+      "url": "https://genai.owasp.org/llm-top-10/",
+      "outcome": "Reviewed",
+      "finding": "Nummern mit Jahrgang binden. / Bind identifiers to edition.",
+      "reviewedAt": "2026-10-19"
+    },
+    {
+      "standard": "OWASP SAMM",
+      "edition": "2",
+      "url": "https://owaspsamm.org/model/",
+      "outcome": "Reviewed",
+      "finding": "Reifegradmodell, keine Produktfreigabe. / Maturity model, not product approval.",
+      "reviewedAt": "2026-10-19"
+    },
+    {
+      "standard": "OWASP Cheat Sheet Series",
+      "edition": "laufend / rolling",
+      "url": "https://cheatsheetseries.owasp.org/",
+      "outcome": "Reviewed",
+      "finding": "Konkrete Themenquellen je Änderung prüfen. / Review topic sources per change.",
+      "reviewedAt": "2026-10-19"
+    },
+    {
+      "standard": "SLSA",
+      "edition": "1.2",
+      "url": "https://slsa.dev/spec/v1.2/",
+      "outcome": "Reviewed",
+      "finding": "Build-Track unverändert passend. / Build track remains appropriate.",
+      "reviewedAt": "2026-10-19"
+    },
+    {
+      "standard": "CycloneDX",
+      "edition": "1.7; tatsächlich erzeugte Fassung gesondert / emitted version separately",
+      "url": "https://cyclonedx.org/specification/overview/",
+      "outcome": "Reviewed",
+      "finding": "Toolausgabe bestimmt eingesetzte Fassung. / Tool output determines applied version.",
+      "reviewedAt": "2026-10-19"
+    },
+    {
+      "standard": "SPDX",
+      "edition": "3.0 laut Übersichtsseite; Tool-Pin gesondert / overview; separate tool pin",
+      "url": "https://spdx.dev/use/specifications/",
+      "outcome": "Reviewed",
+      "finding": "Kein automatischer Formatwechsel. / No automatic format migration.",
+      "reviewedAt": "2026-10-19"
+    },
+    {
+      "standard": "BSI TR-02102",
+      "edition": "Parts 1–4: 2026-01; part 1: 2026-01-23; parts 2–4: 2026-01-27",
+      "url": "https://www.bsi.bund.de/DE/Themen/Unternehmen-und-Organisationen/Standards-und-Zertifizierung/Technische-Richtlinien/TR-nach-Thema-sortiert/tr02102/tr-02102.html",
+      "outcome": "Reviewed",
+      "finding": "Teilfassungen statt allgemeinem aktuell-Pin; PQC-Migrationshorizonte und lokale Policy von BSI-Profilkonformität getrennt. / Pin individual parts; distinguish PQC horizons and local policy from BSI conformity. Independent correction: CL-03-07 now separates BSI suites/signature schemes from local deviations; TLS 1.2 RSA-PKCS1 v1.5 recommendation ended 2025, RSA-PSS assessed separately. Part 2 Chapter 3, Tables 3/7/11–13 re-read from the captured publisher PDF.",
+      "reviewedAt": "2026-10-20",
+      "locators": "Part 1 §§1.1,2.1–2.4,3–5; part 2 §§2–3; parts 3/4 protocol tables and PQC notes",
+      "checklistIds": [
+        "CL-03-01",
+        "CL-03-02",
+        "CL-03-04",
+        "CL-03-07",
+        "CL-03-14",
+        "CL-03-15"
+      ],
+      "previousOutcome": "Open",
+      "evidenceDocuments": [
+        {
+          "url": "https://www.bsi.bund.de/SharedDocs/Downloads/DE/BSI/Publikationen/TechnischeRichtlinien/TR02102/BSI-TR-02102.pdf?__blob=publicationFile&v=21",
+          "captureKind": "PublisherResponseBytes",
+          "sha256": "07d18200c1434887ee31c503e633861d4dddb3c13d5881f533eac75f3720dcec",
+          "bytes": 1004137
+        },
+        {
+          "url": "https://www.bsi.bund.de/SharedDocs/Downloads/DE/BSI/Publikationen/TechnischeRichtlinien/TR02102/BSI-TR-02102-2.pdf?__blob=publicationFile&v=14",
+          "captureKind": "PublisherResponseBytes",
+          "sha256": "eed80d1a38ec0d7d8908765c3a09ea6f17a7ca729bef95b0d358d5d129af3f1f",
+          "bytes": 812933
+        },
+        {
+          "url": "https://www.bsi.bund.de/SharedDocs/Downloads/DE/BSI/Publikationen/TechnischeRichtlinien/TR02102/BSI-TR-02102-3.pdf?__blob=publicationFile&v=10",
+          "captureKind": "PublisherResponseBytes",
+          "sha256": "63f573df66cfbb04e9d233a111900989677f46aa3de67fa0ccacd3329d75dd48",
+          "bytes": 769522
+        },
+        {
+          "url": "https://www.bsi.bund.de/SharedDocs/Downloads/DE/BSI/Publikationen/TechnischeRichtlinien/TR02102/BSI-TR-02102-4.pdf?__blob=publicationFile&v=10",
+          "captureKind": "PublisherResponseBytes",
+          "sha256": "d1ae824d84b8028b3e780c046b29aaaa48a2421be352cf4d3c36c7682eac9750",
+          "bytes": 657221
+        }
+      ],
+      "reviewBoundary": "Review of referenced GSDB assertions and applicable edition; not a full external-standard certification."
+    },
+    {
+      "standard": "BSI C3A",
+      "edition": "v1.0, 2026-04-27",
+      "url": "https://www.bsi.bund.de/SharedDocs/Downloads/EN/BSI/Publications/CloudComputing/C3A_Cloud_Computing_Autonomy.pdf?__blob=publicationFile&v=5",
+      "outcome": "Reviewed",
+      "finding": "Freiwilliger Autonomierahmen; C5 vorausgesetzt, SOV-7/8 nicht abgedeckt; kein Nachweis allein durch EU-Region. / Voluntary autonomy framework; presupposes C5, excludes SOV-7/8; EU region alone is insufficient.",
+      "reviewedAt": "2026-10-20",
+      "locators": "§§1.1–1.3, 2.1–2.6 (SOV-1..6)",
+      "checklistIds": [
+        "CL-02-12"
+      ],
+      "previousOutcome": "Open",
+      "evidenceDocuments": [
+        {
+          "url": "https://www.bsi.bund.de/SharedDocs/Downloads/EN/BSI/Publications/CloudComputing/C3A_Cloud_Computing_Autonomy.pdf?__blob=publicationFile&v=5",
+          "captureKind": "PublisherResponseBytes",
+          "sha256": "d985b4e7a9969aefda5882a02eeaf4fd97636b2a3ae30f868b25c01a5dcffe2d",
+          "bytes": 616108
+        }
+      ],
+      "reviewBoundary": "Review of referenced GSDB assertions and applicable edition; not a full external-standard certification."
+    },
+    {
+      "standard": "BSI C5",
+      "edition": "C5:2026 v1.1.0, 2026-08-11",
+      "url": "https://www.bsi.bund.de/SharedDocs/Downloads/DE/BSI/CloudComputing/Anforderungskatalog/2026/C5_2026.pdf?__blob=publicationFile&v=13",
+      "outcome": "Reviewed",
+      "finding": "Aktuelle 2026-Fassung statt Archiv 2020; unabhängiges Testat mit Scope/Zeitraum/Kundenkontrollen prüfen; keine Souveränitäts- oder Datenschutzpauschalfreigabe. / Use current edition; review independent report scope, period and customer controls without blanket sovereignty/privacy approval.",
+      "reviewedAt": "2026-10-20",
+      "locators": "Change history; chapters 1–3; GC report scope; OIS, SP, CRY, DEV and supplier/customer controls",
+      "checklistIds": [
+        "CL-02-13"
+      ],
+      "previousOutcome": "Open",
+      "evidenceDocuments": [
+        {
+          "url": "https://www.bsi.bund.de/SharedDocs/Downloads/DE/BSI/CloudComputing/Anforderungskatalog/2026/C5_2026.pdf?__blob=publicationFile&v=13",
+          "captureKind": "PublisherResponseBytes",
+          "sha256": "2019f2a9f99628b98085d8708c95b812228593ef0da99d0fa009f35427b19e3f",
+          "bytes": 2760791
+        }
+      ],
+      "reviewBoundary": "Review of referenced GSDB assertions and applicable edition; not a full external-standard certification."
+    },
+    {
+      "standard": "EU Cyber Resilience Act",
+      "edition": "(EU) 2024/2847; consolidation 02024R2847-20241120 000.003 incl. corrigenda through 2025-10-17",
+      "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:02024R2847-20241120",
+      "outcome": "Reviewed",
+      "finding": "Independent corrections: Article 2 paragraph references and vehicle exclusion corrected; Article 69(2)/(3) separates grandfathering from existing-product Article 14 reporting since 2026-09-11. 2026/881 concerns CSIRT dissemination, not manufacturer deadline relief. Articles 13(18)/(19), Annex I Part I 2(b), 32(5) and placing-on-market terminology completed. No complete legal certification or product conformity inferred.",
+      "reviewedAt": "2026-10-20",
+      "locators": "Recital 12; Arts 2/3,7/8,13/14,18–24,27–32,69/71; Annexes I–VIII; (EU) 2025/1535 Art.1; (EU) 2026/881 Arts1/3; (EU) 2025/2392 Art.2/Annexes I/II",
+      "checklistIds": [
+        "CL-01-12",
+        "CL-06-07",
+        "CL-06-09",
+        "CL-07-01",
+        "CL-07-02",
+        "CL-07-03",
+        "CL-07-04",
+        "CL-07-05",
+        "CL-07-06",
+        "CL-07-07",
+        "CL-07-08",
+        "CL-07-09",
+        "CL-07-10",
+        "CL-07-11",
+        "CL-07-12"
+      ],
+      "previousOutcome": "Partial",
+      "evidenceDocuments": [
+        {
+          "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:02024R2847-20241120",
+          "captureKind": "RenderedVisibleTextUtf8",
+          "sha256": "4439e5154aa331e0dbea68f7442dbb1b144af0580f0018ae27b70c63c272efbe",
+          "bytes": 200543
+        },
+        {
+          "url": "https://eur-lex.europa.eu/eli/reg/2024/2847/oj/eng",
+          "captureKind": "RenderedVisibleTextUtf8",
+          "sha256": "91c26c77d3ce3bfc11e981e826e0bbe7041fe04304546460a0f3f7408dfb4e69",
+          "bytes": 354346
+        }
+      ],
+      "reviewBoundary": "Review of referenced GSDB assertions and applicable edition; not a full external-standard certification.",
+      "supplementaryPrimaryChecks": [
+        {
+          "assertion": "Excludes products under 168/2013 except Article 3(94)(b) L1e vehicles designed to pedal.",
+          "method": "Official EUR-Lex indexed primary text via web search. Direct text opens returned JavaScript verification; no new publisher-byte capture or full-act review claimed.",
+          "url": "https://eur-lex.europa.eu/eli/reg_del/2025/1535/oj",
+          "reviewedAt": "2026-10-20",
+          "locator": "Article 1"
+        },
+        {
+          "assertion": "CSIRT dissemination delay on cybersecurity grounds; not a manufacturer reporting extension.",
+          "method": "Official EUR-Lex indexed primary text via web search. Direct text opens returned JavaScript verification; no new publisher-byte capture or full-act review claimed.",
+          "url": "https://eur-lex.europa.eu/eli/reg_del/2026/881/oj",
+          "reviewedAt": "2026-10-20",
+          "locator": "Article 1; CRA Articles 14(9),16(2)"
+        },
+        {
+          "assertion": "Technical category descriptions: CRA Annex III classes I/II in Annex I, CRA Annex IV in Annex II.",
+          "method": "Official EUR-Lex indexed primary text via web search. Direct text opens returned JavaScript verification; no new publisher-byte capture or full-act review claimed.",
+          "url": "https://eur-lex.europa.eu/eli/reg_impl/2025/2392/oj",
+          "reviewedAt": "2026-10-20",
+          "locator": "Article 2, Annexes I/II"
+        }
+      ]
+    },
+    {
+      "standard": "EU AI Act",
+      "edition": "(EU) 2024/1689 consolidated 2026-07-27, 001.001; amending (EU) 2026/1744 in force",
+      "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:02024R1689-20260727",
+      "outcome": "Reviewed",
+      "finding": "Geänderte Art.-113-Fristen: Hochrisiko Art.6(2) 02.12.2027, Art.6(1) 02.08.2028; keine pauschale Hochrisikopflicht ab August 2026. / Apply revised high-risk dates, not a blanket August 2026 high-risk deadline. R01: CL-09-16 now separates product, tool/deployer and organisation roles; Article 4 literacy measures may apply to tool-only use. No blanket N/A. CL-01-12 now requires separate per-regime product/tool-operation/organisation rows including deployer role, Article 4 measures, legal dates and role-specific N/A.",
+      "reviewedAt": "2026-10-20",
+      "locators": "Arts 2–6,9–15,16/26,50/53,111/113; Annexes I/III; amendment Article 1",
+      "checklistIds": [
+        "CL-01-12",
+        "CL-09-16",
+        "CL-12-12"
+      ],
+      "previousOutcome": "Partial",
+      "evidenceDocuments": [
+        {
+          "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:02024R1689-20260727",
+          "captureKind": "RenderedVisibleTextUtf8",
+          "sha256": "d58981908f1618c3d7d0b8c6c70b13bf1d4ac19cb77d9f2dca001026cac7d4ce",
+          "bytes": 398591
+        },
+        {
+          "url": "https://eur-lex.europa.eu/eli/reg/2026/1744/oj/eng",
+          "captureKind": "RenderedVisibleTextUtf8",
+          "sha256": "21c62b15378507bd0e6afbe8a19c33f55619e301913a485ebd61918c3e21d5ce",
+          "bytes": 151328
+        }
+      ],
+      "reviewBoundary": "Review of referenced GSDB assertions and applicable edition; not a full external-standard certification."
+    },
+    {
+      "standard": "NIS2",
+      "edition": "(EU) 2022/2555 consolidated 2022-12-27 000.004; Germany BSIG effective 2025-12-06, amendments through 2026-07-23",
+      "url": "https://www.gesetze-im-internet.de/bsig_2025/BJNR12D0B0025.html",
+      "outcome": "Reviewed",
+      "finding": "Deutsche Umsetzung ist geltendes Recht, kein Entwurf; Sonderrollen, Meldewege und DORA-Sektorabgrenzung prüfen. Publisher-Hinweis zu Art.9 G 21.07.2026: textlich nachgewiesen, dokumentarisch noch nicht abschließend bearbeitet. Andere Länder außerhalb Reviewumfang. / German law is in force; assess special roles, channels and DORA boundary. Retain publisher editorial-processing note; other jurisdictions are out of review scope.",
+      "reviewedAt": "2026-10-20",
+      "locators": "EU Arts 2–4,20/21/23,41; Germany §§28–30,32/33,38,66 and Annexes 1/2",
+      "checklistIds": [
+        "CL-01-12",
+        "CL-06-07"
+      ],
+      "previousOutcome": "Partial",
+      "evidenceDocuments": [
+        {
+          "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:02022L2555-20221227",
+          "captureKind": "RenderedVisibleTextUtf8",
+          "sha256": "4c03e2b0c29eba964aa88b87ccbf845c2e8f7020221846643cf8d7336116e222",
+          "bytes": 146612
+        },
+        {
+          "url": "https://www.gesetze-im-internet.de/bsig_2025/BJNR12D0B0025.html",
+          "captureKind": "PublisherResponseBytes",
+          "sha256": "0739f2018c1b4edce3d860720f1729128d4d14a657b7cdd45e51ec5386613b70",
+          "bytes": 338797
+        }
+      ],
+      "reviewBoundary": "Review of referenced GSDB assertions and applicable edition; not a full external-standard certification."
+    },
+    {
+      "standard": "DORA",
+      "edition": "(EU) 2022/2554 original/current EUR-Lex; applicable 2025-01-17; reporting RTS (EU) 2025/301 Art.5",
+      "url": "https://eur-lex.europa.eu/eli/reg/2022/2554/oj/eng",
+      "outcome": "Reviewed",
+      "finding": "Finanzunternehmen, vertragliche Zulieferpflichten und kritische IKT-Drittdienstleister unterscheiden; Meldefristen mit eigener Klassifikation/Ausnahmen bestätigt. / Distinguish financial entities, supplier contracts and critical-provider oversight; verify reporting clocks and exceptions. Article 5(3)–(6) re-read in captured 2025/301 primary text: delay notice, weekend/bank-holiday relief, initial/intermediate exclusions and authority discretion; final-report relief remains distinct.",
+      "reviewedAt": "2026-10-20",
+      "locators": "Arts 1–4,5/6,17–19,24–30,31,64; 2025/301 Arts 1–5",
+      "checklistIds": [
+        "CL-01-12",
+        "CL-06-07"
+      ],
+      "previousOutcome": "Open",
+      "evidenceDocuments": [
+        {
+          "url": "https://eur-lex.europa.eu/eli/reg/2022/2554/oj/eng",
+          "captureKind": "RenderedVisibleTextUtf8",
+          "sha256": "218f7eef997f42e263feff2c863f4866b6799a3cd1ed5315c966e3219052e8a6",
+          "bytes": 309399
+        },
+        {
+          "url": "https://eur-lex.europa.eu/eli/reg_del/2025/301/oj/eng",
+          "captureKind": "RenderedVisibleTextUtf8",
+          "sha256": "6c1c94b88f28f579e263cfff7e588209af38ed583409e81f7a539b9ade196e8f",
+          "bytes": 17055
+        }
+      ],
+      "reviewBoundary": "Review of referenced GSDB assertions and applicable edition; not a full external-standard certification."
+    },
+    {
+      "standard": "G7 Software Bill of Materials for AI",
+      "edition": "Software Bill of Materials for AI – Minimum Elements, 2026; ANSSI publication 2026-05-13",
+      "url": "https://www.bsi.bund.de/SharedDocs/Downloads/EN/BSI/KI/SBOM-for-AI_minimum-elements.pdf?__blob=publicationFile&v=4",
+      "outcome": "Reviewed",
+      "finding": "Richtige 2026-Primärfassung statt Food-for-thoughts-Vorarbeit; freiwillige sieben Cluster ergänzen allgemeine SBOM; Anbieterinformationen und fehlende Transparenz getrennt. / Correct 2026 primary text; voluntary seven clusters extend general SBOM; distinguish supplied information and transparency gaps.",
+      "reviewedAt": "2026-10-20",
+      "locators": "Executive summary; §§1,2.1–2.7,3/4; seven clusters",
+      "checklistIds": [
+        "CL-05-13",
+        "CL-09-15"
+      ],
+      "previousOutcome": "Open",
+      "evidenceDocuments": [
+        {
+          "url": "https://www.bsi.bund.de/SharedDocs/Downloads/EN/BSI/KI/SBOM-for-AI_minimum-elements.pdf?__blob=publicationFile&v=4",
+          "captureKind": "PublisherResponseBytes",
+          "sha256": "d0b2f41c5baa2bcb2c8bea5b9d610fe9bafef202bbc42798b0a562eb0db5e77c",
+          "bytes": 1581726
+        }
+      ],
+      "reviewBoundary": "Review of referenced GSDB assertions and applicable edition; not a full external-standard certification."
+    },
+    {
+      "standard": "CISA Memory-Safe Roadmaps",
+      "edition": "The Case for Memory Safe Roadmaps, December 2023, joint authoring agencies",
+      "url": "https://www.ncsc.govt.nz/assets/OLD/The-Case-for-Memory-Safe-Roadmaps-508c.pdf",
+      "outcome": "Reviewed",
+      "finding": "Mitherausgeber NCSC NZ liefert byte-identische offizielle PDF; SHA-256 gleich lokalem Original. Lernfassung bleibt nichtamtlich; MSL beseitigt nicht alle Schwachstellen. / Co-author NCSC NZ provides byte-identical official PDF; translations remain unofficial and MSL does not remove all vulnerabilities.",
+      "reviewedAt": "2026-10-20",
+      "locators": "pp.1–2,9–16,19 (appendix); migration prioritisation, exceptions and roadmap",
+      "checklistIds": [
+        "CL-08-12",
+        "CL-08-13"
+      ],
+      "previousOutcome": "Open",
+      "evidenceDocuments": [
+        {
+          "url": "https://www.ncsc.govt.nz/assets/OLD/The-Case-for-Memory-Safe-Roadmaps-508c.pdf",
+          "captureKind": "PublisherResponseBytes",
+          "sha256": "dfe3e72e075738e345aab81a541f72ab4c0cd149235426108090bf48787bc34b",
+          "bytes": 995846
+        }
+      ],
+      "reviewBoundary": "Review of referenced GSDB assertions and applicable edition; not a full external-standard certification.",
+      "revalidationBoundary": {
+        "retrievedSha256": "dfe3e72e075738e345aab81a541f72ab4c0cd149235426108090bf48787bc34b",
+        "accessResult": "Independent Claude retrieval succeeded and parent rehashed both copies; earlier Codex HTTP 403 remains accurate as a historical attempt.",
+        "retrievalBy": "Independent Claude CLI WebFetch during prior read-only review on 2026-10-20",
+        "publisherBytesRevalidated": true,
+        "boundary": "This revision rehashes the prior independent retrieval; it is not a new live download in this implementation run.",
+        "localOriginalSha256": "dfe3e72e075738e345aab81a541f72ab4c0cd149235426108090bf48787bc34b"
+      }
+    },
+    {
+      "standard": "OWASP Proactive Controls",
+      "edition": "2024",
+      "url": "https://top10proactive.owasp.org/the-top-10/",
+      "outcome": "Reviewed",
+      "finding": "Versions-/Nummernmischung in CL-01-10 korrigiert. / Corrected mixed edition/identifiers.",
+      "reviewedAt": "2026-10-19"
+    },
+    {
+      "standard": "CA/Browser Forum TLS Baseline Requirements",
+      "edition": "2.3.1, 2026-10-04; Abschnitt / section 6.3.2",
+      "url": "https://cabforum.org/working-groups/server/baseline-requirements/requirements/",
+      "outcome": "Reviewed",
+      "finding": "Ausstellungsabhängige Laufzeiten in CL-03-10 korrigiert. / Corrected issuance-dependent lifetimes.",
+      "reviewedAt": "2026-10-19"
+    },
+    {
+      "standard": "OAuth Security BCP",
+      "edition": "RFC 9700, 2025",
+      "url": "https://www.rfc-editor.org/rfc/rfc9700.html",
+      "outcome": "Reviewed",
+      "finding": "Autorisierung und Authentifizierung getrennt. / Separate authorization from authentication.",
+      "reviewedAt": "2026-10-19"
+    },
+    {
+      "standard": "DSGVO / GDPR",
+      "edition": "(EU) 2016/679 consolidated 2016-05-04 000.002 incl. corrigendum 2018-05-23",
+      "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:02016R0679-20160504",
+      "outcome": "Reviewed",
+      "finding": "Volltext mit Korrigendum geprüft; DSB soweit benannt, Art.30(5)-Ausnahme, lokale Jahresreview-Regel und begründete Betroffenenfristen getrennt. Keine pauschale Agentenlog-Retention. / Full text with corrigendum checked; qualify DPO/records exceptions, local annual-review policy and justified response extension; no blanket agent-log retention. CL-11-07 now labels completion-before-processing as an additional local release rule; Article 36 prior consultation is not a blanket authorisation requirement.",
+      "reviewedAt": "2026-10-20",
+      "locators": "Arts 2–6,12–22,25/28/30,32–39,44–49; DPIA especially 35/36",
+      "checklistIds": [
+        "CL-09-13",
+        "CL-10-12",
+        "CL-11-01",
+        "CL-11-02",
+        "CL-11-03",
+        "CL-11-04",
+        "CL-11-05",
+        "CL-11-06",
+        "CL-11-07",
+        "CL-11-08",
+        "CL-11-09",
+        "CL-11-10",
+        "CL-11-11",
+        "CL-11-12"
+      ],
+      "previousOutcome": "Open",
+      "evidenceDocuments": [
+        {
+          "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:02016R0679-20160504",
+          "captureKind": "RenderedVisibleTextUtf8",
+          "sha256": "e9044d5ac22d0775511208edb7e1bbf15857494699433bc538f4d716e4dd97d4",
+          "bytes": 197694
+        }
+      ],
+      "reviewBoundary": "Review of referenced GSDB assertions and applicable edition; not a full external-standard certification."
+    }
+  ],
+  "sourceCommit": "a943d7f989765cfda6622b588168c8c95674de0f",
+  "baselineVersion": "3.4.3",
+  "previousReview": "docs/maintenance/gsdb-source-review-remediation-2026-10-20.json",
+  "additionalChecks": [
+    {
+      "standard": "CycloneDX 1.7",
+      "url": "https://cyclonedx.org/schema/bom-1.7.schema.json",
+      "reviewedAt": "2026-10-20",
+      "locators": "properties.services; definitions.component.properties.type.enum",
+      "sha256": "71152f97948eeeca2fd4a1434a9d29aab35d377be11828b504d029dfeeb1925a",
+      "captureKind": "PublisherResponseBytes",
+      "finding": "services is a separate array; service is not a component type. machine-learning-model is a valid component type."
+    }
+  ],
+  "remediation": {
+    "sourceCapturePolicy": "Historical hashes retained with original capture kind. New official-index checks explicitly marked without publisher-byte capture. Licensed ISO full text remains unreviewed.",
+    "findings": [
+      "I01-P1",
+      "I02-P2",
+      "I03-P2",
+      "I04-P2",
+      "I05-P2",
+      "I06-P2",
+      "P3-scoped"
+    ],
+    "report": "docs/maintenance/gsdb-independent-fixes-2026-10-20.md"
+  }
+}

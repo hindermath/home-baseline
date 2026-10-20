@@ -2,8 +2,8 @@
 
 > **GENERATED FILE / GENERIERTE DATEI:** Nicht manuell bearbeiten. Der Sammelband wird aus den zwölf Dateien unter `checklisten/` erzeugt. / Do not edit manually. This compendium is generated from the twelve files under `checklisten/`.
 
-**Baseline-Version / Baseline version:** 3.4.2
-**Dokumentversion / Document version:** 2.4.2
+**Baseline-Version / Baseline version:** 3.4.3
+**Dokumentversion / Document version:** 2.4.3
 **Stand / Date:** 2026-10-20
 **Quelle / Source:** `baseline-manifest.json` und / and `checklisten/`
 
@@ -61,8 +61,8 @@ This document is organization-neutral and written as a generic training and revi
 ## Checkliste 01 – Standards-Anwendbarkeit / Standards Applicability
 
 **Dokument-ID / Document ID:** CL-01
-**Version / Version:** 2.0.2
-**Baseline-Version / Baseline version:** 3.4.2
+**Version / Version:** 2.0.3
+**Baseline-Version / Baseline version:** 3.4.3
 **Dokumenttyp / Document type:** Kanonische, wiederverwendbare Pruefvorlage / Canonical reusable review template
 
 ### Nachweisinstanz / Evidence Instance
@@ -670,35 +670,12 @@ change in architecture or delivery model.
 
 #### CL-01-12: Regulatorische Anwendbarkeit / Regulatory Applicability
 
-- **DE:** Quellenstand 20.10.2026: KI-VO konsolidiert am 27.07.2026 durch (EU) 2026/1744. Art. 113 unterscheidet allgemeine Geltung ab 02.08.2026, Kapitel I/II seit 02.02.2025 (neue Art.-5-Verbote ab 02.12.2026), GPAI-/Governance-Regeln seit 02.08.2025 sowie Hochrisiko Kapitel III Abschnitte 1–3 (außer Art. 6(5)) ab 02.12.2027 für Art. 6(2)/Anhang III und 02.08.2028 für Art. 6(1)/Anhang I. Produktrolle und Werkzeugnutzung getrennt bewerten. Für Deutschland gilt BSIG seit 06.12.2025; §§ 28–30, 32/33 und 38 sowie Sonderregeln und Anlagen prüfen. DORA gilt seit 17.01.2025; unmittelbare Finanzunternehmenspflichten, Vertragsanforderungen an Zulieferer und Aufsicht über kritische IKT-Drittdienstleister unterscheiden. Andere Länder/Branchen benötigen eigene Primärprüfung.
-- **EN:** Source date 2026-10-20: AI Act consolidated on 2026-07-27 by (EU) 2026/1744. Article 113 separates general application from 2026-08-02, Chapters I/II since 2025-02-02 (new Article 5 prohibitions from 2026-12-02), GPAI/governance rules since 2025-08-02, and high-risk Chapter III Sections 1–3 (except Article 6(5)) from 2027-12-02 for Article 6(2)/Annex III and 2028-08-02 for Article 6(1)/Annex I. Assess product role and tool use separately. German BSIG applies since 2025-12-06; review sections 28–30, 32/33, 38, special rules and annexes. DORA applies since 2025-01-17; distinguish direct financial-entity duties, supplier contracts and oversight of critical ICT third-party providers. Other jurisdictions/sectors require their own primary review.
+- **DE:** Quellenstand 20.10.2026: KI-VO konsolidiert am 27.07.2026 durch (EU) 2026/1744. Art. 113 unterscheidet allgemeine Geltung ab 02.08.2026, Kapitel I/II seit 02.02.2025 (neue Art.-5-Verbote ab 02.12.2026), GPAI-/Governance-Regeln seit 02.08.2025 sowie Hochrisiko Kapitel III Abschnitte 1–3 (außer Art. 6(5)) ab 02.12.2027 für Art. 6(2)/Anhang III und 02.08.2028 für Art. 6(1)/Anhang I. Produkt, KI-Werkzeugbetrieb (einschließlich Betreiberrolle) und Organisation getrennt bewerten; Art. 4 verlangt bei einschlägiger Anbieter-/Betreiberrolle Maßnahmen zur KI-Kompetenz. Für Deutschland gilt BSIG seit 06.12.2025; §§ 28–30, 32/33 und 38 sowie Sonderregeln und Anlagen prüfen. DORA gilt seit 17.01.2025; unmittelbare Finanzunternehmenspflichten, Vertragsanforderungen an Zulieferer und Aufsicht über kritische IKT-Drittdienstleister unterscheiden. Andere Länder/Branchen benötigen eigene Primärprüfung.
+- **EN:** Source date 2026-10-20: AI Act consolidated on 2026-07-27 by (EU) 2026/1744. Article 113 separates general application from 2026-08-02, Chapters I/II since 2025-02-02 (new Article 5 prohibitions from 2026-12-02), GPAI/governance rules since 2025-08-02, and high-risk Chapter III Sections 1–3 (except Article 6(5)) from 2027-12-02 for Article 6(2)/Annex III and 2028-08-02 for Article 6(1)/Annex I. Assess product, AI tool operation (including the deployer role) and organisation separately; Article 4 requires AI literacy measures where the provider/deployer role applies. German BSIG applies since 2025-12-06; review sections 28–30, 32/33, 38, special rules and annexes. DORA applies since 2025-01-17; distinguish direct financial-entity duties, supplier contracts and oversight of critical ICT third-party providers. Other jurisdictions/sectors require their own primary review.
 
-- **DE:** Für jedes Projekt wird zusätzlich zur technischen Standardauswahl
-  geprüft, ob NIS2, CRA, EU AI Act, DORA oder sektor- und
-  kundenspezifische Regeln anwendbar sind. Die Entscheidung wird als
-  `anwendbar`, `nicht anwendbar` oder `offen` dokumentiert. Für private
-  Lern-, Referenz- oder interne Tooling-Projekte darf `nicht anwendbar`
-  gewählt werden, wenn das Projekt nicht als regulierter Dienst betrieben
-  wird, nicht als reguliertes Produkt in Verkehr gebracht wird, nicht an
-  regulierte Kunden geliefert wird und nicht Teil einer regulierten
-  Lieferkette ist. Diese Begründung wird ausdrücklich festgehalten.
-- **EN:** Every project checks, in addition to the technical standards
-  selection, whether NIS2, CRA, the EU AI Act, DORA, or sector- and
-  customer-specific rules apply. The decision is documented as
-  `applicable`, `not applicable`, or `open`. For private learning,
-  reference, or internal tooling projects, `not applicable` may be used
-  when the project is not operated as a regulated service, not placed on
-  the market as a regulated product, not delivered to regulated customers,
-  and not part of a regulated supply chain. This rationale is recorded
-  explicitly.
-- **Akzeptanz / Acceptance:** `docs/security/regulatory-applicability.md`
-  oder ein gleichwertiges Spec-Kit-Artefakt enthält eine Matrix zu NIS2,
-  CRA, EU AI Act, DORA und kundenspezifischen Regeln mit Entscheidung,
-  Begründung, Evidenzpfad, verantwortlicher Person und Wiedervorlage. /
-  `docs/security/regulatory-applicability.md` or an equivalent Spec Kit
-  artefact contains a matrix for NIS2, CRA, EU AI Act, DORA, and
-  customer-specific rules with decision, rationale, evidence path, owner,
-  and re-review trigger.
+- **DE:** Für jedes Rechtsregime (NIS2/BSIG, CRA, KI-VO, DORA und sektor-/kundenspezifische Regeln) getrennt über Produkt, Werkzeugbetrieb und Organisation entscheiden. Je Ebene Land, Rechtsfassung, Rechtsträger, Rolle (etwa Anbieter, Betreiber oder Hersteller), Anwendungsdatum und direkte beziehungsweise vertragliche Pflichten prüfen. Interne Werkzeuge, Ausbildung oder fehlender Vertrieb rechtfertigen kein pauschales N/A: KI-VO Art. 4 kann beim Einsatz von KI-Werkzeugen einschlägig sein, auch ohne ein eigenes KI-Produkt anzubieten. N/A nur für die konkret geprüfte Ebene, Rolle und Rechtsgrundlage begründen. Unbekannte Sachverhalte bleiben `Open` mit Owner und Wiedervorlage.
+- **EN:** Decide separately for product, tool operation and organisation under each regime (NIS2/BSIG, CRA, AI Act, DORA and sector/customer rules). For each level assess jurisdiction, legal version, legal entity, role (such as provider, deployer or manufacturer), application date and direct or contractual duties. Internal tools, training or absence of sales do not justify blanket N/A: AI Act Article 4 may apply to AI tool use without offering an AI product. Justify N/A only for the assessed level, role and legal basis. Unknown facts remain `Open` with an owner and review date.
+- **Akzeptanz / Acceptance:** `docs/security/regulatory-applicability.md` oder gleichwertige Evidence enthält je Rechtsregime getrennte Zeilen für Produkt, Werkzeugbetrieb und Organisation mit Rolle, Land, Rechtsfassung/Datum, Entscheidung, konkreter Rechtsgrundlage, Begründung, Evidence, Owner/Reviewer und Wiedervorlage; Art.-4-Maßnahmen oder rollenbezogenes N/A sind belegt. / Equivalent evidence records separate product, tool-operation and organisation rows per regime, with role, jurisdiction, legal version/date, decision, exact legal basis, rationale, evidence, owner/reviewer and reevaluation; evidence Article 4 measures or role-specific N/A.
 - **Referenz / Reference:** Spec-Kit `security-governance`, Template
   `regulatory-applicability-template`.
 - **Lernstufe / Learning stage:** _Grundlage, Aufbau oder Vertiefung gemaess Lernpfad dokumentieren. / Record foundation, intermediate, or advanced according to the learning path._
@@ -870,8 +847,11 @@ questions have an owner and re-review trigger.
 ---
 
 - **Version 2.0.0 (2026-07-10):** Einheitliches zweiachsiges Statusmodell, stabile CL-IDs, Lernstufe, Rollen-, Evidenz-, Restrisiko- und Neubewertungsfelder sowie klare Trennung zwischen Vorlage und Projektnachweis eingeführt; synchron mit sichere-Entwicklung-Basis 3.0.0. / Added the unified two-axis status model, stable CL IDs, learning-stage, role, evidence, residual-risk, and re-evaluation fields, plus clear separation between template and project evidence; synchronized with secure-development baseline 3.0.0.
-| 2.0.1 | 2026-10-19 | Level-0-Konsolidierung: Baseline-Bindung und fachliche Konsistenz geprüft; Grenzen im Reviewbericht. / Level-0 consolidation: baseline binding and consistency reviewed; limitations recorded in the review report. |
-| 2.0.2 | 2026-10-20 | Primärquellen-Nachprüfung und Baseline-Bindung 3.4.1; Details im Quellenabschluss. / Primary-source follow-up and baseline binding 3.4.1; see source closure report. |
+- **Version 2.0.1 (2026-10-19):** Level-0-Konsolidierung: Baseline-Bindung und fachliche Konsistenz geprüft; Grenzen im Reviewbericht. / Level-0 consolidation: baseline binding and consistency reviewed; limitations recorded in the review report.
+- **Version 2.0.2 (2026-10-20):** Primärquellen-Nachprüfung und Baseline-Bindung 3.4.1; Details im Quellenabschluss. / Primary-source follow-up and baseline binding 3.4.1; see source closure report.
+
+
+- **Version 2.0.3 (2026-10-20):** Unabhängige Reviewkorrekturen und Baseline 3.4.3; siehe [Prüfbericht](../maintenance/gsdb-independent-fixes-2026-10-20.md). / Independent review corrections and baseline 3.4.3; see review report.
 
 ---
 
@@ -889,8 +869,8 @@ This document is organization-neutral and written as a generic training and revi
 ## Checkliste 02 – Sichere Softwarearchitektur / Secure Software Architecture
 
 **Dokument-ID / Document ID:** CL-02
-**Version / Version:** 2.0.2
-**Baseline-Version / Baseline version:** 3.4.2
+**Version / Version:** 2.0.3
+**Baseline-Version / Baseline version:** 3.4.3
 **Dokumenttyp / Document type:** Kanonische, wiederverwendbare Pruefvorlage / Canonical reusable review template
 
 ### Nachweisinstanz / Evidence Instance
@@ -1077,7 +1057,7 @@ impact.
   Eingangsvalidierung im Application-Code (Bean Validation, Pydantic,
   FluentValidation); (3) parametrisierte SQL-Queries; (4) Datenbank-
   Berechtigungen mit Read-Only-Rollen je nach Anwendungsfall; (5)
-  Datenbank-Verschlüsselung at-rest (plattformgeeignete Speicherverschlüsselung / platform-appropriate storage encryption,
+  Datenbank-Verschlüsselung at-rest (plattformgeeignete Speicherverschlüsselung,
   AWS RDS Encryption); (6) Audit-Logging mit unveränderlichem Speicher
   (Append-Only-Log, S3 Object Lock). Beispiel für ein API-Token:
   HTTPS + kurze TTL + Audience-Claim + Token-Revocation-Liste.
@@ -1093,7 +1073,7 @@ impact.
   application code (Bean Validation, Pydantic, FluentValidation);
   (3) parameterised SQL queries; (4) database privileges with
   read-only roles per use case; (5) database encryption at rest
-  (plattformgeeignete Speicherverschlüsselung / platform-appropriate storage encryption, AWS RDS encryption); (6) audit
+  (platform-appropriate storage encryption, AWS RDS encryption); (6) audit
   logging with immutable storage (append-only log, S3 Object Lock).
   Example for an API token: HTTPS + short TTL + audience claim +
   token revocation list. Example for containers: signed image
@@ -1646,18 +1626,18 @@ impact.
 
 - **DE:** Wenn ein Projekt Cloud-Dienste, SaaS, PaaS, IaaS, verwaltete
   Dienste, Container-Registries, Artefakt-Hosting oder providergebundene
-  Deployments wesentlich nutzt oder bereitstellt, wird BSI C3A als
+  Deployments wesentlich nutzt oder bereitstellt, wird BSI C3A v1.0 (27.04.2026) als
   Bewertungsrahmen für selbstbestimmte Cloud-Nutzung geprüft. Die
   Architektur dokumentiert Provider-Abhängigkeiten, Lock-in-Risiken,
   Exit- oder Portabilitätsoptionen, Daten- und Betriebsstandorte sowie
-  betroffene S-ADRs. Reine Entwicklungsinfrastruktur darf mit kurzer
+  betroffene S-ADRs. C3A ist selbst nicht bindend, setzt C5 voraus und umfasst SOV-1 bis SOV-6; SOV-7/8 sind ausgenommen. Eine EU-Region allein belegt keine Autonomie; C3A ersetzt weder C5 noch Datenschutz-/Transferprüfung. Reine Entwicklungsinfrastruktur darf mit kurzer
   Toolchain-Begründung als `nicht anwendbar` dokumentiert werden.
 - **EN:** If a project materially uses or provides cloud services, SaaS,
   PaaS, IaaS, managed services, container registries, artefact hosting, or
-  provider-dependent deployments, BSI C3A is checked as an assessment
+  provider-dependent deployments, BSI C3A v1.0 (2026-04-27) is checked as an assessment
   framework for self-determined cloud use. The architecture documents
   provider dependencies, lock-in risks, exit or portability options, data
-  and operation locations, and affected S-ADRs. Generic development
+  and operation locations, and affected S-ADRs. C3A is not binding by itself, presupposes C5 and covers SOV-1 to SOV-6; SOV-7/8 are excluded. An EU region alone does not demonstrate autonomy; C3A replaces neither C5 nor privacy/transfer review. Generic development
   infrastructure may be documented as `not applicable` with a short
   toolchain rationale.
 - **Akzeptanz / Acceptance:** `docs/security/cloud-autonomy-applicability.md`
@@ -1689,18 +1669,18 @@ impact.
 #### CL-02-13: Cloud-Compliance-Assurance / Cloud Compliance Assurance
 
 - **DE:** Wenn ein Projekt Cloud-Dienste wesentlich nutzt oder bereitstellt,
-  wird BSI C5 als Assurance-Rahmen geprüft. Die Architektur dokumentiert,
+  wird BSI C5:2026 v1.1.0 (11.08.2026) als Assurance-Rahmen geprüft. Die Architektur dokumentiert,
   ob ein C5-Testat oder ein gleichwertiger Nachweis vorliegt, welchen
   Umfang dieser Nachweis abdeckt, welche Shared-Responsibility-Lücken
   bleiben, welche Subdienstleister betroffen sind und welche
   Kundenpflichten offen sind. Fehlt ein C5-Nachweis, werden Ersatznachweise
-  und Restrisiken dokumentiert.
-- **EN:** If a project materially uses or provides cloud services, BSI C5
-  is checked as an assurance framework. The architecture documents whether
+  und Restrisiken dokumentiert. Testattyp, geprüfter Zeitraum, Dienst/Region, Abweichungen und ergänzende Kundenkontrollen nachweisen. Ein C5-Testat ist keine pauschale Souveränitäts- oder Datenschutzfreigabe.
+- **EN:** If a project materially uses or provides cloud services, it
+  uses BSI C5:2026 v1.1.0 (2026-08-11) as an assurance framework. The architecture documents whether
   a C5 attestation or equivalent evidence exists, which scope it covers,
   which shared-responsibility gaps remain, which subprocessors are
   involved, and which customer-side duties remain open. If C5 evidence is
-  missing, substitute evidence and residual risks are documented.
+  missing, substitute evidence and residual risks are documented. Evidence report type, assessed period, service/region, exceptions and complementary customer controls. A C5 report is not blanket sovereignty or privacy approval.
 - **Akzeptanz / Acceptance:** `docs/security/cloud-compliance-assurance.md`
   oder ein gleichwertiges Spec-Kit-Artefakt nennt C5-/Assurance-Status,
   Scope, Provider/Subdienstleister, Shared-Responsibility-Gaps,
@@ -1836,8 +1816,11 @@ rationale.
 ---
 
 - **Version 2.0.0 (2026-07-10):** Einheitliches zweiachsiges Statusmodell, stabile CL-IDs, Lernstufe, Rollen-, Evidenz-, Restrisiko- und Neubewertungsfelder sowie klare Trennung zwischen Vorlage und Projektnachweis eingeführt; synchron mit sichere-Entwicklung-Basis 3.0.0. / Added the unified two-axis status model, stable CL IDs, learning-stage, role, evidence, residual-risk, and re-evaluation fields, plus clear separation between template and project evidence; synchronized with secure-development baseline 3.0.0.
-| 2.0.1 | 2026-10-19 | Level-0-Konsolidierung: Baseline-Bindung und fachliche Konsistenz geprüft; Grenzen im Reviewbericht. / Level-0 consolidation: baseline binding and consistency reviewed; limitations recorded in the review report. |
-| 2.0.2 | 2026-10-20 | Primärquellen-Nachprüfung und Baseline-Bindung 3.4.1; Details im Quellenabschluss. / Primary-source follow-up and baseline binding 3.4.1; see source closure report. |
+- **Version 2.0.1 (2026-10-19):** Level-0-Konsolidierung: Baseline-Bindung und fachliche Konsistenz geprüft; Grenzen im Reviewbericht. / Level-0 consolidation: baseline binding and consistency reviewed; limitations recorded in the review report.
+- **Version 2.0.2 (2026-10-20):** Primärquellen-Nachprüfung und Baseline-Bindung 3.4.1; Details im Quellenabschluss. / Primary-source follow-up and baseline binding 3.4.1; see source closure report.
+
+
+- **Version 2.0.3 (2026-10-20):** Unabhängige Reviewkorrekturen und Baseline 3.4.3; siehe [Prüfbericht](../maintenance/gsdb-independent-fixes-2026-10-20.md). / Independent review corrections and baseline 3.4.3; see review report.
 
 ---
 
@@ -1855,8 +1838,8 @@ This document is organization-neutral and written as a generic training and revi
 ## Checkliste 03 – Kryptografische Mindestvorgaben / Cryptographic Minimum Requirements
 
 **Dokument-ID / Document ID:** CL-03
-**Version / Version:** 2.0.2
-**Baseline-Version / Baseline version:** 3.4.2
+**Version / Version:** 2.0.3
+**Baseline-Version / Baseline version:** 3.4.3
 **Dokumenttyp / Document type:** Kanonische, wiederverwendbare Pruefvorlage / Canonical reusable review template
 
 ### Nachweisinstanz / Evidence Instance
@@ -2250,40 +2233,9 @@ indirectly via libraries, frameworks, or external services.
 
 #### CL-03-07: TLS-Konfiguration / TLS Configuration
 
-- **DE:** TLS 1.2 ist das Mindestmaß, TLS 1.3 ist bevorzugt. SSLv2, SSLv3,
-  TLS 1.0 und TLS 1.1 sind deaktiviert. Empfohlene TLS 1.3 Cipher-Suites:
-  `TLS_AES_256_GCM_SHA384`, `TLS_CHACHA20_POLY1305_SHA256`,
-  `TLS_AES_128_GCM_SHA256`. Empfohlene TLS 1.2 Suites mit Forward Secrecy:
-  `ECDHE-ECDSA-AES256-GCM-SHA384`, `ECDHE-RSA-AES256-GCM-SHA384`,
-  `ECDHE-ECDSA-CHACHA20-POLY1305`, `ECDHE-RSA-CHACHA20-POLY1305`.
-  Konfigurationsbeispiele: in nginx `ssl_protocols TLSv1.2 TLSv1.3;
-  ssl_ciphers ECDHE+AESGCM:ECDHE+CHACHA20; ssl_prefer_server_ciphers on;`,
-  in Apache `SSLProtocol -all +TLSv1.2 +TLSv1.3`, in Spring Boot
-  `server.ssl.enabled-protocols=TLSv1.2,TLSv1.3`, in Kestrel
-  `SslProtocols = SslProtocols.Tls12 | SslProtocols.Tls13`. HSTS
-  (`Strict-Transport-Security: max-age=31536000; includeSubDomains`) ist
-  für öffentliche Endpunkte gesetzt. Zertifikate aus einer CA, die im
-  CT-Log (Certificate Transparency) erscheint; selbstsignierte Zertifikate
-  nur in geschlossenen Test-/Entwicklungsumgebungen.
-- **EN:** TLS 1.2 is the minimum, TLS 1.3 is preferred. SSLv2, SSLv3,
-  TLS 1.0, and TLS 1.1 are disabled. Recommended TLS 1.3 cipher suites:
-  `TLS_AES_256_GCM_SHA384`, `TLS_CHACHA20_POLY1305_SHA256`,
-  `TLS_AES_128_GCM_SHA256`. Recommended TLS 1.2 suites with forward
-  secrecy: `ECDHE-ECDSA-AES256-GCM-SHA384`, `ECDHE-RSA-AES256-GCM-SHA384`,
-  `ECDHE-ECDSA-CHACHA20-POLY1305`, `ECDHE-RSA-CHACHA20-POLY1305`.
-  Configuration examples: nginx `ssl_protocols TLSv1.2 TLSv1.3;
-  ssl_ciphers ECDHE+AESGCM:ECDHE+CHACHA20; ssl_prefer_server_ciphers on;`,
-  Apache `SSLProtocol -all +TLSv1.2 +TLSv1.3`, Spring Boot
-  `server.ssl.enabled-protocols=TLSv1.2,TLSv1.3`, Kestrel
-  `SslProtocols = SslProtocols.Tls12 | SslProtocols.Tls13`. HSTS
-  (`Strict-Transport-Security: max-age=31536000; includeSubDomains`) is
-  set for public endpoints. Certificates from a CA that appears in CT
-  logs (Certificate Transparency); self-signed certificates only in closed
-  test or development environments.
-- **Akzeptanz / Acceptance:** TLS-Scan-Bericht pro Endpunkt (z. B.
-  `testssl.sh`, Qualys SSL Labs, `sslyze`) mit Mindest-Note A oder
-  vergleichbar. / TLS scan report per endpoint (e.g. `testssl.sh`,
-  Qualys SSL Labs, `sslyze`) with at least an "A" rating or equivalent.
+- **DE:** TLS 1.3 bevorzugen; TLS 1.2 ist nach TR-02102-2 (2026-01), Kap. 3, nur bis Ende 2031 empfohlen. SSLv2/v3 und TLS 1.0/1.1 deaktivieren. Für das BSI-Profil TLS-1.3-Suites aus Tabelle 13 verwenden, etwa `TLS_AES_256_GCM_SHA384` oder `TLS_AES_128_GCM_SHA256`; TLS-1.2-Beispiele aus Tabelle 3 sind `TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384` und `TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384`. Signaturverfahren, Gruppen und Schlüssellängen zusätzlich nach Tabellen 7–12 und Kap. 3.6 prüfen: bei RSA PSS verwenden; TLS-1.2-RSA mit PKCS#1-v1.5-Padding wurde nur bis 2025 empfohlen. ChaCha20-Suites stehen nicht in Tabellen 3/13 dieser Ausgabe; eine lokal gewählte Abweichung ist gesondert zu begründen und darf nicht als BSI-konform ausgegeben werden. Ein Cipher-String allein erzwingt weder PSS noch alle BSI-Parameter. Effektive Konfiguration und Handshake je Zielplattform prüfen; CL-03-14/15 steuern Migration und Quellenabgleich. HSTS für öffentliche Web-Endpunkte nach geprüfter Subdomain-Policy setzen. Öffentliche Web-Zertifikate über eine vertrauenswürdige CA mit anwendbarer CT-Policy; geschlossene Test-/Entwicklungsumgebungen dürfen dokumentierte eigene Vertrauensanker verwenden.
+- **EN:** Prefer TLS 1.3; TR-02102-2 (2026-01), Chapter 3 recommends TLS 1.2 only through 2031. Disable SSLv2/v3 and TLS 1.0/1.1. For the BSI profile use TLS 1.3 suites from Table 13, such as `TLS_AES_256_GCM_SHA384` or `TLS_AES_128_GCM_SHA256`; TLS 1.2 examples from Table 3 are `TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384` and `TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384`. Also assess signature schemes, groups and key sizes under Tables 7–12 and Chapter 3.6: use PSS for RSA; TLS 1.2 RSA with PKCS#1 v1.5 padding was recommended only through 2025. ChaCha20 suites do not appear in Tables 3/13 of this edition; justify any locally chosen deviation separately and do not label it BSI-conformant. A cipher string alone enforces neither PSS nor all BSI parameters. Check effective configuration and handshakes per target platform; CL-03-14/15 govern migration and source review. Apply HSTS to public web endpoints with a reviewed subdomain policy. Use a trusted CA with applicable CT policy for public web certificates; closed test/development environments may use documented private trust anchors.
+- **Akzeptanz / Acceptance:** TLS-Scan und Handshake-Nachweis je Endpunkt, Protokoll/Suite/Gruppe/Signatur/Schlüssellänge gegen die datierte BSI-Ausgabe bewertet, Abweichungen begründet und Migration terminiert; ein Scanner-Rating allein genügt nicht. / Per-endpoint TLS scan and handshake evidence assess protocol, suite, group, signature and key size against the dated BSI edition, justify deviations and schedule migration; a scanner rating alone is insufficient.
 - **Lernstufe / Learning stage:** _Grundlage, Aufbau oder Vertiefung gemaess Lernpfad dokumentieren. / Record foundation, intermediate, or advanced according to the learning path._
 - **Verantwortliche Rolle / Responsible role:** _Lernende Person, ausbildende Person, Projektverantwortung oder Security-Rolle benennen. / Name learner, instructor, project owner, or security role._
 - **Anwendbarkeit / Applicability:**
@@ -2749,8 +2701,11 @@ stored in the security evidence set.
 ---
 
 - **Version 2.0.0 (2026-07-10):** Einheitliches zweiachsiges Statusmodell, stabile CL-IDs, Lernstufe, Rollen-, Evidenz-, Restrisiko- und Neubewertungsfelder sowie klare Trennung zwischen Vorlage und Projektnachweis eingeführt; synchron mit sichere-Entwicklung-Basis 3.0.0. / Added the unified two-axis status model, stable CL IDs, learning-stage, role, evidence, residual-risk, and re-evaluation fields, plus clear separation between template and project evidence; synchronized with secure-development baseline 3.0.0.
-| 2.0.1 | 2026-10-19 | Level-0-Konsolidierung: Baseline-Bindung und fachliche Konsistenz geprüft; Grenzen im Reviewbericht. / Level-0 consolidation: baseline binding and consistency reviewed; limitations recorded in the review report. |
-| 2.0.2 | 2026-10-20 | Primärquellen-Nachprüfung und Baseline-Bindung 3.4.1; Details im Quellenabschluss. / Primary-source follow-up and baseline binding 3.4.1; see source closure report. |
+- **Version 2.0.1 (2026-10-19):** Level-0-Konsolidierung: Baseline-Bindung und fachliche Konsistenz geprüft; Grenzen im Reviewbericht. / Level-0 consolidation: baseline binding and consistency reviewed; limitations recorded in the review report.
+- **Version 2.0.2 (2026-10-20):** Primärquellen-Nachprüfung und Baseline-Bindung 3.4.1; Details im Quellenabschluss. / Primary-source follow-up and baseline binding 3.4.1; see source closure report.
+
+
+- **Version 2.0.3 (2026-10-20):** Unabhängige Reviewkorrekturen und Baseline 3.4.3; siehe [Prüfbericht](../maintenance/gsdb-independent-fixes-2026-10-20.md). / Independent review corrections and baseline 3.4.3; see review report.
 
 ---
 
@@ -2769,7 +2724,7 @@ This document is organization-neutral and written as a generic training and revi
 
 **Dokument-ID / Document ID:** CL-04
 **Version / Version:** 2.0.2
-**Baseline-Version / Baseline version:** 3.4.2
+**Baseline-Version / Baseline version:** 3.4.3
 **Dokumenttyp / Document type:** Kanonische, wiederverwendbare Pruefvorlage / Canonical reusable review template
 
 ### Nachweisinstanz / Evidence Instance
@@ -3615,8 +3570,11 @@ accepted risks are documented in writing.
 ---
 
 - **Version 2.0.0 (2026-07-10):** Einheitliches zweiachsiges Statusmodell, stabile CL-IDs, Lernstufe, Rollen-, Evidenz-, Restrisiko- und Neubewertungsfelder sowie klare Trennung zwischen Vorlage und Projektnachweis eingeführt; synchron mit sichere-Entwicklung-Basis 3.0.0. / Added the unified two-axis status model, stable CL IDs, learning-stage, role, evidence, residual-risk, and re-evaluation fields, plus clear separation between template and project evidence; synchronized with secure-development baseline 3.0.0.
-| 2.0.1 | 2026-10-19 | Level-0-Konsolidierung: Baseline-Bindung und fachliche Konsistenz geprüft; Grenzen im Reviewbericht. / Level-0 consolidation: baseline binding and consistency reviewed; limitations recorded in the review report. |
-| 2.0.2 | 2026-10-20 | Primärquellen-Nachprüfung und Baseline-Bindung 3.4.1; Details im Quellenabschluss. / Primary-source follow-up and baseline binding 3.4.1; see source closure report. |
+- **Version 2.0.1 (2026-10-19):** Level-0-Konsolidierung: Baseline-Bindung und fachliche Konsistenz geprüft; Grenzen im Reviewbericht. / Level-0 consolidation: baseline binding and consistency reviewed; limitations recorded in the review report.
+- **Version 2.0.2 (2026-10-20):** Primärquellen-Nachprüfung und Baseline-Bindung 3.4.1; Details im Quellenabschluss. / Primary-source follow-up and baseline binding 3.4.1; see source closure report.
+
+
+- **Version 2.0.2 (2026-10-20):** Unabhängige Reviewkorrekturen und Baseline 3.4.3; siehe [Prüfbericht](../maintenance/gsdb-independent-fixes-2026-10-20.md). / Independent review corrections and baseline 3.4.3; see review report.
 
 ---
 
@@ -3635,7 +3593,7 @@ This document is organization-neutral and written as a generic training and revi
 
 **Dokument-ID / Document ID:** CL-05
 **Version / Version:** 2.0.2
-**Baseline-Version / Baseline version:** 3.4.2
+**Baseline-Version / Baseline version:** 3.4.3
 **Dokumenttyp / Document type:** Kanonische, wiederverwendbare Pruefvorlage / Canonical reusable review template
 
 ### Nachweisinstanz / Evidence Instance
@@ -4907,8 +4865,11 @@ document where applicable.
 ---
 
 - **Version 2.0.0 (2026-07-10):** Einheitliches zweiachsiges Statusmodell, stabile CL-IDs, Lernstufe, Rollen-, Evidenz-, Restrisiko- und Neubewertungsfelder sowie klare Trennung zwischen Vorlage und Projektnachweis eingeführt; synchron mit sichere-Entwicklung-Basis 3.0.0. / Added the unified two-axis status model, stable CL IDs, learning-stage, role, evidence, residual-risk, and re-evaluation fields, plus clear separation between template and project evidence; synchronized with secure-development baseline 3.0.0.
-| 2.0.1 | 2026-10-19 | Level-0-Konsolidierung: Baseline-Bindung und fachliche Konsistenz geprüft; Grenzen im Reviewbericht. / Level-0 consolidation: baseline binding and consistency reviewed; limitations recorded in the review report. |
-| 2.0.2 | 2026-10-20 | Primärquellen-Nachprüfung und Baseline-Bindung 3.4.1; Details im Quellenabschluss. / Primary-source follow-up and baseline binding 3.4.1; see source closure report. |
+- **Version 2.0.1 (2026-10-19):** Level-0-Konsolidierung: Baseline-Bindung und fachliche Konsistenz geprüft; Grenzen im Reviewbericht. / Level-0 consolidation: baseline binding and consistency reviewed; limitations recorded in the review report.
+- **Version 2.0.2 (2026-10-20):** Primärquellen-Nachprüfung und Baseline-Bindung 3.4.1; Details im Quellenabschluss. / Primary-source follow-up and baseline binding 3.4.1; see source closure report.
+
+
+- **Version 2.0.2 (2026-10-20):** Unabhängige Reviewkorrekturen und Baseline 3.4.3; siehe [Prüfbericht](../maintenance/gsdb-independent-fixes-2026-10-20.md). / Independent review corrections and baseline 3.4.3; see review report.
 
 ---
 
@@ -4927,7 +4888,7 @@ This document is organization-neutral and written as a generic training and revi
 
 **Dokument-ID / Document ID:** CL-06
 **Version / Version:** 2.0.2
-**Baseline-Version / Baseline version:** 3.4.2
+**Baseline-Version / Baseline version:** 3.4.3
 **Dokumenttyp / Document type:** Kanonische, wiederverwendbare Pruefvorlage / Canonical reusable review template
 
 ### Nachweisinstanz / Evidence Instance
@@ -6000,8 +5961,11 @@ SLAs are defined, and the CRA reporting path has been rehearsed.
 ---
 
 - **Version 2.0.0 (2026-07-10):** Einheitliches zweiachsiges Statusmodell, stabile CL-IDs, Lernstufe, Rollen-, Evidenz-, Restrisiko- und Neubewertungsfelder sowie klare Trennung zwischen Vorlage und Projektnachweis eingeführt; synchron mit sichere-Entwicklung-Basis 3.0.0. / Added the unified two-axis status model, stable CL IDs, learning-stage, role, evidence, residual-risk, and re-evaluation fields, plus clear separation between template and project evidence; synchronized with secure-development baseline 3.0.0.
-| 2.0.1 | 2026-10-19 | Level-0-Konsolidierung: Baseline-Bindung und fachliche Konsistenz geprüft; Grenzen im Reviewbericht. / Level-0 consolidation: baseline binding and consistency reviewed; limitations recorded in the review report. |
-| 2.0.2 | 2026-10-20 | Primärquellen-Nachprüfung und Baseline-Bindung 3.4.1; Details im Quellenabschluss. / Primary-source follow-up and baseline binding 3.4.1; see source closure report. |
+- **Version 2.0.1 (2026-10-19):** Level-0-Konsolidierung: Baseline-Bindung und fachliche Konsistenz geprüft; Grenzen im Reviewbericht. / Level-0 consolidation: baseline binding and consistency reviewed; limitations recorded in the review report.
+- **Version 2.0.2 (2026-10-20):** Primärquellen-Nachprüfung und Baseline-Bindung 3.4.1; Details im Quellenabschluss. / Primary-source follow-up and baseline binding 3.4.1; see source closure report.
+
+
+- **Version 2.0.2 (2026-10-20):** Unabhängige Reviewkorrekturen und Baseline 3.4.3; siehe [Prüfbericht](../maintenance/gsdb-independent-fixes-2026-10-20.md). / Independent review corrections and baseline 3.4.3; see review report.
 
 ---
 
@@ -6019,8 +5983,8 @@ This document is organization-neutral and written as a generic training and revi
 ## Checkliste 07 – EU Cyber Resilience Act – Anwendbarkeit / EU Cyber Resilience Act – Applicability
 
 **Dokument-ID / Document ID:** CL-07
-**Version / Version:** 2.0.3
-**Baseline-Version / Baseline version:** 3.4.2
+**Version / Version:** 2.0.4
+**Baseline-Version / Baseline version:** 3.4.3
 **Dokumenttyp / Document type:** Kanonische, wiederverwendbare Pruefvorlage / Canonical reusable review template
 
 ### Nachweisinstanz / Evidence Instance
@@ -6156,8 +6120,8 @@ checked if they are shared with external parties.
 
 #### CL-07-01: Produktart bestimmen / Determine Product Class
 
-- **DE:** Produkt, Rolle und Marktbereitstellung anhand Art. 2 und Art. 3 CRA prüfen. Erfasst sind Software/Hardware und erforderliche Daten-Fernverarbeitungslösungen; fehlende lokale Installation allein begründet keine Ausnahme. Eigenständige SaaS-Dienste außerhalb dieser Definition gesondert prüfen. NIS2-Anwendbarkeit folgt aus Einrichtung, Sektor, Größe und nationalem Recht, nicht automatisch aus SaaS. Nichtkommerzielle freie Open-Source-Software und die besondere Steward-Rolle nach Art. 24 unterscheiden. Sektorale Ausnahmen (u. a. MDR/IVDR, Fahrzeuge, Luftfahrt, Schiffsausrüstung) am konkreten Rechtsakt prüfen. Anhang III/IV und die technischen Kategorienbeschreibungen aus Durchführungsverordnung (EU) 2025/2392 heranziehen.
-- **EN:** Assess product, role and market availability under CRA Articles 2 and 3. Software/hardware and necessary remote data-processing solutions are included; absence of local installation alone establishes no exemption. Assess standalone SaaS outside that definition separately. NIS2 scope depends on entity, sector, size and national law, not automatically on SaaS. Distinguish non-commercial free/open-source software from the steward role under Article 24. Check sector exemptions (including MDR/IVDR, vehicles, aviation and marine equipment) against the applicable act. Use Annexes III/IV and Implementing Regulation (EU) 2025/2392 for technical category descriptions.
+- **DE:** Produkt, Rolle und Marktbereitstellung anhand Art. 2 und Art. 3 CRA prüfen. Erfasst sind Software/Hardware und erforderliche Daten-Fernverarbeitungslösungen; fehlende lokale Installation allein begründet keine Ausnahme. Eigenständige SaaS-Dienste außerhalb dieser Definition gesondert prüfen. NIS2-Anwendbarkeit folgt aus Einrichtung, Sektor, Größe und nationalem Recht, nicht automatisch aus SaaS. Nichtkommerzielle freie Open-Source-Software und die besondere Steward-Rolle nach Art. 24 unterscheiden. Sektorale Ausnahmen (u. a. MDR/IVDR, Fahrzeuge, Luftfahrt, Schiffsausrüstung) am konkreten Rechtsakt prüfen. Nach Art. 69(2) gelten die allgemeinen Anforderungen für vor dem 11.12.2027 in Verkehr gebrachte Produkte nur bei wesentlicher Änderung ab diesem Datum; Art. 69(3) lässt Art. 14 seit 11.09.2026 trotzdem auch für diese Bestandsprodukte gelten. Je Produkteinheit das Inverkehrbringen prüfen, nicht pauschal das erste Release einer Produktfamilie. (EU) 2025/1535 Art. 1 nimmt Produkte nach (EU) Nr. 168/2013 aus, jedoch nicht die L1e-Pedalfahrzeuge nach dessen Art. 3(94)(b). Anhang III/IV und die technischen Kategorienbeschreibungen aus Durchführungsverordnung (EU) 2025/2392 heranziehen.
+- **EN:** Assess product, role and market availability under CRA Articles 2 and 3. Software/hardware and necessary remote data-processing solutions are included; absence of local installation alone establishes no exemption. Assess standalone SaaS outside that definition separately. NIS2 scope depends on entity, sector, size and national law, not automatically on SaaS. Distinguish non-commercial free/open-source software from the steward role under Article 24. Check sector exemptions (including MDR/IVDR, vehicles, aviation and marine equipment) against the applicable act. Under Article 69(2), general requirements apply to products placed on the market before 2027-12-11 only if substantially modified from that date; Article 69(3) nevertheless applies Article 14 to these existing products since 2026-09-11. Assess placing on the market per product unit, not solely the first product-family release. Article 1 of (EU) 2025/1535 excludes products under (EU) No 168/2013, except its Article 3(94)(b) L1e vehicles designed to pedal. Use Annexes III/IV and Implementing Regulation (EU) 2025/2392 for technical category descriptions.
 - **Akzeptanz / Acceptance:** Produkt/Version, Rolle, Rechtsfassung, Markt, Ausnahmen und Entscheidungsgrund in `docs/security/cra-applicability.md`; zuständige Prüfung datiert. / Record product/version, role, legal version, market, exemptions and rationale; date the responsible review.
 - **Lernstufe / Learning stage:** _Grundlage, Aufbau oder Vertiefung gemaess Lernpfad dokumentieren. / Record foundation, intermediate, or advanced according to the learning path._
 - **Verantwortliche Rolle / Responsible role:** _Lernende Person, ausbildende Person, Projektverantwortung oder Security-Rolle benennen. / Name learner, instructor, project owner, or security role._
@@ -6222,8 +6186,8 @@ checked if they are shared with external parties.
 
 #### CL-07-04: Sicherheits-Anforderungen Anhang I Teil I / Annex I Part I Requirements
 
-- **DE:** Anhang I Teil I vollständig und risikobasiert abbilden: Nr. 1 sicheres Design; Nr. 2(a) keine bekannten ausnutzbaren Schwachstellen, (b) sichere Defaults, (c) Sicherheitsupdates, (d) Zugriffsschutz, (e) Vertraulichkeit, (f) Integrität, (g) Datenminimierung für persönliche und andere Daten, (h) Verfügbarkeit, (i) Auswirkungen auf andere Systeme, (j) Angriffsfläche, (k) Exploit-Folgenbegrenzung, (l) Logging mit Opt-out, (m) sichere Löschung und Übertragung. Anwendbarkeit und gesetzliche Bedingungen je Punkt bewerten. Eine Scan-Ausgabe allein beweist keine Erfüllung. Konformitätsvermutung nach Art. 27 nur für die tatsächlich im EU-Amtsblatt für den CRA referenzierten einschlägigen Teile einer Norm annehmen; verwandte RED-/IoT-/Industrienormen sind nicht automatisch CRA-harmonisiert.
-- **EN:** Map all of Annex I Part I on a risk basis: point 1 secure design; point 2(a) no known exploitable vulnerabilities, (b) secure defaults, (c) security updates, (d) access protection, (e) confidentiality, (f) integrity, (g) minimisation of personal and other data, (h) availability, (i) impact on other systems, (j) attack surface, (k) exploit mitigation, (l) logging with opt-out, (m) secure erasure and transfer. Assess applicability and statutory conditions per point. A scan alone does not prove fulfilment. Claim Article 27 presumption only for applicable standard parts actually referenced in the EU Official Journal for the CRA; related RED/IoT/industrial standards are not automatically CRA-harmonised.
+- **DE:** Anhang I Teil I vollständig und risikobasiert abbilden: Nr. 1 sicheres Design; Nr. 2(a) keine bekannten ausnutzbaren Schwachstellen, (b) sichere Defaults, (c) Sicherheitsupdates, (d) Zugriffsschutz, (e) Vertraulichkeit, (f) Integrität, (g) Datenminimierung für persönliche und andere Daten, (h) Verfügbarkeit, (i) Auswirkungen auf andere Systeme, (j) Angriffsfläche, (k) Exploit-Folgenbegrenzung, (l) Logging mit Opt-out, (m) sichere Löschung und Übertragung. Anwendbarkeit und gesetzliche Bedingungen je Punkt bewerten. Nr. 2(b) umfasst die Rücksetzung in den Originalzustand; eine abweichende Vereinbarung zu sicheren Defaults gilt nur zwischen Hersteller und gewerblichem Nutzer bei einem maßgeschneiderten Produkt, nicht pauschal für Anhang I. Eine Scan-Ausgabe allein beweist keine Erfüllung. Konformitätsvermutung nach Art. 27 nur für die tatsächlich im EU-Amtsblatt für den CRA referenzierten einschlägigen Teile einer Norm annehmen; verwandte RED-/IoT-/Industrienormen sind nicht automatisch CRA-harmonisiert.
+- **EN:** Map all of Annex I Part I on a risk basis: point 1 secure design; point 2(a) no known exploitable vulnerabilities, (b) secure defaults, (c) security updates, (d) access protection, (e) confidentiality, (f) integrity, (g) minimisation of personal and other data, (h) availability, (i) impact on other systems, (j) attack surface, (k) exploit mitigation, (l) logging with opt-out, (m) secure erasure and transfer. Assess applicability and statutory conditions per point. Point 2(b) includes resetting to the original state; a different agreement on secure defaults applies only between manufacturer and business user for a tailor-made product, not to Annex I as a whole. A scan alone does not prove fulfilment. Claim Article 27 presumption only for applicable standard parts actually referenced in the EU Official Journal for the CRA; related RED/IoT/industrial standards are not automatically CRA-harmonised.
 - **Akzeptanz / Acceptance:** Vollständiges Punkt-Mapping in `docs/security/cra-annex-i-mapping.md` mit Risiko, Umsetzung, Test/Evidence und geprüften Amtsblattreferenzen. / Complete point mapping with risk, implementation, tests/evidence and checked OJ references.
 - **Lernstufe / Learning stage:** _Grundlage, Aufbau oder Vertiefung gemaess Lernpfad dokumentieren. / Record foundation, intermediate, or advanced according to the learning path._
 - **Verantwortliche Rolle / Responsible role:** _Lernende Person, ausbildende Person, Projektverantwortung oder Security-Rolle benennen. / Name learner, instructor, project owner, or security role._
@@ -6266,9 +6230,9 @@ checked if they are shared with external parties.
 
 #### CL-07-06: Konformitätsbewertung / Conformity Assessment
 
-- **DE:** Den Bewertungspfad anhand Produktkategorie, anwendbaren harmonisierten Standards und geltenden Sonderregeln bestimmen. Bei Klasse I kann Selbstbewertung an Bedingungen gebunden sein; Klasse II und kritische Produkte benötigen grundsätzlich externe Bewertung beziehungsweise ein zulässiges Zertifizierungsschema. Die offizielle Kommissionsübersicht nennt zudem eine FOSS-Ausnahme für Klasse I/II bei öffentlich zugänglicher technischer Dokumentation. Keine pauschale Entscheidung aus einer Beispieltabelle ableiten.
-- **EN:** Choose the assessment path from product category, applicable harmonised standards, and current exceptions. Class I self-assessment may be conditional; class II and critical products generally require external assessment or an eligible certification scheme. The Commission summary also describes an FOSS exception for class I/II with public technical documentation. Do not decide from an example table alone.
-- **Akzeptanz / Acceptance:** Begründeter Pfad mit zuständiger Entscheidung; https://digital-strategy.ec.europa.eu/en/policies/cra-summary / Justified route with responsible decision and primary institutional source.
+- **DE:** Den Bewertungspfad anhand Produktkategorie, anwendbaren harmonisierten Standards und geltenden Sonderregeln bestimmen. Bei Klasse I kann Selbstbewertung an Bedingungen gebunden sein; Klasse II und kritische Produkte benötigen grundsätzlich externe Bewertung beziehungsweise ein zulässiges Zertifizierungsschema. Art. 32(5) erlaubt für FOSS-Produkte der Klasse I/II die interne Kontrolle nur bei öffentlich zugänglicher technischer Dokumentation. Keine pauschale Entscheidung aus einer Beispieltabelle ableiten.
+- **EN:** Choose the assessment path from product category, applicable harmonised standards, and current exceptions. Class I self-assessment may be conditional; class II and critical products generally require external assessment or an eligible certification scheme. Article 32(5) permits internal control for FOSS Class I/II products only with publicly available technical documentation. Do not decide from an example table alone.
+- **Akzeptanz / Acceptance:** Begründeter Pfad mit zuständiger Entscheidung; [CRA Art. 32](https://eur-lex.europa.eu/eli/reg/2024/2847/oj) / Justified route with responsible decision and primary institutional source.
 - **Lernstufe / Learning stage:** _Grundlage, Aufbau oder Vertiefung gemaess Lernpfad dokumentieren. / Record foundation, intermediate, or advanced according to the learning path._
 - **Verantwortliche Rolle / Responsible role:** _Lernende Person, ausbildende Person, Projektverantwortung oder Security-Rolle benennen. / Name learner, instructor, project owner, or security role._
 - **Anwendbarkeit / Applicability:**
@@ -6288,8 +6252,8 @@ checked if they are shared with external parties.
 
 #### CL-07-07: CE-Kennzeichnung / CE Marking
 
-- **DE:** EU-Konformitätserklärung nach Art. 28 und Anhang V (gegebenenfalls vereinfachte Erklärung nach Anhang VI) vor Marktbereitstellung erstellen. CE-Regeln stehen in Art. 29/30, nicht Art. 32. Für Software ist das CE-Zeichen auf der Erklärung oder der leicht direkt zugänglichen begleitenden Website zulässig; ein Splash-Screen ist keine allgemeine Pflicht. Begleitinformationen nach Anhang II und die erforderlichen Sprachen der Zielmitgliedstaaten prüfen. Nur tatsächlich angewandte, einschlägige Normen und reale Notifizierungs-/Zertifikatsdaten nennen; Beispielnormen oder erfundene Zertifikate sind kein Konformitätsnachweis.
-- **EN:** Prepare the EU declaration under Article 28 and Annex V (or simplified declaration under Annex VI where applicable) before market availability. CE rules are in Articles 29/30, not Article 32. Software may carry CE marking on the declaration or an easily/directly accessible accompanying website; a splash screen is not universally required. Check Annex II information and languages required by target Member States. Name only standards actually applied and applicable, and real notification/certificate data; example standards or invented certificates do not establish conformity.
+- **DE:** EU-Konformitätserklärung nach Art. 28 und Anhang V (gegebenenfalls vereinfachte Erklärung nach Anhang VI) vor Inverkehrbringen nach Art. 13(12) erstellen. CE-Regeln stehen in Art. 29/30, nicht Art. 32. Für Software ist das CE-Zeichen auf der Erklärung oder der leicht direkt zugänglichen begleitenden Website zulässig; ein Splash-Screen ist keine allgemeine Pflicht. Begleitinformationen nach Anhang II und die erforderlichen Sprachen der Zielmitgliedstaaten prüfen. Nur tatsächlich angewandte, einschlägige Normen und reale Notifizierungs-/Zertifikatsdaten nennen; Beispielnormen oder erfundene Zertifikate sind kein Konformitätsnachweis.
+- **EN:** Prepare the EU declaration under Article 28 and Annex V (or simplified declaration under Annex VI where applicable) before placing on the market under Article 13(12). CE rules are in Articles 29/30, not Article 32. Software may carry CE marking on the declaration or an easily/directly accessible accompanying website; a splash screen is not universally required. Check Annex II information and languages required by target Member States. Name only standards actually applied and applicable, and real notification/certificate data; example standards or invented certificates do not establish conformity.
 - **Akzeptanz / Acceptance:** Datierte Erklärung, begründeter CE-Ort, Begleitinformationen und Sprachprüfung im Release-Dossier. / Dated declaration, justified CE location, accompanying information and language review in the release dossier.
 - **Lernstufe / Learning stage:** _Grundlage, Aufbau oder Vertiefung gemaess Lernpfad dokumentieren. / Record foundation, intermediate, or advanced according to the learning path._
 - **Verantwortliche Rolle / Responsible role:** _Lernende Person, ausbildende Person, Projektverantwortung oder Security-Rolle benennen. / Name learner, instructor, project owner, or security role._
@@ -6332,8 +6296,8 @@ checked if they are shared with external parties.
 
 #### CL-07-09: Meldepflichten 24 / 72 Stunden / 24- and 72-hour Reports
 
-- **DE:** Hersteller melden aktiv ausgenutzte Schwachstellen und schwerwiegende Sicherheitsvorfälle nach Art. 14 über die Single Reporting Platform gleichzeitig an koordinierenden CSIRT und ENISA: Frühwarnung ohne unangemessene Verzögerung, spätestens 24 Stunden nach Kenntnis, Meldung spätestens nach 72 Stunden. Schwachstellen-Schlussbericht spätestens 14 Tage nach verfügbarer Abhilfe; Vorfall-Schlussbericht spätestens einen Monat nach Vorfallmeldung. Inhalt, Zuständigkeit, Nutzerinformation und Ausnahmen nach Art. 14 sowie (EU) 2025/1535 getrennt dokumentieren. Keine gewöhnliche E-Mail-Adresse als gesetzlichen Plattformersatz ausgeben. Herstellerpflicht ab 11.09.2026, Steward-Pflichten nach Art. 24 ab 11.12.2027 separat behandeln. Interne Übungen und Bereitschaft nach Risiko organisieren.
-- **EN:** Manufacturers report actively exploited vulnerabilities and severe incidents under Article 14 through the Single Reporting Platform simultaneously to the coordinating CSIRT and ENISA: early warning without undue delay, at most 24 hours after awareness, followed by notification within 72 hours. Vulnerability final reports are due within 14 days after a corrective/mitigating measure is available; incident final reports within one month after incident notification. Separately record content, responsibility, user information and exceptions under Article 14 and (EU) 2025/1535. Do not present an ordinary email address as a statutory platform substitute. Distinguish manufacturer duties from 11 September 2026 and steward Article 24 duties from 11 December 2027. Organise exercises and on-call arrangements according to risk.
+- **DE:** Hersteller melden aktiv ausgenutzte Schwachstellen und schwerwiegende Sicherheitsvorfälle nach Art. 14 über die Single Reporting Platform gleichzeitig an koordinierenden CSIRT und ENISA: Frühwarnung ohne unangemessene Verzögerung, spätestens 24 Stunden nach Kenntnis, Meldung spätestens nach 72 Stunden. Schwachstellen-Schlussbericht spätestens 14 Tage nach verfügbarer Abhilfe; Vorfall-Schlussbericht spätestens einen Monat nach Vorfallmeldung. Inhalt, Zuständigkeit und Nutzerinformation nach Art. 14 dokumentieren. CRA Art. 16(2), Art. 14(9) und (EU) 2026/881 betreffen eine begründete Verzögerung der CSIRT-Weiterleitung; sie verlängern keine Hersteller-Meldefrist. Art. 14 gilt nach Art. 69(3)/71(2) seit 11.09.2026 auch für zuvor in Verkehr gebrachte, in den CRA-Geltungsbereich fallende Bestandsprodukte. Keine gewöhnliche E-Mail-Adresse als gesetzlichen Plattformersatz ausgeben. Herstellerpflicht ab 11.09.2026, Steward-Pflichten nach Art. 24 ab 11.12.2027 separat behandeln. Interne Übungen und Bereitschaft nach Risiko organisieren.
+- **EN:** Manufacturers report actively exploited vulnerabilities and severe incidents under Article 14 through the Single Reporting Platform simultaneously to the coordinating CSIRT and ENISA: early warning without undue delay, at most 24 hours after awareness, followed by notification within 72 hours. Vulnerability final reports are due within 14 days after a corrective/mitigating measure is available; incident final reports within one month after incident notification. Record content, responsibility and user information under Article 14. CRA Articles 16(2), 14(9) and (EU) 2026/881 concern a justified delay of CSIRT dissemination; they do not extend manufacturer reporting deadlines. Under Articles 69(3)/71(2), Article 14 applies since 2026-09-11 also to existing in-scope products placed on the market earlier. Do not present an ordinary email address as a statutory platform substitute. Distinguish manufacturer duties from 11 September 2026 and steward Article 24 duties from 11 December 2027. Organise exercises and on-call arrangements according to risk.
 - **Akzeptanz / Acceptance:** Runbook mit beiden Meldeketten, Auslösern, Plattformzugang, Vertretung, Quellenstand und Übungsnachweis. / Runbook with both reporting chains, triggers, platform access, deputies, source version and exercise evidence.
 - **Lernstufe / Learning stage:** _Grundlage, Aufbau oder Vertiefung gemaess Lernpfad dokumentieren. / Record foundation, intermediate, or advanced according to the learning path._
 - **Verantwortliche Rolle / Responsible role:** _Lernende Person, ausbildende Person, Projektverantwortung oder Security-Rolle benennen. / Name learner, instructor, project owner, or security role._
@@ -6354,9 +6318,9 @@ checked if they are shared with external parties.
 
 #### CL-07-10: Lebenszyklus und Support / Lifecycle and Support
 
-- **DE:** Support nach Art. 13(8) an erwarteter Nutzungsdauer und Produktart ausrichten, grundsätzlich mindestens fünf Jahre; ist die erwartete Nutzung kürzer, entspricht der Support dieser Dauer. Begründung und berücksichtigte Faktoren in der technischen Dokumentation festhalten. Art. 13(9) verlangt, veröffentlichte Sicherheitsupdates mindestens zehn Jahre nach Ausgabe oder für den verbleibenden Supportzeitraum verfügbar zu halten, je nachdem, was länger ist. Supportdauer, Updateverfügbarkeit und Dokumentationsaufbewahrung sind verschiedene Fristen; EOL-Hinweis allein erlaubt keine Verkürzung gesetzlicher Pflichten.
-- **EN:** Determine support under Article 13(8) from expected use and product type, generally at least five years; if expected use is shorter, support corresponds to that period. Record the rationale and considered factors in technical documentation. Article 13(9) requires issued security updates to remain available for at least ten years after issue or the remaining support period, whichever is longer. Support duration, update availability and document retention are distinct clocks; an EOL notice alone cannot shorten statutory duties.
-- **Akzeptanz / Acceptance:** Begründete, zuständig geprüfte Supportentscheidung mit drei getrennten Fristen und Wiedervorlage. / Justified, responsibly reviewed support decision with three separate clocks and reevaluation.
+- **DE:** Support nach Art. 13(8) an erwarteter Nutzungsdauer und Produktart ausrichten, grundsätzlich mindestens fünf Jahre; ist die erwartete Nutzung kürzer, entspricht der Support dieser Dauer. Begründung und berücksichtigte Faktoren in der technischen Dokumentation festhalten. Art. 13(9) verlangt, veröffentlichte Sicherheitsupdates mindestens zehn Jahre nach Ausgabe oder für den verbleibenden Supportzeitraum verfügbar zu halten, je nachdem, was länger ist. Supportdauer, Updateverfügbarkeit und Dokumentationsaufbewahrung sind verschiedene Fristen; EOL-Hinweis allein erlaubt keine Verkürzung gesetzlicher Pflichten. Art. 13(18) verlangt Anhang-II-Informationen mindestens zehn Jahre nach Inverkehrbringen oder für den längeren Supportzeitraum zugänglich zu halten; bei Online-Bereitstellung verständlich und nutzerfreundlich online. Nach Art. 13(19) Supportende bereits beim Kauf klar und leicht zugänglich mindestens mit Monat/Jahr nennen und, soweit technisch nach Produktart möglich, bei Supportende einen Nutzerhinweis anzeigen.
+- **EN:** Determine support under Article 13(8) from expected use and product type, generally at least five years; if expected use is shorter, support corresponds to that period. Record the rationale and considered factors in technical documentation. Article 13(9) requires issued security updates to remain available for at least ten years after issue or the remaining support period, whichever is longer. Support duration, update availability and document retention are distinct clocks; an EOL notice alone cannot shorten statutory duties. Article 13(18) requires Annex II information to remain available for at least ten years after placing on the market or the longer support period; online provision must remain accessible and user-friendly. Under Article 13(19), clearly state the support end at purchase in an easily accessible way with at least month/year and, where technically feasible for the product, display an end-of-support notification.
+- **Akzeptanz / Acceptance:** Begründete, zuständig geprüfte Supportentscheidung mit getrennten Support-, Update-, Dokumentations- und Anhang-II-Informationsfristen, Kauf-/EOL-Hinweisen und Wiedervorlage. / Justified, responsibly reviewed support decision with separate support, update, documentation and Annex II information clocks, purchase/EOL notices and reevaluation.
 - **Lernstufe / Learning stage:** _Grundlage, Aufbau oder Vertiefung gemaess Lernpfad dokumentieren. / Record foundation, intermediate, or advanced according to the learning path._
 - **Verantwortliche Rolle / Responsible role:** _Lernende Person, ausbildende Person, Projektverantwortung oder Security-Rolle benennen. / Name learner, instructor, project owner, or security role._
 - **Anwendbarkeit / Applicability:**
@@ -6398,8 +6362,8 @@ checked if they are shared with external parties.
 
 #### CL-07-12: Nichtanwendbarkeit dokumentieren / Document Non-Applicability
 
-- **DE:** N/A mit Produkt/Version, Rolle, konkreter Rechtsstelle oder Definition, Begründung, Datum, Owner, Gegenprüfung, nächstem Review und gegebenenfalls Fachberatung dokumentieren. Art. 2(2) betrifft nichtkommerzielle freie Open-Source-Software, Art. 2(3) MDR/IVDR-Produkte, Art. 2(7) ausschließlich nationale Sicherheit/Verteidigung beziehungsweise besondere Verschlusssachen-Verarbeitung. SaaS anhand Art. 2(1), Art. 3(1)/(2) und Erwägungsgrund 12 abgrenzen, nicht über eine erfundene SaaS-Ausnahme. NIS2, DORA und Datenschutz getrennt bewerten. Unbekannte Anwendbarkeit bleibt Open; kein stillschweigendes Weglassen.
-- **EN:** Document N/A with product/version, role, exact provision or definition, rationale, date, owner, second review, next review and specialist advice where needed. Article 2(2) covers non-commercial free/open-source software, Article 2(3) MDR/IVDR products, and Article 2(7) exclusive national security/defence or specified classified-information processing. Assess SaaS under Articles 2(1), 3(1)/(2) and recital 12 rather than an invented SaaS exemption. Assess NIS2, DORA and privacy separately. Unknown applicability remains Open; silent omission is not acceptable.
+- **DE:** N/A mit Produkt/Version, Rolle, konkreter Rechtsstelle oder Definition, Begründung, Datum, Owner, Gegenprüfung, nächstem Review und gegebenenfalls Fachberatung dokumentieren. Art. 2(2)(a)/(b) betrifft MDR/IVDR und (c) Fahrzeuge nach (EU) 2019/2144, Art. 2(3) zertifizierte Luftfahrt, 2(4) Schiffsausrüstung, 2(5) delegierte Ausschlüsse, 2(6) identische Ersatzteile, 2(7) ausschließlich nationale Sicherheit/Verteidigung beziehungsweise besondere Verschlusssachen-Verarbeitung und 2(8) nationale Sicherheitsinformationen. Nichtkommerzielle FOSS anhand Art. 2(1)/3(22) und der kommerziellen Marktbereitstellung abgrenzen; Steward-Pflichten nach Art. 24 gesondert prüfen. Die Fahrzeugausnahme (EU) 2025/1535 mit L1e-Pedal-Rückausnahme und die getrennten Bestandsprodukt-/Meldeentscheidungen nach Art. 69(2)/(3) aus CL-07-01/09 übernehmen. SaaS anhand Art. 2(1), Art. 3(1)/(2) und Erwägungsgrund 12 abgrenzen, nicht über eine erfundene SaaS-Ausnahme. NIS2, DORA und Datenschutz getrennt bewerten. Unbekannte Anwendbarkeit bleibt Open; kein stillschweigendes Weglassen.
+- **EN:** Document N/A with product/version, role, exact provision or definition, rationale, date, owner, second review, next review and specialist advice where needed. Article 2(2)(a)/(b) covers MDR/IVDR and (c) vehicles under (EU) 2019/2144; Article 2(3) certified aviation, 2(4) marine equipment, 2(5) delegated exclusions, 2(6) identical spare parts, 2(7) exclusive national security/defence or specified classified-information processing, and 2(8) national security information. Assess non-commercial FOSS under Articles 2(1)/3(22) and commercial market availability; assess Article 24 steward duties separately. Apply the (EU) 2025/1535 vehicle exclusion with the L1e pedal exception and separate existing-product/reporting decisions under Article 69(2)/(3) from CL-07-01/09. Assess SaaS under Articles 2(1), 3(1)/(2) and recital 12 rather than an invented SaaS exemption. Assess NIS2, DORA and privacy separately. Unknown applicability remains Open; silent omission is not acceptable.
 - **Akzeptanz / Acceptance:** Anwendbarkeitsbericht nach CL-01-12 mit genauem Rechtsbezug und dokumentiertem Review. / Applicability report under CL-01-12 with precise legal reference and documented review.
 - **Lernstufe / Learning stage:** _Grundlage, Aufbau oder Vertiefung gemaess Lernpfad dokumentieren. / Record foundation, intermediate, or advanced according to the learning path._
 - **Verantwortliche Rolle / Responsible role:** _Lernende Person, ausbildende Person, Projektverantwortung oder Security-Rolle benennen. / Name learner, instructor, project owner, or security role._
@@ -6516,10 +6480,13 @@ in an audit-ready way.
 ---
 
 - **Version 2.0.0 (2026-07-10):** Einheitliches zweiachsiges Statusmodell, stabile CL-IDs, Lernstufe, Rollen-, Evidenz-, Restrisiko- und Neubewertungsfelder sowie klare Trennung zwischen Vorlage und Projektnachweis eingeführt; synchron mit sichere-Entwicklung-Basis 3.0.0. / Added the unified two-axis status model, stable CL IDs, learning-stage, role, evidence, residual-risk, and re-evaluation fields, plus clear separation between template and project evidence; synchronized with secure-development baseline 3.0.0.
-| 2.0.1 | 2026-10-19 | Level-0-Konsolidierung: Baseline-Bindung und fachliche Konsistenz geprüft; Grenzen im Reviewbericht. / Level-0 consolidation: baseline binding and consistency reviewed; limitations recorded in the review report. |
-| 2.0.2 | 2026-10-20 | Primärquellen-Nachprüfung und Baseline-Bindung 3.4.1; Details im Quellenabschluss. / Primary-source follow-up and baseline binding 3.4.1; see source closure report. |
+- **Version 2.0.1 (2026-10-19):** Level-0-Konsolidierung: Baseline-Bindung und fachliche Konsistenz geprüft; Grenzen im Reviewbericht. / Level-0 consolidation: baseline binding and consistency reviewed; limitations recorded in the review report.
+- **Version 2.0.2 (2026-10-20):** Primärquellen-Nachprüfung und Baseline-Bindung 3.4.1; Details im Quellenabschluss. / Primary-source follow-up and baseline binding 3.4.1; see source closure report.
 
 - **Version 2.0.3 (2026-10-20):** Bedingten Zertifizierungspfad nach Art. 32(3)(c)/(4)(b) ergaenzt; Baseline 3.4.2. / Added conditional certification route under Article 32(3)(c)/(4)(b); baseline 3.4.2.
+
+
+- **Version 2.0.4 (2026-10-20):** Unabhängige Reviewkorrekturen und Baseline 3.4.3; siehe [Prüfbericht](../maintenance/gsdb-independent-fixes-2026-10-20.md). / Independent review corrections and baseline 3.4.3; see review report.
 
 ---
 
@@ -6537,8 +6504,8 @@ This document is organization-neutral and written as a generic training and revi
 ## Checkliste 08 – Sicherheits-Code-Review / Security Code Review
 
 **Dokument-ID / Document ID:** CL-08
-**Version / Version:** 2.0.2
-**Baseline-Version / Baseline version:** 3.4.2
+**Version / Version:** 2.0.3
+**Baseline-Version / Baseline version:** 3.4.3
 **Dokumenttyp / Document type:** Kanonische, wiederverwendbare Pruefvorlage / Canonical reusable review template
 
 ### Nachweisinstanz / Evidence Instance
@@ -7920,6 +7887,8 @@ configuration. Pure documentation changes are exempt.
   logging, dependency handling, or shell/script code. "Memory-safe
   language" status does not replace this review; it only reduces certain
   memory-error risks.
+- **DE:** Sprachwahl nach CISA „The Case for Memory Safe Roadmaps“ (Dezember 2023) im Sprachprofil begründen: MSL bevorzugen, Nicht-MSL-Ausnahmen mit Plattformzwang, kompensierenden Kontrollen und priorisierter Migrations-Roadmap dokumentieren. CL-08-12 prüft Tests für verbleibende unsichere Grenzen. Die Roadmap ist eine Empfehlung; MSL allein verhindert nicht alle Schwachstellen.
+- **EN:** Justify language selection in the language profile using CISA “The Case for Memory Safe Roadmaps” (December 2023): prefer MSL; document non-MSL exceptions with platform constraints, compensating controls and a prioritised migration roadmap. CL-08-12 tests remaining unsafe boundaries. The roadmap is guidance; MSL alone does not prevent all vulnerabilities.
 - **Akzeptanz / Acceptance:** Pull Request, Review-Dokument oder
   Spec-Kit-Artefakt verweist auf die ausgefüllten Profile für die
   betroffenen Sprachen (z. B. C/C89, C#/.NET, Rust, Go, Swift,
@@ -8111,8 +8080,11 @@ pull request.
 ---
 
 - **Version 2.0.0 (2026-07-10):** Einheitliches zweiachsiges Statusmodell, stabile CL-IDs, Lernstufe, Rollen-, Evidenz-, Restrisiko- und Neubewertungsfelder sowie klare Trennung zwischen Vorlage und Projektnachweis eingeführt; synchron mit sichere-Entwicklung-Basis 3.0.0. / Added the unified two-axis status model, stable CL IDs, learning-stage, role, evidence, residual-risk, and re-evaluation fields, plus clear separation between template and project evidence; synchronized with secure-development baseline 3.0.0.
-| 2.0.1 | 2026-10-19 | Level-0-Konsolidierung: Baseline-Bindung und fachliche Konsistenz geprüft; Grenzen im Reviewbericht. / Level-0 consolidation: baseline binding and consistency reviewed; limitations recorded in the review report. |
-| 2.0.2 | 2026-10-20 | Primärquellen-Nachprüfung und Baseline-Bindung 3.4.1; Details im Quellenabschluss. / Primary-source follow-up and baseline binding 3.4.1; see source closure report. |
+- **Version 2.0.1 (2026-10-19):** Level-0-Konsolidierung: Baseline-Bindung und fachliche Konsistenz geprüft; Grenzen im Reviewbericht. / Level-0 consolidation: baseline binding and consistency reviewed; limitations recorded in the review report.
+- **Version 2.0.2 (2026-10-20):** Primärquellen-Nachprüfung und Baseline-Bindung 3.4.1; Details im Quellenabschluss. / Primary-source follow-up and baseline binding 3.4.1; see source closure report.
+
+
+- **Version 2.0.2 (2026-10-20):** Unabhängige Reviewkorrekturen und Baseline 3.4.3; siehe [Prüfbericht](../maintenance/gsdb-independent-fixes-2026-10-20.md). / Independent review corrections and baseline 3.4.3; see review report.
 
 ---
 
@@ -8131,7 +8103,7 @@ This document is organization-neutral and written as a generic training and revi
 
 **Dokument-ID / Document ID:** CL-09
 **Version / Version:** 2.2.3
-**Baseline-Version / Baseline version:** 3.4.2
+**Baseline-Version / Baseline version:** 3.4.3
 **Dokumenttyp / Document type:** Kanonische, wiederverwendbare Pruefvorlage / Canonical reusable review template
 
 ### Nachweisinstanz / Evidence Instance
@@ -9623,10 +9595,13 @@ justified as not applicable.
 - **Version 2.0.0 (2026-07-10):** Einheitliches zweiachsiges Statusmodell, stabile CL-IDs, Lernstufe, Rollen-, Evidenz-, Restrisiko- und Neubewertungsfelder sowie klare Trennung zwischen Vorlage und Projektnachweis eingeführt; synchron mit sichere-Entwicklung-Basis 3.0.0. / Added the unified two-axis status model, stable CL IDs, learning-stage, role, evidence, residual-risk, and re-evaluation fields, plus clear separation between template and project evidence; synchronized with secure-development baseline 3.0.0.
 - **Version 2.1.0 (2026-07-17):** Nachweisrahmen auf das verbindliche Siebenerprofil einschließlich `autonomous-run-governance` erweitert; autonome Ausführung bleibt ausdrücklich delegationspflichtig; synchron mit sichere-Entwicklung-Basis 3.1.0. / Extended the evidence framework to the binding seven-preset profile including `autonomous-run-governance`; autonomous execution still requires explicit delegation; synchronized with secure-development baseline 3.1.0.
 - **Version 2.2.0 (2026-07-19):** Nachweisrahmen auf das verbindliche Achterprofil einschließlich `parallel-autonomous-run-governance` erweitert; parallele autonome Kampagnen bleiben ausdrücklich delegationspflichtig; synchron mit sichere-Entwicklung-Basis 3.2.0. / Extended the evidence framework to the binding eight-preset profile including `parallel-autonomous-run-governance`; parallel autonomous campaigns still require explicit delegation; synchronized with secure-development baseline 3.2.0.
-| 2.2.1 | 2026-10-19 | Level-0-Konsolidierung: Baseline-Bindung und fachliche Konsistenz geprüft; Grenzen im Reviewbericht. / Level-0 consolidation: baseline binding and consistency reviewed; limitations recorded in the review report. |
-| 2.2.2 | 2026-10-20 | Primärquellen-Nachprüfung und Baseline-Bindung 3.4.1; Details im Quellenabschluss. / Primary-source follow-up and baseline binding 3.4.1; see source closure report. |
+- **Version 2.2.1 (2026-10-19):** Level-0-Konsolidierung: Baseline-Bindung und fachliche Konsistenz geprüft; Grenzen im Reviewbericht. / Level-0 consolidation: baseline binding and consistency reviewed; limitations recorded in the review report.
+- **Version 2.2.2 (2026-10-20):** Primärquellen-Nachprüfung und Baseline-Bindung 3.4.1; Details im Quellenabschluss. / Primary-source follow-up and baseline binding 3.4.1; see source closure report.
 
 - **Version 2.2.3 (2026-10-20):** KI-Werkzeugbetrieb getrennt vom Produkt auf regulatorische Rollen pruefen; Baseline 3.4.2. / Screen AI tool operation separately from product regulatory roles; baseline 3.4.2.
+
+
+- **Version 2.2.3 (2026-10-20):** Unabhängige Reviewkorrekturen und Baseline 3.4.3; siehe [Prüfbericht](../maintenance/gsdb-independent-fixes-2026-10-20.md). / Independent review corrections and baseline 3.4.3; see review report.
 
 ---
 
@@ -9645,7 +9620,7 @@ This document is organization-neutral and written as a generic training and revi
 
 **Dokument-ID / Document ID:** CL-10
 **Version / Version:** 2.0.2
-**Baseline-Version / Baseline version:** 3.4.2
+**Baseline-Version / Baseline version:** 3.4.3
 **Dokumenttyp / Document type:** Kanonische, wiederverwendbare Pruefvorlage / Canonical reusable review template
 
 ### Nachweisinstanz / Evidence Instance
@@ -11178,8 +11153,11 @@ platform-parity evidence or justified non-applicability.
 ---
 
 - **Version 2.0.0 (2026-07-10):** Einheitliches zweiachsiges Statusmodell, stabile CL-IDs, Lernstufe, Rollen-, Evidenz-, Restrisiko- und Neubewertungsfelder sowie klare Trennung zwischen Vorlage und Projektnachweis eingeführt; synchron mit sichere-Entwicklung-Basis 3.0.0. / Added the unified two-axis status model, stable CL IDs, learning-stage, role, evidence, residual-risk, and re-evaluation fields, plus clear separation between template and project evidence; synchronized with secure-development baseline 3.0.0.
-| 2.0.1 | 2026-10-19 | Level-0-Konsolidierung: Baseline-Bindung und fachliche Konsistenz geprüft; Grenzen im Reviewbericht. / Level-0 consolidation: baseline binding and consistency reviewed; limitations recorded in the review report. |
-| 2.0.2 | 2026-10-20 | Primärquellen-Nachprüfung und Baseline-Bindung 3.4.1; Details im Quellenabschluss. / Primary-source follow-up and baseline binding 3.4.1; see source closure report. |
+- **Version 2.0.1 (2026-10-19):** Level-0-Konsolidierung: Baseline-Bindung und fachliche Konsistenz geprüft; Grenzen im Reviewbericht. / Level-0 consolidation: baseline binding and consistency reviewed; limitations recorded in the review report.
+- **Version 2.0.2 (2026-10-20):** Primärquellen-Nachprüfung und Baseline-Bindung 3.4.1; Details im Quellenabschluss. / Primary-source follow-up and baseline binding 3.4.1; see source closure report.
+
+
+- **Version 2.0.2 (2026-10-20):** Unabhängige Reviewkorrekturen und Baseline 3.4.3; siehe [Prüfbericht](../maintenance/gsdb-independent-fixes-2026-10-20.md). / Independent review corrections and baseline 3.4.3; see review report.
 
 ---
 
@@ -11197,8 +11175,8 @@ This document is organization-neutral and written as a generic training and revi
 ## Checkliste 11 – Datenschutz-Folgenabschaetzung (DSGVO Art. 35) / Data Protection Impact Assessment (GDPR Art. 35)
 
 **Dokument-ID / Document ID:** CL-11
-**Version / Version:** 2.0.2
-**Baseline-Version / Baseline version:** 3.4.2
+**Version / Version:** 2.0.3
+**Baseline-Version / Baseline version:** 3.4.3
 **Dokumenttyp / Document type:** Kanonische, wiederverwendbare Pruefvorlage / Canonical reusable review template
 
 ### Nachweisinstanz / Evidence Instance
@@ -11697,7 +11675,7 @@ status must not be shown by color alone.
   und Auftragsverarbeitern, geplante Schutzmaßnahmen und alle
   weiteren von der Behörde angeforderten Informationen. Die Antwort
   der Aufsichtsbehörde wird in der DPIA-Dokumentation abgelegt; die
-  Verarbeitung beginnt erst nach Klärung.
+  Verarbeitung beginnt als zusätzliche lokale Freigaberegel erst nach dokumentierter Klärung. Art. 36 verlangt die vorherige Konsultation bei verbleibendem hohen Risiko; er ist kein pauschales gesetzliches Genehmigungserfordernis für jede Verarbeitung.
 - **EN:** If the DPIA shows residual high risk despite planned measures,
   the competent supervisory authority is consulted before processing
   starts per GDPR Art. 36. For the organisation this is the competent data protection supervisory authority of the project or seat jurisdiction. The consultation
@@ -11705,11 +11683,11 @@ status must not be shown by color alone.
   responsibilities between controllers and processors, planned
   protective measures, and any further information requested by the
   authority. The authority's response is filed with the DPIA
-  documentation; processing only begins after the matter is settled.
+  documentation; as an additional local release rule, processing only begins after documented resolution. Article 36 requires prior consultation for residual high risk; it is not a blanket statutory authorisation requirement for every processing activity.
 - **Akzeptanz / Acceptance:** Konsultationsanfrage und Antwort der
-  Aufsichtsbehörde dokumentiert; Verarbeitung erst nach abgeschlossener
+  Aufsichtsbehörde dokumentiert; zusätzliche lokale Freigaberegel kenntlich gemacht; Verarbeitung erst nach abgeschlossener
   Konsultation aufgenommen. / Consultation request and authority
-  response documented; processing only started after the consultation
+  response documented; identify the additional local release rule; processing only started after the consultation
   is closed.
 - **Lernstufe / Learning stage:** _Grundlage, Aufbau oder Vertiefung gemaess Lernpfad dokumentieren. / Record foundation, intermediate, or advanced according to the learning path._
 - **Verantwortliche Rolle / Responsible role:** _Lernende Person, ausbildende Person, Projektverantwortung oder Security-Rolle benennen. / Name learner, instructor, project owner, or security role._
@@ -12081,8 +12059,11 @@ status must not be shown by color alone.
 ---
 
 - **Version 2.0.0 (2026-07-10):** Einheitliches zweiachsiges Statusmodell, stabile CL-IDs, Lernstufe, Rollen-, Evidenz-, Restrisiko- und Neubewertungsfelder sowie klare Trennung zwischen Vorlage und Projektnachweis eingeführt; synchron mit sichere-Entwicklung-Basis 3.0.0. / Added the unified two-axis status model, stable CL IDs, learning-stage, role, evidence, residual-risk, and re-evaluation fields, plus clear separation between template and project evidence; synchronized with secure-development baseline 3.0.0.
-| 2.0.1 | 2026-10-19 | Level-0-Konsolidierung: Baseline-Bindung und fachliche Konsistenz geprüft; Grenzen im Reviewbericht. / Level-0 consolidation: baseline binding and consistency reviewed; limitations recorded in the review report. |
-| 2.0.2 | 2026-10-20 | Primärquellen-Nachprüfung und Baseline-Bindung 3.4.1; Details im Quellenabschluss. / Primary-source follow-up and baseline binding 3.4.1; see source closure report. |
+- **Version 2.0.1 (2026-10-19):** Level-0-Konsolidierung: Baseline-Bindung und fachliche Konsistenz geprüft; Grenzen im Reviewbericht. / Level-0 consolidation: baseline binding and consistency reviewed; limitations recorded in the review report.
+- **Version 2.0.2 (2026-10-20):** Primärquellen-Nachprüfung und Baseline-Bindung 3.4.1; Details im Quellenabschluss. / Primary-source follow-up and baseline binding 3.4.1; see source closure report.
+
+
+- **Version 2.0.3 (2026-10-20):** Unabhängige Reviewkorrekturen und Baseline 3.4.3; siehe [Prüfbericht](../maintenance/gsdb-independent-fixes-2026-10-20.md). / Independent review corrections and baseline 3.4.3; see review report.
 
 ---
 
@@ -12101,7 +12082,7 @@ This document is organization-neutral and written as a generic training and revi
 
 **Dokument-ID / Document ID:** CL-12
 **Version / Version:** 2.2.2
-**Baseline-Version / Baseline version:** 3.4.2
+**Baseline-Version / Baseline version:** 3.4.3
 **Dokumenttyp / Document type:** Kanonische, wiederverwendbare Pruefvorlage / Canonical reusable review template
 
 ### Nachweisinstanz / Evidence Instance
@@ -12637,8 +12618,11 @@ Diese Datei ist eine wiederverwendbare Vorlage. Ausgefüllte Projektnachweise we
 - **Version 2.0.0 (2026-07-10):** Einheitliches zweiachsiges Statusmodell, stabile CL-IDs, Lernstufe, Rollen-, Evidenz-, Restrisiko- und Neubewertungsfelder sowie klare Trennung zwischen Vorlage und Projektnachweis eingeführt; synchron mit sichere-Entwicklung-Basis 3.0.0. / Added the unified two-axis status model, stable CL IDs, learning-stage, role, evidence, residual-risk, and re-evaluation fields, plus clear separation between template and project evidence; synchronized with secure-development baseline 3.0.0.
 - **Version 2.1.0 (2026-07-17):** Verbindliches Siebenerprofil einschließlich `autonomous-run-governance` aufgenommen; Installation von autonomer Ausführung und Remote-Berechtigungen abgegrenzt; synchron mit sichere-Entwicklung-Basis 3.1.0. / Added the binding seven-preset profile including `autonomous-run-governance`; separated installation from autonomous execution and remote authority; synchronized with secure-development baseline 3.1.0.
 - **Version 2.2.0 (2026-07-19):** Verbindliches Achterprofil einschließlich `parallel-autonomous-run-governance` aufgenommen; Installation von Kampagnenstart und Remote-Berechtigungen abgegrenzt; synchron mit sichere-Entwicklung-Basis 3.2.0. / Added the binding eight-preset profile including `parallel-autonomous-run-governance`; separated installation from campaign start and remote authority; synchronized with secure-development baseline 3.2.0.
-| 2.2.1 | 2026-10-19 | Level-0-Konsolidierung: Baseline-Bindung und fachliche Konsistenz geprüft; Grenzen im Reviewbericht. / Level-0 consolidation: baseline binding and consistency reviewed; limitations recorded in the review report. |
-| 2.2.2 | 2026-10-20 | Primärquellen-Nachprüfung und Baseline-Bindung 3.4.1; Details im Quellenabschluss. / Primary-source follow-up and baseline binding 3.4.1; see source closure report. |
+- **Version 2.2.1 (2026-10-19):** Level-0-Konsolidierung: Baseline-Bindung und fachliche Konsistenz geprüft; Grenzen im Reviewbericht. / Level-0 consolidation: baseline binding and consistency reviewed; limitations recorded in the review report.
+- **Version 2.2.2 (2026-10-20):** Primärquellen-Nachprüfung und Baseline-Bindung 3.4.1; Details im Quellenabschluss. / Primary-source follow-up and baseline binding 3.4.1; see source closure report.
+
+
+- **Version 2.2.2 (2026-10-20):** Unabhängige Reviewkorrekturen und Baseline 3.4.3; siehe [Prüfbericht](../maintenance/gsdb-independent-fixes-2026-10-20.md). / Independent review corrections and baseline 3.4.3; see review report.
 
 ---
 
@@ -12646,4 +12630,4 @@ Diese Datei ist eine wiederverwendbare Vorlage. Ausgefüllte Projektnachweise we
 
 | Version | Datum / Date | Änderung / Change |
 |---|---|---|
-| 2.4.2 | 2026-10-20 | Aus den zwölf kanonischen Einzelchecklisten der sicheren-Entwicklung-Basis 3.4.2 erzeugt; einheitliches zweiachsiges Statusmodell und klare Trennung zwischen Vorlage und Projektnachweis. / Generated from the twelve canonical individual checklists of secure-development baseline 3.4.2; unified two-axis status model and clear separation between template and project evidence. |
+| 2.4.3 | 2026-10-20 | Aus den zwölf kanonischen Einzelchecklisten der sicheren-Entwicklung-Basis 3.4.3 erzeugt; einheitliches zweiachsiges Statusmodell und klare Trennung zwischen Vorlage und Projektnachweis. / Generated from the twelve canonical individual checklists of secure-development baseline 3.4.3; unified two-axis status model and clear separation between template and project evidence. |

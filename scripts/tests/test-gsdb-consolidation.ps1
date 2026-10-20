@@ -26,7 +26,13 @@ function Invoke-FixtureCommand {
     param([string]$Command, [string[]]$Arguments, [bool]$Success, [string]$Expected)
     $output = (& $Command @Arguments 2>&1 | Out-String)
     $code = $LASTEXITCODE
-    if (($code -eq 0) -ne $Success -or ($Expected -and -not $output.Contains($Expected))) {
+    # DE: PowerShell kann lange Fehlerzeilen umbrechen und mit ANSI/Fortsetzungs-
+    # zeichen formatieren. Nur Darstellung normalisieren; Inhalt/Pfad/Feld bleiben Pflicht.
+    # EN: Normalize diagnostic wrapping/ANSI only; the specific message, path and
+    # field must still match rather than accepting an arbitrary non-zero exit.
+    $diagnostic = (($output -replace '\x1b\[[0-9;]*m', '') -replace '(?m)^\s*\|\s*', '') -replace '\s+', ' '
+    $expectedDiagnostic = $Expected -replace '\s+', ' '
+    if (($code -eq 0) -ne $Success -or ($Expected -and -not $diagnostic.Contains($expectedDiagnostic))) {
         throw "Unexpected ${Command} exit ${code}; expected text '${Expected}': ${output}"
     }
 }
@@ -43,7 +49,7 @@ try {
     $shells = if ($IsWindows) { @('pwsh') } else { @('bash','pwsh') }
     foreach ($shell in $shells) {
         if (-not (Get-Command $shell -ErrorAction SilentlyContinue)) { throw "Required shell missing: ${shell}" }
-        foreach ($case in @('valid','missing','duplicate-item','duplicate-id','version','baseline','baseline-duplicate','baseline-body-only','version-prefix','version-duplicate','metadata-crlf','historical-version','profile-doc','compendium','matrix','manifest-version','priority','profile-unknown','profile-registry','manifest-crlf')) {
+        foreach ($case in @('valid','missing','duplicate-item','duplicate-item-same-count','duplicate-id','version','baseline','baseline-duplicate','baseline-body-only','version-prefix','version-duplicate','metadata-crlf','historical-version','profile-doc','compendium','matrix','manifest-version','priority','profile-unknown','profile-registry','manifest-crlf','guideline-de','guideline-en','guideline-de-duplicate','guideline-en-duplicate','guideline-body-only','guideline-prefix','guideline-section-duplicate','guideline-crlf','guideline-history')) {
             $fixture = Join-Path $temp "${shell}-${case}"
             Copy-Item $seed $fixture -Recurse
             & git -C $fixture init --quiet
@@ -68,6 +74,31 @@ try {
             switch ($case) {
                 'missing' { Remove-Item (Join-Path $docRoot $manifest.relatedDocuments[0].path) }
                 'duplicate-item' { $path=Join-Path $docRoot $manifest.checklists[0].path; Add-Content $path '#### CL-01-01: Duplicate fixture' }
+                'duplicate-item-same-count' {
+                    $path = Join-Path $docRoot $manifest.checklists[0].path
+                    $source = Get-Content $path -Raw
+                    if (-not $source.Contains('#### CL-01-02:')) { throw 'Count-preserving duplicate target missing.' }
+                    Set-FixtureText $path ($source.Replace('#### CL-01-02:', '#### CL-01-01:'))
+                }
+                { $_ -like 'guideline-*' } {
+                    $path = Join-Path $docRoot $manifest.guideline.path
+                    $source = Get-Content $path -Raw
+                    $de = "| Versionsnummer | $($manifest.guideline.version) |"
+                    $en = "| Version | $($manifest.guideline.version) |"
+                    if (-not $source.Contains($de) -or -not $source.Contains($en)) { throw 'Guideline metadata fixture target missing.' }
+                    $source = switch ($case) {
+                        'guideline-de' { $source.Replace($de, '| Versionsnummer | 0.0.0 |') }
+                        'guideline-en' { $source.Replace($en, '| Version | 0.0.0 |') }
+                        'guideline-de-duplicate' { $source.Replace($de, '| Versionsnummer | 0.0.0 |') + "`n$de`n" }
+                        'guideline-en-duplicate' { $source.Replace($en, '| Version | 0.0.0 |') + "`n$en`n" }
+                        'guideline-body-only' { $source.Replace($de, '') + "`n$de`n" }
+                        'guideline-prefix' { $source.Replace($en, "| Version | $($manifest.guideline.version)0 |") }
+                        'guideline-section-duplicate' { $source + "`n## Document Metadata`n`n| Field | Value |`n|---|---|`n" }
+                        'guideline-crlf' { $source.Replace("`r`n", "`n").Replace("`n", "`r`n") }
+                        'guideline-history' { $source + "`n| 0.0.0 | 2020-01-01 | Maintainer | Historical version |`n" }
+                    }
+                    Set-FixtureText $path $source
+                }
                 'duplicate-id' { $manifest.checklists[1].id = 'CL-01' }
                 'version' { $manifest.checklists[0].version = '999.0.0' }
                 'baseline' {
@@ -117,9 +148,25 @@ try {
                 if ($isProfile) { $arguments = @('-NoProfile','-File',"${file}.ps1",'-Repo',$fixture,'-Registry',$registryPath,'-CheckOnly'); if ($case -eq 'profile-unknown') { $arguments += @('-PresetProfile','missing-profile') } }
             }
             $before = @(Get-ChildItem $fixture -File -Recurse -Force | Sort-Object FullName | ForEach-Object { $_.FullName + ':' + (Get-FileHash $_.FullName -Algorithm SHA256).Hash }) -join "`n"
-            $success = $case -in @('valid','matrix','manifest-version','priority','profile-registry','manifest-crlf','metadata-crlf','historical-version')
-            $expected = switch ($case) { 'valid' { 'generated documents are current' } 'profile-registry' { '14 Presets' } 'manifest-crlf' { '14 Presets' } 'matrix' { 'Matrixabweichung' } 'manifest-version' { 'Matrixabweichung' } 'priority' { 'Matrixabweichung' } default { '' } }
-            if ($case -in @('baseline-duplicate','baseline-body-only','version-prefix','version-duplicate')) { $expected = 'Active metadata mismatch or duplicate' }
+            $success = $case -in @('valid','matrix','manifest-version','priority','profile-registry','manifest-crlf','metadata-crlf','historical-version','guideline-crlf','guideline-history')
+            $expected = switch ($case) {
+                'missing' { "Controlled document missing: $($manifest.relatedDocuments[0].path)" }
+                'duplicate-item' { if ($shell -eq 'bash') { 'Duplicate checklist IDs:' } else { 'Expected 157 checklist items, found 158.' } }
+                'duplicate-item-same-count' { 'Duplicate checklist IDs:' }
+                'duplicate-id' { 'Expected unique checklist IDs CL-01..CL-12.' }
+                'version' { "Active metadata mismatch or duplicate: $($manifest.checklists[0].path) (**Version / Version:**)" }
+                'baseline' { "Active metadata mismatch or duplicate: $($manifest.checklists[0].path) (**Baseline-Version / Baseline version:**)" }
+                { $_ -in @('baseline-duplicate','baseline-body-only') } { "Active metadata mismatch or duplicate: $($manifest.relatedDocuments[0].path) (**Baseline-Version / Baseline version:**)" }
+                { $_ -in @('version-prefix','version-duplicate') } { "Active metadata mismatch or duplicate: $($manifest.relatedDocuments[0].path) (**Version / Version:**)" }
+                { $_ -in @('guideline-de','guideline-de-duplicate','guideline-body-only') } { "Active guideline metadata mismatch or duplicate: $($manifest.guideline.path) (Versionsnummer)" }
+                { $_ -in @('guideline-en','guideline-en-duplicate','guideline-prefix','guideline-section-duplicate') } { "Active guideline metadata mismatch or duplicate: $($manifest.guideline.path) (Version)" }
+                'profile-doc' { 'Profile missing from alignment: project-statistics-fourteen-governance-presets' }
+                'compendium' { 'Generated compendium is stale:' }
+                'profile-unknown' { 'missing-profile' }
+                { $_ -in @('matrix','manifest-version','priority') } { 'Matrixabweichung' }
+                { $_ -in @('profile-registry','manifest-crlf') } { '14 Presets' }
+                default { 'generated documents are current' }
+            }
             Invoke-FixtureCommand $shell $arguments $success $expected
             $after = @(Get-ChildItem $fixture -File -Recurse -Force | Sort-Object FullName | ForEach-Object { $_.FullName + ':' + (Get-FileHash $_.FullName -Algorithm SHA256).Hash }) -join "`n"
             if ($before -cne $after) { throw "Read-only mutation in ${shell}/${case}" }

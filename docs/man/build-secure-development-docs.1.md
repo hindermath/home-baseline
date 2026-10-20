@@ -57,3 +57,7 @@ EN: Baseline, document version and document ID must occur in the first contiguou
 metadata block and match the complete manifest value. Duplicate fields,
 replacement matches in body text and version prefixes are rejected. Historical
 table entries remain allowed; CRLF and LF are equivalent for metadata checks.
+
+DE: Beide aktiven Richtlinien-Metadatentabellen werden abschnittsgebunden und exakt gegen das Manifest geprüft. Veraltete DE-/EN-Werte, Präfixe, Duplikate, doppelte Sprachabschnitte und nur im Text vorhandene Felder scheitern; CRLF und historische Versionszeilen bleiben zulässig. Negative Regressionen prüfen den konkreten Fehler samt betroffenem Feld/Pfad. Ein anzahlgleiches ID-Duplikat prüft die eigentliche Duplikaterkennung. Insgesamt 30 Fälle je Shell, 60 auf macOS/Linux.
+
+EN: Both active guideline metadata tables are section-bound and checked exactly against the manifest. Stale DE/EN values, prefixes, duplicate fields/sections and body-only fields fail; CRLF and historical version rows remain valid. Negative regressions assert the specific error and affected field/path. A count-preserving duplicate exercises actual ID detection. There are 30 cases per shell, 60 on macOS/Linux.

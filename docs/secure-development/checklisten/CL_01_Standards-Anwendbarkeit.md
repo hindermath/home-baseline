@@ -12,8 +12,8 @@ This document is organization-neutral and written as a generic training and revi
 ## Checkliste 01 – Standards-Anwendbarkeit / Standards Applicability
 
 **Dokument-ID / Document ID:** CL-01
-**Version / Version:** 2.0.2
-**Baseline-Version / Baseline version:** 3.4.2
+**Version / Version:** 2.0.3
+**Baseline-Version / Baseline version:** 3.4.3
 **Dokumenttyp / Document type:** Kanonische, wiederverwendbare Pruefvorlage / Canonical reusable review template
 
 ### Nachweisinstanz / Evidence Instance
@@ -621,35 +621,12 @@ change in architecture or delivery model.
 
 #### CL-01-12: Regulatorische Anwendbarkeit / Regulatory Applicability
 
-- **DE:** Quellenstand 20.10.2026: KI-VO konsolidiert am 27.07.2026 durch (EU) 2026/1744. Art. 113 unterscheidet allgemeine Geltung ab 02.08.2026, Kapitel I/II seit 02.02.2025 (neue Art.-5-Verbote ab 02.12.2026), GPAI-/Governance-Regeln seit 02.08.2025 sowie Hochrisiko Kapitel III Abschnitte 1–3 (außer Art. 6(5)) ab 02.12.2027 für Art. 6(2)/Anhang III und 02.08.2028 für Art. 6(1)/Anhang I. Produktrolle und Werkzeugnutzung getrennt bewerten. Für Deutschland gilt BSIG seit 06.12.2025; §§ 28–30, 32/33 und 38 sowie Sonderregeln und Anlagen prüfen. DORA gilt seit 17.01.2025; unmittelbare Finanzunternehmenspflichten, Vertragsanforderungen an Zulieferer und Aufsicht über kritische IKT-Drittdienstleister unterscheiden. Andere Länder/Branchen benötigen eigene Primärprüfung.
-- **EN:** Source date 2026-10-20: AI Act consolidated on 2026-07-27 by (EU) 2026/1744. Article 113 separates general application from 2026-08-02, Chapters I/II since 2025-02-02 (new Article 5 prohibitions from 2026-12-02), GPAI/governance rules since 2025-08-02, and high-risk Chapter III Sections 1–3 (except Article 6(5)) from 2027-12-02 for Article 6(2)/Annex III and 2028-08-02 for Article 6(1)/Annex I. Assess product role and tool use separately. German BSIG applies since 2025-12-06; review sections 28–30, 32/33, 38, special rules and annexes. DORA applies since 2025-01-17; distinguish direct financial-entity duties, supplier contracts and oversight of critical ICT third-party providers. Other jurisdictions/sectors require their own primary review.
+- **DE:** Quellenstand 20.10.2026: KI-VO konsolidiert am 27.07.2026 durch (EU) 2026/1744. Art. 113 unterscheidet allgemeine Geltung ab 02.08.2026, Kapitel I/II seit 02.02.2025 (neue Art.-5-Verbote ab 02.12.2026), GPAI-/Governance-Regeln seit 02.08.2025 sowie Hochrisiko Kapitel III Abschnitte 1–3 (außer Art. 6(5)) ab 02.12.2027 für Art. 6(2)/Anhang III und 02.08.2028 für Art. 6(1)/Anhang I. Produkt, KI-Werkzeugbetrieb (einschließlich Betreiberrolle) und Organisation getrennt bewerten; Art. 4 verlangt bei einschlägiger Anbieter-/Betreiberrolle Maßnahmen zur KI-Kompetenz. Für Deutschland gilt BSIG seit 06.12.2025; §§ 28–30, 32/33 und 38 sowie Sonderregeln und Anlagen prüfen. DORA gilt seit 17.01.2025; unmittelbare Finanzunternehmenspflichten, Vertragsanforderungen an Zulieferer und Aufsicht über kritische IKT-Drittdienstleister unterscheiden. Andere Länder/Branchen benötigen eigene Primärprüfung.
+- **EN:** Source date 2026-10-20: AI Act consolidated on 2026-07-27 by (EU) 2026/1744. Article 113 separates general application from 2026-08-02, Chapters I/II since 2025-02-02 (new Article 5 prohibitions from 2026-12-02), GPAI/governance rules since 2025-08-02, and high-risk Chapter III Sections 1–3 (except Article 6(5)) from 2027-12-02 for Article 6(2)/Annex III and 2028-08-02 for Article 6(1)/Annex I. Assess product, AI tool operation (including the deployer role) and organisation separately; Article 4 requires AI literacy measures where the provider/deployer role applies. German BSIG applies since 2025-12-06; review sections 28–30, 32/33, 38, special rules and annexes. DORA applies since 2025-01-17; distinguish direct financial-entity duties, supplier contracts and oversight of critical ICT third-party providers. Other jurisdictions/sectors require their own primary review.
 
-- **DE:** Für jedes Projekt wird zusätzlich zur technischen Standardauswahl
-  geprüft, ob NIS2, CRA, EU AI Act, DORA oder sektor- und
-  kundenspezifische Regeln anwendbar sind. Die Entscheidung wird als
-  `anwendbar`, `nicht anwendbar` oder `offen` dokumentiert. Für private
-  Lern-, Referenz- oder interne Tooling-Projekte darf `nicht anwendbar`
-  gewählt werden, wenn das Projekt nicht als regulierter Dienst betrieben
-  wird, nicht als reguliertes Produkt in Verkehr gebracht wird, nicht an
-  regulierte Kunden geliefert wird und nicht Teil einer regulierten
-  Lieferkette ist. Diese Begründung wird ausdrücklich festgehalten.
-- **EN:** Every project checks, in addition to the technical standards
-  selection, whether NIS2, CRA, the EU AI Act, DORA, or sector- and
-  customer-specific rules apply. The decision is documented as
-  `applicable`, `not applicable`, or `open`. For private learning,
-  reference, or internal tooling projects, `not applicable` may be used
-  when the project is not operated as a regulated service, not placed on
-  the market as a regulated product, not delivered to regulated customers,
-  and not part of a regulated supply chain. This rationale is recorded
-  explicitly.
-- **Akzeptanz / Acceptance:** `docs/security/regulatory-applicability.md`
-  oder ein gleichwertiges Spec-Kit-Artefakt enthält eine Matrix zu NIS2,
-  CRA, EU AI Act, DORA und kundenspezifischen Regeln mit Entscheidung,
-  Begründung, Evidenzpfad, verantwortlicher Person und Wiedervorlage. /
-  `docs/security/regulatory-applicability.md` or an equivalent Spec Kit
-  artefact contains a matrix for NIS2, CRA, EU AI Act, DORA, and
-  customer-specific rules with decision, rationale, evidence path, owner,
-  and re-review trigger.
+- **DE:** Für jedes Rechtsregime (NIS2/BSIG, CRA, KI-VO, DORA und sektor-/kundenspezifische Regeln) getrennt über Produkt, Werkzeugbetrieb und Organisation entscheiden. Je Ebene Land, Rechtsfassung, Rechtsträger, Rolle (etwa Anbieter, Betreiber oder Hersteller), Anwendungsdatum und direkte beziehungsweise vertragliche Pflichten prüfen. Interne Werkzeuge, Ausbildung oder fehlender Vertrieb rechtfertigen kein pauschales N/A: KI-VO Art. 4 kann beim Einsatz von KI-Werkzeugen einschlägig sein, auch ohne ein eigenes KI-Produkt anzubieten. N/A nur für die konkret geprüfte Ebene, Rolle und Rechtsgrundlage begründen. Unbekannte Sachverhalte bleiben `Open` mit Owner und Wiedervorlage.
+- **EN:** Decide separately for product, tool operation and organisation under each regime (NIS2/BSIG, CRA, AI Act, DORA and sector/customer rules). For each level assess jurisdiction, legal version, legal entity, role (such as provider, deployer or manufacturer), application date and direct or contractual duties. Internal tools, training or absence of sales do not justify blanket N/A: AI Act Article 4 may apply to AI tool use without offering an AI product. Justify N/A only for the assessed level, role and legal basis. Unknown facts remain `Open` with an owner and review date.
+- **Akzeptanz / Acceptance:** `docs/security/regulatory-applicability.md` oder gleichwertige Evidence enthält je Rechtsregime getrennte Zeilen für Produkt, Werkzeugbetrieb und Organisation mit Rolle, Land, Rechtsfassung/Datum, Entscheidung, konkreter Rechtsgrundlage, Begründung, Evidence, Owner/Reviewer und Wiedervorlage; Art.-4-Maßnahmen oder rollenbezogenes N/A sind belegt. / Equivalent evidence records separate product, tool-operation and organisation rows per regime, with role, jurisdiction, legal version/date, decision, exact legal basis, rationale, evidence, owner/reviewer and reevaluation; evidence Article 4 measures or role-specific N/A.
 - **Referenz / Reference:** Spec-Kit `security-governance`, Template
   `regulatory-applicability-template`.
 - **Lernstufe / Learning stage:** _Grundlage, Aufbau oder Vertiefung gemaess Lernpfad dokumentieren. / Record foundation, intermediate, or advanced according to the learning path._
@@ -821,5 +798,8 @@ questions have an owner and re-review trigger.
 ---
 
 - **Version 2.0.0 (2026-07-10):** Einheitliches zweiachsiges Statusmodell, stabile CL-IDs, Lernstufe, Rollen-, Evidenz-, Restrisiko- und Neubewertungsfelder sowie klare Trennung zwischen Vorlage und Projektnachweis eingeführt; synchron mit sichere-Entwicklung-Basis 3.0.0. / Added the unified two-axis status model, stable CL IDs, learning-stage, role, evidence, residual-risk, and re-evaluation fields, plus clear separation between template and project evidence; synchronized with secure-development baseline 3.0.0.
-| 2.0.1 | 2026-10-19 | Level-0-Konsolidierung: Baseline-Bindung und fachliche Konsistenz geprüft; Grenzen im Reviewbericht. / Level-0 consolidation: baseline binding and consistency reviewed; limitations recorded in the review report. |
-| 2.0.2 | 2026-10-20 | Primärquellen-Nachprüfung und Baseline-Bindung 3.4.1; Details im Quellenabschluss. / Primary-source follow-up and baseline binding 3.4.1; see source closure report. |
+- **Version 2.0.1 (2026-10-19):** Level-0-Konsolidierung: Baseline-Bindung und fachliche Konsistenz geprüft; Grenzen im Reviewbericht. / Level-0 consolidation: baseline binding and consistency reviewed; limitations recorded in the review report.
+- **Version 2.0.2 (2026-10-20):** Primärquellen-Nachprüfung und Baseline-Bindung 3.4.1; Details im Quellenabschluss. / Primary-source follow-up and baseline binding 3.4.1; see source closure report.
+
+
+- **Version 2.0.3 (2026-10-20):** Unabhängige Reviewkorrekturen und Baseline 3.4.3; siehe [Prüfbericht](../../maintenance/gsdb-independent-fixes-2026-10-20.md). / Independent review corrections and baseline 3.4.3; see review report.

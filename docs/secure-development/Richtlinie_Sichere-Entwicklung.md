@@ -16,7 +16,7 @@ This document is organization-neutral and written as a generic training and revi
 | Feld | Wert |
 |---|---|
 | Titel | Richtlinie zur sicheren Softwareentwicklung |
-| Versionsnummer | 3.4.2 |
+| Versionsnummer | 3.4.3 |
 | Freigabedatum | Ausstehend: menschliche PR-Prüfung |
 | Inkrafttreten | Nach menschlicher Freigabe |
 | Dokumentenklassifikation | öffentlich nutzbare Ausbildungs- und Prüfgrundlage |
@@ -478,6 +478,9 @@ Mitgeltende Checkliste: CL_Schwachstellenoffenlegung (siehe `Checklistensammelba
 
 ## EU Cyber Resilience Act (CRA)
 
+DE: Der [gemeinsame zweisprachige regulatorische Block](#shared-regulatory-evidence) gilt für beide Sprachfassungen und enthält die getrennten NIS2-/DORA-/CRA-Fristen einschließlich Ausnahmen und Bestandsprodukten. CL-01-12 und CL-07 liefern die konkreten Entscheidungen.
+
+
 Für jedes Entwicklungsprojekt wird bewertet, ob die Software als „Produkt mit digitalen Elementen" im Sinne der Verordnung (EU) 2024/2847 (Cyber Resilience Act, CRA) auf den Unionsmarkt gebracht wird. Das gilt kommerziell, lizenzbasiert oder zu wirtschaftlichen Zwecken unentgeltlich. Auch quelloffene Software kann betroffen sein, wenn sie zu wirtschaftlichen Zwecken bereitgestellt wird.
 
 **Verbindliche Regelungen für CRA-anwendbare Produkte:**
@@ -486,7 +489,7 @@ Für jedes Entwicklungsprojekt wird bewertet, ob die Software als „Produkt mit
 - Dokumentierter Prozess für Schwachstellenoffenlegung und -behandlung einschließlich Frühwarnung nach 24 Stunden, Hauptmeldung nach 72 Stunden und Schlussbericht.
 - Bereitstellung von Sicherheitsupdates innerhalb der gesetzlich vorgegebenen Fristen und über den unterstützten Lebenszyklus hinweg.
 - Dokumentierte Konformitaetsbewertung nach Art. 32: Standardprodukte, Anhang III Klasse I/II und Anhang IV getrennt pruefen; Klasse I kann unter den gesetzlichen Voraussetzungen interne Kontrolle nutzen. Keine pauschale Drittbewertung aller wichtigen Produkte behaupten.
-- Kennzeichnung, technische Dokumentation und Konformitätserklärung gemäß CRA-Anforderungen werden vor der Marktbereitstellung erstellt.
+- Kennzeichnung, technische Dokumentation und Konformitätserklärung gemäß CRA-Anforderungen werden vor dem Inverkehrbringen erstellt (Art. 13(12)).
 
 Auch außerhalb des formalen CRA-Anwendungsbereichs richtet die nutzende Organisation ihre Praxis an den CRA-Grundprinzipien aus: Secure-by-Design, Secure-by-Default, fortlaufendes Schwachstellenmanagement, Lebenszyklus-Transparenz und SBOM-Verfügbarkeit. Die CRA-Anwendbarkeitsentscheidung wird im Sicherheitsdokumentenbestand des Projekts festgehalten (zum Beispiel im Lieferketten-Evidenz-Dokument oder als S-ADR).
 
@@ -694,9 +697,10 @@ Die Versionshistorie dokumentiert wesentliche Änderungen dieser Richtlinie gem�
 | 3.0.0 | 10.07.2026 | Projekt- oder Ausbildungsverantwortung mit Security-Review | Organisationsneutrale Ausbildungsbasis konsolidiert; 157 stabile CL-IDs, zweiachsiges Statusmodell, manifestgesteuerte Dokumente, generierter Sammelband, Standardsregister, Lernpfad und vertiefte mitgeltende Dokumente eingeführt. |
 | 3.1.0 | 17.07.2026 | Projekt- oder Ausbildungsverantwortung mit Security-Review | Verbindliches Spec-Kit-Standardprofil von sechs auf sieben Governance-Presets erweitert; `autonomous-run-governance` v0.2.2 standardmäßig installiert, ausdrückliche Delegation und bestehende Berechtigungsgrenzen beibehalten; CL_09, CL_12 und Preset-Verzahnung synchronisiert. |
 | 3.2.0 | 19.07.2026 | Projekt- oder Ausbildungsverantwortung mit Security-Review | Verbindliches Spec-Kit-Standardprofil auf acht Governance-Presets erweitert; `parallel-autonomous-run-governance` v0.2.0 ergänzt und Installation klar von Kampagnenstart und Berechtigungen getrennt; CL_09, CL_12 und Preset-Verzahnung synchronisiert. |
-
 | 3.4.0 | 19.10.2026 | Level-0 Maintainer | Konsolidierung von Quellenstand, Statuslogik und Profilverzahnung; menschliche Freigabe ausstehend. |
-| 3.4.1 | 2026-10-20 | Primärquellen-Nachprüfung und Baseline-Bindung 3.4.1; Details im Quellenabschluss. / Primary-source follow-up and baseline binding 3.4.1; see source closure report. |
+| 3.4.1 | 2026-10-20 | Level-0 Maintainer | Primärquellen-Nachprüfung und Baseline-Bindung 3.4.1; Details im Quellenabschluss. / Primary-source follow-up and baseline binding 3.4.1; see source closure report. |
+| 3.4.2 | 2026-10-20 | Level-0 Maintainer | KI-Rollen, CRA-Pfade und Meldefristen korrigiert. / Corrected AI roles, CRA routes and reporting deadlines. |
+| 3.4.3 | 2026-10-20 | Level-0 Maintainer | Unabhängige Reviewbefunde: Screening, CRA-Rechtsbezüge/Übergang, Cloud-/MSL-Mapping, TLS, DORA und aktive Metadaten. / Independent findings: screening, CRA references/transition, cloud/MSL mapping, TLS, DORA and active metadata. |
 
 **Genehmigung der aktuellen Fassung:**
 
@@ -712,7 +716,7 @@ Die Versionshistorie dokumentiert wesentliche Änderungen dieser Richtlinie gem�
 | Field | Value |
 |---|---|
 | Title | Secure Software Development Guideline |
-| Version | 3.4.0 |
+| Version | 3.4.3 |
 | Release date | Pending human PR review |
 | Effective date | Pending human PR review |
 | Document classification | publicly usable training and review baseline |
@@ -1171,6 +1175,8 @@ Related checklist: CL_Schwachstellenoffenlegung (see `Checklistensammelband_Sich
 
 ## EU Cyber Resilience Act (CRA)
 
+<a id="shared-regulatory-evidence"></a>
+
 ### Gemeinsame regulatorische Evidence / Shared regulatory evidence
 
 DE: DS-GVO, KI-VO, CRA, NIS2 und DORA fuer Beispielprodukt, Entwicklungswerkzeuge
@@ -1187,18 +1193,23 @@ DE: NIS2: nationale Umsetzung und EU-24/72-Stunden-Kette pruefen; fuer erheblich
 Vorfaelle mit Auswirkung auf Vertrauensdienste gilt die besondere 24-Stunden-
 Vorfallmeldung nach Art. 23(4). DORA-Rollen und gleichwertige Pflichten einzeln
 pruefen; normale ICT-Zulieferer erben nicht alle Pflichten der Finanzunternehmen.
-Nach 2025/301: Erstmeldung 4 Stunden nach Einstufung und spaetestens 24 Stunden
+NIS2 Art. 23(4) sieht außerdem einen Schlussbericht einen Monat nach der Vorfallmeldung vor; bei fortdauerndem Vorfall Fortschrittsbericht und Schlussbericht binnen eines Monats nach Behandlung. Nach 2025/301: Erstmeldung 4 Stunden nach Einstufung und spaetestens 24 Stunden
 nach Kenntnis; spaetere Einstufung mit eigener 4-Stunden-Regel; Zwischenmeldung
 72 Stunden nach Erstmeldung, Abschluss einen Monat nach letzter Zwischenmeldung.
 EN: Verify national NIS2 implementation and its EU 24/72-hour reporting chain;
 significant incidents affecting trust services have a special 24-hour incident
 notification under Article 23(4). Assess DORA roles and equivalent duties
 individually; ordinary ICT suppliers do not inherit all financial-entity duties.
-Under 2025/301: initial notification within four hours after classification and
+NIS2 Article 23(4) also requires a final report within one month after incident notification; for an ongoing incident, a progress report and a final report within one month after handling. Under 2025/301: initial notification within four hours after classification and
 at most 24 hours after awareness; later classification has its own four-hour
 rule; intermediate report within 72 hours after initial notification, final
 report within one month after the latest intermediate report.
 
+DE: DORA-RTS (EU) 2025/301 Art. 5(3)–(6): Bei nicht einhaltbarer Frist unverzüglich, spätestens bis zur jeweiligen Frist, die Aufsicht mit Begründung informieren. Fällt eine Frist auf Wochenende/Bankfeiertag im Sitzmitgliedstaat, ist Abgabe bis 12 Uhr am nächsten Arbeitstag möglich. Diese Erleichterung gilt für Erst-/Zwischenmeldungen nicht für Kreditinstitute, zentrale Gegenparteien, Handelsplatzbetreiber und andere als wesentlich/wichtig nach NIS2 Art. 3 eingestufte Finanzunternehmen; die Aufsicht kann sie auch für weitere bedeutende/systemische Finanzunternehmen mit Wirkung für nach Bekanntgabe gemeldete Vorfälle ausschließen. Art. 5(5)/(6) schließen die Erleichterung für den Schlussbericht nicht aus.
+EN: DORA RTS (EU) 2025/301 Article 5(3)–(6): If unable to meet a deadline, inform the competent authority with reasons without undue delay and no later than that deadline. A deadline on a weekend/bank holiday in the entity's Member State may move to noon of the next working day. This relief does not apply to initial/intermediate reports by credit institutions, central counterparties, trading-venue operators or other financial entities identified as essential/important under NIS2 Article 3; the authority may exclude further significant/systemic entities for incidents reported after notification of its decision. Article 5(5)/(6) does not exclude relief for final reports.
+
+DE: CRA Art. 69(2)/(3): Bei vor dem 11.12.2027 in Verkehr gebrachten Produkten greifen allgemeine Anforderungen nur bei wesentlicher Änderung ab diesem Datum; Art. 14 gilt nach Art. 71(2) seit 11.09.2026 trotzdem für in den Geltungsbereich fallende Bestandsprodukte. Inverkehrbringen je Produkteinheit belegen, nicht nur den ersten Produktrelease. Scope-Ausnahmen nach Art. 2 und (EU) 2025/1535 gehören nach CL-07-01/12; CSIRT-Weiterleitungsaufschub nach Art. 16(2) und (EU) 2026/881 verlängert keine Hersteller-Meldefrist.
+EN: CRA Article 69(2)/(3): General requirements apply to products placed on the market before 2027-12-11 only if substantially modified from that date; under Article 71(2), Article 14 nevertheless applies since 2026-09-11 to existing in-scope products. Evidence placing on the market per unit, not solely the first product release. Article 2 and (EU) 2025/1535 scope exclusions belong in CL-07-01/12; CSIRT dissemination delay under Article 16(2) and (EU) 2026/881 does not extend manufacturer deadlines.
 DE: CRA Art. 14: aktiv ausgenutzte Schwachstelle: 24/72 Stunden nach Kenntnis,
 Abschluss 14 Tage nach verfuegbarer Abhilfe. Schwerwiegender Sicherheitsvorfall:
 24/72 Stunden nach Kenntnis, Abschluss einen Monat nach Vorfallmeldung.
@@ -1423,9 +1434,10 @@ The version history documents material changes to this guideline according to IS
 | 3.0.0 | 2026-07-10 | Project or training owner with security review | Consolidated an organization-neutral training baseline; introduced 157 stable CL IDs, the two-axis status model, manifest-controlled documents, generated compendium, standards register, learning path, and expanded related documents. |
 | 3.1.0 | 2026-07-17 | Project or training owner with security review | Expanded the binding standard Spec Kit profile from six to seven governance presets; installed `autonomous-run-governance` v0.2.2 by default while preserving explicit delegation and permission boundaries; synchronized CL_09, CL_12, and preset alignment. |
 | 3.2.0 | 2026-07-19 | Project or training owner with security review | Expanded the binding Spec Kit standard profile to eight governance presets; added `parallel-autonomous-run-governance` v0.2.0 and clearly separated installation from campaign start and permissions; synchronized CL_09, CL_12, and preset alignment. |
-
 | 3.4.0 | 2026-10-19 | Level-0 Maintainer | Consolidated source review, status logic, and profile alignment; human approval pending. |
-| 3.4.1 | 2026-10-20 | Primärquellen-Nachprüfung und Baseline-Bindung 3.4.1; Details im Quellenabschluss. / Primary-source follow-up and baseline binding 3.4.1; see source closure report. |
+| 3.4.1 | 2026-10-20 | Level-0 Maintainer | Primärquellen-Nachprüfung und Baseline-Bindung 3.4.1; Details im Quellenabschluss. / Primary-source follow-up and baseline binding 3.4.1; see source closure report. |
+| 3.4.2 | 2026-10-20 | Level-0 Maintainer | KI-Rollen, CRA-Pfade und Meldefristen korrigiert. / Corrected AI roles, CRA routes and reporting deadlines. |
+| 3.4.3 | 2026-10-20 | Level-0 Maintainer | Unabhängige Reviewbefunde: Screening, CRA-Rechtsbezüge/Übergang, Cloud-/MSL-Mapping, TLS, DORA und aktive Metadaten. / Independent findings: screening, CRA references/transition, cloud/MSL mapping, TLS, DORA and active metadata. |
 
 **Approval of the current version:**
 
@@ -1460,5 +1472,3 @@ Pruefgrenzen stehen im [Reviewnachweis](../maintenance/gsdb-review-remediation-2
 EN: Baseline 3.4.2 corrects AI tool screening and CRA conformity routes and
 completes the English reporting deadlines. See the linked remediation report
 for corrections, validation and remaining proof boundaries.
-
-| 3.4.2 | 2026-10-20 | Reviewkorrektur: KI-Rollen, CRA-Pfade und Sprachgleichwertigkeit. / Review correction: AI roles, CRA routes and language equivalence. |

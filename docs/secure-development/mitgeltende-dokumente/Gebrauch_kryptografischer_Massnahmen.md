@@ -2,7 +2,7 @@
 
 **Stand / Date:** 2026-10-20
 **Version / Version:** 1.0.2
-**Baseline-Version / Baseline version:** 3.4.2
+**Baseline-Version / Baseline version:** 3.4.3
 **Verantwortliche Rolle / Responsible role:** Projekt- oder Ausbildungsverantwortung mit Security-Review / Project or training owner with security review
 **Review-Zyklus / Review cycle:** jährlich und bei wesentlichen Änderungen / annually and after material changes
 
@@ -82,3 +82,6 @@ Der Nachweis umfasst Erzeugung, Verteilung, Speicherung, Nutzung, Rotation, Sper
 **DE:** TR-02102 Teil 1–4, Ausgabe 2026-01, je Protokoll prüfen. Der PQC-Migrationsplan folgt CL-03-14; algorithmische Beispiele sind keine pauschale BSI-Konformitätszusage.
 
 **EN:** Check TR-02102 parts 1–4, edition 2026-01, per protocol. Follow CL-03-14 for PQC migration; algorithm examples do not establish blanket BSI conformity.
+
+
+DE: Baseline-Bindung 3.4.3 (20.10.2026), redaktionell; fachliche Dokumentversion unverändert. / EN: Baseline binding 3.4.3 (2026-10-20), editorial; semantic document version unchanged.

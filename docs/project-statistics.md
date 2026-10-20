@@ -1479,6 +1479,12 @@ compendium 2.4.2, retain 157 IDs; add six cases per shell and a new assurance
 context. Preserve historical evidence; human approval, merge and all runtime
 or fleet execution remain pending.
 
+### 2026-10-20 – GSDB: unabhängige Reviewkorrekturen / Independent Review Corrections
+
+- DE: PR #337, Baseline 3.4.3 und Sammelband 2.4.3: ein P1, fünf P2 und P3 im Level-0-Scope korrigiert. 157 stabile IDs erhalten; Rollen-/Rechtsbezüge, Cloud-/MSL-Mapping, TLS, zweisprachige Metadaten und neue Evidence. 30 isolierte Fälle je Shell vorgesehen; tatsächliche Ergebnisse und unabhängiger Claude-Abschluss im PR. Kein Merge, Home-Sync oder Rollout.
+- EN: PR #337, baseline 3.4.3 and compendium 2.4.3 correct one P1, five P2 and scoped P3 findings. Preserve 157 stable IDs; update role/legal references, cloud/MSL mapping, TLS, bilingual metadata and new evidence. Thirty isolated cases per shell; actual results and independent Claude conclusion recorded in the PR. No merge, Home sync or rollout.
+- Evidence: [Prüfbericht / Review record](maintenance/gsdb-independent-fixes-2026-10-20.md).
+
 ## Gesamtstatistik / Overall Statistics
 
 <!-- project-statistics-v2:begin -->

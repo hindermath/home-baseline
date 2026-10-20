@@ -76,10 +76,38 @@ foreach ($presetProfileName in $catalog.profiles.PSObject.Properties.Name | Wher
 
 $guidelinePath = Join-Path $DocRoot $manifest.guideline.path
 if (-not (Test-Path $guidelinePath)) { throw "Guideline missing: $($manifest.guideline.path)" }
-$guideline = Get-Content $guidelinePath -Raw
-if ($guideline -notmatch [regex]::Escape("| Versionsnummer | $($manifest.guideline.version) |")) {
-    throw "Guideline version mismatch: $($manifest.guideline.path)"
+# DE: Nur die erste Tabelle im benannten Metadatenabschnitt gilt; jeder aktive
+# Sprachkopf und jedes Versionsfeld muss eindeutig sein. Historienzeilen bleiben erlaubt.
+# EN: Only the first table in the named metadata section is active. Language
+# headings and version fields must be unique; history rows remain allowed.
+function Assert-GuidelineMetadata {
+    param([string]$Heading, [string]$Field)
+    $active = $false
+    $table = $false
+    $ended = $false
+    $sections = 0
+    $count = 0
+    $matched = 0
+    foreach ($line in Get-Content $guidelinePath) {
+        if ($line.StartsWith('## ', [StringComparison]::Ordinal)) {
+            $active = $line -ceq $Heading
+            if ($active) { $sections++ }
+            $table = $false
+            $ended = $false
+        }
+        if ($active -and $line.StartsWith('|', [StringComparison]::Ordinal) -and -not $ended) { $table = $true }
+        if ($active -and $table -and -not $line.StartsWith('|', [StringComparison]::Ordinal)) { $ended = $true }
+        if ($line.StartsWith("| ${Field} |", [StringComparison]::Ordinal) -and ($line.Split('|')).Count -eq 4) {
+            $count++
+            if ($active -and $table -and -not $ended -and $line -ceq "| ${Field} | $($manifest.guideline.version) |") { $matched++ }
+        }
+    }
+    if ($sections -ne 1 -or $count -ne 1 -or $matched -ne 1) {
+        throw "Active guideline metadata mismatch or duplicate: $($manifest.guideline.path) (${Field})"
+    }
 }
+Assert-GuidelineMetadata '## Dokumenten-Metadaten' 'Versionsnummer'
+Assert-GuidelineMetadata '## Document Metadata' 'Version'
 
 foreach ($document in @($manifest.relatedDocuments) + @($manifest.learningDocuments)) {
     $documentPath = Join-Path $DocRoot $document.path
@@ -108,6 +136,7 @@ foreach ($checklist in $manifest.checklists) {
         $ids.Add($match.Groups[1].Value)
     }
     $source = $source.Replace('](../Richtlinie_Sichere-Entwicklung.md', '](Richtlinie_Sichere-Entwicklung.md')
+    $source = $source.Replace('](../../maintenance/', '](../maintenance/')
     $source = $source.Replace('](../../../constitution.md', '](../../constitution.md')
     $source = $source.Replace('](../README.md', '](README.md')
     $source = $source.Replace('](../mitgeltende-dokumente/', '](mitgeltende-dokumente/')

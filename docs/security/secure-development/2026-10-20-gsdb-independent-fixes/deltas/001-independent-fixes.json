@@ -1,0 +1,35 @@
+{
+  "schemaVersion": "1.0",
+  "documentType": "SecureDevelopmentGateEvidence",
+  "contextId": "gsdb-independent-fixes",
+  "gate": "delta",
+  "mode": "development",
+  "createdAt": "2026-10-20T13:10:54.088513+02:00",
+  "review": {
+    "owner": "Thorsten Hindermann",
+    "reviewer": "Codex implementing independent Claude findings under explicit correction authority; separate human decisions pending",
+    "reviewedAt": "2026-10-20T13:10:54.088513+02:00",
+    "reviewDue": "2027-01-10",
+    "residualRisk": "Corrected scoped P1/P2/P3 assertions, mappings and metadata validation. Licensed ISO text and product conformity remain outside evidence. Assurance package 0.1.4 substring validation is a separate package finding; Level-0 generator is an additional mandatory gate. Human approval remains Open.",
+    "reevaluationTrigger": "Primary source, baseline, preset, scope or authority change; quarterly review."
+  },
+  "assessments": [
+    {
+      "id": "SEMANTIC-AND-METADATA-CORRECTIONS",
+      "applicability": "Applicable",
+      "implementation": "Fulfilled",
+      "evidence": "docs/maintenance/gsdb-independent-fixes-2026-10-20.md"
+    },
+    {
+      "id": "STABLE-CHECKLIST-IDS",
+      "applicability": "Applicable",
+      "implementation": "Fulfilled",
+      "evidence": "docs/maintenance/gsdb-independent-fixes-2026-10-20.md"
+    }
+  ],
+  "outcome": "Ready",
+  "externalComparisonBoundary": "HOSK/GWDG: ExternalComparison only; never local evidence",
+  "verificationScope": "Level-0 independent-review corrections only; no product, physical A11Y, fleet or Home-runtime acceptance.",
+  "runbookApplicability": "N/A",
+  "runbookRationale": "Bounded Level-0 correction; current report describes validation and remaining evidence/authority limits."
+}

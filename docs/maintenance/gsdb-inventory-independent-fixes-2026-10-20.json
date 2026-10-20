@@ -1,0 +1,232 @@
+{
+  "sourceCommit": "a943d7f989765cfda6622b588168c8c95674de0f",
+  "scope": "Level 0 independent P1/P2/P3 remediation; no merge, Home sync or rollout",
+  "managedFileCount": 37,
+  "files": [
+    {
+      "path": "docs/secure-development/Checklistensammelband_Sichere-Entwicklung.md",
+      "sourceSha256": "53a948792058cd71f4d811a26cfd6aca67add4405bfa37b3d9fb56a4781329ca",
+      "consolidatedSha256": "d6bd31025c5c18b676a7d308833452c3954ed3eecf4fef712518b96010b27327",
+      "reviewDisposition": "Baseline 3.4.3; semantic versus editorial changes documented; all stable item IDs preserved."
+    },
+    {
+      "path": "docs/secure-development/Lernpfad_Sichere-Entwicklung_Lehrjahr-1-bis-3.md",
+      "sourceSha256": "995f3caa9db9da4c07920ee2e905293a87ff40a065d97829f89d52146b09d634",
+      "consolidatedSha256": "6e221b6585383b3fb7d6b3776caabe64b2371e275632b35b5972fc3abf3a1598",
+      "reviewDisposition": "Baseline 3.4.3; semantic versus editorial changes documented; all stable item IDs preserved."
+    },
+    {
+      "path": "docs/secure-development/README.md",
+      "sourceSha256": "08b0a120ee2c8fe24dad1e3616c83b169c0d0870b13376cd91654d4fe35c4ab8",
+      "consolidatedSha256": "f1ca2c96e419c8981e276f6edfb812a193c749e7123fb5996fe04257b5165c10",
+      "reviewDisposition": "Baseline 3.4.3; semantic versus editorial changes documented; all stable item IDs preserved."
+    },
+    {
+      "path": "docs/secure-development/Richtlinie_Sichere-Entwicklung.md",
+      "sourceSha256": "3c5eacfbc3846969dfb2b4eeaa605c499df27803fbf1d07edda5d06cf1934b5c",
+      "consolidatedSha256": "b3f05aed281d2748011f537ca18d670cd502f87db9790c5fdf8e5d8415ba2372",
+      "reviewDisposition": "Baseline 3.4.3; semantic versus editorial changes documented; all stable item IDs preserved."
+    },
+    {
+      "path": "docs/secure-development/baseline-manifest.json",
+      "sourceSha256": "232478d3c3a1b525fb8a1f801506c317c7b2075dac53bfc639a1d151b80f6a39",
+      "consolidatedSha256": "3626d2922f302574cebfb7307630c97f781a68574117e165f8e41fcc423e2a31",
+      "reviewDisposition": "Baseline 3.4.3; semantic versus editorial changes documented; all stable item IDs preserved."
+    },
+    {
+      "path": "docs/secure-development/checklisten/CL_01_Standards-Anwendbarkeit.md",
+      "sourceSha256": "3d7f91d67bcf8591f53fa3520b811bc1f837d750538cceae24f565d77a6cdbd4",
+      "consolidatedSha256": "5d8b76c6334b156ddbbb3cb0266edb0ffe99672e52be8e38c1141613cf7790f3",
+      "reviewDisposition": "Baseline 3.4.3; semantic versus editorial changes documented; all stable item IDs preserved."
+    },
+    {
+      "path": "docs/secure-development/checklisten/CL_02_Sichere-Softwarearchitektur.md",
+      "sourceSha256": "1304aa790e92c78b439a30d9c6e6094954237d5653269617729862438d69014e",
+      "consolidatedSha256": "25a78efe6ed09b2216367bec1dfd6e3ca0bacfa8cf24fbb075523d5447b7c622",
+      "reviewDisposition": "Baseline 3.4.3; semantic versus editorial changes documented; all stable item IDs preserved."
+    },
+    {
+      "path": "docs/secure-development/checklisten/CL_03_Krypto-Mindestvorgaben.md",
+      "sourceSha256": "dca397a024e8e713df7df085c00a97a24c25565f91e6582a536db7126a6e8566",
+      "consolidatedSha256": "3846f7ea17a51bbb58e4d0b1707670647da9c43c4e20646f13abd1774f2087cf",
+      "reviewDisposition": "Baseline 3.4.3; semantic versus editorial changes documented; all stable item IDs preserved."
+    },
+    {
+      "path": "docs/secure-development/checklisten/CL_04_Bedrohungsmodellierung.md",
+      "sourceSha256": "49e9e1cb4052064aafed56b3d84230eebba1569d94972fbde1c124fd532a7226",
+      "consolidatedSha256": "a6c65e4f8b8f4fc8c361fc60282ea05b79c2685b61f2dad7a340ab022dd1742e",
+      "reviewDisposition": "Baseline 3.4.3; semantic versus editorial changes documented; all stable item IDs preserved."
+    },
+    {
+      "path": "docs/secure-development/checklisten/CL_05_Lieferkette-Build-Integritaet.md",
+      "sourceSha256": "09adee73d1020eda375a3817c69e1b164dc2b7c656f0541e9d48a9a2b8e3392f",
+      "consolidatedSha256": "52b3cab41e764c3c7a43098d784b355ceab2821069a6cd4367b3464ffc3c3d3b",
+      "reviewDisposition": "Baseline 3.4.3; semantic versus editorial changes documented; all stable item IDs preserved."
+    },
+    {
+      "path": "docs/secure-development/checklisten/CL_06_Schwachstellenoffenlegung.md",
+      "sourceSha256": "62dd6e60c924bce5656210704d2b666557b1c9e725c76e4c5522f7bb42d3e617",
+      "consolidatedSha256": "f93d42d1d558ebc9290e46b56e98c05f7ffaaf8b7948f837a48d9d103b07f18f",
+      "reviewDisposition": "Baseline 3.4.3; semantic versus editorial changes documented; all stable item IDs preserved."
+    },
+    {
+      "path": "docs/secure-development/checklisten/CL_07_CRA-Anwendbarkeit.md",
+      "sourceSha256": "28d3bce1c8fa41c5b9677723f20bd4ae434c7361a04ef053771e0c2227bc539f",
+      "consolidatedSha256": "d18b412dbe1ba19f55684825e9d8470c8f7b1f067015fb75dbb3797866160814",
+      "reviewDisposition": "Baseline 3.4.3; semantic versus editorial changes documented; all stable item IDs preserved."
+    },
+    {
+      "path": "docs/secure-development/checklisten/CL_08_Sicherheits-Code-Review.md",
+      "sourceSha256": "ba412f8a73c9a19d4f39551d9ed576d5b850dfe846871e4deb888a97bb6ba810",
+      "consolidatedSha256": "9012b6dc759650f3a63089e9024e2aaf3df156fc130c499ab2f0184a504bc355",
+      "reviewDisposition": "Baseline 3.4.3; semantic versus editorial changes documented; all stable item IDs preserved."
+    },
+    {
+      "path": "docs/secure-development/checklisten/CL_09_KI-Codeerzeugung.md",
+      "sourceSha256": "eed22bc90f122b6359feb982af8809996b2231c40f3d6e3bd57aa26772013a6e",
+      "consolidatedSha256": "24f4ef8780fc2804f7846ce81488b0b7c9ee57df65a5d1ec1ddfc591179755c3",
+      "reviewDisposition": "Baseline 3.4.3; semantic versus editorial changes documented; all stable item IDs preserved."
+    },
+    {
+      "path": "docs/secure-development/checklisten/CL_10_Sichere-Entwicklungsumgebung.md",
+      "sourceSha256": "a8fd82220a95bfca70221a7da932e32e98a93127fc0aa1660c888ee3447c7fcc",
+      "consolidatedSha256": "31d64d33e6b184596b7373e65b92913e49257d5d405a8a40e98c9ba2f0961bc2",
+      "reviewDisposition": "Baseline 3.4.3; semantic versus editorial changes documented; all stable item IDs preserved."
+    },
+    {
+      "path": "docs/secure-development/checklisten/CL_11_Datenschutz-Folgenabschaetzung.md",
+      "sourceSha256": "73473d87d1f8b90c1e59752e8190da83603d3f9d06c3f8e01912d2bc4e54637c",
+      "consolidatedSha256": "0d297d6794aad28484dee57a20724037a1541fe1b4ab228b01df894884d1fab6",
+      "reviewDisposition": "Baseline 3.4.3; semantic versus editorial changes documented; all stable item IDs preserved."
+    },
+    {
+      "path": "docs/secure-development/checklisten/CL_12_Agentische-KI-Sandbox.md",
+      "sourceSha256": "7416625812c63dada21985e54cde81e937e96f7f46074ca9955b6f0578f7b86a",
+      "consolidatedSha256": "31f8914a3e22eadfef0e568da0249485cceb4ab9758a38633e1a09a0e18dc2d5",
+      "reviewDisposition": "Baseline 3.4.3; semantic versus editorial changes documented; all stable item IDs preserved."
+    },
+    {
+      "path": "docs/secure-development/mitgeltende-dokumente/BCM-Notfallhandbuch.md",
+      "sourceSha256": "015f42f33644278e46798964ef915d6703cb3bb289acff4bc1a8dba6175f841f",
+      "consolidatedSha256": "2704994a0ec0c68ab5bce9e3bffafa60f0485926b3181ad75f470e4cf3f6b466",
+      "reviewDisposition": "Baseline 3.4.3; semantic versus editorial changes documented; all stable item IDs preserved."
+    },
+    {
+      "path": "docs/secure-development/mitgeltende-dokumente/Checkliste_Secure-Development-Life-Cycle.md",
+      "sourceSha256": "15e130f6940d4d37d1988feaa4651baefe153202276f5daa79bd04f21ef75130",
+      "consolidatedSha256": "c129a0b977f2bb35da5e27f80a57190a55a7f528f5025c445df8e3dd5729cdae",
+      "reviewDisposition": "Baseline 3.4.3; semantic versus editorial changes documented; all stable item IDs preserved."
+    },
+    {
+      "path": "docs/secure-development/mitgeltende-dokumente/Datenschutzleitlinie.md",
+      "sourceSha256": "9b8986c07d655ee6b86cf9370120f9914ef478dcfdc2596294320fa9702e4853",
+      "consolidatedSha256": "0bcbefc25b9ef4ed1ee8dea5f4b0754229d8358e5b926bb0cd1c9d87d188bef4",
+      "reviewDisposition": "Baseline 3.4.3; semantic versus editorial changes documented; all stable item IDs preserved."
+    },
+    {
+      "path": "docs/secure-development/mitgeltende-dokumente/Gebrauch_kryptografischer_Massnahmen.md",
+      "sourceSha256": "5effa35cdc097e48dd6fd374d37a270598f9b295f27ad9cd54015b7c59e846f2",
+      "consolidatedSha256": "c8af254ef02aa9e64158045493ddc6f64662bbd02fcf2c02751a5c4ae2ec25db",
+      "reviewDisposition": "Baseline 3.4.3; semantic versus editorial changes documented; all stable item IDs preserved."
+    },
+    {
+      "path": "docs/secure-development/mitgeltende-dokumente/Kompetenzprofile_und_Schulungsplan_Sichere-Entwicklung.md",
+      "sourceSha256": "f9f1282e3d027cae308f3bb0b54b24277f318323b918ff8521b819695826480f",
+      "consolidatedSha256": "cb5ad2602694e5d618425fb65b6d568c37b6c71fc82ee1f962dbfe2602b0dd6b",
+      "reviewDisposition": "Baseline 3.4.3; semantic versus editorial changes documented; all stable item IDs preserved."
+    },
+    {
+      "path": "docs/secure-development/mitgeltende-dokumente/Leitlinie_Sichere-Entwicklungs-Sandbox.md",
+      "sourceSha256": "dc455a5fc38d46b5a9c4c0702a00dd9dd39e6c93e7f4ced427cf9bec99349973",
+      "consolidatedSha256": "dcea73ffa52e67e68672d8c82b541ef53cd15c3a910b6c4048714acafff1423f",
+      "reviewDisposition": "Baseline 3.4.3; semantic versus editorial changes documented; all stable item IDs preserved."
+    },
+    {
+      "path": "docs/secure-development/mitgeltende-dokumente/Leitlinie_Sichere-Programmierung.md",
+      "sourceSha256": "cafd1ade2faac548b9426ca61ec02db7e80425e46ba4d8bfbac0965865454b86",
+      "consolidatedSha256": "16705d26a0aca8a033742cc38dede2ec830c306f54b504134f8f662dba2c04ab",
+      "reviewDisposition": "Baseline 3.4.3; semantic versus editorial changes documented; all stable item IDs preserved."
+    },
+    {
+      "path": "docs/secure-development/mitgeltende-dokumente/Leitlinie_Sicheres-Softwaredesign.md",
+      "sourceSha256": "2b48110b7b9ab84513d46bece3b43b5340e7b48f27d4d501761b06e967ef2d41",
+      "consolidatedSha256": "34a1820b258198bf427e3217fce1a8e0a7f4307fecbab254f726eff079fc6ba9",
+      "reviewDisposition": "Baseline 3.4.3; semantic versus editorial changes documented; all stable item IDs preserved."
+    },
+    {
+      "path": "docs/secure-development/mitgeltende-dokumente/README.md",
+      "sourceSha256": "8fca36f4778c5d38ecf17d38e237737ace57480aba37cc0567686d5e016fa24e",
+      "consolidatedSha256": "8fca36f4778c5d38ecf17d38e237737ace57480aba37cc0567686d5e016fa24e",
+      "reviewDisposition": "Baseline 3.4.3; semantic versus editorial changes documented; all stable item IDs preserved."
+    },
+    {
+      "path": "docs/secure-development/mitgeltende-dokumente/Richtlinie_Changemanagement.md",
+      "sourceSha256": "f071b56a35b9de01f3a9e12518845c144616b28b16b322fe850149d59315073e",
+      "consolidatedSha256": "3189e0ce552c21d2779ce16fd09d2f21f17e83b8339546d5844c8b1e11423efb",
+      "reviewDisposition": "Baseline 3.4.3; semantic versus editorial changes documented; all stable item IDs preserved."
+    },
+    {
+      "path": "docs/secure-development/mitgeltende-dokumente/Richtlinie_Dienstleister-und-Lieferantenbeziehungen.md",
+      "sourceSha256": "795220b4d717b9bfcc6c599602626506c55d93cf92c6d7daf79cec1dd58cc9a9",
+      "consolidatedSha256": "48f0916c096141ee97ccd083ba6f9e91c849b00e5c8954e7bb90171d7efac0ad",
+      "reviewDisposition": "Baseline 3.4.3; semantic versus editorial changes documented; all stable item IDs preserved."
+    },
+    {
+      "path": "docs/secure-development/mitgeltende-dokumente/Richtlinie_Secure-Development-Life-Cycle.md",
+      "sourceSha256": "1634ffd02244bccfbd06a9835b2084a73814dcc44e634d6008690ffc52fade74",
+      "consolidatedSha256": "a0271bb16db9cf267d475b6399e71fbe8788e5292e09c4662b07ebcab824af2e",
+      "reviewDisposition": "Baseline 3.4.3; semantic versus editorial changes documented; all stable item IDs preserved."
+    },
+    {
+      "path": "docs/secure-development/mitgeltende-dokumente/Richtlinie_Testmanagement.md",
+      "sourceSha256": "cf475b03f385960b00d3ac4e4ba101ac9f7809bb7915691a1c438e1ecf5ad1a6",
+      "consolidatedSha256": "7bba1c33634c421bf704b91f84457f63ff97ae245c13c22664f3ed0cd93989ef",
+      "reviewDisposition": "Baseline 3.4.3; semantic versus editorial changes documented; all stable item IDs preserved."
+    },
+    {
+      "path": "docs/secure-development/mitgeltende-dokumente/Richtlinie_Zugangssteuerung.md",
+      "sourceSha256": "0fd8287d8e841452a5afd2bdaa33dbd9488010a2efb614619a6fb6b8288a0d07",
+      "consolidatedSha256": "62fe9978349389a99214465aae8edcf5ca36bb5e626c534f0df6439d25936014",
+      "reviewDisposition": "Baseline 3.4.3; semantic versus editorial changes documented; all stable item IDs preserved."
+    },
+    {
+      "path": "docs/secure-development/mitgeltende-dokumente/Standardsregister_Sichere-Entwicklung.md",
+      "sourceSha256": "4506a1fe05caaa63aa5230a8bb8f8bca314b1892eb97323b3b5d777f3dac43de",
+      "consolidatedSha256": "859a7e155c74c49e4f65477039b49377e367bf1f1ebeb000c4986b7d0c357028",
+      "reviewDisposition": "Baseline 3.4.3; semantic versus editorial changes documented; all stable item IDs preserved."
+    },
+    {
+      "path": "docs/secure-development/mitgeltende-dokumente/THE-CASE-FOR-MEMORY-SAFE-ROADMAPS-TLP-CLEAR.DE.md",
+      "sourceSha256": "867542e599f946d1a42c1dc1fe0a30455744fea852d43a3dcc84140ee370a719",
+      "consolidatedSha256": "867542e599f946d1a42c1dc1fe0a30455744fea852d43a3dcc84140ee370a719",
+      "reviewDisposition": "Baseline 3.4.3; semantic versus editorial changes documented; all stable item IDs preserved."
+    },
+    {
+      "path": "docs/secure-development/mitgeltende-dokumente/THE-CASE-FOR-MEMORY-SAFE-ROADMAPS-TLP-CLEAR.EN.md",
+      "sourceSha256": "f1eded9f9c858e874ede948b354e618a4e264298f3c4a3e3753a6627d9231e3c",
+      "consolidatedSha256": "f1eded9f9c858e874ede948b354e618a4e264298f3c4a3e3753a6627d9231e3c",
+      "reviewDisposition": "Baseline 3.4.3; semantic versus editorial changes documented; all stable item IDs preserved."
+    },
+    {
+      "path": "docs/secure-development/mitgeltende-dokumente/THE-CASE-FOR-MEMORY-SAFE-ROADMAPS-TLP-CLEAR.pdf",
+      "sourceSha256": "dfe3e72e075738e345aab81a541f72ab4c0cd149235426108090bf48787bc34b",
+      "consolidatedSha256": "dfe3e72e075738e345aab81a541f72ab4c0cd149235426108090bf48787bc34b",
+      "reviewDisposition": "Baseline 3.4.3; semantic versus editorial changes documented; all stable item IDs preserved."
+    },
+    {
+      "path": "docs/secure-development/mitgeltende-dokumente/THE-CASE-FOR-MEMORY-SAFE-ROADMAPS-TLP-CLEAR.sha256",
+      "sourceSha256": "fc62c1f879c6e17739e17c5114ccc38dea7e8552ddbad55e606e130dd5b696de",
+      "consolidatedSha256": "fc62c1f879c6e17739e17c5114ccc38dea7e8552ddbad55e606e130dd5b696de",
+      "reviewDisposition": "Baseline 3.4.3; semantic versus editorial changes documented; all stable item IDs preserved."
+    },
+    {
+      "path": "docs/secure-development/mitgeltende-dokumente/Verzahnung_Richtlinie_Checklisten_Spec-Kit-Presets.md",
+      "sourceSha256": "80a9f7563934be8af10393c78b63b8677f3f12465dd2827ebf01d755e88a32bc",
+      "consolidatedSha256": "2507cb06a262bc58fcd68a2449fb56e97e0ff9256a4943a1a8e8cf3544f15fb7",
+      "reviewDisposition": "Baseline 3.4.3; semantic versus editorial changes documented; all stable item IDs preserved."
+    }
+  ],
+  "reviewedAt": "2026-10-20",
+  "previousInventory": "docs/maintenance/gsdb-inventory-remediation-2026-10-20.json",
+  "lineageCorrection": "Previous remediation inventory incorrectly named the 19 October inventory while its sourceSha256 values actually came from gsdb-inventory-2026-10-20.json. Preserve that historical record; this inventory correctly names its immediate predecessor and copies its consolidatedSha256 values."
+}

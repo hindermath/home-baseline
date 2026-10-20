@@ -79,7 +79,27 @@ trap 'rm -f "$tmp"' EXIT
 guideline_path="$(jq -r '.guideline.path' "$MANIFEST")"
 guideline_version="$(jq -r '.guideline.version' "$MANIFEST")"
 [ -f "$DOC_ROOT/$guideline_path" ] || { printf 'Guideline missing: %s\n' "$guideline_path" >&2; exit 1; }
-grep -Fq "| Versionsnummer | $guideline_version |" "$DOC_ROOT/$guideline_path" || { printf 'Guideline version mismatch: %s\n' "$guideline_path" >&2; exit 1; }
+# DE: Beide Sprachfassungen haben genau eine aktive Metadatentabelle. Historien
+# bleiben erlaubt; passende Tabellenzeilen im Fliesstext sind keine Metadaten.
+# EN: Each language has exactly one active metadata table. History remains valid;
+# matching table rows in the body cannot substitute for active metadata.
+check_guideline_metadata() {
+  local heading="$1" field="$2"
+  awk -v heading="$heading" -v field="$field" -v version="$guideline_version" '
+    { sub(/\r$/, "") }
+    /^## / { active = ($0 == heading); if (active) sections++; table = 0; ended = 0 }
+    active && /^\|/ && !ended { table = 1 }
+    active && table && $0 !~ /^\|/ { ended = 1 }
+    index($0, "| " field " |") == 1 && split($0, cells, "[|]") == 4 {
+      count++; if (active && table && !ended && $0 == "| " field " | " version " |") matched++
+    }
+    END { exit !(sections == 1 && count == 1 && matched == 1) }
+  ' "$DOC_ROOT/$guideline_path" || {
+    printf 'Active guideline metadata mismatch or duplicate: %s (%s)\n' "$guideline_path" "$field" >&2; exit 1;
+  }
+}
+check_guideline_metadata '## Dokumenten-Metadaten' 'Versionsnummer'
+check_guideline_metadata '## Document Metadata' 'Version'
 
 while IFS=$'\t' read -r relative version; do
   [ -f "$DOC_ROOT/$relative" ] || { printf 'Controlled document missing: %s\n' "$relative" >&2; exit 1; }
@@ -114,6 +134,7 @@ while IFS=$'\t' read -r id relative version; do
     -e 's#](../../../constitution.md#](../../constitution.md#g' \
     -e 's#](../README.md#](README.md#g' \
     -e 's#](../mitgeltende-dokumente/#](mitgeltende-dokumente/#g' \
+    -e 's#](../../maintenance/#](../maintenance/#g' \
     -e 's#](CL_#](checklisten/CL_#g' \
     "$source_file" >> "$tmp"
 done < <(jq -r '.checklists[] | [.id, .path, .version] | @tsv' "$MANIFEST")

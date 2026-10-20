@@ -1,8 +1,8 @@
 # Verzahnung Richtlinie, Checklisten und Spec-Kit-Presets
 
 **Stand / Date:** 2026-10-20
-**Version / Version:** 1.5.1
-**Baseline-Version / Baseline version:** 3.4.2
+**Version / Version:** 1.5.2
+**Baseline-Version / Baseline version:** 3.4.3
 **Verantwortliche Rolle / Responsible role:** Projekt- oder Ausbildungsverantwortung mit Security-Review / Project or training owner with security review
 **Review-Zyklus / Review cycle:** jährlich und bei wesentlichen Änderungen / annually and after material changes
 **Zielgruppe / Audience:** Alle vier IT-Ausbildungsberufe ab dem ersten Ausbildungsjahr, Entwickler*innen, Reviewer und KI-Agenten / All four IT training occupations from the first training year, developers, reviewers, and AI agents
@@ -60,7 +60,7 @@ Eine Statusangabe ohne Begründung und Evidenzpfad ist kein Auditnachweis. / A s
 | `Richtlinie_Secure-Development-Life-Cycle.md` | SDLC, Spezifikation, Planung, Umsetzung, Freigabe | CL_01 bis CL_12 | alle acht Presets | `spec.md`, `plan.md`, `tasks.md`, Review- und Abschlussnotiz |
 | `Checkliste_Secure-Development-Life-Cycle.md` | Kompakter SDLC-Review | CL_01 bis CL_12 | alle acht Presets | Ausgefüllte SDLC-Kurzprüfung mit Status und Evidenzpfad |
 | `Richtlinie_Changemanagement.md` | Nachvollziehbare Änderungen, Freigaben, Tests | CL_06, CL_08, CL_10, CL_12 | `agent-parity-governance`, `cross-platform-governance`, `security-governance` | Commit, PR/MR, Review, Testlauf, Änderungsnotiz |
-| `Richtlinie_Dienstleister-und-Lieferantenbeziehungen.md` | Dependencies, Dienste, Lieferkette, Cloud-/Provider-Abhängigkeiten | CL_01, CL_05, CL_07 | `security-governance`, `architecture-governance` | Dependency-Audit, SBOM, VEX, C3A/C5-Entscheidung, Lieferantenbewertung |
+| `Richtlinie_Dienstleister-und-Lieferantenbeziehungen.md` | Dependencies, Dienste, Lieferkette, Cloud-/Provider-Abhängigkeiten | CL_01, CL-02-12 (C3A), CL-02-13 (C5), CL_05, CL_07 | `security-governance`, `architecture-governance` | Dependency-Audit, SBOM, VEX, C3A/C5-Entscheidung, Lieferantenbewertung |
 | `Richtlinie_Testmanagement.md` | Teststrategie, Sicherheits- und A11Y-Tests | CL_02, CL_04, CL_08, CL_10 | `security-governance`, `a11y-governance`, `cross-platform-governance` | Testplan, CI-Ergebnis, Coverage, A11Y-Smoke-Test, `N/A`-Begründung |
 | `Richtlinie_Zugangssteuerung.md` | Identitäten, Rollen, Least Privilege, Secrets | CL_02, CL_03, CL_08, CL_10, CL_12 | `security-governance`, `architecture-governance`, `agent-parity-governance` | Berechtigungsmatrix, Secret-Scan, Rollenentscheidung, Sandbox-Konfiguration |
 | `Datenschutzleitlinie.md` | Datenschutz, Testdaten, Logs, DPIA | CL_01, CL_08, CL_11 | `security-governance`, `architecture-governance`, `a11y-governance` | Datenflussnotiz, DPIA, Logging-Review, Testdatenkonzept |
@@ -68,7 +68,7 @@ Eine Statusangabe ohne Begründung und Evidenzpfad ist kein Auditnachweis. / A s
 | `BCM-Notfallhandbuch.md` | Wiederanlauf, Abhängigkeiten, Betriebsstabilität | CL_02, CL_05, CL_10 | `architecture-governance`, `isaqb-architecture-governance`, `security-governance` | Backup-/Restore-Notiz, CI/CD-Wiederanlauf, Provider-Risiko, Runbook |
 | `Standardsregister_Sichere-Entwicklung.md` | Einheitliche Fassungen und Primärquellen | CL_01 bis CL_12 | alle acht Presets als Referenzrahmen | Standardfassung, Prüftag, Quelle, Migrationsentscheidung |
 | `../Lernpfad_Sichere-Entwicklung_Lehrjahr-1-bis-3.md` | Sicherheit ab dem ersten Lern- und Entwicklungsauftrag | CL_01 bis CL_12 | alle acht Presets nach Anwendbarkeit | Lernstufe, Übung, Review, Reflexion, Folgeaufgabe |
-| `THE-CASE-FOR-MEMORY-SAFE-ROADMAPS-TLP-CLEAR.*` | MSL-Präferenz, sichere Sprachwahl, Migrationsplanung | CL_01, CL_05, CL_08, CL_09 | `security-governance`, `architecture-governance`, `a11y-governance` | MSL-Entscheidung, Nicht-MSL-Begründung, Roadmap, Lernnotiz |
+| `THE-CASE-FOR-MEMORY-SAFE-ROADMAPS-TLP-CLEAR.*` | MSL-Präferenz, sichere Sprachwahl, Migrationsplanung | CL-08-12/13 (operative MSL-/Sprachprofil-Prüfung), CL_01/05/09 (Querschnitt) | `security-governance`, `architecture-governance` | MSL-Entscheidung, Nicht-MSL-Begründung, Roadmap, Lernnotiz |
 
 ## Swift und Memory-Safe Languages / Swift and Memory-Safe Languages
 
@@ -111,6 +111,7 @@ Eine Statusangabe ohne Begründung und Evidenzpfad ist kein Auditnachweis. / A s
 | 1.4.0 | 2026-08-10 | Thorstens verwaltetes Flottenprofil auf zwoelf Presets angehoben; Model Routing auf Prioritaet 61 und seine lokale Modellgrenze ergaenzt. / Raised Thorsten's managed fleet profile to twelve presets; added Model Routing at priority 61 and its local-model boundary. |
 | 1.5.0 | 2026-10-19 | Level-0-Konsolidierung: Baseline-Bindung und fachliche Konsistenz geprüft; Grenzen im Reviewbericht. / Level-0 consolidation: baseline binding and consistency reviewed; limitations recorded in the review report. |
 | 1.5.1 | 2026-10-20 | Primärquellen-Nachprüfung und Baseline-Bindung 3.4.1; Details im Quellenabschluss. / Primary-source follow-up and baseline binding 3.4.1; see source closure report. |
+| 1.5.2 | 2026-10-20 | Unabhängige Reviewkorrekturen, Quellenanker und Baseline 3.4.3. / Independent review corrections, source anchors and baseline 3.4.3. |
 
 ## Vollständige Profilkomposition / Complete Profile Composition
 
@@ -138,6 +139,12 @@ EN: Level 0 uses its assigned fourteen-preset profile. Other repositories retain
 | `secure-development-assurance-governance` | Manifest-, Versions-, Hash- und Evidence-Bindung; Baseline, Delta, Closure, Image Impact / manifest, version, hash and evidence binding; four gates | Besitzt oder aktualisiert die GSDB nicht; kein menschlicher Freigabeersatz / does not own or update GSDB or replace human approval |
 | `project-statistics-governance` | Reproduzierbare Statistik und Methodik / reproducible statistics and methodology | Aktivität ist kein Sicherheitsnachweis / activity is not security proof |
 
-DE: Der quartalsweise GSDB-Review prüft alle aktiven Presets auf Bezug und Aktualität. Die jährliche vertiefte Preset-Prüfung am 3. Oktober bleibt zusätzlich bestehen. Ein technischer Pass ohne semantischen Review ist kein fachlicher Pass. Der aktuelle Befundstand steht im [Level-0-Reviewbericht](../../maintenance/gsdb-level0-review-2026-10-19.md).
+DE: Der quartalsweise GSDB-Review prüft alle aktiven Presets auf Bezug und Aktualität. Die jährliche vertiefte Preset-Prüfung am 3. Oktober bleibt zusätzlich bestehen. Ein technischer Pass ohne semantischen Review ist kein fachlicher Pass. Der aktuelle Befundstand steht im [unabhängigen Korrekturbericht](../../maintenance/gsdb-independent-fixes-2026-10-20.md); der [Bericht vom 19.10.](../../maintenance/gsdb-level0-review-2026-10-19.md) bleibt historisch.
 
-EN: Quarterly GSDB review includes every active preset's relevance and currency. Annual in-depth preset review on 3 October remains additional. Technical validation without semantic review is not a subject-matter pass. Current findings are recorded in the linked Level-0 report.
+EN: Quarterly GSDB review includes every active preset's relevance and currency. Annual in-depth preset review on 3 October remains additional. Technical validation without semantic review is not a subject-matter pass. Current findings are recorded in the independent correction report; the 19 October report is historical.
+
+
+
+DE: Quellenanker: C3A v1.0 → CL-02-12 → architecture-governance (cloud-autonomy); C5:2026 v1.1.0 → CL-02-13 → architecture-governance (cloud-compliance). G7 AI-SBOM → CL-05-13/CL-09-15 → security-governance. Memory-Safe Roadmaps → CL-08-12/13 → security-governance, ergänzt durch Architekturentscheidungen; Überschneidungen sind bewusst und kein pauschaler Erfüllungsnachweis.
+
+EN: Source anchors: C3A v1.0 → CL-02-12 → architecture-governance (cloud autonomy); C5:2026 v1.1.0 → CL-02-13 → architecture-governance (cloud compliance). G7 AI SBOM → CL-05-13/CL-09-15 → security-governance. Memory-Safe Roadmaps → CL-08-12/13 → security-governance, supported by architecture decisions; overlaps are deliberate and do not establish blanket fulfilment.

@@ -12,8 +12,8 @@ This document is organization-neutral and written as a generic training and revi
 ## Checkliste 08 – Sicherheits-Code-Review / Security Code Review
 
 **Dokument-ID / Document ID:** CL-08
-**Version / Version:** 2.0.2
-**Baseline-Version / Baseline version:** 3.4.2
+**Version / Version:** 2.0.3
+**Baseline-Version / Baseline version:** 3.4.3
 **Dokumenttyp / Document type:** Kanonische, wiederverwendbare Pruefvorlage / Canonical reusable review template
 
 ### Nachweisinstanz / Evidence Instance
@@ -1395,6 +1395,8 @@ configuration. Pure documentation changes are exempt.
   logging, dependency handling, or shell/script code. "Memory-safe
   language" status does not replace this review; it only reduces certain
   memory-error risks.
+- **DE:** Sprachwahl nach CISA „The Case for Memory Safe Roadmaps“ (Dezember 2023) im Sprachprofil begründen: MSL bevorzugen, Nicht-MSL-Ausnahmen mit Plattformzwang, kompensierenden Kontrollen und priorisierter Migrations-Roadmap dokumentieren. CL-08-12 prüft Tests für verbleibende unsichere Grenzen. Die Roadmap ist eine Empfehlung; MSL allein verhindert nicht alle Schwachstellen.
+- **EN:** Justify language selection in the language profile using CISA “The Case for Memory Safe Roadmaps” (December 2023): prefer MSL; document non-MSL exceptions with platform constraints, compensating controls and a prioritised migration roadmap. CL-08-12 tests remaining unsafe boundaries. The roadmap is guidance; MSL alone does not prevent all vulnerabilities.
 - **Akzeptanz / Acceptance:** Pull Request, Review-Dokument oder
   Spec-Kit-Artefakt verweist auf die ausgefüllten Profile für die
   betroffenen Sprachen (z. B. C/C89, C#/.NET, Rust, Go, Swift,
@@ -1586,5 +1588,8 @@ pull request.
 ---
 
 - **Version 2.0.0 (2026-07-10):** Einheitliches zweiachsiges Statusmodell, stabile CL-IDs, Lernstufe, Rollen-, Evidenz-, Restrisiko- und Neubewertungsfelder sowie klare Trennung zwischen Vorlage und Projektnachweis eingeführt; synchron mit sichere-Entwicklung-Basis 3.0.0. / Added the unified two-axis status model, stable CL IDs, learning-stage, role, evidence, residual-risk, and re-evaluation fields, plus clear separation between template and project evidence; synchronized with secure-development baseline 3.0.0.
-| 2.0.1 | 2026-10-19 | Level-0-Konsolidierung: Baseline-Bindung und fachliche Konsistenz geprüft; Grenzen im Reviewbericht. / Level-0 consolidation: baseline binding and consistency reviewed; limitations recorded in the review report. |
-| 2.0.2 | 2026-10-20 | Primärquellen-Nachprüfung und Baseline-Bindung 3.4.1; Details im Quellenabschluss. / Primary-source follow-up and baseline binding 3.4.1; see source closure report. |
+- **Version 2.0.1 (2026-10-19):** Level-0-Konsolidierung: Baseline-Bindung und fachliche Konsistenz geprüft; Grenzen im Reviewbericht. / Level-0 consolidation: baseline binding and consistency reviewed; limitations recorded in the review report.
+- **Version 2.0.2 (2026-10-20):** Primärquellen-Nachprüfung und Baseline-Bindung 3.4.1; Details im Quellenabschluss. / Primary-source follow-up and baseline binding 3.4.1; see source closure report.
+
+
+- **Version 2.0.2 (2026-10-20):** Unabhängige Reviewkorrekturen und Baseline 3.4.3; siehe [Prüfbericht](../../maintenance/gsdb-independent-fixes-2026-10-20.md). / Independent review corrections and baseline 3.4.3; see review report.

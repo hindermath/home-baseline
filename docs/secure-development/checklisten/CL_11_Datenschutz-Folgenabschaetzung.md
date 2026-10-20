@@ -12,8 +12,8 @@ This document is organization-neutral and written as a generic training and revi
 ## Checkliste 11 – Datenschutz-Folgenabschaetzung (DSGVO Art. 35) / Data Protection Impact Assessment (GDPR Art. 35)
 
 **Dokument-ID / Document ID:** CL-11
-**Version / Version:** 2.0.2
-**Baseline-Version / Baseline version:** 3.4.2
+**Version / Version:** 2.0.3
+**Baseline-Version / Baseline version:** 3.4.3
 **Dokumenttyp / Document type:** Kanonische, wiederverwendbare Pruefvorlage / Canonical reusable review template
 
 ### Nachweisinstanz / Evidence Instance
@@ -512,7 +512,7 @@ status must not be shown by color alone.
   und Auftragsverarbeitern, geplante Schutzmaßnahmen und alle
   weiteren von der Behörde angeforderten Informationen. Die Antwort
   der Aufsichtsbehörde wird in der DPIA-Dokumentation abgelegt; die
-  Verarbeitung beginnt erst nach Klärung.
+  Verarbeitung beginnt als zusätzliche lokale Freigaberegel erst nach dokumentierter Klärung. Art. 36 verlangt die vorherige Konsultation bei verbleibendem hohen Risiko; er ist kein pauschales gesetzliches Genehmigungserfordernis für jede Verarbeitung.
 - **EN:** If the DPIA shows residual high risk despite planned measures,
   the competent supervisory authority is consulted before processing
   starts per GDPR Art. 36. For the organisation this is the competent data protection supervisory authority of the project or seat jurisdiction. The consultation
@@ -520,11 +520,11 @@ status must not be shown by color alone.
   responsibilities between controllers and processors, planned
   protective measures, and any further information requested by the
   authority. The authority's response is filed with the DPIA
-  documentation; processing only begins after the matter is settled.
+  documentation; as an additional local release rule, processing only begins after documented resolution. Article 36 requires prior consultation for residual high risk; it is not a blanket statutory authorisation requirement for every processing activity.
 - **Akzeptanz / Acceptance:** Konsultationsanfrage und Antwort der
-  Aufsichtsbehörde dokumentiert; Verarbeitung erst nach abgeschlossener
+  Aufsichtsbehörde dokumentiert; zusätzliche lokale Freigaberegel kenntlich gemacht; Verarbeitung erst nach abgeschlossener
   Konsultation aufgenommen. / Consultation request and authority
-  response documented; processing only started after the consultation
+  response documented; identify the additional local release rule; processing only started after the consultation
   is closed.
 - **Lernstufe / Learning stage:** _Grundlage, Aufbau oder Vertiefung gemaess Lernpfad dokumentieren. / Record foundation, intermediate, or advanced according to the learning path._
 - **Verantwortliche Rolle / Responsible role:** _Lernende Person, ausbildende Person, Projektverantwortung oder Security-Rolle benennen. / Name learner, instructor, project owner, or security role._
@@ -896,5 +896,8 @@ status must not be shown by color alone.
 ---
 
 - **Version 2.0.0 (2026-07-10):** Einheitliches zweiachsiges Statusmodell, stabile CL-IDs, Lernstufe, Rollen-, Evidenz-, Restrisiko- und Neubewertungsfelder sowie klare Trennung zwischen Vorlage und Projektnachweis eingeführt; synchron mit sichere-Entwicklung-Basis 3.0.0. / Added the unified two-axis status model, stable CL IDs, learning-stage, role, evidence, residual-risk, and re-evaluation fields, plus clear separation between template and project evidence; synchronized with secure-development baseline 3.0.0.
-| 2.0.1 | 2026-10-19 | Level-0-Konsolidierung: Baseline-Bindung und fachliche Konsistenz geprüft; Grenzen im Reviewbericht. / Level-0 consolidation: baseline binding and consistency reviewed; limitations recorded in the review report. |
-| 2.0.2 | 2026-10-20 | Primärquellen-Nachprüfung und Baseline-Bindung 3.4.1; Details im Quellenabschluss. / Primary-source follow-up and baseline binding 3.4.1; see source closure report. |
+- **Version 2.0.1 (2026-10-19):** Level-0-Konsolidierung: Baseline-Bindung und fachliche Konsistenz geprüft; Grenzen im Reviewbericht. / Level-0 consolidation: baseline binding and consistency reviewed; limitations recorded in the review report.
+- **Version 2.0.2 (2026-10-20):** Primärquellen-Nachprüfung und Baseline-Bindung 3.4.1; Details im Quellenabschluss. / Primary-source follow-up and baseline binding 3.4.1; see source closure report.
+
+
+- **Version 2.0.3 (2026-10-20):** Unabhängige Reviewkorrekturen und Baseline 3.4.3; siehe [Prüfbericht](../../maintenance/gsdb-independent-fixes-2026-10-20.md). / Independent review corrections and baseline 3.4.3; see review report.
