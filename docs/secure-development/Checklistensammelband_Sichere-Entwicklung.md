@@ -2,8 +2,8 @@
 
 > **GENERATED FILE / GENERIERTE DATEI:** Nicht manuell bearbeiten. Der Sammelband wird aus den zwölf Dateien unter `checklisten/` erzeugt. / Do not edit manually. This compendium is generated from the twelve files under `checklisten/`.
 
-**Baseline-Version / Baseline version:** 3.4.3
-**Dokumentversion / Document version:** 2.4.3
+**Baseline-Version / Baseline version:** 3.4.4
+**Dokumentversion / Document version:** 2.4.4
 **Stand / Date:** 2026-10-20
 **Quelle / Source:** `baseline-manifest.json` und / and `checklisten/`
 
@@ -61,8 +61,8 @@ This document is organization-neutral and written as a generic training and revi
 ## Checkliste 01 – Standards-Anwendbarkeit / Standards Applicability
 
 **Dokument-ID / Document ID:** CL-01
-**Version / Version:** 2.0.3
-**Baseline-Version / Baseline version:** 3.4.3
+**Version / Version:** 2.0.4
+**Baseline-Version / Baseline version:** 3.4.4
 **Dokumenttyp / Document type:** Kanonische, wiederverwendbare Pruefvorlage / Canonical reusable review template
 
 ### Nachweisinstanz / Evidence Instance
@@ -670,8 +670,8 @@ change in architecture or delivery model.
 
 #### CL-01-12: Regulatorische Anwendbarkeit / Regulatory Applicability
 
-- **DE:** Quellenstand 20.10.2026: KI-VO konsolidiert am 27.07.2026 durch (EU) 2026/1744. Art. 113 unterscheidet allgemeine Geltung ab 02.08.2026, Kapitel I/II seit 02.02.2025 (neue Art.-5-Verbote ab 02.12.2026), GPAI-/Governance-Regeln seit 02.08.2025 sowie Hochrisiko Kapitel III Abschnitte 1–3 (außer Art. 6(5)) ab 02.12.2027 für Art. 6(2)/Anhang III und 02.08.2028 für Art. 6(1)/Anhang I. Produkt, KI-Werkzeugbetrieb (einschließlich Betreiberrolle) und Organisation getrennt bewerten; Art. 4 verlangt bei einschlägiger Anbieter-/Betreiberrolle Maßnahmen zur KI-Kompetenz. Für Deutschland gilt BSIG seit 06.12.2025; §§ 28–30, 32/33 und 38 sowie Sonderregeln und Anlagen prüfen. DORA gilt seit 17.01.2025; unmittelbare Finanzunternehmenspflichten, Vertragsanforderungen an Zulieferer und Aufsicht über kritische IKT-Drittdienstleister unterscheiden. Andere Länder/Branchen benötigen eigene Primärprüfung.
-- **EN:** Source date 2026-10-20: AI Act consolidated on 2026-07-27 by (EU) 2026/1744. Article 113 separates general application from 2026-08-02, Chapters I/II since 2025-02-02 (new Article 5 prohibitions from 2026-12-02), GPAI/governance rules since 2025-08-02, and high-risk Chapter III Sections 1–3 (except Article 6(5)) from 2027-12-02 for Article 6(2)/Annex III and 2028-08-02 for Article 6(1)/Annex I. Assess product, AI tool operation (including the deployer role) and organisation separately; Article 4 requires AI literacy measures where the provider/deployer role applies. German BSIG applies since 2025-12-06; review sections 28–30, 32/33, 38, special rules and annexes. DORA applies since 2025-01-17; distinguish direct financial-entity duties, supplier contracts and oversight of critical ICT third-party providers. Other jurisdictions/sectors require their own primary review.
+- **DE:** Quellenstand 20.10.2026: KI-VO konsolidiert am 27.07.2026 durch (EU) 2026/1744. Art. 113 unterscheidet allgemeine Geltung ab 02.08.2026, Kapitel I/II seit 02.02.2025 (neue Art.-5-Verbote ab 02.12.2026), GPAI-/Governance-Regeln seit 02.08.2025 sowie Hochrisiko Kapitel III Abschnitte 1–3 (außer Art. 6(5)) ab 02.12.2027 für Art. 6(2)/Anhang III und 02.08.2028 für Art. 6(1)/Anhang I. Produkt, KI-Werkzeugbetrieb (einschließlich Betreiberrolle) und Organisation getrennt bewerten; Art. 4 verlangt bei einschlägiger Anbieter-/Betreiberrolle Maßnahmen, die die Entwicklung von KI-Kompetenz unterstützen, unter Berücksichtigung von Vorkenntnissen, Ausbildung und Nutzungskontext; ein bestimmtes individuelles Kompetenzniveau muss nicht garantiert werden. Für Deutschland gilt BSIG seit 06.12.2025; §§ 28–30, 32/33 und 38 sowie Sonderregeln und Anlagen prüfen. DORA gilt seit 17.01.2025; unmittelbare Finanzunternehmenspflichten, Vertragsanforderungen an Zulieferer und Aufsicht über kritische IKT-Drittdienstleister unterscheiden. Andere Länder/Branchen benötigen eigene Primärprüfung.
+- **EN:** Source date 2026-10-20: AI Act consolidated on 2026-07-27 by (EU) 2026/1744. Article 113 separates general application from 2026-08-02, Chapters I/II since 2025-02-02 (new Article 5 prohibitions from 2026-12-02), GPAI/governance rules since 2025-08-02, and high-risk Chapter III Sections 1–3 (except Article 6(5)) from 2027-12-02 for Article 6(2)/Annex III and 2028-08-02 for Article 6(1)/Annex I. Assess product, AI tool operation (including the deployer role) and organisation separately; Article 4 requires measures supporting the development of AI literacy where the provider/deployer role applies, considering knowledge, training and use context; no specific individual literacy level must be guaranteed. German BSIG applies since 2025-12-06; review sections 28–30, 32/33, 38, special rules and annexes. DORA applies since 2025-01-17; distinguish direct financial-entity duties, supplier contracts and oversight of critical ICT third-party providers. Other jurisdictions/sectors require their own primary review.
 
 - **DE:** Für jedes Rechtsregime (NIS2/BSIG, CRA, KI-VO, DORA und sektor-/kundenspezifische Regeln) getrennt über Produkt, Werkzeugbetrieb und Organisation entscheiden. Je Ebene Land, Rechtsfassung, Rechtsträger, Rolle (etwa Anbieter, Betreiber oder Hersteller), Anwendungsdatum und direkte beziehungsweise vertragliche Pflichten prüfen. Interne Werkzeuge, Ausbildung oder fehlender Vertrieb rechtfertigen kein pauschales N/A: KI-VO Art. 4 kann beim Einsatz von KI-Werkzeugen einschlägig sein, auch ohne ein eigenes KI-Produkt anzubieten. N/A nur für die konkret geprüfte Ebene, Rolle und Rechtsgrundlage begründen. Unbekannte Sachverhalte bleiben `Open` mit Owner und Wiedervorlage.
 - **EN:** Decide separately for product, tool operation and organisation under each regime (NIS2/BSIG, CRA, AI Act, DORA and sector/customer rules). For each level assess jurisdiction, legal version, legal entity, role (such as provider, deployer or manufacturer), application date and direct or contractual duties. Internal tools, training or absence of sales do not justify blanket N/A: AI Act Article 4 may apply to AI tool use without offering an AI product. Justify N/A only for the assessed level, role and legal basis. Unknown facts remain `Open` with an owner and review date.
@@ -853,6 +853,8 @@ questions have an owner and re-review trigger.
 
 - **Version 2.0.3 (2026-10-20):** Unabhängige Reviewkorrekturen und Baseline 3.4.3; siehe [Prüfbericht](../maintenance/gsdb-independent-fixes-2026-10-20.md). / Independent review corrections and baseline 3.4.3; see review report.
 
+- **Version 2.0.4 (2026-10-20):** Acht P3-Nachbefunde korrigiert, Baseline 3.4.4. / Correct eight P3 follow-up findings, baseline 3.4.4.
+
 ---
 
 <!--
@@ -870,7 +872,7 @@ This document is organization-neutral and written as a generic training and revi
 
 **Dokument-ID / Document ID:** CL-02
 **Version / Version:** 2.0.3
-**Baseline-Version / Baseline version:** 3.4.3
+**Baseline-Version / Baseline version:** 3.4.4
 **Dokumenttyp / Document type:** Kanonische, wiederverwendbare Pruefvorlage / Canonical reusable review template
 
 ### Nachweisinstanz / Evidence Instance
@@ -1822,6 +1824,8 @@ rationale.
 
 - **Version 2.0.3 (2026-10-20):** Unabhängige Reviewkorrekturen und Baseline 3.4.3; siehe [Prüfbericht](../maintenance/gsdb-independent-fixes-2026-10-20.md). / Independent review corrections and baseline 3.4.3; see review report.
 
+DE: Baseline-Bindung 3.4.4, redaktionell; fachliche Dokumentversion unverändert. / EN: Baseline binding 3.4.4 is editorial; semantic document version unchanged.
+
 ---
 
 <!--
@@ -1839,7 +1843,7 @@ This document is organization-neutral and written as a generic training and revi
 
 **Dokument-ID / Document ID:** CL-03
 **Version / Version:** 2.0.3
-**Baseline-Version / Baseline version:** 3.4.3
+**Baseline-Version / Baseline version:** 3.4.4
 **Dokumenttyp / Document type:** Kanonische, wiederverwendbare Pruefvorlage / Canonical reusable review template
 
 ### Nachweisinstanz / Evidence Instance
@@ -2707,6 +2711,8 @@ stored in the security evidence set.
 
 - **Version 2.0.3 (2026-10-20):** Unabhängige Reviewkorrekturen und Baseline 3.4.3; siehe [Prüfbericht](../maintenance/gsdb-independent-fixes-2026-10-20.md). / Independent review corrections and baseline 3.4.3; see review report.
 
+DE: Baseline-Bindung 3.4.4, redaktionell; fachliche Dokumentversion unverändert. / EN: Baseline binding 3.4.4 is editorial; semantic document version unchanged.
+
 ---
 
 <!--
@@ -2724,7 +2730,7 @@ This document is organization-neutral and written as a generic training and revi
 
 **Dokument-ID / Document ID:** CL-04
 **Version / Version:** 2.0.2
-**Baseline-Version / Baseline version:** 3.4.3
+**Baseline-Version / Baseline version:** 3.4.4
 **Dokumenttyp / Document type:** Kanonische, wiederverwendbare Pruefvorlage / Canonical reusable review template
 
 ### Nachweisinstanz / Evidence Instance
@@ -3574,7 +3580,9 @@ accepted risks are documented in writing.
 - **Version 2.0.2 (2026-10-20):** Primärquellen-Nachprüfung und Baseline-Bindung 3.4.1; Details im Quellenabschluss. / Primary-source follow-up and baseline binding 3.4.1; see source closure report.
 
 
-- **Version 2.0.2 (2026-10-20):** Unabhängige Reviewkorrekturen und Baseline 3.4.3; siehe [Prüfbericht](../maintenance/gsdb-independent-fixes-2026-10-20.md). / Independent review corrections and baseline 3.4.3; see review report.
+DE: Baseline-Bindung 3.4.3 (20.10.2026), redaktionell; fachliche Dokumentversion unverändert. / EN: Baseline binding 3.4.3 (2026-10-20), editorial; semantic document version unchanged.
+
+DE: Baseline-Bindung 3.4.4, redaktionell; fachliche Dokumentversion unverändert. / EN: Baseline binding 3.4.4 is editorial; semantic document version unchanged.
 
 ---
 
@@ -3593,7 +3601,7 @@ This document is organization-neutral and written as a generic training and revi
 
 **Dokument-ID / Document ID:** CL-05
 **Version / Version:** 2.0.2
-**Baseline-Version / Baseline version:** 3.4.3
+**Baseline-Version / Baseline version:** 3.4.4
 **Dokumenttyp / Document type:** Kanonische, wiederverwendbare Pruefvorlage / Canonical reusable review template
 
 ### Nachweisinstanz / Evidence Instance
@@ -4869,7 +4877,9 @@ document where applicable.
 - **Version 2.0.2 (2026-10-20):** Primärquellen-Nachprüfung und Baseline-Bindung 3.4.1; Details im Quellenabschluss. / Primary-source follow-up and baseline binding 3.4.1; see source closure report.
 
 
-- **Version 2.0.2 (2026-10-20):** Unabhängige Reviewkorrekturen und Baseline 3.4.3; siehe [Prüfbericht](../maintenance/gsdb-independent-fixes-2026-10-20.md). / Independent review corrections and baseline 3.4.3; see review report.
+DE: Baseline-Bindung 3.4.3 (20.10.2026), redaktionell; fachliche Dokumentversion unverändert. / EN: Baseline binding 3.4.3 (2026-10-20), editorial; semantic document version unchanged.
+
+DE: Baseline-Bindung 3.4.4, redaktionell; fachliche Dokumentversion unverändert. / EN: Baseline binding 3.4.4 is editorial; semantic document version unchanged.
 
 ---
 
@@ -4888,7 +4898,7 @@ This document is organization-neutral and written as a generic training and revi
 
 **Dokument-ID / Document ID:** CL-06
 **Version / Version:** 2.0.2
-**Baseline-Version / Baseline version:** 3.4.3
+**Baseline-Version / Baseline version:** 3.4.4
 **Dokumenttyp / Document type:** Kanonische, wiederverwendbare Pruefvorlage / Canonical reusable review template
 
 ### Nachweisinstanz / Evidence Instance
@@ -5965,7 +5975,9 @@ SLAs are defined, and the CRA reporting path has been rehearsed.
 - **Version 2.0.2 (2026-10-20):** Primärquellen-Nachprüfung und Baseline-Bindung 3.4.1; Details im Quellenabschluss. / Primary-source follow-up and baseline binding 3.4.1; see source closure report.
 
 
-- **Version 2.0.2 (2026-10-20):** Unabhängige Reviewkorrekturen und Baseline 3.4.3; siehe [Prüfbericht](../maintenance/gsdb-independent-fixes-2026-10-20.md). / Independent review corrections and baseline 3.4.3; see review report.
+DE: Baseline-Bindung 3.4.3 (20.10.2026), redaktionell; fachliche Dokumentversion unverändert. / EN: Baseline binding 3.4.3 (2026-10-20), editorial; semantic document version unchanged.
+
+DE: Baseline-Bindung 3.4.4, redaktionell; fachliche Dokumentversion unverändert. / EN: Baseline binding 3.4.4 is editorial; semantic document version unchanged.
 
 ---
 
@@ -5983,8 +5995,8 @@ This document is organization-neutral and written as a generic training and revi
 ## Checkliste 07 – EU Cyber Resilience Act – Anwendbarkeit / EU Cyber Resilience Act – Applicability
 
 **Dokument-ID / Document ID:** CL-07
-**Version / Version:** 2.0.4
-**Baseline-Version / Baseline version:** 3.4.3
+**Version / Version:** 2.0.5
+**Baseline-Version / Baseline version:** 3.4.4
 **Dokumenttyp / Document type:** Kanonische, wiederverwendbare Pruefvorlage / Canonical reusable review template
 
 ### Nachweisinstanz / Evidence Instance
@@ -6296,8 +6308,8 @@ checked if they are shared with external parties.
 
 #### CL-07-09: Meldepflichten 24 / 72 Stunden / 24- and 72-hour Reports
 
-- **DE:** Hersteller melden aktiv ausgenutzte Schwachstellen und schwerwiegende Sicherheitsvorfälle nach Art. 14 über die Single Reporting Platform gleichzeitig an koordinierenden CSIRT und ENISA: Frühwarnung ohne unangemessene Verzögerung, spätestens 24 Stunden nach Kenntnis, Meldung spätestens nach 72 Stunden. Schwachstellen-Schlussbericht spätestens 14 Tage nach verfügbarer Abhilfe; Vorfall-Schlussbericht spätestens einen Monat nach Vorfallmeldung. Inhalt, Zuständigkeit und Nutzerinformation nach Art. 14 dokumentieren. CRA Art. 16(2), Art. 14(9) und (EU) 2026/881 betreffen eine begründete Verzögerung der CSIRT-Weiterleitung; sie verlängern keine Hersteller-Meldefrist. Art. 14 gilt nach Art. 69(3)/71(2) seit 11.09.2026 auch für zuvor in Verkehr gebrachte, in den CRA-Geltungsbereich fallende Bestandsprodukte. Keine gewöhnliche E-Mail-Adresse als gesetzlichen Plattformersatz ausgeben. Herstellerpflicht ab 11.09.2026, Steward-Pflichten nach Art. 24 ab 11.12.2027 separat behandeln. Interne Übungen und Bereitschaft nach Risiko organisieren.
-- **EN:** Manufacturers report actively exploited vulnerabilities and severe incidents under Article 14 through the Single Reporting Platform simultaneously to the coordinating CSIRT and ENISA: early warning without undue delay, at most 24 hours after awareness, followed by notification within 72 hours. Vulnerability final reports are due within 14 days after a corrective/mitigating measure is available; incident final reports within one month after incident notification. Record content, responsibility and user information under Article 14. CRA Articles 16(2), 14(9) and (EU) 2026/881 concern a justified delay of CSIRT dissemination; they do not extend manufacturer reporting deadlines. Under Articles 69(3)/71(2), Article 14 applies since 2026-09-11 also to existing in-scope products placed on the market earlier. Do not present an ordinary email address as a statutory platform substitute. Distinguish manufacturer duties from 11 September 2026 and steward Article 24 duties from 11 December 2027. Organise exercises and on-call arrangements according to risk.
+- **DE:** Hersteller melden aktiv ausgenutzte Schwachstellen und schwerwiegende Sicherheitsvorfälle nach Art. 14 über die Single Reporting Platform gleichzeitig an koordinierenden CSIRT und ENISA: Frühwarnung ohne unangemessene Verzögerung, spätestens 24 Stunden nach Kenntnis, Meldung spätestens nach 72 Stunden. Schwachstellen-Schlussbericht spätestens 14 Tage nach verfügbarer Abhilfe; Vorfall-Schlussbericht spätestens einen Monat nach Vorfallmeldung. Inhalt, Zuständigkeit und Nutzerinformation nach Art. 14 dokumentieren. CRA Art. 16(2), Art. 14(9) und (EU) 2026/881 betreffen eine begründete Verzögerung der CSIRT-Weiterleitung; sie verlängern keine Hersteller-Meldefrist. Art. 14 gilt nach Art. 69(3)/71(2) seit 11.09.2026 auch für zuvor in Verkehr gebrachte, in den CRA-Geltungsbereich fallende Bestandsprodukte. Keine gewöhnliche E-Mail-Adresse als gesetzlichen Plattformersatz ausgeben. Herstellerpflicht ab 11.09.2026, Steward-Pflichten nach Art. 24 ab 11.12.2027 separat behandeln; die [Kommissionsauslegung zu Meldepflichten](https://digital-strategy.ec.europa.eu/en/policies/cra-reporting) bestätigt diesen Beginn ausdrücklich für Art. 24(3). Eine zugleich bestehende Herstellerrolle bleibt ab 11.09.2026 gesondert meldepflichtig. Interne Übungen und Bereitschaft nach Risiko organisieren.
+- **EN:** Manufacturers report actively exploited vulnerabilities and severe incidents under Article 14 through the Single Reporting Platform simultaneously to the coordinating CSIRT and ENISA: early warning without undue delay, at most 24 hours after awareness, followed by notification within 72 hours. Vulnerability final reports are due within 14 days after a corrective/mitigating measure is available; incident final reports within one month after incident notification. Record content, responsibility and user information under Article 14. CRA Articles 16(2), 14(9) and (EU) 2026/881 concern a justified delay of CSIRT dissemination; they do not extend manufacturer reporting deadlines. Under Articles 69(3)/71(2), Article 14 applies since 2026-09-11 also to existing in-scope products placed on the market earlier. Do not present an ordinary email address as a statutory platform substitute. Distinguish manufacturer duties from 11 September 2026 and steward Article 24 duties from 11 December 2027; the [Commission reporting guidance](https://digital-strategy.ec.europa.eu/en/policies/cra-reporting) explicitly confirms that start for Article 24(3). A concurrent manufacturer role retains its separate reporting duties from 11 September 2026. Organise exercises and on-call arrangements according to risk.
 - **Akzeptanz / Acceptance:** Runbook mit beiden Meldeketten, Auslösern, Plattformzugang, Vertretung, Quellenstand und Übungsnachweis. / Runbook with both reporting chains, triggers, platform access, deputies, source version and exercise evidence.
 - **Lernstufe / Learning stage:** _Grundlage, Aufbau oder Vertiefung gemaess Lernpfad dokumentieren. / Record foundation, intermediate, or advanced according to the learning path._
 - **Verantwortliche Rolle / Responsible role:** _Lernende Person, ausbildende Person, Projektverantwortung oder Security-Rolle benennen. / Name learner, instructor, project owner, or security role._
@@ -6362,8 +6374,8 @@ checked if they are shared with external parties.
 
 #### CL-07-12: Nichtanwendbarkeit dokumentieren / Document Non-Applicability
 
-- **DE:** N/A mit Produkt/Version, Rolle, konkreter Rechtsstelle oder Definition, Begründung, Datum, Owner, Gegenprüfung, nächstem Review und gegebenenfalls Fachberatung dokumentieren. Art. 2(2)(a)/(b) betrifft MDR/IVDR und (c) Fahrzeuge nach (EU) 2019/2144, Art. 2(3) zertifizierte Luftfahrt, 2(4) Schiffsausrüstung, 2(5) delegierte Ausschlüsse, 2(6) identische Ersatzteile, 2(7) ausschließlich nationale Sicherheit/Verteidigung beziehungsweise besondere Verschlusssachen-Verarbeitung und 2(8) nationale Sicherheitsinformationen. Nichtkommerzielle FOSS anhand Art. 2(1)/3(22) und der kommerziellen Marktbereitstellung abgrenzen; Steward-Pflichten nach Art. 24 gesondert prüfen. Die Fahrzeugausnahme (EU) 2025/1535 mit L1e-Pedal-Rückausnahme und die getrennten Bestandsprodukt-/Meldeentscheidungen nach Art. 69(2)/(3) aus CL-07-01/09 übernehmen. SaaS anhand Art. 2(1), Art. 3(1)/(2) und Erwägungsgrund 12 abgrenzen, nicht über eine erfundene SaaS-Ausnahme. NIS2, DORA und Datenschutz getrennt bewerten. Unbekannte Anwendbarkeit bleibt Open; kein stillschweigendes Weglassen.
-- **EN:** Document N/A with product/version, role, exact provision or definition, rationale, date, owner, second review, next review and specialist advice where needed. Article 2(2)(a)/(b) covers MDR/IVDR and (c) vehicles under (EU) 2019/2144; Article 2(3) certified aviation, 2(4) marine equipment, 2(5) delegated exclusions, 2(6) identical spare parts, 2(7) exclusive national security/defence or specified classified-information processing, and 2(8) national security information. Assess non-commercial FOSS under Articles 2(1)/3(22) and commercial market availability; assess Article 24 steward duties separately. Apply the (EU) 2025/1535 vehicle exclusion with the L1e pedal exception and separate existing-product/reporting decisions under Article 69(2)/(3) from CL-07-01/09. Assess SaaS under Articles 2(1), 3(1)/(2) and recital 12 rather than an invented SaaS exemption. Assess NIS2, DORA and privacy separately. Unknown applicability remains Open; silent omission is not acceptable.
+- **DE:** N/A mit Produkt/Version, Rolle, konkreter Rechtsstelle oder Definition, Begründung, Datum, Owner, Gegenprüfung, nächstem Review und gegebenenfalls Fachberatung dokumentieren. Art. 2(2)(a)/(b) betrifft MDR/IVDR und (c) Fahrzeuge nach (EU) 2019/2144, Art. 2(3) zertifizierte Luftfahrt, 2(4) Schiffsausrüstung, 2(5) delegierte Ausschlüsse, 2(6) identische Ersatzteile, 2(7) ausschließlich nationale Sicherheit/Verteidigung beziehungsweise besondere Verschlusssachen-Verarbeitung; Art. 2(8) begrenzt gesondert Auskunftspflichten bei entgegenstehenden wesentlichen Interessen der nationalen/öffentlichen Sicherheit oder Verteidigung und ist kein N/A-Ausschluss des Produkts. Nichtkommerzielle FOSS anhand Art. 2(1)/3(22) und der kommerziellen Marktbereitstellung abgrenzen; Steward-Pflichten nach Art. 24 gesondert prüfen. Die Fahrzeugausnahme (EU) 2025/1535 mit L1e-Pedal-Rückausnahme und die getrennten Bestandsprodukt-/Meldeentscheidungen nach Art. 69(2)/(3) aus CL-07-01/09 übernehmen. SaaS anhand Art. 2(1), Art. 3(1)/(2) und Erwägungsgrund 12 abgrenzen, nicht über eine erfundene SaaS-Ausnahme. NIS2, DORA und Datenschutz getrennt bewerten. Unbekannte Anwendbarkeit bleibt Open; kein stillschweigendes Weglassen.
+- **EN:** Document N/A with product/version, role, exact provision or definition, rationale, date, owner, second review, next review and specialist advice where needed. Article 2(2)(a)/(b) covers MDR/IVDR and (c) vehicles under (EU) 2019/2144; Article 2(3) certified aviation, 2(4) marine equipment, 2(5) delegated exclusions, 2(6) identical spare parts, 2(7) exclusive national security/defence or specified classified-information processing; separately, Article 2(8) limits information-supply duties where disclosure would conflict with essential national/public security or defence interests; it is not a product-scope N/A exclusion. Assess non-commercial FOSS under Articles 2(1)/3(22) and commercial market availability; assess Article 24 steward duties separately. Apply the (EU) 2025/1535 vehicle exclusion with the L1e pedal exception and separate existing-product/reporting decisions under Article 69(2)/(3) from CL-07-01/09. Assess SaaS under Articles 2(1), 3(1)/(2) and recital 12 rather than an invented SaaS exemption. Assess NIS2, DORA and privacy separately. Unknown applicability remains Open; silent omission is not acceptable.
 - **Akzeptanz / Acceptance:** Anwendbarkeitsbericht nach CL-01-12 mit genauem Rechtsbezug und dokumentiertem Review. / Applicability report under CL-01-12 with precise legal reference and documented review.
 - **Lernstufe / Learning stage:** _Grundlage, Aufbau oder Vertiefung gemaess Lernpfad dokumentieren. / Record foundation, intermediate, or advanced according to the learning path._
 - **Verantwortliche Rolle / Responsible role:** _Lernende Person, ausbildende Person, Projektverantwortung oder Security-Rolle benennen. / Name learner, instructor, project owner, or security role._
@@ -6488,6 +6500,8 @@ in an audit-ready way.
 
 - **Version 2.0.4 (2026-10-20):** Unabhängige Reviewkorrekturen und Baseline 3.4.3; siehe [Prüfbericht](../maintenance/gsdb-independent-fixes-2026-10-20.md). / Independent review corrections and baseline 3.4.3; see review report.
 
+- **Version 2.0.5 (2026-10-20):** Acht P3-Nachbefunde korrigiert, Baseline 3.4.4. / Correct eight P3 follow-up findings, baseline 3.4.4.
+
 ---
 
 <!--
@@ -6504,8 +6518,8 @@ This document is organization-neutral and written as a generic training and revi
 ## Checkliste 08 – Sicherheits-Code-Review / Security Code Review
 
 **Dokument-ID / Document ID:** CL-08
-**Version / Version:** 2.0.3
-**Baseline-Version / Baseline version:** 3.4.3
+**Version / Version:** 2.0.4
+**Baseline-Version / Baseline version:** 3.4.4
 **Dokumenttyp / Document type:** Kanonische, wiederverwendbare Pruefvorlage / Canonical reusable review template
 
 ### Nachweisinstanz / Evidence Instance
@@ -6863,8 +6877,7 @@ configuration. Pure documentation changes are exempt.
   `ECDsaCng`, `ECDiffieHellman`); Python `cryptography` Bibliothek
   (`Fernet` für symmetrisch, `hazmat.primitives` für Low-Level); Go
   `crypto/aes`, `crypto/cipher` (`cipher.NewGCM`), `crypto/ed25519`,
-  `golang.org/x/crypto/chacha20poly1305`. TLS-Konfiguration: TLS 1.3 als
-  Minimum (Fallback TLS 1.2 nur mit AEAD-Ciphern), HSTS-Header
+  `golang.org/x/crypto/chacha20poly1305`. TLS-Konfiguration nach CL-03-07: TLS 1.3 bevorzugen, TLS 1.2 nur im dort geprüften Profil und bis zum dokumentierten Migrationshorizont; HSTS-Header
   (`Strict-Transport-Security: max-age=31536000; includeSubDomains;
   preload`), OCSP Stapling. Schlüsselverwaltung: Hardware Security Module
   (HSM) PKCS#11, Cloud-KMS (AWS KMS, Azure Key Vault, GCP Cloud KMS) oder
@@ -6886,14 +6899,15 @@ configuration. Pure documentation changes are exempt.
   `ECDsaCng`, `ECDiffieHellman`); Python `cryptography` library (`Fernet`
   for symmetric, `hazmat.primitives` for low-level); Go `crypto/aes`,
   `crypto/cipher` (`cipher.NewGCM`), `crypto/ed25519`,
-  `golang.org/x/crypto/chacha20poly1305`. TLS configuration: TLS 1.3 as
-  minimum (TLS 1.2 fallback only with AEAD ciphers), HSTS header
+  `golang.org/x/crypto/chacha20poly1305`. TLS configuration follows CL-03-07: prefer TLS 1.3, use TLS 1.2 only within its reviewed profile and documented migration horizon; HSTS header
   (`Strict-Transport-Security: max-age=31536000; includeSubDomains;
   preload`), OCSP Stapling. Key management: Hardware Security Module
   (HSM) PKCS#11, cloud KMS (AWS KMS, Azure Key Vault, GCP Cloud KMS), or
   HashiCorp Vault. Key rotation every 90 days for active keys. References:
   NIST SP 800-131A Rev. 2, BSI TR-02102-1, OWASP Cryptographic Storage
   Cheat Sheet, ENISA Cryptographic Guidelines.
+- **DE:** Die obige generische Algorithmusauswahl und 90-Tage-Rotation sind lokale Baseline-Policy, keine pauschale BSI-Empfehlung. ChaCha20, Ed25519 und X25519 nicht als Empfehlung der TR-02102-1 ausgeben. Für BSI-Profilkonformität die konkrete Teilfassung und Parameter prüfen; für TLS gilt ausschließlich CL-03-07 mit TR-02102-2. Abweichungen mit Risiko und Owner dokumentieren.
+- **EN:** The generic algorithm choices and 90-day rotation above are local baseline policy, not blanket BSI recommendations. Do not attribute ChaCha20, Ed25519 or X25519 to TR-02102-1. Assess the specific part and parameters for BSI conformity; TLS follows CL-03-07 and TR-02102-2. Record deviations with risk and owner.
 - **Lernstufe / Learning stage:** _Grundlage, Aufbau oder Vertiefung gemaess Lernpfad dokumentieren. / Record foundation, intermediate, or advanced according to the learning path._
 - **Verantwortliche Rolle / Responsible role:** _Lernende Person, ausbildende Person, Projektverantwortung oder Security-Rolle benennen. / Name learner, instructor, project owner, or security role._
 - **Anwendbarkeit / Applicability:**
@@ -7263,6 +7277,8 @@ configuration. Pure documentation changes are exempt.
   coverage of documented public interfaces and critical UI flows; every
   new or changed public interface has at least one positive and one
   negative integration test.
+- **DE:** An unsicheren Sprach-/FFI-Grenzen, nativen Abhängigkeiten und Nicht-MSL-Komponenten zusätzlich risikobasiert Fuzzing und geeignete Speicher-/Undefined-Behavior-Sanitizer einsetzen, soweit die Zielplattform dies unterstützt. Andernfalls Plattformgrenze, kompensierende Tests und Restrisiko dokumentieren. Diese lokale Testregel unterstützt die Memory-Safe-Roadmap nach CL-08-13; eine MSL allein beweist keine sichere native Grenze.
+- **EN:** At unsafe language/FFI boundaries, native dependencies and non-MSL components, additionally use risk-based fuzzing and suitable memory/undefined-behaviour sanitizers where the target platform supports them. Otherwise record the platform limit, compensating tests and residual risk. This local testing rule supports the memory-safe roadmap under CL-08-13; MSL alone does not prove native-boundary safety.
 - **Lernstufe / Learning stage:** _Grundlage, Aufbau oder Vertiefung gemaess Lernpfad dokumentieren. / Record foundation, intermediate, or advanced according to the learning path._
 - **Verantwortliche Rolle / Responsible role:** _Lernende Person, ausbildende Person, Projektverantwortung oder Security-Rolle benennen. / Name learner, instructor, project owner, or security role._
 - **Anwendbarkeit / Applicability:**
@@ -8084,7 +8100,9 @@ pull request.
 - **Version 2.0.2 (2026-10-20):** Primärquellen-Nachprüfung und Baseline-Bindung 3.4.1; Details im Quellenabschluss. / Primary-source follow-up and baseline binding 3.4.1; see source closure report.
 
 
-- **Version 2.0.2 (2026-10-20):** Unabhängige Reviewkorrekturen und Baseline 3.4.3; siehe [Prüfbericht](../maintenance/gsdb-independent-fixes-2026-10-20.md). / Independent review corrections and baseline 3.4.3; see review report.
+- **Version 2.0.3 (2026-10-20):** Unabhängige Reviewkorrekturen und Baseline 3.4.3; siehe [Prüfbericht](../maintenance/gsdb-independent-fixes-2026-10-20.md). / Independent review corrections and baseline 3.4.3; see review report.
+
+- **Version 2.0.4 (2026-10-20):** Acht P3-Nachbefunde korrigiert, Baseline 3.4.4. / Correct eight P3 follow-up findings, baseline 3.4.4.
 
 ---
 
@@ -8102,8 +8120,8 @@ This document is organization-neutral and written as a generic training and revi
 ## Checkliste 09 – KI-gestuetzte Codeerzeugung / AI-Assisted Code Generation
 
 **Dokument-ID / Document ID:** CL-09
-**Version / Version:** 2.2.3
-**Baseline-Version / Baseline version:** 3.4.3
+**Version / Version:** 2.2.4
+**Baseline-Version / Baseline version:** 3.4.4
 **Dokumenttyp / Document type:** Kanonische, wiederverwendbare Pruefvorlage / Canonical reusable review template
 
 ### Nachweisinstanz / Evidence Instance
@@ -9165,7 +9183,9 @@ whose output flows into production code or production-near scripts.
 - **Akzeptanz / Acceptance:** Schulungsnachweis pro Person in HR/LMS
   vorhanden; Onboarding vor erstem KI-Tool-Zugriff abgeschlossen;
   jährliche Auffrischung dokumentiert; CTF/Spot-the-Bug-Übungen
-  halbjährlich; Erfüllungsquote ≥ 95 % im Quartalsbericht.
+  halbjährlich; Erfüllungsquote ≥ 95 % im Quartalsbericht; als lokale Freigaberegel ausgewiesen. / Local release rule: evidence training per person, onboarding before first AI-tool access, annual refresher, semiannual CTF/spot-the-bug exercises and ≥95% completion in the quarterly report.
+- **DE:** Jahres-/Halbjahresintervalle, Stundenansätze, Zugriffssperre und ≥95-%-Quote sind zusätzliche lokale Baseline-Vorgaben, keine Zahlen- oder Zugangsvorgaben aus KI-VO Art. 4. Dessen geänderte Fassung verlangt Maßnahmen zur Unterstützung der Entwicklung von KI-Kompetenz unter Berücksichtigung der Personen und des Nutzungskontexts, jedoch keine Garantie eines bestimmten individuellen Kompetenzniveaus. Gesetzliche Anwendbarkeit und lokale Schulungsfreigabe getrennt dokumentieren.
+- **EN:** Annual/semiannual intervals, training hours, access suspension and the ≥95% quota are additional local baseline rules, not numerical or access requirements imposed by AI Act Article 4. Its amended wording requires measures supporting development of AI literacy in light of people and use context, without guaranteeing any specific individual literacy level. Record statutory applicability separately from local training clearance.
 - **Lernstufe / Learning stage:** _Grundlage, Aufbau oder Vertiefung gemaess Lernpfad dokumentieren. / Record foundation, intermediate, or advanced according to the learning path._
 - **Verantwortliche Rolle / Responsible role:** _Lernende Person, ausbildende Person, Projektverantwortung oder Security-Rolle benennen. / Name learner, instructor, project owner, or security role._
 - **Anwendbarkeit / Applicability:**
@@ -9601,7 +9621,9 @@ justified as not applicable.
 - **Version 2.2.3 (2026-10-20):** KI-Werkzeugbetrieb getrennt vom Produkt auf regulatorische Rollen pruefen; Baseline 3.4.2. / Screen AI tool operation separately from product regulatory roles; baseline 3.4.2.
 
 
-- **Version 2.2.3 (2026-10-20):** Unabhängige Reviewkorrekturen und Baseline 3.4.3; siehe [Prüfbericht](../maintenance/gsdb-independent-fixes-2026-10-20.md). / Independent review corrections and baseline 3.4.3; see review report.
+DE: Baseline-Bindung 3.4.3 (20.10.2026), redaktionell; fachliche Dokumentversion unverändert. / EN: Baseline binding 3.4.3 (2026-10-20), editorial; semantic document version unchanged.
+
+- **Version 2.2.4 (2026-10-20):** Acht P3-Nachbefunde korrigiert, Baseline 3.4.4. / Correct eight P3 follow-up findings, baseline 3.4.4.
 
 ---
 
@@ -9620,7 +9642,7 @@ This document is organization-neutral and written as a generic training and revi
 
 **Dokument-ID / Document ID:** CL-10
 **Version / Version:** 2.0.2
-**Baseline-Version / Baseline version:** 3.4.3
+**Baseline-Version / Baseline version:** 3.4.4
 **Dokumenttyp / Document type:** Kanonische, wiederverwendbare Pruefvorlage / Canonical reusable review template
 
 ### Nachweisinstanz / Evidence Instance
@@ -11157,7 +11179,9 @@ platform-parity evidence or justified non-applicability.
 - **Version 2.0.2 (2026-10-20):** Primärquellen-Nachprüfung und Baseline-Bindung 3.4.1; Details im Quellenabschluss. / Primary-source follow-up and baseline binding 3.4.1; see source closure report.
 
 
-- **Version 2.0.2 (2026-10-20):** Unabhängige Reviewkorrekturen und Baseline 3.4.3; siehe [Prüfbericht](../maintenance/gsdb-independent-fixes-2026-10-20.md). / Independent review corrections and baseline 3.4.3; see review report.
+DE: Baseline-Bindung 3.4.3 (20.10.2026), redaktionell; fachliche Dokumentversion unverändert. / EN: Baseline binding 3.4.3 (2026-10-20), editorial; semantic document version unchanged.
+
+DE: Baseline-Bindung 3.4.4, redaktionell; fachliche Dokumentversion unverändert. / EN: Baseline binding 3.4.4 is editorial; semantic document version unchanged.
 
 ---
 
@@ -11176,7 +11200,7 @@ This document is organization-neutral and written as a generic training and revi
 
 **Dokument-ID / Document ID:** CL-11
 **Version / Version:** 2.0.3
-**Baseline-Version / Baseline version:** 3.4.3
+**Baseline-Version / Baseline version:** 3.4.4
 **Dokumenttyp / Document type:** Kanonische, wiederverwendbare Pruefvorlage / Canonical reusable review template
 
 ### Nachweisinstanz / Evidence Instance
@@ -12065,6 +12089,8 @@ status must not be shown by color alone.
 
 - **Version 2.0.3 (2026-10-20):** Unabhängige Reviewkorrekturen und Baseline 3.4.3; siehe [Prüfbericht](../maintenance/gsdb-independent-fixes-2026-10-20.md). / Independent review corrections and baseline 3.4.3; see review report.
 
+DE: Baseline-Bindung 3.4.4, redaktionell; fachliche Dokumentversion unverändert. / EN: Baseline binding 3.4.4 is editorial; semantic document version unchanged.
+
 ---
 
 <!--
@@ -12082,7 +12108,7 @@ This document is organization-neutral and written as a generic training and revi
 
 **Dokument-ID / Document ID:** CL-12
 **Version / Version:** 2.2.2
-**Baseline-Version / Baseline version:** 3.4.3
+**Baseline-Version / Baseline version:** 3.4.4
 **Dokumenttyp / Document type:** Kanonische, wiederverwendbare Pruefvorlage / Canonical reusable review template
 
 ### Nachweisinstanz / Evidence Instance
@@ -12622,7 +12648,9 @@ Diese Datei ist eine wiederverwendbare Vorlage. Ausgefüllte Projektnachweise we
 - **Version 2.2.2 (2026-10-20):** Primärquellen-Nachprüfung und Baseline-Bindung 3.4.1; Details im Quellenabschluss. / Primary-source follow-up and baseline binding 3.4.1; see source closure report.
 
 
-- **Version 2.2.2 (2026-10-20):** Unabhängige Reviewkorrekturen und Baseline 3.4.3; siehe [Prüfbericht](../maintenance/gsdb-independent-fixes-2026-10-20.md). / Independent review corrections and baseline 3.4.3; see review report.
+DE: Baseline-Bindung 3.4.3 (20.10.2026), redaktionell; fachliche Dokumentversion unverändert. / EN: Baseline binding 3.4.3 (2026-10-20), editorial; semantic document version unchanged.
+
+DE: Baseline-Bindung 3.4.4, redaktionell; fachliche Dokumentversion unverändert. / EN: Baseline binding 3.4.4 is editorial; semantic document version unchanged.
 
 ---
 
@@ -12630,4 +12658,4 @@ Diese Datei ist eine wiederverwendbare Vorlage. Ausgefüllte Projektnachweise we
 
 | Version | Datum / Date | Änderung / Change |
 |---|---|---|
-| 2.4.3 | 2026-10-20 | Aus den zwölf kanonischen Einzelchecklisten der sicheren-Entwicklung-Basis 3.4.3 erzeugt; einheitliches zweiachsiges Statusmodell und klare Trennung zwischen Vorlage und Projektnachweis. / Generated from the twelve canonical individual checklists of secure-development baseline 3.4.3; unified two-axis status model and clear separation between template and project evidence. |
+| 2.4.4 | 2026-10-20 | Aus den zwölf kanonischen Einzelchecklisten der sicheren-Entwicklung-Basis 3.4.4 erzeugt; einheitliches zweiachsiges Statusmodell und klare Trennung zwischen Vorlage und Projektnachweis. / Generated from the twelve canonical individual checklists of secure-development baseline 3.4.4; unified two-axis status model and clear separation between template and project evidence. |

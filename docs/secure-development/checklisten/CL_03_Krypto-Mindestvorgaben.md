@@ -13,7 +13,7 @@ This document is organization-neutral and written as a generic training and revi
 
 **Dokument-ID / Document ID:** CL-03
 **Version / Version:** 2.0.3
-**Baseline-Version / Baseline version:** 3.4.3
+**Baseline-Version / Baseline version:** 3.4.4
 **Dokumenttyp / Document type:** Kanonische, wiederverwendbare Pruefvorlage / Canonical reusable review template
 
 ### Nachweisinstanz / Evidence Instance
@@ -880,3 +880,5 @@ stored in the security evidence set.
 
 
 - **Version 2.0.3 (2026-10-20):** Unabhängige Reviewkorrekturen und Baseline 3.4.3; siehe [Prüfbericht](../../maintenance/gsdb-independent-fixes-2026-10-20.md). / Independent review corrections and baseline 3.4.3; see review report.
+
+DE: Baseline-Bindung 3.4.4, redaktionell; fachliche Dokumentversion unverändert. / EN: Baseline binding 3.4.4 is editorial; semantic document version unchanged.

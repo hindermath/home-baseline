@@ -1,7 +1,7 @@
 # Lernpfad Sichere Entwicklung für Lehrjahr 1 bis 3 / Secure Development Learning Path for Training Years 1 to 3
 
 **Version / Version:** 1.0.2
-**Baseline-Version / Baseline version:** 3.4.3
+**Baseline-Version / Baseline version:** 3.4.4
 **Stand / Date:** 2026-10-20
 **Zielgruppe / Audience:** Fachinformatik-Auszubildende, ausbildende Personen und Reviewer / IT specialist apprentices, instructors, and reviewers
 
@@ -110,3 +110,5 @@ Noten oder Zertifikate werden nicht automatisch aus Checklistenstatus abgeleitet
 
 
 DE: Baseline-Bindung 3.4.3 (20.10.2026), redaktionell; fachliche Dokumentversion unverändert. / EN: Baseline binding 3.4.3 (2026-10-20), editorial; semantic document version unchanged.
+
+DE: Baseline-Bindung 3.4.4, redaktionell; fachliche Dokumentversion unverändert. / EN: Baseline binding 3.4.4 is editorial; semantic document version unchanged.

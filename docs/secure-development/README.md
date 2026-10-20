@@ -1,7 +1,7 @@
 # Generischer Leitfaden Sichere Entwicklung / Generic Secure Development Guide
 
 **Stand / Date:** 2026-10-20
-**Baseline-Version / Baseline version:** 3.4.3
+**Baseline-Version / Baseline version:** 3.4.4
 **Zielgruppe / Audience:** Fachinformatik-Auszubildende, Entwickler*innen, Reviewer und KI-Agenten in Level-2-Projekten / IT specialist apprentices, developers, reviewers, and AI agents in level-2 projects
 
 ## Zweck / Purpose
@@ -97,8 +97,14 @@ remain historical evidence. The linked historical remediation report includes
 validation, corrected source mapping, coverage and new assurance binding.
 Human approval remains pending; no merge, Home sync or rollout.
 
-## Unabhängige Reviewkorrektur / Independent Review Corrections
+## Reviewkorrektur 3.4.3 (historisch) / Review Corrections 3.4.3 (Historical)
 
 DE: Baseline 3.4.3; [aktueller Prüfbericht](../maintenance/gsdb-independent-fixes-2026-10-20.md), [Quellenstand](../maintenance/gsdb-source-review-independent-fixes-2026-10-20.json), [Abdeckungsmatrix](../maintenance/gsdb-coverage-independent-fixes-2026-10-20.md). Historische Berichte und Evidence bleiben erhalten. Menschliche Freigaben bleiben offen.
 
 EN: Baseline 3.4.3; current review, source log and coverage matrix are linked above. Historical reports and evidence remain intact. Human approvals remain open.
+
+## Aktueller P3-Abschluss / Current P3 Closure
+
+DE: Baseline 3.4.4 / Sammelband 2.4.4; [aktueller Bericht](../maintenance/gsdb-p3-followup-2026-10-20.md), [Quellen](../maintenance/gsdb-source-review-p3-followup-2026-10-20.json), [Abdeckung](../maintenance/gsdb-coverage-p3-followup-2026-10-20.md). Alle bisherigen Nachweise bleiben historisch erhalten; menschliche Entscheidungen Open.
+
+EN: Baseline 3.4.4 / compendium 2.4.4; current report, sources and coverage linked above. Preserve earlier evidence; human decisions remain Open.

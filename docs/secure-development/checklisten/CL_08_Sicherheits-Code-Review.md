@@ -12,8 +12,8 @@ This document is organization-neutral and written as a generic training and revi
 ## Checkliste 08 – Sicherheits-Code-Review / Security Code Review
 
 **Dokument-ID / Document ID:** CL-08
-**Version / Version:** 2.0.3
-**Baseline-Version / Baseline version:** 3.4.3
+**Version / Version:** 2.0.4
+**Baseline-Version / Baseline version:** 3.4.4
 **Dokumenttyp / Document type:** Kanonische, wiederverwendbare Pruefvorlage / Canonical reusable review template
 
 ### Nachweisinstanz / Evidence Instance
@@ -371,8 +371,7 @@ configuration. Pure documentation changes are exempt.
   `ECDsaCng`, `ECDiffieHellman`); Python `cryptography` Bibliothek
   (`Fernet` für symmetrisch, `hazmat.primitives` für Low-Level); Go
   `crypto/aes`, `crypto/cipher` (`cipher.NewGCM`), `crypto/ed25519`,
-  `golang.org/x/crypto/chacha20poly1305`. TLS-Konfiguration: TLS 1.3 als
-  Minimum (Fallback TLS 1.2 nur mit AEAD-Ciphern), HSTS-Header
+  `golang.org/x/crypto/chacha20poly1305`. TLS-Konfiguration nach CL-03-07: TLS 1.3 bevorzugen, TLS 1.2 nur im dort geprüften Profil und bis zum dokumentierten Migrationshorizont; HSTS-Header
   (`Strict-Transport-Security: max-age=31536000; includeSubDomains;
   preload`), OCSP Stapling. Schlüsselverwaltung: Hardware Security Module
   (HSM) PKCS#11, Cloud-KMS (AWS KMS, Azure Key Vault, GCP Cloud KMS) oder
@@ -394,14 +393,15 @@ configuration. Pure documentation changes are exempt.
   `ECDsaCng`, `ECDiffieHellman`); Python `cryptography` library (`Fernet`
   for symmetric, `hazmat.primitives` for low-level); Go `crypto/aes`,
   `crypto/cipher` (`cipher.NewGCM`), `crypto/ed25519`,
-  `golang.org/x/crypto/chacha20poly1305`. TLS configuration: TLS 1.3 as
-  minimum (TLS 1.2 fallback only with AEAD ciphers), HSTS header
+  `golang.org/x/crypto/chacha20poly1305`. TLS configuration follows CL-03-07: prefer TLS 1.3, use TLS 1.2 only within its reviewed profile and documented migration horizon; HSTS header
   (`Strict-Transport-Security: max-age=31536000; includeSubDomains;
   preload`), OCSP Stapling. Key management: Hardware Security Module
   (HSM) PKCS#11, cloud KMS (AWS KMS, Azure Key Vault, GCP Cloud KMS), or
   HashiCorp Vault. Key rotation every 90 days for active keys. References:
   NIST SP 800-131A Rev. 2, BSI TR-02102-1, OWASP Cryptographic Storage
   Cheat Sheet, ENISA Cryptographic Guidelines.
+- **DE:** Die obige generische Algorithmusauswahl und 90-Tage-Rotation sind lokale Baseline-Policy, keine pauschale BSI-Empfehlung. ChaCha20, Ed25519 und X25519 nicht als Empfehlung der TR-02102-1 ausgeben. Für BSI-Profilkonformität die konkrete Teilfassung und Parameter prüfen; für TLS gilt ausschließlich CL-03-07 mit TR-02102-2. Abweichungen mit Risiko und Owner dokumentieren.
+- **EN:** The generic algorithm choices and 90-day rotation above are local baseline policy, not blanket BSI recommendations. Do not attribute ChaCha20, Ed25519 or X25519 to TR-02102-1. Assess the specific part and parameters for BSI conformity; TLS follows CL-03-07 and TR-02102-2. Record deviations with risk and owner.
 - **Lernstufe / Learning stage:** _Grundlage, Aufbau oder Vertiefung gemaess Lernpfad dokumentieren. / Record foundation, intermediate, or advanced according to the learning path._
 - **Verantwortliche Rolle / Responsible role:** _Lernende Person, ausbildende Person, Projektverantwortung oder Security-Rolle benennen. / Name learner, instructor, project owner, or security role._
 - **Anwendbarkeit / Applicability:**
@@ -771,6 +771,8 @@ configuration. Pure documentation changes are exempt.
   coverage of documented public interfaces and critical UI flows; every
   new or changed public interface has at least one positive and one
   negative integration test.
+- **DE:** An unsicheren Sprach-/FFI-Grenzen, nativen Abhängigkeiten und Nicht-MSL-Komponenten zusätzlich risikobasiert Fuzzing und geeignete Speicher-/Undefined-Behavior-Sanitizer einsetzen, soweit die Zielplattform dies unterstützt. Andernfalls Plattformgrenze, kompensierende Tests und Restrisiko dokumentieren. Diese lokale Testregel unterstützt die Memory-Safe-Roadmap nach CL-08-13; eine MSL allein beweist keine sichere native Grenze.
+- **EN:** At unsafe language/FFI boundaries, native dependencies and non-MSL components, additionally use risk-based fuzzing and suitable memory/undefined-behaviour sanitizers where the target platform supports them. Otherwise record the platform limit, compensating tests and residual risk. This local testing rule supports the memory-safe roadmap under CL-08-13; MSL alone does not prove native-boundary safety.
 - **Lernstufe / Learning stage:** _Grundlage, Aufbau oder Vertiefung gemaess Lernpfad dokumentieren. / Record foundation, intermediate, or advanced according to the learning path._
 - **Verantwortliche Rolle / Responsible role:** _Lernende Person, ausbildende Person, Projektverantwortung oder Security-Rolle benennen. / Name learner, instructor, project owner, or security role._
 - **Anwendbarkeit / Applicability:**
@@ -1592,4 +1594,6 @@ pull request.
 - **Version 2.0.2 (2026-10-20):** Primärquellen-Nachprüfung und Baseline-Bindung 3.4.1; Details im Quellenabschluss. / Primary-source follow-up and baseline binding 3.4.1; see source closure report.
 
 
-- **Version 2.0.2 (2026-10-20):** Unabhängige Reviewkorrekturen und Baseline 3.4.3; siehe [Prüfbericht](../../maintenance/gsdb-independent-fixes-2026-10-20.md). / Independent review corrections and baseline 3.4.3; see review report.
+- **Version 2.0.3 (2026-10-20):** Unabhängige Reviewkorrekturen und Baseline 3.4.3; siehe [Prüfbericht](../../maintenance/gsdb-independent-fixes-2026-10-20.md). / Independent review corrections and baseline 3.4.3; see review report.
+
+- **Version 2.0.4 (2026-10-20):** Acht P3-Nachbefunde korrigiert, Baseline 3.4.4. / Correct eight P3 follow-up findings, baseline 3.4.4.

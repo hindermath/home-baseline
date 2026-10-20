@@ -1,0 +1,153 @@
+{
+  "schemaVersion": "1.1",
+  "feature": "gsdb-p3-followup",
+  "entries": [
+    {
+      "changeId": "CHG917",
+      "scope": "GSDB 3.4.4: eight-P3 corrections, metadata bindings and new source/coverage/inventory evidence",
+      "decision": "UpdateRequired",
+      "rationale": "Close eight independent P3 findings, preserve prior records and bind a new patch release; human decisions remain Open.",
+      "documents": [
+        "docs/secure-development/Richtlinie_Sichere-Entwicklung.md",
+        "docs/secure-development/baseline-manifest.json",
+        "docs/secure-development/README.md",
+        "docs/secure-development/checklisten/CL_01_Standards-Anwendbarkeit.md",
+        "docs/secure-development/checklisten/CL_07_CRA-Anwendbarkeit.md",
+        "docs/secure-development/checklisten/CL_08_Sicherheits-Code-Review.md",
+        "docs/secure-development/checklisten/CL_09_KI-Codeerzeugung.md",
+        "docs/secure-development/mitgeltende-dokumente/Standardsregister_Sichere-Entwicklung.md",
+        "docs/secure-development/mitgeltende-dokumente/Verzahnung_Richtlinie_Checklisten_Spec-Kit-Presets.md",
+        "docs/maintenance/gsdb-p3-followup-2026-10-20.md",
+        "docs/maintenance/gsdb-source-review-p3-followup-2026-10-20.json",
+        "docs/maintenance/gsdb-coverage-p3-followup-2026-10-20.md",
+        "docs/maintenance/gsdb-inventory-p3-followup-2026-10-20.json",
+        "docs/maintenance/gsdb-claude-review-4802fc55-2026-10-20.md"
+      ],
+      "owner": "Thorsten Hindermann",
+      "audiences": [
+        "Maintainers",
+        "Learners",
+        "Reviewers"
+      ],
+      "readerPaths": [
+        "GSDB README -> P3 follow-up -> current matrix/sources -> new assurance -> human decision"
+      ],
+      "canonicalSource": "docs/secure-development/baseline-manifest.json",
+      "navigationImpact": "Current 3.4.4 follow-up linked; earlier 3.4.3 independent review retained unchanged.",
+      "documentClass": "ActiveSemantic",
+      "languageStrategy": "German first, English second.",
+      "languagePartners": [],
+      "platformAndExampleProof": "macOS Bash first; PowerShell parity; source-text semantic review; no physical assistive-technology acceptance claimed.",
+      "distributionClass": "sourceOnly",
+      "homeSyncRequired": false,
+      "evidence": "docs/maintenance/gsdb-p3-followup-2026-10-20.md",
+      "risk": "Human review pending; source review does not establish product conformity or licensed ISO-text review.",
+      "criticality": "Security",
+      "reevaluationTrigger": "Primary source, preset, baseline, profile or authority change; quarterly review."
+    },
+    {
+      "changeId": "CHG918",
+      "scope": "Compendium regenerated from canonical checklists",
+      "decision": "GeneratedUpdate",
+      "rationale": "Close eight independent P3 findings, preserve prior records and bind a new patch release; human decisions remain Open.",
+      "documents": [
+        "docs/secure-development/Checklistensammelband_Sichere-Entwicklung.md"
+      ],
+      "owner": "Thorsten Hindermann",
+      "audiences": [
+        "Maintainers",
+        "Learners",
+        "Reviewers"
+      ],
+      "readerPaths": [
+        "GSDB README -> P3 follow-up -> current matrix/sources -> new assurance -> human decision"
+      ],
+      "canonicalSource": "docs/secure-development/checklisten/",
+      "navigationImpact": "Current 3.4.4 follow-up linked; earlier 3.4.3 independent review retained unchanged.",
+      "documentClass": "GeneratedReference",
+      "languageStrategy": "German first, English second.",
+      "languagePartners": [],
+      "platformAndExampleProof": "macOS Bash first; PowerShell parity; source-text semantic review; no physical assistive-technology acceptance claimed.",
+      "distributionClass": "sourceOnly",
+      "homeSyncRequired": false,
+      "evidence": "docs/maintenance/gsdb-p3-followup-2026-10-20.md",
+      "risk": "Human review pending; source review does not establish product conformity or licensed ISO-text review.",
+      "criticality": "Security",
+      "reevaluationTrigger": "Primary source, preset, baseline, profile or authority change; quarterly review.",
+      "generatedSource": {
+        "renderer": "scripts/build-secure-development-docs.sh",
+        "path": "docs/secure-development/checklisten/"
+      }
+    },
+    {
+      "changeId": "CHG919",
+      "scope": "Living statistics update",
+      "decision": "GeneratedUpdate",
+      "rationale": "Close eight independent P3 findings, preserve prior records and bind a new patch release; human decisions remain Open.",
+      "documents": [
+        "docs/project-statistics.md"
+      ],
+      "owner": "Thorsten Hindermann",
+      "audiences": [
+        "Maintainers",
+        "Learners",
+        "Reviewers"
+      ],
+      "readerPaths": [
+        "GSDB README -> P3 follow-up -> current matrix/sources -> new assurance -> human decision"
+      ],
+      "canonicalSource": "docs/project-statistics.config.json",
+      "navigationImpact": "Current 3.4.4 follow-up linked; earlier 3.4.3 independent review retained unchanged.",
+      "documentClass": "GeneratedReference",
+      "languageStrategy": "German first, English second.",
+      "languagePartners": [],
+      "platformAndExampleProof": "macOS Bash first; PowerShell parity; source-text semantic review; no physical assistive-technology acceptance claimed.",
+      "distributionClass": "sourceOnly",
+      "homeSyncRequired": false,
+      "evidence": "docs/maintenance/gsdb-p3-followup-2026-10-20.md",
+      "risk": "Human review pending; source review does not establish product conformity or licensed ISO-text review.",
+      "criticality": "Normal",
+      "reevaluationTrigger": "Primary source, preset, baseline, profile or authority change; quarterly review.",
+      "generatedSource": {
+        "renderer": "scripts/render-project-statistics.sh",
+        "path": "docs/project-statistics.config.json"
+      }
+    },
+    {
+      "changeId": "CHG920",
+      "scope": "Four count-only duplicate regressions (34 cases per shell) and canonical agent-template parity",
+      "decision": "UpdateRequired",
+      "rationale": "Close eight independent P3 findings, preserve prior records and bind a new patch release; human decisions remain Open.",
+      "documents": [
+        "docs/man/build-secure-development-docs.1.md",
+        "docs/man/test-gsdb-consolidation.1.md",
+        "docs/scripts/reference.md",
+        "scripts/templates/AGENTS.md.tmpl",
+        "scripts/templates/CLAUDE.md.tmpl",
+        "scripts/templates/GEMINI.md.tmpl",
+        "scripts/templates/copilot-instructions.tmpl"
+      ],
+      "owner": "Thorsten Hindermann",
+      "audiences": [
+        "Maintainers",
+        "Learners",
+        "Reviewers"
+      ],
+      "readerPaths": [
+        "GSDB README -> P3 follow-up -> current matrix/sources -> new assurance -> human decision"
+      ],
+      "canonicalSource": "scripts/",
+      "navigationImpact": "Current 3.4.4 follow-up linked; earlier 3.4.3 independent review retained unchanged.",
+      "documentClass": "ActiveSemantic",
+      "languageStrategy": "German first, English second.",
+      "languagePartners": [],
+      "platformAndExampleProof": "macOS Bash first; PowerShell parity; source-text semantic review; no physical assistive-technology acceptance claimed.",
+      "distributionClass": "homeRuntime",
+      "homeSyncRequired": true,
+      "evidence": "docs/maintenance/gsdb-p3-followup-2026-10-20.md",
+      "risk": "Human review pending; source review does not establish product conformity or licensed ISO-text review.",
+      "criticality": "Security",
+      "reevaluationTrigger": "Primary source, preset, baseline, profile or authority change; quarterly review."
+    }
+  ]
+}

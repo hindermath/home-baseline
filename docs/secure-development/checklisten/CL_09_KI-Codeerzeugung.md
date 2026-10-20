@@ -12,8 +12,8 @@ This document is organization-neutral and written as a generic training and revi
 ## Checkliste 09 – KI-gestuetzte Codeerzeugung / AI-Assisted Code Generation
 
 **Dokument-ID / Document ID:** CL-09
-**Version / Version:** 2.2.3
-**Baseline-Version / Baseline version:** 3.4.3
+**Version / Version:** 2.2.4
+**Baseline-Version / Baseline version:** 3.4.4
 **Dokumenttyp / Document type:** Kanonische, wiederverwendbare Pruefvorlage / Canonical reusable review template
 
 ### Nachweisinstanz / Evidence Instance
@@ -1075,7 +1075,9 @@ whose output flows into production code or production-near scripts.
 - **Akzeptanz / Acceptance:** Schulungsnachweis pro Person in HR/LMS
   vorhanden; Onboarding vor erstem KI-Tool-Zugriff abgeschlossen;
   jährliche Auffrischung dokumentiert; CTF/Spot-the-Bug-Übungen
-  halbjährlich; Erfüllungsquote ≥ 95 % im Quartalsbericht.
+  halbjährlich; Erfüllungsquote ≥ 95 % im Quartalsbericht; als lokale Freigaberegel ausgewiesen. / Local release rule: evidence training per person, onboarding before first AI-tool access, annual refresher, semiannual CTF/spot-the-bug exercises and ≥95% completion in the quarterly report.
+- **DE:** Jahres-/Halbjahresintervalle, Stundenansätze, Zugriffssperre und ≥95-%-Quote sind zusätzliche lokale Baseline-Vorgaben, keine Zahlen- oder Zugangsvorgaben aus KI-VO Art. 4. Dessen geänderte Fassung verlangt Maßnahmen zur Unterstützung der Entwicklung von KI-Kompetenz unter Berücksichtigung der Personen und des Nutzungskontexts, jedoch keine Garantie eines bestimmten individuellen Kompetenzniveaus. Gesetzliche Anwendbarkeit und lokale Schulungsfreigabe getrennt dokumentieren.
+- **EN:** Annual/semiannual intervals, training hours, access suspension and the ≥95% quota are additional local baseline rules, not numerical or access requirements imposed by AI Act Article 4. Its amended wording requires measures supporting development of AI literacy in light of people and use context, without guaranteeing any specific individual literacy level. Record statutory applicability separately from local training clearance.
 - **Lernstufe / Learning stage:** _Grundlage, Aufbau oder Vertiefung gemaess Lernpfad dokumentieren. / Record foundation, intermediate, or advanced according to the learning path._
 - **Verantwortliche Rolle / Responsible role:** _Lernende Person, ausbildende Person, Projektverantwortung oder Security-Rolle benennen. / Name learner, instructor, project owner, or security role._
 - **Anwendbarkeit / Applicability:**
@@ -1511,4 +1513,6 @@ justified as not applicable.
 - **Version 2.2.3 (2026-10-20):** KI-Werkzeugbetrieb getrennt vom Produkt auf regulatorische Rollen pruefen; Baseline 3.4.2. / Screen AI tool operation separately from product regulatory roles; baseline 3.4.2.
 
 
-- **Version 2.2.3 (2026-10-20):** Unabhängige Reviewkorrekturen und Baseline 3.4.3; siehe [Prüfbericht](../../maintenance/gsdb-independent-fixes-2026-10-20.md). / Independent review corrections and baseline 3.4.3; see review report.
+DE: Baseline-Bindung 3.4.3 (20.10.2026), redaktionell; fachliche Dokumentversion unverändert. / EN: Baseline binding 3.4.3 (2026-10-20), editorial; semantic document version unchanged.
+
+- **Version 2.2.4 (2026-10-20):** Acht P3-Nachbefunde korrigiert, Baseline 3.4.4. / Correct eight P3 follow-up findings, baseline 3.4.4.

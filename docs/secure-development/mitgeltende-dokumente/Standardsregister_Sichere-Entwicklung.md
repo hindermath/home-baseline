@@ -1,8 +1,8 @@
 # Standardsregister Sichere Entwicklung / Secure Development Standards Register
 
-**Version / Version:** 1.1.3
+**Version / Version:** 1.1.4
 **Stand / Date:** 2026-10-20
-**Baseline-Version / Baseline version:** 3.4.3
+**Baseline-Version / Baseline version:** 3.4.4
 **Verantwortliche Rolle / Responsible role:** Projekt- oder Ausbildungsverantwortung mit Security-Review / Project or training owner with security review
 **Review-Zyklus / Review cycle:** mindestens quartalsweise und bei neuen Fassungen / at least quarterly and when new versions are published
 
@@ -51,7 +51,7 @@
 | OAuth Security BCP | RFC 9700, 2025 | `Reviewed` | [Primärquelle / primary source](https://www.rfc-editor.org/rfc/rfc9700.html) | 2026-10-19 |
 | DSGVO / GDPR | (EU) 2016/679 consolidated 2016-05-04 000.002 incl. corrigendum 2018-05-23 | `Reviewed` | [Primärquelle / primary source](https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:02016R0679-20160504) | 2026-10-20 |
 
-DE: Der Versuchstag beweist keinen erfolgreichen Volltextreview. `Reviewed` bezeichnet die Prüfung der hier verwendeten Aussagen, `BibliographyVerified` nur Katalog-/Versionsmetadaten, `Partial` einen begrenzten Quellenumfang und `Open` eine fehlende Primärprüfung. Begründungen und Grenzen stehen im [Quellenprotokoll](../../maintenance/gsdb-source-review-independent-fixes-2026-10-20.json). Die alte Statuslogik beschreibt die Verwendung in der Baseline; die Tabelle beschreibt davon getrennt den tatsächlichen Reviewstand.
+DE: Der Versuchstag beweist keinen erfolgreichen Volltextreview. `Reviewed` bezeichnet die Prüfung der hier verwendeten Aussagen, `BibliographyVerified` nur Katalog-/Versionsmetadaten, `Partial` einen begrenzten Quellenumfang und `Open` eine fehlende Primärprüfung. Begründungen und Grenzen stehen im [Quellenprotokoll](../../maintenance/gsdb-source-review-p3-followup-2026-10-20.json). Die alte Statuslogik beschreibt die Verwendung in der Baseline; die Tabelle beschreibt davon getrennt den tatsächlichen Reviewstand.
 
 EN: An attempt date does not establish successful full-text review. Reviewed covers the statements used here, BibliographyVerified covers catalogue/version metadata only, Partial means limited source coverage, and Open means missing primary review. Reasons are recorded in the linked source log. Baseline use and source-review status are separate axes.
 
@@ -100,6 +100,7 @@ EN: An attempt date does not establish successful full-text review. Reviewed cov
 | 1.1.1 | 2026-10-20 | Primärquellen-Nachprüfung und Baseline-Bindung 3.4.1; Details im Quellenabschluss. / Primary-source follow-up and baseline binding 3.4.1; see source closure report. |
 | 1.1.2 | 2026-10-20 | Reviewkorrektur und Quellen-Zugangsgrenze dokumentiert; Baseline 3.4.2. / Record remediation and source-access boundary; baseline 3.4.2. |
 | 1.1.3 | 2026-10-20 | Unabhängige Reviewkorrekturen, Quellenanker und Baseline 3.4.3. / Independent review corrections, source anchors and baseline 3.4.3. |
+| 1.1.4 | 2026-10-20 | P3-Abschluss mit präzisen Quellenzuordnungen; Baseline 3.4.4. / P3 closure with precise source mappings; baseline 3.4.4. |
 
 ## Feste Wiedervorlage / Fixed Review Schedule
 
@@ -132,6 +133,9 @@ DE: Offizielle EUR-Lex-Konsolidierungen sind Lese-/Dokumentationshilfen ohne eig
 
 EN: Official EUR-Lex consolidations are reading/documentation aids without independent legal effect. Authentic Official Journal acts, amendments and corrigenda govern. Reviewing the assertions used is not a complete legal review. The linked CRA acts address vehicle scope, CSIRT dissemination and category descriptions respectively. Earlier source logs remain historical snapshots.
 
-DE: Aktuell 3.4.3: NCSC-NZ-Bytes wurden durch den früheren unabhängigen Claude-Abruf bestätigt und erneut gegen das lokale Original gehasht. Die ältere Zugangsgrenze beschreibt nur den damaligen Codex-Versuch. Maßgeblich sind [aktueller Prüfbericht](../../maintenance/gsdb-independent-fixes-2026-10-20.md) und [Quellenprotokoll](../../maintenance/gsdb-source-review-independent-fixes-2026-10-20.json).
+DE: Aktuell 3.4.3: NCSC-NZ-Bytes wurden durch den früheren unabhängigen Claude-Abruf bestätigt und erneut gegen das lokale Original gehasht. Die ältere Zugangsgrenze beschreibt nur den damaligen Codex-Versuch. Maßgeblich sind [aktueller Prüfbericht](../../maintenance/gsdb-p3-followup-2026-10-20.md) und [Quellenprotokoll](../../maintenance/gsdb-source-review-p3-followup-2026-10-20.json).
 
 EN: Current 3.4.3 records the prior successful independent Claude NCSC NZ retrieval, rehashed against the local original. The older access limit describes that earlier Codex attempt only; see the current report and source log.
+
+
+DE: Aktueller Arbeitsstand 3.4.4; fachlicher P3-Abschluss im verlinkten Bericht. Der Bericht zu 3.4.3 ist eine historische Nachprüfung. / EN: Current working revision 3.4.4; the linked report records P3 closure. Revision 3.4.3 review remains historical.

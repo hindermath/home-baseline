@@ -49,7 +49,7 @@ try {
     $shells = if ($IsWindows) { @('pwsh') } else { @('bash','pwsh') }
     foreach ($shell in $shells) {
         if (-not (Get-Command $shell -ErrorAction SilentlyContinue)) { throw "Required shell missing: ${shell}" }
-        foreach ($case in @('valid','missing','duplicate-item','duplicate-item-same-count','duplicate-id','version','baseline','baseline-duplicate','baseline-body-only','version-prefix','version-duplicate','metadata-crlf','historical-version','profile-doc','compendium','matrix','manifest-version','priority','profile-unknown','profile-registry','manifest-crlf','guideline-de','guideline-en','guideline-de-duplicate','guideline-en-duplicate','guideline-body-only','guideline-prefix','guideline-section-duplicate','guideline-crlf','guideline-history')) {
+        foreach ($case in @('valid','missing','duplicate-item','duplicate-item-same-count','duplicate-id','version','baseline','baseline-duplicate','baseline-body-only','version-prefix','version-duplicate','metadata-crlf','historical-version','profile-doc','compendium','matrix','manifest-version','priority','profile-unknown','profile-registry','manifest-crlf','guideline-de','guideline-en','guideline-de-duplicate','guideline-en-duplicate','guideline-body-only','guideline-prefix','guideline-section-duplicate','guideline-crlf','guideline-history','baseline-valid-duplicate','version-valid-duplicate','guideline-de-valid-duplicate','guideline-en-valid-duplicate')) {
             $fixture = Join-Path $temp "${shell}-${case}"
             Copy-Item $seed $fixture -Recurse
             & git -C $fixture init --quiet
@@ -87,6 +87,8 @@ try {
                     $en = "| Version | $($manifest.guideline.version) |"
                     if (-not $source.Contains($de) -or -not $source.Contains($en)) { throw 'Guideline metadata fixture target missing.' }
                     $source = switch ($case) {
+                        'guideline-de-valid-duplicate' { $source + "`n${de}`n" }
+                        'guideline-en-valid-duplicate' { $source + "`n${en}`n" }
                         'guideline-de' { $source.Replace($de, '| Versionsnummer | 0.0.0 |') }
                         'guideline-en' { $source.Replace($en, '| Version | 0.0.0 |') }
                         'guideline-de-duplicate' { $source.Replace($de, '| Versionsnummer | 0.0.0 |') + "`n$de`n" }
@@ -110,7 +112,7 @@ try {
                     $staleVersion = if ($manifest.baselineVersion -eq '0.0.0') { '0.0.1' } else { '0.0.0' }
                     Set-FixtureText $path ($source.Replace($header, "**Baseline-Version / Baseline version:** ${staleVersion}"))
                 }
-                { $_ -in @('baseline-duplicate','baseline-body-only','version-prefix','version-duplicate','metadata-crlf','historical-version') } {
+                { $_ -in @('baseline-duplicate','baseline-body-only','version-prefix','version-duplicate','metadata-crlf','historical-version','baseline-valid-duplicate','version-valid-duplicate') } {
                     $document = $manifest.relatedDocuments[0]
                     $path = Join-Path $docRoot $document.path
                     $source = Get-Content $path -Raw
@@ -119,6 +121,8 @@ try {
                     if (-not $source.Contains($baselineHeader) -or -not $source.Contains($versionHeader)) { throw 'Metadata fixture header not found.' }
                     # Exact-field mutations expose substring/body false positives without changing the compendium.
                     $source = switch ($case) {
+                        'baseline-valid-duplicate' { $source + "`n${baselineHeader}`n" }
+                        'version-valid-duplicate' { $source + "`n${versionHeader}`n" }
                         'baseline-duplicate' { $source.Replace($baselineHeader, '**Baseline-Version / Baseline version:** 999.0.0') + "`n${baselineHeader}`n" }
                         'baseline-body-only' { $source.Replace($baselineHeader, '') + "`n${baselineHeader}`n" }
                         'version-prefix' { $source.Replace($versionHeader, "${versionHeader}0") }
@@ -156,10 +160,10 @@ try {
                 'duplicate-id' { 'Expected unique checklist IDs CL-01..CL-12.' }
                 'version' { "Active metadata mismatch or duplicate: $($manifest.checklists[0].path) (**Version / Version:**)" }
                 'baseline' { "Active metadata mismatch or duplicate: $($manifest.checklists[0].path) (**Baseline-Version / Baseline version:**)" }
-                { $_ -in @('baseline-duplicate','baseline-body-only') } { "Active metadata mismatch or duplicate: $($manifest.relatedDocuments[0].path) (**Baseline-Version / Baseline version:**)" }
-                { $_ -in @('version-prefix','version-duplicate') } { "Active metadata mismatch or duplicate: $($manifest.relatedDocuments[0].path) (**Version / Version:**)" }
-                { $_ -in @('guideline-de','guideline-de-duplicate','guideline-body-only') } { "Active guideline metadata mismatch or duplicate: $($manifest.guideline.path) (Versionsnummer)" }
-                { $_ -in @('guideline-en','guideline-en-duplicate','guideline-prefix','guideline-section-duplicate') } { "Active guideline metadata mismatch or duplicate: $($manifest.guideline.path) (Version)" }
+                { $_ -in @('baseline-duplicate','baseline-body-only','baseline-valid-duplicate') } { "Active metadata mismatch or duplicate: $($manifest.relatedDocuments[0].path) (**Baseline-Version / Baseline version:**)" }
+                { $_ -in @('version-prefix','version-duplicate','version-valid-duplicate') } { "Active metadata mismatch or duplicate: $($manifest.relatedDocuments[0].path) (**Version / Version:**)" }
+                { $_ -in @('guideline-de','guideline-de-duplicate','guideline-body-only','guideline-de-valid-duplicate') } { "Active guideline metadata mismatch or duplicate: $($manifest.guideline.path) (Versionsnummer)" }
+                { $_ -in @('guideline-en','guideline-en-duplicate','guideline-prefix','guideline-section-duplicate','guideline-en-valid-duplicate') } { "Active guideline metadata mismatch or duplicate: $($manifest.guideline.path) (Version)" }
                 'profile-doc' { 'Profile missing from alignment: project-statistics-fourteen-governance-presets' }
                 'compendium' { 'Generated compendium is stale:' }
                 'profile-unknown' { 'missing-profile' }

@@ -16,7 +16,7 @@ This document is organization-neutral and written as a generic training and revi
 | Feld | Wert |
 |---|---|
 | Titel | Richtlinie zur sicheren Softwareentwicklung |
-| Versionsnummer | 3.4.3 |
+| Versionsnummer | 3.4.4 |
 | Freigabedatum | Ausstehend: menschliche PR-Prüfung |
 | Inkrafttreten | Nach menschlicher Freigabe |
 | Dokumentenklassifikation | öffentlich nutzbare Ausbildungs- und Prüfgrundlage |
@@ -701,6 +701,7 @@ Die Versionshistorie dokumentiert wesentliche Änderungen dieser Richtlinie gem�
 | 3.4.1 | 2026-10-20 | Level-0 Maintainer | Primärquellen-Nachprüfung und Baseline-Bindung 3.4.1; Details im Quellenabschluss. / Primary-source follow-up and baseline binding 3.4.1; see source closure report. |
 | 3.4.2 | 2026-10-20 | Level-0 Maintainer | KI-Rollen, CRA-Pfade und Meldefristen korrigiert. / Corrected AI roles, CRA routes and reporting deadlines. |
 | 3.4.3 | 2026-10-20 | Level-0 Maintainer | Unabhängige Reviewbefunde: Screening, CRA-Rechtsbezüge/Übergang, Cloud-/MSL-Mapping, TLS, DORA und aktive Metadaten. / Independent findings: screening, CRA references/transition, cloud/MSL mapping, TLS, DORA and active metadata. |
+| 3.4.4 | 2026-10-20 | Level-0 Maintainer | Acht P3-Nachbefunde: Historien, Quellenzuordnung, TLS, KI-Kompetenz und gezielte Duplikat-Regressionen. / Eight P3 follow-ups: histories, source mappings, TLS, AI literacy and isolated duplicate regressions. |
 
 **Genehmigung der aktuellen Fassung:**
 
@@ -716,7 +717,7 @@ Die Versionshistorie dokumentiert wesentliche Änderungen dieser Richtlinie gem�
 | Field | Value |
 |---|---|
 | Title | Secure Software Development Guideline |
-| Version | 3.4.3 |
+| Version | 3.4.4 |
 | Release date | Pending human PR review |
 | Effective date | Pending human PR review |
 | Document classification | publicly usable training and review baseline |
@@ -1438,6 +1439,7 @@ The version history documents material changes to this guideline according to IS
 | 3.4.1 | 2026-10-20 | Level-0 Maintainer | Primärquellen-Nachprüfung und Baseline-Bindung 3.4.1; Details im Quellenabschluss. / Primary-source follow-up and baseline binding 3.4.1; see source closure report. |
 | 3.4.2 | 2026-10-20 | Level-0 Maintainer | KI-Rollen, CRA-Pfade und Meldefristen korrigiert. / Corrected AI roles, CRA routes and reporting deadlines. |
 | 3.4.3 | 2026-10-20 | Level-0 Maintainer | Unabhängige Reviewbefunde: Screening, CRA-Rechtsbezüge/Übergang, Cloud-/MSL-Mapping, TLS, DORA und aktive Metadaten. / Independent findings: screening, CRA references/transition, cloud/MSL mapping, TLS, DORA and active metadata. |
+| 3.4.4 | 2026-10-20 | Level-0 Maintainer | Acht P3-Nachbefunde: Historien, Quellenzuordnung, TLS, KI-Kompetenz und gezielte Duplikat-Regressionen. / Eight P3 follow-ups: histories, source mappings, TLS, AI literacy and isolated duplicate regressions. |
 
 **Approval of the current version:**
 
@@ -1472,3 +1474,9 @@ Pruefgrenzen stehen im [Reviewnachweis](../maintenance/gsdb-review-remediation-2
 EN: Baseline 3.4.2 corrects AI tool screening and CRA conformity routes and
 completes the English reporting deadlines. See the linked remediation report
 for corrections, validation and remaining proof boundaries.
+
+## Unabhängiger P3-Abschluss / Independent P3 Closure
+
+DE: Aktuelle Baseline 3.4.4; [Nachprüfung und Grenzen](../maintenance/gsdb-p3-followup-2026-10-20.md). Die Berichte und Evidence für 3.4.3 bleiben historisch erhalten.
+
+EN: Current baseline 3.4.4; see the linked follow-up and limits. Reports and evidence for 3.4.3 remain historical.

@@ -1485,6 +1485,12 @@ or fleet execution remain pending.
 - EN: PR #337, baseline 3.4.3 and compendium 2.4.3 correct one P1, five P2 and scoped P3 findings. Preserve 157 stable IDs; update role/legal references, cloud/MSL mapping, TLS, bilingual metadata and new evidence. Thirty isolated cases per shell; actual results and independent Claude conclusion recorded in the PR. No merge, Home sync or rollout.
 - Evidence: [Prüfbericht / Review record](maintenance/gsdb-independent-fixes-2026-10-20.md).
 
+### 2026-10-20 – GSDB P3-Abschluss / P3 Closure
+
+- DE: Unabhängiger Claude-Review bestätigt alle sechs P1/P2-Behebungen; acht P3-Nachbefunde in Baseline 3.4.4 / Sammelband 2.4.4 korrigiert. 157 IDs erhalten, 34 isolierte Fälle je Shell vorgesehen; konkrete Ergebnisse und erneuter unabhängiger Abschluss im PR. Frühere Nachweise unverändert; kein Merge, Home-Sync oder Rollout.
+- EN: Independent Claude confirmed all six P1/P2 corrections; close eight P3 findings in baseline 3.4.4 / compendium 2.4.4. Preserve 157 IDs; 34 isolated cases per shell, with actual results and renewed independent conclusion in the PR. Earlier evidence unchanged; no merge, Home sync or rollout.
+- Evidence: [P3-Nachtrag / P3 follow-up](maintenance/gsdb-p3-followup-2026-10-20.md).
+
 ## Gesamtstatistik / Overall Statistics
 
 <!-- project-statistics-v2:begin -->
