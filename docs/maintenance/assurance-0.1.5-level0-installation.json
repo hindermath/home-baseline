@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "owner": "Thorsten Hindermann",
+  "snapshot": "Verified installation before Level-0 merge; final merge/Home-sync receipt is in the delivery PR.",
+  "observedAt": "2026-10-20T15:43:37.1828210+00:00",
+  "authority": "Explicit MergeAndSync with admin bypass for package and Level 0; PR337 remains open; no Level-2 rollout.",
+  "preInstallationSourceCommit": "63ab18d636cd1499fcc33463bbafdadb0346afb0",
+  "package": {
+    "testedHead": "f9d6de4aef5d19c6ca2d2ed6275194d5cad9f806",
+    "packagePr": 7,
+    "tag": "v0.1.5",
+    "commit": "55be0314488f1aeedc396f652cb247f9e5678817"
+  },
+  "archiveUrl": "https://github.com/hindermath/spec-kit-preset-secure-development-assurance-governance/archive/refs/tags/v0.1.5.zip",
+  "archiveSha256": "2fde15a7562bea6fcb151a0476a34b41519a6511f4424085da7fe0b1aac637a9",
+  "packageNativeCiRun": 39447353668,
+  "packageNativeCiPassed": 3,
+  "archivePayloadFilesVerified": 19,
+  "installed": {
+    "id": "secure-development-assurance-governance",
+    "version": "0.1.5",
+    "priority": 15,
+    "enabled": true,
+    "manifest_hash": "sha256:e1da9c3b3d3ed91da31d34129db390564d1a3004095aa374a104b5cdec2ce7c7",
+    "fileCount": 19,
+    "contentSha256": "3dc5b2b704aadafe6f0e45674ab74e1572d47fd0c24111d1f9a8f9786f9f8cd4"
+  },
+  "registryNormalizedSha256": "1c17e1d41b0d898a1f246accef4fdf4d23cff0db8c1041ef876bd92086df594d",
+  "previousInstalledLockSha256": "863620eacb8963e8427f9d42e806a7a0373ee23f38114a65f7dbfb15c346581d",
+  "unrelatedPresetCount": 13,
+  "unrelatedPresetFilesByteIdentical": 462,
+  "otherInstalledPayloadBindingsPreserved": true,
+  "matrixBash": "14 exact",
+  "matrixPowerShell": "14 exact",
+  "agentSurfaceTestsPassed": 9,
+  "baselineAndEvidenceTrackedFilesUnchanged": true,
+  "installedStatusBash": "Ready; historical decisions unchanged",
+  "installedStatusPowerShell": "Ready; historical decisions unchanged",
+  "retainedOpenPr": {
+    "head": "15e877e0b932a5d862bb3cb4137e6d9543488e53",
+    "number": 337
+  },
+  "homeSyncRequired": true,
+  "homeSyncScope": "Manifest-selected runtime only; preset cache remains machineLocal",
+  "claimBoundary": "No human product, legal, pilot, general-release or fleet acceptance inferred."
+}
