@@ -1506,6 +1506,18 @@ EN: Resolve the statistics-only merge conflict, retain Assurance 0.1.5 and all
 fourteen preset bindings, preserve historical evidence, revalidate current-head
 consistency and deliver only Level 0 with manifest-bound Home runtime.
 
+### 2026-10-20 - Home-Sync-Fixture: synchrones Git / Synchronous fixture Git
+
+DE: Merge-CI-Fehler beim Loeschen des temporaeren Git-Repositories untersucht.
+Automatische Wartung bleibt aktiv und wird innerhalb der Fixture synchron;
+niedrige GC-Schwelle, Packfile-Nachweis und identischer zweiter HEAD sichern
+den echten No-op-Vertrag. Produktionssync, GSDB und Presets unveraendert.
+[Nachweis / Evidence](maintenance/sync-home-fixture-cleanup-2026-10-20.md).
+
+EN: Bound temporary Git maintenance to the foreground; retain strict teardown,
+real packing and no-op assertions. Deliver only Level 0 and the manifest-selected
+Home test file; no pilot repository changes or rollout.
+
 ## Gesamtstatistik / Overall Statistics
 
 <!-- project-statistics-v2:begin -->
@@ -1516,25 +1528,25 @@ Profil 2 verwendet Git-getrackte Textdateien und sichtbare Git-Aktivitaet. Die W
 
 | Kennzahl / Metric | Wert / Value |
 |---|---:|
-| Textbasis / Text base | 725219 lines |
-| Textdateien / Text files | 3461 |
+| Textbasis / Text base | 725393 lines |
+| Textdateien / Text files | 3463 |
 | Beobachtbarer Zeitraum / Observable period | 2025-10-26..2026-10-20 |
 | Aktivtage / Active days | 128 |
-| Relevante Commits / Relevant commits | 937 |
-| Zeilen je Aktivtag / Lines per active day | 5665.8 |
+| Relevante Commits / Relevant commits | 938 |
+| Zeilen je Aktivtag / Lines per active day | 5667.1 |
 | Peak-Tag im Fenster / Peak day in window | 2026-08-01 / 161357 |
 | Peak-Woche im Fenster / Peak week in window | 2026-07-26 / 284516 |
 | Laengste Serie / Longest streak | 38 days |
 | Speedup vs. 80 lines/day | 70.8x |
 | Speedup vs. 100 lines/day | 56.7x |
-| Methodik / Methodology | v2; source `923b933b5ff1` |
+| Methodik / Methodology | v2; source `4bb04ab8e577` |
 
 ### Artefaktmix / Artifact Mix
 
 ```text
 Produktiv / Production          [#...................]   0.3% | 2237
-Tests                           [#...................]   3.8% | 27858
-Dokumentation / Documentation   [###########.........]  52.9% | 383641
+Tests                           [#...................]   3.8% | 27877
+Dokumentation / Documentation   [###########.........]  52.9% | 383796
 Skripte / Scripts               [##..................]   8.1% | 58504
 Konfiguration / Configuration   [#######.............]  34.8% | 252623
 Daten und Medien / Data and media [....................]   0.0% | 0
@@ -1813,7 +1825,7 @@ Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen
 Scale: 0..10000 lines/day
 Experienced manual [#...................] 80
 Thorsten solo      [#...................] 100
-Visible repository [###########.........] 5665.8
+Visible repository [###########.........] 5667.1
 ```
 
 Die gemeinsame Skala vergleicht Referenzen und sichtbare Lieferdichte. Sie schreibt die Git-Aktivitaet keiner Person oder KI pauschal zu.
@@ -1839,6 +1851,6 @@ DE: Das Fenster beginnt am 2025-10-26 und endet am 2026-10-20. Es enthaelt 128 a
 | 2026-07 | 385430 |
 | 2026-08 | 278228 |
 | 2026-09 | 144845 |
-| 2026-10 | 38860 |
+| 2026-10 | 39034 |
 
 <!-- project-statistics-v2:end -->

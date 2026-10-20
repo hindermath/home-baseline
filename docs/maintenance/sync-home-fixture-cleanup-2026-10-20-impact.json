@@ -1,0 +1,68 @@
+{
+  "entries": [
+    {
+      "changeId": "CHG001",
+      "scope": "temporary-git-fixture-and-review-record",
+      "decision": "UpdateRequired",
+      "rationale": "Run automatic Git maintenance synchronously in the disposable fixture; retain cleanup errors, real packing and no-op checks. No production or pilot policy change.",
+      "documents": "docs/maintenance/sync-home-fixture-cleanup-2026-10-20.md",
+      "owner": "Thorsten Hindermann",
+      "audiences": [
+        "Maintainers",
+        "Reviewers"
+      ],
+      "readerPaths": [
+        "CI failure → fixture review record → test → exact-head delivery evidence"
+      ],
+      "canonicalSource": "scripts/tests/test_sync_home_cli.py",
+      "navigationImpact": "No new entry-page navigation; delivery PR links the focused review record.",
+      "documentClass": "ReviewEvidence",
+      "languageStrategy": "German first and English second in the same review record.",
+      "languagePartners": [
+        "docs/maintenance/sync-home-fixture-cleanup-2026-10-20.md"
+      ],
+      "platformAndExampleProof": "Focused Bash CLI and PowerShell parity tests, complete maintenance regressions, native CI and post-merge check; confirmed results recorded in delivery PR.",
+      "distributionClass": "homeRuntime",
+      "homeSyncRequired": true,
+      "evidence": "docs/maintenance/sync-home-fixture-cleanup-2026-10-20.md",
+      "risk": "Only disposable fixture Git settings change; existing no-op, conflict and cleanup assertions remain. No production Git configuration change.",
+      "criticality": "Usage",
+      "reevaluationTrigger": "Git lifecycle, fixture, sync or distribution contract changes."
+    },
+    {
+      "changeId": "CHG002",
+      "scope": "generated-statistics",
+      "decision": "GeneratedUpdate",
+      "rationale": "Run automatic Git maintenance synchronously in the disposable fixture; retain cleanup errors, real packing and no-op checks. No production or pilot policy change.",
+      "documents": "docs/project-statistics.md",
+      "owner": "Thorsten Hindermann",
+      "audiences": [
+        "Maintainers",
+        "Reviewers"
+      ],
+      "readerPaths": [
+        "CI failure → fixture review record → test → exact-head delivery evidence"
+      ],
+      "canonicalSource": "docs/project-statistics.config.json",
+      "navigationImpact": "No new entry-page navigation; delivery PR links the focused review record.",
+      "documentClass": "ReviewEvidence",
+      "languageStrategy": "German first and English second in the same review record.",
+      "languagePartners": [
+        "docs/maintenance/sync-home-fixture-cleanup-2026-10-20.md"
+      ],
+      "platformAndExampleProof": "Focused Bash CLI and PowerShell parity tests, complete maintenance regressions, native CI and post-merge check; confirmed results recorded in delivery PR.",
+      "distributionClass": "sourceOnly",
+      "homeSyncRequired": false,
+      "evidence": "docs/maintenance/sync-home-fixture-cleanup-2026-10-20.md",
+      "risk": "Only disposable fixture Git settings change; existing no-op, conflict and cleanup assertions remain. No production Git configuration change.",
+      "criticality": "Usage",
+      "reevaluationTrigger": "Git lifecycle, fixture, sync or distribution contract changes.",
+      "generatedSource": {
+        "path": "docs/project-statistics.config.json",
+        "renderer": "bash scripts/render-project-statistics.sh"
+      }
+    }
+  ],
+  "feature": "sync-home-fixture-cleanup",
+  "schemaVersion": "1.1"
+}
