@@ -1506,6 +1506,18 @@ EN: Resolve the statistics-only merge conflict, retain Assurance 0.1.5 and all
 fourteen preset bindings, preserve historical evidence, revalidate current-head
 consistency and deliver only Level 0 with manifest-bound Home runtime.
 
+### 2026-10-20 - Home-Sync-Fixture: synchrones Git / Synchronous fixture Git
+
+DE: Merge-CI-Fehler beim Loeschen des temporaeren Git-Repositories untersucht.
+Automatische Wartung bleibt aktiv und wird innerhalb der Fixture synchron;
+niedrige GC-Schwelle, Packfile-Nachweis und identischer zweiter HEAD sichern
+den echten No-op-Vertrag. Produktionssync, GSDB und Presets unveraendert.
+[Nachweis / Evidence](maintenance/sync-home-fixture-cleanup-2026-10-20.md).
+
+EN: Bound temporary Git maintenance to the foreground; retain strict teardown,
+real packing and no-op assertions. Deliver only Level 0 and the manifest-selected
+Home test file; no pilot repository changes or rollout.
+
 ## Gesamtstatistik / Overall Statistics
 
 <!-- project-statistics-v2:begin -->
