@@ -1,0 +1,231 @@
+{
+  "sourceCommit": "9e51f7e70c00d8cf7aef4a1945731485a0bc3b53",
+  "scope": "Level 0 source-review follow-up only; no merge, Home sync or rollout",
+  "managedFileCount": 37,
+  "files": [
+    {
+      "path": "docs/secure-development/Checklistensammelband_Sichere-Entwicklung.md",
+      "sourceSha256": "281be025004ab293a9679e38e47ff72927253de35812428c16c98932616e8ad5",
+      "consolidatedSha256": "bf525e5e8748f9545e4b989f306526dfec0ea2459fc154c04336cb1d9393d239",
+      "reviewDisposition": "Current source-review follow-up; binary originals unchanged; see source closure for semantic scope."
+    },
+    {
+      "path": "docs/secure-development/Lernpfad_Sichere-Entwicklung_Lehrjahr-1-bis-3.md",
+      "sourceSha256": "42729181376047f7adc18ad8fbfd1aaa143c0991d19fe0d2a46da2432c734bbb",
+      "consolidatedSha256": "1de3e853b0ac0f09cf333923f445938b00332b5c6be684f335e78093469191de",
+      "reviewDisposition": "Current source-review follow-up; binary originals unchanged; see source closure for semantic scope."
+    },
+    {
+      "path": "docs/secure-development/README.md",
+      "sourceSha256": "7e95b75d4a39f15ba566fd04778422a45d741b9da30cf23e260b4b889a670e36",
+      "consolidatedSha256": "5a79a50695a8986621b2cf4c28d553b53ec09fca4a6cf2d679cfadf4d39872dc",
+      "reviewDisposition": "Current source-review follow-up; binary originals unchanged; see source closure for semantic scope."
+    },
+    {
+      "path": "docs/secure-development/Richtlinie_Sichere-Entwicklung.md",
+      "sourceSha256": "af9731a748527b7a097db54bb3e9f515f7b6e279044c77bbfc2169fb07af0ab7",
+      "consolidatedSha256": "95000adf289df7e6947d1b355407638c7980827f62e316e6ed2fe6923c8d3a3d",
+      "reviewDisposition": "Current source-review follow-up; binary originals unchanged; see source closure for semantic scope."
+    },
+    {
+      "path": "docs/secure-development/baseline-manifest.json",
+      "sourceSha256": "6d266fb9ccbad4f03e201f1c231c35241e982ee9c17a2be80286b6b98bb0506f",
+      "consolidatedSha256": "2942867c4f546bf155fb4daf7fbefa201218631ab14cfc821929ff107bb2cc40",
+      "reviewDisposition": "Current source-review follow-up; binary originals unchanged; see source closure for semantic scope."
+    },
+    {
+      "path": "docs/secure-development/checklisten/CL_01_Standards-Anwendbarkeit.md",
+      "sourceSha256": "3a1abfaad7c9c49b67ce9902ae5cb1445f00a399e214b8a58009f4bb5e43a972",
+      "consolidatedSha256": "7e1c06d0131aae1467046f24c783fdac08272dbe4fca2c3deeee0659b7b4c775",
+      "reviewDisposition": "Current source-review follow-up; binary originals unchanged; see source closure for semantic scope."
+    },
+    {
+      "path": "docs/secure-development/checklisten/CL_02_Sichere-Softwarearchitektur.md",
+      "sourceSha256": "6b32be4389bf55b1ef05fb265c7c8160d83a6474d33b7d9053ab4507956f363d",
+      "consolidatedSha256": "81a870613857d39c5703b0a180ae640e66494cceb9d14a01738a747de1502923",
+      "reviewDisposition": "Current source-review follow-up; binary originals unchanged; see source closure for semantic scope."
+    },
+    {
+      "path": "docs/secure-development/checklisten/CL_03_Krypto-Mindestvorgaben.md",
+      "sourceSha256": "45a7031e1556026bab445cda787066d8046b9de453d5776712a62e8f73cc646d",
+      "consolidatedSha256": "2ac4cacefe4428a17dac8d71c4a8aa8fa5af137783b943281abe937eac42a546",
+      "reviewDisposition": "Current source-review follow-up; binary originals unchanged; see source closure for semantic scope."
+    },
+    {
+      "path": "docs/secure-development/checklisten/CL_04_Bedrohungsmodellierung.md",
+      "sourceSha256": "5d4a1754243610349c6638fb6defcbc2e4c91ad88c84f89fed54ea0a7274417b",
+      "consolidatedSha256": "297474c7077b785ba0f1a653e0b6ca6464bb9c6eeea233c37805dd676319eca7",
+      "reviewDisposition": "Current source-review follow-up; binary originals unchanged; see source closure for semantic scope."
+    },
+    {
+      "path": "docs/secure-development/checklisten/CL_05_Lieferkette-Build-Integritaet.md",
+      "sourceSha256": "3e8905ba6952dfbbc18fc181a0dcbad0d3e6f25dfb70c93d89de9815541ae7bd",
+      "consolidatedSha256": "c0d89bd24da07018341710c83b4fa58ea71f6b0fa377fc2edfaef892194c8d32",
+      "reviewDisposition": "Current source-review follow-up; binary originals unchanged; see source closure for semantic scope."
+    },
+    {
+      "path": "docs/secure-development/checklisten/CL_06_Schwachstellenoffenlegung.md",
+      "sourceSha256": "5ded18482b3f250d40a69d2ac63af4a997112a4524399bf8f3a95e885274b827",
+      "consolidatedSha256": "647ebdce62d482e7a061866d37f7e33a63cd0119c885f9f6aff3e5495e240f18",
+      "reviewDisposition": "Current source-review follow-up; binary originals unchanged; see source closure for semantic scope."
+    },
+    {
+      "path": "docs/secure-development/checklisten/CL_07_CRA-Anwendbarkeit.md",
+      "sourceSha256": "f338883a1c11b294035d6ddf71b1d1198f817e352713e3c445f62ab6d95cbbe5",
+      "consolidatedSha256": "43dcb323a613b871bf0aee75ad4a17d2ae12991e1a52c5fe9fd8387aa58cec69",
+      "reviewDisposition": "Current source-review follow-up; binary originals unchanged; see source closure for semantic scope."
+    },
+    {
+      "path": "docs/secure-development/checklisten/CL_08_Sicherheits-Code-Review.md",
+      "sourceSha256": "bc42b6e90fbefb9a65414edcda07ac79e4b7043cff8829e350769f77520e7fff",
+      "consolidatedSha256": "3538444f2e30788060f8b115493a598c2a353d3bbcfbfb33f8cf0f8769d3c0f4",
+      "reviewDisposition": "Current source-review follow-up; binary originals unchanged; see source closure for semantic scope."
+    },
+    {
+      "path": "docs/secure-development/checklisten/CL_09_KI-Codeerzeugung.md",
+      "sourceSha256": "ff9f38b0618010b6dae3b8a0b5225bf26b3415428a8956c9c211be7d93d55ece",
+      "consolidatedSha256": "b626784a0517d67ffa30e14dc158529e15b65c84e77f7c2a426ae5d1660d2b2a",
+      "reviewDisposition": "Current source-review follow-up; binary originals unchanged; see source closure for semantic scope."
+    },
+    {
+      "path": "docs/secure-development/checklisten/CL_10_Sichere-Entwicklungsumgebung.md",
+      "sourceSha256": "98c4be29f281aebfdd95ce96fac6c3622df252764319281c5f016f06b0effc6b",
+      "consolidatedSha256": "837522ecc47b239d1ba548310124897b21196753fe353ebe51cc8eef82ec608e",
+      "reviewDisposition": "Current source-review follow-up; binary originals unchanged; see source closure for semantic scope."
+    },
+    {
+      "path": "docs/secure-development/checklisten/CL_11_Datenschutz-Folgenabschaetzung.md",
+      "sourceSha256": "027db5b8ab64fa39f43b65510d2af2ac6466a99d65e7432e372239d399efebb9",
+      "consolidatedSha256": "d9269f81456be3fc486025241fcbb5a33a915dbe176e21f043217ebdb536c76b",
+      "reviewDisposition": "Current source-review follow-up; binary originals unchanged; see source closure for semantic scope."
+    },
+    {
+      "path": "docs/secure-development/checklisten/CL_12_Agentische-KI-Sandbox.md",
+      "sourceSha256": "25d6c9d822dc18775f6c96184022187b1f8a875a0f404ef1587449e63b316d0e",
+      "consolidatedSha256": "856f16f41cabf1f97a2cd668d4cd425fe955f88122b2893b956f77769c5a6ba7",
+      "reviewDisposition": "Current source-review follow-up; binary originals unchanged; see source closure for semantic scope."
+    },
+    {
+      "path": "docs/secure-development/mitgeltende-dokumente/BCM-Notfallhandbuch.md",
+      "sourceSha256": "051b40067334194bd9a11e25b4b49ff5d8a49a7dcd355e73fa1af8df61d4448a",
+      "consolidatedSha256": "18da243e7e40d597612fdf3b4bef1400e7b1329abbe231354dff9d2e0455a129",
+      "reviewDisposition": "Current source-review follow-up; binary originals unchanged; see source closure for semantic scope."
+    },
+    {
+      "path": "docs/secure-development/mitgeltende-dokumente/Checkliste_Secure-Development-Life-Cycle.md",
+      "sourceSha256": "55bc7f763e4312a2e8521be7b1088b0b2f4ce5446995a38fec20779c7181d22a",
+      "consolidatedSha256": "ef5ba86e5b3626bc28e77a84680acea7e8b55c250d8d06986a4f8ab5be19d6e8",
+      "reviewDisposition": "Current source-review follow-up; binary originals unchanged; see source closure for semantic scope."
+    },
+    {
+      "path": "docs/secure-development/mitgeltende-dokumente/Datenschutzleitlinie.md",
+      "sourceSha256": "26a483a47237eeb300427473fdde490499785635235db8b4f6541f4223b7346a",
+      "consolidatedSha256": "24c3a375aaedde1a8139f6b840b3b327a5de9ce6d8bf5a58f25bc36f4c28b5e5",
+      "reviewDisposition": "Current source-review follow-up; binary originals unchanged; see source closure for semantic scope."
+    },
+    {
+      "path": "docs/secure-development/mitgeltende-dokumente/Gebrauch_kryptografischer_Massnahmen.md",
+      "sourceSha256": "f9bd46db870304ec5822c2a41a01bd51fce1757c7967dcdee79f95a30e5e164c",
+      "consolidatedSha256": "41539a05392f4ca904a45e9bd8594614765753eaa7e1234b6e99406e1e701b6c",
+      "reviewDisposition": "Current source-review follow-up; binary originals unchanged; see source closure for semantic scope."
+    },
+    {
+      "path": "docs/secure-development/mitgeltende-dokumente/Kompetenzprofile_und_Schulungsplan_Sichere-Entwicklung.md",
+      "sourceSha256": "463a2b9a031885dca9e7c1bb9ebe75d71c5b6d81c35b9576471bb8eb85cd70e6",
+      "consolidatedSha256": "b66e80b85865814e636e8c3dd67aa5461e3acc538a897097757b9435e9d881d6",
+      "reviewDisposition": "Current source-review follow-up; binary originals unchanged; see source closure for semantic scope."
+    },
+    {
+      "path": "docs/secure-development/mitgeltende-dokumente/Leitlinie_Sichere-Entwicklungs-Sandbox.md",
+      "sourceSha256": "ce82ef30a95dc627b2b199907c80f97cbd81f5fbcc271007d84e981ec31f794a",
+      "consolidatedSha256": "14eb99fa9427263894a96ce6de84677d415245ab5202ff0fba8a5d828dcaa1fd",
+      "reviewDisposition": "Current source-review follow-up; binary originals unchanged; see source closure for semantic scope."
+    },
+    {
+      "path": "docs/secure-development/mitgeltende-dokumente/Leitlinie_Sichere-Programmierung.md",
+      "sourceSha256": "8b53fc887a299f465201628a9103f7f867309be9d7528903a79306dca69cd07b",
+      "consolidatedSha256": "0d4bdf123343dfb6edda852d3a08a9935cecb9c0fbdfe13cda433433d60c25e4",
+      "reviewDisposition": "Current source-review follow-up; binary originals unchanged; see source closure for semantic scope."
+    },
+    {
+      "path": "docs/secure-development/mitgeltende-dokumente/Leitlinie_Sicheres-Softwaredesign.md",
+      "sourceSha256": "60f8d18d17eff8bb44aa606c0f7dc64e4cf2c212cd32c8d83c063a7c9eb1cf17",
+      "consolidatedSha256": "ed24448fe5eb0eb31504b0bdf92b81c3e39c326bd110d27642669e204a5ae85a",
+      "reviewDisposition": "Current source-review follow-up; binary originals unchanged; see source closure for semantic scope."
+    },
+    {
+      "path": "docs/secure-development/mitgeltende-dokumente/README.md",
+      "sourceSha256": "b105bcd66ed03cc323801ca350fff4e7a3cc7a5b7df3ad1d68e20c3b08d846bd",
+      "consolidatedSha256": "8fca36f4778c5d38ecf17d38e237737ace57480aba37cc0567686d5e016fa24e",
+      "reviewDisposition": "Current source-review follow-up; binary originals unchanged; see source closure for semantic scope."
+    },
+    {
+      "path": "docs/secure-development/mitgeltende-dokumente/Richtlinie_Changemanagement.md",
+      "sourceSha256": "047b713be4abc7bab572f9e4c29f44214730d711e11a73342c4dccaa5317dccd",
+      "consolidatedSha256": "2120caa471a70c40bb038c0041185f808fd2aaf47657bccca5ce093f9b0b3e4d",
+      "reviewDisposition": "Current source-review follow-up; binary originals unchanged; see source closure for semantic scope."
+    },
+    {
+      "path": "docs/secure-development/mitgeltende-dokumente/Richtlinie_Dienstleister-und-Lieferantenbeziehungen.md",
+      "sourceSha256": "603134b15f2c01fedceb6cf330ea07c9d4a796e7758036a006ed5f94448f4333",
+      "consolidatedSha256": "fd40ac697e55f0cbcfad657e800c1bc5a1570db688666bdcc3452baa31dbdae9",
+      "reviewDisposition": "Current source-review follow-up; binary originals unchanged; see source closure for semantic scope."
+    },
+    {
+      "path": "docs/secure-development/mitgeltende-dokumente/Richtlinie_Secure-Development-Life-Cycle.md",
+      "sourceSha256": "23cf77b04ba157fc9e65e296733be1f80335f348d8bbefc80f1001c3f76e78bc",
+      "consolidatedSha256": "0d6af6af22baf5677aa76bdee1423bb8316005566413ca050401f7fff26d0bf9",
+      "reviewDisposition": "Current source-review follow-up; binary originals unchanged; see source closure for semantic scope."
+    },
+    {
+      "path": "docs/secure-development/mitgeltende-dokumente/Richtlinie_Testmanagement.md",
+      "sourceSha256": "2e8bb71bf766dc934f1c7a4df0620e7231dd0c9e3950099bfbd75e406a8d769e",
+      "consolidatedSha256": "00142a0c82e22000caaf327b8c0330aca85a0218063d6cc438c9dc283e84e1f4",
+      "reviewDisposition": "Current source-review follow-up; binary originals unchanged; see source closure for semantic scope."
+    },
+    {
+      "path": "docs/secure-development/mitgeltende-dokumente/Richtlinie_Zugangssteuerung.md",
+      "sourceSha256": "a8aaf50a7cfec2569e60dc4c912012af8a8f9f6cfedf0fd5021d4c0abffe4085",
+      "consolidatedSha256": "db00ffefcffc0d658f2dff654d2a717f0421c34d20a3a9b7d877ecb873c2d7b0",
+      "reviewDisposition": "Current source-review follow-up; binary originals unchanged; see source closure for semantic scope."
+    },
+    {
+      "path": "docs/secure-development/mitgeltende-dokumente/Standardsregister_Sichere-Entwicklung.md",
+      "sourceSha256": "fb759870df78645c56ae8c8d1ee9bc38db348c305cf41943ed963b3037d2548c",
+      "consolidatedSha256": "a0b753c75f9f42d6ef367d3ce4f3433817d9d10af42b2b7566d154fae6165331",
+      "reviewDisposition": "Current source-review follow-up; binary originals unchanged; see source closure for semantic scope."
+    },
+    {
+      "path": "docs/secure-development/mitgeltende-dokumente/THE-CASE-FOR-MEMORY-SAFE-ROADMAPS-TLP-CLEAR.DE.md",
+      "sourceSha256": "286fbb3277b438668146fb40e827ef3beeb6654ffc403a1ab5670d982d19ae76",
+      "consolidatedSha256": "867542e599f946d1a42c1dc1fe0a30455744fea852d43a3dcc84140ee370a719",
+      "reviewDisposition": "Current source-review follow-up; binary originals unchanged; see source closure for semantic scope."
+    },
+    {
+      "path": "docs/secure-development/mitgeltende-dokumente/THE-CASE-FOR-MEMORY-SAFE-ROADMAPS-TLP-CLEAR.EN.md",
+      "sourceSha256": "2898e053a0bf03cfc42f32089a91fb45860afc956dfa45a3f2fc099b849e86a7",
+      "consolidatedSha256": "f1eded9f9c858e874ede948b354e618a4e264298f3c4a3e3753a6627d9231e3c",
+      "reviewDisposition": "Current source-review follow-up; binary originals unchanged; see source closure for semantic scope."
+    },
+    {
+      "path": "docs/secure-development/mitgeltende-dokumente/THE-CASE-FOR-MEMORY-SAFE-ROADMAPS-TLP-CLEAR.pdf",
+      "sourceSha256": "dfe3e72e075738e345aab81a541f72ab4c0cd149235426108090bf48787bc34b",
+      "consolidatedSha256": "dfe3e72e075738e345aab81a541f72ab4c0cd149235426108090bf48787bc34b",
+      "reviewDisposition": "Current source-review follow-up; binary originals unchanged; see source closure for semantic scope."
+    },
+    {
+      "path": "docs/secure-development/mitgeltende-dokumente/THE-CASE-FOR-MEMORY-SAFE-ROADMAPS-TLP-CLEAR.sha256",
+      "sourceSha256": "fc62c1f879c6e17739e17c5114ccc38dea7e8552ddbad55e606e130dd5b696de",
+      "consolidatedSha256": "fc62c1f879c6e17739e17c5114ccc38dea7e8552ddbad55e606e130dd5b696de",
+      "reviewDisposition": "Current source-review follow-up; binary originals unchanged; see source closure for semantic scope."
+    },
+    {
+      "path": "docs/secure-development/mitgeltende-dokumente/Verzahnung_Richtlinie_Checklisten_Spec-Kit-Presets.md",
+      "sourceSha256": "48cd3994c3dd5bdb3ca8e635cd4f33e1fa5f77dbb145a0e00ebe03adef7d75bf",
+      "consolidatedSha256": "c61e3058b05a38235ae2427a0a1d3edc23f24884a24f17b2793fb6b9ae013ec6",
+      "reviewDisposition": "Current source-review follow-up; binary originals unchanged; see source closure for semantic scope."
+    }
+  ],
+  "reviewedAt": "2026-10-20",
+  "previousInventory": "docs/maintenance/gsdb-inventory-2026-10-19.json"
+}

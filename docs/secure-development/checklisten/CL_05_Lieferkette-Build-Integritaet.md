@@ -12,8 +12,8 @@ This document is organization-neutral and written as a generic training and revi
 ## Checkliste 05 – Lieferkette und Build-Integritaet / Supply Chain and Build Integrity
 
 **Dokument-ID / Document ID:** CL-05
-**Version / Version:** 2.0.1
-**Baseline-Version / Baseline version:** 3.4.0
+**Version / Version:** 2.0.2
+**Baseline-Version / Baseline version:** 3.4.1
 **Dokumenttyp / Document type:** Kanonische, wiederverwendbare Pruefvorlage / Canonical reusable review template
 
 ### Nachweisinstanz / Evidence Instance
@@ -1079,8 +1079,8 @@ for internal libraries as soon as more than one team uses them.
 - **DE:** Bindet ein release- oder verteilbares Artefakt ein KI-Modell
   oder einen KI-Dienst ein, wird diese KI-Abhängigkeit in der SBOM bzw.
   im Lieferketten-Evidenz-Dokument geführt. CycloneDX bildet dies über
-  Komponenten des Typs `machine-learning-model` bzw. `service` ab
-  (ML-BOM). Erfasst werden Anbieter, Modell- oder Dienst-Identifikator,
+  Modell-Komponenten des Typs `machine-learning-model` und die eigene
+  `services`-Sammlung für Dienste ab (ML-BOM; eingesetzte Schemaversion prüfen). Erfasst werden Anbieter, Modell- oder Dienst-Identifikator,
   Version oder Endpunkt sowie ein Verweis auf Model Card oder AI-SBOM
   des Anbieters. Für fremdbezogene Modelle wird keine eigene Modell-
   oder Trainingsdaten-SBOM erzeugt; maßgeblich ist die
@@ -1090,7 +1090,8 @@ for internal libraries as soon as more than one team uses them.
 - **EN:** If a release or distributable artefact embeds an AI model or
   AI service, this AI dependency is recorded in the SBOM or the
   supply-chain evidence document. CycloneDX represents this through
-  components of type `machine-learning-model` or `service` (ML-BOM).
+  model components of type `machine-learning-model` and the separate
+  `services` collection (ML-BOM; check the emitted schema version).
   Recorded are the provider, model or service identifier, version or
   endpoint, and a link to the provider's model card or AI-SBOM. For
   externally sourced models no own model or training-data SBOM is
@@ -1285,3 +1286,4 @@ document where applicable.
 
 - **Version 2.0.0 (2026-07-10):** Einheitliches zweiachsiges Statusmodell, stabile CL-IDs, Lernstufe, Rollen-, Evidenz-, Restrisiko- und Neubewertungsfelder sowie klare Trennung zwischen Vorlage und Projektnachweis eingeführt; synchron mit sichere-Entwicklung-Basis 3.0.0. / Added the unified two-axis status model, stable CL IDs, learning-stage, role, evidence, residual-risk, and re-evaluation fields, plus clear separation between template and project evidence; synchronized with secure-development baseline 3.0.0.
 | 2.0.1 | 2026-10-19 | Level-0-Konsolidierung: Baseline-Bindung und fachliche Konsistenz geprüft; Grenzen im Reviewbericht. / Level-0 consolidation: baseline binding and consistency reviewed; limitations recorded in the review report. |
+| 2.0.2 | 2026-10-20 | Primärquellen-Nachprüfung und Baseline-Bindung 3.4.1; Details im Quellenabschluss. / Primary-source follow-up and baseline binding 3.4.1; see source closure report. |

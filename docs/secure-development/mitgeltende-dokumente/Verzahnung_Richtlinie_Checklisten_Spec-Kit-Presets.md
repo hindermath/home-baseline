@@ -1,8 +1,8 @@
 # Verzahnung Richtlinie, Checklisten und Spec-Kit-Presets
 
-**Stand / Date:** 2026-10-19
-**Version / Version:** 1.5.0
-**Baseline-Version / Baseline version:** 3.4.0
+**Stand / Date:** 2026-10-20
+**Version / Version:** 1.5.1
+**Baseline-Version / Baseline version:** 3.4.1
 **Verantwortliche Rolle / Responsible role:** Projekt- oder Ausbildungsverantwortung mit Security-Review / Project or training owner with security review
 **Review-Zyklus / Review cycle:** jährlich und bei wesentlichen Änderungen / annually and after material changes
 **Zielgruppe / Audience:** Alle vier IT-Ausbildungsberufe ab dem ersten Ausbildungsjahr, Entwickler*innen, Reviewer und KI-Agenten / All four IT training occupations from the first training year, developers, reviewers, and AI agents
@@ -110,6 +110,7 @@ Eine Statusangabe ohne Begründung und Evidenzpfad ist kein Auditnachweis. / A s
 | 1.3.0 | 2026-08-02 | Oeffentliches Achterprofil und verwaltetes Elf-Preset-Profil getrennt; optionale Intake-Presets und vier Ausbildungsberufe ergaenzt. / Separated public eight-preset and managed eleven-preset profiles; added optional intake presets and four training occupations. |
 | 1.4.0 | 2026-08-10 | Thorstens verwaltetes Flottenprofil auf zwoelf Presets angehoben; Model Routing auf Prioritaet 61 und seine lokale Modellgrenze ergaenzt. / Raised Thorsten's managed fleet profile to twelve presets; added Model Routing at priority 61 and its local-model boundary. |
 | 1.5.0 | 2026-10-19 | Level-0-Konsolidierung: Baseline-Bindung und fachliche Konsistenz geprüft; Grenzen im Reviewbericht. / Level-0 consolidation: baseline binding and consistency reviewed; limitations recorded in the review report. |
+| 1.5.1 | 2026-10-20 | Primärquellen-Nachprüfung und Baseline-Bindung 3.4.1; Details im Quellenabschluss. / Primary-source follow-up and baseline binding 3.4.1; see source closure report. |
 
 ## Vollständige Profilkomposition / Complete Profile Composition
 

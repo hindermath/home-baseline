@@ -1,0 +1,192 @@
+{
+  "schemaVersion": "1.0",
+  "documentType": "SecureDevelopmentGateEvidence",
+  "contextId": "gsdb-source-closure",
+  "gate": "baseline",
+  "mode": "development",
+  "createdAt": "2026-10-20T06:24:59.474348+00:00",
+  "review": {
+    "owner": "Thorsten Hindermann",
+    "reviewer": "Codex under explicit Level-0 follow-up authority; independent human review pending",
+    "reviewedAt": "2026-10-20T06:24:59.474348+00:00",
+    "reviewDue": "2027-01-10",
+    "residualRisk": "The ten source-access gaps are closed for GSDB assertions. ISO remains bibliographic only; project applicability and human approval remain separate. No risk acceptance inferred.",
+    "reevaluationTrigger": "Primary source, baseline, preset, scope or authority change; quarterly review."
+  },
+  "assessments": [
+    {
+      "id": "DOCUMENT-INTEGRITY",
+      "applicability": "Applicable",
+      "implementation": "Fulfilled",
+      "evidence": "docs/maintenance/gsdb-source-closure-2026-10-20.md"
+    },
+    {
+      "id": "TEN-PRIMARY-SOURCE-REVIEWS",
+      "applicability": "Applicable",
+      "implementation": "Fulfilled",
+      "evidence": "docs/maintenance/gsdb-source-closure-2026-10-20.md"
+    }
+  ],
+  "outcome": "Ready",
+  "externalComparisonBoundary": "HOSK/GWDG: ExternalComparison only; never local evidence",
+  "verificationScope": "Level-0 correction of ten source reviews and document consistency; not licensed ISO full-text review, human acceptance, product conformity or fleet approval.",
+  "runbookApplicability": "N/A",
+  "runbookRationale": "Bounded Level-0 source review in development mode; source-closure report and validation log record procedure and boundaries.",
+  "baselineBinding": {
+    "manifestPath": "docs/secure-development/baseline-manifest.json",
+    "baselineVersion": "3.4.1",
+    "manifestNormalizedSha256": "2942867c4f546bf155fb4daf7fbefa201218631ab14cfc821929ff107bb2cc40",
+    "documentBindings": [
+      {
+        "path": "Richtlinie_Sichere-Entwicklung.md",
+        "version": "3.4.1",
+        "normalizedSha256": "95000adf289df7e6947d1b355407638c7980827f62e316e6ed2fe6923c8d3a3d"
+      },
+      {
+        "path": "Checklistensammelband_Sichere-Entwicklung.md",
+        "version": "2.4.1",
+        "normalizedSha256": "bf525e5e8748f9545e4b989f306526dfec0ea2459fc154c04336cb1d9393d239"
+      },
+      {
+        "path": "checklisten/CL_01_Standards-Anwendbarkeit.md",
+        "version": "2.0.2",
+        "normalizedSha256": "7e1c06d0131aae1467046f24c783fdac08272dbe4fca2c3deeee0659b7b4c775"
+      },
+      {
+        "path": "checklisten/CL_02_Sichere-Softwarearchitektur.md",
+        "version": "2.0.2",
+        "normalizedSha256": "81a870613857d39c5703b0a180ae640e66494cceb9d14a01738a747de1502923"
+      },
+      {
+        "path": "checklisten/CL_03_Krypto-Mindestvorgaben.md",
+        "version": "2.0.2",
+        "normalizedSha256": "2ac4cacefe4428a17dac8d71c4a8aa8fa5af137783b943281abe937eac42a546"
+      },
+      {
+        "path": "checklisten/CL_04_Bedrohungsmodellierung.md",
+        "version": "2.0.2",
+        "normalizedSha256": "297474c7077b785ba0f1a653e0b6ca6464bb9c6eeea233c37805dd676319eca7"
+      },
+      {
+        "path": "checklisten/CL_05_Lieferkette-Build-Integritaet.md",
+        "version": "2.0.2",
+        "normalizedSha256": "c0d89bd24da07018341710c83b4fa58ea71f6b0fa377fc2edfaef892194c8d32"
+      },
+      {
+        "path": "checklisten/CL_06_Schwachstellenoffenlegung.md",
+        "version": "2.0.2",
+        "normalizedSha256": "647ebdce62d482e7a061866d37f7e33a63cd0119c885f9f6aff3e5495e240f18"
+      },
+      {
+        "path": "checklisten/CL_07_CRA-Anwendbarkeit.md",
+        "version": "2.0.2",
+        "normalizedSha256": "43dcb323a613b871bf0aee75ad4a17d2ae12991e1a52c5fe9fd8387aa58cec69"
+      },
+      {
+        "path": "checklisten/CL_08_Sicherheits-Code-Review.md",
+        "version": "2.0.2",
+        "normalizedSha256": "3538444f2e30788060f8b115493a598c2a353d3bbcfbfb33f8cf0f8769d3c0f4"
+      },
+      {
+        "path": "checklisten/CL_09_KI-Codeerzeugung.md",
+        "version": "2.2.2",
+        "normalizedSha256": "b626784a0517d67ffa30e14dc158529e15b65c84e77f7c2a426ae5d1660d2b2a"
+      },
+      {
+        "path": "checklisten/CL_10_Sichere-Entwicklungsumgebung.md",
+        "version": "2.0.2",
+        "normalizedSha256": "837522ecc47b239d1ba548310124897b21196753fe353ebe51cc8eef82ec608e"
+      },
+      {
+        "path": "checklisten/CL_11_Datenschutz-Folgenabschaetzung.md",
+        "version": "2.0.2",
+        "normalizedSha256": "d9269f81456be3fc486025241fcbb5a33a915dbe176e21f043217ebdb536c76b"
+      },
+      {
+        "path": "checklisten/CL_12_Agentische-KI-Sandbox.md",
+        "version": "2.2.2",
+        "normalizedSha256": "856f16f41cabf1f97a2cd668d4cd425fe955f88122b2893b956f77769c5a6ba7"
+      },
+      {
+        "path": "mitgeltende-dokumente/BCM-Notfallhandbuch.md",
+        "version": "1.0.2",
+        "normalizedSha256": "18da243e7e40d597612fdf3b4bef1400e7b1329abbe231354dff9d2e0455a129"
+      },
+      {
+        "path": "mitgeltende-dokumente/Checkliste_Secure-Development-Life-Cycle.md",
+        "version": "1.0.2",
+        "normalizedSha256": "ef5ba86e5b3626bc28e77a84680acea7e8b55c250d8d06986a4f8ab5be19d6e8"
+      },
+      {
+        "path": "mitgeltende-dokumente/Datenschutzleitlinie.md",
+        "version": "1.0.2",
+        "normalizedSha256": "24c3a375aaedde1a8139f6b840b3b327a5de9ce6d8bf5a58f25bc36f4c28b5e5"
+      },
+      {
+        "path": "mitgeltende-dokumente/Gebrauch_kryptografischer_Massnahmen.md",
+        "version": "1.0.2",
+        "normalizedSha256": "41539a05392f4ca904a45e9bd8594614765753eaa7e1234b6e99406e1e701b6c"
+      },
+      {
+        "path": "mitgeltende-dokumente/Kompetenzprofile_und_Schulungsplan_Sichere-Entwicklung.md",
+        "version": "1.0.2",
+        "normalizedSha256": "b66e80b85865814e636e8c3dd67aa5461e3acc538a897097757b9435e9d881d6"
+      },
+      {
+        "path": "mitgeltende-dokumente/Leitlinie_Sichere-Entwicklungs-Sandbox.md",
+        "version": "1.0.2",
+        "normalizedSha256": "14eb99fa9427263894a96ce6de84677d415245ab5202ff0fba8a5d828dcaa1fd"
+      },
+      {
+        "path": "mitgeltende-dokumente/Leitlinie_Sichere-Programmierung.md",
+        "version": "1.0.2",
+        "normalizedSha256": "0d4bdf123343dfb6edda852d3a08a9935cecb9c0fbdfe13cda433433d60c25e4"
+      },
+      {
+        "path": "mitgeltende-dokumente/Leitlinie_Sicheres-Softwaredesign.md",
+        "version": "1.0.2",
+        "normalizedSha256": "ed24448fe5eb0eb31504b0bdf92b81c3e39c326bd110d27642669e204a5ae85a"
+      },
+      {
+        "path": "mitgeltende-dokumente/Richtlinie_Changemanagement.md",
+        "version": "1.0.2",
+        "normalizedSha256": "2120caa471a70c40bb038c0041185f808fd2aaf47657bccca5ce093f9b0b3e4d"
+      },
+      {
+        "path": "mitgeltende-dokumente/Richtlinie_Dienstleister-und-Lieferantenbeziehungen.md",
+        "version": "1.0.2",
+        "normalizedSha256": "fd40ac697e55f0cbcfad657e800c1bc5a1570db688666bdcc3452baa31dbdae9"
+      },
+      {
+        "path": "mitgeltende-dokumente/Richtlinie_Secure-Development-Life-Cycle.md",
+        "version": "1.2.2",
+        "normalizedSha256": "0d6af6af22baf5677aa76bdee1423bb8316005566413ca050401f7fff26d0bf9"
+      },
+      {
+        "path": "mitgeltende-dokumente/Richtlinie_Testmanagement.md",
+        "version": "1.0.2",
+        "normalizedSha256": "00142a0c82e22000caaf327b8c0330aca85a0218063d6cc438c9dc283e84e1f4"
+      },
+      {
+        "path": "mitgeltende-dokumente/Richtlinie_Zugangssteuerung.md",
+        "version": "1.0.2",
+        "normalizedSha256": "db00ffefcffc0d658f2dff654d2a717f0421c34d20a3a9b7d877ecb873c2d7b0"
+      },
+      {
+        "path": "mitgeltende-dokumente/Standardsregister_Sichere-Entwicklung.md",
+        "version": "1.1.1",
+        "normalizedSha256": "a0b753c75f9f42d6ef367d3ce4f3433817d9d10af42b2b7566d154fae6165331"
+      },
+      {
+        "path": "mitgeltende-dokumente/Verzahnung_Richtlinie_Checklisten_Spec-Kit-Presets.md",
+        "version": "1.5.1",
+        "normalizedSha256": "c61e3058b05a38235ae2427a0a1d3edc23f24884a24f17b2793fb6b9ae013ec6"
+      },
+      {
+        "path": "Lernpfad_Sichere-Entwicklung_Lehrjahr-1-bis-3.md",
+        "version": "1.0.2",
+        "normalizedSha256": "1de3e853b0ac0f09cf333923f445938b00332b5c6be684f335e78093469191de"
+      }
+    ]
+  }
+}

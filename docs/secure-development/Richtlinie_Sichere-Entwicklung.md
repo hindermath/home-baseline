@@ -16,7 +16,7 @@ This document is organization-neutral and written as a generic training and revi
 | Feld | Wert |
 |---|---|
 | Titel | Richtlinie zur sicheren Softwareentwicklung |
-| Versionsnummer | 3.4.0 |
+| Versionsnummer | 3.4.1 |
 | Freigabedatum | Ausstehend: menschliche PR-Prüfung |
 | Inkrafttreten | Nach menschlicher Freigabe |
 | Dokumentenklassifikation | öffentlich nutzbare Ausbildungs- und Prüfgrundlage |
@@ -696,6 +696,7 @@ Die Versionshistorie dokumentiert wesentliche Änderungen dieser Richtlinie gem�
 | 3.2.0 | 19.07.2026 | Projekt- oder Ausbildungsverantwortung mit Security-Review | Verbindliches Spec-Kit-Standardprofil auf acht Governance-Presets erweitert; `parallel-autonomous-run-governance` v0.2.0 ergänzt und Installation klar von Kampagnenstart und Berechtigungen getrennt; CL_09, CL_12 und Preset-Verzahnung synchronisiert. |
 
 | 3.4.0 | 19.10.2026 | Level-0 Maintainer | Konsolidierung von Quellenstand, Statuslogik und Profilverzahnung; menschliche Freigabe ausstehend. |
+| 3.4.1 | 2026-10-20 | Primärquellen-Nachprüfung und Baseline-Bindung 3.4.1; Details im Quellenabschluss. / Primary-source follow-up and baseline binding 3.4.1; see source closure report. |
 
 **Genehmigung der aktuellen Fassung:**
 
@@ -1418,6 +1419,7 @@ The version history documents material changes to this guideline according to IS
 | 3.2.0 | 2026-07-19 | Project or training owner with security review | Expanded the binding Spec Kit standard profile to eight governance presets; added `parallel-autonomous-run-governance` v0.2.0 and clearly separated installation from campaign start and permissions; synchronized CL_09, CL_12, and preset alignment. |
 
 | 3.4.0 | 2026-10-19 | Level-0 Maintainer | Consolidated source review, status logic, and profile alignment; human approval pending. |
+| 3.4.1 | 2026-10-20 | Primärquellen-Nachprüfung und Baseline-Bindung 3.4.1; Details im Quellenabschluss. / Primary-source follow-up and baseline binding 3.4.1; see source closure report. |
 
 **Approval of the current version:**
 
@@ -1433,3 +1435,12 @@ The version history documents material changes to this guideline according to IS
 DE: Bearbeitungsstand 2026-10-19. Fachliche Aktualität und Quellenzugang stehen im [Standardsregister](mitgeltende-dokumente/Standardsregister_Sichere-Entwicklung.md). Der quartalsweise GSDB-Review ergänzt den jährlichen Preset-Review. Ein technischer Erfolg ersetzt keine menschliche Freigabe. Die [Verzahnung](mitgeltende-dokumente/Verzahnung_Richtlinie_Checklisten_Spec-Kit-Presets.md) beschreibt die Profile 8/12/13/14 und die getrennten Aufgaben von GSDB, Security Governance, Assurance und Statistik.
 
 EN: Working revision 2026-10-19. Subject-matter currency and source access are recorded in the standards register. Quarterly GSDB review supplements annual preset review. Technical success does not replace human approval. The alignment document describes profiles 8/12/13/14 and separates GSDB, Security Governance, Assurance, and statistics responsibilities.
+
+
+## Quellenabschluss 20.10.2026 / Source Closure 2026-10-20
+
+**DE:** Für regulatorisches Screening gilt der aktuelle Kontext in CL-01-12 mit der KI-VO-Konsolidierung vom 27.07.2026 und dem geltenden deutschen BSIG. CRA-Anhangsnummern, Support-/Update-/Aufbewahrungsfristen und Konformitätspfade sind in CL-07 einzeln abzugleichen. TR-02102 Teil 1–4 liegen als 2026-01 zugrunde; CL-03-14 bindet den PQC-Plan an Schutzbedarf und Migrationshorizonte. BSI C3A v1.0 (27.04.2026) behandelt Cloud-Autonomie (SOV-1 bis SOV-6), setzt C5 voraus und ist selbst nicht bindend. C5:2026 v1.1.0 (11.08.2026) behandelt Cloud-Sicherheits-Assurance. C3A ersetzt weder C5-Prüfung noch DSGVO-Transferprüfung; C5 ist keine pauschale souveräne Cloud-Freigabe. Evidence nennt Dienst/Region, Testattyp, Zeitraum, Abweichungen, ergänzende Kundenkontrollen und die ausgewählten Autonomie-Kriterien.
+
+**EN:** Regulatory screening uses the current CL-01-12 context, including the 2026-07-27 AI Act consolidation and German BSIG in force. Check CRA annex numbering, support/update/retention clocks and conformity paths individually under CL-07. TR-02102 parts 1–4 use edition 2026-01; CL-03-14 binds PQC planning to protection needs and migration horizons. BSI C3A v1.0 (2026-04-27) addresses cloud autonomy (SOV-1 to SOV-6), presupposes C5 and is not binding itself. C5:2026 v1.1.0 (2026-08-11) addresses cloud security assurance. C3A replaces neither C5 assessment nor GDPR transfer review; C5 does not provide blanket sovereign-cloud approval. Evidence identifies service/region, report type, period, exceptions, complementary customer controls and selected autonomy criteria.
+
+[Quellenabschluss mit Primärnachweisen / Source closure with primary evidence](../maintenance/gsdb-source-closure-2026-10-20.md).

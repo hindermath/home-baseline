@@ -1,7 +1,7 @@
 # Generischer Leitfaden Sichere Entwicklung / Generic Secure Development Guide
 
-**Stand / Date:** 2026-10-19
-**Baseline-Version / Baseline version:** 3.4.0
+**Stand / Date:** 2026-10-20
+**Baseline-Version / Baseline version:** 3.4.1
 **Zielgruppe / Audience:** Fachinformatik-Auszubildende, Entwickler*innen, Reviewer und KI-Agenten in Level-2-Projekten / IT specialist apprentices, developers, reviewers, and AI agents in level-2 projects
 
 ## Zweck / Purpose
@@ -75,6 +75,12 @@
 
 ## Reviewstand / Review State
 
-DE: Der Level-0-Review vom 19. Oktober 2026 korrigiert strukturelle und fachliche Befunde. Nicht erreichbare Primärquellen bleiben offen; die Baseline ist deshalb nicht uneingeschränkt fachlich freigegeben. [Prüfbericht](../maintenance/gsdb-level0-review-2026-10-19.md).
+DE: Der Level-0-Review vom 19. Oktober 2026 korrigiert strukturelle und fachliche Befunde. Die damaligen Quellenlücken sind im unten verlinkten Quellenabschluss vom 20. Oktober geklärt; der Erstreview bleibt als Historie erhalten. [Prüfbericht](../maintenance/gsdb-level0-review-2026-10-19.md).
 
-EN: The Level-0 review of 19 October 2026 corrects structural and technical findings. Unavailable primary sources remain open; the baseline therefore has no unconditional subject-matter approval. [Review report](../maintenance/gsdb-level0-review-2026-10-19.md).
+EN: The Level-0 review of 19 October 2026 corrects structural and technical findings. The initial gaps are resolved by the 20 October source closure below; the original report remains historical evidence. [Review report](../maintenance/gsdb-level0-review-2026-10-19.md).
+
+## Quellenabschluss / Source Closure
+
+**DE:** Baseline 3.4.1 schließt die sieben offenen und drei teilweisen Quellenprüfungen des Erstreviews. [Aktueller Bericht](../maintenance/gsdb-source-closure-2026-10-20.md), [Quellenregister](../maintenance/gsdb-source-review-2026-10-20.json), [Abdeckungsmatrix](../maintenance/gsdb-coverage-2026-10-20.md). Die alten Nachweise dokumentieren den damaligen Stand. Menschliche PR-Prüfung und ISO-Volltextprüfung bleiben getrennt; kein Merge, Home-Sync oder Rollout.
+
+**EN:** Baseline 3.4.1 closes the initial seven Open and three Partial source checks. See current report, source record and coverage above. Historical evidence retains its original result. Human PR review and licensed ISO-text review remain separate; no merge, Home sync or rollout.

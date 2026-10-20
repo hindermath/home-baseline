@@ -12,8 +12,8 @@ This document is organization-neutral and written as a generic training and revi
 ## Checkliste 03 – Kryptografische Mindestvorgaben / Cryptographic Minimum Requirements
 
 **Dokument-ID / Document ID:** CL-03
-**Version / Version:** 2.0.1
-**Baseline-Version / Baseline version:** 3.4.0
+**Version / Version:** 2.0.2
+**Baseline-Version / Baseline version:** 3.4.1
 **Dokumenttyp / Document type:** Kanonische, wiederverwendbare Pruefvorlage / Canonical reusable review template
 
 ### Nachweisinstanz / Evidence Instance
@@ -184,7 +184,7 @@ indirectly via libraries, frameworks, or external services.
 #### CL-03-02: Asymmetrische Verschlüsselung und Signatur / Asymmetric Encryption and Signature
 
 - **DE:** RSA mit mindestens 3072 Bit, ECDSA mit Kurve P-256 (secp256r1) oder höher,
-  oder Ed25519 (bevorzugt für neue Signaturen). Für Schlüsseltausch: ECDH (P-256
+  oder Ed25519 nach begründeter Profilentscheidung. Für Schlüsseltausch: ECDH (P-256
   oder höher) oder X25519. RSA-Verschlüsselung verwendet RSA-OAEP mit SHA-256
   (`Cipher.getInstance("RSA/ECB/OAEPWithSHA-256AndMGF1Padding")` in Java,
   `RSA.encrypt(..., padding=OAEP(SHA256()))` in Python `cryptography`,
@@ -193,7 +193,7 @@ indirectly via libraries, frameworks, or external services.
   oder einen geprüften CSPRNG verwenden, um Nonce-Kollisionen zu vermeiden.
   Verbotene Kurven: P-192 (secp192r1), brainpoolP160 und kürzere.
 - **EN:** RSA with at least 3072 bit, ECDSA with curve P-256 (secp256r1) or
-  higher, or Ed25519 (preferred for new signatures). For key exchange: ECDH
+  higher, or Ed25519 under a justified profile decision. For key exchange: ECDH
   (P-256 or higher) or X25519. RSA encryption uses RSA-OAEP with SHA-256
   (`Cipher.getInstance("RSA/ECB/OAEPWithSHA-256AndMGF1Padding")` in Java,
   `RSA.encrypt(..., padding=OAEP(SHA256()))` in Python `cryptography`,
@@ -201,6 +201,12 @@ indirectly via libraries, frameworks, or external services.
   for new applications. ECDSA signatures should use RFC 6979 (deterministic)
   or a vetted CSPRNG to avoid nonce collisions. Forbidden curves: P-192
   (secp192r1), brainpoolP160, and shorter.
+- **DE:** Diese Auswahl ist lokale Baseline-Policy, keine pauschale BSI-Freigabe.
+  Je Protokoll die konkrete TR-02102-Teilfassung, Parameter und Laufzeit prüfen;
+  generische Bibliotheksunterstützung beweist keine Profilkonformität.
+- **EN:** This selection is local baseline policy, not blanket BSI approval.
+  Check the relevant TR-02102 part, parameters and validity period per protocol;
+  library support does not establish profile conformity.
 - **Akzeptanz / Acceptance:** Algorithmus, Kurve, Padding und Bibliothek je
   Modul dokumentiert. / Algorithm, curve, padding, and library documented
   per module.
@@ -696,33 +702,9 @@ indirectly via libraries, frameworks, or external services.
 
 #### CL-03-14: Vorbereitung auf Post-Quanten-Krypto / Preparing for Post-Quantum Crypto
 
-- **DE:** Für langlebige Daten (Aufbewahrung > 5 Jahre) und langlebige
-  Signaturen wird die Migration auf quantensichere Verfahren beobachtet:
-  NIST PQC-Standards FIPS 203 (ML-KEM, vormals Kyber, für Schlüsseltausch),
-  FIPS 204 (ML-DSA, vormals Dilithium, für Signaturen) und FIPS 205
-  (SLH-DSA, vormals SPHINCS+, hash-basierte Signaturen). Verfügbare
-  Bibliotheken: liboqs (Open Quantum Safe) mit Bindings für C, Python,
-  Java und Go; BouncyCastle ab Version 1.78; AWS-LC und Cloudflare
-  CIRCL. Hybrid-Modi (klassisch + PQC, z. B. X25519+ML-KEM) werden für
-  Übergangsphase bevorzugt. Ein Übergangsplan benennt: betroffene
-  Datenklassen (z. B. archivierte Verträge, signierte Software-Releases),
-  Zeitfenster („harvest now, decrypt later"-Risiko), bevorzugte PQC-
-  Verfahren je Anwendungsfall, Pilotprojekt und Roll-out-Zeitplan.
-- **EN:** For long-lived data (retention > 5 years) and long-lived
-  signatures, the migration to quantum-safe schemes is tracked: NIST
-  PQC standards FIPS 203 (ML-KEM, formerly Kyber, for key exchange),
-  FIPS 204 (ML-DSA, formerly Dilithium, for signatures), and FIPS 205
-  (SLH-DSA, formerly SPHINCS+, hash-based signatures). Available
-  libraries: liboqs (Open Quantum Safe) with bindings for C, Python,
-  Java, and Go; BouncyCastle from version 1.78; AWS-LC and Cloudflare
-  CIRCL. Hybrid modes (classical + PQC, e.g. X25519+ML-KEM) are
-  preferred during the transition. A transition plan names: affected
-  data classes (e.g. archived contracts, signed software releases),
-  exposure window ("harvest now, decrypt later" risk), preferred PQC
-  schemes per use case, pilot project, and roll-out schedule.
-- **Akzeptanz / Acceptance:** S-ADR oder Notiz mit Migrationspfad,
-  Datenklassifikation und Zeitplan vorhanden. / S-ADR or note with
-  migration path, data classification, and schedule available.
+- **DE:** Krypto-Inventar und risikobasierten PQC-Migrationsplan führen, nicht nur Entwicklungen beobachten. TR-02102-1, 2026-01, Abschnitt 2.1 empfiehlt alleinige klassische Schlüsseleinigung nur bis Ende 2031, bei sehr hohem Schutzbedarf Umstellung bis Ende 2030; für klassische Signaturen wird derzeit Ende 2035 als Horizont genannt. Langfristig vertrauliche Daten wegen „Store Now, Decrypt Later“ schon heute prüfen. Teil 2 empfiehlt TLS 1.2 nur bis Ende 2031. Empfohlene PQ-Verfahren geeignet hybrid kombinieren; Standardsstatus, Sicherheitsparameter, Protokollprofil und Implementierungsreife getrennt bewerten. Der Plan nennt Owner, Datenklassen, Abhängigkeiten, Zieltermine, Tests und Wiedervorlage; Bibliotheksverfügbarkeit ist keine Freigabe.
+- **EN:** Maintain a crypto inventory and risk-based PQC migration plan rather than merely tracking developments. TR-02102-1, 2026-01, section 2.1 recommends standalone classical key agreement only until end-2031, with migration by end-2030 for very high protection needs; end-2035 is the current horizon for classical signatures. Assess long-term confidentiality now because of store-now-decrypt-later risk. Part 2 recommends TLS 1.2 only until end-2031. Combine recommended PQ mechanisms appropriately in hybrid form; assess standardisation, parameters, protocol profile and implementation maturity separately. Record owner, data classes, dependencies, dates, tests and reevaluation; library availability is not approval.
+- **Akzeptanz / Acceptance:** Inventar und S-ADR mit teilfassungsgebundenem Migrationsplan und Wiedervorlage vorhanden. / Inventory and S-ADR provide a part/version-bound migration plan and reevaluation.
 - **Lernstufe / Learning stage:** _Grundlage, Aufbau oder Vertiefung gemaess Lernpfad dokumentieren. / Record foundation, intermediate, or advanced according to the learning path._
 - **Verantwortliche Rolle / Responsible role:** _Lernende Person, ausbildende Person, Projektverantwortung oder Security-Rolle benennen. / Name learner, instructor, project owner, or security role._
 - **Anwendbarkeit / Applicability:**
@@ -925,3 +907,4 @@ stored in the security evidence set.
 
 - **Version 2.0.0 (2026-07-10):** Einheitliches zweiachsiges Statusmodell, stabile CL-IDs, Lernstufe, Rollen-, Evidenz-, Restrisiko- und Neubewertungsfelder sowie klare Trennung zwischen Vorlage und Projektnachweis eingeführt; synchron mit sichere-Entwicklung-Basis 3.0.0. / Added the unified two-axis status model, stable CL IDs, learning-stage, role, evidence, residual-risk, and re-evaluation fields, plus clear separation between template and project evidence; synchronized with secure-development baseline 3.0.0.
 | 2.0.1 | 2026-10-19 | Level-0-Konsolidierung: Baseline-Bindung und fachliche Konsistenz geprüft; Grenzen im Reviewbericht. / Level-0 consolidation: baseline binding and consistency reviewed; limitations recorded in the review report. |
+| 2.0.2 | 2026-10-20 | Primärquellen-Nachprüfung und Baseline-Bindung 3.4.1; Details im Quellenabschluss. / Primary-source follow-up and baseline binding 3.4.1; see source closure report. |

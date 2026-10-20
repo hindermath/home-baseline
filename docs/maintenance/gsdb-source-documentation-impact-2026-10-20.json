@@ -1,0 +1,137 @@
+{
+  "schemaVersion": "1.1",
+  "feature": "gsdb-source-closure",
+  "entries": [
+    {
+      "changeId": "CHG905",
+      "scope": "Ten-source review closure and GSDB 3.4.1 canonical correction",
+      "decision": "UpdateRequired",
+      "rationale": "Close ten source-review gaps with bilingual canonical corrections; retain historical evidence and independent human approval.",
+      "documents": [
+        "docs/secure-development/README.md",
+        "docs/maintenance/gsdb-source-closure-2026-10-20.md",
+        "docs/maintenance/gsdb-source-review-2026-10-20.json",
+        "docs/maintenance/gsdb-coverage-2026-10-20.md"
+      ],
+      "owner": "Thorsten Hindermann",
+      "audiences": [
+        "Maintainers",
+        "Learners",
+        "Reviewers"
+      ],
+      "readerPaths": [
+        "README -> GSDB -> alignment -> review evidence"
+      ],
+      "canonicalSource": "docs/secure-development/baseline-manifest.json",
+      "navigationImpact": "GSDB entry points to current source closure, source log, coverage and new assurance context.",
+      "documentClass": "ActiveSemantic",
+      "languageStrategy": "German first, English second.",
+      "languagePartners": [],
+      "platformAndExampleProof": "macOS Bash first; PowerShell parity; source-text semantic review; no physical assistive-technology acceptance claimed.",
+      "distributionClass": "sourceOnly",
+      "homeSyncRequired": false,
+      "evidence": "docs/maintenance/gsdb-source-validation-2026-10-20.md",
+      "risk": "Human review pending; source review does not establish product conformity or licensed ISO-text review.",
+      "criticality": "Security",
+      "reevaluationTrigger": "Primary source, preset, baseline, profile or authority change; quarterly review."
+    },
+    {
+      "changeId": "CHG906",
+      "scope": "Compendium regenerated from canonical checklists",
+      "decision": "GeneratedUpdate",
+      "rationale": "Close ten source-review gaps with bilingual canonical corrections; retain historical evidence and independent human approval.",
+      "documents": [
+        "docs/secure-development/Checklistensammelband_Sichere-Entwicklung.md"
+      ],
+      "owner": "Thorsten Hindermann",
+      "audiences": [
+        "Maintainers",
+        "Learners",
+        "Reviewers"
+      ],
+      "readerPaths": [
+        "README -> GSDB -> alignment -> review evidence"
+      ],
+      "canonicalSource": "docs/secure-development/checklisten/",
+      "navigationImpact": "GSDB entry points to current source closure, source log, coverage and new assurance context.",
+      "documentClass": "GeneratedReference",
+      "languageStrategy": "German first, English second.",
+      "languagePartners": [],
+      "platformAndExampleProof": "macOS Bash first; PowerShell parity; source-text semantic review; no physical assistive-technology acceptance claimed.",
+      "distributionClass": "sourceOnly",
+      "homeSyncRequired": false,
+      "evidence": "docs/maintenance/gsdb-source-validation-2026-10-20.md",
+      "risk": "Human review pending; source review does not establish product conformity or licensed ISO-text review.",
+      "criticality": "Security",
+      "reevaluationTrigger": "Primary source, preset, baseline, profile or authority change; quarterly review.",
+      "generatedSource": {
+        "renderer": "scripts/build-secure-development-docs.sh",
+        "path": "docs/secure-development/checklisten/"
+      }
+    },
+    {
+      "changeId": "CHG907",
+      "scope": "Living statistics update",
+      "decision": "GeneratedUpdate",
+      "rationale": "Close ten source-review gaps with bilingual canonical corrections; retain historical evidence and independent human approval.",
+      "documents": [
+        "docs/project-statistics.md"
+      ],
+      "owner": "Thorsten Hindermann",
+      "audiences": [
+        "Maintainers",
+        "Learners",
+        "Reviewers"
+      ],
+      "readerPaths": [
+        "README -> GSDB -> alignment -> review evidence"
+      ],
+      "canonicalSource": "docs/project-statistics.config.json",
+      "navigationImpact": "GSDB entry points to current source closure, source log, coverage and new assurance context.",
+      "documentClass": "GeneratedReference",
+      "languageStrategy": "German first, English second.",
+      "languagePartners": [],
+      "platformAndExampleProof": "macOS Bash first; PowerShell parity; source-text semantic review; no physical assistive-technology acceptance claimed.",
+      "distributionClass": "sourceOnly",
+      "homeSyncRequired": false,
+      "evidence": "docs/maintenance/gsdb-source-validation-2026-10-20.md",
+      "risk": "Human review pending; source review does not establish product conformity or licensed ISO-text review.",
+      "criticality": "Normal",
+      "reevaluationTrigger": "Primary source, preset, baseline, profile or authority change; quarterly review.",
+      "generatedSource": {
+        "renderer": "scripts/render-project-statistics.sh",
+        "path": "docs/project-statistics.config.json"
+      }
+    },
+    {
+      "changeId": "CHG908",
+      "scope": "Manifest-bound negative baseline regression after version increment",
+      "decision": "UpdateRequired",
+      "rationale": "The old hard-coded 3.4.0 replacement became a no-op after baseline 3.4.1. Derive the source header from the fixture manifest and reject missing headers.",
+      "documents": [
+        "docs/man/test-gsdb-consolidation.1.md"
+      ],
+      "owner": "Thorsten Hindermann",
+      "audiences": [
+        "Maintainers",
+        "Learners",
+        "Reviewers"
+      ],
+      "readerPaths": [
+        "README -> GSDB -> alignment -> review evidence"
+      ],
+      "canonicalSource": "scripts/tests/test-gsdb-consolidation.ps1",
+      "navigationImpact": "Existing test manpage explains the version-independent negative mutation.",
+      "documentClass": "ActiveSemantic",
+      "languageStrategy": "German first, English second.",
+      "languagePartners": [],
+      "platformAndExampleProof": "macOS Bash first; PowerShell parity; source-text semantic review; no physical assistive-technology acceptance claimed.",
+      "distributionClass": "homeRuntime",
+      "homeSyncRequired": true,
+      "evidence": "docs/maintenance/gsdb-source-validation-2026-10-20.md",
+      "risk": "Human review pending; source review does not establish product conformity or licensed ISO-text review.",
+      "criticality": "Security",
+      "reevaluationTrigger": "Primary source, preset, baseline, profile or authority change; quarterly review."
+    }
+  ]
+}

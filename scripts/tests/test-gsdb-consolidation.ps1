@@ -70,7 +70,15 @@ try {
                 'duplicate-item' { $path=Join-Path $docRoot $manifest.checklists[0].path; Add-Content $path '#### CL-01-01: Duplicate fixture' }
                 'duplicate-id' { $manifest.checklists[1].id = 'CL-01' }
                 'version' { $manifest.checklists[0].version = '999.0.0' }
-                'baseline' { $path=Join-Path $docRoot $manifest.checklists[0].path; Set-FixtureText $path ((Get-Content $path -Raw).Replace('**Baseline-Version / Baseline version:** 3.4.0','**Baseline-Version / Baseline version:** 3.2.0')) }
+                'baseline' {
+                    $path = Join-Path $docRoot $manifest.checklists[0].path
+                    $source = Get-Content $path -Raw
+                    $header = "**Baseline-Version / Baseline version:** $($manifest.baselineVersion)"
+                    # Bind the mutation to the manifest so a later release cannot silently turn this negative case into a no-op.
+                    if (-not $source.Contains($header)) { throw 'Baseline fixture header not found.' }
+                    $staleVersion = if ($manifest.baselineVersion -eq '0.0.0') { '0.0.1' } else { '0.0.0' }
+                    Set-FixtureText $path ($source.Replace($header, "**Baseline-Version / Baseline version:** ${staleVersion}"))
+                }
                 'profile-doc' { $path=Join-Path $docRoot 'mitgeltende-dokumente/Verzahnung_Richtlinie_Checklisten_Spec-Kit-Presets.md'; Set-FixtureText $path ((Get-Content $path -Raw).Replace('project-statistics-fourteen-governance-presets','removed-profile')) }
                 'compendium' { Add-Content (Join-Path $docRoot $manifest.compendium.path) 'drift' }
                 'matrix' { $installed.presets.Remove('secure-development-assurance-governance') }

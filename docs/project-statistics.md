@@ -1447,6 +1447,20 @@ assurance and regression evidence is versioned. Subject-matter outcome remains
 Blocked by unresolved primary sources; human PR review, merge, Home sync and
 fleet rollout remain pending. Quarterly review starts 2027-01-10; no test mail.
 
+### 2026-10-20 - GSDB-Primärquellenabschluss / GSDB primary-source closure
+
+DE: Sieben offene und drei teilweise Quellenprüfungen aus PR #337 gegen
+BSI-/G7-/CISA-Mitherausgebertexte, konsolidierte EU-Rechtsakte und geltendes
+BSIG abgeschlossen. Baseline 3.4.1, Sammelband 2.4.1; 157 IDs unverändert.
+CRA-Scope, Anhangs-/CE-/Supportregeln, KI-VO-Fristen, Krypto-Migration und
+DSGVO-Qualifizierungen korrigiert. Historische Evidence unverändert, neuer
+hashgebundener Kontext; menschliche PR-Prüfung bleibt offen.
+[Quellenabschluss](maintenance/gsdb-source-closure-2026-10-20.md).
+
+EN: Close seven Open and three Partial source checks using official texts;
+correct canonical bilingual requirements and create new bound evidence.
+Human review pending; no merge, Home sync, package change, mail or rollout.
+
 ## Gesamtstatistik / Overall Statistics
 
 <!-- project-statistics-v2:begin -->

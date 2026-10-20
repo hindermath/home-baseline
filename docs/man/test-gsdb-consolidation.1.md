@@ -36,6 +36,14 @@ preset matrix, manifest-version drift, priority drift, unknown profile, and
 registry-assigned profile. Before/after file and SHA-256 snapshots assert
 read-only behavior.
 
+DE: Der negative Baseline-Fall liest die Ausgangsversion aus dem Manifest und
+setzt gezielt eine andere Version. Ein fehlender Ausgangsheader bricht den Test
+ab; neue Baseline-Releases duerfen die Mutation nicht still unwirksam machen.
+
+EN: The negative baseline case reads its starting version from the manifest
+and replaces it with a different version. A missing starting header fails the
+test; new baseline releases must not silently disable the mutation.
+
 ## Exit-Status / Exit Status
 
 0: alle Fälle bestanden / all cases passed. Non-zero: Regression oder fehlendes

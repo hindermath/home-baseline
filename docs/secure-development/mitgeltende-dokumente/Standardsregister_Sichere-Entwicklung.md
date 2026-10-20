@@ -1,8 +1,8 @@
 # Standardsregister Sichere Entwicklung / Secure Development Standards Register
 
-**Version / Version:** 1.1.0
-**Stand / Date:** 2026-10-19
-**Baseline-Version / Baseline version:** 3.4.0
+**Version / Version:** 1.1.1
+**Stand / Date:** 2026-10-20
+**Baseline-Version / Baseline version:** 3.4.1
 **Verantwortliche Rolle / Responsible role:** Projekt- oder Ausbildungsverantwortung mit Security-Review / Project or training owner with security review
 **Review-Zyklus / Review cycle:** mindestens quartalsweise und bei neuen Fassungen / at least quarterly and when new versions are published
 
@@ -37,21 +37,21 @@
 | SLSA | 1.2 | `Reviewed` | [Primärquelle / primary source](https://slsa.dev/spec/v1.2/) | 2026-10-19 |
 | CycloneDX | 1.7; tatsächlich erzeugte Fassung gesondert / emitted version separately | `Reviewed` | [Primärquelle / primary source](https://cyclonedx.org/specification/overview/) | 2026-10-19 |
 | SPDX | 3.0 laut Übersichtsseite; Tool-Pin gesondert / overview; separate tool pin | `Reviewed` | [Primärquelle / primary source](https://spdx.dev/use/specifications/) | 2026-10-19 |
-| BSI TR-02102 | Teilfassung vor Einsatz erneut prüfen / recheck applicable part | `Open` | [Primärquelle / primary source](https://www.bsi.bund.de/DE/Themen/Unternehmen-und-Organisationen/Standards-und-Zertifizierung/Technische-Richtlinien/TR-nach-Thema-sortiert/tr02102/tr-02102.html) | 2026-10-19 |
-| BSI C3A | Fassung offen / edition unresolved | `Open` | [Primärquelle / primary source](https://www.bsi.bund.de/DE/Themen/Unternehmen-und-Organisationen/Informationen-und-Empfehlungen/Empfehlungen-nach-Angriffszielen/Cloud-Computing/cloud-computing_node.html) | 2026-10-19 |
-| BSI C5 | Fassung offen; 2020 archiviert auffindbar / current unresolved; 2020 archived | `Open` | [Primärquelle / primary source](https://www.bsi.bund.de/DE/Themen/Unternehmen-und-Organisationen/Informationen-und-Empfehlungen/Empfehlungen-nach-Angriffszielen/Cloud-Computing/Kriterienkatalog-C5/kriterienkatalog-c5_node.html) | 2026-10-19 |
-| EU Cyber Resilience Act | Verordnung (EU) 2024/2847; Kommissionshinweise / Commission guidance | `Partial` | [Primärquelle / primary source](https://digital-strategy.ec.europa.eu/en/policies/cra-summary) | 2026-10-19 |
-| EU AI Act | Verordnung (EU) 2024/1689 | `Partial` | [Primärquelle / primary source](https://eur-lex.europa.eu/eli/reg/2024/1689/oj/eng) | 2026-10-19 |
-| NIS2 | Richtlinie (EU) 2022/2555 | `Partial` | [Primärquelle / primary source](https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:32022L2555) | 2026-10-19 |
-| DORA | Verordnung (EU) 2022/2554 | `Open` | [Primärquelle / primary source](https://eur-lex.europa.eu/eli/reg/2022/2554/oj) | 2026-10-19 |
-| G7 Software Bill of Materials for AI | Minimum Elements, 2026; Primärfassung offen / primary edition unresolved | `Open` | [Primärquelle / primary source](https://www.bsi.bund.de/SharedDocs/Downloads/EN/BSI/KI/SBOM-for-AI_Food-for-thoughts.pdf?__blob=publicationFile&v=6) | 2026-10-19 |
-| CISA Memory-Safe Roadmaps | lokale PDF, SHA-256 im Inventar / local PDF hash in inventory | `Open` | [Primärquelle / primary source](https://www.cisa.gov/resources-tools/resources/case-memory-safe-roadmaps) | 2026-10-19 |
+| BSI TR-02102 | Parts 1–4: 2026-01; part 1: 2026-01-23; parts 2–4: 2026-01-27 | `Reviewed` | [Primärquelle / primary source](https://www.bsi.bund.de/DE/Themen/Unternehmen-und-Organisationen/Standards-und-Zertifizierung/Technische-Richtlinien/TR-nach-Thema-sortiert/tr02102/tr-02102.html) | 2026-10-20 |
+| BSI C3A | v1.0, 2026-04-27 | `Reviewed` | [Primärquelle / primary source](https://www.bsi.bund.de/SharedDocs/Downloads/EN/BSI/Publications/CloudComputing/C3A_Cloud_Computing_Autonomy.pdf?__blob=publicationFile&v=5) | 2026-10-20 |
+| BSI C5 | C5:2026 v1.1.0, 2026-08-11 | `Reviewed` | [Primärquelle / primary source](https://www.bsi.bund.de/SharedDocs/Downloads/DE/BSI/CloudComputing/Anforderungskatalog/2026/C5_2026.pdf?__blob=publicationFile&v=13) | 2026-10-20 |
+| EU Cyber Resilience Act | (EU) 2024/2847; consolidation 02024R2847-20241120 000.003 incl. corrigenda through 2025-10-17 | `Reviewed` | [Primärquelle / primary source](https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:02024R2847-20241120) | 2026-10-20 |
+| EU AI Act | (EU) 2024/1689 consolidated 2026-07-27, 001.001; amending (EU) 2026/1744 in force | `Reviewed` | [Primärquelle / primary source](https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:02024R1689-20260727) | 2026-10-20 |
+| NIS2 | (EU) 2022/2555 consolidated 2022-12-27 000.004; Germany BSIG effective 2025-12-06, amendments through 2026-07-23 | `Reviewed` | [Primärquelle / primary source](https://www.gesetze-im-internet.de/bsig_2025/BJNR12D0B0025.html) | 2026-10-20 |
+| DORA | (EU) 2022/2554 original/current EUR-Lex; applicable 2025-01-17; reporting RTS (EU) 2025/301 Art.5 | `Reviewed` | [Primärquelle / primary source](https://eur-lex.europa.eu/eli/reg/2022/2554/oj/eng) | 2026-10-20 |
+| G7 Software Bill of Materials for AI | Software Bill of Materials for AI – Minimum Elements, 2026; ANSSI publication 2026-05-13 | `Reviewed` | [Primärquelle / primary source](https://www.bsi.bund.de/SharedDocs/Downloads/EN/BSI/KI/SBOM-for-AI_minimum-elements.pdf?__blob=publicationFile&v=4) | 2026-10-20 |
+| CISA Memory-Safe Roadmaps | The Case for Memory Safe Roadmaps, December 2023, joint authoring agencies | `Reviewed` | [Primärquelle / primary source](https://www.ncsc.govt.nz/assets/OLD/The-Case-for-Memory-Safe-Roadmaps-508c.pdf) | 2026-10-20 |
 | OWASP Proactive Controls | 2024 | `Reviewed` | [Primärquelle / primary source](https://top10proactive.owasp.org/the-top-10/) | 2026-10-19 |
 | CA/Browser Forum TLS Baseline Requirements | 2.3.1, 2026-10-04; Abschnitt / section 6.3.2 | `Reviewed` | [Primärquelle / primary source](https://cabforum.org/working-groups/server/baseline-requirements/requirements/) | 2026-10-19 |
 | OAuth Security BCP | RFC 9700, 2025 | `Reviewed` | [Primärquelle / primary source](https://www.rfc-editor.org/rfc/rfc9700.html) | 2026-10-19 |
-| DSGVO / GDPR | Verordnung (EU) 2016/679 | `Open` | [Primärquelle / primary source](https://eur-lex.europa.eu/eli/reg/2016/679/oj) | 2026-10-19 |
+| DSGVO / GDPR | (EU) 2016/679 consolidated 2016-05-04 000.002 incl. corrigendum 2018-05-23 | `Reviewed` | [Primärquelle / primary source](https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:02016R0679-20160504) | 2026-10-20 |
 
-DE: Der Versuchstag beweist keinen erfolgreichen Volltextreview. `Reviewed` bezeichnet die Prüfung der hier verwendeten Aussagen, `BibliographyVerified` nur Katalog-/Versionsmetadaten, `Partial` einen begrenzten Quellenumfang und `Open` eine fehlende Primärprüfung. Begründungen und Grenzen stehen im [Quellenprotokoll](../../maintenance/gsdb-source-review-2026-10-19.json). Die alte Statuslogik beschreibt die Verwendung in der Baseline; die Tabelle beschreibt davon getrennt den tatsächlichen Reviewstand.
+DE: Der Versuchstag beweist keinen erfolgreichen Volltextreview. `Reviewed` bezeichnet die Prüfung der hier verwendeten Aussagen, `BibliographyVerified` nur Katalog-/Versionsmetadaten, `Partial` einen begrenzten Quellenumfang und `Open` eine fehlende Primärprüfung. Begründungen und Grenzen stehen im [Quellenprotokoll](../../maintenance/gsdb-source-review-2026-10-20.json). Die alte Statuslogik beschreibt die Verwendung in der Baseline; die Tabelle beschreibt davon getrennt den tatsächlichen Reviewstand.
 
 EN: An attempt date does not establish successful full-text review. Reviewed covers the statements used here, BibliographyVerified covers catalogue/version metadata only, Partial means limited source coverage, and Open means missing primary review. Reasons are recorded in the linked source log. Baseline use and source-review status are separate axes.
 
@@ -97,9 +97,15 @@ EN: An attempt date does not establish successful full-text review. Reviewed cov
 |---|---|---|
 | 1.0.0 | 2026-07-10 | Erstes kontrolliertes Register für sichere-Entwicklung-Basis 3.0.0. |
 | 1.1.0 | 2026-10-19 | Level-0-Konsolidierung: Baseline-Bindung und fachliche Konsistenz geprüft; Grenzen im Reviewbericht. / Level-0 consolidation: baseline binding and consistency reviewed; limitations recorded in the review report. |
+| 1.1.1 | 2026-10-20 | Primärquellen-Nachprüfung und Baseline-Bindung 3.4.1; Details im Quellenabschluss. / Primary-source follow-up and baseline binding 3.4.1; see source closure report. |
 
 ## Feste Wiedervorlage / Fixed Review Schedule
 
 DE: Quartalsweise am 10. Januar, April, Juli und Oktober um 10:00 Europe/Berlin, nächster Termin 10.01.2027. Anlassbezogene Reviews verschieben diesen Termin nicht. Owner: Thorsten Hindermann. [Betriebsvertrag](../../maintenance/governance-review-and-rollout.md).
 
 EN: Quarterly on 10 January, April, July, and October at 10:00 Europe/Berlin; next review 2027-01-10. Event-triggered reviews do not reset this schedule. Owner: Thorsten Hindermann. See the linked operating policy.
+
+
+**DE:** Die zehn früher offenen/teilweisen Prüfungen sind für die verwendeten GSDB-Aussagen abgeschlossen; [Quellenabschluss](../../maintenance/gsdb-source-closure-2026-10-20.md). Die 15 übrigen Reviewed-Einträge behalten ihren Prüftag 19.10.2026; ISO bleibt BibliographyVerified.
+
+**EN:** The ten previous gaps are closed for GSDB-used assertions; see source closure. The other 15 Reviewed entries retain their 2026-10-19 date; ISO remains BibliographyVerified.
