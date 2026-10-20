@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
   "purpose": "Authorized fourteen-package Level-0 installation; exact installed payload including the preserved Home-only terminal-adoption overlay. Update only with explicitly authorized installation and review, never just to make tests pass.",
-  "baselineCommit": "ab7e392b44faf2c2261abe2c0fabb27e60940f9b",
+  "baselineCommit": "63ab18d636cd1499fcc33463bbafdadb0346afb0",
   "hashContract": "sha256-utf8-lf-bom-or-raw-v1",
-  "registrySha256": "a8e16588bc0fe1ff840c0c20cc69261ac4112348459387b81e684ec61ca6d9b6",
+  "registrySha256": "1c17e1d41b0d898a1f246accef4fdf4d23cff0db8c1041ef876bd92086df594d",
   "presets": [
     {
       "id": "a11y-governance",
@@ -115,12 +115,12 @@
     },
     {
       "id": "secure-development-assurance-governance",
-      "version": "0.1.4",
+      "version": "0.1.5",
       "priority": 15,
       "enabled": true,
-      "manifest_hash": "sha256:0463ab0e9f7e6dd20a6b170706a72e28bef9aee15f971a2380dddc108c99e1f0",
-      "fileCount": 18,
-      "contentSha256": "2c94b9dd1bd832148d7d75d4b96a97d9264e76d89c1a419d2e9e3eb9610d90f2"
+      "manifest_hash": "sha256:e1da9c3b3d3ed91da31d34129db390564d1a3004095aa374a104b5cdec2ce7c7",
+      "fileCount": 19,
+      "contentSha256": "3dc5b2b704aadafe6f0e45674ab74e1572d47fd0c24111d1f9a8f9786f9f8cd4"
     },
     {
       "id": "security-governance",

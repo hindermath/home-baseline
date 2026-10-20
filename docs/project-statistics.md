@@ -1432,6 +1432,8 @@ repair does not constitute another Spec Kit run.
 
 | 2026-10-19 | Begrenzter 14-Preset-Rollout: Abschluss / Bounded fourteen-preset rollout closeout | Zentrale Evidence fuer Level 0/Home Runtime und ausschliesslich TinyCalc, Show-CommandTui400 und absdd-image-sandbox zusammengefuehrt: exakte PR-/Merge-Bindungen, technische GSDB-/Assurance-Nachpruefung, macOS-PTY-Korrektur ohne abgeschwaechte Orakel und dokumentierte Provider-Ausnahme. Echter Statistik-Drift am Tageswechsel bleibt mit gesonderter generierter Korrektur nachvollziehbar; keine Methodikaenderung, Produktfreigabe, Community-Einreichung oder weitere Flotte. [Nachweis / Evidence](maintenance/preset-readme-patch-rollout-2026-10-18.md). / Consolidate exact delivery and execution evidence, preserve failed history and human boundaries; canonical statistics follow the clean closeout source commit. |
 
+| 2026-10-20 | Assurance 0.1.5: Level-0-Integration / Level-0 integration | Exakte aktive Metadatenprüfung im Paket, synchronisierte 13-/14-Preset-Profile und gebundene Quellen. Ausschließlich Level 0 und anschließender manifestgebundener Home-Sync; GSDB PR #337 bleibt offen, keine Level-2-Verteilung. Tests, native CI, Release- und Rolloutnachweise im [Lieferbericht / delivery record](maintenance/assurance-0.1.5-level0-2026-10-20.md); Statistikmethodik unverändert. / Strict metadata package validation, bounded rollout and unchanged statistics methodology. |
+
 ## Gesamtstatistik / Overall Statistics
 
 <!-- project-statistics-v2:begin -->

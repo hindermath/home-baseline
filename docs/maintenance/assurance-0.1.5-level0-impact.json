@@ -1,0 +1,143 @@
+{
+  "feature": "assurance-0.1.5-level0",
+  "entries": [
+    {
+      "changeId": "CHG001",
+      "scope": "runtime-profile-and-german-navigation",
+      "decision": "UpdateRequired",
+      "rationale": "Bind Assurance 0.1.5 and its strict active-metadata contract; limit rollout to Level 0, preserve historical evidence and keep GSDB PR337 open. / Assurance 0.1.5 auf Level 0 binden, historische Evidence erhalten, PR337 offen lassen.",
+      "documents": [
+        "README.md",
+        "docs/maintenance/assurance-0.1.5-level0-2026-10-20.md"
+      ],
+      "owner": "Thorsten Hindermann",
+      "audiences": [
+        "Preset users",
+        "Maintainers"
+      ],
+      "readerPaths": [
+        "README → Assurance delivery record → package PR/release and verification"
+      ],
+      "canonicalSource": "scripts/config/spec-kit-project-statistics-governance-presets.json",
+      "navigationImpact": "README language partners link the new bounded delivery record; historical release records remain intact.",
+      "documentClass": "ActiveSemantic",
+      "languageStrategy": "German first and English second; paired README language files.",
+      "languagePartners": [
+        "README.md",
+        "README.en.md"
+      ],
+      "platformAndExampleProof": "Rebound metadata regressions, generated-command tests, native package CI and Level-0 Bash/PowerShell preflight; actual results and exact heads recorded in PR evidence.",
+      "distributionClass": "homeRuntime",
+      "homeSyncRequired": true,
+      "evidence": "docs/maintenance/assurance-0.1.5-level0-2026-10-20.md",
+      "risk": "Stricter checks reject inconsistent legacy metadata; embedded checklist baselines remain separate from the compendium header. No product acceptance or fleet authority.",
+      "criticality": "Usage",
+      "reevaluationTrigger": "Preset tag/hash, parser, GSDB format, registry or distribution contract change."
+    },
+    {
+      "changeId": "CHG002",
+      "scope": "source-and-installed-bindings-native-ci-delivery",
+      "decision": "UpdateRequired",
+      "rationale": "Bind Assurance 0.1.5 and its strict active-metadata contract; limit rollout to Level 0, preserve historical evidence and keep GSDB PR337 open. / Assurance 0.1.5 auf Level 0 binden, historische Evidence erhalten, PR337 offen lassen. Native CI budget increases to thirty minutes based on measured fourteen-minute Windows package regression plus fourteen-archive integration; all assertions stay intact. Refresh the installed primary-evidence snapshot only after explicitly authorized actual installation, canonical hashing and independent checks; retain all thirteen unrelated payload bindings.",
+      "documents": [
+        "docs/maintenance/assurance-0.1.5-level0-2026-10-20.md",
+        "docs/maintenance/preset-source-lock.json",
+        "docs/maintenance/preset-installed-lock.json",
+        "README.en.md",
+        "docs/maintenance/assurance-0.1.5-level0-installation.json"
+      ],
+      "owner": "Thorsten Hindermann",
+      "audiences": [
+        "Preset users",
+        "Maintainers"
+      ],
+      "readerPaths": [
+        "README → Assurance delivery record → package PR/release and verification"
+      ],
+      "canonicalSource": "docs/maintenance/preset-source-lock.json",
+      "navigationImpact": "README language partners link the new bounded delivery record; historical release records remain intact.",
+      "documentClass": "ActiveSemantic",
+      "languageStrategy": "German first and English second; paired README language files.",
+      "languagePartners": [
+        "docs/maintenance/assurance-0.1.5-level0-2026-10-20.md"
+      ],
+      "platformAndExampleProof": "Rebound metadata regressions, generated-command tests, native package CI and Level-0 Bash/PowerShell preflight; actual results and exact heads recorded in PR evidence.",
+      "distributionClass": "sourceOnly",
+      "homeSyncRequired": false,
+      "evidence": "docs/maintenance/assurance-0.1.5-level0-2026-10-20.md",
+      "risk": "Stricter checks reject inconsistent legacy metadata; embedded checklist baselines remain separate from the compendium header. No product acceptance or fleet authority.",
+      "criticality": "Usage",
+      "reevaluationTrigger": "Preset tag/hash, parser, GSDB format, registry or distribution contract change."
+    },
+    {
+      "changeId": "CHG003",
+      "scope": "statistics-render",
+      "decision": "GeneratedUpdate",
+      "rationale": "Bind Assurance 0.1.5 and its strict active-metadata contract; limit rollout to Level 0, preserve historical evidence and keep GSDB PR337 open. / Assurance 0.1.5 auf Level 0 binden, historische Evidence erhalten, PR337 offen lassen.",
+      "documents": [
+        "docs/project-statistics.md"
+      ],
+      "owner": "Thorsten Hindermann",
+      "audiences": [
+        "Preset users",
+        "Maintainers"
+      ],
+      "readerPaths": [
+        "README → Assurance delivery record → package PR/release and verification"
+      ],
+      "canonicalSource": "docs/project-statistics.config.json",
+      "navigationImpact": "README language partners link the new bounded delivery record; historical release records remain intact.",
+      "documentClass": "Generated",
+      "languageStrategy": "German first and English second; paired README language files.",
+      "languagePartners": [
+        "docs/project-statistics.md"
+      ],
+      "platformAndExampleProof": "Rebound metadata regressions, generated-command tests, native package CI and Level-0 Bash/PowerShell preflight; actual results and exact heads recorded in PR evidence.",
+      "distributionClass": "sourceOnly",
+      "homeSyncRequired": false,
+      "evidence": "docs/maintenance/assurance-0.1.5-level0-2026-10-20.md",
+      "risk": "Stricter checks reject inconsistent legacy metadata; embedded checklist baselines remain separate from the compendium header. No product acceptance or fleet authority.",
+      "criticality": "Usage",
+      "reevaluationTrigger": "Preset tag/hash, parser, GSDB format, registry or distribution contract change.",
+      "generatedSource": {
+        "path": "docs/project-statistics.config.json",
+        "renderer": "bash scripts/render-project-statistics.sh"
+      }
+    },
+    {
+      "changeId": "CHG004",
+      "scope": "installed-preset-and-registry",
+      "decision": "UpdateRequired",
+      "rationale": "Install only the verified released Assurance archive; upstream bilingual documentation is copied byte-identically, with no local package fork. Registry changes only this version; thirteen other preset payloads stay unchanged.",
+      "documents": [
+        "docs/maintenance/assurance-0.1.5-level0-2026-10-20.md",
+        ".specify/presets/secure-development-assurance-governance/README.md",
+        ".specify/presets/secure-development-assurance-governance/templates/secure-development-evidence-contract.md",
+        ".specify/presets/secure-development-assurance-governance/docs/man/secure-development-assurance.1.md"
+      ],
+      "owner": "Thorsten Hindermann",
+      "audiences": [
+        "Preset users",
+        "Maintainers"
+      ],
+      "readerPaths": [
+        "README → Assurance delivery record → package PR/release and verification"
+      ],
+      "canonicalSource": ".specify/presets/secure-development-assurance-governance/preset.yml",
+      "navigationImpact": "README language partners link the new bounded delivery record; historical release records remain intact.",
+      "documentClass": "ActiveSemantic",
+      "languageStrategy": "German first and English second; paired README language files.",
+      "languagePartners": [
+        "docs/maintenance/assurance-0.1.5-level0-2026-10-20.md"
+      ],
+      "platformAndExampleProof": "19 archive payload files byte-identical after installation; 462 other preset files unchanged; canonical installed lock and exact 14-preset Bash/PowerShell matrix checks pass.",
+      "distributionClass": "machineLocal",
+      "homeSyncRequired": false,
+      "evidence": "docs/maintenance/assurance-0.1.5-level0-2026-10-20.md",
+      "risk": "Stricter checks reject inconsistent legacy metadata; embedded checklist baselines remain separate from the compendium header. No product acceptance or fleet authority.",
+      "criticality": "Usage",
+      "reevaluationTrigger": "Preset tag/hash, parser, GSDB format, registry or distribution contract change."
+    }
+  ],
+  "schemaVersion": "1.1"
+}
