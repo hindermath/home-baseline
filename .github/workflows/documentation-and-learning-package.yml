@@ -69,6 +69,10 @@ jobs:
         shell: pwsh
         run: pwsh -NoProfile -File scripts/build-secure-development-docs.ps1 -Check
 
+      - name: Test GSDB drift and profile binding (both shells)
+        shell: pwsh
+        run: pwsh -NoProfile -File scripts/tests/test-gsdb-consolidation.ps1
+
       - name: Test Feature 021 documentation migration contract
         run: python specs/021-level0-documentation-architecture/tests/test_documentation_migration.py
 

@@ -34,6 +34,52 @@ EN: The annual automation reads and reports only. It installs nothing and
 changes no files, issues, comments, releases or rollouts. No finding requires no
 artificial version bump. Owner decisions stay separate.
 
+## Quartalsweiser GSDB-Review / Quarterly GSDB Review
+
+DE: Zusätzlich zum festen jährlichen Preset-Review wird die GSDB am 10. Januar,
+April, Juli und Oktober um 10:00 Europe/Berlin ausschließlich lesend geprüft.
+Erste reguläre Wiedervorlage: 10.01.2027. Der Erstreview vom 19.10.2026 wird
+separat dokumentiert. Anlassbezogene Prüfungen verschieben keinen festen Termin.
+Der Quartalsreview umfasst die gesamte GSDB und alle im zugeordneten Profil
+aktiven Presets; die Jahresprüfung vertieft die sieben oben benannten Presets.
+
+EN: In addition to annual preset review, review the complete GSDB and every
+active assigned preset on 10 January, April, July, and October at 10:00
+Europe/Berlin. First regular review: 2027-01-10. Record the 2026-10-19 initial
+review separately. Event-triggered reviews reset neither fixed schedule.
+The annual review remains an in-depth review of the seven named presets.
+
+DE: Owner ist Thorsten Hindermann. Die Chat-Automation
+`quartalsreview-gsdb-level-0` prüft den veröffentlichten Default-Branch mit
+exaktem Commit und offiziellen Quellen. Sie ändert keine Repository-Dateien,
+Installationen oder Rollouts. Das Ergebnis NoChangeRequired, UpdateRequired
+oder Blocked wird über die autorisierte Gmail-Verbindung an die drei vom
+Owner benannten Adressen gesendet, auch wenn kein Änderungsbedarf besteht.
+Empfänger und Versandautorisierung stehen in der privaten Automation, nicht
+als Voraussetzung in den generischen GSDB-Dokumenten.
+
+EN: Owner is Thorsten Hindermann. The chat automation reviews the published
+default branch at an exact commit against official sources and makes no
+repository, installation, or rollout changes. It mails NoChangeRequired,
+UpdateRequired, or Blocked to the three owner-authorized addresses, including
+no-change outcomes. Recipient details and mail authority remain in the private
+automation rather than becoming generic GSDB prerequisites.
+
+DE: Betreffmarker je Quartal: `[GSDB-REVIEW YYYY-Qn]`. Vor Versand Gesendet und
+bisherige Chat-Nachweise prüfen; belegten Versand nicht wiederholen. Bei
+unklarem Ergebnis nicht blind erneut senden. Fehlende Verbindung, unklaren
+Versand oder Fehler im Chat melden. Keine Testmail. Rechner, App und
+Netzwerkverbindungen müssen zum Termin verfügbar sein; dies ist kein
+rechnerunabhängiger Zustelldienst. Gleichzeitige oder technisch unklare Läufe
+werden zur manuellen Klärung gestoppt, nicht als genau-einmal zugestellt behauptet.
+
+EN: Use one quarterly subject marker, check Sent and chat records before
+sending, and never blindly retry ambiguous delivery. Report connection,
+ambiguity, or sending failures in chat. Send no test message. Computer, app,
+and connections must be available; this is not a server-independent delivery
+service. Concurrent or ambiguous runs require manual resolution rather than
+an exactly-once delivery claim.
+
 ## Vier Lieferstufen / Four delivery stages
 
 | Stage | Targets | Authority |

@@ -55,6 +55,7 @@ not start a Spec Kit run.*
 | Bash | PowerShell | Bedeutung / Meaning |
 |---|---|---|
 | `--repo PATH` | `-Repo PATH` | Explizites Repository pruefen; wiederholbar |
+| `--preset-profile NAME` | `-PresetProfile NAME` | Explizites Profil; sonst Registry-Eintrag, danach Katalogstandard / Explicit profile, then registry, then catalog default |
 | `--registry PATH` | `-Registry PATH` | Alternative Registry-Datei |
 | `--home-dir PATH` | `-HomeDir PATH` | Root fuer registry-relative Pfade |
 | `--check-only` | `-CheckOnly` | Nur pruefen, nichts schreiben |
@@ -83,3 +84,17 @@ ist Intake fuer einen spaeter manuell gestarteten `/speckit-specify`-Lauf.
 *The preflight is not a hardening run and not an approval. The generated
 requirements document is intake for a later manually started `/speckit-specify`
 run.*
+
+## Profilbindung / Profile Binding
+
+DE: Statt bloßer Preset-Verzeichnisse wird die exakte Matrix des zugeordneten
+Profils mit Version, Priorität, Aktivierung und Manifestidentität geprüft.
+Unbekannte Profile stoppen ohne stillen Fallback. `none` ist eine ausdrückliche
+N/A-Entscheidung. Level 0 kann ohne Level-2-Registry-Zeile explizit mit
+`--preset-profile project-statistics-fourteen-governance-presets` geprüft werden.
+
+EN: Validate the assigned profile's exact matrix including version, priority,
+enabled state, and manifest identity. Unknown profiles stop without fallback.
+The explicit none profile records N/A. Use the explicit profile option for
+Level 0 when no Level-2 registry row applies. The preflight does not establish
+semantic GSDB currency; use the source review and compendium validator too.

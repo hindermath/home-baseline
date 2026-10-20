@@ -37,6 +37,38 @@ command -v jq >/dev/null 2>&1 || { printf 'jq is required.\n' >&2; exit 1; }
 jq -e '.schemaVersion == 1 and (.checklists | length) == 12' "$MANIFEST" >/dev/null
 
 baseline_version="$(jq -r '.baselineVersion' "$MANIFEST")"
+# DE: Nur der erste zusammenhaengende Metadatenblock ist aktiv. Ein Treffer im
+# Text oder ein zweiter Header darf einen veralteten aktiven Wert nicht verdecken.
+# EN: Only the first contiguous metadata block is active. Body matches and
+# duplicate fields must never hide a stale active value.
+check_document_metadata() {
+  local relative="$1" prefix="$2" value="$3"
+  [ -f "$DOC_ROOT/$relative" ] || { printf 'Controlled document missing: %s\n' "$relative" >&2; exit 1; }
+  awk -v prefix="$prefix" -v expected="$prefix $value" '
+    { sub(/\r$/, "") }
+    !started && /^\*\*[^*]+:\*\*/ { started = 1; active = 1 }
+    started && $0 !~ /^\*\*[^*]+:\*\*/ { active = 0 }
+    index($0, prefix) == 1 { count++; if (active && $0 == expected) matched++ }
+    END { exit !(count == 1 && matched == 1) }
+  ' "$DOC_ROOT/$relative" || {
+    printf 'Active metadata mismatch or duplicate: %s (%s)\n' "$relative" "$prefix" >&2; exit 1;
+  }
+}
+metadata_files=("README.md")
+while IFS= read -r relative; do metadata_files+=("$relative"); done < <(
+  jq -r '(.checklists + .relatedDocuments + .learningDocuments)[].path' "$MANIFEST")
+for relative in "${metadata_files[@]}"; do
+  check_document_metadata "$relative" '**Baseline-Version / Baseline version:**' "$baseline_version"
+done
+actual_checklist_ids="$(jq -r '.checklists[].id' "$MANIFEST" | LC_ALL=C sort)"
+expected_checklist_ids="$(printf 'CL-%02d\n' {1..12})"
+[ "$actual_checklist_ids" = "$expected_checklist_ids" ] || { printf 'Expected unique checklist IDs CL-01..CL-12.\n' >&2; exit 1; }
+[ "$(jq -r '.guideline.version' "$MANIFEST")" = "$baseline_version" ] || { printf 'Guideline/baseline version mismatch.\n' >&2; exit 1; }
+alignment="$DOC_ROOT/mitgeltende-dokumente/Verzahnung_Richtlinie_Checklisten_Spec-Kit-Presets.md"
+while IFS= read -r profile; do
+  grep -Fq "\`$profile\`" "$alignment" || { printf 'Profile missing from alignment: %s\n' "$profile" >&2; exit 1; }
+done < <(jq -r '.profiles | keys[] | select(. != "none")' "$SCRIPT_DIR/config/spec-kit-preset-profiles.json")
+
 compendium_version="$(jq -r '.compendium.version' "$MANIFEST")"
 release_date="$(jq -r '.releaseDate' "$MANIFEST")"
 expected_item_count="$(jq -r '.checklistItemCount' "$MANIFEST")"
@@ -47,11 +79,31 @@ trap 'rm -f "$tmp"' EXIT
 guideline_path="$(jq -r '.guideline.path' "$MANIFEST")"
 guideline_version="$(jq -r '.guideline.version' "$MANIFEST")"
 [ -f "$DOC_ROOT/$guideline_path" ] || { printf 'Guideline missing: %s\n' "$guideline_path" >&2; exit 1; }
-grep -Fq "| Versionsnummer | $guideline_version |" "$DOC_ROOT/$guideline_path" || { printf 'Guideline version mismatch: %s\n' "$guideline_path" >&2; exit 1; }
+# DE: Beide Sprachfassungen haben genau eine aktive Metadatentabelle. Historien
+# bleiben erlaubt; passende Tabellenzeilen im Fliesstext sind keine Metadaten.
+# EN: Each language has exactly one active metadata table. History remains valid;
+# matching table rows in the body cannot substitute for active metadata.
+check_guideline_metadata() {
+  local heading="$1" field="$2"
+  awk -v heading="$heading" -v field="$field" -v version="$guideline_version" '
+    { sub(/\r$/, "") }
+    /^## / { active = ($0 == heading); if (active) sections++; table = 0; ended = 0 }
+    active && /^\|/ && !ended { table = 1 }
+    active && table && $0 !~ /^\|/ { ended = 1 }
+    index($0, "| " field " |") == 1 && split($0, cells, "[|]") == 4 {
+      count++; if (active && table && !ended && $0 == "| " field " | " version " |") matched++
+    }
+    END { exit !(sections == 1 && count == 1 && matched == 1) }
+  ' "$DOC_ROOT/$guideline_path" || {
+    printf 'Active guideline metadata mismatch or duplicate: %s (%s)\n' "$guideline_path" "$field" >&2; exit 1;
+  }
+}
+check_guideline_metadata '## Dokumenten-Metadaten' 'Versionsnummer'
+check_guideline_metadata '## Document Metadata' 'Version'
 
 while IFS=$'\t' read -r relative version; do
   [ -f "$DOC_ROOT/$relative" ] || { printf 'Controlled document missing: %s\n' "$relative" >&2; exit 1; }
-  grep -Fq "**Version / Version:** $version" "$DOC_ROOT/$relative" || { printf 'Controlled document version mismatch: %s\n' "$relative" >&2; exit 1; }
+  check_document_metadata "$relative" '**Version / Version:**' "$version"
 done < <(jq -r '(.relatedDocuments + .learningDocuments)[] | [.path, .version] | @tsv' "$MANIFEST")
 
 while IFS= read -r relative; do
@@ -72,8 +124,8 @@ trap 'rm -f "$tmp" "$ids_tmp"' EXIT
 while IFS=$'\t' read -r id relative version; do
   source_file="$DOC_ROOT/$relative"
   [ -f "$source_file" ] || { printf 'Checklist missing: %s\n' "$relative" >&2; exit 1; }
-  grep -Fq "**Dokument-ID / Document ID:** $id" "$source_file" || { printf 'Document ID mismatch: %s\n' "$relative" >&2; exit 1; }
-  grep -Fq "**Version / Version:** $version" "$source_file" || { printf 'Version mismatch: %s\n' "$relative" >&2; exit 1; }
+  check_document_metadata "$relative" '**Dokument-ID / Document ID:**' "$id"
+  check_document_metadata "$relative" '**Version / Version:**' "$version"
   grep -Eo '^#### CL-[0-9]{2}-[0-9]{2}:' "$source_file" | sed 's/^#### //; s/:$//' >> "$ids_tmp"
 
   printf '\n---\n\n' >> "$tmp"
@@ -82,6 +134,7 @@ while IFS=$'\t' read -r id relative version; do
     -e 's#](../../../constitution.md#](../../constitution.md#g' \
     -e 's#](../README.md#](README.md#g' \
     -e 's#](../mitgeltende-dokumente/#](mitgeltende-dokumente/#g' \
+    -e 's#](../../maintenance/#](../maintenance/#g' \
     -e 's#](CL_#](checklisten/CL_#g' \
     "$source_file" >> "$tmp"
 done < <(jq -r '.checklists[] | [.id, .path, .version] | @tsv' "$MANIFEST")

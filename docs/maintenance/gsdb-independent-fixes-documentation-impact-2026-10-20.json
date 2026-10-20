@@ -1,0 +1,155 @@
+{
+  "schemaVersion": "1.1",
+  "feature": "gsdb-independent-fixes",
+  "entries": [
+    {
+      "changeId": "CHG913",
+      "scope": "GSDB 3.4.3 independent semantic and traceability corrections",
+      "decision": "UpdateRequired",
+      "rationale": "Correct one P1, five P2 and scoped P3 findings; preserve historical evidence and explicit human authority boundaries.",
+      "documents": [
+        "docs/secure-development/Richtlinie_Sichere-Entwicklung.md",
+        "docs/secure-development/baseline-manifest.json",
+        "docs/secure-development/checklisten/CL_01_Standards-Anwendbarkeit.md",
+        "docs/secure-development/checklisten/CL_02_Sichere-Softwarearchitektur.md",
+        "docs/secure-development/checklisten/CL_03_Krypto-Mindestvorgaben.md",
+        "docs/secure-development/checklisten/CL_07_CRA-Anwendbarkeit.md",
+        "docs/secure-development/checklisten/CL_08_Sicherheits-Code-Review.md",
+        "docs/secure-development/checklisten/CL_11_Datenschutz-Folgenabschaetzung.md",
+        "docs/secure-development/mitgeltende-dokumente/Standardsregister_Sichere-Entwicklung.md",
+        "docs/secure-development/mitgeltende-dokumente/Verzahnung_Richtlinie_Checklisten_Spec-Kit-Presets.md",
+        "docs/secure-development/README.md",
+        "docs/maintenance/gsdb-independent-fixes-2026-10-20.md",
+        "docs/maintenance/gsdb-source-review-independent-fixes-2026-10-20.json",
+        "docs/maintenance/gsdb-coverage-independent-fixes-2026-10-20.md",
+        "docs/maintenance/gsdb-inventory-independent-fixes-2026-10-20.json"
+      ],
+      "owner": "Thorsten Hindermann",
+      "audiences": [
+        "Maintainers",
+        "Learners",
+        "Reviewers"
+      ],
+      "readerPaths": [
+        "GSDB README -> current independent-fixes report -> canonical item/source -> assurance -> human decisions"
+      ],
+      "canonicalSource": "docs/secure-development/baseline-manifest.json",
+      "navigationImpact": "Current correction report and source log linked, historical revisions explicitly labelled.",
+      "documentClass": "ActiveSemantic",
+      "languageStrategy": "German first, English second.",
+      "languagePartners": [],
+      "platformAndExampleProof": "macOS Bash first; PowerShell parity; source-text semantic review; no physical assistive-technology acceptance claimed.",
+      "distributionClass": "sourceOnly",
+      "homeSyncRequired": false,
+      "evidence": "docs/maintenance/gsdb-independent-fixes-2026-10-20.md",
+      "risk": "Human review pending; source review does not establish product conformity or licensed ISO-text review.",
+      "criticality": "Security",
+      "reevaluationTrigger": "Primary source, preset, baseline, profile or authority change; quarterly review."
+    },
+    {
+      "changeId": "CHG914",
+      "scope": "Compendium regenerated from canonical checklists",
+      "decision": "GeneratedUpdate",
+      "rationale": "Correct one P1, five P2 and scoped P3 findings; preserve historical evidence and explicit human authority boundaries.",
+      "documents": [
+        "docs/secure-development/Checklistensammelband_Sichere-Entwicklung.md"
+      ],
+      "owner": "Thorsten Hindermann",
+      "audiences": [
+        "Maintainers",
+        "Learners",
+        "Reviewers"
+      ],
+      "readerPaths": [
+        "GSDB README -> current independent-fixes report -> canonical item/source -> assurance -> human decisions"
+      ],
+      "canonicalSource": "docs/secure-development/checklisten/",
+      "navigationImpact": "Current correction report and source log linked, historical revisions explicitly labelled.",
+      "documentClass": "GeneratedReference",
+      "languageStrategy": "German first, English second.",
+      "languagePartners": [],
+      "platformAndExampleProof": "macOS Bash first; PowerShell parity; source-text semantic review; no physical assistive-technology acceptance claimed.",
+      "distributionClass": "sourceOnly",
+      "homeSyncRequired": false,
+      "evidence": "docs/maintenance/gsdb-independent-fixes-2026-10-20.md",
+      "risk": "Human review pending; source review does not establish product conformity or licensed ISO-text review.",
+      "criticality": "Security",
+      "reevaluationTrigger": "Primary source, preset, baseline, profile or authority change; quarterly review.",
+      "generatedSource": {
+        "renderer": "scripts/build-secure-development-docs.sh",
+        "path": "docs/secure-development/checklisten/"
+      }
+    },
+    {
+      "changeId": "CHG915",
+      "scope": "Living statistics update",
+      "decision": "GeneratedUpdate",
+      "rationale": "Correct one P1, five P2 and scoped P3 findings; preserve historical evidence and explicit human authority boundaries.",
+      "documents": [
+        "docs/project-statistics.md"
+      ],
+      "owner": "Thorsten Hindermann",
+      "audiences": [
+        "Maintainers",
+        "Learners",
+        "Reviewers"
+      ],
+      "readerPaths": [
+        "GSDB README -> current independent-fixes report -> canonical item/source -> assurance -> human decisions"
+      ],
+      "canonicalSource": "docs/project-statistics.config.json",
+      "navigationImpact": "Current correction report and source log linked, historical revisions explicitly labelled.",
+      "documentClass": "GeneratedReference",
+      "languageStrategy": "German first, English second.",
+      "languagePartners": [],
+      "platformAndExampleProof": "macOS Bash first; PowerShell parity; source-text semantic review; no physical assistive-technology acceptance claimed.",
+      "distributionClass": "sourceOnly",
+      "homeSyncRequired": false,
+      "evidence": "docs/maintenance/gsdb-independent-fixes-2026-10-20.md",
+      "risk": "Human review pending; source review does not establish product conformity or licensed ISO-text review.",
+      "criticality": "Normal",
+      "reevaluationTrigger": "Primary source, preset, baseline, profile or authority change; quarterly review.",
+      "generatedSource": {
+        "renderer": "scripts/render-project-statistics.sh",
+        "path": "docs/project-statistics.config.json"
+      }
+    },
+    {
+      "changeId": "CHG916",
+      "scope": "Strict bilingual guideline metadata validation, thirty fixtures per shell and shared manifest-version guidance",
+      "decision": "UpdateRequired",
+      "rationale": "Correct one P1, five P2 and scoped P3 findings; preserve historical evidence and explicit human authority boundaries.",
+      "documents": [
+        "docs/man/build-secure-development-docs.1.md",
+        "docs/man/test-gsdb-consolidation.1.md",
+        "docs/scripts/reference.md",
+        "AGENTS.md",
+        "CLAUDE.md",
+        "GEMINI.md",
+        ".github/copilot-instructions.md",
+        ".github/agents/copilot-instructions.md"
+      ],
+      "owner": "Thorsten Hindermann",
+      "audiences": [
+        "Maintainers",
+        "Learners",
+        "Reviewers"
+      ],
+      "readerPaths": [
+        "GSDB README -> current independent-fixes report -> canonical item/source -> assurance -> human decisions"
+      ],
+      "canonicalSource": "scripts/",
+      "navigationImpact": "Current correction report and source log linked, historical revisions explicitly labelled.",
+      "documentClass": "ActiveSemantic",
+      "languageStrategy": "German first, English second.",
+      "languagePartners": [],
+      "platformAndExampleProof": "macOS Bash first; PowerShell parity; source-text semantic review; no physical assistive-technology acceptance claimed.",
+      "distributionClass": "homeRuntime",
+      "homeSyncRequired": true,
+      "evidence": "docs/maintenance/gsdb-independent-fixes-2026-10-20.md",
+      "risk": "Human review pending; source review does not establish product conformity or licensed ISO-text review.",
+      "criticality": "Security",
+      "reevaluationTrigger": "Primary source, preset, baseline, profile or authority change; quarterly review."
+    }
+  ]
+}

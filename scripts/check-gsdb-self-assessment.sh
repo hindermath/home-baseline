@@ -6,7 +6,6 @@ set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 LIB_FILE="$SCRIPT_DIR/lib/secure-development-hardening.sh"
-PRESET_CONFIG="$SCRIPT_DIR/config/spec-kit-governance-presets.json"
 
 if [ ! -f "$LIB_FILE" ]; then
   echo "Fehler: Hilfsbibliothek nicht gefunden: $LIB_FILE" >&2
@@ -15,6 +14,7 @@ fi
 # shellcheck source=/dev/null
 . "$LIB_FILE"
 
+OPT_PRESET_PROFILE=""
 OPT_REGISTRY=""
 OPT_HOME_DIR="$HOME"
 OPT_REPOS=()
@@ -31,6 +31,7 @@ Usage:
 
 Options:
   --repo PATH             Explicit repository; repeatable. Default: local GSDB registry.
+  --preset-profile NAME   Explicit profile; otherwise registry entry, then catalog default.
   --registry PATH         Registry JSON. Default: ~/.home-baseline/level2-repository-registry.json.
   --home-dir PATH         Home directory for registry-relative paths.
   --check-only            Do not write report, intake, or order file.
@@ -64,6 +65,10 @@ while [ $# -gt 0 ]; do
       [ $# -ge 2 ] || die "--repo braucht einen Pfad"
       OPT_REPOS+=("$(normalize_path "$2")")
       shift 2
+      ;;
+    --preset-profile)
+      [ $# -ge 2 ] || die "--preset-profile braucht einen Namen"
+      OPT_PRESET_PROFILE="$2"; shift 2
       ;;
     --registry)
       [ $# -ge 2 ] || die "--registry braucht einen Pfad"
@@ -156,17 +161,6 @@ if [ "${#OPT_REPOS[@]}" -eq 0 ]; then
   OPT_REPOS+=("$PWD")
 fi
 
-preset_ids() {
-  if [ -f "$PRESET_CONFIG" ] && command -v python3 >/dev/null 2>&1; then
-    python3 - "$PRESET_CONFIG" <<'PY'
-import json
-import sys
-with open(sys.argv[1], "r", encoding="utf-8") as handle:
-    for item in json.load(handle).get("presets", []):
-        print(item["id"])
-PY
-  fi
-}
 
 markdown_escape() {
   printf '%s' "$1" | sed 's/|/\\|/g'
@@ -348,7 +342,7 @@ check_repo() {
   local gsdb_intake_missing=false
   local registry_meta registry_level="" registry_language="" registry_msl_status="" registry_preset_profile=""
 
-  [ -d "$repo/.git" ] || die "kein Git-Repository: $repo"
+  [ -e "$repo/.git" ] || die "kein Git-Repository: $repo"
   project_name="$(basename "$repo")"
   registry_meta="$(registry_entry_for_repo "$repo" || true)"
   if [ -n "$registry_meta" ]; then
@@ -417,18 +411,23 @@ check_repo() {
   if [ "$registry_level" = "1" ]; then
     append_row "$report_tmp" "N/A" "Governance-Presets" ".specify/presets/" "Koordinationsrepo ohne eigene Preset-Installation" "-"
   else
-    preset_output="$(cd "$repo" && specify preset list 2>/dev/null || true)"
-    while IFS= read -r preset_id; do
-      [ -n "$preset_id" ] || continue
-      if [ -n "$preset_output" ] && [[ "$preset_output" == *"(${preset_id})"* ]]; then
-        append_row "$report_tmp" "OK" "Preset $preset_id" ".specify/presets/" "per specify preset list nachweisbar" "-"
-      elif find "$repo/.specify/presets" -maxdepth 4 -type d -name "$preset_id" -print -quit 2>/dev/null | grep -q .; then
-        append_row "$report_tmp" "OK" "Preset $preset_id" ".specify/presets/" "lokal installiert" "-"
+    local profile config_relative preset_config matrix_output
+    profile="${OPT_PRESET_PROFILE:-$registry_preset_profile}"
+    [ -n "$profile" ] || profile="$(jq -r '.defaultProfile' "$SCRIPT_DIR/config/spec-kit-preset-profiles.json")"
+    config_relative="$(jq -er --arg name "$profile" '.profiles[$name] | if . == null then error("Unknown preset profile") else .presetConfig // "none" end' "$SCRIPT_DIR/config/spec-kit-preset-profiles.json")" || die "Unbekanntes Preset-Profil: $profile"
+    if [ "$config_relative" = none ]; then
+      append_row "$report_tmp" "N/A" "Governance-Presets" "presetProfile" "Profil none ist explizit zugeordnet" "-"
+    else
+      preset_config="$SCRIPT_DIR/../$config_relative"
+      if matrix_output="$(bash "$SCRIPT_DIR/install-spec-kit-governance-presets.sh" --repo "$repo" --preset-config "$preset_config" --check-only 2>&1)"; then
+        printf '%s\n' "$matrix_output"
+        append_row "$report_tmp" "OK" "Governance-Presets $profile" ".specify/presets/" "exakte Matrix mit Versionen und Prioritaeten geprueft" "-"
       else
-        append_row "$report_tmp" "Open" "Preset $preset_id" ".specify/presets/" "nicht nachweisbar" "Governance-Presets installieren oder Ausnahme dokumentieren"
+        printf '  Matrixabweichung / matrix drift: %s\n' "$matrix_output"
+        append_row "$report_tmp" "Open" "Governance-Presets $profile" ".specify/presets/" "Matrixabweichung; siehe Konsolenausgabe" "Profilgebundene Installation pruefen"
         open_count=$((open_count + 1))
       fi
-    done < <(preset_ids)
+    fi
   fi
 
   if [ -d "$repo/docs/security" ]; then

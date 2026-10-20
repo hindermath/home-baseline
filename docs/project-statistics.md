@@ -1434,6 +1434,78 @@ repair does not constitute another Spec Kit run.
 
 | 2026-10-20 | Assurance 0.1.5: Level-0-Integration / Level-0 integration | Exakte aktive Metadatenprüfung im Paket, synchronisierte 13-/14-Preset-Profile und gebundene Quellen. Ausschließlich Level 0 und anschließender manifestgebundener Home-Sync; GSDB PR #337 bleibt offen, keine Level-2-Verteilung. Tests, native CI, Release- und Rolloutnachweise im [Lieferbericht / delivery record](maintenance/assurance-0.1.5-level0-2026-10-20.md); Statistikmethodik unverändert. / Strict metadata package validation, bounded rollout and unchanged statistics methodology. |
 
+### 2026-10-19 - GSDB-Konsolidierung in Level 0 / GSDB Level-0 consolidation
+
+37 GSDB-Dateien inventarisiert; Baseline 3.4.0 mit unveränderten 157 stabilen
+Prüfpunkt-IDs, profilgebundener Preset-Prüfung und regeneriertem Sammelband
+vorbereitet. Quellen-, Abdeckungs-, Assurance- und Regressionsevidence liegen
+im Repository. Der fachliche Gesamtausgang bleibt wegen offener Primärquellen
+Blocked; menschliche PR-Prüfung, Merge, Home-Sync und Flottenrollouts stehen aus.
+Quartalsreview ab 10.01.2027 eingerichtet; kein Testmailversand.
+
+Inventoried 37 GSDB files; prepared baseline 3.4.0 with all 157 stable item IDs,
+profile-bound preset checks and regenerated compendium. Source, coverage,
+assurance and regression evidence is versioned. Subject-matter outcome remains
+Blocked by unresolved primary sources; human PR review, merge, Home sync and
+fleet rollout remain pending. Quarterly review starts 2027-01-10; no test mail.
+
+### 2026-10-20 - GSDB-Primärquellenabschluss / GSDB primary-source closure
+
+DE: Sieben offene und drei teilweise Quellenprüfungen aus PR #337 gegen
+BSI-/G7-/CISA-Mitherausgebertexte, konsolidierte EU-Rechtsakte und geltendes
+BSIG abgeschlossen. Baseline 3.4.1, Sammelband 2.4.1; 157 IDs unverändert.
+CRA-Scope, Anhangs-/CE-/Supportregeln, KI-VO-Fristen, Krypto-Migration und
+DSGVO-Qualifizierungen korrigiert. Historische Evidence unverändert, neuer
+hashgebundener Kontext; menschliche PR-Prüfung bleibt offen.
+[Quellenabschluss](maintenance/gsdb-source-closure-2026-10-20.md).
+
+EN: Close seven Open and three Partial source checks using official texts;
+correct canonical bilingual requirements and create new bound evidence.
+Human review pending; no merge, Home sync, package change, mail or rollout.
+
+### 2026-10-20 - GSDB-Reviewkorrektur / GSDB review remediation
+
+DE: Vier Befunde aus unabhaengiger Nachpruefung korrigiert: getrenntes
+KI-Rollenscreening ohne pauschales Werkzeug-N/A, vollstaendige bedingte
+CRA-Zertifizierungspfade, eindeutige aktive Metadatenpruefung in beiden Shells
+und gleichwertige englische Meldefristen. Baseline 3.4.2, Sammelband 2.4.2,
+157 IDs erhalten; sechs weitere Regressionen je Shell und neuer Assurance-Kontext.
+Historische Evidence bleibt erhalten; menschliche Freigabe, Merge und jede
+Runtime-/Flottenausfuehrung bleiben offen.
+[Nachweis / Evidence](maintenance/gsdb-review-remediation-2026-10-20.md).
+
+EN: Correct four independent-review findings: separate AI-role screening,
+complete conditional CRA certification routes, exact active metadata checks in
+both shells and equivalent English reporting clocks. Baseline 3.4.2,
+compendium 2.4.2, retain 157 IDs; add six cases per shell and a new assurance
+context. Preserve historical evidence; human approval, merge and all runtime
+or fleet execution remain pending.
+
+### 2026-10-20 – GSDB: unabhängige Reviewkorrekturen / Independent Review Corrections
+
+- DE: PR #337, Baseline 3.4.3 und Sammelband 2.4.3: ein P1, fünf P2 und P3 im Level-0-Scope korrigiert. 157 stabile IDs erhalten; Rollen-/Rechtsbezüge, Cloud-/MSL-Mapping, TLS, zweisprachige Metadaten und neue Evidence. 30 isolierte Fälle je Shell vorgesehen; tatsächliche Ergebnisse und unabhängiger Claude-Abschluss im PR. Kein Merge, Home-Sync oder Rollout.
+- EN: PR #337, baseline 3.4.3 and compendium 2.4.3 correct one P1, five P2 and scoped P3 findings. Preserve 157 stable IDs; update role/legal references, cloud/MSL mapping, TLS, bilingual metadata and new evidence. Thirty isolated cases per shell; actual results and independent Claude conclusion recorded in the PR. No merge, Home sync or rollout.
+- Evidence: [Prüfbericht / Review record](maintenance/gsdb-independent-fixes-2026-10-20.md).
+
+### 2026-10-20 – GSDB P3-Abschluss / P3 Closure
+
+- DE: Unabhängiger Claude-Review bestätigt alle sechs P1/P2-Behebungen; acht P3-Nachbefunde in Baseline 3.4.4 / Sammelband 2.4.4 korrigiert. 157 IDs erhalten, 34 isolierte Fälle je Shell vorgesehen; konkrete Ergebnisse und erneuter unabhängiger Abschluss im PR. Frühere Nachweise unverändert; kein Merge, Home-Sync oder Rollout.
+- EN: Independent Claude confirmed all six P1/P2 corrections; close eight P3 findings in baseline 3.4.4 / compendium 2.4.4. Preserve 157 IDs; 34 isolated cases per shell, with actual results and renewed independent conclusion in the PR. Earlier evidence unchanged; no merge, Home sync or rollout.
+- Evidence: [P3-Nachtrag / P3 follow-up](maintenance/gsdb-p3-followup-2026-10-20.md).
+
+### 2026-10-20 - GSDB mit Assurance 0.1.5 / GSDB with Assurance 0.1.5
+
+DE: PR #337 nach menschlicher Sichtung und neuer DeliveryMode-MergeAndSync-
+Freigabe mit main/PR #338 zusammengefuehrt. Beide Ledgerverlaeufe erhalten,
+14 aktivierte Presets gegen aktuelle stabile Releases geprueft, neuer
+Assurance-0.1.5-Kontext bei unveraenderter GSDB 3.4.4 und 157 IDs.
+Historische Evidence und breite Produktfreigaben bleiben getrennt.
+[Nachweis / Evidence](maintenance/gsdb-assurance015-revalidation-2026-10-20.md).
+
+EN: Resolve the statistics-only merge conflict, retain Assurance 0.1.5 and all
+fourteen preset bindings, preserve historical evidence, revalidate current-head
+consistency and deliver only Level 0 with manifest-bound Home runtime.
+
 ## Gesamtstatistik / Overall Statistics
 
 <!-- project-statistics-v2:begin -->
@@ -1444,27 +1516,27 @@ Profil 2 verwendet Git-getrackte Textdateien und sichtbare Git-Aktivitaet. Die W
 
 | Kennzahl / Metric | Wert / Value |
 |---|---:|
-| Textbasis / Text base | 719643 lines |
-| Textdateien / Text files | 3399 |
+| Textbasis / Text base | 725219 lines |
+| Textdateien / Text files | 3461 |
 | Beobachtbarer Zeitraum / Observable period | 2025-10-26..2026-10-20 |
 | Aktivtage / Active days | 128 |
-| Relevante Commits / Relevant commits | 931 |
-| Zeilen je Aktivtag / Lines per active day | 5622.2 |
+| Relevante Commits / Relevant commits | 937 |
+| Zeilen je Aktivtag / Lines per active day | 5665.8 |
 | Peak-Tag im Fenster / Peak day in window | 2026-08-01 / 161357 |
 | Peak-Woche im Fenster / Peak week in window | 2026-07-26 / 284516 |
 | Laengste Serie / Longest streak | 38 days |
-| Speedup vs. 80 lines/day | 70.3x |
-| Speedup vs. 100 lines/day | 56.2x |
+| Speedup vs. 80 lines/day | 70.8x |
+| Speedup vs. 100 lines/day | 56.7x |
 | Methodik / Methodology | v2; source `923b933b5ff1` |
 
 ### Artefaktmix / Artifact Mix
 
 ```text
 Produktiv / Production          [#...................]   0.3% | 2237
-Tests                           [#...................]   3.8% | 27678
-Dokumentation / Documentation   [###########.........]  52.6% | 378383
-Skripte / Scripts               [##..................]   8.1% | 58370
-Konfiguration / Configuration   [#######.............]  35.1% | 252619
+Tests                           [#...................]   3.8% | 27858
+Dokumentation / Documentation   [###########.........]  52.9% | 383641
+Skripte / Scripts               [##..................]   8.1% | 58504
+Konfiguration / Configuration   [#######.............]  34.8% | 252623
 Daten und Medien / Data and media [....................]   0.0% | 0
 Sonstiger Text / Other text     [#...................]   0.0% | 356
 ```
@@ -1489,8 +1561,8 @@ Sa/Sa  0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 4 3 4
 ```text
 Wochen / Weeks 27..52 | 2026-04-26..2026-10-24
 So/Su  4 0 0 0 0 2 0 4 0 4 4 4 4 4 4 4 4 4 0 4 4 4 2 4 0 4
-Mo/Mo  0 3 0 0 0 0 0 0 0 4 4 4 4 3 0 2 1 0 0 3 3 0 3 2 0 3
-Di/Tu  2 0 0 0 3 0 0 0 0 2 4 4 4 4 0 0 0 0 4 2 4 0 0 3 0 3
+Mo/Mo  0 3 0 0 0 0 0 0 0 4 4 4 4 3 0 2 1 0 0 3 3 0 3 2 0 4
+Di/Tu  2 0 0 0 3 0 0 0 0 2 4 4 4 4 0 0 0 0 4 2 4 0 0 3 0 4
 Mi/We  3 0 0 0 0 1 0 4 0 4 4 4 4 4 4 0 4 3 0 4 2 0 0 0 0 -
 Do/Th  4 0 0 3 2 1 4 0 0 2 4 3 4 4 0 4 4 0 4 4 0 0 3 0 0 -
 Fr/Fr  0 0 0 1 2 2 1 4 2 3 4 3 4 4 4 3 0 4 0 4 1 0 0 2 0 -
@@ -1727,8 +1799,8 @@ Die festen Slots halten den Phasenvergleich auch bei fehlenden oder spaeter erga
 
 ```text
 Scale: 0..100x
-80 lines/day       [##############......] 70.3x
-100 lines/day      [###########.........] 56.2x
+80 lines/day       [##############......] 70.8x
+100 lines/day      [###########.........] 56.7x
 ```
 
 Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen Referenzen. Sie messen keine Arbeitszeit.
@@ -1741,7 +1813,7 @@ Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen
 Scale: 0..10000 lines/day
 Experienced manual [#...................] 80
 Thorsten solo      [#...................] 100
-Visible repository [###########.........] 5622.2
+Visible repository [###########.........] 5665.8
 ```
 
 Die gemeinsame Skala vergleicht Referenzen und sichtbare Lieferdichte. Sie schreibt die Git-Aktivitaet keiner Person oder KI pauschal zu.
@@ -1767,6 +1839,6 @@ DE: Das Fenster beginnt am 2025-10-26 und endet am 2026-10-20. Es enthaelt 128 a
 | 2026-07 | 385430 |
 | 2026-08 | 278228 |
 | 2026-09 | 144845 |
-| 2026-10 | 24012 |
+| 2026-10 | 38860 |
 
 <!-- project-statistics-v2:end -->

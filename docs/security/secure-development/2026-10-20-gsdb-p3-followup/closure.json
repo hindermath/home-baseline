@@ -1,0 +1,61 @@
+{
+  "schemaVersion": "1.0",
+  "documentType": "SecureDevelopmentGateEvidence",
+  "contextId": "gsdb-p3-followup",
+  "gate": "closure",
+  "mode": "development",
+  "createdAt": "2026-10-20T13:17:49.8324710+00:00",
+  "review": {
+    "owner": "Thorsten Hindermann",
+    "reviewer": "Codex closing eight independent Claude P3 findings under explicit Level-0 authority; new independent review and human decisions pending",
+    "reviewedAt": "2026-10-20T13:17:49.8324710+00:00",
+    "reviewDue": "2027-01-10",
+    "residualRisk": "Scoped P3 corrections; source access/capture limits remain explicit. Official Commission guidance confirms steward reporting dates. ISO full text and product conformity remain unproven. Assurance 0.1.4 substring validation remains separate; stricter Level-0 generator required. Four human decisions remain Open.",
+    "reevaluationTrigger": "Primary source, baseline, preset, scope or authority change; quarterly review."
+  },
+  "assessments": [
+    {
+      "id": "EIGHT-P3-FOLLOWUP",
+      "applicability": "Applicable",
+      "implementation": "Fulfilled",
+      "evidence": "docs/maintenance/gsdb-p3-followup-2026-10-20.md"
+    },
+    {
+      "id": "INDEPENDENT-HUMAN-REVIEW",
+      "applicability": "Applicable",
+      "implementation": "Not Fulfilled",
+      "evidence": "docs/maintenance/gsdb-p3-followup-2026-10-20.md",
+      "owner": "Thorsten Hindermann",
+      "dueAt": "2026-10-31",
+      "nextAction": "Complete independent human PR review before any merge or release decision."
+    }
+  ],
+  "outcome": "Blocked",
+  "externalComparisonBoundary": "HOSK/GWDG: ExternalComparison only; never local evidence",
+  "verificationScope": "Level-0 P3 closure only; no product, licensed ISO, physical assistive-technology, Home runtime or fleet acceptance.",
+  "runbookApplicability": "N/A",
+  "runbookRationale": "New bounded patch and evidence context, previous hash-bound contexts preserved.",
+  "humanDecisions": {
+    "technicalValidation": {
+      "status": "Open",
+      "authority": "Thorsten Hindermann",
+      "evidence": "Human decision pending; source review and CI do not confer approval."
+    },
+    "pilotAuthorization": {
+      "status": "Open",
+      "authority": "Thorsten Hindermann",
+      "evidence": "Human decision pending; source review and CI do not confer approval."
+    },
+    "projectAcceptance": {
+      "status": "Open",
+      "authority": "Thorsten Hindermann",
+      "evidence": "Human decision pending; source review and CI do not confer approval."
+    },
+    "generalRelease": {
+      "status": "Open",
+      "authority": "Thorsten Hindermann",
+      "evidence": "Human decision pending; source review and CI do not confer approval."
+    }
+  },
+  "nextAction": "Independent Claude verification of P3 closure, followed by separate human PR review; no merge, Home sync or rollout."
+}

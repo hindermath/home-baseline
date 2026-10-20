@@ -1,0 +1,198 @@
+{
+  "reviewedAt": "2026-10-19",
+  "owner": "Thorsten Hindermann",
+  "reviewer": "Codex; technical and document review under explicit user instruction",
+  "overallOutcome": "Blocked",
+  "reason": "Open/Partial sources prevent unconditional subject-matter approval.",
+  "sources": [
+    {
+      "standard": "ISO/IEC 27001",
+      "edition": "2022 + Amd 1:2024",
+      "url": "https://www.iso.org/standard/27001",
+      "outcome": "BibliographyVerified",
+      "finding": "Katalog und Amendment bestätigt; lizenzierter Normtext nicht vollständig geprüft. / Catalogue and amendment confirmed; licensed text not fully reviewed."
+    },
+    {
+      "standard": "ISO/IEC 27002",
+      "edition": "2022",
+      "url": "https://www.iso.org/standard/75652.html",
+      "outcome": "BibliographyVerified",
+      "finding": "Katalog bestätigt, kein vollständiger Normtextnachweis. / Catalogue confirmed, no full normative-text proof."
+    },
+    {
+      "standard": "NIST SSDF SP 800-218",
+      "edition": "1.1 Final; 1.2 Initial Public Draft",
+      "url": "https://csrc.nist.gov/pubs/sp/800/218/final",
+      "outcome": "Reviewed",
+      "finding": "SSDF-Praktikzuordnung korrigiert; Entwurf separat: https://csrc.nist.gov/pubs/sp/800/218/r1/ipd / Practice mapping corrected; draft tracked separately."
+    },
+    {
+      "standard": "NIST Zero Trust SP 800-207",
+      "edition": "2020 Final",
+      "url": "https://csrc.nist.gov/pubs/sp/800/207/final",
+      "outcome": "Reviewed",
+      "finding": "Referenz bleibt; keine pauschale VPN- oder Produktvorgabe. / Retain reference; no universal VPN or product mandate."
+    },
+    {
+      "standard": "NIST AI RMF",
+      "edition": "1.0",
+      "url": "https://www.nist.gov/itl/ai-risk-management-framework",
+      "outcome": "Reviewed",
+      "finding": "Referenzrahmen für Risiko, keine Freigabe. / Risk reference, no approval."
+    },
+    {
+      "standard": "CWE Top 25",
+      "edition": "2025 auf Projektseite / on project page",
+      "url": "https://cwe.mitre.org/top25/",
+      "outcome": "Reviewed",
+      "finding": "Konkreter Jahrgang statt unbestimmtem aktuell. / Record concrete edition instead of unspecified latest."
+    },
+    {
+      "standard": "OWASP ASVS",
+      "edition": "5.0.0",
+      "url": "https://owasp.org/projects/asvs",
+      "outcome": "Reviewed",
+      "finding": "Stabile Fassung beibehalten. / Retain stable edition."
+    },
+    {
+      "standard": "OWASP Top 10 Web",
+      "edition": "2025",
+      "url": "https://top10.owasp.org/2025/",
+      "outcome": "Reviewed",
+      "finding": "Awareness, kein Verifikationsersatz. / Awareness, not verification."
+    },
+    {
+      "standard": "OWASP Top 10 for LLM Applications",
+      "edition": "2025",
+      "url": "https://genai.owasp.org/llm-top-10/",
+      "outcome": "Reviewed",
+      "finding": "Nummern mit Jahrgang binden. / Bind identifiers to edition."
+    },
+    {
+      "standard": "OWASP SAMM",
+      "edition": "2",
+      "url": "https://owaspsamm.org/model/",
+      "outcome": "Reviewed",
+      "finding": "Reifegradmodell, keine Produktfreigabe. / Maturity model, not product approval."
+    },
+    {
+      "standard": "OWASP Cheat Sheet Series",
+      "edition": "laufend / rolling",
+      "url": "https://cheatsheetseries.owasp.org/",
+      "outcome": "Reviewed",
+      "finding": "Konkrete Themenquellen je Änderung prüfen. / Review topic sources per change."
+    },
+    {
+      "standard": "SLSA",
+      "edition": "1.2",
+      "url": "https://slsa.dev/spec/v1.2/",
+      "outcome": "Reviewed",
+      "finding": "Build-Track unverändert passend. / Build track remains appropriate."
+    },
+    {
+      "standard": "CycloneDX",
+      "edition": "1.7; tatsächlich erzeugte Fassung gesondert / emitted version separately",
+      "url": "https://cyclonedx.org/specification/overview/",
+      "outcome": "Reviewed",
+      "finding": "Toolausgabe bestimmt eingesetzte Fassung. / Tool output determines applied version."
+    },
+    {
+      "standard": "SPDX",
+      "edition": "3.0 laut Übersichtsseite; Tool-Pin gesondert / overview; separate tool pin",
+      "url": "https://spdx.dev/use/specifications/",
+      "outcome": "Reviewed",
+      "finding": "Kein automatischer Formatwechsel. / No automatic format migration."
+    },
+    {
+      "standard": "BSI TR-02102",
+      "edition": "Teilfassung vor Einsatz erneut prüfen / recheck applicable part",
+      "url": "https://www.bsi.bund.de/DE/Themen/Unternehmen-und-Organisationen/Standards-und-Zertifizierung/Technische-Richtlinien/TR-nach-Thema-sortiert/tr02102/tr-02102.html",
+      "outcome": "Open",
+      "finding": "Direktzugriff fehlgeschlagen; neue Algorithmenfreigabe blockiert. / Direct access failed; new algorithm approval blocked."
+    },
+    {
+      "standard": "BSI C3A",
+      "edition": "Fassung offen / edition unresolved",
+      "url": "https://www.bsi.bund.de/DE/Themen/Unternehmen-und-Organisationen/Informationen-und-Empfehlungen/Empfehlungen-nach-Angriffszielen/Cloud-Computing/cloud-computing_node.html",
+      "outcome": "Open",
+      "finding": "Keine aktuell abrufbare Katalogfassung nachgewiesen. / No retrievable current catalogue established."
+    },
+    {
+      "standard": "BSI C5",
+      "edition": "Fassung offen; 2020 archiviert auffindbar / current unresolved; 2020 archived",
+      "url": "https://www.bsi.bund.de/DE/Themen/Unternehmen-und-Organisationen/Informationen-und-Empfehlungen/Empfehlungen-nach-Angriffszielen/Cloud-Computing/Kriterienkatalog-C5/kriterienkatalog-c5_node.html",
+      "outcome": "Open",
+      "finding": "Aktueller Direktzugriff fehlgeschlagen; Archiv ist kein Aktualitätsnachweis. / Current access failed; archive is not currency evidence."
+    },
+    {
+      "standard": "EU Cyber Resilience Act",
+      "edition": "Verordnung (EU) 2024/2847; Kommissionshinweise / Commission guidance",
+      "url": "https://digital-strategy.ec.europa.eu/en/policies/cra-summary",
+      "outcome": "Partial",
+      "finding": "Kommissionsübersicht und Meldehinweise geprüft; EUR-Lex-Volltextzugriff blockiert. / Commission summary and reporting guidance reviewed; full legal text blocked."
+    },
+    {
+      "standard": "EU AI Act",
+      "edition": "Verordnung (EU) 2024/1689",
+      "url": "https://eur-lex.europa.eu/eli/reg/2024/1689/oj/eng",
+      "outcome": "Partial",
+      "finding": "Originaltext erreichbar; Link auf konsolidierte Fassung 27.07.2026 sichtbar, diese nicht vollständig geprüft. / Original accessible; linked 2026-07-27 consolidation not fully reviewed."
+    },
+    {
+      "standard": "NIS2",
+      "edition": "Richtlinie (EU) 2022/2555",
+      "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:32022L2555",
+      "outcome": "Partial",
+      "finding": "EU-Ausgangstext geprüft; aktuelle nationale Umsetzung nicht vollständig geprüft. / EU source reviewed; national transposition not fully reviewed."
+    },
+    {
+      "standard": "DORA",
+      "edition": "Verordnung (EU) 2022/2554",
+      "url": "https://eur-lex.europa.eu/eli/reg/2022/2554/oj",
+      "outcome": "Open",
+      "finding": "Volltextzugriff blockiert. / Full-text access blocked."
+    },
+    {
+      "standard": "G7 Software Bill of Materials for AI",
+      "edition": "Minimum Elements, 2026; Primärfassung offen / primary edition unresolved",
+      "url": "https://www.bsi.bund.de/SharedDocs/Downloads/EN/BSI/KI/SBOM-for-AI_Food-for-thoughts.pdf?__blob=publicationFile&v=6",
+      "outcome": "Open",
+      "finding": "Suchnachweis der 2025-Vorarbeit ersetzt nicht den 2026-Primärtext. / Search evidence of 2025 precursor does not verify 2026 primary text."
+    },
+    {
+      "standard": "CISA Memory-Safe Roadmaps",
+      "edition": "lokale PDF, SHA-256 im Inventar / local PDF hash in inventory",
+      "url": "https://www.cisa.gov/resources-tools/resources/case-memory-safe-roadmaps",
+      "outcome": "Open",
+      "finding": "Onlinequelle und PDF-Direktzugriff fehlgeschlagen; lokale Integrität separat geprüft. / Online and direct PDF access failed; local integrity checked separately."
+    },
+    {
+      "standard": "OWASP Proactive Controls",
+      "edition": "2024",
+      "url": "https://top10proactive.owasp.org/the-top-10/",
+      "outcome": "Reviewed",
+      "finding": "Versions-/Nummernmischung in CL-01-10 korrigiert. / Corrected mixed edition/identifiers."
+    },
+    {
+      "standard": "CA/Browser Forum TLS Baseline Requirements",
+      "edition": "2.3.1, 2026-10-04; Abschnitt / section 6.3.2",
+      "url": "https://cabforum.org/working-groups/server/baseline-requirements/requirements/",
+      "outcome": "Reviewed",
+      "finding": "Ausstellungsabhängige Laufzeiten in CL-03-10 korrigiert. / Corrected issuance-dependent lifetimes."
+    },
+    {
+      "standard": "OAuth Security BCP",
+      "edition": "RFC 9700, 2025",
+      "url": "https://www.rfc-editor.org/rfc/rfc9700.html",
+      "outcome": "Reviewed",
+      "finding": "Autorisierung und Authentifizierung getrennt. / Separate authorization from authentication."
+    },
+    {
+      "standard": "DSGVO / GDPR",
+      "edition": "Verordnung (EU) 2016/679",
+      "url": "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
+      "outcome": "Open",
+      "finding": "Direktzugriff blockiert; pauschale Log-Aufbewahrungsbehauptungen entfernt. / Direct access blocked; removed blanket log-retention claims."
+    }
+  ]
+}

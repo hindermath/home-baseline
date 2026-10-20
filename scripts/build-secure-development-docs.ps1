@@ -3,10 +3,15 @@
 Builds and validates the generated secure-development compendium.
 
 .DESCRIPTION
+DE: Prueft eindeutige, vollstaendige aktive Metadaten gegen das Manifest und
+erzeugt den Sammelband aus den zwoelf kanonischen Checklisten.
+EN: Validates unique complete active metadata against the manifest.
 Validates the secure-development manifest, checklist IDs and versions, then
 generates the checklist compendium from the twelve canonical checklist files.
 
 .PARAMETER Check
+DE: Nur pruefen, keine Dateien aendern.
+EN: Check only, without changing files.
 Checks that the generated compendium is current without changing files.
 
 .EXAMPLE
@@ -34,20 +39,80 @@ if ($manifest.schemaVersion -ne 1 -or $manifest.checklists.Count -ne 12) {
     throw 'Manifest must use schema version 1 and contain exactly 12 checklists.'
 }
 
+# DE: Der erste zusammenhaengende Metadatenblock ist aktiv; doppelte Felder
+# oder Treffer im Text duerfen einen falschen aktiven Wert nicht verdecken.
+# EN: The first contiguous metadata block is active; duplicate fields and
+# body matches must never hide an incorrect active value.
+function Assert-DocumentMetadata {
+    param([string]$Relative, [string]$Prefix, [string]$Value)
+    $path = Join-Path $DocRoot $Relative
+    if (-not (Test-Path $path -PathType Leaf)) { throw "Controlled document missing: ${Relative}" }
+    $started = $false
+    $active = $false
+    $count = 0
+    $matched = 0
+    foreach ($line in Get-Content $path) {
+        if (-not $started -and $line -cmatch '^\*\*[^*]+:\*\*') { $started = $true; $active = $true }
+        if ($started -and $line -cnotmatch '^\*\*[^*]+:\*\*') { $active = $false }
+        if ($line.StartsWith($Prefix, [StringComparison]::Ordinal)) {
+            $count++
+            if ($active -and $line -ceq "${Prefix} ${Value}") { $matched++ }
+        }
+    }
+    if ($count -ne 1 -or $matched -ne 1) { throw "Active metadata mismatch or duplicate: ${Relative} (${Prefix})" }
+}
+foreach ($relative in @('README.md') + @($manifest.checklists.path) + @($manifest.relatedDocuments.path) + @($manifest.learningDocuments.path)) {
+    Assert-DocumentMetadata $relative '**Baseline-Version / Baseline version:**' $manifest.baselineVersion
+}
+$actualIds = @($manifest.checklists.id | Sort-Object)
+$expectedIds = @(1..12 | ForEach-Object { 'CL-{0:00}' -f $_ })
+if (($actualIds -join ',') -cne ($expectedIds -join ',')) { throw 'Expected unique checklist IDs CL-01..CL-12.' }
+if ($manifest.guideline.version -cne $manifest.baselineVersion) { throw 'Guideline/baseline version mismatch.' }
+$catalog = Get-Content (Join-Path $PSScriptRoot 'config/spec-kit-preset-profiles.json') -Raw | ConvertFrom-Json
+$alignment = Get-Content (Join-Path $DocRoot 'mitgeltende-dokumente/Verzahnung_Richtlinie_Checklisten_Spec-Kit-Presets.md') -Raw
+foreach ($presetProfileName in $catalog.profiles.PSObject.Properties.Name | Where-Object { $_ -ne 'none' }) {
+    if (-not $alignment.Contains('`' + $presetProfileName + '`')) { throw "Profile missing from alignment: ${presetProfileName}" }
+}
+
 $guidelinePath = Join-Path $DocRoot $manifest.guideline.path
 if (-not (Test-Path $guidelinePath)) { throw "Guideline missing: $($manifest.guideline.path)" }
-$guideline = Get-Content $guidelinePath -Raw
-if ($guideline -notmatch [regex]::Escape("| Versionsnummer | $($manifest.guideline.version) |")) {
-    throw "Guideline version mismatch: $($manifest.guideline.path)"
+# DE: Nur die erste Tabelle im benannten Metadatenabschnitt gilt; jeder aktive
+# Sprachkopf und jedes Versionsfeld muss eindeutig sein. Historienzeilen bleiben erlaubt.
+# EN: Only the first table in the named metadata section is active. Language
+# headings and version fields must be unique; history rows remain allowed.
+function Assert-GuidelineMetadata {
+    param([string]$Heading, [string]$Field)
+    $active = $false
+    $table = $false
+    $ended = $false
+    $sections = 0
+    $count = 0
+    $matched = 0
+    foreach ($line in Get-Content $guidelinePath) {
+        if ($line.StartsWith('## ', [StringComparison]::Ordinal)) {
+            $active = $line -ceq $Heading
+            if ($active) { $sections++ }
+            $table = $false
+            $ended = $false
+        }
+        if ($active -and $line.StartsWith('|', [StringComparison]::Ordinal) -and -not $ended) { $table = $true }
+        if ($active -and $table -and -not $line.StartsWith('|', [StringComparison]::Ordinal)) { $ended = $true }
+        if ($line.StartsWith("| ${Field} |", [StringComparison]::Ordinal) -and ($line.Split('|')).Count -eq 4) {
+            $count++
+            if ($active -and $table -and -not $ended -and $line -ceq "| ${Field} | $($manifest.guideline.version) |") { $matched++ }
+        }
+    }
+    if ($sections -ne 1 -or $count -ne 1 -or $matched -ne 1) {
+        throw "Active guideline metadata mismatch or duplicate: $($manifest.guideline.path) (${Field})"
+    }
 }
+Assert-GuidelineMetadata '## Dokumenten-Metadaten' 'Versionsnummer'
+Assert-GuidelineMetadata '## Document Metadata' 'Version'
 
 foreach ($document in @($manifest.relatedDocuments) + @($manifest.learningDocuments)) {
     $documentPath = Join-Path $DocRoot $document.path
     if (-not (Test-Path $documentPath)) { throw "Controlled document missing: $($document.path)" }
-    $documentText = Get-Content $documentPath -Raw
-    if ($documentText -notmatch [regex]::Escape("**Version / Version:** $($document.version)")) {
-        throw "Controlled document version mismatch: $($document.path)"
-    }
+    Assert-DocumentMetadata $document.path '**Version / Version:**' $document.version
 }
 
 foreach ($relative in @($manifest.managedBinaryFiles) + @($manifest.managedReferenceFiles)) {
@@ -65,16 +130,13 @@ foreach ($checklist in $manifest.checklists) {
     $sourceFile = Join-Path $DocRoot $checklist.path
     if (-not (Test-Path $sourceFile)) { throw "Checklist missing: $($checklist.path)" }
     $source = (Get-Content $sourceFile -Raw) -replace "`r`n", "`n"
-    if ($source -notmatch [regex]::Escape("**Dokument-ID / Document ID:** $($checklist.id)")) {
-        throw "Document ID mismatch: $($checklist.path)"
-    }
-    if ($source -notmatch [regex]::Escape("**Version / Version:** $($checklist.version)")) {
-        throw "Version mismatch: $($checklist.path)"
-    }
+    Assert-DocumentMetadata $checklist.path '**Dokument-ID / Document ID:**' $checklist.id
+    Assert-DocumentMetadata $checklist.path '**Version / Version:**' $checklist.version
     foreach ($match in [regex]::Matches($source, '(?m)^#### (CL-[0-9]{2}-[0-9]{2}):')) {
         $ids.Add($match.Groups[1].Value)
     }
     $source = $source.Replace('](../Richtlinie_Sichere-Entwicklung.md', '](Richtlinie_Sichere-Entwicklung.md')
+    $source = $source.Replace('](../../maintenance/', '](../maintenance/')
     $source = $source.Replace('](../../../constitution.md', '](../../constitution.md')
     $source = $source.Replace('](../README.md', '](README.md')
     $source = $source.Replace('](../mitgeltende-dokumente/', '](mitgeltende-dokumente/')
