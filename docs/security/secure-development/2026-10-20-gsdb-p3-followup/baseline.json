@@ -4,11 +4,11 @@
   "contextId": "gsdb-p3-followup",
   "gate": "baseline",
   "mode": "development",
-  "createdAt": "2026-10-20T13:17:49.0480400+00:00",
+  "createdAt": "2026-10-20T15:17:49.04804+02:00",
   "review": {
     "owner": "Thorsten Hindermann",
     "reviewer": "Codex closing eight independent Claude P3 findings under explicit Level-0 authority; new independent review and human decisions pending",
-    "reviewedAt": "2026-10-20T13:17:49.0480400+00:00",
+    "reviewedAt": "2026-10-20T13:24:25.9584800+00:00",
     "reviewDue": "2027-01-10",
     "residualRisk": "Scoped P3 corrections; source access/capture limits remain explicit. Official Commission guidance confirms steward reporting dates. ISO full text and product conformity remain unproven. Assurance 0.1.4 substring validation remains separate; stricter Level-0 generator required. Four human decisions remain Open.",
     "reevaluationTrigger": "Primary source, baseline, preset, scope or authority change; quarterly review."
@@ -175,7 +175,7 @@
       {
         "path": "mitgeltende-dokumente/Standardsregister_Sichere-Entwicklung.md",
         "version": "1.1.4",
-        "normalizedSha256": "f11186f0f16e51d6099c4ca8d752d5d619bb41d92b68af72b4f49de79b8c0d55"
+        "normalizedSha256": "3dfabf0c1ff6f90e5125e1f337f6cc359b2140adc1a3a71da80dc8af87406ed4"
       },
       {
         "path": "mitgeltende-dokumente/Verzahnung_Richtlinie_Checklisten_Spec-Kit-Presets.md",

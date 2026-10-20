@@ -133,9 +133,9 @@ DE: Offizielle EUR-Lex-Konsolidierungen sind Lese-/Dokumentationshilfen ohne eig
 
 EN: Official EUR-Lex consolidations are reading/documentation aids without independent legal effect. Authentic Official Journal acts, amendments and corrigenda govern. Reviewing the assertions used is not a complete legal review. The linked CRA acts address vehicle scope, CSIRT dissemination and category descriptions respectively. Earlier source logs remain historical snapshots.
 
-DE: Aktuell 3.4.3: NCSC-NZ-Bytes wurden durch den früheren unabhängigen Claude-Abruf bestätigt und erneut gegen das lokale Original gehasht. Die ältere Zugangsgrenze beschreibt nur den damaligen Codex-Versuch. Maßgeblich sind [aktueller Prüfbericht](../../maintenance/gsdb-p3-followup-2026-10-20.md) und [Quellenprotokoll](../../maintenance/gsdb-source-review-p3-followup-2026-10-20.json).
+DE: Historischer Nachweis 3.4.3: NCSC-NZ-Bytes wurden durch den früheren unabhängigen Claude-Abruf bestätigt und erneut gegen das lokale Original gehasht. Die ältere Zugangsgrenze beschreibt nur den damaligen Codex-Versuch. Maßgeblich sind [aktueller Prüfbericht](../../maintenance/gsdb-p3-followup-2026-10-20.md) und [Quellenprotokoll](../../maintenance/gsdb-source-review-p3-followup-2026-10-20.json).
 
-EN: Current 3.4.3 records the prior successful independent Claude NCSC NZ retrieval, rehashed against the local original. The older access limit describes that earlier Codex attempt only; see the current report and source log.
+EN: Historical revision 3.4.3 records the prior successful independent Claude NCSC NZ retrieval, rehashed against the local original. The older access limit describes that earlier Codex attempt only; see the current report and source log.
 
 
 DE: Aktueller Arbeitsstand 3.4.4; fachlicher P3-Abschluss im verlinkten Bericht. Der Bericht zu 3.4.3 ist eine historische Nachprüfung. / EN: Current working revision 3.4.4; the linked report records P3 closure. Revision 3.4.3 review remains historical.

@@ -18,7 +18,7 @@
     {
       "path": "docs/secure-development/README.md",
       "sourceSha256": "f1ca2c96e419c8981e276f6edfb812a193c749e7123fb5996fe04257b5165c10",
-      "consolidatedSha256": "5ba0bb36ce691b789e3497e2ec5846e88f562f7244c4994632ceeda2970953c5",
+      "consolidatedSha256": "ea99db9660f224f1cbd20ee8413d608dd8b27faa3462a2623bd3dde064a687bb",
       "reviewDisposition": "Baseline 3.4.4; eight-P3 follow-up, semantic version increments separated from editorial bindings; earlier records untouched."
     },
     {
@@ -192,7 +192,7 @@
     {
       "path": "docs/secure-development/mitgeltende-dokumente/Standardsregister_Sichere-Entwicklung.md",
       "sourceSha256": "859a7e155c74c49e4f65477039b49377e367bf1f1ebeb000c4986b7d0c357028",
-      "consolidatedSha256": "f11186f0f16e51d6099c4ca8d752d5d619bb41d92b68af72b4f49de79b8c0d55",
+      "consolidatedSha256": "3dfabf0c1ff6f90e5125e1f337f6cc359b2140adc1a3a71da80dc8af87406ed4",
       "reviewDisposition": "Baseline 3.4.4; eight-P3 follow-up, semantic version increments separated from editorial bindings; earlier records untouched."
     },
     {

@@ -99,9 +99,9 @@ Human approval remains pending; no merge, Home sync or rollout.
 
 ## Reviewkorrektur 3.4.3 (historisch) / Review Corrections 3.4.3 (Historical)
 
-DE: Baseline 3.4.3; [aktueller Prüfbericht](../maintenance/gsdb-independent-fixes-2026-10-20.md), [Quellenstand](../maintenance/gsdb-source-review-independent-fixes-2026-10-20.json), [Abdeckungsmatrix](../maintenance/gsdb-coverage-independent-fixes-2026-10-20.md). Historische Berichte und Evidence bleiben erhalten. Menschliche Freigaben bleiben offen.
+DE: Historischer Stand 3.4.3; [damaliger Prüfbericht](../maintenance/gsdb-independent-fixes-2026-10-20.md), [Quellenstand](../maintenance/gsdb-source-review-independent-fixes-2026-10-20.json), [Abdeckungsmatrix](../maintenance/gsdb-coverage-independent-fixes-2026-10-20.md). Historische Berichte und Evidence bleiben erhalten. Menschliche Freigaben bleiben offen.
 
-EN: Baseline 3.4.3; current review, source log and coverage matrix are linked above. Historical reports and evidence remain intact. Human approvals remain open.
+EN: Historical revision 3.4.3; its review, source log and coverage matrix are linked above. Historical reports and evidence remain intact. Human approvals remain open.
 
 ## Aktueller P3-Abschluss / Current P3 Closure
 
