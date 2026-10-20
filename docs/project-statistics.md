@@ -1493,6 +1493,19 @@ or fleet execution remain pending.
 - EN: Independent Claude confirmed all six P1/P2 corrections; close eight P3 findings in baseline 3.4.4 / compendium 2.4.4. Preserve 157 IDs; 34 isolated cases per shell, with actual results and renewed independent conclusion in the PR. Earlier evidence unchanged; no merge, Home sync or rollout.
 - Evidence: [P3-Nachtrag / P3 follow-up](maintenance/gsdb-p3-followup-2026-10-20.md).
 
+### 2026-10-20 - GSDB mit Assurance 0.1.5 / GSDB with Assurance 0.1.5
+
+DE: PR #337 nach menschlicher Sichtung und neuer DeliveryMode-MergeAndSync-
+Freigabe mit main/PR #338 zusammengefuehrt. Beide Ledgerverlaeufe erhalten,
+14 aktivierte Presets gegen aktuelle stabile Releases geprueft, neuer
+Assurance-0.1.5-Kontext bei unveraenderter GSDB 3.4.4 und 157 IDs.
+Historische Evidence und breite Produktfreigaben bleiben getrennt.
+[Nachweis / Evidence](maintenance/gsdb-assurance015-revalidation-2026-10-20.md).
+
+EN: Resolve the statistics-only merge conflict, retain Assurance 0.1.5 and all
+fourteen preset bindings, preserve historical evidence, revalidate current-head
+consistency and deliver only Level 0 with manifest-bound Home runtime.
+
 ## Gesamtstatistik / Overall Statistics
 
 <!-- project-statistics-v2:begin -->
