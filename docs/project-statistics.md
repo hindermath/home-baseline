@@ -1432,6 +1432,8 @@ repair does not constitute another Spec Kit run.
 
 | 2026-10-19 | Begrenzter 14-Preset-Rollout: Abschluss / Bounded fourteen-preset rollout closeout | Zentrale Evidence fuer Level 0/Home Runtime und ausschliesslich TinyCalc, Show-CommandTui400 und absdd-image-sandbox zusammengefuehrt: exakte PR-/Merge-Bindungen, technische GSDB-/Assurance-Nachpruefung, macOS-PTY-Korrektur ohne abgeschwaechte Orakel und dokumentierte Provider-Ausnahme. Echter Statistik-Drift am Tageswechsel bleibt mit gesonderter generierter Korrektur nachvollziehbar; keine Methodikaenderung, Produktfreigabe, Community-Einreichung oder weitere Flotte. [Nachweis / Evidence](maintenance/preset-readme-patch-rollout-2026-10-18.md). / Consolidate exact delivery and execution evidence, preserve failed history and human boundaries; canonical statistics follow the clean closeout source commit. |
 
+| 2026-10-20 | Assurance 0.1.5: Level-0-Integration / Level-0 integration | Exakte aktive Metadatenprüfung im Paket, synchronisierte 13-/14-Preset-Profile und gebundene Quellen. Ausschließlich Level 0 und anschließender manifestgebundener Home-Sync; GSDB PR #337 bleibt offen, keine Level-2-Verteilung. Tests, native CI, Release- und Rolloutnachweise im [Lieferbericht / delivery record](maintenance/assurance-0.1.5-level0-2026-10-20.md); Statistikmethodik unverändert. / Strict metadata package validation, bounded rollout and unchanged statistics methodology. |
+
 ### 2026-10-19 - GSDB-Konsolidierung in Level 0 / GSDB Level-0 consolidation
 
 37 GSDB-Dateien inventarisiert; Baseline 3.4.0 mit unveränderten 157 stabilen
@@ -1501,27 +1503,27 @@ Profil 2 verwendet Git-getrackte Textdateien und sichtbare Git-Aktivitaet. Die W
 
 | Kennzahl / Metric | Wert / Value |
 |---|---:|
-| Textbasis / Text base | 724129 lines |
-| Textdateien / Text files | 3451 |
+| Textbasis / Text base | 719643 lines |
+| Textdateien / Text files | 3399 |
 | Beobachtbarer Zeitraum / Observable period | 2025-10-26..2026-10-20 |
 | Aktivtage / Active days | 128 |
-| Relevante Commits / Relevant commits | 936 |
-| Zeilen je Aktivtag / Lines per active day | 5657.3 |
+| Relevante Commits / Relevant commits | 931 |
+| Zeilen je Aktivtag / Lines per active day | 5622.2 |
 | Peak-Tag im Fenster / Peak day in window | 2026-08-01 / 161357 |
 | Peak-Woche im Fenster / Peak week in window | 2026-07-26 / 284516 |
 | Laengste Serie / Longest streak | 38 days |
-| Speedup vs. 80 lines/day | 70.7x |
-| Speedup vs. 100 lines/day | 56.6x |
-| Methodik / Methodology | v2; source `ce5b5759bbaf` |
+| Speedup vs. 80 lines/day | 70.3x |
+| Speedup vs. 100 lines/day | 56.2x |
+| Methodik / Methodology | v2; source `923b933b5ff1` |
 
 ### Artefaktmix / Artifact Mix
 
 ```text
 Produktiv / Production          [#...................]   0.3% | 2237
-Tests                           [#...................]   3.8% | 27858
-Dokumentation / Documentation   [###########.........]  52.8% | 382553
-Skripte / Scripts               [##..................]   8.1% | 58504
-Konfiguration / Configuration   [#######.............]  34.9% | 252621
+Tests                           [#...................]   3.8% | 27678
+Dokumentation / Documentation   [###########.........]  52.6% | 378383
+Skripte / Scripts               [##..................]   8.1% | 58370
+Konfiguration / Configuration   [#######.............]  35.1% | 252619
 Daten und Medien / Data and media [....................]   0.0% | 0
 Sonstiger Text / Other text     [#...................]   0.0% | 356
 ```
@@ -1546,8 +1548,8 @@ Sa/Sa  0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 4 3 4
 ```text
 Wochen / Weeks 27..52 | 2026-04-26..2026-10-24
 So/Su  4 0 0 0 0 2 0 4 0 4 4 4 4 4 4 4 4 4 0 4 4 4 2 4 0 4
-Mo/Mo  0 3 0 0 0 0 0 0 0 4 4 4 4 3 0 2 1 0 0 3 3 0 3 2 0 4
-Di/Tu  2 0 0 0 3 0 0 0 0 2 4 4 4 4 0 0 0 0 4 2 4 0 0 3 0 4
+Mo/Mo  0 3 0 0 0 0 0 0 0 4 4 4 4 3 0 2 1 0 0 3 3 0 3 2 0 3
+Di/Tu  2 0 0 0 3 0 0 0 0 2 4 4 4 4 0 0 0 0 4 2 4 0 0 3 0 3
 Mi/We  3 0 0 0 0 1 0 4 0 4 4 4 4 4 4 0 4 3 0 4 2 0 0 0 0 -
 Do/Th  4 0 0 3 2 1 4 0 0 2 4 3 4 4 0 4 4 0 4 4 0 0 3 0 0 -
 Fr/Fr  0 0 0 1 2 2 1 4 2 3 4 3 4 4 4 3 0 4 0 4 1 0 0 2 0 -
@@ -1784,8 +1786,8 @@ Die festen Slots halten den Phasenvergleich auch bei fehlenden oder spaeter erga
 
 ```text
 Scale: 0..100x
-80 lines/day       [##############......] 70.7x
-100 lines/day      [###########.........] 56.6x
+80 lines/day       [##############......] 70.3x
+100 lines/day      [###########.........] 56.2x
 ```
 
 Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen Referenzen. Sie messen keine Arbeitszeit.
@@ -1798,7 +1800,7 @@ Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen
 Scale: 0..10000 lines/day
 Experienced manual [#...................] 80
 Thorsten solo      [#...................] 100
-Visible repository [###########.........] 5657.3
+Visible repository [###########.........] 5622.2
 ```
 
 Die gemeinsame Skala vergleicht Referenzen und sichtbare Lieferdichte. Sie schreibt die Git-Aktivitaet keiner Person oder KI pauschal zu.
@@ -1824,6 +1826,6 @@ DE: Das Fenster beginnt am 2025-10-26 und endet am 2026-10-20. Es enthaelt 128 a
 | 2026-07 | 385430 |
 | 2026-08 | 278228 |
 | 2026-09 | 144845 |
-| 2026-10 | 38074 |
+| 2026-10 | 24012 |
 
 <!-- project-statistics-v2:end -->

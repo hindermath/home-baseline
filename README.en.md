@@ -1,5 +1,7 @@
 # home-baseline
 
+[Assurance 0.1.5: package correction and Level-0 rollout](https://github.com/hindermath/home-baseline/blob/main/docs/maintenance/assurance-0.1.5-level0-2026-10-20.md).
+
 [14 README-Patch-Releases / Fourteen README patch releases](docs/maintenance/preset-readme-patch-releases-2026-10-18.md).
 Central release bindings are updated; installation, Home Runtime sync and community updates remain separate.
 

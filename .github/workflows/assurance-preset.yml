@@ -13,7 +13,9 @@ jobs:
   assurance:
     name: Assurance contracts (${{ matrix.os }})
     runs-on: ${{ matrix.os }}
-    timeout-minutes: 15
+    # Expanded Windows package regression takes about 14 minutes, before the
+    # fourteen-archive/profile integration. Retain all checks with headroom.
+    timeout-minutes: 30
     strategy:
       fail-fast: false
       matrix:

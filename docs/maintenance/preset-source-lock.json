@@ -12,11 +12,11 @@
     },
     {
       "id": "secure-development-assurance-governance",
-      "tag": "v0.1.4",
-      "commit": "9b2a45776e6bd09a3ebecb575ad76da833c8b61d",
+      "tag": "v0.1.5",
+      "commit": "55be0314488f1aeedc396f652cb247f9e5678817",
       "repository": "https://github.com/hindermath/spec-kit-preset-secure-development-assurance-governance",
-      "archiveUrl": "https://github.com/hindermath/spec-kit-preset-secure-development-assurance-governance/archive/refs/tags/v0.1.4.zip",
-      "archiveSha256": "8062183ea29e693c77b9a304fcad903ac9624667771916070871ee1e58ab0747"
+      "archiveUrl": "https://github.com/hindermath/spec-kit-preset-secure-development-assurance-governance/archive/refs/tags/v0.1.5.zip",
+      "archiveSha256": "2fde15a7562bea6fcb151a0476a34b41519a6511f4424085da7fe0b1aac637a9"
     },
     {
       "id": "architecture-governance",

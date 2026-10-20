@@ -1,0 +1,58 @@
+{
+  "schemaVersion": "1.0",
+  "documentType": "SecureDevelopmentGateEvidence",
+  "contextId": "gsdb-assurance015-revalidation",
+  "gate": "closure",
+  "mode": "development",
+  "createdAt": "2026-10-20T17:05:41.6624110+00:00",
+  "review": {
+    "owner": "Thorsten Hindermann",
+    "reviewer": "Codex: current fourteen-preset consistency review after integrating main/PR338; human PR review separately linked in delivery report",
+    "reviewedAt": "2026-10-20T17:05:41.6624110+00:00",
+    "reviewDue": "2027-01-10",
+    "residualRisk": "ISO full text, product conformity and physical assistive-technology acceptance remain outside this review. Historical capture/access boundaries retained. Assurance 0.1.4 package defect resolved by installed 0.1.5. PR merge authority does not imply four broad product/pilot/general-release decisions.",
+    "reevaluationTrigger": "Primary source, baseline, preset, scope or authority change; quarterly review."
+  },
+  "assessments": [
+    {
+      "id": "EIGHT-P3-FOLLOWUP",
+      "applicability": "Applicable",
+      "implementation": "Fulfilled",
+      "evidence": "docs/maintenance/gsdb-assurance015-revalidation-2026-10-20.md"
+    },
+    {
+      "id": "HUMAN-PR-REVIEW",
+      "applicability": "Applicable",
+      "implementation": "Fulfilled",
+      "evidence": "https://github.com/hindermath/home-baseline/pull/337#pullrequestreview-5588625491"
+    }
+  ],
+  "outcome": "Blocked",
+  "externalComparisonBoundary": "HOSK/GWDG: ExternalComparison only; never local evidence",
+  "verificationScope": "Level-0 GSDB 3.4.4 with installed fourteen-preset matrix including Assurance 0.1.5; no Level-2 rollout or product acceptance.",
+  "runbookApplicability": "N/A",
+  "runbookRationale": "New bounded patch and evidence context, previous hash-bound contexts preserved.",
+  "humanDecisions": {
+    "technicalValidation": {
+      "status": "Open",
+      "authority": "Thorsten Hindermann",
+      "evidence": "Human decision pending; source review and CI do not confer approval."
+    },
+    "pilotAuthorization": {
+      "status": "Open",
+      "authority": "Thorsten Hindermann",
+      "evidence": "Human decision pending; source review and CI do not confer approval."
+    },
+    "projectAcceptance": {
+      "status": "Open",
+      "authority": "Thorsten Hindermann",
+      "evidence": "Human decision pending; source review and CI do not confer approval."
+    },
+    "generalRelease": {
+      "status": "Open",
+      "authority": "Thorsten Hindermann",
+      "evidence": "Human decision pending; source review and CI do not confer approval."
+    }
+  },
+  "nextAction": "Complete exact-head CI, merge under explicit user DeliveryMode MergeAndSync with admin bypass, then inspect and sync manifest-bound Home runtime. Product/pilot/general-release decisions remain separate."
+}

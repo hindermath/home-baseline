@@ -1,0 +1,35 @@
+{
+  "schemaVersion": "1.0",
+  "documentType": "SecureDevelopmentGateEvidence",
+  "contextId": "gsdb-assurance015-revalidation",
+  "gate": "delta",
+  "mode": "development",
+  "createdAt": "2026-10-20T17:05:41.6624110+00:00",
+  "review": {
+    "owner": "Thorsten Hindermann",
+    "reviewer": "Codex: current fourteen-preset consistency review after integrating main/PR338; human PR review separately linked in delivery report",
+    "reviewedAt": "2026-10-20T17:05:41.6624110+00:00",
+    "reviewDue": "2027-01-10",
+    "residualRisk": "ISO full text, product conformity and physical assistive-technology acceptance remain outside this review. Historical capture/access boundaries retained. Assurance 0.1.4 package defect resolved by installed 0.1.5. PR merge authority does not imply four broad product/pilot/general-release decisions.",
+    "reevaluationTrigger": "Primary source, baseline, preset, scope or authority change; quarterly review."
+  },
+  "assessments": [
+    {
+      "id": "SEMANTIC-AND-METADATA-CORRECTIONS",
+      "applicability": "Applicable",
+      "implementation": "Fulfilled",
+      "evidence": "docs/maintenance/gsdb-assurance015-revalidation-2026-10-20.md"
+    },
+    {
+      "id": "STABLE-CHECKLIST-IDS",
+      "applicability": "Applicable",
+      "implementation": "Fulfilled",
+      "evidence": "docs/maintenance/gsdb-assurance015-revalidation-2026-10-20.md"
+    }
+  ],
+  "outcome": "Ready",
+  "externalComparisonBoundary": "HOSK/GWDG: ExternalComparison only; never local evidence",
+  "verificationScope": "Level-0 GSDB 3.4.4 with installed fourteen-preset matrix including Assurance 0.1.5; no Level-2 rollout or product acceptance.",
+  "runbookApplicability": "N/A",
+  "runbookRationale": "New bounded patch and evidence context, previous hash-bound contexts preserved."
+}
