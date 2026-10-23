@@ -1,0 +1,1640 @@
+{
+  "kind": "Source-only release evidence; not an installation matrix or Installed-Lock",
+  "status": "Complete: fifteen approved PRs merged; fourteen regular patch releases published and reverified",
+  "asOf": "2026-10-23T21:41:52Z",
+  "authority": "All fourteen documentation heads and Assurance PR 10 accepted by the user; MergeAndSync with Admin-Bypass after green checks and patch publication explicitly authorized.",
+  "boundaries": {
+    "consumerRollout": false,
+    "consumerInstallation": false,
+    "homeRuntimeSync": false,
+    "communitySubmission": false,
+    "operationalProfilesOrLocks": false,
+    "modelCalls": false,
+    "cancelledDynamicRouting": false
+  },
+  "assurancePrerequisite": {
+    "pr": "https://github.com/hindermath/spec-kit-preset-secure-development-assurance-governance/pull/10",
+    "head": "9559c827b9baf14ccb9e0b96c558d55cd76661dc",
+    "merge": "ffb85613aeff377885d6cf1990521868ff390fa3",
+    "checks": [
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-23T14:39:36Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/hindermath/spec-kit-preset-secure-development-assurance-governance/actions/runs/39970615088/job/120471986008",
+        "name": "Assurance contracts (ubuntu-22.04)",
+        "startedAt": "2026-10-23T14:33:19Z",
+        "status": "COMPLETED",
+        "workflowName": "Assurance Preset Regression"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-23T14:33:44Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/hindermath/spec-kit-preset-secure-development-assurance-governance/actions/runs/39970615047/job/120471985937",
+        "name": "Documentation (macos-15)",
+        "startedAt": "2026-10-23T14:33:36Z",
+        "status": "COMPLETED",
+        "workflowName": "Release documentation"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-23T14:34:02Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/hindermath/spec-kit-preset-secure-development-assurance-governance/actions/runs/39970615133/job/120471988775",
+        "name": "Stable routing (macos-15)",
+        "startedAt": "2026-10-23T14:33:37Z",
+        "status": "COMPLETED",
+        "workflowName": "Stable routing contract"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-23T14:36:48Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/hindermath/spec-kit-preset-secure-development-assurance-governance/actions/runs/39970615088/job/120471985689",
+        "name": "Assurance contracts (macos-14)",
+        "startedAt": "2026-10-23T14:33:23Z",
+        "status": "COMPLETED",
+        "workflowName": "Assurance Preset Regression"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-23T14:33:29Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/hindermath/spec-kit-preset-secure-development-assurance-governance/actions/runs/39970615047/job/120471986227",
+        "name": "Documentation (ubuntu-24.04)",
+        "startedAt": "2026-10-23T14:33:19Z",
+        "status": "COMPLETED",
+        "workflowName": "Release documentation"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-23T14:33:48Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/hindermath/spec-kit-preset-secure-development-assurance-governance/actions/runs/39970615133/job/120471989277",
+        "name": "Stable routing (ubuntu-24.04)",
+        "startedAt": "2026-10-23T14:33:21Z",
+        "status": "COMPLETED",
+        "workflowName": "Stable routing contract"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-23T14:49:08Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/hindermath/spec-kit-preset-secure-development-assurance-governance/actions/runs/39970615088/job/120471986100",
+        "name": "Assurance contracts (windows-2022)",
+        "startedAt": "2026-10-23T14:33:19Z",
+        "status": "COMPLETED",
+        "workflowName": "Assurance Preset Regression"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-23T14:33:30Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/hindermath/spec-kit-preset-secure-development-assurance-governance/actions/runs/39970615047/job/120471986155",
+        "name": "Documentation (windows-2022)",
+        "startedAt": "2026-10-23T14:33:19Z",
+        "status": "COMPLETED",
+        "workflowName": "Release documentation"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-23T14:33:50Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/hindermath/spec-kit-preset-secure-development-assurance-governance/actions/runs/39970615133/job/120471989217",
+        "name": "Stable routing (windows-2022)",
+        "startedAt": "2026-10-23T14:33:20Z",
+        "status": "COMPLETED",
+        "workflowName": "Stable routing contract"
+      }
+    ]
+  },
+  "checks": {
+    "documentationCohortAssertions": 262,
+    "commandDeclarations": 49,
+    "renderedGuides": 28,
+    "templateResolves": 145,
+    "verifiedGitBlobs": 604,
+    "isolatedFourteenPresetComposition": "PASS",
+    "fullWcagB2AssistiveAcceptance": false
+  },
+  "packages": [
+    {
+      "preset": "security-governance",
+      "name": "Security",
+      "version": "0.7.3",
+      "priorityInTestFixture": 10,
+      "pr": "https://github.com/hindermath/spec-kit-preset-security-governance/pull/10",
+      "reviewedHead": "9f1f0a2324204ff703409c24929dd2a0257acb3c",
+      "mergeCommit": "c66cabfbfdde532994bd3c0e63ebf843dadfa1c0",
+      "tag": "v0.7.3",
+      "tagCommit": "c66cabfbfdde532994bd3c0e63ebf843dadfa1c0",
+      "release": "https://github.com/hindermath/spec-kit-preset-security-governance/releases/tag/v0.7.3",
+      "publishedAt": "2026-10-23T21:29:30Z",
+      "regular": true,
+      "postPublication": {
+        "archiveReDownloaded": true,
+        "release": "https://github.com/hindermath/spec-kit-preset-security-governance/releases/tag/v0.7.3",
+        "commit": "c66cabfbfdde532994bd3c0e63ebf843dadfa1c0",
+        "name": "security",
+        "latest": true,
+        "verifiedAt": "2026-10-23T23:30:40.514043+02:00",
+        "source": "main clean 0/0",
+        "sha256": "e43fdbc3af2334182ded8908f160313dc085882faf96532f29bfffbb7cfd8f9d",
+        "regular": true,
+        "version": "0.7.3"
+      },
+      "archive": "https://github.com/hindermath/spec-kit-preset-security-governance/archive/refs/tags/v0.7.3.zip",
+      "sha256": "e43fdbc3af2334182ded8908f160313dc085882faf96532f29bfffbb7cfd8f9d",
+      "bytes": 92656,
+      "verifiedBlobs": 39,
+      "templateResolves": [
+        "security-governance-model-routing",
+        "constitution-template",
+        "spec-template",
+        "plan-template",
+        "tasks-template",
+        "security-agent-guidance-addendum-template",
+        "msl-applicability-template",
+        "standard-applicability-template",
+        "security-checklist-template",
+        "secure-coding-language-rules-template",
+        "dependency-audit-template",
+        "asvs-verification-template",
+        "supply-chain-evidence-template",
+        "cra-applicability-template",
+        "regulatory-applicability-template",
+        "gdpr-applicability-template",
+        "ai-act-applicability-template",
+        "nis2-applicability-template",
+        "dora-applicability-template"
+      ],
+      "installation": "PASS; disposable project only",
+      "defaultBranchSync": "main clean 0/0",
+      "exactHeadPrChecks": [
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-10-23T17:06:49Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/hindermath/spec-kit-preset-security-governance/actions/runs/39992111985/job/120546182613",
+          "name": "Reader paths (macos-15)",
+          "startedAt": "2026-10-23T17:06:42Z",
+          "status": "COMPLETED",
+          "workflowName": "Documentation closeout"
+        },
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-10-23T17:06:43Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/hindermath/spec-kit-preset-security-governance/actions/runs/39992112079/job/120546183221",
+          "name": "contract (macos-latest)",
+          "startedAt": "2026-10-23T17:06:31Z",
+          "status": "COMPLETED",
+          "workflowName": "Regulatory evidence contract"
+        },
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-10-23T17:05:03Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/hindermath/spec-kit-preset-security-governance/actions/runs/39992111985/job/120546183183",
+          "name": "Reader paths (ubuntu-24.04)",
+          "startedAt": "2026-10-23T17:04:53Z",
+          "status": "COMPLETED",
+          "workflowName": "Documentation closeout"
+        },
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-10-23T17:05:00Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/hindermath/spec-kit-preset-security-governance/actions/runs/39992112079/job/120546183084",
+          "name": "contract (ubuntu-latest)",
+          "startedAt": "2026-10-23T17:04:53Z",
+          "status": "COMPLETED",
+          "workflowName": "Regulatory evidence contract"
+        },
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-10-23T17:05:04Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/hindermath/spec-kit-preset-security-governance/actions/runs/39992111985/job/120546183250",
+          "name": "Reader paths (windows-2022)",
+          "startedAt": "2026-10-23T17:04:53Z",
+          "status": "COMPLETED",
+          "workflowName": "Documentation closeout"
+        },
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-10-23T17:05:03Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/hindermath/spec-kit-preset-security-governance/actions/runs/39992112079/job/120546183126",
+          "name": "contract (windows-latest)",
+          "startedAt": "2026-10-23T17:04:52Z",
+          "status": "COMPLETED",
+          "workflowName": "Regulatory evidence contract"
+        }
+      ]
+    },
+    {
+      "preset": "secure-development-assurance-governance",
+      "name": "Secure Development Assurance",
+      "version": "0.1.7",
+      "priorityInTestFixture": 15,
+      "pr": "https://github.com/hindermath/spec-kit-preset-secure-development-assurance-governance/pull/11",
+      "reviewedHead": "85f589a607490f6238ba4bfecaac6b47ce2e02e4",
+      "mergeCommit": "0f47996be3b613b3ab26206b606f68e3acb44c30",
+      "tag": "v0.1.7",
+      "tagCommit": "0f47996be3b613b3ab26206b606f68e3acb44c30",
+      "release": "https://github.com/hindermath/spec-kit-preset-secure-development-assurance-governance/releases/tag/v0.1.7",
+      "publishedAt": "2026-10-23T21:41:13Z",
+      "regular": true,
+      "postPublication": {
+        "archiveReDownloaded": true,
+        "verifiedAt": "2026-10-23T21:41:36.3063100+00:00",
+        "source": "main clean 0/0",
+        "version": "0.1.7",
+        "release": "https://github.com/hindermath/spec-kit-preset-secure-development-assurance-governance/releases/tag/v0.1.7",
+        "name": "secure-development-assurance",
+        "latest": true,
+        "regular": true,
+        "commit": "0f47996be3b613b3ab26206b606f68e3acb44c30",
+        "sha256": "0b1352fad73970c6bc12d77bc4b687dde8db36a02ee1f73ed97289bb16134b35"
+      },
+      "archive": "https://github.com/hindermath/spec-kit-preset-secure-development-assurance-governance/archive/refs/tags/v0.1.7.zip",
+      "sha256": "0b1352fad73970c6bc12d77bc4b687dde8db36a02ee1f73ed97289bb16134b35",
+      "bytes": 108099,
+      "verifiedBlobs": 33,
+      "templateResolves": [
+        "secure-development-assurance-governance-model-routing",
+        "secure-development-evidence-contract"
+      ],
+      "installation": "PASS; disposable project only",
+      "defaultBranchSync": "main clean 0/0",
+      "exactHeadPrChecks": [
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-10-23T17:11:35Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/hindermath/spec-kit-preset-secure-development-assurance-governance/actions/runs/39992118051/job/120546203534",
+          "name": "Assurance contracts (ubuntu-22.04)",
+          "startedAt": "2026-10-23T17:04:56Z",
+          "status": "COMPLETED",
+          "workflowName": "Assurance Preset Regression"
+        },
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-10-23T17:08:00Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/hindermath/spec-kit-preset-secure-development-assurance-governance/actions/runs/39992118077/job/120546203880",
+          "name": "Reader paths (macos-15)",
+          "startedAt": "2026-10-23T17:07:51Z",
+          "status": "COMPLETED",
+          "workflowName": "Documentation closeout"
+        },
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-10-23T17:07:47Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/hindermath/spec-kit-preset-secure-development-assurance-governance/actions/runs/39992118068/job/120546204057",
+          "name": "Documentation (macos-15)",
+          "startedAt": "2026-10-23T17:07:40Z",
+          "status": "COMPLETED",
+          "workflowName": "Release documentation"
+        },
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-10-23T17:07:38Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/hindermath/spec-kit-preset-secure-development-assurance-governance/actions/runs/39992118084/job/120546203796",
+          "name": "Stable routing (macos-15)",
+          "startedAt": "2026-10-23T17:07:20Z",
+          "status": "COMPLETED",
+          "workflowName": "Stable routing contract"
+        },
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-10-23T17:08:59Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/hindermath/spec-kit-preset-secure-development-assurance-governance/actions/runs/39992118051/job/120546203540",
+          "name": "Assurance contracts (macos-14)",
+          "startedAt": "2026-10-23T17:05:08Z",
+          "status": "COMPLETED",
+          "workflowName": "Assurance Preset Regression"
+        },
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-10-23T17:05:07Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/hindermath/spec-kit-preset-secure-development-assurance-governance/actions/runs/39992118077/job/120546203541",
+          "name": "Reader paths (ubuntu-24.04)",
+          "startedAt": "2026-10-23T17:04:57Z",
+          "status": "COMPLETED",
+          "workflowName": "Documentation closeout"
+        },
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-10-23T17:05:07Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/hindermath/spec-kit-preset-secure-development-assurance-governance/actions/runs/39992118068/job/120546204237",
+          "name": "Documentation (ubuntu-24.04)",
+          "startedAt": "2026-10-23T17:04:56Z",
+          "status": "COMPLETED",
+          "workflowName": "Release documentation"
+        },
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-10-23T17:05:20Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/hindermath/spec-kit-preset-secure-development-assurance-governance/actions/runs/39992118084/job/120546203894",
+          "name": "Stable routing (ubuntu-24.04)",
+          "startedAt": "2026-10-23T17:04:56Z",
+          "status": "COMPLETED",
+          "workflowName": "Stable routing contract"
+        },
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-10-23T17:20:19Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/hindermath/spec-kit-preset-secure-development-assurance-governance/actions/runs/39992118051/job/120546203138",
+          "name": "Assurance contracts (windows-2022)",
+          "startedAt": "2026-10-23T17:04:56Z",
+          "status": "COMPLETED",
+          "workflowName": "Assurance Preset Regression"
+        },
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-10-23T17:05:10Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/hindermath/spec-kit-preset-secure-development-assurance-governance/actions/runs/39992118077/job/120546203780",
+          "name": "Reader paths (windows-2022)",
+          "startedAt": "2026-10-23T17:04:56Z",
+          "status": "COMPLETED",
+          "workflowName": "Documentation closeout"
+        },
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-10-23T17:05:11Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/hindermath/spec-kit-preset-secure-development-assurance-governance/actions/runs/39992118068/job/120546203706",
+          "name": "Documentation (windows-2022)",
+          "startedAt": "2026-10-23T17:04:56Z",
+          "status": "COMPLETED",
+          "workflowName": "Release documentation"
+        },
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-10-23T17:05:20Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/hindermath/spec-kit-preset-secure-development-assurance-governance/actions/runs/39992118084/job/120546203505",
+          "name": "Stable routing (windows-2022)",
+          "startedAt": "2026-10-23T17:04:56Z",
+          "status": "COMPLETED",
+          "workflowName": "Stable routing contract"
+        }
+      ]
+    },
+    {
+      "preset": "architecture-governance",
+      "name": "Architecture",
+      "version": "0.6.4",
+      "priorityInTestFixture": 20,
+      "pr": "https://github.com/hindermath/spec-kit-preset-architecture-governance/pull/12",
+      "reviewedHead": "38f5fd4191d9f4e71bc719ccf521125c63fe7401",
+      "mergeCommit": "bf2261d0d7c31e1c892dfa2b9708e5978dd28a73",
+      "tag": "v0.6.4",
+      "tagCommit": "bf2261d0d7c31e1c892dfa2b9708e5978dd28a73",
+      "release": "https://github.com/hindermath/spec-kit-preset-architecture-governance/releases/tag/v0.6.4",
+      "publishedAt": "2026-10-23T21:29:31Z",
+      "regular": true,
+      "postPublication": {
+        "regular": true,
+        "commit": "bf2261d0d7c31e1c892dfa2b9708e5978dd28a73",
+        "release": "https://github.com/hindermath/spec-kit-preset-architecture-governance/releases/tag/v0.6.4",
+        "latest": true,
+        "archiveReDownloaded": true,
+        "name": "architecture",
+        "sha256": "020349ca49db89c655762b1cc1ce86d5f40ea0e4b2f598aac443ed6e0dbdc6e4",
+        "verifiedAt": "2026-10-23T23:30:40.180651+02:00",
+        "source": "main clean 0/0",
+        "version": "0.6.4"
+      },
+      "archive": "https://github.com/hindermath/spec-kit-preset-architecture-governance/archive/refs/tags/v0.6.4.zip",
+      "sha256": "020349ca49db89c655762b1cc1ce86d5f40ea0e4b2f598aac443ed6e0dbdc6e4",
+      "bytes": 88856,
+      "verifiedBlobs": 36,
+      "templateResolves": [
+        "architecture-governance-model-routing",
+        "constitution-template",
+        "spec-template",
+        "plan-template",
+        "tasks-template",
+        "architecture-agent-guidance-addendum-template",
+        "threat-model-template",
+        "adr-template",
+        "arc42-security-template",
+        "security-quality-scenarios-template",
+        "zero-trust-applicability-template",
+        "samm-assessment-template",
+        "cloud-autonomy-applicability-template",
+        "c3a-criteria-catalog",
+        "cloud-compliance-assurance-template"
+      ],
+      "installation": "PASS; disposable project only",
+      "defaultBranchSync": "main clean 0/0",
+      "exactHeadPrChecks": [
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-10-23T17:07:16Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/hindermath/spec-kit-preset-architecture-governance/actions/runs/39992114504/job/120546191366",
+          "name": "contract (macos-latest)",
+          "startedAt": "2026-10-23T17:07:10Z",
+          "status": "COMPLETED",
+          "workflowName": "Cloud evidence contract"
+        },
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-10-23T17:05:03Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/hindermath/spec-kit-preset-architecture-governance/actions/runs/39992114558/job/120546191369",
+          "name": "Reader paths (macos-15)",
+          "startedAt": "2026-10-23T17:04:55Z",
+          "status": "COMPLETED",
+          "workflowName": "Documentation closeout"
+        },
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-10-23T17:05:04Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/hindermath/spec-kit-preset-architecture-governance/actions/runs/39992114504/job/120546191008",
+          "name": "contract (ubuntu-latest)",
+          "startedAt": "2026-10-23T17:04:54Z",
+          "status": "COMPLETED",
+          "workflowName": "Cloud evidence contract"
+        },
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-10-23T17:05:05Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/hindermath/spec-kit-preset-architecture-governance/actions/runs/39992114558/job/120546191148",
+          "name": "Reader paths (ubuntu-24.04)",
+          "startedAt": "2026-10-23T17:04:53Z",
+          "status": "COMPLETED",
+          "workflowName": "Documentation closeout"
+        },
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-10-23T17:05:10Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/hindermath/spec-kit-preset-architecture-governance/actions/runs/39992114504/job/120546191341",
+          "name": "contract (windows-latest)",
+          "startedAt": "2026-10-23T17:04:54Z",
+          "status": "COMPLETED",
+          "workflowName": "Cloud evidence contract"
+        },
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-10-23T17:05:04Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/hindermath/spec-kit-preset-architecture-governance/actions/runs/39992114558/job/120546191316",
+          "name": "Reader paths (windows-2022)",
+          "startedAt": "2026-10-23T17:04:54Z",
+          "status": "COMPLETED",
+          "workflowName": "Documentation closeout"
+        }
+      ]
+    },
+    {
+      "preset": "isaqb-architecture-governance",
+      "name": "iSAQB Architecture",
+      "version": "0.2.4",
+      "priorityInTestFixture": 30,
+      "pr": "https://github.com/hindermath/spec-kit-preset-isaqb-architecture-governance/pull/7",
+      "reviewedHead": "af8c3d3f105a4189787a1f0649f2a6f463e00215",
+      "mergeCommit": "1f5529d289b90c4c302e267c14d9bccab96d5e99",
+      "tag": "v0.2.4",
+      "tagCommit": "1f5529d289b90c4c302e267c14d9bccab96d5e99",
+      "release": "https://github.com/hindermath/spec-kit-preset-isaqb-architecture-governance/releases/tag/v0.2.4",
+      "publishedAt": "2026-10-23T21:29:30Z",
+      "regular": true,
+      "postPublication": {
+        "latest": true,
+        "verifiedAt": "2026-10-23T23:31:49.933219+02:00",
+        "commit": "1f5529d289b90c4c302e267c14d9bccab96d5e99",
+        "name": "isaqb-architecture",
+        "sha256": "ad9802cb23ea2ef604098bea1b0e297cbaf0badcd56ba87541706d45910605ba",
+        "archiveReDownloaded": true,
+        "version": "0.2.4",
+        "regular": true,
+        "source": "main clean 0/0",
+        "release": "https://github.com/hindermath/spec-kit-preset-isaqb-architecture-governance/releases/tag/v0.2.4"
+      },
+      "archive": "https://github.com/hindermath/spec-kit-preset-isaqb-architecture-governance/archive/refs/tags/v0.2.4.zip",
+      "sha256": "ad9802cb23ea2ef604098bea1b0e297cbaf0badcd56ba87541706d45910605ba",
+      "bytes": 53657,
+      "verifiedBlobs": 29,
+      "templateResolves": [
+        "isaqb-architecture-governance-model-routing",
+        "constitution-template",
+        "spec-template",
+        "plan-template",
+        "tasks-template",
+        "isaqb-architecture-agent-guidance-addendum-template",
+        "architecture-vision-template",
+        "context-view-template",
+        "building-block-view-template",
+        "runtime-view-template",
+        "deployment-view-template",
+        "quality-scenarios-template",
+        "architecture-decision-template",
+        "architecture-risks-template"
+      ],
+      "installation": "PASS; disposable project only",
+      "defaultBranchSync": "main clean 0/0",
+      "exactHeadPrChecks": [
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-10-23T17:05:16Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/hindermath/spec-kit-preset-isaqb-architecture-governance/actions/runs/39992122373/job/120546223139",
+          "name": "Reader paths (macos-15)",
+          "startedAt": "2026-10-23T17:05:07Z",
+          "status": "COMPLETED",
+          "workflowName": "Documentation closeout"
+        },
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-10-23T17:05:16Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/hindermath/spec-kit-preset-isaqb-architecture-governance/actions/runs/39992122373/job/120546223489",
+          "name": "Reader paths (ubuntu-24.04)",
+          "startedAt": "2026-10-23T17:05:06Z",
+          "status": "COMPLETED",
+          "workflowName": "Documentation closeout"
+        },
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-10-23T17:05:17Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/hindermath/spec-kit-preset-isaqb-architecture-governance/actions/runs/39992122373/job/120546223408",
+          "name": "Reader paths (windows-2022)",
+          "startedAt": "2026-10-23T17:05:06Z",
+          "status": "COMPLETED",
+          "workflowName": "Documentation closeout"
+        }
+      ]
+    },
+    {
+      "preset": "a11y-governance",
+      "name": "A11Y",
+      "version": "0.4.5",
+      "priorityInTestFixture": 40,
+      "pr": "https://github.com/hindermath/spec-kit-preset-a11y-governance/pull/7",
+      "reviewedHead": "d392b960c48b99af8d614ff4e90d6fd0e0126dbc",
+      "mergeCommit": "58f02a2496094a34e95c12a6160f970f99227720",
+      "tag": "v0.4.5",
+      "tagCommit": "58f02a2496094a34e95c12a6160f970f99227720",
+      "release": "https://github.com/hindermath/spec-kit-preset-a11y-governance/releases/tag/v0.4.5",
+      "publishedAt": "2026-10-23T21:29:33Z",
+      "regular": true,
+      "postPublication": {
+        "source": "main clean 0/0",
+        "verifiedAt": "2026-10-23T23:30:41.542252+02:00",
+        "archiveReDownloaded": true,
+        "release": "https://github.com/hindermath/spec-kit-preset-a11y-governance/releases/tag/v0.4.5",
+        "name": "a11y",
+        "regular": true,
+        "commit": "58f02a2496094a34e95c12a6160f970f99227720",
+        "latest": true,
+        "version": "0.4.5",
+        "sha256": "764823f359f0071a165020e3b19957cc48ea8a815764bc0df3ed0c64a4cf699d"
+      },
+      "archive": "https://github.com/hindermath/spec-kit-preset-a11y-governance/archive/refs/tags/v0.4.5.zip",
+      "sha256": "764823f359f0071a165020e3b19957cc48ea8a815764bc0df3ed0c64a4cf699d",
+      "bytes": 48081,
+      "verifiedBlobs": 26,
+      "templateResolves": [
+        "a11y-governance-model-routing",
+        "constitution-template",
+        "spec-template",
+        "plan-template",
+        "tasks-template",
+        "a11y-agent-guidance-addendum-template",
+        "a11y-checklist-template",
+        "bilingual-content-check-template",
+        "cli-a11y-review-template",
+        "a11y-evidence-template",
+        "didactic-code-comment-check-template"
+      ],
+      "installation": "PASS; disposable project only",
+      "defaultBranchSync": "main clean 0/0",
+      "exactHeadPrChecks": [
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-10-23T17:05:48Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/hindermath/spec-kit-preset-a11y-governance/actions/runs/39992113358/job/120546187385",
+          "name": "Reader paths (macos-15)",
+          "startedAt": "2026-10-23T17:05:37Z",
+          "status": "COMPLETED",
+          "workflowName": "Documentation closeout"
+        },
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-10-23T17:05:04Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/hindermath/spec-kit-preset-a11y-governance/actions/runs/39992113358/job/120546187082",
+          "name": "Reader paths (ubuntu-24.04)",
+          "startedAt": "2026-10-23T17:04:53Z",
+          "status": "COMPLETED",
+          "workflowName": "Documentation closeout"
+        },
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-10-23T17:05:02Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/hindermath/spec-kit-preset-a11y-governance/actions/runs/39992113358/job/120546187447",
+          "name": "Reader paths (windows-2022)",
+          "startedAt": "2026-10-23T17:04:54Z",
+          "status": "COMPLETED",
+          "workflowName": "Documentation closeout"
+        }
+      ]
+    },
+    {
+      "preset": "cross-platform-governance",
+      "name": "Cross-Platform",
+      "version": "0.2.4",
+      "priorityInTestFixture": 50,
+      "pr": "https://github.com/hindermath/spec-kit-preset-cross-platform-governance/pull/6",
+      "reviewedHead": "1f468cb560bfbf08c36a5bc3e6286315e315a14c",
+      "mergeCommit": "14e830b7625b47dbc712989502f8c5ca0e3bbf57",
+      "tag": "v0.2.4",
+      "tagCommit": "14e830b7625b47dbc712989502f8c5ca0e3bbf57",
+      "release": "https://github.com/hindermath/spec-kit-preset-cross-platform-governance/releases/tag/v0.2.4",
+      "publishedAt": "2026-10-23T21:29:30Z",
+      "regular": true,
+      "postPublication": {
+        "release": "https://github.com/hindermath/spec-kit-preset-cross-platform-governance/releases/tag/v0.2.4",
+        "commit": "14e830b7625b47dbc712989502f8c5ca0e3bbf57",
+        "version": "0.2.4",
+        "source": "main clean 0/0",
+        "name": "cross-platform",
+        "archiveReDownloaded": true,
+        "verifiedAt": "2026-10-23T23:30:40.712369+02:00",
+        "regular": true,
+        "sha256": "0dfa8cfaeb317f1847462c48a3a1d83389e668256abd6f508ee6d89e452d5456",
+        "latest": true
+      },
+      "archive": "https://github.com/hindermath/spec-kit-preset-cross-platform-governance/archive/refs/tags/v0.2.4.zip",
+      "sha256": "0dfa8cfaeb317f1847462c48a3a1d83389e668256abd6f508ee6d89e452d5456",
+      "bytes": 43056,
+      "verifiedBlobs": 24,
+      "templateResolves": [
+        "cross-platform-governance-model-routing",
+        "constitution-template",
+        "spec-template",
+        "plan-template",
+        "tasks-template",
+        "cross-platform-agent-guidance-addendum-template",
+        "script-parity-checklist-template",
+        "man-page-template",
+        "powershell-help-template"
+      ],
+      "installation": "PASS; disposable project only",
+      "defaultBranchSync": "main clean 0/0",
+      "exactHeadPrChecks": [
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-10-23T17:07:21Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/hindermath/spec-kit-preset-cross-platform-governance/actions/runs/39992124387/job/120546226156",
+          "name": "Reader paths (macos-15)",
+          "startedAt": "2026-10-23T17:07:11Z",
+          "status": "COMPLETED",
+          "workflowName": "Documentation closeout"
+        },
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-10-23T17:05:19Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/hindermath/spec-kit-preset-cross-platform-governance/actions/runs/39992124387/job/120546225854",
+          "name": "Reader paths (ubuntu-24.04)",
+          "startedAt": "2026-10-23T17:05:07Z",
+          "status": "COMPLETED",
+          "workflowName": "Documentation closeout"
+        },
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-10-23T17:05:23Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/hindermath/spec-kit-preset-cross-platform-governance/actions/runs/39992124387/job/120546225965",
+          "name": "Reader paths (windows-2022)",
+          "startedAt": "2026-10-23T17:05:11Z",
+          "status": "COMPLETED",
+          "workflowName": "Documentation closeout"
+        }
+      ]
+    },
+    {
+      "preset": "agent-parity-governance",
+      "name": "Agent Parity",
+      "version": "0.4.4",
+      "priorityInTestFixture": 60,
+      "pr": "https://github.com/hindermath/spec-kit-preset-agent-parity-governance/pull/7",
+      "reviewedHead": "17e774522d4d08545b35c58377f1ef35e37b0a97",
+      "mergeCommit": "ca4e9116a68472b336450d8f03a52e0264f5beb6",
+      "tag": "v0.4.4",
+      "tagCommit": "ca4e9116a68472b336450d8f03a52e0264f5beb6",
+      "release": "https://github.com/hindermath/spec-kit-preset-agent-parity-governance/releases/tag/v0.4.4",
+      "publishedAt": "2026-10-23T21:29:43Z",
+      "regular": true,
+      "postPublication": {
+        "version": "0.4.4",
+        "latest": true,
+        "source": "main clean 0/0",
+        "archiveReDownloaded": true,
+        "release": "https://github.com/hindermath/spec-kit-preset-agent-parity-governance/releases/tag/v0.4.4",
+        "sha256": "2c752eea241b359c0dce808c95cf750bd0116fe2470e2bce6edfb1aff1a8d020",
+        "name": "agent-parity",
+        "verifiedAt": "2026-10-23T23:30:43.398549+02:00",
+        "regular": true,
+        "commit": "ca4e9116a68472b336450d8f03a52e0264f5beb6"
+      },
+      "archive": "https://github.com/hindermath/spec-kit-preset-agent-parity-governance/archive/refs/tags/v0.4.4.zip",
+      "sha256": "2c752eea241b359c0dce808c95cf750bd0116fe2470e2bce6edfb1aff1a8d020",
+      "bytes": 39950,
+      "verifiedBlobs": 22,
+      "templateResolves": [
+        "agent-parity-governance-model-routing",
+        "constitution-template",
+        "spec-template",
+        "plan-template",
+        "tasks-template",
+        "agent-parity-guidance-addendum-template",
+        "agent-parity-checklist-template"
+      ],
+      "installation": "PASS; disposable project only",
+      "defaultBranchSync": "main clean 0/0",
+      "exactHeadPrChecks": [
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-10-23T17:07:37Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/hindermath/spec-kit-preset-agent-parity-governance/actions/runs/39992122376/job/120546219496",
+          "name": "Reader paths (macos-15)",
+          "startedAt": "2026-10-23T17:07:29Z",
+          "status": "COMPLETED",
+          "workflowName": "Documentation closeout"
+        },
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-10-23T17:05:22Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/hindermath/spec-kit-preset-agent-parity-governance/actions/runs/39992122376/job/120546219281",
+          "name": "Reader paths (ubuntu-24.04)",
+          "startedAt": "2026-10-23T17:05:10Z",
+          "status": "COMPLETED",
+          "workflowName": "Documentation closeout"
+        },
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-10-23T17:05:21Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/hindermath/spec-kit-preset-agent-parity-governance/actions/runs/39992122376/job/120546219625",
+          "name": "Reader paths (windows-2022)",
+          "startedAt": "2026-10-23T17:05:09Z",
+          "status": "COMPLETED",
+          "workflowName": "Documentation closeout"
+        }
+      ]
+    },
+    {
+      "preset": "model-routing-governance",
+      "name": "Model Routing",
+      "version": "0.1.6",
+      "priorityInTestFixture": 61,
+      "pr": "https://github.com/hindermath/spec-kit-preset-model-routing-governance/pull/9",
+      "reviewedHead": "cc7fc652d7adb12229dd243d6ffe66448bf50f6f",
+      "mergeCommit": "99c7c13b3ef2e154cf4f62f43262ade3fbe8d2a9",
+      "tag": "v0.1.6",
+      "tagCommit": "99c7c13b3ef2e154cf4f62f43262ade3fbe8d2a9",
+      "release": "https://github.com/hindermath/spec-kit-preset-model-routing-governance/releases/tag/v0.1.6",
+      "publishedAt": "2026-10-23T21:29:33Z",
+      "regular": true,
+      "postPublication": {
+        "version": "0.1.6",
+        "release": "https://github.com/hindermath/spec-kit-preset-model-routing-governance/releases/tag/v0.1.6",
+        "sha256": "94648588b4e6ec8c839da579d7321026821fa2cf4378db05c6ad3cdd4dc05dad",
+        "latest": true,
+        "name": "model-routing",
+        "commit": "99c7c13b3ef2e154cf4f62f43262ade3fbe8d2a9",
+        "archiveReDownloaded": true,
+        "source": "main clean 0/0",
+        "verifiedAt": "2026-10-23T23:30:41.528886+02:00",
+        "regular": true
+      },
+      "archive": "https://github.com/hindermath/spec-kit-preset-model-routing-governance/archive/refs/tags/v0.1.6.zip",
+      "sha256": "94648588b4e6ec8c839da579d7321026821fa2cf4378db05c6ad3cdd4dc05dad",
+      "bytes": 40594,
+      "verifiedBlobs": 25,
+      "templateResolves": [
+        "model-routing-governance-model-routing",
+        "model-routing-agent-guidance-addendum-template",
+        "model-routing-policy-template",
+        "model-routing-profiles-template"
+      ],
+      "installation": "PASS; disposable project only",
+      "defaultBranchSync": "main clean 0/0",
+      "exactHeadPrChecks": [
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-10-23T17:07:26Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/hindermath/spec-kit-preset-model-routing-governance/actions/runs/39992122387/job/120546218848",
+          "name": "Reader paths (macos-15)",
+          "startedAt": "2026-10-23T17:07:19Z",
+          "status": "COMPLETED",
+          "workflowName": "Documentation closeout"
+        },
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-10-23T17:05:15Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/hindermath/spec-kit-preset-model-routing-governance/actions/runs/39992122387/job/120546219440",
+          "name": "Reader paths (ubuntu-24.04)",
+          "startedAt": "2026-10-23T17:05:07Z",
+          "status": "COMPLETED",
+          "workflowName": "Documentation closeout"
+        },
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-10-23T17:05:16Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/hindermath/spec-kit-preset-model-routing-governance/actions/runs/39992122387/job/120546219264",
+          "name": "Reader paths (windows-2022)",
+          "startedAt": "2026-10-23T17:05:06Z",
+          "status": "COMPLETED",
+          "workflowName": "Documentation closeout"
+        }
+      ]
+    },
+    {
+      "preset": "intake-authoring-governance",
+      "name": "Intake Authoring",
+      "version": "0.3.9",
+      "priorityInTestFixture": 64,
+      "pr": "https://github.com/hindermath/spec-kit-preset-intake-authoring-governance/pull/18",
+      "reviewedHead": "b1a113fd8c50909719f78683d34672158692a5d6",
+      "mergeCommit": "33845858eff1cc6aa766012650491d53e1a88447",
+      "tag": "v0.3.9",
+      "tagCommit": "33845858eff1cc6aa766012650491d53e1a88447",
+      "release": "https://github.com/hindermath/spec-kit-preset-intake-authoring-governance/releases/tag/v0.3.9",
+      "publishedAt": "2026-10-23T21:29:33Z",
+      "regular": true,
+      "postPublication": {
+        "name": "intake-authoring",
+        "version": "0.3.9",
+        "archiveReDownloaded": true,
+        "commit": "33845858eff1cc6aa766012650491d53e1a88447",
+        "latest": true,
+        "source": "main clean 0/0",
+        "regular": true,
+        "release": "https://github.com/hindermath/spec-kit-preset-intake-authoring-governance/releases/tag/v0.3.9",
+        "sha256": "5fdec1175224a30f4c2e10f549351fe71bfd06722f4390596625d45ed4733ffb",
+        "verifiedAt": "2026-10-23T23:30:42.608788+02:00"
+      },
+      "archive": "https://github.com/hindermath/spec-kit-preset-intake-authoring-governance/archive/refs/tags/v0.3.9.zip",
+      "sha256": "5fdec1175224a30f4c2e10f549351fe71bfd06722f4390596625d45ed4733ffb",
+      "bytes": 133531,
+      "verifiedBlobs": 55,
+      "templateResolves": [
+        "intake-authoring-governance-model-routing",
+        "intake-governance-config-template",
+        "intake-governance-migration-journal-template",
+        "intake-authoring-policy-template",
+        "intake-authoring-receipt-template",
+        "intake-authoring-series-template",
+        "intake-authoring-operation-template",
+        "intake-authoring-tombstone-template",
+        "intake-authoring-intake-template",
+        "intake-authoring-profile-template",
+        "intake-authoring-runbook-template",
+        "intake-authoring-agent-guidance-addendum-template",
+        "intake-authoring-field-validation-summary"
+      ],
+      "installation": "PASS; disposable project only",
+      "defaultBranchSync": "main clean 0/0",
+      "exactHeadPrChecks": [
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-10-23T17:06:01Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/hindermath/spec-kit-preset-intake-authoring-governance/actions/runs/39992116945/job/120546199704",
+          "name": "Reader paths (macos-15)",
+          "startedAt": "2026-10-23T17:05:51Z",
+          "status": "COMPLETED",
+          "workflowName": "Documentation closeout"
+        },
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-10-23T17:08:03Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/hindermath/spec-kit-preset-intake-authoring-governance/actions/runs/39992116930/job/120546200135",
+          "name": "lifecycle (macos-latest)",
+          "startedAt": "2026-10-23T17:06:33Z",
+          "status": "COMPLETED",
+          "workflowName": "Lifecycle validation"
+        },
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-10-23T17:06:27Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/hindermath/spec-kit-preset-intake-authoring-governance/actions/runs/39992116962/job/120546200017",
+          "name": "Documentation (macos-15)",
+          "startedAt": "2026-10-23T17:06:19Z",
+          "status": "COMPLETED",
+          "workflowName": "Release documentation"
+        },
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-10-23T17:05:04Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/hindermath/spec-kit-preset-intake-authoring-governance/actions/runs/39992116945/job/120546200079",
+          "name": "Reader paths (ubuntu-24.04)",
+          "startedAt": "2026-10-23T17:04:56Z",
+          "status": "COMPLETED",
+          "workflowName": "Documentation closeout"
+        },
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-10-23T17:05:50Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/hindermath/spec-kit-preset-intake-authoring-governance/actions/runs/39992116930/job/120546200289",
+          "name": "lifecycle (ubuntu-latest)",
+          "startedAt": "2026-10-23T17:04:55Z",
+          "status": "COMPLETED",
+          "workflowName": "Lifecycle validation"
+        },
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-10-23T17:05:05Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/hindermath/spec-kit-preset-intake-authoring-governance/actions/runs/39992116962/job/120546200231",
+          "name": "Documentation (ubuntu-24.04)",
+          "startedAt": "2026-10-23T17:04:56Z",
+          "status": "COMPLETED",
+          "workflowName": "Release documentation"
+        },
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-10-23T17:05:08Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/hindermath/spec-kit-preset-intake-authoring-governance/actions/runs/39992116945/job/120546200340",
+          "name": "Reader paths (windows-2022)",
+          "startedAt": "2026-10-23T17:04:56Z",
+          "status": "COMPLETED",
+          "workflowName": "Documentation closeout"
+        },
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-10-23T17:06:38Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/hindermath/spec-kit-preset-intake-authoring-governance/actions/runs/39992116930/job/120546199803",
+          "name": "lifecycle (windows-latest)",
+          "startedAt": "2026-10-23T17:04:56Z",
+          "status": "COMPLETED",
+          "workflowName": "Lifecycle validation"
+        },
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-10-23T17:05:07Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/hindermath/spec-kit-preset-intake-authoring-governance/actions/runs/39992116962/job/120546200396",
+          "name": "Documentation (windows-2022)",
+          "startedAt": "2026-10-23T17:04:56Z",
+          "status": "COMPLETED",
+          "workflowName": "Release documentation"
+        }
+      ]
+    },
+    {
+      "preset": "intake-review-governance",
+      "name": "Intake Review",
+      "version": "0.2.6",
+      "priorityInTestFixture": 65,
+      "pr": "https://github.com/hindermath/spec-kit-preset-intake-review-governance/pull/13",
+      "reviewedHead": "77e21a0131d131f69b2741e5f2fca7715b3bcbaf",
+      "mergeCommit": "4838ab546d4f6f6c892152469cf336297e303384",
+      "tag": "v0.2.6",
+      "tagCommit": "4838ab546d4f6f6c892152469cf336297e303384",
+      "release": "https://github.com/hindermath/spec-kit-preset-intake-review-governance/releases/tag/v0.2.6",
+      "publishedAt": "2026-10-23T21:29:32Z",
+      "regular": true,
+      "postPublication": {
+        "latest": true,
+        "release": "https://github.com/hindermath/spec-kit-preset-intake-review-governance/releases/tag/v0.2.6",
+        "commit": "4838ab546d4f6f6c892152469cf336297e303384",
+        "sha256": "fa02a2fa1ed44b2041ecd209f0ad1f96ec32b40bf5f3a867e58fd7012e3aa90b",
+        "version": "0.2.6",
+        "source": "main clean 0/0",
+        "name": "intake-review",
+        "archiveReDownloaded": true,
+        "regular": true,
+        "verifiedAt": "2026-10-23T23:30:42.975995+02:00"
+      },
+      "archive": "https://github.com/hindermath/spec-kit-preset-intake-review-governance/archive/refs/tags/v0.2.6.zip",
+      "sha256": "fa02a2fa1ed44b2041ecd209f0ad1f96ec32b40bf5f3a867e58fd7012e3aa90b",
+      "bytes": 83308,
+      "verifiedBlobs": 40,
+      "templateResolves": [
+        "intake-review-governance-model-routing",
+        "intake-review-policy-template",
+        "intake-review-request-template",
+        "intake-review-result-template",
+        "intake-review-report-template",
+        "intake-review-checklist-template",
+        "intake-review-runbook-template",
+        "intake-review-agent-guidance-addendum-template",
+        "intake-review-field-validation-summary"
+      ],
+      "installation": "PASS; disposable project only",
+      "defaultBranchSync": "main clean 0/0",
+      "exactHeadPrChecks": [
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-10-23T17:05:32Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/hindermath/spec-kit-preset-intake-review-governance/actions/runs/39992120960/job/120546214047",
+          "name": "Reader paths (macos-15)",
+          "startedAt": "2026-10-23T17:05:23Z",
+          "status": "COMPLETED",
+          "workflowName": "Documentation closeout"
+        },
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-10-23T17:08:30Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/hindermath/spec-kit-preset-intake-review-governance/actions/runs/39992120958/job/120546214805",
+          "name": "lifecycle (macos-latest)",
+          "startedAt": "2026-10-23T17:07:36Z",
+          "status": "COMPLETED",
+          "workflowName": "Lifecycle validation"
+        },
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-10-23T17:05:16Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/hindermath/spec-kit-preset-intake-review-governance/actions/runs/39992120960/job/120546214324",
+          "name": "Reader paths (ubuntu-24.04)",
+          "startedAt": "2026-10-23T17:05:08Z",
+          "status": "COMPLETED",
+          "workflowName": "Documentation closeout"
+        },
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-10-23T17:05:47Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/hindermath/spec-kit-preset-intake-review-governance/actions/runs/39992120958/job/120546214581",
+          "name": "lifecycle (ubuntu-latest)",
+          "startedAt": "2026-10-23T17:05:05Z",
+          "status": "COMPLETED",
+          "workflowName": "Lifecycle validation"
+        },
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-10-23T17:05:15Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/hindermath/spec-kit-preset-intake-review-governance/actions/runs/39992120960/job/120546214432",
+          "name": "Reader paths (windows-2022)",
+          "startedAt": "2026-10-23T17:05:03Z",
+          "status": "COMPLETED",
+          "workflowName": "Documentation closeout"
+        },
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-10-23T17:06:14Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/hindermath/spec-kit-preset-intake-review-governance/actions/runs/39992120958/job/120546214870",
+          "name": "lifecycle (windows-latest)",
+          "startedAt": "2026-10-23T17:05:06Z",
+          "status": "COMPLETED",
+          "workflowName": "Lifecycle validation"
+        }
+      ]
+    },
+    {
+      "preset": "intake-sequencing-governance",
+      "name": "Intake Sequencing",
+      "version": "0.2.10",
+      "priorityInTestFixture": 66,
+      "pr": "https://github.com/hindermath/spec-kit-preset-intake-sequencing-governance/pull/15",
+      "reviewedHead": "026f9e7908ff64db9aa18d50c3a5de487f70bcc3",
+      "mergeCommit": "ccb6c223c51ba685f650f2ce5238299cb73b1f31",
+      "tag": "v0.2.10",
+      "tagCommit": "ccb6c223c51ba685f650f2ce5238299cb73b1f31",
+      "release": "https://github.com/hindermath/spec-kit-preset-intake-sequencing-governance/releases/tag/v0.2.10",
+      "publishedAt": "2026-10-23T21:29:31Z",
+      "regular": true,
+      "postPublication": {
+        "regular": true,
+        "version": "0.2.10",
+        "name": "intake-sequencing",
+        "latest": true,
+        "archiveReDownloaded": true,
+        "commit": "ccb6c223c51ba685f650f2ce5238299cb73b1f31",
+        "release": "https://github.com/hindermath/spec-kit-preset-intake-sequencing-governance/releases/tag/v0.2.10",
+        "sha256": "0da5d751a89b9ae68a75c2f590b449599d98d4a0ed7fe4c2bcd935e90a197678",
+        "verifiedAt": "2026-10-23T23:30:42.260975+02:00",
+        "source": "main clean 0/0"
+      },
+      "archive": "https://github.com/hindermath/spec-kit-preset-intake-sequencing-governance/archive/refs/tags/v0.2.10.zip",
+      "sha256": "0da5d751a89b9ae68a75c2f590b449599d98d4a0ed7fe4c2bcd935e90a197678",
+      "bytes": 85913,
+      "verifiedBlobs": 52,
+      "templateResolves": [
+        "intake-sequencing-governance-model-routing",
+        "intake-series-policy-template",
+        "intake-series-manifest-template",
+        "intake-series-idle-manifest-template",
+        "intake-series-receipt-template",
+        "intake-series-operation-template",
+        "intake-series-tombstone-template",
+        "intake-series-order-template",
+        "intake-series-checklist-template",
+        "intake-series-runbook-template",
+        "intake-series-agent-guidance-addendum",
+        "intake-series-field-validation-summary"
+      ],
+      "installation": "PASS; disposable project only",
+      "defaultBranchSync": "main clean 0/0",
+      "exactHeadPrChecks": [
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-10-23T17:05:04Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/hindermath/spec-kit-preset-intake-sequencing-governance/actions/runs/39992116203/job/120546196996",
+          "name": "Reader paths (macos-15)",
+          "startedAt": "2026-10-23T17:04:56Z",
+          "status": "COMPLETED",
+          "workflowName": "Documentation closeout"
+        },
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-10-23T17:06:23Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/hindermath/spec-kit-preset-intake-sequencing-governance/actions/runs/39992116081/job/120546196407",
+          "name": "lifecycle (macos-latest)",
+          "startedAt": "2026-10-23T17:05:19Z",
+          "status": "COMPLETED",
+          "workflowName": "Lifecycle validation"
+        },
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-10-23T17:05:06Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/hindermath/spec-kit-preset-intake-sequencing-governance/actions/runs/39992116203/job/120546197524",
+          "name": "Reader paths (ubuntu-24.04)",
+          "startedAt": "2026-10-23T17:04:54Z",
+          "status": "COMPLETED",
+          "workflowName": "Documentation closeout"
+        },
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-10-23T17:05:41Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/hindermath/spec-kit-preset-intake-sequencing-governance/actions/runs/39992116081/job/120546196961",
+          "name": "lifecycle (ubuntu-latest)",
+          "startedAt": "2026-10-23T17:04:54Z",
+          "status": "COMPLETED",
+          "workflowName": "Lifecycle validation"
+        },
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-10-23T17:05:05Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/hindermath/spec-kit-preset-intake-sequencing-governance/actions/runs/39992116203/job/120546197480",
+          "name": "Reader paths (windows-2022)",
+          "startedAt": "2026-10-23T17:04:55Z",
+          "status": "COMPLETED",
+          "workflowName": "Documentation closeout"
+        },
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-10-23T17:05:40Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/hindermath/spec-kit-preset-intake-sequencing-governance/actions/runs/39992116081/job/120546196922",
+          "name": "lifecycle (windows-latest)",
+          "startedAt": "2026-10-23T17:04:54Z",
+          "status": "COMPLETED",
+          "workflowName": "Lifecycle validation"
+        }
+      ]
+    },
+    {
+      "preset": "autonomous-run-governance",
+      "name": "Autonomous Run",
+      "version": "0.4.6",
+      "priorityInTestFixture": 70,
+      "pr": "https://github.com/hindermath/spec-kit-preset-autonomous-run-governance/pull/25",
+      "reviewedHead": "e65ecf42d36b24082d96d5b1d939c44e2e0f5eab",
+      "mergeCommit": "130a69dc483fa27e3835640c87feb40b446bf4cc",
+      "tag": "v0.4.6",
+      "tagCommit": "130a69dc483fa27e3835640c87feb40b446bf4cc",
+      "release": "https://github.com/hindermath/spec-kit-preset-autonomous-run-governance/releases/tag/v0.4.6",
+      "publishedAt": "2026-10-23T21:29:32Z",
+      "regular": true,
+      "postPublication": {
+        "name": "autonomous-run",
+        "latest": true,
+        "source": "main clean 0/0",
+        "commit": "130a69dc483fa27e3835640c87feb40b446bf4cc",
+        "sha256": "db7450ff1e1fcf26aae4a98fac3504464a2fa1e9bf7db23ffdbe1b89c5ec8b04",
+        "version": "0.4.6",
+        "release": "https://github.com/hindermath/spec-kit-preset-autonomous-run-governance/releases/tag/v0.4.6",
+        "archiveReDownloaded": true,
+        "verifiedAt": "2026-10-23T23:32:16.301324+02:00",
+        "regular": true
+      },
+      "archive": "https://github.com/hindermath/spec-kit-preset-autonomous-run-governance/archive/refs/tags/v0.4.6.zip",
+      "sha256": "db7450ff1e1fcf26aae4a98fac3504464a2fa1e9bf7db23ffdbe1b89c5ec8b04",
+      "bytes": 134033,
+      "verifiedBlobs": 63,
+      "templateResolves": [
+        "autonomous-run-governance-model-routing",
+        "constitution-template",
+        "spec-template",
+        "plan-template",
+        "tasks-template",
+        "autonomous-run-agent-guidance-addendum-template",
+        "autonomous-runbook-template",
+        "autonomous-run-evidence-template",
+        "autonomous-run-state-template",
+        "autonomous-runner-profiles-template",
+        "autonomous-run-gate-requirements-template",
+        "autonomous-run-gate-evidence-template",
+        "autonomous-phase-result-template",
+        "autonomous-run-retrospective-template",
+        "autonomous-run-readiness-checklist-template",
+        "autonomous-run-field-validation-summary"
+      ],
+      "installation": "PASS; disposable project only",
+      "defaultBranchSync": "main clean 0/0",
+      "exactHeadPrChecks": [
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-10-23T17:07:52Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/hindermath/spec-kit-preset-autonomous-run-governance/actions/runs/39992118120/job/120546203814",
+          "name": "Reader paths (macos-15)",
+          "startedAt": "2026-10-23T17:07:41Z",
+          "status": "COMPLETED",
+          "workflowName": "Documentation closeout"
+        },
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-10-23T17:07:33Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/hindermath/spec-kit-preset-autonomous-run-governance/actions/runs/39992118147/job/120546204284",
+          "name": "Documentation (macos-15)",
+          "startedAt": "2026-10-23T17:07:24Z",
+          "status": "COMPLETED",
+          "workflowName": "Release documentation"
+        },
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-10-23T17:05:04Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/hindermath/spec-kit-preset-autonomous-run-governance/actions/runs/39992118120/job/120546203646",
+          "name": "Reader paths (ubuntu-24.04)",
+          "startedAt": "2026-10-23T17:04:56Z",
+          "status": "COMPLETED",
+          "workflowName": "Documentation closeout"
+        },
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-10-23T17:05:01Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/hindermath/spec-kit-preset-autonomous-run-governance/actions/runs/39992118147/job/120546204214",
+          "name": "Documentation (ubuntu-24.04)",
+          "startedAt": "2026-10-23T17:04:56Z",
+          "status": "COMPLETED",
+          "workflowName": "Release documentation"
+        },
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-10-23T17:05:05Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/hindermath/spec-kit-preset-autonomous-run-governance/actions/runs/39992118120/job/120546203859",
+          "name": "Reader paths (windows-2022)",
+          "startedAt": "2026-10-23T17:04:55Z",
+          "status": "COMPLETED",
+          "workflowName": "Documentation closeout"
+        },
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-10-23T17:05:08Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/hindermath/spec-kit-preset-autonomous-run-governance/actions/runs/39992118147/job/120546204472",
+          "name": "Documentation (windows-2022)",
+          "startedAt": "2026-10-23T17:04:56Z",
+          "status": "COMPLETED",
+          "workflowName": "Release documentation"
+        }
+      ]
+    },
+    {
+      "preset": "parallel-autonomous-run-governance",
+      "name": "Parallel Autonomous Run",
+      "version": "0.2.8",
+      "priorityInTestFixture": 80,
+      "pr": "https://github.com/hindermath/spec-kit-preset-parallel-autonomous-run-governance/pull/14",
+      "reviewedHead": "36ab26a6a3985a5195399f579814eaacf51b34ac",
+      "mergeCommit": "63bbf78b51fe00385b34f52cc568dbf2928954ad",
+      "tag": "v0.2.8",
+      "tagCommit": "63bbf78b51fe00385b34f52cc568dbf2928954ad",
+      "release": "https://github.com/hindermath/spec-kit-preset-parallel-autonomous-run-governance/releases/tag/v0.2.8",
+      "publishedAt": "2026-10-23T21:29:33Z",
+      "regular": true,
+      "postPublication": {
+        "source": "main clean 0/0",
+        "commit": "63bbf78b51fe00385b34f52cc568dbf2928954ad",
+        "name": "parallel-autonomous-run",
+        "archiveReDownloaded": true,
+        "regular": true,
+        "verifiedAt": "2026-10-23T23:30:42.758489+02:00",
+        "release": "https://github.com/hindermath/spec-kit-preset-parallel-autonomous-run-governance/releases/tag/v0.2.8",
+        "sha256": "36598b775b14fe070dc50700409b3e6cec8fc06b9fb2f80cf1906af1ac3560b7",
+        "latest": true,
+        "version": "0.2.8"
+      },
+      "archive": "https://github.com/hindermath/spec-kit-preset-parallel-autonomous-run-governance/archive/refs/tags/v0.2.8.zip",
+      "sha256": "36598b775b14fe070dc50700409b3e6cec8fc06b9fb2f80cf1906af1ac3560b7",
+      "bytes": 133081,
+      "verifiedBlobs": 54,
+      "templateResolves": [
+        "parallel-autonomous-run-governance-model-routing",
+        "parallel-campaign-template",
+        "parallel-runner-profiles-template",
+        "parallel-runner-profiles-examples",
+        "parallel-campaign-state-template",
+        "parallel-worker-result-template",
+        "parallel-autonomous-runbook-template",
+        "parallel-autonomous-evidence-template",
+        "parallel-autonomous-retrospective-template",
+        "parallel-autonomous-agent-guidance-addendum-template"
+      ],
+      "installation": "PASS; disposable project only",
+      "defaultBranchSync": "main clean 0/0",
+      "exactHeadPrChecks": [
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-10-23T17:07:08Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/hindermath/spec-kit-preset-parallel-autonomous-run-governance/actions/runs/39992122115/job/120546217952",
+          "name": "Reader paths (macos-15)",
+          "startedAt": "2026-10-23T17:07:01Z",
+          "status": "COMPLETED",
+          "workflowName": "Documentation closeout"
+        },
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-10-23T17:07:07Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/hindermath/spec-kit-preset-parallel-autonomous-run-governance/actions/runs/39992122319/job/120546219080",
+          "name": "Documentation (macos-15)",
+          "startedAt": "2026-10-23T17:06:59Z",
+          "status": "COMPLETED",
+          "workflowName": "Release documentation"
+        },
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-10-23T17:05:16Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/hindermath/spec-kit-preset-parallel-autonomous-run-governance/actions/runs/39992122115/job/120546218342",
+          "name": "Reader paths (ubuntu-24.04)",
+          "startedAt": "2026-10-23T17:05:07Z",
+          "status": "COMPLETED",
+          "workflowName": "Documentation closeout"
+        },
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-10-23T17:05:13Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/hindermath/spec-kit-preset-parallel-autonomous-run-governance/actions/runs/39992122319/job/120546219998",
+          "name": "Documentation (ubuntu-24.04)",
+          "startedAt": "2026-10-23T17:05:03Z",
+          "status": "COMPLETED",
+          "workflowName": "Release documentation"
+        },
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-10-23T17:05:19Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/hindermath/spec-kit-preset-parallel-autonomous-run-governance/actions/runs/39992122115/job/120546218222",
+          "name": "Reader paths (windows-2022)",
+          "startedAt": "2026-10-23T17:05:07Z",
+          "status": "COMPLETED",
+          "workflowName": "Documentation closeout"
+        },
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-10-23T17:05:14Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/hindermath/spec-kit-preset-parallel-autonomous-run-governance/actions/runs/39992122319/job/120546219508",
+          "name": "Documentation (windows-2022)",
+          "startedAt": "2026-10-23T17:05:03Z",
+          "status": "COMPLETED",
+          "workflowName": "Release documentation"
+        }
+      ]
+    },
+    {
+      "preset": "project-statistics-governance",
+      "name": "Project Statistics",
+      "version": "0.1.2",
+      "priorityInTestFixture": 90,
+      "pr": "https://github.com/hindermath/spec-kit-preset-project-statistics-governance/pull/8",
+      "reviewedHead": "3b048577eee5c723f60bbd1a084415330d0fcdf0",
+      "mergeCommit": "454554bafda574c1153e6be319c30e9787ac3867",
+      "tag": "v0.1.2",
+      "tagCommit": "454554bafda574c1153e6be319c30e9787ac3867",
+      "release": "https://github.com/hindermath/spec-kit-preset-project-statistics-governance/releases/tag/v0.1.2",
+      "publishedAt": "2026-10-23T21:29:33Z",
+      "regular": true,
+      "postPublication": {
+        "archiveReDownloaded": true,
+        "regular": true,
+        "version": "0.1.2",
+        "latest": true,
+        "name": "project-statistics",
+        "commit": "454554bafda574c1153e6be319c30e9787ac3867",
+        "verifiedAt": "2026-10-23T23:30:42.973302+02:00",
+        "source": "main clean 0/0",
+        "sha256": "6cc233b56033b4b7dc0abd831666a6f3b0f5b70b0c9b9a395c8dc78c9549bb95",
+        "release": "https://github.com/hindermath/spec-kit-preset-project-statistics-governance/releases/tag/v0.1.2"
+      },
+      "archive": "https://github.com/hindermath/spec-kit-preset-project-statistics-governance/archive/refs/tags/v0.1.2.zip",
+      "sha256": "6cc233b56033b4b7dc0abd831666a6f3b0f5b70b0c9b9a395c8dc78c9549bb95",
+      "bytes": 142435,
+      "verifiedBlobs": 106,
+      "templateResolves": [
+        "project-statistics-contract",
+        "constitution-template",
+        "plan-template",
+        "tasks-template"
+      ],
+      "installation": "PASS; disposable project only",
+      "defaultBranchSync": "main clean 0/0",
+      "exactHeadPrChecks": [
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-10-23T17:06:58Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/hindermath/spec-kit-preset-project-statistics-governance/actions/runs/39992121104/job/120546217206",
+          "name": "Reader paths (macos-15)",
+          "startedAt": "2026-10-23T17:06:52Z",
+          "status": "COMPLETED",
+          "workflowName": "Documentation closeout"
+        },
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-10-23T17:06:30Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/hindermath/spec-kit-preset-project-statistics-governance/actions/runs/39992121068/job/120546216759",
+          "name": "native-macos-14",
+          "startedAt": "2026-10-23T17:05:06Z",
+          "status": "COMPLETED",
+          "workflowName": "Preset validation"
+        },
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-10-23T17:05:18Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/hindermath/spec-kit-preset-project-statistics-governance/actions/runs/39992121986/job/120546218399",
+          "name": "Documentation (macos-15)",
+          "startedAt": "2026-10-23T17:05:07Z",
+          "status": "COMPLETED",
+          "workflowName": "Release documentation"
+        },
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-10-23T17:05:17Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/hindermath/spec-kit-preset-project-statistics-governance/actions/runs/39992121104/job/120546217544",
+          "name": "Reader paths (ubuntu-24.04)",
+          "startedAt": "2026-10-23T17:05:10Z",
+          "status": "COMPLETED",
+          "workflowName": "Documentation closeout"
+        },
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-10-23T17:06:18Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/hindermath/spec-kit-preset-project-statistics-governance/actions/runs/39992121068/job/120546217147",
+          "name": "native-ubuntu-24.04",
+          "startedAt": "2026-10-23T17:05:09Z",
+          "status": "COMPLETED",
+          "workflowName": "Preset validation"
+        },
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-10-23T17:05:22Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/hindermath/spec-kit-preset-project-statistics-governance/actions/runs/39992121986/job/120546218709",
+          "name": "Documentation (ubuntu-24.04)",
+          "startedAt": "2026-10-23T17:05:07Z",
+          "status": "COMPLETED",
+          "workflowName": "Release documentation"
+        },
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-10-23T17:05:19Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/hindermath/spec-kit-preset-project-statistics-governance/actions/runs/39992121104/job/120546217318",
+          "name": "Reader paths (windows-2022)",
+          "startedAt": "2026-10-23T17:05:07Z",
+          "status": "COMPLETED",
+          "workflowName": "Documentation closeout"
+        },
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-10-23T17:06:43Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/hindermath/spec-kit-preset-project-statistics-governance/actions/runs/39992121068/job/120546216964",
+          "name": "native-windows-2022",
+          "startedAt": "2026-10-23T17:05:04Z",
+          "status": "COMPLETED",
+          "workflowName": "Preset validation"
+        },
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-10-23T17:05:21Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/hindermath/spec-kit-preset-project-statistics-governance/actions/runs/39992121986/job/120546218793",
+          "name": "Documentation (windows-2022)",
+          "startedAt": "2026-10-23T17:05:07Z",
+          "status": "COMPLETED",
+          "workflowName": "Release documentation"
+        }
+      ]
+    }
+  ],
+  "mergeWorkflows": [
+    {
+      "scope": "Assurance prerequisite #10",
+      "commit": "ffb85613aeff377885d6cf1990521868ff390fa3",
+      "url": "https://github.com/hindermath/spec-kit-preset-secure-development-assurance-governance/actions/runs/40026270394",
+      "conclusion": "success",
+      "jobs": [
+        {
+          "name": "Assurance contracts (ubuntu-22.04)",
+          "conclusion": "success",
+          "url": "https://github.com/hindermath/spec-kit-preset-secure-development-assurance-governance/actions/runs/40026270394/job/120663146506"
+        },
+        {
+          "name": "Assurance contracts (windows-2022)",
+          "conclusion": "success",
+          "url": "https://github.com/hindermath/spec-kit-preset-secure-development-assurance-governance/actions/runs/40026270394/job/120663146788"
+        },
+        {
+          "name": "Assurance contracts (macos-14)",
+          "conclusion": "success",
+          "url": "https://github.com/hindermath/spec-kit-preset-secure-development-assurance-governance/actions/runs/40026270394/job/120663146889"
+        }
+      ]
+    },
+    {
+      "scope": "Assurance documentation #11",
+      "conclusion": "success",
+      "headSha": "0f47996be3b613b3ab26206b606f68e3acb44c30",
+      "jobs": [
+        {
+          "conclusion": "success",
+          "name": "Assurance contracts (windows-2022)",
+          "status": "completed",
+          "url": "https://github.com/hindermath/spec-kit-preset-secure-development-assurance-governance/actions/runs/40026661520/job/120664438486"
+        },
+        {
+          "conclusion": "success",
+          "name": "Assurance contracts (ubuntu-22.04)",
+          "status": "completed",
+          "url": "https://github.com/hindermath/spec-kit-preset-secure-development-assurance-governance/actions/runs/40026661520/job/120664438689"
+        },
+        {
+          "conclusion": "success",
+          "name": "Assurance contracts (macos-14)",
+          "status": "completed",
+          "url": "https://github.com/hindermath/spec-kit-preset-secure-development-assurance-governance/actions/runs/40026661520/job/120664438752"
+        }
+      ],
+      "status": "completed",
+      "url": "https://github.com/hindermath/spec-kit-preset-secure-development-assurance-governance/actions/runs/40026661520"
+    },
+    {
+      "scope": "Project Statistics #8",
+      "commit": "454554bafda574c1153e6be319c30e9787ac3867",
+      "url": "https://github.com/hindermath/spec-kit-preset-project-statistics-governance/actions/runs/40026309269",
+      "conclusion": "success"
+    }
+  ]
+}

@@ -1,5 +1,9 @@
 # home-baseline
 
+[Aktueller stabiler 14-Preset-Rollout](docs/maintenance/stable-preset-rollout-2026-10-24.md):
+Level-0-Kandidat in Prüfung; Home Runtime und drei Piloten folgen erst nach
+fachlicher Sichtung und grüner Lieferung. Frühere Rollout-Berichte sind historisch.
+
 [Assurance 0.1.5: Paketkorrektur und Level-0-Rollout](https://github.com/hindermath/home-baseline/blob/main/docs/maintenance/assurance-0.1.5-level0-2026-10-20.md).
 
 [14 README-Patch-Releases / Fourteen README patch releases](docs/maintenance/preset-readme-patch-releases-2026-10-18.md).
@@ -18,11 +22,11 @@ Sie verwaltet gemeinsame Skripte, Governance, Spec-Kit-Presets,
 Dokumentationsregeln und Lernmaterialien. Du brauchst keine Spec-Kit-Erfahrung,
 um hier zu beginnen.
 
-Aktueller vorbereiteter Governance-Zielstand: Security v0.7.2, Architecture v0.6.3 sowie
-Intake Authoring v0.3.8, Review v0.2.5 und Sequencing v0.2.9.
+Aktueller vorbereiteter Governance-Zielstand: Security v0.7.3, Architecture v0.6.4 sowie
+Intake Authoring v0.3.9, Review v0.2.6 und Sequencing v0.2.10.
 Zuletzt gelieferter Authoring-Patch: [begrenzte v0.3.7-Lieferung](docs/maintenance/intake-authoring-v037-rollout.md).
 
-Zuletzt gelieferter begrenzter Rollout: [Security 0.7.1, Architecture 0.6.2 und Sequencing 0.2.8](docs/maintenance/preset-patches-bounded-2026-10-10.md).
+Historischer begrenzter Rollout: [Security 0.7.1, Architecture 0.6.2 und Sequencing 0.2.8](docs/maintenance/preset-patches-bounded-2026-10-10.md).
 [Paketbindung, Piloten und verbleibende Schritte](docs/maintenance/coordinated-governance-oct03.md).
 Die Installation startet keine Produktimplementierung.
 

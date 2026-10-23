@@ -1,0 +1,153 @@
+{
+  "schemaVersion": "1.1",
+  "feature": "stable-preset-rollout-2026-10-24",
+  "entries": [
+    {
+      "changeId": "CHG001",
+      "scope": "central-profile-guidance-and-navigation",
+      "decision": "UpdateRequired",
+      "rationale": "Fourteen explicitly authorized stable package updates; preserve priorities/default, private state, historical evidence and the five-file Home-only overlay. / Vierzehn stabile Pakete gezielt aktualisieren; keine Modellaufrufe oder vorgezogene Pilotlieferung.",
+      "documents": [
+        "README.md",
+        "README.en.md",
+        "AGENTS.md",
+        "CLAUDE.md",
+        "GEMINI.md",
+        ".github/copilot-instructions.md",
+        ".github/agents/copilot-instructions.md",
+        "constitution.md",
+        ".specify/memory/constitution.md"
+      ],
+      "owner": "Thorsten Hindermann",
+      "audiences": [
+        "Preset users",
+        "Maintainers"
+      ],
+      "readerPaths": [
+        "README -> current bounded rollout report -> release/source/installed bindings -> exact-head human review"
+      ],
+      "canonicalSource": "scripts/config/spec-kit-project-statistics-governance-presets.json",
+      "navigationImpact": "Paired README entries link the current rollout; previous evidence stays historical.",
+      "documentClass": "ActiveSemantic",
+      "languageStrategy": "German first and English second; paired README language files.",
+      "languagePartners": [
+        "README.md",
+        "README.en.md"
+      ],
+      "platformAndExampleProof": "Exact Bash/PowerShell matrix, archive comparison, stable routing/documentation tests; full local and native results recorded in rollout PR.",
+      "distributionClass": "homeRuntime",
+      "homeSyncRequired": true,
+      "evidence": "docs/maintenance/stable-preset-rollout-2026-10-24.md",
+      "risk": "Installation does not authorize execution, human acceptance, home sync before merge or broader distribution.",
+      "criticality": "Usage",
+      "reevaluationTrigger": "Package, source, profile, evidence or authority drift."
+    },
+    {
+      "changeId": "CHG002",
+      "scope": "installation-release-evidence-and-technical-assurance",
+      "decision": "UpdateRequired",
+      "rationale": "Fourteen explicitly authorized stable package updates; preserve priorities/default, private state, historical evidence and the five-file Home-only overlay. / Vierzehn stabile Pakete gezielt aktualisieren; keine Modellaufrufe oder vorgezogene Pilotlieferung.",
+      "documents": [
+        "docs/maintenance/stable-preset-rollout-2026-10-24.md",
+        "docs/maintenance/preset-source-lock.json",
+        "docs/maintenance/preset-installed-lock.json",
+        "docs/maintenance/preset-documentation-patch-releases-2026-10-23.md"
+      ],
+      "owner": "Thorsten Hindermann",
+      "audiences": [
+        "Preset users",
+        "Maintainers"
+      ],
+      "readerPaths": [
+        "README -> current bounded rollout report -> release/source/installed bindings -> exact-head human review"
+      ],
+      "canonicalSource": "scripts/config/spec-kit-project-statistics-governance-presets.json",
+      "navigationImpact": "Paired README entries link the current rollout; previous evidence stays historical.",
+      "documentClass": "ActiveSemantic",
+      "languageStrategy": "German first and English second; paired README language files.",
+      "languagePartners": [
+        "README.md",
+        "README.en.md"
+      ],
+      "platformAndExampleProof": "Exact Bash/PowerShell matrix, archive comparison, stable routing/documentation tests; full local and native results recorded in rollout PR.",
+      "distributionClass": "sourceOnly",
+      "homeSyncRequired": false,
+      "evidence": "docs/maintenance/stable-preset-rollout-2026-10-24.md",
+      "risk": "Installation does not authorize execution, human acceptance, home sync before merge or broader distribution.",
+      "criticality": "Usage",
+      "reevaluationTrigger": "Package, source, profile, evidence or authority drift."
+    },
+    {
+      "changeId": "CHG003",
+      "scope": "statistics",
+      "decision": "GeneratedUpdate",
+      "rationale": "Fourteen explicitly authorized stable package updates; preserve priorities/default, private state, historical evidence and the five-file Home-only overlay. / Vierzehn stabile Pakete gezielt aktualisieren; keine Modellaufrufe oder vorgezogene Pilotlieferung.",
+      "documents": [
+        "docs/project-statistics.md"
+      ],
+      "owner": "Thorsten Hindermann",
+      "audiences": [
+        "Preset users",
+        "Maintainers"
+      ],
+      "readerPaths": [
+        "README -> current bounded rollout report -> release/source/installed bindings -> exact-head human review"
+      ],
+      "canonicalSource": "docs/project-statistics.config.json",
+      "navigationImpact": "Paired README entries link the current rollout; previous evidence stays historical.",
+      "documentClass": "Generated",
+      "languageStrategy": "German first and English second; paired README language files.",
+      "languagePartners": [
+        "README.md",
+        "README.en.md"
+      ],
+      "platformAndExampleProof": "Exact Bash/PowerShell matrix, archive comparison, stable routing/documentation tests; full local and native results recorded in rollout PR.",
+      "distributionClass": "sourceOnly",
+      "homeSyncRequired": false,
+      "evidence": "docs/maintenance/stable-preset-rollout-2026-10-24.md",
+      "risk": "Installation does not authorize execution, human acceptance, home sync before merge or broader distribution.",
+      "criticality": "Usage",
+      "reevaluationTrigger": "Package, source, profile, evidence or authority drift.",
+      "generatedSource": {
+        "path": "docs/project-statistics.config.json",
+        "renderer": "bash scripts/render-project-statistics.sh"
+      }
+    },
+    {
+      "changeId": "CHG004",
+      "scope": "generated-script-inventory",
+      "decision": "GeneratedUpdate",
+      "rationale": "New archive-owned embedded test scripts change the tracked inventory. Regenerate the existing reference without changing categories or executable policy. / Neue eingebettete Pakettests erfordern die bestehende Inventurableitung.",
+      "documents": [
+        "docs/scripts/embedded-scripts.md"
+      ],
+      "owner": "Thorsten Hindermann",
+      "audiences": [
+        "Preset users",
+        "Maintainers"
+      ],
+      "readerPaths": [
+        "README -> current bounded rollout report -> release/source/installed bindings -> exact-head human review"
+      ],
+      "canonicalSource": "scripts/config/script-catalog.json",
+      "navigationImpact": "Paired README entries link the current rollout; previous evidence stays historical.",
+      "documentClass": "Generated",
+      "languageStrategy": "German first and English second; paired README language files.",
+      "languagePartners": [
+        "README.md",
+        "README.en.md"
+      ],
+      "platformAndExampleProof": "Exact Bash/PowerShell matrix, archive comparison, stable routing/documentation tests; full local and native results recorded in rollout PR.",
+      "distributionClass": "sourceOnly",
+      "homeSyncRequired": false,
+      "evidence": "docs/maintenance/stable-preset-rollout-2026-10-24.md",
+      "risk": "Installation does not authorize execution, human acceptance, home sync before merge or broader distribution.",
+      "criticality": "Usage",
+      "reevaluationTrigger": "Package, source, profile, evidence or authority drift.",
+      "generatedSource": {
+        "path": "scripts/config/script-catalog.json",
+        "renderer": "bash scripts/render-script-reference.sh"
+      }
+    }
+  ]
+}
