@@ -89,6 +89,9 @@ now v0.1.2 instead of v0.1.1.
   mittlere Hinweis betrifft private Claude-Einstellungen, die nicht geliefert werden.
 - Skriptreferenz neu erzeugt und in Bash/PowerShell driftfrei geprüft:
   152 kanonische und 130 eingebettete Skripte.
+- Statistik-Fixtures: 146 Assertions erfolgreich. Der Statistik-Nachlauf
+  wird aus einer sauberen temporären Git-Kopie übernommen; fremde ungetrackte
+  Auditberichte bleiben außerhalb der Mess- und Liefermenge.
 - Home-only-Overlay: je 18 Szenarien unter Bash und PowerShell erfolgreich;
   ausschließlich lokale Fixtures, keine Modell- oder Provideraufrufe.
 - Assurance-Mindestkombination: 44 Assertions gegen Routing v0.1.5 und
@@ -137,6 +140,9 @@ passed using temporary local states. PSScriptAnalyzer passed. Secret scanning
 reported no high findings; its known medium notice concerns private Claude
 settings excluded from delivery. The regenerated script reference is current
 in both shells: 152 canonical and 130 embedded scripts.
+Statistics fixtures passed 146 assertions. The final statistics refresh uses
+a clean temporary Git copy; unrelated untracked audit reports stay outside
+the measured and delivered set.
 
 The published Assurance minimum-combination test passed 44 assertions using
 Routing v0.1.5 and Autonomous v0.4.5. It explicitly pins those predecessor
