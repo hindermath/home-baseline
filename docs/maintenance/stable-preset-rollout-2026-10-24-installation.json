@@ -1,0 +1,319 @@
+{
+  "schemaVersion": 1,
+  "kind": "Authorized Level-0 working-candidate installation evidence, not completed rollout or release approval",
+  "installationCommit": "f59d2ce2541ade85e237f068a681a0c4167af248",
+  "startingCommit": "d98983568d6ac234dbecb50c2fee0873e83804a4",
+  "profile": "project-statistics-fourteen-governance-presets",
+  "defaultProfileUnchanged": "standard-eight-governance-presets",
+  "scope": [
+    "Level 0 candidate only"
+  ],
+  "homeRuntimeSyncPerformed": false,
+  "pilotsUpdated": false,
+  "modelCalls": false,
+  "privateProfileRefreshOrMigration": false,
+  "cancelledDynamicRouting": false,
+  "packages": [
+    {
+      "id": "security-governance",
+      "previousVersion": "0.7.2",
+      "version": "0.7.3",
+      "priority": 10,
+      "enabled": true,
+      "tag": "v0.7.3",
+      "tagCommit": "c66cabfbfdde532994bd3c0e63ebf843dadfa1c0",
+      "archive": "https://github.com/hindermath/spec-kit-preset-security-governance/archive/refs/tags/v0.7.3.zip",
+      "archiveSha256": "e43fdbc3af2334182ded8908f160313dc085882faf96532f29bfffbb7cfd8f9d",
+      "manifest_hash": "sha256:587afce92107b7ee0723a562a13bd679c437594aca81d59ade4599eba890654a",
+      "fileCount": 42,
+      "contentSha256": "62278b14531f3bae88d7544c036b12eee13053220a57972317ec17b9e4cb13b2"
+    },
+    {
+      "id": "secure-development-assurance-governance",
+      "previousVersion": "0.1.5",
+      "version": "0.1.7",
+      "priority": 15,
+      "enabled": true,
+      "tag": "v0.1.7",
+      "tagCommit": "0f47996be3b613b3ab26206b606f68e3acb44c30",
+      "archive": "https://github.com/hindermath/spec-kit-preset-secure-development-assurance-governance/archive/refs/tags/v0.1.7.zip",
+      "archiveSha256": "0b1352fad73970c6bc12d77bc4b687dde8db36a02ee1f73ed97289bb16134b35",
+      "manifest_hash": "sha256:a089d354e84213f67596f105594d86e8c297782568794ad89eb4d5f624f713ed",
+      "fileCount": 33,
+      "contentSha256": "55fc23bdf7b5342674bf99bac07b5cde8254a4419051665120aefaf4d44823d6"
+    },
+    {
+      "id": "architecture-governance",
+      "previousVersion": "0.6.3",
+      "version": "0.6.4",
+      "priority": 20,
+      "enabled": true,
+      "tag": "v0.6.4",
+      "tagCommit": "bf2261d0d7c31e1c892dfa2b9708e5978dd28a73",
+      "archive": "https://github.com/hindermath/spec-kit-preset-architecture-governance/archive/refs/tags/v0.6.4.zip",
+      "archiveSha256": "020349ca49db89c655762b1cc1ce86d5f40ea0e4b2f598aac443ed6e0dbdc6e4",
+      "manifest_hash": "sha256:7c163d07758473f76d35a40048d9c92cc635ae174c8a9f34e92b148889038370",
+      "fileCount": 36,
+      "contentSha256": "a3c1d4a11d85886fabac60ba65fd826a5f96589765cd005e36798be0d3d682e0"
+    },
+    {
+      "id": "isaqb-architecture-governance",
+      "previousVersion": "0.2.3",
+      "version": "0.2.4",
+      "priority": 30,
+      "enabled": true,
+      "tag": "v0.2.4",
+      "tagCommit": "1f5529d289b90c4c302e267c14d9bccab96d5e99",
+      "archive": "https://github.com/hindermath/spec-kit-preset-isaqb-architecture-governance/archive/refs/tags/v0.2.4.zip",
+      "archiveSha256": "ad9802cb23ea2ef604098bea1b0e297cbaf0badcd56ba87541706d45910605ba",
+      "manifest_hash": "sha256:1803bafaed7744884d5ea9894b87bc9c6baa67f4847d98fa62b24377b6f2ffc6",
+      "fileCount": 29,
+      "contentSha256": "a776e4ca9e306e7860d42d59edf95d8601ae2b0ca08934f1127da68002fd1690"
+    },
+    {
+      "id": "a11y-governance",
+      "previousVersion": "0.4.4",
+      "version": "0.4.5",
+      "priority": 40,
+      "enabled": true,
+      "tag": "v0.4.5",
+      "tagCommit": "58f02a2496094a34e95c12a6160f970f99227720",
+      "archive": "https://github.com/hindermath/spec-kit-preset-a11y-governance/archive/refs/tags/v0.4.5.zip",
+      "archiveSha256": "764823f359f0071a165020e3b19957cc48ea8a815764bc0df3ed0c64a4cf699d",
+      "manifest_hash": "sha256:f8d58c556b7158c16d5a72ac3371e6456d970a1f8830339a73fd68327b3dad8e",
+      "fileCount": 26,
+      "contentSha256": "34b361be3794dbbbb96e62a22f92e2d0386cde25da832aee46086c51506cf2f9"
+    },
+    {
+      "id": "cross-platform-governance",
+      "previousVersion": "0.2.3",
+      "version": "0.2.4",
+      "priority": 50,
+      "enabled": true,
+      "tag": "v0.2.4",
+      "tagCommit": "14e830b7625b47dbc712989502f8c5ca0e3bbf57",
+      "archive": "https://github.com/hindermath/spec-kit-preset-cross-platform-governance/archive/refs/tags/v0.2.4.zip",
+      "archiveSha256": "0dfa8cfaeb317f1847462c48a3a1d83389e668256abd6f508ee6d89e452d5456",
+      "manifest_hash": "sha256:edaf0211c657c216a0acb0360205365f50a87e836675d17a48e6a32d09bfae0f",
+      "fileCount": 24,
+      "contentSha256": "ec6ef8a55a6dedcd841c75cad43462038bf6bf9a322ded73741625421d9ae589"
+    },
+    {
+      "id": "agent-parity-governance",
+      "previousVersion": "0.4.3",
+      "version": "0.4.4",
+      "priority": 60,
+      "enabled": true,
+      "tag": "v0.4.4",
+      "tagCommit": "ca4e9116a68472b336450d8f03a52e0264f5beb6",
+      "archive": "https://github.com/hindermath/spec-kit-preset-agent-parity-governance/archive/refs/tags/v0.4.4.zip",
+      "archiveSha256": "2c752eea241b359c0dce808c95cf750bd0116fe2470e2bce6edfb1aff1a8d020",
+      "manifest_hash": "sha256:b09355872c62142b0aaf1dff06ff930f6687c5fa7b06b29467d21347d62e34b5",
+      "fileCount": 22,
+      "contentSha256": "2d2c81898a06f59a59814f0f1627302157ba9afaa8b4cc67a9e060cb8242294e"
+    },
+    {
+      "id": "model-routing-governance",
+      "previousVersion": "0.1.5",
+      "version": "0.1.6",
+      "priority": 61,
+      "enabled": true,
+      "tag": "v0.1.6",
+      "tagCommit": "99c7c13b3ef2e154cf4f62f43262ade3fbe8d2a9",
+      "archive": "https://github.com/hindermath/spec-kit-preset-model-routing-governance/archive/refs/tags/v0.1.6.zip",
+      "archiveSha256": "94648588b4e6ec8c839da579d7321026821fa2cf4378db05c6ad3cdd4dc05dad",
+      "manifest_hash": "sha256:0fcc6869a658124df8109921428c3a9240905ec72057c46194823df0132f7bae",
+      "fileCount": 25,
+      "contentSha256": "09def2121a25741e1036a388107520f45a4fea43fc207244d6fef4ece8b340cf"
+    },
+    {
+      "id": "intake-authoring-governance",
+      "previousVersion": "0.3.8",
+      "version": "0.3.9",
+      "priority": 64,
+      "enabled": true,
+      "tag": "v0.3.9",
+      "tagCommit": "33845858eff1cc6aa766012650491d53e1a88447",
+      "archive": "https://github.com/hindermath/spec-kit-preset-intake-authoring-governance/archive/refs/tags/v0.3.9.zip",
+      "archiveSha256": "5fdec1175224a30f4c2e10f549351fe71bfd06722f4390596625d45ed4733ffb",
+      "manifest_hash": "sha256:58912fba5a6a9c104244282e8cade98efa9f3f5fc78a95d1e03a531dd3e842ac",
+      "fileCount": 55,
+      "contentSha256": "c69931644d94a518c0c33cf6c6fa3e60c7fa66cf605e9720532488a00f572fce"
+    },
+    {
+      "id": "intake-review-governance",
+      "previousVersion": "0.2.5",
+      "version": "0.2.6",
+      "priority": 65,
+      "enabled": true,
+      "tag": "v0.2.6",
+      "tagCommit": "4838ab546d4f6f6c892152469cf336297e303384",
+      "archive": "https://github.com/hindermath/spec-kit-preset-intake-review-governance/archive/refs/tags/v0.2.6.zip",
+      "archiveSha256": "fa02a2fa1ed44b2041ecd209f0ad1f96ec32b40bf5f3a867e58fd7012e3aa90b",
+      "manifest_hash": "sha256:f7afb1ab618de8918f25a274275cb2e9883b44a9614cc56e1fc41c1a8ec3810c",
+      "fileCount": 40,
+      "contentSha256": "6f6dd51bc10cd5401ed58f6fac6dd7e5919161d5911bf3248b7afdd30cf14b01"
+    },
+    {
+      "id": "intake-sequencing-governance",
+      "previousVersion": "0.2.9",
+      "version": "0.2.10",
+      "priority": 66,
+      "enabled": true,
+      "tag": "v0.2.10",
+      "tagCommit": "ccb6c223c51ba685f650f2ce5238299cb73b1f31",
+      "archive": "https://github.com/hindermath/spec-kit-preset-intake-sequencing-governance/archive/refs/tags/v0.2.10.zip",
+      "archiveSha256": "0da5d751a89b9ae68a75c2f590b449599d98d4a0ed7fe4c2bcd935e90a197678",
+      "manifest_hash": "sha256:ff4059b12eda48288bc8d7e201ff40b72ab8dc47c20337f1c6f169623e102f9e",
+      "fileCount": 52,
+      "contentSha256": "8c261a460d5ae1a898350288c2e1b8449bdaad60cbdb33a4c9d4759e8742bacc"
+    },
+    {
+      "id": "autonomous-run-governance",
+      "previousVersion": "0.4.5",
+      "version": "0.4.6",
+      "priority": 70,
+      "enabled": true,
+      "tag": "v0.4.6",
+      "tagCommit": "130a69dc483fa27e3835640c87feb40b446bf4cc",
+      "archive": "https://github.com/hindermath/spec-kit-preset-autonomous-run-governance/archive/refs/tags/v0.4.6.zip",
+      "archiveSha256": "db7450ff1e1fcf26aae4a98fac3504464a2fa1e9bf7db23ffdbe1b89c5ec8b04",
+      "manifest_hash": "sha256:b6933481f14acd3a4ff6b035141b8e64f9f6466a60700378484b6b1a4351c541",
+      "fileCount": 63,
+      "contentSha256": "1ea5590b6618bd18f492dc503b6dba0fc211a99d223ba1c2963d1e721537114b"
+    },
+    {
+      "id": "parallel-autonomous-run-governance",
+      "previousVersion": "0.2.7",
+      "version": "0.2.8",
+      "priority": 80,
+      "enabled": true,
+      "tag": "v0.2.8",
+      "tagCommit": "63bbf78b51fe00385b34f52cc568dbf2928954ad",
+      "archive": "https://github.com/hindermath/spec-kit-preset-parallel-autonomous-run-governance/archive/refs/tags/v0.2.8.zip",
+      "archiveSha256": "36598b775b14fe070dc50700409b3e6cec8fc06b9fb2f80cf1906af1ac3560b7",
+      "manifest_hash": "sha256:c77d51ddbf6757ce7ed310b127fc18930639f7965f6ba69262613521f72a49d6",
+      "fileCount": 54,
+      "contentSha256": "61eeeb16388aeeb6a45f0b17315c619daf5bbbcfd6ebc0a9afed0f4a94317324"
+    },
+    {
+      "id": "project-statistics-governance",
+      "previousVersion": "0.1.1",
+      "version": "0.1.2",
+      "priority": 90,
+      "enabled": true,
+      "tag": "v0.1.2",
+      "tagCommit": "454554bafda574c1153e6be319c30e9787ac3867",
+      "archive": "https://github.com/hindermath/spec-kit-preset-project-statistics-governance/archive/refs/tags/v0.1.2.zip",
+      "archiveSha256": "6cc233b56033b4b7dc0abd831666a6f3b0f5b70b0c9b9a395c8dc78c9549bb95",
+      "manifest_hash": "sha256:0b0bf3f6eaa54621ff2e9312928586bd21c76c6338c80a30ac99d5327f101380",
+      "fileCount": 106,
+      "contentSha256": "d9f4c9d1fec0203935156e87fa7b3291b972e84df80aef64742c87f3b9fa3178"
+    }
+  ],
+  "archivePayloadProof": {
+    "matchingFilesAfterExistingMarkdownNormalization": 599,
+    "bytePreservedOverlayFiles": 5,
+    "totalArchiveFiles": 604
+  },
+  "tests": {
+    "matrixBash": 0,
+    "matrixPowerShell": 0,
+    "agentSurfaceParity": {
+      "exitCode": 0,
+      "tests": 9
+    },
+    "combinedDocumentation": {
+      "exitCode": 0,
+      "assertions": 238,
+      "commandDeclarations": 49
+    },
+    "installedDocumentation": {
+      "exitCode": 0,
+      "packages": 14
+    },
+    "overlayBash": {
+      "exitCode": 0,
+      "scenarios": 18
+    },
+    "overlayPowerShell": {
+      "exitCode": 0,
+      "scenarios": 18
+    },
+    "minimumAssuranceRouting": {
+      "exitCode": 0,
+      "assertions": 44,
+      "modelRouting": "0.1.5",
+      "autonomous": "0.4.5",
+      "note": "Published test strictly pins minimum predecessor metadata; canonical executable scripts unchanged at new tags. Do not claim direct current-version test pass."
+    },
+    "sourceAndProfiles": {
+      "exitCode": 0,
+      "verifiedPackages": 14,
+      "profiles": [
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14
+      ],
+      "assuranceNegativeCasesPerShell": 47,
+      "statisticsLifecycle": true
+    },
+    "nativeCi": "Not yet run for final candidate head",
+    "intakeAuthoring": {
+      "exitCode": 0
+    },
+    "intakeReview": {
+      "exitCode": 0
+    },
+    "intakeSequencing": {
+      "exitCode": 0
+    },
+    "parallelCoordinator": {
+      "exitCode": 0
+    },
+    "routingDiscovery": {
+      "exitCode": 0
+    },
+    "powerShellAnalysis": {
+      "exitCode": 0
+    },
+    "secretScan": {
+      "exitCode": 0,
+      "high": 0,
+      "medium": 1,
+      "mediumScope": "Existing private Claude settings excluded from delivery"
+    },
+    "scriptReference": {
+      "exitCode": 0,
+      "canonical": 152,
+      "embedded": 130
+    }
+  },
+  "priorNonPassingChecks": [
+    {
+      "check": "Initial agent parity",
+      "cause": "Expected obsolete installed lock plus incomplete generated Claude wrappers; resolved with actual payload binding and existing renderer."
+    },
+    {
+      "check": "Initial source profile test",
+      "cause": "Old strict statistics expectation v0.1.1; updated only to authorized v0.1.2."
+    },
+    {
+      "check": "Assurance minimum-dependency test against current package metadata",
+      "cause": "Test intentionally requires predecessor versions; rejected, not counted as pass."
+    },
+    {
+      "check": "Initial delivery-set",
+      "cause": "Generated core command trailing whitespace; formatting-only normalization."
+    },
+    {
+      "check": "Initial homogeneity",
+      "cause": "Expected statistics drift plus embedded script inventory changes; renderer updates required."
+    }
+  ],
+  "requiredNextAction": "Present final exact rollout PR head for human review. No merge, Home Runtime or pilot action before required approval and successful preceding-stage delivery."
+}

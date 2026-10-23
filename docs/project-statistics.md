@@ -1518,6 +1518,23 @@ EN: Bound temporary Git maintenance to the foreground; retain strict teardown,
 real packing and no-op assertions. Deliver only Level 0 and the manifest-selected
 Home test file; no pilot repository changes or rollout.
 
+### 2026-10-24 - Stabiler 14-Preset-Kandidat / Stable fourteen-preset candidate
+
+DE: Veröffentlichten Zielstand auf Level 0 installiert, Profile 8 bis 14 und
+Quellenbindungen fortgeschrieben. Fünf Home-only-Overlay-Dateien bytegleich
+erhalten, vollständige 49 stabile Command-Deklarationen und Paketidentität
+geprüft. Rollout-PR-Sichtung bleibt separates Gate; noch kein Home Runtime
+Sync und keine Pilotinstallation. Documentation Impact: UpdateRequired;
+Statistikblock: GeneratedUpdate.
+[Nachweis / Evidence](maintenance/stable-preset-rollout-2026-10-24.md).
+
+EN: Install the published targets on Level 0, update profiles eight through
+fourteen and source bindings, preserve five Home-only overlay files, and
+verify package identity and all 49 stable command declarations. Human review
+of the rollout PR remains a separate gate; no Home Runtime sync or pilot
+installation yet. Statistics describe repository activity, not measured AI
+productivity or human acceptance.
+
 ## Gesamtstatistik / Overall Statistics
 
 <!-- project-statistics-v2:begin -->
