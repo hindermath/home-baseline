@@ -1,0 +1,134 @@
+{
+  "schemaVersion": "1.1",
+  "feature": "preset-documentation-rollout-2026-10-24",
+  "entries": [
+    {
+      "changeId": "CHG004",
+      "scope": "embedded-script-reference",
+      "decision": "GeneratedUpdate",
+      "rationale": "New published package test scripts must appear in the generated embedded-script inventory; no canonical script behavior changes.",
+      "documents": ["docs/scripts/embedded-scripts.md"],
+      "owner": "Thorsten Hindermann",
+      "audiences": ["Maintainers", "Developers without specialist knowledge"],
+      "readerPaths": ["Script reference → installed preset test inventory"],
+      "canonicalSource": "scripts/config/script-catalog.json",
+      "navigationImpact": "Regenerate the existing embedded-script table without moving its anchors.",
+      "documentClass": "ActiveSemantic",
+      "languageStrategy": "German first and equivalent English.",
+      "languagePartners": [],
+      "platformAndExampleProof": "Canonical Bash renderer preview, update and check-only; no new tests claimed from script enumeration.",
+      "distributionClass": "sourceOnly",
+      "homeSyncRequired": false,
+      "evidence": "docs/maintenance/preset-documentation-rollout-2026-10-24.md",
+      "risk": "An inventory entry does not prove test execution.",
+      "criticality": "Normal",
+      "reevaluationTrigger": "Installed script inventory changes.",
+      "generatedSource": {"path": "scripts/config/script-catalog.json", "renderer": "bash scripts/render-script-reference.sh --repo ."}
+    },
+    {
+      "changeId": "CHG001",
+      "scope": "level0-installation-and-agent-composition",
+      "decision": "UpdateRequired",
+      "rationale": "Bind newly published documentation patch packages to current profile sources and preserve byte-identical complete agent composition when semantic inputs are unchanged. Publication, installation and human review remain distinct.",
+      "documents": [
+        "README.md",
+        "README.en.md",
+        "AGENTS.md",
+        "CLAUDE.md",
+        "GEMINI.md",
+        ".github/copilot-instructions.md",
+        ".github/agents/copilot-instructions.md",
+        "docs/maintenance/preset-documentation-rollout-2026-10-24.md"
+      ],
+      "owner": "Thorsten Hindermann",
+      "audiences": [
+        "Apprentices in all four IHK IT occupations, including all four IT-specialist disciplines",
+        "Developers without specialist governance knowledge",
+        "Maintainers and technical reviewers"
+      ],
+      "readerPaths": [
+        "README → bounded rollout report → source lock, installed lock and delivery PR"
+      ],
+      "canonicalSource": "scripts/config/spec-kit-project-statistics-governance-presets.json",
+      "navigationImpact": "Both README language partners link the bounded installation record; historical publication records remain intact.",
+      "documentClass": "ActiveSemantic",
+      "languageStrategy": "German first and English second; paired README files and synchronized guidance.",
+      "languagePartners": [
+        "README.md",
+        "README.en.md"
+      ],
+      "platformAndExampleProof": "Bash and PowerShell matrix checks; 660 released files checked; five Home-only overlay hashes; unchanged nine-case agent parity. Full remote source test locally blocked by network timeout, not counted as pass; exact-head CI must pass before delivery.",
+      "distributionClass": "homeRuntime",
+      "homeSyncRequired": true,
+      "evidence": "docs/maintenance/preset-documentation-rollout-2026-10-24.md",
+      "risk": "Home Runtime sync follows successful Level-0 delivery; no implicit community, fleet, feature or toolchain authority.",
+      "criticality": "Usage",
+      "reevaluationTrigger": "Preset, priority, composition, override or runtime-distribution change."
+    },
+    {
+      "changeId": "CHG002",
+      "scope": "technical-assurance-and-installed-binding",
+      "decision": "UpdateRequired",
+      "rationale": "Create a separate current technical context and bind the actual installed snapshot without rewriting historical evidence or human decisions.",
+      "documents": [
+        "docs/maintenance/preset-installed-lock.json",
+        "docs/security/secure-development/2026-10-24-home-baseline-documentation-patch-rollout/evidence-matrix.md"
+      ],
+      "owner": "Thorsten Hindermann",
+      "audiences": [
+        "Apprentices in all four IHK IT occupations, including all four IT-specialist disciplines",
+        "Developers without specialist governance knowledge",
+        "Maintainers and technical reviewers"
+      ],
+      "readerPaths": [
+        "New report → separate technical context → baseline, delta, closure and image-impact records"
+      ],
+      "canonicalSource": ".specify/presets/.registry and docs/secure-development/baseline-manifest.json",
+      "navigationImpact": "A distinct dated context preserves older v0.1.3 evidence and points to the bounded rollout report.",
+      "documentClass": "ActiveSemantic",
+      "languageStrategy": "Bilingual matrix/runbooks; language-neutral JSON keys, paths and hashes.",
+      "languagePartners": [],
+      "platformAndExampleProof": "Both shell status and four gate reviews with raw-byte read-only snapshots; negative fixtures and exact installed payload validation.",
+      "distributionClass": "sourceOnly",
+      "homeSyncRequired": false,
+      "evidence": "docs/maintenance/preset-documentation-rollout-2026-10-24.md",
+      "risk": "Technical integrity checks do not establish complete control implementation, human product acceptance or regulatory/certification approval.",
+      "criticality": "Security",
+      "reevaluationTrigger": "Controlled-document, installed payload, scope or authority change."
+    },
+    {
+      "changeId": "CHG003",
+      "scope": "statistics",
+      "decision": "GeneratedUpdate",
+      "rationale": "Append the bounded Level-0 delivery ledger and regenerate statistics with unchanged methodology and configuration.",
+      "documents": [
+        "docs/project-statistics.md"
+      ],
+      "owner": "Thorsten Hindermann",
+      "audiences": [
+        "Apprentices in all four IHK IT occupations, including all four IT-specialist disciplines",
+        "Developers without specialist governance knowledge",
+        "Maintainers and technical reviewers"
+      ],
+      "readerPaths": [
+        "README → project statistics → bounded delivery evidence"
+      ],
+      "canonicalSource": "docs/project-statistics.config.json",
+      "navigationImpact": "Existing ledger and last overall-statistics section retained.",
+      "documentClass": "ActiveSemantic",
+      "languageStrategy": "German first and English second.",
+      "languagePartners": [],
+      "platformAndExampleProof": "Canonical renderer preview/update and Bash/PowerShell check-only proof after clean source commits.",
+      "distributionClass": "sourceOnly",
+      "homeSyncRequired": false,
+      "evidence": "docs/maintenance/preset-documentation-rollout-2026-10-24.md",
+      "risk": "Repository transparency is not measured AI productivity, personal time or a quality score.",
+      "criticality": "Usage",
+      "reevaluationTrigger": "Source or ledger changes.",
+      "generatedSource": {
+        "path": "docs/project-statistics.config.json",
+        "renderer": "bash scripts/render-project-statistics.sh --repo ."
+      }
+    }
+  ]
+}

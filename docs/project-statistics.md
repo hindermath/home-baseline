@@ -1557,6 +1557,30 @@ review; no new publication, installation, model probe, Home sync or resumed
 pilot rollout. Statistics describe Git-based project transparency, not
 measured AI productivity.
 
+### 2026-10-24 - Neue Dokumentationspakete und begrenzter Rollout-Kandidat
+
+DE: Alle 14 regulären Dokumentations-Patch-Releases veröffentlicht und die
+tatsächlichen Tag-Archive geprüft: 660 Originaldateien, 145 aufgelöste
+Vorlagendeklarationen und 49 stabile Command-Deklarationen. Die gemeinsame
+Installation sowie Bash-/PowerShell-Matrixprüfungen bestehen. Level 0 bleibt
+ein Kandidat zur neuen fachlichen PR-Sichtung. Fünf Home-only-Runner-Dateien
+bleiben byte-identisch; die vollständige Agentenkomposition wurde bei gleichen
+semantischen Eingaben erhalten und erneut geprüft. Kein Home Runtime Sync
+oder Pilot-Installationslauf. Die Sandbox-VM konnte wegen EOF nicht starten;
+keine Reparatur oder Erweiterung des Auftrags vorgenommen. Statistik ist
+Git-basierte Projekttransparenz, keine gemessene KI-Produktivität.
+[Aktueller Nachweis / Current evidence](maintenance/preset-documentation-rollout-2026-10-24.md).
+
+EN: Published all fourteen regular documentation patch releases and checked
+their actual archives: 660 original files, 145 resolved template declarations
+and 49 stable command declarations. Combined installation and both shell
+matrix checks pass. Level 0 remains a candidate needing new human PR review.
+Five Home-only runner files are byte-identical; complete agent composition
+was preserved for unchanged semantic inputs and rechecked. No Home Runtime
+sync or pilot installation. The existing sandbox VM failed to start with EOF;
+no repair or scope expansion was attempted. Statistics show Git-based project
+transparency, not measured AI productivity.
+
 ## Gesamtstatistik / Overall Statistics
 
 <!-- project-statistics-v2:begin -->
