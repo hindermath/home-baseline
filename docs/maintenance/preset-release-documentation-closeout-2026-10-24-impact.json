@@ -1,0 +1,65 @@
+{
+  "schemaVersion": "1.1",
+  "feature": "preset-release-documentation-closeout-342-343",
+  "entries": [
+    {
+      "changeId": "CHG001",
+      "scope": "current-publication-and-version-specific-improvement-evidence",
+      "decision": "UpdateRequired",
+      "rationale": "Separate historical preparation, evidenced publication and new documentation review; preserve original tags, archives and human decisions.",
+      "documents": [
+        "README.md",
+        "README.en.md",
+        "docs/maintenance/preset-release-documentation-closeout-2026-10-24.md",
+        "docs/maintenance/preset-release-documentation-closeout-2026-10-24.json"
+      ],
+      "owner": "Thorsten Hindermann",
+      "audiences": [
+        "All four IHK IT occupations and all four IT specialist disciplines",
+        "Developers without specialist governance knowledge",
+        "Maintainers and reviewers"
+      ],
+      "readerPaths": [
+        "README -> joint issue overview -> per-preset improvement profile -> immutable sources -> exact new PR head -> human review"
+      ],
+      "canonicalSource": "docs/maintenance/preset-release-documentation-closeout-2026-10-24.json",
+      "navigationImpact": "Paired README entries link the new source-only dossier; dated reports remain historical.",
+      "documentClass": "ActiveSemantic",
+      "languageStrategy": "German first and equivalent English; paired README files and bilingual dossier.",
+      "languagePartners": ["README.md", "README.en.md"],
+      "platformAndExampleProof": "Fourteen local suites and 49 stable declarations; 42 local rendered reader paths; actual per-head native CI retained separately.",
+      "distributionClass": "sourceOnly",
+      "homeSyncRequired": false,
+      "evidence": "docs/maintenance/preset-release-documentation-closeout-2026-10-24.md",
+      "risk": "Publication, tests, human approval, catalogue inclusion and consumer installation must not be conflated.",
+      "criticality": "Usage",
+      "reevaluationTrigger": "Tag, release, source, evidence, authority, scope or PR-head drift."
+    },
+    {
+      "changeId": "CHG002",
+      "scope": "existing-canonical-profile-2-statistics",
+      "decision": "GeneratedUpdate",
+      "rationale": "Refresh the existing ledger block from a clean committed source; preserve methodology, references and authored history.",
+      "documents": ["docs/project-statistics.md"],
+      "owner": "Thorsten Hindermann",
+      "audiences": ["Maintainers", "Learners", "Reviewers"],
+      "readerPaths": ["Joint issue dossier -> update log -> reproducible Profile 2 block"],
+      "canonicalSource": "docs/project-statistics.config.json",
+      "navigationImpact": "Append the update log chronologically; keep Overall Statistics last.",
+      "documentClass": "Generated",
+      "languageStrategy": "German first and equivalent English with ASCII figures and text alternatives.",
+      "languagePartners": ["docs/project-statistics.md"],
+      "platformAndExampleProof": "Existing renderer preview, render and Bash/PowerShell CheckOnly; no dirty-guard bypass.",
+      "distributionClass": "sourceOnly",
+      "homeSyncRequired": false,
+      "evidence": "docs/maintenance/preset-release-documentation-closeout-2026-10-24.md",
+      "risk": "Repository activity and reference estimates are not measured AI productivity or product acceptance.",
+      "criticality": "Normal",
+      "reevaluationTrigger": "Source revision, method, configuration or renderer drift.",
+      "generatedSource": {
+        "path": "docs/project-statistics.config.json",
+        "renderer": "bash scripts/render-project-statistics.sh"
+      }
+    }
+  ]
+}

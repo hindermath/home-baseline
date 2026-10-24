@@ -1535,6 +1535,28 @@ of the rollout PR remains a separate gate; no Home Runtime sync or pilot
 installation yet. Statistics describe repository activity, not measured AI
 productivity or human acceptance.
 
+### 2026-10-24 - Preset-Veröffentlichungsstatus und Verbesserungsprofile
+
+DE: Nacharbeiten aus #342 und #343 verbinden die Veröffentlichung aller
+14 stabilen Presets mit getrennten historischen Kandidatentexten und
+versionsgenauen Verbesserungsprofilen. Archiv-SHA-256, Tag-/Vergleichs-Commits,
+historische Testläufe und neue Dokumentationsprüfungen bleiben getrennt.
+Die gemeinsame Kohorte behält 49 stabile Command-Deklarationen. Neue
+Dokumentations-PRs benötigen eigene fachliche Sichtung; keine erneute
+Veröffentlichung, Installation, Modellprobe, Home-Synchronisierung oder
+Fortsetzung des Pilot-Rollouts. Statistikwerte sind Git-basierte
+Projekttransparenz, keine gemessene KI-Produktivität.
+[Nachweis / Evidence](maintenance/preset-release-documentation-closeout-2026-10-24.md).
+
+EN: Follow-up for #342 and #343 links publication of fourteen stable presets
+to separate historical candidate texts and version-specific improvement
+profiles. Archive SHA-256, tag/comparison commits, historical check runs and
+new documentation checks remain distinct. The shared cohort retains 49
+stable command declarations. New documentation PRs need their own human
+review; no new publication, installation, model probe, Home sync or resumed
+pilot rollout. Statistics describe Git-based project transparency, not
+measured AI productivity.
+
 ## Gesamtstatistik / Overall Statistics
 
 <!-- project-statistics-v2:begin -->
