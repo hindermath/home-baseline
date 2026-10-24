@@ -194,7 +194,7 @@ try {
         (ConvertTo-Json -InputObject @($statisticsMatrix.presets[0..12]) -Depth 10 -Compress) -cne
         (ConvertTo-Json -InputObject @($assuranceMatrix.presets) -Depth 10 -Compress)) { throw 'Statistics profile changed the thirteen-preset base.' }
     $statisticsPreset = $statisticsMatrix.presets[13]
-    if ($statisticsPreset.id -cne 'project-statistics-governance' -or $statisticsPreset.version -cne 'v0.1.2' -or $statisticsPreset.priority -ne 90) { throw 'Unexpected statistics pilot version or priority.' }
+    if ($statisticsPreset.id -cne 'project-statistics-governance' -or $statisticsPreset.version -cne 'v0.1.3' -or $statisticsPreset.priority -ne 90) { throw 'Unexpected statistics pilot version or priority.' }
     $packages = @{}
     if (@($lock.presets).Count -ne 14) { throw 'Expected exactly 14 source bindings, including the optional statistics pilot.' }
     foreach ($preset in $lock.presets) {

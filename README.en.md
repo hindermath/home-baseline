@@ -23,10 +23,11 @@ AI-agent-assisted development workspace. It manages shared scripts, governance,
 Spec Kit presets, documentation rules, and learning material. No prior Spec Kit
 experience is required to start here.
 
-Published governance source versions: Security v0.7.3, Architecture v0.6.4 and Intake Authoring
-v0.3.9, Review v0.2.6 and Sequencing v0.2.10.
+Published governance source versions: Security v0.7.4, Architecture v0.6.5 and Intake Authoring
+v0.3.9, Review v0.2.7 and Sequencing v0.2.11.
 Historical Authoring rollout: [bounded v0.3.7 delivery](docs/maintenance/intake-authoring-v037-rollout.md).
 Publication does not establish installation in any particular consumer.
+[New packages and bounded rollout](docs/maintenance/preset-documentation-rollout-2026-10-24.md): Level 0, Home Runtime and the three named pilots only; no wider fleet or community submission.
 
 Historical bounded rollout: [Security 0.7.1, Architecture 0.6.2 and Sequencing 0.2.8](docs/maintenance/preset-patches-bounded-2026-10-10.md).
 [Package bindings, pilots and remaining steps](docs/maintenance/coordinated-governance-oct03.md).

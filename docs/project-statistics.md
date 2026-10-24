@@ -1557,6 +1557,30 @@ review; no new publication, installation, model probe, Home sync or resumed
 pilot rollout. Statistics describe Git-based project transparency, not
 measured AI productivity.
 
+### 2026-10-24 - Neue Dokumentationspakete und begrenzter Rollout-Kandidat
+
+DE: Alle 14 regulären Dokumentations-Patch-Releases veröffentlicht und die
+tatsächlichen Tag-Archive geprüft: 660 Originaldateien, 145 aufgelöste
+Vorlagendeklarationen und 49 stabile Command-Deklarationen. Die gemeinsame
+Installation sowie Bash-/PowerShell-Matrixprüfungen bestehen. Level 0 bleibt
+ein Kandidat zur neuen fachlichen PR-Sichtung. Fünf Home-only-Runner-Dateien
+bleiben byte-identisch; die vollständige Agentenkomposition wurde bei gleichen
+semantischen Eingaben erhalten und erneut geprüft. Kein Home Runtime Sync
+oder Pilot-Installationslauf. Die Sandbox-VM konnte wegen EOF nicht starten;
+keine Reparatur oder Erweiterung des Auftrags vorgenommen. Statistik ist
+Git-basierte Projekttransparenz, keine gemessene KI-Produktivität.
+[Aktueller Nachweis / Current evidence](maintenance/preset-documentation-rollout-2026-10-24.md).
+
+EN: Published all fourteen regular documentation patch releases and checked
+their actual archives: 660 original files, 145 resolved template declarations
+and 49 stable command declarations. Combined installation and both shell
+matrix checks pass. Level 0 remains a candidate needing new human PR review.
+Five Home-only runner files are byte-identical; complete agent composition
+was preserved for unchanged semantic inputs and rechecked. No Home Runtime
+sync or pilot installation. The existing sandbox VM failed to start with EOF;
+no repair or scope expansion was attempted. Statistics show Git-based project
+transparency, not measured AI productivity.
+
 ## Gesamtstatistik / Overall Statistics
 
 <!-- project-statistics-v2:begin -->
@@ -1567,27 +1591,27 @@ Profil 2 verwendet Git-getrackte Textdateien und sichtbare Git-Aktivitaet. Die W
 
 | Kennzahl / Metric | Wert / Value |
 |---|---:|
-| Textbasis / Text base | 745710 lines |
-| Textdateien / Text files | 3604 |
+| Textbasis / Text base | 755641 lines |
+| Textdateien / Text files | 3668 |
 | Beobachtbarer Zeitraum / Observable period | 2025-10-26..2026-10-24 |
 | Aktivtage / Active days | 129 |
-| Relevante Commits / Relevant commits | 942 |
-| Zeilen je Aktivtag / Lines per active day | 5780.7 |
+| Relevante Commits / Relevant commits | 943 |
+| Zeilen je Aktivtag / Lines per active day | 5857.7 |
 | Peak-Tag im Fenster / Peak day in window | 2026-08-01 / 161357 |
 | Peak-Woche im Fenster / Peak week in window | 2026-07-26 / 284516 |
 | Laengste Serie / Longest streak | 38 days |
-| Speedup vs. 80 lines/day | 72.3x |
-| Speedup vs. 100 lines/day | 57.8x |
-| Methodik / Methodology | v2; source `c029dcf971b3` |
+| Speedup vs. 80 lines/day | 73.2x |
+| Speedup vs. 100 lines/day | 58.6x |
+| Methodik / Methodology | v2; source `7368b17c6ce0` |
 
 ### Artefaktmix / Artifact Mix
 
 ```text
 Produktiv / Production          [#...................]   0.3% | 2237
 Tests                           [#...................]   3.7% | 27877
-Dokumentation / Documentation   [###########.........]  54.2% | 404113
-Skripte / Scripts               [##..................]   7.8% | 58504
-Konfiguration / Configuration   [#######.............]  33.9% | 252623
+Dokumentation / Documentation   [###########.........]  54.8% | 414044
+Skripte / Scripts               [##..................]   7.7% | 58504
+Konfiguration / Configuration   [#######.............]  33.4% | 252623
 Daten und Medien / Data and media [....................]   0.0% | 0
 Sonstiger Text / Other text     [#...................]   0.0% | 356
 ```
@@ -1667,12 +1691,12 @@ Wochen / Weeks 01..26 | 2025-10-26..2026-04-25
 
 ```text
 Wochen / Weeks 27..52 | 2026-04-26..2026-10-24
- cap 1000000 | . . . . . . . . . . . . . . . . . . . . . . . . . .
-      833333 | . . . . . . . . . . . . . . . . . . . # # # # # # #
+ cap 2000000 | . . . . . . . . . . . . . . . . . . . . . . . . . .
+     1666667 | . . . . . . . . . . . . . . . . . . . . . . . . . .
+     1333333 | . . . . . . . . . . . . . . . . . . . . . . . . . .
+     1000000 | . . . . . . . . . . . . . . . . . . . . . . . . . #
       666667 | . . . . . . . . . . . . . # # # # # # # # # # # # #
-      500000 | . . . . . . . . . . . . . # # # # # # # # # # # # #
       333333 | . . . . . . . . . . . . # # # # # # # # # # # # # #
-      166667 | . . . . . . . . . . # # # # # # # # # # # # # # # #
            0 +-----------------------------------------------------
 ```
 
@@ -1850,8 +1874,8 @@ Die festen Slots halten den Phasenvergleich auch bei fehlenden oder spaeter erga
 
 ```text
 Scale: 0..100x
-80 lines/day       [##############......] 72.3x
-100 lines/day      [############........] 57.8x
+80 lines/day       [###############.....] 73.2x
+100 lines/day      [############........] 58.6x
 ```
 
 Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen Referenzen. Sie messen keine Arbeitszeit.
@@ -1864,7 +1888,7 @@ Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen
 Scale: 0..10000 lines/day
 Experienced manual [#...................] 80
 Thorsten solo      [#...................] 100
-Visible repository [############........] 5780.7
+Visible repository [############........] 5857.7
 ```
 
 Die gemeinsame Skala vergleicht Referenzen und sichtbare Lieferdichte. Sie schreibt die Git-Aktivitaet keiner Person oder KI pauschal zu.
@@ -1890,6 +1914,6 @@ DE: Das Fenster beginnt am 2025-10-26 und endet am 2026-10-24. Es enthaelt 129 a
 | 2026-07 | 385430 |
 | 2026-08 | 278228 |
 | 2026-09 | 144845 |
-| 2026-10 | 61071 |
+| 2026-10 | 72860 |
 
 <!-- project-statistics-v2:end -->

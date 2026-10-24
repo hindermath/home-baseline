@@ -31,19 +31,19 @@ Workspace-Familie ist:
 
 | Preset-ID | Name | Version | Priorität |
 |---|---|---:|---:|
-| `security-governance` | Security Governance | `v0.7.1` | `10` |
-| `architecture-governance` | Architecture Governance | `v0.6.2` | `20` |
-| `isaqb-architecture-governance` | iSAQB Architecture Governance | `v0.2.2` | `30` |
-| `a11y-governance` | A11Y Governance | `v0.4.3` | `40` |
-| `cross-platform-governance` | Cross-Platform Governance | `v0.2.2` | `50` |
-| `agent-parity-governance` | Agent Parity Governance | `v0.4.2` | `60` |
-| `autonomous-run-governance` | Autonomous Run Governance | `v0.4.4` | `70` |
-| `parallel-autonomous-run-governance` | Parallel Autonomous Run Governance | `v0.2.6` | `80` |
+| `security-governance` | Security Governance | `v0.7.4` | `10` |
+| `architecture-governance` | Architecture Governance | `v0.6.5` | `20` |
+| `isaqb-architecture-governance` | iSAQB Architecture Governance | `v0.2.5` | `30` |
+| `a11y-governance` | A11Y Governance | `v0.4.6` | `40` |
+| `cross-platform-governance` | Cross-Platform Governance | `v0.2.5` | `50` |
+| `agent-parity-governance` | Agent Parity Governance | `v0.4.5` | `60` |
+| `autonomous-run-governance` | Autonomous Run Governance | `v0.4.7` | `70` |
+| `parallel-autonomous-run-governance` | Parallel Autonomous Run Governance | `v0.2.9` | `80` |
 
-Optional koennen `model-routing-governance` v0.1.6 mit Prioritaet `61`,
-`intake-authoring-governance` v0.3.9 mit Prioritaet `64`,
-`intake-review-governance` v0.2.6 mit Prioritaet `65` und
-`intake-sequencing-governance` v0.2.10 mit Prioritaet `66` zwischen Agent Parity
+Optional koennen `model-routing-governance` v0.1.7 mit Prioritaet `61`,
+`intake-authoring-governance` v0.3.10 mit Prioritaet `64`,
+`intake-review-governance` v0.2.7 mit Prioritaet `65` und
+`intake-sequencing-governance` v0.2.11 mit Prioritaet `66` zwischen Agent Parity
 und Preset 7 installiert werden. Alle vier bleiben ausserhalb der
 Standard-Achtermatrix.
 Authoring erzeugt aus ausdruecklich benannten geordneten UTF-8-Quellen genau
@@ -138,7 +138,7 @@ begründete Ausnahme dokumentiert ist. Nach Installation oder Update prüfen:
 `specify preset info <id>` und bei Template-Fragen `specify preset resolve
 <template>`. `.specify/presets/` wird committed, `.specify/presets/.cache/`
 nicht. Alle acht Presets erzeugen oder verlangen audit-ready Spec-Kit-Run-Evidenz mit `Applicable` / `N/A` / `Open`, Begruendung, Evidenzpfad, Reviewer, Restrisiko und Follow-up.
-`parallel-autonomous-run-governance` v0.2.8 ist eigenstaendig veroeffentlicht;
+`parallel-autonomous-run-governance` v0.2.9 ist eigenstaendig veroeffentlicht;
 v0.2.2 wurde mit `github/spec-kit#3591` fuer den Community-Katalog eingereicht.
 Bei jeder Preset-Version oder Prioritätsänderung zuerst die zentrale Matrix
 aktualisieren und danach README-Tabellen, Constitution, Agenten-Dateien und
@@ -186,19 +186,19 @@ zero-write values. A partial proof is not a full regression pass.
 
 | Preset ID | Name | Version | Priority |
 |---|---|---:|---:|
-| `security-governance` | Security Governance | `v0.7.1` | `10` |
-| `architecture-governance` | Architecture Governance | `v0.6.2` | `20` |
-| `isaqb-architecture-governance` | iSAQB Architecture Governance | `v0.2.2` | `30` |
-| `a11y-governance` | A11Y Governance | `v0.4.3` | `40` |
-| `cross-platform-governance` | Cross-Platform Governance | `v0.2.2` | `50` |
-| `agent-parity-governance` | Agent Parity Governance | `v0.4.2` | `60` |
-| `autonomous-run-governance` | Autonomous Run Governance | `v0.4.4` | `70` |
-| `parallel-autonomous-run-governance` | Parallel Autonomous Run Governance | `v0.2.6` | `80` |
+| `security-governance` | Security Governance | `v0.7.4` | `10` |
+| `architecture-governance` | Architecture Governance | `v0.6.5` | `20` |
+| `isaqb-architecture-governance` | iSAQB Architecture Governance | `v0.2.5` | `30` |
+| `a11y-governance` | A11Y Governance | `v0.4.6` | `40` |
+| `cross-platform-governance` | Cross-Platform Governance | `v0.2.5` | `50` |
+| `agent-parity-governance` | Agent Parity Governance | `v0.4.5` | `60` |
+| `autonomous-run-governance` | Autonomous Run Governance | `v0.4.7` | `70` |
+| `parallel-autonomous-run-governance` | Parallel Autonomous Run Governance | `v0.2.9` | `80` |
 
-Optionally install `model-routing-governance` v0.1.6 at priority `61`,
-`intake-authoring-governance` v0.3.9 at priority `64`,
-`intake-review-governance` v0.2.6 at priority `65`, and
-`intake-sequencing-governance` v0.2.10 at priority `66` between Agent Parity and
+Optionally install `model-routing-governance` v0.1.7 at priority `61`,
+`intake-authoring-governance` v0.3.10 at priority `64`,
+`intake-review-governance` v0.2.7 at priority `65`, and
+`intake-sequencing-governance` v0.2.11 at priority `66` between Agent Parity and
 Preset 7. All four remain outside the standard eight. Authoring creates one intake
 and receipt from explicit ordered UTF-8 sources without starting a downstream
 command. Review evaluates that intake independently. Sequencing manages order,
@@ -283,7 +283,7 @@ update, verify with `install-spec-kit-governance-presets.* --check-only` /
 `-CheckOnly`, `specify preset list`, `specify preset info <id>`, and for template questions
 `specify preset resolve <template>`. Commit `.specify/presets/`, but not
 `.specify/presets/.cache/`. All eight presets produce or require audit-ready Spec-Kit run evidence with `Applicable` / `N/A` / `Open`, rationale, evidence path, reviewer, residual risk, and follow-up.
-`parallel-autonomous-run-governance` v0.2.8 is published independently;
+`parallel-autonomous-run-governance` v0.2.9 is published independently;
 v0.2.2 was submitted to the community catalog as `github/spec-kit#3591`.
 For every preset version or priority change, update the central matrix first,
 then review README tables, constitution, agent guidance files, and templates
