@@ -1,8 +1,14 @@
 # home-baseline
 
-[Aktueller stabiler 14-Preset-Rollout](docs/maintenance/stable-preset-rollout-2026-10-24.md):
-Level-0-Kandidat in Prüfung; Home Runtime und drei Piloten folgen erst nach
-fachlicher Sichtung und grüner Lieferung. Frühere Rollout-Berichte sind historisch.
+[Veröffentlichungsstatus und Verbesserungen aller 14 Presets](docs/maintenance/preset-release-documentation-closeout-2026-10-24.md):
+Nacharbeiten zu #342 und #343. Veröffentlichtes Paket, historischer
+Validierungsstand und neuer Dokumentations-PR sind getrennte Zustände.
+Dieser Quellenbericht startet keinen Rollout.
+
+[Stabiler 14-Preset-Rollout: historischer Planungsnachweis](docs/maintenance/stable-preset-rollout-2026-10-24.md).
+Der dortige Kandidatenstand beschreibt die Vorbereitung; spätere Liefer- und
+Sync-Nachweise stehen im zugehörigen PR. Dieser Dokumentationsauftrag führt
+den Rollout nicht fort.
 
 [Assurance 0.1.5: Paketkorrektur und Level-0-Rollout](https://github.com/hindermath/home-baseline/blob/main/docs/maintenance/assurance-0.1.5-level0-2026-10-20.md).
 
@@ -22,9 +28,10 @@ Sie verwaltet gemeinsame Skripte, Governance, Spec-Kit-Presets,
 Dokumentationsregeln und Lernmaterialien. Du brauchst keine Spec-Kit-Erfahrung,
 um hier zu beginnen.
 
-Aktueller vorbereiteter Governance-Zielstand: Security v0.7.3, Architecture v0.6.4 sowie
+Veröffentlichter Governance-Quellenstand: Security v0.7.3, Architecture v0.6.4 sowie
 Intake Authoring v0.3.9, Review v0.2.6 und Sequencing v0.2.10.
-Zuletzt gelieferter Authoring-Patch: [begrenzte v0.3.7-Lieferung](docs/maintenance/intake-authoring-v037-rollout.md).
+Historischer Authoring-Rollout: [begrenzte v0.3.7-Lieferung](docs/maintenance/intake-authoring-v037-rollout.md).
+Eine Veröffentlichung belegt keine Installation beim jeweiligen Verbraucher.
 
 Historischer begrenzter Rollout: [Security 0.7.1, Architecture 0.6.2 und Sequencing 0.2.8](docs/maintenance/preset-patches-bounded-2026-10-10.md).
 [Paketbindung, Piloten und verbleibende Schritte](docs/maintenance/coordinated-governance-oct03.md).

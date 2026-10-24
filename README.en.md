@@ -1,8 +1,12 @@
 # home-baseline
 
-[Current stable fourteen-preset rollout](docs/maintenance/stable-preset-rollout-2026-10-24.md):
-Level-0 candidate under verification; host Home Runtime and three pilots follow
-only after human review and successful delivery. Earlier rollout reports are historical.
+[Publication status and improvements across all fourteen presets](docs/maintenance/preset-release-documentation-closeout-2026-10-24.md):
+Follow-up for #342 and #343. Published packages, historical validation and new
+documentation PRs are separate states. This source report starts no rollout.
+
+[Stable fourteen-preset rollout: historical planning evidence](docs/maintenance/stable-preset-rollout-2026-10-24.md).
+Its candidate state describes preparation; later delivery and sync evidence
+is recorded in the related PR. This documentation task does not resume rollout.
 
 [Assurance 0.1.5: package correction and Level-0 rollout](https://github.com/hindermath/home-baseline/blob/main/docs/maintenance/assurance-0.1.5-level0-2026-10-20.md).
 
@@ -19,9 +23,10 @@ AI-agent-assisted development workspace. It manages shared scripts, governance,
 Spec Kit presets, documentation rules, and learning material. No prior Spec Kit
 experience is required to start here.
 
-Current prepared governance target: Security v0.7.3, Architecture v0.6.4 and Intake Authoring
+Published governance source versions: Security v0.7.3, Architecture v0.6.4 and Intake Authoring
 v0.3.9, Review v0.2.6 and Sequencing v0.2.10.
-Last delivered Authoring patch: [bounded v0.3.7 delivery](docs/maintenance/intake-authoring-v037-rollout.md).
+Historical Authoring rollout: [bounded v0.3.7 delivery](docs/maintenance/intake-authoring-v037-rollout.md).
+Publication does not establish installation in any particular consumer.
 
 Historical bounded rollout: [Security 0.7.1, Architecture 0.6.2 and Sequencing 0.2.8](docs/maintenance/preset-patches-bounded-2026-10-10.md).
 [Package bindings, pilots and remaining steps](docs/maintenance/coordinated-governance-oct03.md).
