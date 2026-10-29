@@ -689,6 +689,14 @@
       "labelEn": "Persistent admin PR bypass",
       "netLines": 133,
       "activeDays": 1
+    },
+    {
+      "slot": 85,
+      "id": "storage-checkonly-make-safety",
+      "labelDe": "Storage-Check-only-Make-Härtung",
+      "labelEn": "Storage check-only Make hardening",
+      "netLines": 230,
+      "activeDays": 1
     }
   ],
   "excludedPaths": ["docs/project-statistics-pilot/*"],

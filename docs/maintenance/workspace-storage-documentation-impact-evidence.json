@@ -117,6 +117,74 @@
         "path": "docs/project-statistics.config.json",
         "renderer": "bash scripts/render-project-statistics.sh"
       }
+    },
+    {
+      "changeId": "CHG921",
+      "scope": "Prevent cc65 Makefile evaluation in storage-maintenance inventory and blocked-update modes",
+      "decision": "UpdateRequired",
+      "rationale": "DE: Check-only und Dry-run versprechen einen rein lesenden Inventurpfad; die Dokumentation muss verdeutlichen, dass projektgesteuerte Buildsysteme erst nach ausdrücklicher Update-Autorität sowie Dirty-/Busy-Prüfung starten. EN: Check-only and dry-run promise an inventory-only path; documentation must state that project-controlled build systems start only after explicit update authority and dirty/busy checks.",
+      "documents": [
+        "docs/maintenance/README.md",
+        "docs/maintenance/README.en.md",
+        "docs/man/maintain-workspace-storage.1.md"
+      ],
+      "owner": "Workspace Maintainer",
+      "audiences": [
+        "Workspace operators",
+        "Maintainers",
+        "Security reviewers"
+      ],
+      "readerPaths": [
+        "Daily maintenance",
+        "Storage cleanup manpage"
+      ],
+      "canonicalSource": "scripts/lib/workspace_storage_maintenance.py",
+      "navigationImpact": "No new navigation path; the existing maintenance portal and storage manpage explain the strengthened execution boundary.",
+      "documentClass": "ActiveSemantic",
+      "languageStrategy": "German first with synchronized English partner content and bilingual manpage text.",
+      "languagePartners": [
+        "docs/maintenance/README.en.md"
+      ],
+      "platformAndExampleProof": "Shared Python regression fixtures place side effects in root and grouped cc65 Makefiles and prove that check-only, dry-run, dirty update, and busy update never evaluate them. Separate safe and deep update fixtures prove that scope preview and authorized cleanup remain operational.",
+      "distributionClass": "homeRuntime",
+      "homeSyncRequired": true,
+      "evidence": "scripts/tests/test_workspace_storage_maintenance.py",
+      "risk": "A project-controlled Makefile could execute host commands during a mode presented as read-only.",
+      "criticality": "Security",
+      "reevaluationTrigger": "A new native build adapter, inventory mode, Make invocation, dirty/busy gate, or cleanup-preview mechanism is introduced."
+    },
+    {
+      "changeId": "CHG922",
+      "scope": "Generated project statistics after storage check-only Make hardening",
+      "decision": "GeneratedUpdate",
+      "rationale": "The completed security fix adds a traceable update-log entry and phase slot to the living statistics contract.",
+      "documents": [
+        "docs/project-statistics.md"
+      ],
+      "owner": "Statistics Maintainer",
+      "audiences": [
+        "Maintainers",
+        "Project reviewers"
+      ],
+      "readerPaths": [
+        "Project statistics"
+      ],
+      "canonicalSource": "docs/project-statistics.config.json",
+      "navigationImpact": "No new navigation path; the existing statistics ledger gains phase slot 85.",
+      "documentClass": "GeneratedReference",
+      "languageStrategy": "The update log and generated text alternatives remain German first and English second.",
+      "languagePartners": [],
+      "platformAndExampleProof": "The canonical renderer was previewed and executed on macOS; check-only verifies the committed output.",
+      "distributionClass": "sourceOnly",
+      "homeSyncRequired": false,
+      "evidence": "scripts/render-project-statistics.sh",
+      "risk": "N/A",
+      "criticality": "Normal",
+      "reevaluationTrigger": "Another completed feature or implementation phase changes the ledger.",
+      "generatedSource": {
+        "path": "docs/project-statistics.config.json",
+        "renderer": "bash scripts/render-project-statistics.sh"
+      }
     }
   ]
 }

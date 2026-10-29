@@ -78,6 +78,10 @@ repository and provider action.
 - `Deep` includes additional recoverable dependency caches and requires a
   separate confirmation for an update run.
 - `None` disables the stage; `scripts-only` selects it automatically.
+- `--check-only` and `--dry-run` only inventory state and never start
+  project-controlled build systems. The cc65 `make` scope check runs only in
+  the explicitly authorized, clean, idle update path immediately before the
+  real clean operation.
 - Container cleanup removes dangling images only, never volumes and never with
   `--all` or `system prune`.
 - Curated adapters handle the constitutionally justified non-MSL `cc65` and
