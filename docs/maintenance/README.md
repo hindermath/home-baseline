@@ -79,6 +79,10 @@ und Provider.
 - `Deep` umfasst zusätzliche wiederherstellbare Dependency-Caches und braucht
   bei einem echten Lauf eine eigene Bestätigung.
 - `None` deaktiviert die Stufe; `scripts-only` setzt es automatisch.
+- `--check-only` und `--dry-run` inventarisieren ausschließlich und starten
+  keine projektgesteuerten Buildsysteme. Die cc65-`make`-Scope-Prüfung läuft
+  erst im ausdrücklich autorisierten, sauberen und nicht beschäftigten
+  Updatepfad unmittelbar vor dem echten Clean.
 - Containerbereinigung entfernt nur dangling Images, nie Volumes und nie mit
   `--all` oder `system prune`.
 - `cc65` und `tvision` werden als begründete Non-MSL-Ausnahmen durch kuratierte
