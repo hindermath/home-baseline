@@ -152,6 +152,39 @@
       "risk": "A project-controlled Makefile could execute host commands during a mode presented as read-only.",
       "criticality": "Security",
       "reevaluationTrigger": "A new native build adapter, inventory mode, Make invocation, dirty/busy gate, or cleanup-preview mechanism is introduced."
+    },
+    {
+      "changeId": "CHG922",
+      "scope": "Generated project statistics after storage check-only Make hardening",
+      "decision": "GeneratedUpdate",
+      "rationale": "The completed security fix adds a traceable update-log entry and phase slot to the living statistics contract.",
+      "documents": [
+        "docs/project-statistics.md"
+      ],
+      "owner": "Statistics Maintainer",
+      "audiences": [
+        "Maintainers",
+        "Project reviewers"
+      ],
+      "readerPaths": [
+        "Project statistics"
+      ],
+      "canonicalSource": "docs/project-statistics.config.json",
+      "navigationImpact": "No new navigation path; the existing statistics ledger gains phase slot 85.",
+      "documentClass": "GeneratedReference",
+      "languageStrategy": "The update log and generated text alternatives remain German first and English second.",
+      "languagePartners": [],
+      "platformAndExampleProof": "The canonical renderer was previewed and executed on macOS; check-only verifies the committed output.",
+      "distributionClass": "sourceOnly",
+      "homeSyncRequired": false,
+      "evidence": "scripts/render-project-statistics.sh",
+      "risk": "N/A",
+      "criticality": "Normal",
+      "reevaluationTrigger": "Another completed feature or implementation phase changes the ledger.",
+      "generatedSource": {
+        "path": "docs/project-statistics.config.json",
+        "renderer": "bash scripts/render-project-statistics.sh"
+      }
     }
   ]
 }
