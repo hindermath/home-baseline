@@ -101,12 +101,6 @@ class SyncHomeCliTests(unittest.TestCase):
             for key, value in (
                 ("user.name", "Home Sync Test"),
                 ("user.email", "home-sync@example.invalid"),
-                # Exercise real auto-GC, but keep its writers inside the Git
-                # process lifetime so TemporaryDirectory cannot race cleanup.
-                # Set both keys for Git versions before/after autoDetach moved.
-                ("gc.auto", "1"),
-                ("gc.autoDetach", "false"),
-                ("maintenance.autoDetach", "false"),
             ):
                 subprocess.run(
                     ["git", "config", "--global", key, value],
@@ -124,9 +118,17 @@ class SyncHomeCliTests(unittest.TestCase):
                 check=False,
             )
             self.assertEqual(first.returncode, 0, first.stdout)
+            # Keep the packed-repository cleanup scenario deterministic across
+            # Git versions; auto-GC no longer guarantees a pack at this size.
+            subprocess.run(
+                ["git", "repack", "-ad"],
+                cwd=home,
+                env=environment,
+                check=True,
+            )
             self.assertTrue(
                 list((home / ".git" / "objects" / "pack").glob("*.pack")),
-                "The fixture must exercise automatic packing before cleanup.",
+                "The fixture must contain packed objects before cleanup.",
             )
             first_head = subprocess.check_output(
                 ["git", "rev-parse", "HEAD"], cwd=home, text=True
