@@ -52,6 +52,37 @@ Das System ersetzt keine Betriebssystem-Isolation. Neu bewerten bei
 öffentlicher Binärverteilung, Netzwerk-UI, Remote-Events, Plugin-System,
 automatischer Elevation oder zusätzlicher Providerautorität.
 
+## Teardown-Pfadgrenze / Teardown Path Boundary (2026-10-30)
+
+Der operatorgesteuerte Workspace-Name darf ausschließlich ein echtes direktes
+Unterverzeichnis von Home auswählen. Bash und PowerShell lehnen absolute Pfade,
+beide Trennzeichen, `.`/`..`, symbolische Links beziehungsweise Reparse Points,
+verlinkte Git-Metadaten und die literalen sowie per gemeinsamem Resolver
+ermittelten Level-0-Quellen ab, bevor Backup-, Remote- oder Löschlogik beginnt.
+Bereits belegte Backup-Pfade, einschließlich nicht auflösbarer Links, werden
+übersprungen. Die aufgelöste Eltern-/Blatt-Bindung verhindert
+CAPEC-126/CWE-22-Pfadumgehungen auch bei `--yes`/`-Yes` und
+`--force`/`-Force`; diese Optionen überspringen die Pfadgrenze nicht.
+
+*The operator-controlled workspace name may select only one real direct child
+of Home. Bash and PowerShell reject absolute paths, both separator forms,
+`.`/`..`, symbolic links or reparse points, linked Git metadata, and literal or
+resolver-discovered Level 0 sources before backup, remote, or deletion logic
+starts. Occupied backup paths, including dangling links, are skipped. The
+resolved parent/leaf binding prevents CAPEC-126/CWE-22 path escapes even with
+confirmation or safety overrides, which never bypass this boundary.*
+
+Ein gleichzeitiger lokaler Austausch eines echten Verzeichnisses unter
+demselben Namen bleibt ein TOCTOU-Restrisiko; Unix-Mountpunkte und native
+Windows-Pfadsemantik werden deshalb in den jeweiligen Plattformtests erneut
+bewertet. Das Skript läuft ohne erhöhte Rechte und ersetzt keine
+Betriebssystem-Isolation.
+
+*A concurrent local replacement of a real directory under the same name
+remains a TOCTOU residual risk; Unix mount points and native Windows path
+semantics therefore require renewed evaluation in their platform tests. The
+script runs without elevation and does not replace operating-system isolation.*
+
 <!-- EN: docs/security/threat-model.md
 [DE-Zusammenfassung: STRIDE-, CIA- und CAPEC-Modell für Wartungs-TUI und Engine.]
 -->

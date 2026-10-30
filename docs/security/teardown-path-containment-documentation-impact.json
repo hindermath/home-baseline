@@ -1,0 +1,37 @@
+{
+  "schemaVersion": "1.1",
+  "feature": "teardown-path-containment",
+  "entries": [
+    {
+      "changeId": "CHG001",
+      "scope": "Teardown workspace-name and resolved-path containment",
+      "decision": "UpdateRequired",
+      "rationale": "The destructive CLI now rejects path traversal, links and protected Level 0 targets before any side effect; active usage and security documentation must state the boundary.",
+      "documents": [
+        "docs/man/teardown-workspace.1.md",
+        "docs/security/threat-model.md"
+      ],
+      "owner": "Script Maintainer and Security Owner",
+      "audiences": [
+        "Workspace operators",
+        "Maintainers",
+        "AI agents"
+      ],
+      "readerPaths": [
+        "Script reference -> safe workspace-name contract -> dry-run -> teardown"
+      ],
+      "canonicalSource": "scripts/teardown-workspace.sh and scripts/teardown-workspace.ps1",
+      "navigationImpact": "Updates the existing teardown man page and threat-model section; no new navigation entry.",
+      "documentClass": "ActiveSemantic",
+      "languageStrategy": "German first, English second",
+      "languagePartners": [],
+      "platformAndExampleProof": "Automated temporary-Home probes execute Bash and PowerShell paths for traversal, separators, configured Level 0 sources, workspace and Git-metadata links, backup-link collisions and a legitimate direct child.",
+      "distributionClass": "homeRuntime",
+      "homeSyncRequired": true,
+      "evidence": "scripts/tests/test-teardown-workspace-path-safety.ps1",
+      "risk": "Platform path and link semantics can differ; the paired runtime probes and native-host CI must remain green.",
+      "criticality": "Security",
+      "reevaluationTrigger": "Teardown target semantics, supported platforms, link handling or protected Level 0 paths change"
+    }
+  ]
+}
