@@ -8,6 +8,95 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) · Versioning: 
 
 ---
 
+## [0.20.0](https://github.com/hindermath/home-baseline/compare/v0.19.0...v0.20.0) (2026-10-30)
+
+
+### Features / Neue Funktionen
+
+* maintain six MSL toolchains against stable upstream releases ([c2bf93f](https://github.com/hindermath/home-baseline/commit/c2bf93f874507aa8027f1ff2bf46a8eb7f55a869))
+* maintain six stable MSL host toolchains ([561f728](https://github.com/hindermath/home-baseline/commit/561f7281b3c97807c4e6417671b7bb1f8ea4ff28))
+
+
+### Bug Fixes / Fehlerbehebungen
+
+* contain teardown targets to home ([1e9019a](https://github.com/hindermath/home-baseline/commit/1e9019a5ef2a31eb469044f93fea6957fc049317))
+* **governance:** bind and install intake authoring v0.3.7 ([805b470](https://github.com/hindermath/home-baseline/commit/805b4706ed6c1703c9b7a6800608a67da1b99663))
+* **governance:** deliver Intake Authoring v0.3.7 to Level 0 ([fb9af3c](https://github.com/hindermath/home-baseline/commit/fb9af3c6d9ef8082cb07b61b2e427c59f8f71e60))
+* **gsdb:** close independent P3 follow-ups with new evidence ([2f21763](https://github.com/hindermath/home-baseline/commit/2f2176315cbe7b6cfecb23849b4d72eae94d183e))
+* **gsdb:** close ten primary-source reviews in Level 0 ([13cc49d](https://github.com/hindermath/home-baseline/commit/13cc49d6ab59abbca6cdf4c88a6c1693fdc8d6c9))
+* **gsdb:** remediate four independent review findings ([bee8d5c](https://github.com/hindermath/home-baseline/commit/bee8d5c805ed4c8110cfdacf132fc0551a21598a))
+* **gsdb:** resolve independent review findings in Level 0 ([418486b](https://github.com/hindermath/home-baseline/commit/418486bec7da22bfcce1b0ca0ef8fd1b3e4a3157))
+* roll out assurance 0.1.5 to Level 0 only ([923b933](https://github.com/hindermath/home-baseline/commit/923b933b5ff119f6264c666fd87008bd4c30c7d6))
+* roll out Assurance 0.1.5 to Level 0 only ([7b03bb3](https://github.com/hindermath/home-baseline/commit/7b03bb36b3d533a33e66696ead868172c6113639))
+* Teardown-Ziele auf Home begrenzen ([78c14d7](https://github.com/hindermath/home-baseline/commit/78c14d74e26b4c3df0c9a719aeb7bf2e6924a091))
+* **tests:** keep sync-home fixture Git maintenance synchronous ([d989835](https://github.com/hindermath/home-baseline/commit/d98983568d6ac234dbecb50c2fee0873e83804a4))
+* **tests:** wait for fixture Git maintenance before cleanup ([4bb04ab](https://github.com/hindermath/home-baseline/commit/4bb04ab8e5777d7de773c6f96ac16fa29be9b9e5))
+* use native separator for Swift launcher detection ([7943378](https://github.com/hindermath/home-baseline/commit/7943378413b6ff92a3ce04df3c206a03392b6550))
+* verify PowerShell SDK references during MSL maintenance ([333ebf9](https://github.com/hindermath/home-baseline/commit/333ebf9e812655432516e9ae57e50f4580c11351))
+
+
+### Documentation / Dokumentation
+
+* align publication distribution with home manifest ([1f9f238](https://github.com/hindermath/home-baseline/commit/1f9f238ff0e5b412eaad1864eb68a9e95fc96bac))
+* align publication distribution with home manifest ([1abf4e1](https://github.com/hindermath/home-baseline/commit/1abf4e12fda1dec91a5cc205765b492225355144))
+* close bounded fourteen-preset rollout ([63ab18d](https://github.com/hindermath/home-baseline/commit/63ab18d636cd1499fcc33463bbafdadb0346afb0))
+* close bounded fourteen-preset rollout evidence ([cf13688](https://github.com/hindermath/home-baseline/commit/cf13688a76cd65981a57896a32569a81a1357374))
+* correct runner status and generated evidence metadata ([7cb84a6](https://github.com/hindermath/home-baseline/commit/7cb84a68080ac7511f30aba2b928fb7e4aa8252f))
+* **governance:** align Show-CommandTui400 LH-01 technology ([a00571b](https://github.com/hindermath/home-baseline/commit/a00571b6c60e03455fcf18b9fe982777874a4e83))
+* **gsdb:** label superseded navigation before publication ([ce5b575](https://github.com/hindermath/home-baseline/commit/ce5b5759bbaf29d56cd0edf85ca12df147c2a162))
+* **gsdb:** record scoped revalidation and renewed delivery authority ([9ea1b41](https://github.com/hindermath/home-baseline/commit/9ea1b41cfd2369a2566215f0ca300ab08973e3cd))
+* reconcile 14 preset release statuses and improvement evidence ([bd84dd7](https://github.com/hindermath/home-baseline/commit/bd84dd7e807ff05887f54f6fccfadcf8d31fe7f6))
+* reconcile stable preset release status and improvement evidence ([c029dcf](https://github.com/hindermath/home-baseline/commit/c029dcf971b3c7abbed8958baf2021fffef135ef))
+* record completed Level-0 rollout checks ([355587d](https://github.com/hindermath/home-baseline/commit/355587db6c957ed914c68cc164cafae638371846))
+* record runner delivery publication and impact ([bb9b1f6](https://github.com/hindermath/home-baseline/commit/bb9b1f65840f52ae7df438338ed276e2dabca620))
+* refresh project statistics ([36dbde1](https://github.com/hindermath/home-baseline/commit/36dbde185b55d312549b16217de220a21c89b9e3))
+* refresh project statistics ([d9999e1](https://github.com/hindermath/home-baseline/commit/d9999e1192559268cd87cdb8723c49a77f06fd8d))
+* refresh script reference ([f6f46a5](https://github.com/hindermath/home-baseline/commit/f6f46a595899273d45a485b8f38bfa121fd893e2))
+* refresh statistics after preset contract test corrections ([2413aa9](https://github.com/hindermath/home-baseline/commit/2413aa932ce300a284fef6bffb7a8eb313bea7a3))
+* refresh statistics for native preset test follow-up ([69173d2](https://github.com/hindermath/home-baseline/commit/69173d25da1ec9a267ab88969c1bc67089ecac38))
+* refresh statistics for preset documentation evidence ([97d8aae](https://github.com/hindermath/home-baseline/commit/97d8aaef58ab635097c7b84552a3be6a35e6e9c7))
+* refresh statistics for preset release source bindings ([2d75fae](https://github.com/hindermath/home-baseline/commit/2d75faeb1c26d146910524fa1b34f29a4f23cc56))
+* refresh statistics for stable MSL maintenance ([23bd5f5](https://github.com/hindermath/home-baseline/commit/23bd5f56197a2d93b6c94011b8211aa9af02dc12))
+* refresh statistics for Swift path portability fix ([9ab3300](https://github.com/hindermath/home-baseline/commit/9ab3300f27295ddaefb957c6da56d1d4bbd6aca4))
+* refresh statistics for the fourteen-preset installation ([423c844](https://github.com/hindermath/home-baseline/commit/423c8446eefd65afcb616e316f813fa4d0c97836))
+* render final runner delivery statistics ([3c03d2e](https://github.com/hindermath/home-baseline/commit/3c03d2e92b2f13d827836fee6477b23ec38dbcac))
+* render Level-0 statistics after assurance rollout integration ([2befee3](https://github.com/hindermath/home-baseline/commit/2befee3505d05081943476856bb977533058a299))
+* render publication distribution statistics ([207e12b](https://github.com/hindermath/home-baseline/commit/207e12ba4c03eed65df6f11e1826cabb902ae635))
+* render statistics after documentation review ([465cc7a](https://github.com/hindermath/home-baseline/commit/465cc7ae290267a98c67a132a5d30a6560198a76))
+* render statistics for completed preset rollout ([f4bd110](https://github.com/hindermath/home-baseline/commit/f4bd110bbf286784de5c84f3d4d65833fd76bfcf))
+* render statistics for macOS runner migration ([836b082](https://github.com/hindermath/home-baseline/commit/836b082ef43ce1b85b7f51f2e31e96e8ee9bcfb3))
+* **statistics:** bind reproducible authoring rollout snapshot ([ebe2c99](https://github.com/hindermath/home-baseline/commit/ebe2c991183b6724dd891122b70379650c801d97))
+* **statistics:** refresh level-zero authoring rollout measurements ([47f6a67](https://github.com/hindermath/home-baseline/commit/47f6a67e23bd2b18af9d6c66b498fbb36dd9607a))
+* **statistics:** refresh reproducible preset integration snapshot ([5f54cfc](https://github.com/hindermath/home-baseline/commit/5f54cfc9e921b099161349d5b5e69399dffb0d66))
+* **statistics:** regenerate combined GSDB and Assurance ledger ([ab6e127](https://github.com/hindermath/home-baseline/commit/ab6e1276e84d0d1a4b31cbc5fccb8f1e0d09e0b2))
+* **statistics:** render bounded LH-01 registry alignment ([4b40117](https://github.com/hindermath/home-baseline/commit/4b401177d37738a4c0943806b03aef8e5118f6f7))
+* **statistics:** render bounded preset patch integration ([09b77d7](https://github.com/hindermath/home-baseline/commit/09b77d77891bc8406f11f07842368c6549ad28df))
+* **statistics:** render documentation rollout candidate ([e6a6ad2](https://github.com/hindermath/home-baseline/commit/e6a6ad254c2a4e48aed4e7832f8b147835382645))
+* **statistics:** render sync fixture correction ([c1bfc3e](https://github.com/hindermath/home-baseline/commit/c1bfc3e42897c67542c5c711c9a7175aa995b002))
+* **stats:** refresh Level-0 rollout statistics ([52de17d](https://github.com/hindermath/home-baseline/commit/52de17d0d88a529cedf098cdbfdcf92f50623b1d))
+* **stats:** refresh metrics after GSDB review remediation ([a943d7f](https://github.com/hindermath/home-baseline/commit/a943d7f989765cfda6622b588168c8c95674de0f))
+* **stats:** render GSDB independent-review corrections ([4802fc5](https://github.com/hindermath/home-baseline/commit/4802fc55d839b747d2ec3039e91f5776d0ea451f))
+* **stats:** render GSDB P3 follow-up evidence ([15e877e](https://github.com/hindermath/home-baseline/commit/15e877e0b932a5d862bb3cb4137e6d9543488e53))
+* **stats:** render GSDB source-review closeout statistics ([64508d2](https://github.com/hindermath/home-baseline/commit/64508d265ac5c3163de9521e61cf21c168eafbe8))
+* update public Spec Kit run evidence ([6637d58](https://github.com/hindermath/home-baseline/commit/6637d582f788e215acd5665bfc78ddfabde2fb1d))
+* update public Spec Kit run statistics ([57e83fa](https://github.com/hindermath/home-baseline/commit/57e83fa1f4e1e82154fb43d3c45c340979ea7837))
+
+
+### Maintenance / Wartung
+
+* bind fourteen documentation patch releases centrally ([9a12dc6](https://github.com/hindermath/home-baseline/commit/9a12dc62530b1dc04b77de7339f8f9a3588671b0))
+* bind fourteen README patch releases centrally ([794d6d3](https://github.com/hindermath/home-baseline/commit/794d6d3cfd67e02817bbe4ae9b7759d2dd5aa60a))
+* bind the authorized Level-0 installed snapshot ([fa9211c](https://github.com/hindermath/home-baseline/commit/fa9211cca5368d72eca0c3c6945a749c9c96e038))
+* **governance:** bind stable profiles and Level-0 rollout evidence ([65a4497](https://github.com/hindermath/home-baseline/commit/65a4497d2805685941883cd383479dfabe83dcb4))
+* install fourteen documentation patch presets at Level 0 ([ab7e392](https://github.com/hindermath/home-baseline/commit/ab7e392b44faf2c2261abe2c0fabb27e60940f9b))
+* **presets:** deliver three bounded patch updates ([224739c](https://github.com/hindermath/home-baseline/commit/224739c59311f5f0d64a3037135095288c0aa756))
+* **presets:** install fourteen stable patch packages on Level 0 ([f59d2ce](https://github.com/hindermath/home-baseline/commit/f59d2ce2541ade85e237f068a681a0c4167af248))
+* **presets:** integrate three bounded patch releases ([10b64b8](https://github.com/hindermath/home-baseline/commit/10b64b82d49f6252224f339820c0f93218a1664e))
+* **presets:** prepare fourteen documentation patch rollout ([7368b17](https://github.com/hindermath/home-baseline/commit/7368b17c6ce00b9b06061ada312e7eee3ebc9457))
+* **presets:** roll out fourteen documentation patch releases to Level 0 ([ded2975](https://github.com/hindermath/home-baseline/commit/ded29751b58eece7711e80cf997a89b559812c93))
+* roll out fourteen documentation patch presets at Level 0 ([bd64c60](https://github.com/hindermath/home-baseline/commit/bd64c6076021200ea8a12f8d5a55b78b0e6decd1))
+* roll out fourteen stable preset patches on Level 0 ([e00f126](https://github.com/hindermath/home-baseline/commit/e00f126273a37695bf770b3253d75d606034420f))
+
 ## [0.19.0](https://github.com/hindermath/home-baseline/compare/v0.18.0...v0.19.0) (2026-10-04)
 
 
