@@ -119,6 +119,10 @@ erteilt keine pauschale Netzwerk- oder Schreibberechtigung.
 `RuntimeRoot` enthaelt Worktrees, Locks, Logs und Prozessresultate. Dieser
 Bereich bleibt ausserhalb versionierter Feature-Artefakte. Der normale Checkout
 wird weder gewechselt noch zurueckgesetzt.
+`workerId` muss ein portabler einzelner Dateiname sein (ASCII-Buchstaben, Ziffern,
+Punkt, Unterstrich oder Bindestrich; Beginn mit Buchstabe oder Ziffer, kein
+abschliessender Punkt und kein Windows-Geraetename). Ein vorhandener Worker-
+Worktree wird nur mit passendem Repository und Branch wiederverwendet.
 
 ## English
 
@@ -156,3 +160,7 @@ optional status metadata and never guess another agent's configuration.
 
 `RuntimeRoot` contains worktrees, locks, logs, and process results outside
 tracked feature artifacts. The normal checkout is never switched or reset.
+`workerId` must be one portable filename component (ASCII letters, digits, dot,
+underscore, or hyphen; starting with a letter or digit, without a trailing
+dot or Windows device name). An existing worker worktree is reused only when
+its repository and branch match.

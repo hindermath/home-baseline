@@ -185,9 +185,9 @@ try {
     $alternativeWorkers = 1..3 | ForEach-Object { Get-TestWorker "alternative-0$_" $alternativeRepo }
     $alternative = Invoke-Campaign (Get-TestCampaign 'alternatives' 'AlternativeSolutions' $alternativeWorkers) 'alternatives'
     Assert-Test ($alternative.Data.status -eq 'AwaitingSelection') 'AlternativeSolutions did not await selection'
-    & pwsh -NoProfile -File $coordinator -Action Consolidate -Manifest $alternative.Manifest -RunnerConfig $script:runnerConfig -State $alternative.State 2>$null
+    & pwsh -NoProfile -File $coordinator -Action Consolidate -Manifest $alternative.Manifest -RunnerConfig $script:runnerConfig -State $alternative.State -RuntimeRoot $alternative.Runtime 2>$null
     Assert-Test ($LASTEXITCODE -ne 0) 'Alternative consolidation accepted missing human selection'
-    & pwsh -NoProfile -File $coordinator -Action Consolidate -Manifest $alternative.Manifest -RunnerConfig $script:runnerConfig -State $alternative.State -SelectedWorker 'alternative-02' | Out-Null
+    & pwsh -NoProfile -File $coordinator -Action Consolidate -Manifest $alternative.Manifest -RunnerConfig $script:runnerConfig -State $alternative.State -RuntimeRoot $alternative.Runtime -SelectedWorker 'alternative-02' | Out-Null
     Assert-Test ($LASTEXITCODE -eq 0) 'Selected alternative consolidation failed'
 
     $pipelineRepo = Initialize-TestRepository 'pipeline-repo'
@@ -264,6 +264,49 @@ try {
     & pwsh -NoProfile -File $coordinator -Action Validate -Manifest $invalidFallbackPath `
         -RunnerConfig $script:runnerConfig 2>$null
     Assert-Test ($LASTEXITCODE -ne 0) 'Missing campaign fallback profile was accepted'
+
+    foreach ($unsafeId in @('../escape', '..\escape', 'C:escape', '/tmp/escape', 'CON', 'name.', "safe`n")) {
+        $unsafeWorker = Get-TestWorker 'safe-worker' $pipelineRepo
+        $unsafeWorker.workerId = $unsafeId
+        $unsafeCampaign = Get-TestCampaign 'unsafe-worker-id' 'ReplicatedTargets' @($unsafeWorker)
+        $unsafeCampaign.consolidation.mergeOrder = @($unsafeId)
+        $unsafePath = Join-Path $tempRoot "unsafe-worker-id-$([guid]::NewGuid().ToString('N')).json"
+        Write-Data $unsafePath $unsafeCampaign
+        & pwsh -NoProfile -File $coordinator -Action Validate -Manifest $unsafePath `
+            -RunnerConfig $script:runnerConfig 2>$null
+        Assert-Test ($LASTEXITCODE -ne 0) "Unsafe workerId was accepted: $unsafeId"
+    }
+
+    $foreignWorker = Get-TestWorker 'foreign-directory' $pipelineRepo
+    $foreignCampaign = Get-TestCampaign 'foreign-directory' 'ReplicatedTargets' @($foreignWorker)
+    $foreignRoot = Join-Path $tempRoot 'foreign-directory-case'
+    $foreignRuntime = Join-Path $foreignRoot 'runtime'
+    $foreignWorktree = Join-Path $foreignRuntime 'worktrees/foreign-directory'
+    [void](New-Item -ItemType Directory -Path $foreignWorktree -Force)
+    $foreignManifest = Join-Path $foreignRoot 'campaign.json'
+    Write-Data $foreignManifest $foreignCampaign
+    & pwsh -NoProfile -File $coordinator -Action Start -Manifest $foreignManifest `
+        -RunnerConfig $script:runnerConfig -RuntimeRoot $foreignRuntime 2>$null
+    Assert-Test ($LASTEXITCODE -ne 0) 'Unregistered existing worktree directory was accepted'
+
+    $registeredWorker = Get-TestWorker 'registered-worker' $pipelineRepo
+    $registeredCampaign = Get-TestCampaign 'registered-worker' 'ReplicatedTargets' @($registeredWorker)
+    $registeredRoot = Join-Path $tempRoot 'registered-worktree-case'
+    $registeredRuntime = Join-Path $registeredRoot 'runtime'
+    $registeredWorktree = Join-Path $registeredRuntime 'worktrees/registered-worker'
+    [void](New-Item -ItemType Directory -Path (Split-Path -Parent $registeredWorktree) -Force)
+    & git -C $pipelineRepo worktree add -b $registeredWorker.branch $registeredWorktree main | Out-Null
+    Assert-Test ($LASTEXITCODE -eq 0) 'Registered worktree fixture could not be created'
+    $registeredManifest = Join-Path $registeredRoot 'campaign.json'
+    Write-Data $registeredManifest $registeredCampaign
+    $runtimeForStart = $registeredRuntime
+    if (-not $IsWindows) {
+        $runtimeForStart = Join-Path $registeredRoot 'runtime-alias'
+        [void](New-Item -ItemType SymbolicLink -Path $runtimeForStart -Target $registeredRuntime)
+    }
+    & pwsh -NoProfile -File $coordinator -Action Start -Manifest $registeredManifest `
+        -RunnerConfig $script:runnerConfig -RuntimeRoot $runtimeForStart | Out-Null
+    Assert-Test ($LASTEXITCODE -eq 0) 'Registered existing worktree was not reused'
 
     $legacyMergeCampaign = Get-TestCampaign 'legacy-merge-read' 'ReplicatedTargets' @(
         (Get-TestWorker 'legacy-merge-a' $pipelineRepo)
