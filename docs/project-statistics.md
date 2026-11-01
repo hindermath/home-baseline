@@ -1620,6 +1620,20 @@ and Profile 2 are regenerated from their canonical sources. Evidence:
 `docs/maintenance/security-fix-ci-2026-11-01.md` and PR 350. Statistics remain
 Git-based project transparency, not a measurement of time.
 
+### 2026-11-01 - Parallel-Worker-Pfadgrenze / Parallel worker path boundary
+
+DE: PR 349 begrenzt Worker-Kennungen auf portable Dateinamen und prueft
+vorhandene Git-Worktrees gegen Repository und Branch, auch ueber Pfadaliase.
+Die separate Installed-Lock-Payload-Bindung wird fuer den geprueften Fix
+fortgeschrieben; andere Presets und Release-Quellen bleiben unveraendert.
+Nachweis: `docs/maintenance/security-fix-ci-2026-11-01.md` und PR 349.
+
+EN: PR 349 confines worker IDs to portable filenames and checks existing Git
+worktrees against repository and branch, including path aliases. The separate
+installed payload binding is updated for the reviewed fix; other presets and
+release sources remain unchanged. Evidence:
+`docs/maintenance/security-fix-ci-2026-11-01.md` and PR 349.
+
 ## Gesamtstatistik / Overall Statistics
 
 <!-- project-statistics-v2:begin -->
