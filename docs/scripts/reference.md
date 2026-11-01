@@ -5,7 +5,7 @@
 > Generated from `scripts/config/script-catalog.json` and the Git index. Do not edit manually.
 
 Stand / Updated: 2026-09-09
-Kanonische Skriptdateien / Canonical script files: 153
+Kanonische Skriptdateien / Canonical script files: 154
 
 ## Workspace-Lebenszyklus / Workspace lifecycle
 
@@ -862,6 +862,17 @@ python3 scripts/tests/test_maintenance_tui_wrappers.py --help
 
 ```text
 python3 scripts/tests/test_msl_toolchains.py --help
+```
+
+### `scripts/tests/test_security_script_fixes.py`
+
+- **Rolle / Role:** oeffentliches Kommando / public command
+- **Kurzbeschreibung / Summary:** Siehe Quelltext und Hilfe. / See source and help.
+- **Voraussetzungen / Prerequisites:** passende Shell; weitere Anforderungen stehen in `--help` oder `Get-Help`.
+- **Nebenwirkungen / Side effects:** zuerst Check-, Dry-Run- oder WhatIf-Modus verwenden, sofern angeboten.
+
+```text
+python3 scripts/tests/test_security_script_fixes.py --help
 ```
 
 ### `scripts/tests/test_shared_learner_guide_propagation.py`
