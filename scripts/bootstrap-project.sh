@@ -1194,14 +1194,18 @@ elif [ -f "$home_readme" ] && grep -q '<!-- workspace-table-end -->' "$home_read
   else
     repo_cell="—"
   fi
-  row="| \`${short_target}/\` | ${repo_cell} | \`bootstrap-project\` |\n"
-  sed -i "" "s|<!-- workspace-table-end -->|${row}<!-- workspace-table-end -->|" "$home_readme" 2>/dev/null || \
-  python3 -c "
-content = open('${home_readme}').read()
-row = '${row}'
-content = content.replace('<!-- workspace-table-end -->', row + '<!-- workspace-table-end -->')
-open('${home_readme}','w').write(content)
-" 2>/dev/null || step_warn "README.md Update fehlgeschlagen"
+  printf -v row '| `%s/` | %s | `bootstrap-project` |\n' "$short_target" "$repo_cell"
+  python3 - "$home_readme" "$row" <<'PY' || step_warn "README.md Update fehlgeschlagen"
+from pathlib import Path
+import sys
+
+readme = Path(sys.argv[1])
+content = readme.read_text(encoding="utf-8")
+readme.write_text(
+    content.replace("<!-- workspace-table-end -->", sys.argv[2] + "<!-- workspace-table-end -->"),
+    encoding="utf-8",
+)
+PY
   step_done
 else
   step_skip "README.md oder Marker nicht gefunden"
