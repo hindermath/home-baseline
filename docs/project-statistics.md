@@ -1620,6 +1620,20 @@ and Profile 2 are regenerated from their canonical sources. Evidence:
 `docs/maintenance/security-fix-ci-2026-11-01.md` and PR 350. Statistics remain
 Git-based project transparency, not a measurement of time.
 
+### 2026-11-01 - Parallel-Worker-Pfadgrenze / Parallel worker path boundary
+
+DE: PR 349 begrenzt Worker-Kennungen auf portable Dateinamen und prueft
+vorhandene Git-Worktrees gegen Repository und Branch, auch ueber Pfadaliase.
+Die separate Installed-Lock-Payload-Bindung wird fuer den geprueften Fix
+fortgeschrieben; andere Presets und Release-Quellen bleiben unveraendert.
+Nachweis: `docs/maintenance/security-fix-ci-2026-11-01.md` und PR 349.
+
+EN: PR 349 confines worker IDs to portable filenames and checks existing Git
+worktrees against repository and branch, including path aliases. The separate
+installed payload binding is updated for the reviewed fix; other presets and
+release sources remain unchanged. Evidence:
+`docs/maintenance/security-fix-ci-2026-11-01.md` and PR 349.
+
 ## Gesamtstatistik / Overall Statistics
 
 <!-- project-statistics-v2:begin -->
@@ -1630,17 +1644,17 @@ Profil 2 verwendet Git-getrackte Textdateien und sichtbare Git-Aktivitaet. Die W
 
 | Kennzahl / Metric | Wert / Value |
 |---|---:|
-| Textbasis / Text base | 756863 lines |
+| Textbasis / Text base | 757026 lines |
 | Textdateien / Text files | 3672 |
 | Beobachtbarer Zeitraum / Observable period | 2025-11-09..2026-11-01 |
 | Aktivtage / Active days | 132 |
-| Relevante Commits / Relevant commits | 952 |
-| Zeilen je Aktivtag / Lines per active day | 5733.8 |
+| Relevante Commits / Relevant commits | 954 |
+| Zeilen je Aktivtag / Lines per active day | 5735.0 |
 | Peak-Tag im Fenster / Peak day in window | 2026-08-01 / 161357 |
 | Peak-Woche im Fenster / Peak week in window | 2026-07-26 / 284516 |
 | Laengste Serie / Longest streak | 38 days |
 | Speedup vs. 80 lines/day | 71.7x |
-| Speedup vs. 100 lines/day | 57.3x |
+| Speedup vs. 100 lines/day | 57.4x |
 | Methodik / Methodology | v2; source `f88f4baf83ce` |
 
 ### Artefaktmix / Artifact Mix
@@ -1648,7 +1662,7 @@ Profil 2 verwendet Git-getrackte Textdateien und sichtbare Git-Aktivitaet. Die W
 ```text
 Produktiv / Production          [#...................]   0.3% | 2237
 Tests                           [#...................]   3.8% | 28561
-Dokumentation / Documentation   [###########.........]  54.7% | 414302
+Dokumentation / Documentation   [###########.........]  54.7% | 414465
 Skripte / Scripts               [##..................]   7.8% | 58784
 Konfiguration / Configuration   [#######.............]  33.4% | 252623
 Daten und Medien / Data and media [....................]   0.0% | 0
@@ -1915,7 +1929,7 @@ Die festen Slots halten den Phasenvergleich auch bei fehlenden oder spaeter erga
 ```text
 Scale: 0..100x
 80 lines/day       [##############......] 71.7x
-100 lines/day      [###########.........] 57.3x
+100 lines/day      [###########.........] 57.4x
 ```
 
 Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen Referenzen. Sie messen keine Arbeitszeit.
@@ -1928,7 +1942,7 @@ Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen
 Scale: 0..10000 lines/day
 Experienced manual [#...................] 80
 Thorsten solo      [#...................] 100
-Visible repository [###########.........] 5733.8
+Visible repository [###########.........] 5735.0
 ```
 
 Die gemeinsame Skala vergleicht Referenzen und sichtbare Lieferdichte. Sie schreibt die Git-Aktivitaet keiner Person oder KI pauschal zu.
@@ -1954,6 +1968,6 @@ DE: Das Fenster beginnt am 2025-11-09 und endet am 2026-11-01. Es enthaelt 132 a
 | 2026-08 | 278228 |
 | 2026-09 | 144845 |
 | 2026-10 | 73816 |
-| 2026-11 | 508 |
+| 2026-11 | 685 |
 
 <!-- project-statistics-v2:end -->

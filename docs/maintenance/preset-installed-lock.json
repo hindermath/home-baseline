@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "purpose": "Authorized fourteen-package documentation patch installation; exact payload and SDK-composed surfaces, including five byte-preserved Home-only overlay files. Source archives remain separately bound; human review and runtime/pilot delivery remain distinct.",
-  "baselineCommit": "bd84dd7e807ff05887f54f6fccfadcf8d31fe7f6",
+  "purpose": "Authorized fourteen-package installation plus the bounded PR349 parallel worker-path security fix at 9cc31012; exact payload and SDK-composed surfaces, including five byte-preserved Home-only overlay files. Source archives remain separately bound; human review and runtime/pilot delivery remain distinct.",
+  "baselineCommit": "9cc310122f3317802b97a61d408e5ce28bbe73c6",
   "hashContract": "sha256-utf8-lf-bom-or-raw-v1",
   "registrySha256": "29c757338246f81e713788868568c93c38517e479c8df85f88fb039a31aeeb20",
   "presets": [
@@ -120,7 +120,7 @@
       "enabled": true,
       "manifest_hash": "sha256:481e7f725160672f00bc63e681b4e69f94be76477e649e56e5670ad1c401a103",
       "fileCount": 58,
-      "contentSha256": "5282442c018906f4b2ccc857d8b1af648306d0fa92c6a62e2ad77086f3b1e462"
+      "contentSha256": "0cfa6d57218692fe35944778bbcb4ffc46772c6d807b74fb98a6b4648e85e717"
     },
     {
       "id": "project-statistics-governance",

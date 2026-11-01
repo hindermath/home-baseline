@@ -291,6 +291,74 @@ function Resolve-PARRepository {
     return [IO.Path]::GetFullPath((Join-Path $ManifestDirectory $Value))
 }
 
+function Resolve-PARPhysicalDirectory {
+    param([Parameter(Mandatory)][string] $Path)
+
+    $fullPath = [IO.Path]::GetFullPath($Path)
+    for ($pass = 0; $pass -lt 16; $pass++) {
+        $root = [IO.Path]::GetPathRoot($fullPath)
+        $current = $root
+        $foundLink = $false
+        foreach ($segment in $fullPath.Substring($root.Length).Split([IO.Path]::DirectorySeparatorChar)) {
+            if (-not $segment) { continue }
+            $current = Join-Path $current $segment
+            $directory = [IO.DirectoryInfo]::new($current)
+            if ($directory.LinkTarget) {
+                $current = $directory.ResolveLinkTarget($true).FullName
+                $foundLink = $true
+            }
+        }
+        $fullPath = [IO.Path]::GetFullPath($current)
+        if (-not $foundLink) { return $fullPath }
+    }
+    throw "Verzeichnispfad enthaelt zu viele Link-Ebenen: $Path"
+}
+
+function Test-PARRegisteredWorktree {
+    param(
+        [Parameter(Mandatory)][string] $Repository,
+        [Parameter(Mandatory)][string] $Worktree,
+        [Parameter(Mandatory)][string] $Branch
+    )
+
+    $expectedPath = Resolve-PARPhysicalDirectory $Worktree
+    $listed = Invoke-PARGit $Repository @('worktree', 'list', '--porcelain') -AllowFailure
+    if ($listed.ExitCode -ne 0) { return $false }
+    $listedPath = ''
+    $listedBranch = ''
+    $registered = $false
+    foreach ($entry in @($listed.Output) + @('')) {
+        $line = [string] $entry
+        if ($line -eq '') {
+            if ($listedPath.Equals($expectedPath, [StringComparison]::OrdinalIgnoreCase) -and
+                $listedBranch -ceq "refs/heads/$Branch") {
+                $registered = $true
+            }
+            $listedPath = ''
+            $listedBranch = ''
+        } elseif ($line.StartsWith('worktree ', [StringComparison]::Ordinal)) {
+            $listedPath = Resolve-PARPhysicalDirectory $line.Substring(9)
+        } elseif ($line.StartsWith('branch ', [StringComparison]::Ordinal)) {
+            $listedBranch = $line.Substring(7)
+        }
+    }
+    if (-not $registered) { return $false }
+
+    # A stale registration or a replacement directory must not become the runner's cwd.
+    $top = Invoke-PARGit $Worktree @('rev-parse', '--show-toplevel') -AllowFailure
+    $sourceCommon = Invoke-PARGit $Repository @('rev-parse', '--path-format=absolute', '--git-common-dir') -AllowFailure
+    $workerCommon = Invoke-PARGit $Worktree @('rev-parse', '--path-format=absolute', '--git-common-dir') -AllowFailure
+    $currentBranch = Invoke-PARGit $Worktree @('symbolic-ref', '--quiet', '--short', 'HEAD') -AllowFailure
+    return $top.ExitCode -eq 0 -and $sourceCommon.ExitCode -eq 0 -and
+        $workerCommon.ExitCode -eq 0 -and $currentBranch.ExitCode -eq 0 -and
+        (Resolve-PARPhysicalDirectory ([string] $top.Output[0])).Equals(
+            $expectedPath, [StringComparison]::OrdinalIgnoreCase) -and
+        (Resolve-PARPhysicalDirectory ([string] $sourceCommon.Output[0])).Equals(
+            (Resolve-PARPhysicalDirectory ([string] $workerCommon.Output[0])),
+            [StringComparison]::OrdinalIgnoreCase) -and
+        [string] $currentBranch.Output[0] -ceq $Branch
+}
+
 function Get-PARRunnerProfileName {
     param(
         [Parameter(Mandatory)][hashtable] $Campaign,
@@ -655,6 +723,10 @@ function Test-PARCampaign {
 
     foreach ($worker in $Campaign.workers) {
         Assert-PARCondition (-not [string]::IsNullOrWhiteSpace([string] $worker.workerId)) 'workerId darf nicht leer sein.'
+        $workerId = [string] $worker.workerId
+        Assert-PARCondition ($workerId -cmatch '\A[A-Za-z0-9](?:[A-Za-z0-9._-]*[A-Za-z0-9_-])?\z' -and
+            $workerId -notmatch '^(CON|PRN|AUX|NUL|COM[1-9]|LPT[1-9])(?:\.|$)') `
+            "workerId muss ein portabler einzelner Dateiname sein: $workerId"
         Assert-PARCondition (Test-PARUuid ([string] $worker.runId)) "runId von '$($worker.workerId)' ist keine UUID."
         Assert-PARCondition (-not [string]::IsNullOrWhiteSpace([string] $worker.branch)) "branch von '$($worker.workerId)' fehlt."
         $runnerProfileName = Get-PARRunnerProfileName $Campaign $worker
@@ -1215,7 +1287,10 @@ function Invoke-PARStart {
                 $runnerProfileData = $Profiles.profiles[$runnerProfileName]
                 $repository = Resolve-PARRepository ([string] $worker.repository) $ManifestDirectory
                 $worktree = Join-Path $worktreesRoot ([string] $worker.workerId)
-                if (-not (Test-Path -LiteralPath $worktree -PathType Container)) {
+                if (Test-Path -LiteralPath $worktree -PathType Container) {
+                    Assert-PARCondition (Test-PARRegisteredWorktree $repository $worktree ([string] $worker.branch)) `
+                        "Vorhandener Worktree passt nicht zu Repository und Branch: $worktree"
+                } else {
                     $branchExists = Invoke-PARGit $repository @('show-ref', '--verify', '--quiet', "refs/heads/$($worker.branch)") -AllowFailure
                     Assert-PARCondition ($branchExists.ExitCode -ne 0) "Branch existiert bereits: $($worker.branch)"
                     $baseWorkerId = if ($worker.ContainsKey('baseWorkerId')) { [string] $worker.baseWorkerId } else { '' }
