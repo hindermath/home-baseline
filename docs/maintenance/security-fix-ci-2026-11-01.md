@@ -15,14 +15,18 @@ DE: Die Windows-Fixtures setzten ausfuehrbare POSIX-Shebang-Dateien und einen
 beliebigen `python3`-Alias voraus. Ein PowerShell-Command-Stub prueft dieselben
 Argumentgrenzen plattformuebergreifend. Der zusaetzliche native POSIX-Prozesstest
 bleibt auf macOS/Linux aktiv. Die Hook-Fixture verwendet den laufenden
-Python-Interpreter und erhaelt Windows-Executable-Endungen. Ein echter
+Python-Interpreter und erhaelt Windows-Executable-Endungen. Die Hook-Eingabe
+wird wie bei Git auf allen Hosts als LF-getrennte Bytes gesendet; ein Windows-
+Text-Pipe darf kein CR in die Remote-SHA einfuegen. Ein echter
 Windows-WSL-Lauf bleibt ein eigener Nachweis.
 
 EN: Windows fixtures assumed executable POSIX shebang files and an arbitrary
 `python3` alias. A PowerShell command stub checks the same argument boundaries
 on every platform. The additional native POSIX process test remains active on
 macOS/Linux. The hook fixture uses the running Python interpreter and preserves
-Windows executable suffixes. A real Windows WSL run remains separate evidence.
+Windows executable suffixes. Hook input uses LF-delimited bytes like Git on
+every host; a Windows text pipe must not inject CR into the remote SHA.
+A real Windows WSL run remains separate evidence.
 
 ## Dokumentationsauswirkung / Documentation impact
 

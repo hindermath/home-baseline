@@ -223,10 +223,16 @@ class PushHookHistoryTests(unittest.TestCase):
 
             def invoke(local: str, remote: str, destination: str = "origin") -> subprocess.CompletedProcess[str]:
                 update = f"refs/heads/main {local} refs/heads/main {remote}\n"
-                return subprocess.run(
+                # Git sends LF-delimited bytes to hooks on every host. Python's
+                # Windows text pipes would inject CR into the remote SHA instead.
+                result = subprocess.run(
                     [shutil.which("bash"), str(HOOK), destination, str(root / f"{destination}.git")],
                     cwd=repo, env=env,
-                    input=update, text=True, capture_output=True,
+                    input=update.encode("utf-8"), capture_output=True,
+                )
+                return subprocess.CompletedProcess(
+                    result.args, result.returncode,
+                    result.stdout.decode("utf-8"), result.stderr.decode("utf-8"),
                 )
 
             clean_result = invoke(clean, base)
