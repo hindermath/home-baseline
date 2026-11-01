@@ -7,7 +7,9 @@ import json
 import os
 from pathlib import Path
 import shutil
+import shlex
 import subprocess
+import sys
 import tempfile
 import unittest
 
@@ -17,6 +19,7 @@ HOOK = ROOT / "scripts/hooks/pre-push"
 
 
 class InjectionBoundaryTests(unittest.TestCase):
+    @unittest.skipIf(os.name == "nt", "POSIX executable stub; Windows uses the PowerShell command stub below")
     @unittest.skipUnless(shutil.which("pwsh"), "PowerShell 7 is unavailable")
     def test_wsl_wrapper_forwards_values_as_distinct_arguments(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:
@@ -48,6 +51,40 @@ class InjectionBoundaryTests(unittest.TestCase):
             self.assertEqual(arguments[5:], ["--dry-run", "--series", payload, "--file-prefix", "Secure A B"])
             self.assertFalse(marker.exists())
 
+    @unittest.skipUnless(shutil.which("pwsh"), "PowerShell 7 is unavailable")
+    def test_wsl_wrapper_preserves_arguments_with_powershell_command_stub(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            capture = root / "arguments.json"
+            marker = root / "executed"
+            payload = f"Secure; touch {marker}"
+            env = os.environ.copy()
+            env.update({
+                "WSL_CAPTURE": str(capture), "WSL_SERIES": payload,
+                "WSL_WRAPPER": str(ROOT / "scripts/propagate-learning-series.ps1"),
+            })
+            # A shebang file is not a Windows executable. This stub also avoids
+            # depending on a runner's installed WSL distributions or file associations.
+            program = """
+function global:wsl {
+    $args | ConvertTo-Json -AsArray | Set-Content -LiteralPath $env:WSL_CAPTURE -Encoding utf8
+    $global:LASTEXITCODE = 0
+}
+& $env:WSL_WRAPPER -DryRun -Series $env:WSL_SERIES -FilePrefix 'Secure A B'
+"""
+            result = subprocess.run(
+                [shutil.which("pwsh"), "-NoProfile", "-Command", program],
+                env=env, text=True, encoding="utf-8", capture_output=True,
+            )
+            self.assertEqual(result.returncode, 0, result.stderr)
+            arguments = json.loads(capture.read_text(encoding="utf-8-sig"))
+            self.assertEqual(arguments[:5], [
+                "--exec", "bash", "-c",
+                'exec bash "$HOME/scripts/propagate-learning-series.sh" "$@"', "bash",
+            ])
+            self.assertEqual(arguments[5:], ["--dry-run", "--series", payload, "--file-prefix", "Secure A B"])
+            self.assertFalse(marker.exists())
+
     def test_workspace_bootstrap_preview_preserves_ordinary_name(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:
             home = Path(temporary)
@@ -58,10 +95,11 @@ class InjectionBoundaryTests(unittest.TestCase):
             )
             env = os.environ.copy()
             env["HOME"] = str(home)
+            env["LC_ALL"] = "C"
             result = subprocess.run(
                 [shutil.which("bash"), str(ROOT / "scripts/bootstrap-workspace.sh"),
                  "--dry-run", "--no-remote", "Plain Workspace"],
-                env=env, text=True, capture_output=True,
+                env=env, text=True, encoding="utf-8", capture_output=True,
             )
             self.assertEqual(result.returncode, 0, result.stderr)
             self.assertIn("Plain\\ Workspace", result.stdout)
@@ -162,8 +200,18 @@ class PushHookHistoryTests(unittest.TestCase):
             # depending on the developer machine's gitleaks installation.
             binaries = root / "bin"
             binaries.mkdir()
-            for name in ("git", "python3", "grep"):
-                (binaries / name).symlink_to(shutil.which(name))
+            for name in ("git", "grep"):
+                target = Path(shutil.which(name))
+                suffix = target.suffix if os.name == "nt" else ""
+                (binaries / (name + suffix)).symlink_to(target)
+            # Use the active interpreter, not a Windows App Execution Alias.
+            # A shell wrapper retains its DLL/runtime location on Windows.
+            python_wrapper = binaries / "python3"
+            python_wrapper.write_text(
+                "#!/bin/sh\nexec " + shlex.quote(Path(sys.executable).as_posix()) + ' "$@"\n',
+                encoding="utf-8",
+            )
+            python_wrapper.chmod(0o755)
             env = os.environ.copy()
             env.update({
                 "PATH": str(binaries),

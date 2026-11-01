@@ -263,7 +263,9 @@ echo "╔═══════════════════════�
 echo "║  bootstrap-workspace – Neue Workspace-Einrichtung               ║"
 echo "╠══════════════════════════════════════════════════════════════════╣"
 printf "║  Verzeichnis : %-51s║\n" "$WORKSPACE_DIR"
-printf "║  Beschreibung: %-51s║\n" "${REPO_DESC:0:51}"
+# Bash 3.2 can split a UTF-8 code point when slicing by bytes in a C locale.
+# Preserve the complete description so redirected output stays valid UTF-8.
+printf "║  Beschreibung: %-51s║\n" "$REPO_DESC"
 if [ "$NO_REMOTE" -eq 1 ]; then
   printf "║  Remote      : %-51s║\n" "kein Remote / no remote"
 elif [ "$PLATFORM" = "github" ]; then

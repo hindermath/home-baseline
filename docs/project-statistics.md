@@ -1604,6 +1604,22 @@ PSScriptAnalyzer, and two read-only live inventories. Documentation and the
 Home Runtime contract are synchronized; statistics represent Git-based
 project transparency, not measured AI productivity.
 
+### 2026-11-01 - Workspace-Sicherheitsfixes und CI / Workspace security fixes and CI
+
+DE: Vier bestaetigte Skriptbefunde durch sichere Argumentuebergabe und
+historische Secret-Pruefung behoben. CI-Nacharbeit erhaelt gueltiges UTF-8
+auch mit Bash 3.2 im C-Locale und macht die WSL-/Hook-Test-Fixtures portabel.
+Skriptreferenz und Profil 2 werden aus ihren kanonischen Quellen neu erzeugt.
+Nachweis: `docs/maintenance/security-fix-ci-2026-11-01.md` und PR 350.
+Statistik bleibt Git-basierte Projekttransparenz, keine Zeitmessung.
+
+EN: Four confirmed script findings addressed with safe argument passing and
+historical secret scanning. CI follow-up preserves valid UTF-8 with Bash 3.2
+in the C locale and makes WSL/hook test fixtures portable. The script reference
+and Profile 2 are regenerated from their canonical sources. Evidence:
+`docs/maintenance/security-fix-ci-2026-11-01.md` and PR 350. Statistics remain
+Git-based project transparency, not a measurement of time.
+
 ## Gesamtstatistik / Overall Statistics
 
 <!-- project-statistics-v2:begin -->
