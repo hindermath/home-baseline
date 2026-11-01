@@ -17,6 +17,37 @@ HOOK = ROOT / "scripts/hooks/pre-push"
 
 
 class InjectionBoundaryTests(unittest.TestCase):
+    @unittest.skipUnless(shutil.which("pwsh"), "PowerShell 7 is unavailable")
+    def test_wsl_wrapper_forwards_values_as_distinct_arguments(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            binary = root / "wsl"
+            capture = root / "arguments.json"
+            marker = root / "executed"
+            binary.write_text(
+                "#!/usr/bin/env python3\n"
+                "import json, os, sys\n"
+                "open(os.environ['WSL_CAPTURE'], 'w').write(json.dumps(sys.argv[1:]))\n",
+                encoding="utf-8",
+            )
+            binary.chmod(0o755)
+            payload = f"Secure; touch {marker}"
+            env = os.environ.copy()
+            env["PATH"] = str(root) + os.pathsep + env["PATH"]
+            env["WSL_CAPTURE"] = str(capture)
+            result = subprocess.run(
+                [shutil.which("pwsh"), "-NoProfile", "-File",
+                 str(ROOT / "scripts/propagate-learning-series.ps1"),
+                 "-DryRun", "-Series", payload, "-FilePrefix", "Secure A B"],
+                env=env, text=True, capture_output=True,
+            )
+            self.assertEqual(result.returncode, 0, result.stderr)
+            arguments = json.loads(capture.read_text(encoding="utf-8"))
+            self.assertEqual(arguments[:2], ["--exec", "bash"])
+            self.assertEqual(arguments[2:5], ["-c", 'exec bash "$HOME/scripts/propagate-learning-series.sh" "$@"', "bash"])
+            self.assertEqual(arguments[5:], ["--dry-run", "--series", payload, "--file-prefix", "Secure A B"])
+            self.assertFalse(marker.exists())
+
     def test_workspace_bootstrap_preview_preserves_ordinary_name(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:
             home = Path(temporary)
