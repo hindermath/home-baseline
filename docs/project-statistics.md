@@ -1644,25 +1644,25 @@ Profil 2 verwendet Git-getrackte Textdateien und sichtbare Git-Aktivitaet. Die W
 
 | Kennzahl / Metric | Wert / Value |
 |---|---:|
-| Textbasis / Text base | 757016 lines |
+| Textbasis / Text base | 757026 lines |
 | Textdateien / Text files | 3672 |
 | Beobachtbarer Zeitraum / Observable period | 2025-11-09..2026-11-01 |
 | Aktivtage / Active days | 132 |
-| Relevante Commits / Relevant commits | 953 |
+| Relevante Commits / Relevant commits | 954 |
 | Zeilen je Aktivtag / Lines per active day | 5735.0 |
 | Peak-Tag im Fenster / Peak day in window | 2026-08-01 / 161357 |
 | Peak-Woche im Fenster / Peak week in window | 2026-07-26 / 284516 |
 | Laengste Serie / Longest streak | 38 days |
 | Speedup vs. 80 lines/day | 71.7x |
-| Speedup vs. 100 lines/day | 57.3x |
-| Methodik / Methodology | v2; source `7b23ad43328f` |
+| Speedup vs. 100 lines/day | 57.4x |
+| Methodik / Methodology | v2; source `f88f4baf83ce` |
 
 ### Artefaktmix / Artifact Mix
 
 ```text
 Produktiv / Production          [#...................]   0.3% | 2237
-Tests                           [#...................]   3.8% | 28555
-Dokumentation / Documentation   [###########.........]  54.7% | 414461
+Tests                           [#...................]   3.8% | 28561
+Dokumentation / Documentation   [###########.........]  54.7% | 414465
 Skripte / Scripts               [##..................]   7.8% | 58784
 Konfiguration / Configuration   [#######.............]  33.4% | 252623
 Daten und Medien / Data and media [....................]   0.0% | 0
@@ -1929,7 +1929,7 @@ Die festen Slots halten den Phasenvergleich auch bei fehlenden oder spaeter erga
 ```text
 Scale: 0..100x
 80 lines/day       [##############......] 71.7x
-100 lines/day      [###########.........] 57.3x
+100 lines/day      [###########.........] 57.4x
 ```
 
 Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen Referenzen. Sie messen keine Arbeitszeit.
@@ -1968,6 +1968,6 @@ DE: Das Fenster beginnt am 2025-11-09 und endet am 2026-11-01. Es enthaelt 132 a
 | 2026-08 | 278228 |
 | 2026-09 | 144845 |
 | 2026-10 | 73816 |
-| 2026-11 | 667 |
+| 2026-11 | 685 |
 
 <!-- project-statistics-v2:end -->
