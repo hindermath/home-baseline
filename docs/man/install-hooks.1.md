@@ -68,3 +68,17 @@ Argumente sind keine Remote-Autorität; es findet kein Netzwerk-Push statt.
 ## SEE ALSO
 
 `bootstrap-workspace.1`, `bootstrap-project.1`
+
+## Secret-Pruefung / Secret checks
+
+DE: Der Pre-Push-Hook unterscheidet in GitHub-Workflows einen NuGet-CLI-Wert
+`--api-key $env:NAME` von eingebetteten Zugangsdaten. Nur diese vollstaendige
+Umgebungsreferenz wird bei der Musterpruefung ausgenommen. Literale Werte,
+weitere Secret-Muster und Gitleaks-Pruefungen bleiben aktiv. Nach Hook-Aenderungen
+die Hooks mit `bash scripts/install-hooks.sh` erneut installieren.
+
+EN: In GitHub workflows, the pre-push hook distinguishes the NuGet CLI value
+`--api-key $env:NAME` from embedded credentials. Only this complete environment
+reference is removed from pattern matching. Literal values, other secret
+patterns and Gitleaks checks remain active. Reinstall the hooks with
+`bash scripts/install-hooks.sh` after hook changes.

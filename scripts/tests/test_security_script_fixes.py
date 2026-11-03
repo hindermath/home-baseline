@@ -142,6 +142,26 @@ class PushHookHistoryTests(unittest.TestCase):
             ["git", "-C", str(repo), *args], check=True, capture_output=True, text=True
         ).stdout.strip()
 
+    def test_workflow_cli_environment_reference_preserves_literal_detection(self) -> None:
+        source = HOOK.read_text(encoding="utf-8")
+        helper = "secret_content_present() {" + source.split("secret_content_present() {", 1)[1].split("\n}\n", 1)[0] + "\n}\n"
+        pattern = source.split("secret_content_regex='", 1)[1].split("'\n", 1)[0]
+        option = "--api" + "-key"
+        variable = "$env:NUGET_" + "API_KEY"
+        cases = [
+            (".github/workflows/release.yml", f"dotnet nuget push file {option} {variable}\n", False),
+            (".github/workflows/release.yml", f"dotnet nuget push file {option} literal-fixture-value\n", True),
+            (".github/workflows/release.yml", f"dotnet nuget push file {option} {variable}; api" + "_key=literal-fixture-value\n", True),
+            ("scripts/release.ps1", f"dotnet nuget push file {option} {variable}\n", True),
+            (".github/workflows/release.yml", f"dotnet nuget push file {option} {variable}-literal\n", True),
+        ]
+        for path, value, expected in cases:
+            with self.subTest(path=path, value=value):
+                program = "set -euo pipefail\nsecret_content_regex=" + shlex.quote(pattern) + "\n" + helper + 'secret_content_present "$1"\n'
+                result = subprocess.run([shutil.which("bash"), "-c", program, "bash", path], input=value, text=True, capture_output=True)
+                self.assertEqual(result.returncode, 0 if expected else 1, result.stderr)
+                self.assertEqual(result.stdout, "")
+
     def test_regex_fallback_checks_deleted_secret_and_clean_history(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:
             root = Path(temporary)
@@ -200,7 +220,7 @@ class PushHookHistoryTests(unittest.TestCase):
             # depending on the developer machine's gitleaks installation.
             binaries = root / "bin"
             binaries.mkdir()
-            for name in ("git", "grep"):
+            for name in ("git", "grep", "sed"):
                 target = Path(shutil.which(name))
                 suffix = target.suffix if os.name == "nt" else ""
                 (binaries / (name + suffix)).symlink_to(target)
