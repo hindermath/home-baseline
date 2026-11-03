@@ -58,3 +58,15 @@ Nachweis / evidence: YAML round-trip, Dependabot schema and manifest coverage ch
 hosted checks are recorded on the configuration PR before merge.
 Risiko / risk: update proposals still require compatibility and security review.
 Neu pruefen bei / reevaluate on: new manifests, moved paths, changed pins or maintenance ownership.
+
+## Native Contract-Laufzeit / Native contract runtime
+
+DE: Der vollstaendige Linked-Intake-Nachweis darf unter Windows hoechstens 45 Minuten
+laufen, unter Linux weiterhin 20 Minuten. Beide Shell-Suiten und die Pruefung auf
+Repository-Schreibzugriffe bleiben Pflicht. Hintergrund ist ein beobachteter Abbruch
+an der bisherigen Windows-Grenze von 20 Minuten.
+
+EN: The complete linked-intake proof has a 45-minute Windows budget and retains
+the 20-minute Linux budget. Both shell suites and the zero-repository-writes check
+remain mandatory. This addresses an observed cancellation at the previous
+20-minute Windows limit.
