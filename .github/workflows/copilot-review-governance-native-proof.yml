@@ -47,7 +47,7 @@ jobs:
           }
           New-Item -ItemType Directory -Path evidence -Force | Out-Null
           $record | ConvertTo-Json | Set-Content -Path "evidence/${{ matrix.os }}.json" -Encoding utf8
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: copilot-review-governance-${{ matrix.os }}
           path: evidence/${{ matrix.os }}.json
