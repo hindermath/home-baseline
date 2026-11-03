@@ -5,7 +5,7 @@
 > Generated from `scripts/config/script-catalog.json` and the Git index. Do not edit manually.
 
 Stand / Updated: 2026-09-09
-Kanonische Skriptdateien / Canonical script files: 154
+Kanonische Skriptdateien / Canonical script files: 156
 
 ## Workspace-Lebenszyklus / Workspace lifecycle
 
@@ -264,6 +264,18 @@ bash scripts/propagate-agentic-toolchain-maintenance.sh --dry-run  # falls angeb
 Installiert und prueft Spec-Kit-, Constitution- und Repository-Governance.
 
 *Installs and checks Spec Kit, constitution, and repository governance.*
+
+### `scripts/adapters/new-harnesses.ps1`
+
+- **Rolle / Role:** oeffentliches Kommando / public command
+- **Kurzbeschreibung / Summary:** DE: Additive Modelladapter. EN: Additive model adapters.
+- **Voraussetzungen / Prerequisites:** passende Shell; weitere Anforderungen stehen in `--help` oder `Get-Help`.
+- **Nebenwirkungen / Side effects:** zuerst Check-, Dry-Run- oder WhatIf-Modus verwenden, sofern angeboten.
+
+```text
+Get-Help ./scripts/adapters/new-harnesses.ps1 -Full
+pwsh -NoProfile -File scripts/adapters/new-harnesses.ps1 -WhatIf  # falls SupportsShouldProcess angeboten wird / when supported
+```
 
 ### `scripts/check-gsdb-self-assessment.ps1`
 
@@ -951,6 +963,18 @@ python3 scripts/tests/test_workspace_storage_maintenance.py --help
 ```text
 Get-Help ./scripts/tests/test-gsdb-consolidation.ps1 -Full
 pwsh -NoProfile -File scripts/tests/test-gsdb-consolidation.ps1 -WhatIf  # falls SupportsShouldProcess angeboten wird / when supported
+```
+
+### `scripts/tests/test-model-routing-installation.ps1`
+
+- **Rolle / Role:** oeffentliches Kommando / public command
+- **Kurzbeschreibung / Summary:** DE: Installiertes Model Routing und Root-Einstiege pruefen.
+- **Voraussetzungen / Prerequisites:** passende Shell; weitere Anforderungen stehen in `--help` oder `Get-Help`.
+- **Nebenwirkungen / Side effects:** zuerst Check-, Dry-Run- oder WhatIf-Modus verwenden, sofern angeboten.
+
+```text
+Get-Help ./scripts/tests/test-model-routing-installation.ps1 -Full
+pwsh -NoProfile -File scripts/tests/test-model-routing-installation.ps1 -WhatIf  # falls SupportsShouldProcess angeboten wird / when supported
 ```
 
 ### `scripts/tests/test-preset-sources.ps1`

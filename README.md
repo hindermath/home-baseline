@@ -1,5 +1,10 @@
 # home-baseline
 
+Model Routing Governance **0.2.1**: Diese Lieferung aktualisiert die lokale
+Preset-Integration und ihre Resolver. [Nachweis und Grenzen](docs/maintenance/model-routing-v021-installation.md).
+This delivery updates the local preset integration and its resolvers; see the
+linked evidence and verification limits.
+
 [Veröffentlichungsstatus und Verbesserungen aller 14 Presets](docs/maintenance/preset-release-documentation-closeout-2026-10-24.md):
 Nacharbeiten zu #342 und #343. Veröffentlichtes Paket, historischer
 Validierungsstand und neuer Dokumentations-PR sind getrennte Zustände.

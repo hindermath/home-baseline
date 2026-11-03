@@ -648,6 +648,22 @@
     {
       "path": "docs/documentation-governance.md",
       "executable": false
+    },
+    {
+      "path": "scripts/adapters/new-harnesses.ps1",
+      "executable": false
+    },
+    {
+      "path": "scripts/adapters/discover-sdk.mjs",
+      "executable": false
+    },
+    {
+      "path": "scripts/adapters/selection-policy.json",
+      "executable": false
+    },
+    {
+      "path": "scripts/tests/test-model-routing-installation.ps1",
+      "executable": false
     }
   ]
 }
