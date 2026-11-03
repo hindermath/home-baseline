@@ -25,6 +25,20 @@ allowed_secret_content_path_regex='(^|/)scripts/(hooks/pre-push|scan-agent-secre
 
 echo "pre-push: Prüfe git-getrackte Dateien auf Secrets …"
 
+secret_content_present() {
+  local relative_path="$1"
+  local grep_option="${2:--E}"
+  # DE: Ein aus der Prozessumgebung gelesener CLI-Wert ist kein eingebettetes Secret.
+  # EN: A CLI value read from the process environment is not an embedded secret.
+  # Keep literal values and every other detector input unchanged.
+  if [[ "$relative_path" == .github/workflows/* ]]; then
+    sed -E 's/--api-key[[:blank:]]+\$env:[A-Za-z_][A-Za-z0-9_]*([[:blank:];]|$)/\1/g' \
+      | grep "$grep_option" "$secret_content_regex" > /dev/null
+  else
+    grep "$grep_option" "$secret_content_regex" > /dev/null
+  fi
+}
+
 regex_file_known() {
   local candidate="$1"
   local existing
@@ -116,7 +130,7 @@ scan_regex_commit_blobs() {
       fi
       blob_ref="$commit:$rel_file"
       if git -C "$REPO_ROOT" cat-file -e "$blob_ref" 2>/dev/null \
-        && git -C "$REPO_ROOT" cat-file blob "$blob_ref" | grep -Ei "$secret_content_regex" >/dev/null; then
+        && git -C "$REPO_ROOT" cat-file blob "$blob_ref" | secret_content_present "$rel_file" -Ei; then
         echo "  HIGH: Secret-Muster in Push-Historie: $rel_file ($commit)" >&2
         return 2
       fi
@@ -379,7 +393,13 @@ if [ "${#tracked_files[@]}" -gt 0 ]; then
       continue
     fi
     content_hits+=("$f")
-  done < <(grep -rEl --include='*' "$secret_content_regex" "${tracked_files[@]}" 2>/dev/null || true)
+  done < <(
+    for candidate in "${tracked_files[@]}"; do
+      if secret_content_present "${candidate#"$REPO_ROOT/"}" < "$candidate"; then
+        printf '%s\n' "$candidate"
+      fi
+    done
+  )
 fi
 
 if [ "${#content_hits[@]}" -gt 0 ]; then
