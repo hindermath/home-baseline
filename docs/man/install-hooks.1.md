@@ -71,14 +71,14 @@ Argumente sind keine Remote-Autorität; es findet kein Netzwerk-Push statt.
 
 ## Secret-Pruefung / Secret checks
 
-DE: Der Pre-Push-Hook unterscheidet in GitHub-Workflows einen NuGet-CLI-Wert
-den NuGet-Schluesselparameter mit `$env:NAME` von eingebetteten Zugangsdaten. Nur diese vollstaendige
+DE: Der Pre-Push-Hook unterscheidet in GitHub-Workflows den NuGet-Schluesselparameter
+mit `$env:NAME` von eingebetteten Zugangsdaten. Nur diese vollstaendige
 Umgebungsreferenz wird bei der Musterpruefung ausgenommen. Literale Werte,
 weitere Secret-Muster und Gitleaks-Pruefungen bleiben aktiv. Nach Hook-Aenderungen
 die Hooks mit `bash scripts/install-hooks.sh` erneut installieren.
 
-EN: In GitHub workflows, the pre-push hook distinguishes the NuGet CLI value
-the NuGet key parameter with `$env:NAME` from embedded credentials. Only this complete environment
+EN: In GitHub workflows, the pre-push hook distinguishes the NuGet key parameter
+with `$env:NAME` from embedded credentials. Only this complete environment
 reference is removed from pattern matching. Literal values, other secret
 patterns and Gitleaks checks remain active. Reinstall the hooks with
 `bash scripts/install-hooks.sh` after hook changes.
