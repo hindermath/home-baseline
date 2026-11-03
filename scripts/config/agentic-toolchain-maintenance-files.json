@@ -664,6 +664,10 @@
     {
       "path": "scripts/tests/test-model-routing-installation.ps1",
       "executable": false
+    },
+    {
+      "path": "scripts/adapters/invoke-harness-with-result.ps1",
+      "executable": false
     }
   ]
 }

@@ -221,6 +221,7 @@
 | 2026-10-06 | macOS-15 CI runner migration | — | — | — | CI-Matrizen und gemeinsame Guidance auf macOS 15 umgestellt; Linux-/Windows-Auswahl erhalten, Required-Check-Migration und exakte PR-CI als Liefergates. / Migrated CI labels and guidance; preserved other platforms and required exact-head CI proof. |
 | 2026-10-06 | Public statistics after macOS-15 delivery | — | — | — | Öffentliche Belege auf main gesammelt und deterministisch veröffentlicht; geprüfte Registerentscheidungen und Laufzahlen erhalten. / Collected and published public evidence on main; preserved reviewed registry decisions and run counts. |
 | 2026-11-03 | Model Routing Governance 0.2.1 | N/A | N/A | N/A | UpdateRequired: hashgebundenes Release, ein Preset aktualisiert, andere 13 erhalten; vollständige Resolver-Ressourcen und Root-/Preset-Parität geprüft. Keine Modellaufrufe oder Profilmigration. / Hash-bound release, one preset updated, other 13 preserved; complete runtime closure and root/preset parity verified. No inference or profile migration. [Evidence](maintenance/model-routing-v021-installation.md). |
+| 2026-11-03 | Model Routing Governance 0.2.3 | N/A | N/A | N/A | UpdateRequired: hashgebundenes Release mit strukturiertem Harness-Rückkanal und kanonischem Adapterpfad, ein Preset aktualisiert, andere 13 erhalten; vollständige Resolver-Ressourcen und Root-/Preset-Parität geprüft. Keine Modellaufrufe oder Profilmigration. / Hash-bound release with structured harness result transport and canonical adapter path, one preset updated, other 13 preserved; complete runtime closure and root/preset parity verified. No inference or profile migration. [Evidence](maintenance/model-routing-v023-installation.md). |
 
 ## Gesamtstand des Repositories / Repository Snapshot
 
@@ -1665,27 +1666,27 @@ Profil 2 verwendet Git-getrackte Textdateien und sichtbare Git-Aktivitaet. Die W
 
 | Kennzahl / Metric | Wert / Value |
 |---|---:|
-| Textbasis / Text base | 759845 lines |
-| Textdateien / Text files | 3705 |
+| Textbasis / Text base | 760258 lines |
+| Textdateien / Text files | 3714 |
 | Beobachtbarer Zeitraum / Observable period | 2025-11-09..2026-11-03 |
 | Aktivtage / Active days | 133 |
-| Relevante Commits / Relevant commits | 976 |
-| Zeilen je Aktivtag / Lines per active day | 5713.1 |
+| Relevante Commits / Relevant commits | 980 |
+| Zeilen je Aktivtag / Lines per active day | 5716.2 |
 | Peak-Tag im Fenster / Peak day in window | 2026-08-01 / 161357 |
 | Peak-Woche im Fenster / Peak week in window | 2026-07-26 / 284516 |
 | Laengste Serie / Longest streak | 38 days |
-| Speedup vs. 80 lines/day | 71.4x |
-| Speedup vs. 100 lines/day | 57.1x |
-| Methodik / Methodology | v2; source `d0cc92313180` |
+| Speedup vs. 80 lines/day | 71.5x |
+| Speedup vs. 100 lines/day | 57.2x |
+| Methodik / Methodology | v2; source `031f3ea4034f` |
 
 ### Artefaktmix / Artifact Mix
 
 ```text
 Produktiv / Production          [#...................]   0.3% | 2237
-Tests                           [#...................]   3.8% | 28648
-Dokumentation / Documentation   [###########.........]  54.8% | 416606
-Skripte / Scripts               [##..................]   7.8% | 59256
-Konfiguration / Configuration   [#######.............]  33.3% | 252742
+Tests                           [#...................]   3.8% | 28654
+Dokumentation / Documentation   [###########.........]  54.8% | 416960
+Skripte / Scripts               [##..................]   7.8% | 59309
+Konfiguration / Configuration   [#######.............]  33.2% | 252742
 Daten und Medien / Data and media [....................]   0.0% | 0
 Sonstiger Text / Other text     [#...................]   0.0% | 356
 ```
@@ -1949,8 +1950,8 @@ Die festen Slots halten den Phasenvergleich auch bei fehlenden oder spaeter erga
 
 ```text
 Scale: 0..100x
-80 lines/day       [##############......] 71.4x
-100 lines/day      [###########.........] 57.1x
+80 lines/day       [##############......] 71.5x
+100 lines/day      [###########.........] 57.2x
 ```
 
 Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen Referenzen. Sie messen keine Arbeitszeit.
@@ -1963,7 +1964,7 @@ Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen
 Scale: 0..10000 lines/day
 Experienced manual [#...................] 80
 Thorsten solo      [#...................] 100
-Visible repository [###########.........] 5713.1
+Visible repository [###########.........] 5716.2
 ```
 
 Die gemeinsame Skala vergleicht Referenzen und sichtbare Lieferdichte. Sie schreibt die Git-Aktivitaet keiner Person oder KI pauschal zu.
@@ -1989,6 +1990,6 @@ DE: Das Fenster beginnt am 2025-11-09 und endet am 2026-11-03. Es enthaelt 133 a
 | 2026-08 | 278228 |
 | 2026-09 | 144845 |
 | 2026-10 | 73816 |
-| 2026-11 | 4976 |
+| 2026-11 | 5499 |
 
 <!-- project-statistics-v2:end -->

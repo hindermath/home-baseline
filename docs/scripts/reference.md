@@ -5,7 +5,7 @@
 > Generated from `scripts/config/script-catalog.json` and the Git index. Do not edit manually.
 
 Stand / Updated: 2026-09-09
-Kanonische Skriptdateien / Canonical script files: 156
+Kanonische Skriptdateien / Canonical script files: 157
 
 ## Workspace-Lebenszyklus / Workspace lifecycle
 
@@ -264,6 +264,18 @@ bash scripts/propagate-agentic-toolchain-maintenance.sh --dry-run  # falls angeb
 Installiert und prueft Spec-Kit-, Constitution- und Repository-Governance.
 
 *Installs and checks Spec Kit, constitution, and repository governance.*
+
+### `scripts/adapters/invoke-harness-with-result.ps1`
+
+- **Rolle / Role:** oeffentliches Kommando / public command
+- **Kurzbeschreibung / Summary:** Runs a harness and persists its structured standard output atomically.
+- **Voraussetzungen / Prerequisites:** passende Shell; weitere Anforderungen stehen in `--help` oder `Get-Help`.
+- **Nebenwirkungen / Side effects:** zuerst Check-, Dry-Run- oder WhatIf-Modus verwenden, sofern angeboten.
+
+```text
+Get-Help ./scripts/adapters/invoke-harness-with-result.ps1 -Full
+pwsh -NoProfile -File scripts/adapters/invoke-harness-with-result.ps1 -WhatIf  # falls SupportsShouldProcess angeboten wird / when supported
+```
 
 ### `scripts/adapters/new-harnesses.ps1`
 
