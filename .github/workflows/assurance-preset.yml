@@ -37,6 +37,10 @@ jobs:
           foreach ($command in @('git', 'bash', 'pwsh', 'jq', 'specify')) {
             Get-Command $command -ErrorAction Stop | Select-Object Name, Source
           }
+          pwsh -NoProfile -File scripts/tests/test-model-routing-installation.ps1
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          pwsh -NoProfile -File .specify/presets/model-routing-governance/tests/test-broad-model-selection.ps1
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
           pwsh -NoProfile -File scripts/tests/test-preset-sources.ps1
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
           git diff --exit-code

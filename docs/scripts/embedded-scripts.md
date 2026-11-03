@@ -96,8 +96,11 @@ Change their respective canonical source first, then propagate the result.*
 | `.specify/presets/intake-sequencing-governance/tests/test-template-integrity.ps1` | `.specify` |
 | `.specify/presets/isaqb-architecture-governance/tests/test-documentation-closeout.ps1` | `.specify` |
 | `.specify/presets/isaqb-architecture-governance/tests/test-release-status.ps1` | `.specify` |
+| `.specify/presets/model-routing-governance/scripts/adapters/new-harnesses.ps1` | `.specify` |
 | `.specify/presets/model-routing-governance/scripts/resolve-model-routing.ps1` | `.specify` |
 | `.specify/presets/model-routing-governance/scripts/resolve-model-routing.sh` | `.specify` |
+| `.specify/presets/model-routing-governance/tests/test-additive-adapters.ps1` | `.specify` |
+| `.specify/presets/model-routing-governance/tests/test-broad-model-selection.ps1` | `.specify` |
 | `.specify/presets/model-routing-governance/tests/test-documentation-closeout.ps1` | `.specify` |
 | `.specify/presets/model-routing-governance/tests/test-model-routing-discovery.ps1` | `.specify` |
 | `.specify/presets/model-routing-governance/tests/test-model-routing-discovery.sh` | `.specify` |

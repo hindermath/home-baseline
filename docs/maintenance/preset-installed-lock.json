@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
-  "purpose": "Authorized fourteen-package installation plus the bounded PR349 parallel worker-path security fix at 9cc31012; exact payload and SDK-composed surfaces, including five byte-preserved Home-only overlay files. Source archives remain separately bound; human review and runtime/pilot delivery remain distinct.",
-  "baselineCommit": "9cc310122f3317802b97a61d408e5ce28bbe73c6",
+  "purpose": "Bounded Model Routing 0.2.1 installation; other preset payloads and registry entries byte/semantically preserved. No model call or personal-profile migration.",
+  "baselineCommit": "7f960b3dc79dbd85d8ed4fae98fcbe3d86bababf",
   "hashContract": "sha256-utf8-lf-bom-or-raw-v1",
-  "registrySha256": "29c757338246f81e713788868568c93c38517e479c8df85f88fb039a31aeeb20",
+  "registrySha256": "34675dd1d7523dddf62eb416cf6dc3f64e5e258d44e5a6bac50f9965bc6d5d6b",
   "presets": [
     {
       "id": "security-governance",
@@ -70,12 +70,12 @@
     },
     {
       "id": "model-routing-governance",
-      "version": "0.1.7",
+      "version": "0.2.1",
       "priority": 61,
       "enabled": true,
-      "manifest_hash": "sha256:9e1165e8178d05fef4c989c991ce138ad0a202e1c3f830dc2d8e1b75c0579bbc",
-      "fileCount": 29,
-      "contentSha256": "d332c5cd4e84f5e96e14bedaf49e9e07c0a58b476776c031d99462e2c0a99186"
+      "manifest_hash": "sha256:76e85056a99d016ebf46dd55c429c2f62357682ea9036a0da9d69656a4d28a79",
+      "fileCount": 49,
+      "contentSha256": "47d952cddff1ddfb6055d6bd893855762654ac482665e5b07d0a0b4d652ff329"
     },
     {
       "id": "intake-authoring-governance",

@@ -1058,7 +1058,7 @@ workspace family consists of:
 | `autonomous-run-governance` | `v0.4.7` | `70` | permission-bounded delivery plus optional policy-driven intake gate |
 | `parallel-autonomous-run-governance` | `v0.2.9` | `80` | isolated bounded campaigns plus optional schema-1.2 campaign intake gate |
 
-`model-routing-governance` v0.1.7 at priority `61`,
+`model-routing-governance` v0.2.1 at priority `61`,
 Architecture v0.6.5 separates C5 Type 1 point-in-time evidence from Type 2
 period effectiveness and Unknown. Its C3A v1.0 index retains all 30 groups,
 exact selected C/AC IDs and SI interpretation; missing evidence is Open.
