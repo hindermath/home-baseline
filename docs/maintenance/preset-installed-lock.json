@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
-  "purpose": "Bounded Model Routing 0.2.3 installation; other preset payloads and registry entries byte/semantically preserved. No model call or personal-profile migration.",
-  "baselineCommit": "538236bdc26c9cf3e9412d4fac4c47c94c1c90e8",
+  "purpose": "Bounded Model Routing 0.2.5 and Autonomous Run 0.4.9 installation; other preset payloads and registry entries byte/semantically preserved. No model call or personal-profile migration.",
+  "baselineCommit": "5b630b75b788cadd52183fbd85e92d19d0d8280e",
   "hashContract": "sha256-utf8-lf-bom-or-raw-v1",
-  "registrySha256": "0aae79c18572e7b66f0843539cbd21b26f601a8fecc779df22f23be460002a8e",
+  "registrySha256": "03204374eb53b87fd8658f22388bb3261dd99ba1ee40d51c17df732af02285c5",
   "presets": [
     {
       "id": "security-governance",
@@ -70,12 +70,12 @@
     },
     {
       "id": "model-routing-governance",
-      "version": "0.2.3",
+      "version": "0.2.6",
       "priority": 61,
       "enabled": true,
-      "manifest_hash": "sha256:2fe75f9246a92dcacc19b8dfac66adc69421cb9623922cf844bc752d4c46646c",
-      "fileCount": 55,
-      "contentSha256": "915c6a9dbd6501235e635e52ee121c17a54403953303d2d5e8c012b375ec1391"
+      "manifest_hash": "sha256:9a2d7db1f148dbf58b3405a164cee07ae89cc6834cdc056b1be27d2ab1d85e07",
+      "fileCount":  95,
+      "contentSha256": "eda1081e1bc1e3cf8ca68193c9c4aee9cf8fd16d6e161ae2b2444c3d10628630"
     },
     {
       "id": "intake-authoring-governance",
@@ -106,12 +106,12 @@
     },
     {
       "id": "autonomous-run-governance",
-      "version": "0.4.7",
+      "version": "0.4.10",
       "priority": 70,
       "enabled": true,
-      "manifest_hash": "sha256:0034c2dc7da5c64be3e2bceb10fbea435bc0de921def37b4ec5e7203b9719367",
-      "fileCount": 67,
-      "contentSha256": "7260f364c4c39663ce7219cb3507cddefc26bab838bbf245e05427bb226680f8"
+      "manifest_hash": "sha256:6f9fdbfe309fbed551b7b72c5a2098ffd80797da2c3e64e077d4d3e752ddf97b",
+      "fileCount":  80,
+      "contentSha256": "2a89c2a7b860e96636b963448c5cf2a20a7b09eb0b50e53bd08cc89f118031ca"
     },
     {
       "id": "parallel-autonomous-run-governance",

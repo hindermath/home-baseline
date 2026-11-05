@@ -37,10 +37,10 @@ Workspace-Familie ist:
 | `a11y-governance` | A11Y Governance | `v0.4.6` | `40` |
 | `cross-platform-governance` | Cross-Platform Governance | `v0.2.5` | `50` |
 | `agent-parity-governance` | Agent Parity Governance | `v0.4.5` | `60` |
-| `autonomous-run-governance` | Autonomous Run Governance | `v0.4.7` | `70` |
+| `autonomous-run-governance` | Autonomous Run Governance | `v0.4.10` | `70` |
 | `parallel-autonomous-run-governance` | Parallel Autonomous Run Governance | `v0.2.9` | `80` |
 
-Optional koennen `model-routing-governance` v0.2.1 mit Prioritaet `61`,
+Optional koennen `model-routing-governance` v0.2.6 mit Prioritaet `61`,
 `intake-authoring-governance` v0.3.10 mit Prioritaet `64`,
 `intake-review-governance` v0.2.7 mit Prioritaet `65` und
 `intake-sequencing-governance` v0.2.11 mit Prioritaet `66` zwischen Agent Parity
@@ -192,10 +192,10 @@ zero-write values. A partial proof is not a full regression pass.
 | `a11y-governance` | A11Y Governance | `v0.4.6` | `40` |
 | `cross-platform-governance` | Cross-Platform Governance | `v0.2.5` | `50` |
 | `agent-parity-governance` | Agent Parity Governance | `v0.4.5` | `60` |
-| `autonomous-run-governance` | Autonomous Run Governance | `v0.4.7` | `70` |
+| `autonomous-run-governance` | Autonomous Run Governance | `v0.4.10` | `70` |
 | `parallel-autonomous-run-governance` | Parallel Autonomous Run Governance | `v0.2.9` | `80` |
 
-Optionally install `model-routing-governance` v0.2.1 at priority `61`,
+Optionally install `model-routing-governance` v0.2.6 at priority `61`,
 `intake-authoring-governance` v0.3.10 at priority `64`,
 `intake-review-governance` v0.2.7 at priority `65`, and
 `intake-sequencing-governance` v0.2.11 at priority `66` between Agent Parity and
