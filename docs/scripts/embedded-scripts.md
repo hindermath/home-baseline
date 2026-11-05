@@ -108,6 +108,7 @@ Change their respective canonical source first, then propagate the result.*
 | `.specify/presets/model-routing-governance/tests/live/invoke-smoke-child.ps1` | `.specify` |
 | `.specify/presets/model-routing-governance/tests/test-additive-adapters.ps1` | `.specify` |
 | `.specify/presets/model-routing-governance/tests/test-broad-model-selection.ps1` | `.specify` |
+| `.specify/presets/model-routing-governance/tests/test-ci-exit-codes.ps1` | `.specify` |
 | `.specify/presets/model-routing-governance/tests/test-documentation-closeout.ps1` | `.specify` |
 | `.specify/presets/model-routing-governance/tests/test-execution-policy.ps1` | `.specify` |
 | `.specify/presets/model-routing-governance/tests/test-harness-result-transport.ps1` | `.specify` |
