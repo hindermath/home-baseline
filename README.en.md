@@ -1,6 +1,8 @@
 # home-baseline
 
-Model Routing Governance **0.2.3**: this delivery updates the local preset integration and its resolvers. [Evidence and limits](docs/maintenance/model-routing-v023-installation.md).
+Model Routing Governance **0.2.5** and Autonomous Run Governance **0.4.9**:
+this delivery updates the local preset integration and its validated normal
+execution path. [Evidence and limits](docs/maintenance/model-routing-v025-installation.md).
 
 [Publication status and improvements across all fourteen presets](docs/maintenance/preset-release-documentation-closeout-2026-10-24.md):
 Follow-up for #342 and #343. Published packages, historical validation and new
