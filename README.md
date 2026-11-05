@@ -1,8 +1,8 @@
 # home-baseline
 
-Model Routing Governance **0.2.5** und Autonomous Run Governance **0.4.9**:
+Model Routing Governance **0.2.6** und Autonomous Run Governance **0.4.10**:
 Diese Lieferung aktualisiert die lokale Preset-Integration und den geprüften
-normalen Ausführungspfad. [Nachweis und Grenzen](docs/maintenance/model-routing-v025-installation.md).
+normalen Ausführungspfad. [Nachweis und Grenzen](docs/maintenance/model-routing-v026-installation.md).
 This delivery updates the local preset integration and its resolvers; see the
 linked evidence and verification limits.
 

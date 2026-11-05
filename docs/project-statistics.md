@@ -222,7 +222,7 @@
 | 2026-10-06 | Public statistics after macOS-15 delivery | — | — | — | Öffentliche Belege auf main gesammelt und deterministisch veröffentlicht; geprüfte Registerentscheidungen und Laufzahlen erhalten. / Collected and published public evidence on main; preserved reviewed registry decisions and run counts. |
 | 2026-11-03 | Model Routing Governance 0.2.1 | N/A | N/A | N/A | UpdateRequired: hashgebundenes Release, ein Preset aktualisiert, andere 13 erhalten; vollständige Resolver-Ressourcen und Root-/Preset-Parität geprüft. Keine Modellaufrufe oder Profilmigration. / Hash-bound release, one preset updated, other 13 preserved; complete runtime closure and root/preset parity verified. No inference or profile migration. [Evidence](maintenance/model-routing-v021-installation.md). |
 | 2026-11-03 | Model Routing Governance 0.2.3 | N/A | N/A | N/A | UpdateRequired: hashgebundenes Release mit strukturiertem Harness-Rückkanal und kanonischem Adapterpfad, ein Preset aktualisiert, andere 13 erhalten; vollständige Resolver-Ressourcen und Root-/Preset-Parität geprüft. Keine Modellaufrufe oder Profilmigration. / Hash-bound release with structured harness result transport and canonical adapter path, one preset updated, other 13 preserved; complete runtime closure and root/preset parity verified. No inference or profile migration. [Evidence](maintenance/model-routing-v023-installation.md). |
-| 2026-11-05 | Model Routing 0.2.5 und Autonomous Run 0.4.9 | N/A | N/A | N/A | UpdateRequired: zwei hashgebundene Presets in der 14er-Matrix und vier autorisierten Repositories installiert; die übrigen zwölf Payloads erhalten. Root-/Preset-Parität, normale Rollenrechte, Agentenflächen, PSScriptAnalyzer und Secret-Scan sind grün. Keine Modellaufrufe, API-Key-Konfiguration oder Profilmigration. / Two hash-bound presets installed in the fourteen-preset matrix and four authorized repositories; the other twelve payloads were preserved. Root/preset parity, normal role permissions, agent surfaces, PSScriptAnalyzer and secret scanning passed. No model calls, API-key setup or profile migration. [Evidence](maintenance/model-routing-v025-installation.md). |
+| 2026-11-05 | Model Routing 0.2.6 und Autonomous Run 0.4.10 | N/A | N/A | N/A | UpdateRequired: zwei hashgebundene Presets in der 14er-Matrix und vier autorisierten Repositories installiert; die übrigen zwölf Payloads erhalten. Root-/Preset-Parität, normale Rollenrechte, Agentenflächen, PSScriptAnalyzer und Secret-Scan sind grün. Keine Modellaufrufe, API-Key-Konfiguration oder Profilmigration. / Two hash-bound presets installed in the fourteen-preset matrix and four authorized repositories; the other twelve payloads were preserved. Root/preset parity, normal role permissions, agent surfaces, PSScriptAnalyzer and secret scanning passed. No model calls, API-key setup or profile migration. [Evidence](maintenance/model-routing-v026-installation.md). |
 
 ## Gesamtstand des Repositories / Repository Snapshot
 
@@ -1667,25 +1667,25 @@ Profil 2 verwendet Git-getrackte Textdateien und sichtbare Git-Aktivitaet. Die W
 
 | Kennzahl / Metric | Wert / Value |
 |---|---:|
-| Textbasis / Text base | 764317 lines |
-| Textdateien / Text files | 3762 |
+| Textbasis / Text base | 764687 lines |
+| Textdateien / Text files | 3769 |
 | Beobachtbarer Zeitraum / Observable period | 2025-11-09..2026-11-05 |
 | Aktivtage / Active days | 134 |
-| Relevante Commits / Relevant commits | 982 |
-| Zeilen je Aktivtag / Lines per active day | 5703.9 |
+| Relevante Commits / Relevant commits | 983 |
+| Zeilen je Aktivtag / Lines per active day | 5706.6 |
 | Peak-Tag im Fenster / Peak day in window | 2026-08-01 / 161357 |
 | Peak-Woche im Fenster / Peak week in window | 2026-07-26 / 284516 |
 | Laengste Serie / Longest streak | 38 days |
 | Speedup vs. 80 lines/day | 71.3x |
-| Speedup vs. 100 lines/day | 57.0x |
-| Methodik / Methodology | v2; source `21c6583e1a49` |
+| Speedup vs. 100 lines/day | 57.1x |
+| Methodik / Methodology | v2; source `7b8ebbcf7773` |
 
 ### Artefaktmix / Artifact Mix
 
 ```text
 Produktiv / Production          [#...................]   0.3% | 2237
 Tests                           [#...................]   3.7% | 28654
-Dokumentation / Documentation   [###########.........]  55.1% | 420809
+Dokumentation / Documentation   [###########.........]  55.1% | 421179
 Skripte / Scripts               [##..................]   7.8% | 59519
 Konfiguration / Configuration   [#######.............]  33.1% | 252742
 Daten und Medien / Data and media [....................]   0.0% | 0
@@ -1942,7 +1942,7 @@ Slots 80..86
 | 83 | Feature 032 Flottenabschluss / Feature 032 fleet closeout | 282 |
 | 84 | Dauerhafter Admin-PR-Bypass / Persistent admin PR bypass | 133 |
 | 85 | Storage-Check-only-Make-Härtung / Storage check-only Make hardening | 230 |
-| 86 | Model-Routing-v0.2.5-/Autonomous-v0.4.9-Rollout / Model Routing v0.2.5 and Autonomous v0.4.9 rollout | 4040 |
+| 86 | Model-Routing-v0.2.5-/Autonomous-v0.4.9-Rollout / Model Routing v0.2.6 and Autonomous v0.4.10 rollout | 4040 |
 
 Die festen Slots halten den Phasenvergleich auch bei fehlenden oder spaeter ergaenzten Werten stabil.
 
@@ -1953,7 +1953,7 @@ Die festen Slots halten den Phasenvergleich auch bei fehlenden oder spaeter erga
 ```text
 Scale: 0..100x
 80 lines/day       [##############......] 71.3x
-100 lines/day      [###########.........] 57.0x
+100 lines/day      [###########.........] 57.1x
 ```
 
 Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen Referenzen. Sie messen keine Arbeitszeit.
@@ -1966,7 +1966,7 @@ Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen
 Scale: 0..10000 lines/day
 Experienced manual [#...................] 80
 Thorsten solo      [#...................] 100
-Visible repository [###########.........] 5703.9
+Visible repository [###########.........] 5706.6
 ```
 
 Die gemeinsame Skala vergleicht Referenzen und sichtbare Lieferdichte. Sie schreibt die Git-Aktivitaet keiner Person oder KI pauschal zu.
@@ -1992,6 +1992,6 @@ DE: Das Fenster beginnt am 2025-11-09 und endet am 2026-11-05. Es enthaelt 134 a
 | 2026-08 | 278228 |
 | 2026-09 | 144845 |
 | 2026-10 | 73816 |
-| 2026-11 | 11964 |
+| 2026-11 | 12778 |
 
 <!-- project-statistics-v2:end -->

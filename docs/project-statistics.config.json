@@ -700,9 +700,9 @@
     },
     {
       "slot": 86,
-      "id": "model-routing-v025-autonomous-v049-rollout",
+      "id": "model-routing-v026-autonomous-v0410-rollout",
       "labelDe": "Model-Routing-v0.2.5-/Autonomous-v0.4.9-Rollout",
-      "labelEn": "Model Routing v0.2.5 and Autonomous v0.4.9 rollout",
+      "labelEn": "Model Routing v0.2.6 and Autonomous v0.4.10 rollout",
       "netLines": 4040,
       "activeDays": 1
     }
