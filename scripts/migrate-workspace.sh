@@ -338,10 +338,17 @@ append_readme_section() {
 install_hook_if_needed() {
   local target_dir="$1"
   local hook_src="${HOME}/scripts/hooks/pre-push"
+  local git_dir="${target_dir}/.git"
+  local hooks_dir="${target_dir}/.git/hooks"
   local hook_dst="${target_dir}/.git/hooks/pre-push"
-  [ -d "${target_dir}/.git" ] || return 0
-  [ -f "$hook_src" ] || return 0
-  if [ -f "$hook_dst" ]; then
+  local temporary=""
+  [ -d "$git_dir" ] && [ ! -L "$git_dir" ] || return 0
+  [ -f "$hook_src" ] && [ ! -L "$hook_src" ] || return 0
+  if [ -L "$hooks_dir" ] || [ -L "$hook_dst" ]; then
+    echo "ERROR: .git/hooks enthält einen symbolischen Link: ${target_dir}" >&2
+    return 1
+  fi
+  if [ -e "$hook_dst" ]; then
     echo "  INFO: pre-push hook already installed — skip (${target_dir/#$HOME/~})"
     return 0
   fi
@@ -349,9 +356,24 @@ install_hook_if_needed() {
     echo "  WOULD INSTALL: pre-push hook in ${target_dir/#$HOME/~}"
     return 0
   fi
-  mkdir -p "${target_dir}/.git/hooks"
-  cp "$hook_src" "$hook_dst"
-  chmod +x "$hook_dst"
+  if [ ! -e "$hooks_dir" ]; then
+    mkdir -- "$hooks_dir"
+  fi
+  [ -d "$hooks_dir" ] && [ ! -L "$hooks_dir" ] || {
+    echo "ERROR: .git/hooks ist kein reguläres Verzeichnis: ${target_dir}" >&2
+    return 1
+  }
+  temporary="$(mktemp "${hooks_dir}/.pre-push.XXXXXX")"
+  if ! cp -P -- "$hook_src" "$temporary" || ! chmod +x "$temporary"; then
+    rm -f -- "$temporary"
+    return 1
+  fi
+  if [ -L "$hooks_dir" ] || [ -e "$hook_dst" ] || [ -L "$hook_dst" ]; then
+    rm -f -- "$temporary"
+    echo "ERROR: .git/hooks änderte sich während der Installation: ${target_dir}" >&2
+    return 1
+  fi
+  mv -- "$temporary" "$hook_dst"
   echo "  INSTALLED: pre-push hook in ${target_dir/#$HOME/~}"
 }
 
@@ -437,7 +459,8 @@ stage_owned_paths_and_commit() {
     fi
   done < <(git -C "$repo_dir" -c core.fsmonitor=false diff --cached --name-only --diff-filter=ACDMRTUXB)
   git -C "$repo_dir" -c core.fsmonitor=false diff --cached --quiet && return 0
-  git -C "$repo_dir" -c core.fsmonitor=false -c core.hooksPath=/dev/null commit -m "$message" >/dev/null
+  git -C "$repo_dir" -c core.fsmonitor=false -c core.hooksPath=/dev/null \
+    -c commit.gpgSign=false commit -m "$message" >/dev/null
 }
 
 migrate_workspace() {

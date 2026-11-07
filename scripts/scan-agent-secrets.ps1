@@ -4,6 +4,7 @@
     Prüft git-getrackte Dateien auf Secret-Muster.
 .DESCRIPTION
     Scannt ausschließlich Dateien, die 'git ls-files' kennt (.gitignore wird respektiert).
+    Verweigert Links, Reparse Points, Spezialdateien und getrackte Dateien über 8 MiB.
     Kann manuell oder als Bestandteil eines CI-Checks aufgerufen werden.
 
     Verwendung:
@@ -55,6 +56,130 @@ $SecretContentPatterns = @(
     'AKIA[0-9A-Z]{16}',
     '-----BEGIN (RSA|OPENSSH|EC|DSA) PRIVATE KEY-----'
 )
+$PythonCommand = Get-Command python3 -ErrorAction Stop
+$SafeTrackedScanProgram = @'
+import json, os, pathlib, re, stat, subprocess, sys
+root = pathlib.Path(sys.argv[1]).resolve(strict=True)
+limit = 8 * 1024 * 1024
+patterns = (
+    re.compile(r"(?:id_token|access_token|refresh_token|api[_-]?key|client[_-]?secret|password)\s*[:=]\s*[\"']?[A-Za-z0-9._~+/=-]{8,}", re.I),
+    re.compile(r"--api-key\s+\S{8,}", re.I),
+    re.compile(r"authorization:\s*bearer\s+[A-Za-z0-9._~+/=-]{8,}", re.I),
+    re.compile(r"bearer\s+[A-Za-z0-9._~+/=-]{20,}", re.I),
+    re.compile(r"(?:^|[^A-Za-z0-9])sk-[A-Za-z0-9]{20,}"),
+    re.compile(r"ghp_[A-Za-z0-9]{20,}"),
+    re.compile(r"github_pat_[A-Za-z0-9_]{20,}"),
+    re.compile(r"AIza[0-9A-Za-z_-]{20,}"),
+    re.compile(r"AKIA[0-9A-Z]{16}"),
+    re.compile(r"-----BEGIN (?:RSA|OPENSSH|EC|DSA) PRIVATE KEY-----"),
+)
+
+def read_safe(relative_text):
+    relative = pathlib.PurePath(relative_text)
+    parts = relative.parts
+    if not parts or relative.is_absolute() or ".." in parts:
+        raise OSError("unsafe tracked path")
+    flags = os.O_RDONLY | getattr(os, "O_NOFOLLOW", 0) | getattr(os, "O_BINARY", 0)
+    if os.name != "nt":
+        directory_flags = flags | getattr(os, "O_DIRECTORY", 0)
+        parent = os.open(root, directory_flags)
+        try:
+            for component in parts[:-1]:
+                child = os.open(component, directory_flags, dir_fd=parent)
+                os.close(parent)
+                parent = child
+            metadata = os.stat(parts[-1], dir_fd=parent, follow_symlinks=False)
+            if not stat.S_ISREG(metadata.st_mode):
+                raise OSError("tracked path is not a regular file")
+            descriptor = os.open(parts[-1], flags, dir_fd=parent)
+        finally:
+            os.close(parent)
+    else:
+        candidate = root / relative
+        current = root
+        for component in parts:
+            current /= component
+            metadata = os.lstat(current)
+            if stat.S_ISLNK(metadata.st_mode) or (
+                getattr(metadata, "st_file_attributes", 0)
+                & getattr(stat, "FILE_ATTRIBUTE_REPARSE_POINT", 0)
+            ):
+                raise OSError("tracked path contains a link or reparse point")
+        if not stat.S_ISREG(metadata.st_mode):
+            raise OSError("tracked path is not a regular file")
+        descriptor = os.open(candidate, flags)
+    try:
+        opened = os.fstat(descriptor)
+        if not stat.S_ISREG(opened.st_mode):
+            raise OSError("opened tracked path is not a regular file")
+        if (opened.st_dev, opened.st_ino) != (metadata.st_dev, metadata.st_ino):
+            raise OSError("tracked path changed during validation")
+        if opened.st_size > limit:
+            raise OSError("tracked file exceeds scan byte limit")
+        chunks = []
+        remaining = limit + 1
+        while remaining > 0:
+            chunk = os.read(descriptor, min(65536, remaining))
+            if not chunk:
+                break
+            chunks.append(chunk)
+            remaining -= len(chunk)
+        content = b"".join(chunks)
+        if len(content) > limit:
+            raise OSError("tracked file exceeds scan byte limit")
+        return content
+    finally:
+        os.close(descriptor)
+
+def filtered_lines(relative, text):
+    lines = text.splitlines()
+    if relative == "scripts/scan-agent-secrets.sh":
+        inside = False
+        kept = []
+        for line in lines:
+            if line.strip() == "# HB_SECRET_PATTERN_DEFINITIONS_START": inside = True; continue
+            if line.strip() == "# HB_SECRET_PATTERN_DEFINITIONS_END": inside = False; continue
+            if not inside: kept.append(line)
+        return kept
+    if relative == "scripts/scan-agent-secrets.ps1":
+        inside_patterns = False
+        inside_safe_program = False
+        kept = []
+        for line in lines:
+            if re.match(r"^\$SecretContentPatterns\s*=\s*@\(", line):
+                inside_patterns = True; continue
+            if line.startswith("$SafeTrackedScanProgram = @'"):
+                inside_safe_program = True; continue
+            if inside_patterns and re.match(r"^\)\s*$", line):
+                inside_patterns = False; continue
+            if inside_safe_program and line == "'@":
+                inside_safe_program = False; continue
+            if not inside_patterns and not inside_safe_program: kept.append(line)
+        return kept
+    if relative in {"scripts/hooks/pre-push", "scripts/lib/hg-secrets.sh"}:
+        return [line for line in lines if not re.match(r"^(secret_content_regex|HG_SECRET_PATTERNS)=", line)]
+    if relative == "scripts/lib/hg-secrets.ps1":
+        return [line for line in lines if not re.match(r"^\$HG_SECRET_PATTERN\s*=", line)]
+    if relative.startswith("tests/") or "/tests/" in relative or "/fixtures/" in relative:
+        return [line for line in lines if not re.search(r"password\s*[:=]\s*(?:super-secret|secret-value|literal-fixture-value)|bearer\s+abcdefghijk\b", line, re.I)]
+    return lines
+
+listed = subprocess.run(["git", "-C", os.fspath(root), "ls-files", "-z"], stdout=subprocess.PIPE, check=False)
+if listed.returncode:
+    raise SystemExit(2)
+for raw in listed.stdout.split(b"\0"):
+    if not raw: continue
+    relative = os.fsdecode(raw)
+    try:
+        content = read_safe(relative)
+    except OSError:
+        print(json.dumps({"kind":"error","path":relative}, ensure_ascii=False))
+        continue
+    if b"\0" in content: continue
+    text = content.decode("utf-8", errors="replace")
+    if any(pattern.search(line) for line in filtered_lines(relative, text) for pattern in patterns):
+        print(json.dumps({"kind":"hit","path":relative}, ensure_ascii=False))
+'@
 
 # --- Repository-Root ermitteln -------------------------------------------------------
 
@@ -123,56 +248,21 @@ $nameHits = $trackedFiles | Where-Object {
 
 # --- Scan: Dateiinhalte (Select-String) ----------------------------------------------
 
-function Get-HBSecretScanContent {
-    param([Parameter(Mandatory)][string]$Path)
-
-    $relative = [IO.Path]::GetRelativePath($rootPath, $Path).Replace('\', '/')
-    $lines = @(
-        Get-Content -LiteralPath $Path -ErrorAction Stop |
-            Where-Object {
-                $_ -notmatch '(?i)password\s*[:=]\s*(super-secret|secret-value|literal-fixture-value)' `
-                    -and $_ -notmatch '(?i)bearer\s+abcdefghijk\b'
-            }
-    )
-    switch ($relative) {
-        'scripts/hooks/pre-push' {
-            return @($lines | Where-Object { $_ -notmatch '^secret_content_regex=' })
-        }
-        'scripts/scan-agent-secrets.sh' {
-            return @($lines | Where-Object { $_ -notmatch '^secret_content_regex=' })
-        }
-        'scripts/lib/hg-secrets.sh' {
-            return @($lines | Where-Object { $_ -notmatch '^HG_SECRET_PATTERNS=' })
-        }
-        'scripts/lib/hg-secrets.ps1' {
-            return @($lines | Where-Object { $_ -notmatch '^\$HG_SECRET_PATTERN\s*=' })
-        }
-        'scripts/scan-agent-secrets.ps1' {
-            $filtered = [Collections.Generic.List[string]]::new()
-            $insidePatterns = $false
-            foreach ($line in $lines) {
-                if ($line -match '^\$SecretContentPatterns\s*=\s*@\(') { $insidePatterns = $true; continue }
-                if ($insidePatterns -and $line -match '^\)\s*$') { $insidePatterns = $false; continue }
-                if (-not $insidePatterns) { $filtered.Add($line) }
-            }
-            return @($filtered)
-        }
-        default { return $lines }
-    }
-}
-
 $contentHits = [Collections.Generic.List[string]]::new()
 $scanErrors = [Collections.Generic.List[string]]::new()
-foreach ($file in $trackedFiles) {
-    if (-not (Test-Path -LiteralPath $file -PathType Leaf)) { continue }
-    try {
-        $content = (Get-HBSecretScanContent -Path $file) -join "`n"
-    } catch {
-        $scanErrors.Add($file)
-        continue
-    }
-    if ($content | Select-String -Pattern $SecretContentPatterns -Quiet) {
-        $contentHits.Add($file)
+$scanOutput = @(& $PythonCommand.Source -c $SafeTrackedScanProgram $rootPath 2>$null)
+if ($LASTEXITCODE -ne 0) {
+    $scanErrors.Add($rootPath)
+} else {
+    foreach ($line in $scanOutput) {
+        try {
+            $result = $line | ConvertFrom-Json -ErrorAction Stop
+            $absolute = Join-Path $rootPath ([string]$result.path)
+            if ($result.kind -eq 'error') { $scanErrors.Add($absolute) }
+            elseif ($result.kind -eq 'hit') { $contentHits.Add($absolute) }
+        } catch {
+            $scanErrors.Add($rootPath)
+        }
     }
 }
 

@@ -455,7 +455,10 @@ Bericht, Log und nächste Aktion als kopierbaren Text.
 
 Elternkomponenten und Zieldatei des Ereigniskanals werden vor der Anlage
 link-sicher geprüft. Ein bereits vorhandenes oder umgeleitetes Ziel blockiert
-den Start; die neue Datei wird privat und exklusiv angelegt.
+den Start; die neue Datei wird privat und exklusiv angelegt. Unter Windows
+wird der erste Ereignisdatensatz erst nach einer Owner-only-DACL veröffentlicht.
+Ein vorhandener Ereigniskanal wird vor jedem Append erneut gehärtet; ein
+ACL-Fehler bricht vor neuen Ereignisbytes ab.
 
 Die Frontends begrenzen gespeicherte Kindprozessausgaben, einzelne
 Ereignisdatensätze, den Ereigniskanal, die Anzahl vorgehaltener Ereignisse und
@@ -489,7 +492,10 @@ process exit remain canonical. The final view keeps the mutation barrier,
 repository counts, preset phase, report, log, and next action copyable. The
 event channel's parent components and target are checked against links before
 creation. An existing or redirected target blocks startup; a new file is
-created privately and exclusively. The
+created privately and exclusively. On Windows, the first event record is not
+published until an owner-only DACL has been applied; an existing stream is
+rehardened before every append and ACL failure aborts before new event bytes.
+The
 frontends place fixed limits on retained child output, individual events, the
 event stream, retained event count, and the final report. PowerShell output
 overflow fails closed; the TUI discards excess presentation data or degrades

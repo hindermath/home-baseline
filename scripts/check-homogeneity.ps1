@@ -27,6 +27,7 @@ $requiredHgFunctions = @(
     'Invoke-HgCheckDeps',
     'Invoke-HgCheckHook',
     'Invoke-HgCheckSpeckit',
+    'Add-HgPatchContentSafely',
     'Invoke-HgScan',
     'Invoke-HgScanFileSecrets',
     'Invoke-HgWriteStats'
@@ -168,7 +169,12 @@ if ($ApplyPatch) {
             }
         }
         foreach ($entry in $patchEntries) {
-            Add-Content -LiteralPath $entry.Target -Value $entry.Content
+            try {
+                Add-HgPatchContentSafely -Root $TargetDir -Target $entry.Target -Content $entry.Content
+            } catch {
+                Write-Error "FATAL: $($_.Exception.Message)"
+                exit 2
+            }
         }
         $patchCount = $patchEntries.Count
         git -C $TargetDir add -A 2>$null

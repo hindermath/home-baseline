@@ -35,6 +35,14 @@ and both variants scan every Git-tracked file across the repository. Bash
 consumes Git's NUL-delimited names literally through Python 3, so a clean
 checkout without a local diff is still covered.*
 
+Getrackte Inhalte werden nur aus regulaeren, nicht verlinkten Dateien gelesen.
+Symbolische Links, Reparse Points, Spezialdateien und Dateien ueber 8 MiB gelten
+als unvollstaendig pruefbar und erzeugen einen HIGH-Befund, ohne Zielinhalt
+auszugeben. *Tracked content is read only from regular, unlinked files.
+Symbolic links, reparse points, special files, and files larger than 8 MiB are
+treated as incomplete scans and produce a HIGH finding without printing target
+content.*
+
 Der gemeinsame `pre-push`-Hook nutzt `gitleaks` separat fuer die zu pushenden
 Commit-Ranges. Fehlt `gitleaks`, prueft der Regex-Fallback auch die Blob-Inhalte
 und Dateinamen jedes ausgehenden Commits, einschliesslich spaeter geloeschter

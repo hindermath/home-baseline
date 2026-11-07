@@ -652,12 +652,15 @@ def _atomic_private_bytes(path: pathlib.Path, encoded: bytes, *, stage_b_acl: bo
         temporary = pathlib.Path(temporary_name)
         try:
             os.fchmod(descriptor, 0o600)
+            if stage_b_acl:
+                # Windows fchmod does not establish an owner-only DACL. Apply
+                # the access boundary while the empty temporary file is still
+                # open and before any evidence byte is written.
+                _restrict_stage_b_evidence_permissions(temporary)
             with os.fdopen(descriptor, "wb", closefd=True) as stream:
                 stream.write(encoded)
                 stream.flush()
                 os.fsync(stream.fileno())
-            if stage_b_acl:
-                _restrict_stage_b_evidence_permissions(temporary)
             path = _prepare_private_output_path(path)
             os.replace(temporary, path)
             _sync_stage_b_evidence_metadata(path)
@@ -4311,6 +4314,15 @@ def append_maintenance_event(args: argparse.Namespace) -> int:
         flags = os.O_APPEND | os.O_CREAT | os.O_WRONLY | getattr(os, "O_NOFOLLOW", 0)
         parent_fd = None
         if os.name == "nt":
+            event_stream = _prepare_private_output_path(event_stream)
+            if not event_stream.exists():
+                # Publish the first record only after the owner-only DACL is on
+                # the temporary file; inherited parent ACLs never protect data.
+                _atomic_private_bytes(event_stream, encoded, stage_b_acl=True)
+                return 0
+            # Existing streams may predate the hardened writer or have had
+            # their ACL changed. Fail closed before appending another byte.
+            _restrict_stage_b_evidence_permissions(event_stream)
             event_stream = _prepare_private_output_path(event_stream)
             descriptor = os.open(event_stream, flags, 0o600)
         else:

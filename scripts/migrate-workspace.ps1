@@ -303,10 +303,26 @@ function Add-ReadmeSection {
 function Install-HookIfNeeded {
     param([string]$TargetDir)
     $hookSrc = Join-Path $HomeDir 'scripts/hooks/pre-push'
+    $gitDir = Join-Path $TargetDir '.git'
+    $hooksDir = Join-Path $gitDir 'hooks'
     $hookDst = Join-Path $TargetDir '.git/hooks/pre-push'
-    if (-not (Test-Path (Join-Path $TargetDir '.git'))) { return $false }
-    if (-not (Test-Path $hookSrc)) { return $false }
-    if (Test-Path $hookDst) {
+    if (-not (Test-Path -LiteralPath $gitDir -PathType Container)) { return $false }
+    $gitItem = Get-Item -LiteralPath $gitDir -Force
+    if ($gitItem.LinkType -or ($gitItem.Attributes -band [IO.FileAttributes]::ReparsePoint)) {
+        throw ".git ist kein reguläres Verzeichnis: $TargetDir"
+    }
+    if (-not (Test-Path -LiteralPath $hookSrc -PathType Leaf)) { return $false }
+    $sourceItem = Get-Item -LiteralPath $hookSrc -Force
+    if ($sourceItem.LinkType -or ($sourceItem.Attributes -band [IO.FileAttributes]::ReparsePoint)) {
+        throw "Hook-Quelle ist verlinkt: $hookSrc"
+    }
+    $existingHooks = Get-Item -LiteralPath $hooksDir -Force -ErrorAction SilentlyContinue
+    $existingHook = Get-Item -LiteralPath $hookDst -Force -ErrorAction SilentlyContinue
+    if (($existingHooks -and ($existingHooks.LinkType -or ($existingHooks.Attributes -band [IO.FileAttributes]::ReparsePoint))) `
+        -or ($existingHook -and ($existingHook.LinkType -or ($existingHook.Attributes -band [IO.FileAttributes]::ReparsePoint)))) {
+        throw ".git/hooks enthält einen Link oder Reparse Point: $TargetDir"
+    }
+    if ($existingHook) {
         Write-Host "  INFO: pre-push hook already installed — skip ($($TargetDir -replace [regex]::Escape($HomeDir), '~'))"
         return $false
     }
@@ -314,9 +330,26 @@ function Install-HookIfNeeded {
         Write-Host "  WOULD INSTALL: pre-push hook in $($TargetDir -replace [regex]::Escape($HomeDir), '~')"
         return $true
     }
-    $hooksDir = Join-Path $TargetDir '.git/hooks'
-    New-Item -ItemType Directory -Path $hooksDir -Force | Out-Null
-    Copy-Item $hookSrc $hookDst
+    if (-not $existingHooks) {
+        New-Item -ItemType Directory -Path $hooksDir | Out-Null
+    }
+    $hooksItem = Get-Item -LiteralPath $hooksDir -Force
+    if (-not $hooksItem.PSIsContainer -or $hooksItem.LinkType `
+        -or ($hooksItem.Attributes -band [IO.FileAttributes]::ReparsePoint)) {
+        throw ".git/hooks ist kein reguläres Verzeichnis: $TargetDir"
+    }
+    $temporary = Join-Path $hooksDir ('.pre-push.' + [Guid]::NewGuid().ToString('N') + '.tmp')
+    try {
+        [IO.File]::Copy($sourceItem.FullName, $temporary, $false)
+        $hooksItem = Get-Item -LiteralPath $hooksDir -Force
+        $existingHook = Get-Item -LiteralPath $hookDst -Force -ErrorAction SilentlyContinue
+        if ($hooksItem.LinkType -or ($hooksItem.Attributes -band [IO.FileAttributes]::ReparsePoint) -or $existingHook) {
+            throw ".git/hooks änderte sich während der Installation: $TargetDir"
+        }
+        [IO.File]::Move($temporary, $hookDst, $false)
+    } finally {
+        if (Test-Path -LiteralPath $temporary) { Remove-Item -LiteralPath $temporary -Force }
+    }
     Write-Host "  INSTALLED: pre-push hook in $($TargetDir -replace [regex]::Escape($HomeDir), '~')"
     return $true
 }
@@ -379,7 +412,8 @@ function Invoke-OwnedPathsCommit {
         if ($cachedPath -notin $OwnedPaths) { throw "Unerwarteter Pfad im Git-Index: $cachedPath" }
     }
     if ($cachedPaths.Count -eq 0) { return $false }
-    & git -C $RepositoryDir -c core.fsmonitor=false -c core.hooksPath=/dev/null commit -m $Message 2>$null | Out-Null
+    & git -C $RepositoryDir -c core.fsmonitor=false -c core.hooksPath=/dev/null `
+        -c commit.gpgSign=false commit -m $Message 2>$null | Out-Null
     if ($LASTEXITCODE -ne 0) { throw "Commit fehlgeschlagen: $RepositoryDir" }
     return $true
 }

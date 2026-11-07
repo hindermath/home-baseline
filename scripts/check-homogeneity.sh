@@ -27,6 +27,7 @@ required_hg_functions=(
   hg_check_deps
   hg_check_hook
   hg_check_speckit
+  hg_append_patch_content
   hg_generate_patch
   hg_scan
   hg_scan_file_secrets
@@ -172,7 +173,11 @@ if [ -n "$OPT_APPLY_PATCH" ]; then
       }
     done
     for patch_index in "${!patch_targets[@]}"; do
-      printf '%s\n' "${patch_contents[$patch_index]}" >> "${patch_targets[$patch_index]}"
+      hg_append_patch_content "$TARGET_DIR" "${patch_targets[$patch_index]}" \
+        "${patch_contents[$patch_index]}" || {
+        echo "FATAL: patch target changed or could not be replaced safely" >&2
+        exit 2
+      }
     done
     git -C "$TARGET_DIR" add -A 2>/dev/null || true
     git -C "$TARGET_DIR" commit -m "chore: apply memory-patch -- ${patch_count} entries updated" 2>/dev/null || true

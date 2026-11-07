@@ -594,6 +594,12 @@ PY
         self.assertIn("_open_private_parent_fd(event_stream)", engine_source)
         self.assertIn("dir_fd=parent_fd", engine_source)
         self.assertIn('getattr(os, "O_NOFOLLOW", 0)', engine_source)
+        self.assertIn("_atomic_private_bytes(event_stream, encoded, stage_b_acl=True)", engine_source)
+        self.assertIn("_restrict_stage_b_evidence_permissions(event_stream)", engine_source)
+        atomic_start = engine_source.index("def _atomic_private_bytes")
+        acl_before_write = engine_source.index("_restrict_stage_b_evidence_permissions(temporary)", atomic_start)
+        first_payload_write = engine_source.index("stream.write(encoded)", atomic_start)
+        self.assertLess(acl_before_write, first_payload_write)
 
     def test_event_writer_rejects_non_object_details(self) -> None:
         with tempfile.TemporaryDirectory() as directory:

@@ -92,10 +92,12 @@ run_tracked_repository_fallback() {
 import os
 import pathlib
 import re
+import stat
 import subprocess
 import sys
 
-root = pathlib.Path(sys.argv[1])
+root = pathlib.Path(sys.argv[1]).resolve(strict=True)
+maximum_tracked_file_bytes = 8 * 1024 * 1024
 listed = subprocess.run(
     ["git", "-C", os.fspath(root), "ls-files", "-z"],
     stdout=subprocess.PIPE,
@@ -140,16 +142,23 @@ def filtered_lines(relative: str, text: str):
                 kept.append(line)
         lines = kept
     elif relative == "scripts/scan-agent-secrets.ps1":
-        inside = False
+        inside_patterns = False
+        inside_safe_program = False
         kept = []
         for line in lines:
             if re.match(r"^\$SecretContentPatterns\s*=\s*@\(", line):
-                inside = True
+                inside_patterns = True
                 continue
-            if inside and re.match(r"^\)\s*$", line):
-                inside = False
+            if line.startswith("$SafeTrackedScanProgram = @'"):
+                inside_safe_program = True
                 continue
-            if not inside:
+            if inside_patterns and re.match(r"^\)\s*$", line):
+                inside_patterns = False
+                continue
+            if inside_safe_program and line == "'@":
+                inside_safe_program = False
+                continue
+            if not inside_patterns and not inside_safe_program:
                 kept.append(line)
         lines = kept
     elif relative in {"scripts/hooks/pre-push", "scripts/lib/hg-secrets.sh"}:
@@ -166,6 +175,64 @@ def filtered_lines(relative: str, text: str):
 
 hits = set()
 errors = set()
+
+def read_tracked_regular_file(relative: str) -> bytes:
+    candidate = root / relative
+    parts = pathlib.PurePath(relative).parts
+    if not parts or pathlib.PurePath(relative).is_absolute() or ".." in parts:
+        raise OSError("unsafe tracked path")
+    flags = os.O_RDONLY | getattr(os, "O_NOFOLLOW", 0) | getattr(os, "O_BINARY", 0)
+    if os.name != "nt":
+        directory_flags = flags | getattr(os, "O_DIRECTORY", 0)
+        parent = os.open(root, directory_flags)
+        try:
+            for component in parts[:-1]:
+                child = os.open(component, directory_flags, dir_fd=parent)
+                os.close(parent)
+                parent = child
+            metadata = os.stat(parts[-1], dir_fd=parent, follow_symlinks=False)
+            if not stat.S_ISREG(metadata.st_mode):
+                raise OSError("tracked path is not a regular file")
+            descriptor = os.open(parts[-1], flags, dir_fd=parent)
+        finally:
+            os.close(parent)
+    else:
+        current = root
+        for component in parts:
+            current /= component
+            metadata = os.lstat(current)
+            is_reparse = bool(
+                getattr(metadata, "st_file_attributes", 0)
+                & getattr(stat, "FILE_ATTRIBUTE_REPARSE_POINT", 0)
+            )
+            if stat.S_ISLNK(metadata.st_mode) or is_reparse:
+                raise OSError("tracked path contains a link or reparse point")
+        if not stat.S_ISREG(metadata.st_mode):
+            raise OSError("tracked path is not a regular file")
+        descriptor = os.open(candidate, flags)
+    try:
+        opened = os.fstat(descriptor)
+        if not stat.S_ISREG(opened.st_mode):
+            raise OSError("opened tracked path is not a regular file")
+        if (opened.st_dev, opened.st_ino) != (metadata.st_dev, metadata.st_ino):
+            raise OSError("tracked path changed during validation")
+        if opened.st_size > maximum_tracked_file_bytes:
+            raise OSError("tracked file exceeds scan byte limit")
+        chunks = []
+        remaining = maximum_tracked_file_bytes + 1
+        while remaining > 0:
+            chunk = os.read(descriptor, min(65536, remaining))
+            if not chunk:
+                break
+            chunks.append(chunk)
+            remaining -= len(chunk)
+        content = b"".join(chunks)
+        if len(content) > maximum_tracked_file_bytes:
+            raise OSError("tracked file exceeds scan byte limit")
+        return content
+    finally:
+        os.close(descriptor)
+
 for raw in listed.stdout.split(b"\0"):
     if not raw:
         continue
@@ -176,9 +243,8 @@ for raw in listed.stdout.split(b"\0"):
         name_allowed = False
     if not name_allowed and not allowed_names.search(relative) and any(pattern.search(relative) for pattern in name_patterns):
         hits.add(relative)
-    path = root / relative
     try:
-        content = path.read_bytes()
+        content = read_tracked_regular_file(relative)
     except OSError:
         errors.add(relative)
         continue

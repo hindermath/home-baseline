@@ -53,6 +53,15 @@ class WorkspaceMigrationSecurityTests(unittest.TestCase):
             check=False,
         )
 
+    def run_powershell(self) -> subprocess.CompletedProcess[str]:
+        env = os.environ.copy()
+        env["HOME"] = str(self.home)
+        return subprocess.run(
+            [shutil.which("pwsh"), "-NoProfile", "-File", str(WORKSPACE_PS1),
+             "-WorkspaceName", "Workspace", "-Force"],
+            env=env, text=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, check=False,
+        )
+
     def test_bash_rejects_clean_tracked_symlink_without_external_write(self) -> None:
         sentinel = Path(self.temporary.name) / "sentinel.md"
         sentinel.write_text("unchanged\n", encoding="utf-8")
@@ -134,6 +143,46 @@ class WorkspaceMigrationSecurityTests(unittest.TestCase):
         self.assertIn("FSMonitor-Hook", result.stdout)
         self.assertFalse(marker.exists(), result.stdout)
 
+    def test_bash_disables_repository_signing_program_for_automatic_commit(self) -> None:
+        (self.workspace / "README.md").write_text("# Fixture\n", encoding="utf-8")
+        self.commit_fixture()
+        marker = Path(self.temporary.name) / "signer-ran"
+        signer = Path(self.temporary.name) / "signer.sh"
+        signer.write_text(f"#!/usr/bin/env bash\nprintf ran > '{marker}'\nexit 1\n", encoding="utf-8")
+        signer.chmod(0o755)
+        subprocess.run(["git", "-C", str(self.workspace), "config", "commit.gpgSign", "true"], check=True)
+        subprocess.run(["git", "-C", str(self.workspace), "config", "gpg.program", str(signer)], check=True)
+
+        result = self.run_bash()
+
+        self.assertEqual(result.returncode, 0, result.stdout)
+        self.assertFalse(marker.exists(), result.stdout)
+
+    def test_bash_rejects_linked_git_hooks_directory_without_external_write(self) -> None:
+        (self.workspace / "README.md").write_text("# Workspace\n", encoding="utf-8")
+        self.commit_fixture()
+        project = self.workspace / "Project"
+        project.mkdir()
+        subprocess.run(["git", "init", "-q", str(project)], check=True)
+        subprocess.run(["git", "-C", str(project), "config", "user.name", "Security Test"], check=True)
+        subprocess.run(["git", "-C", str(project), "config", "user.email", "security@example.invalid"], check=True)
+        (project / "README.md").write_text("# Project\n", encoding="utf-8")
+        subprocess.run(["git", "-C", str(project), "add", "README.md"], check=True)
+        subprocess.run(["git", "-C", str(project), "commit", "-q", "-m", "fixture"], check=True)
+        hooks = project / ".git" / "hooks"
+        shutil.rmtree(hooks)
+        outside = Path(self.temporary.name) / "outside-hooks"
+        outside.mkdir()
+        hooks.symlink_to(outside, target_is_directory=True)
+        source = self.home / "scripts" / "hooks" / "pre-push"
+        source.parent.mkdir(parents=True)
+        source.write_text("#!/usr/bin/env bash\n", encoding="utf-8")
+
+        result = self.run_bash()
+
+        self.assertNotEqual(result.returncode, 0, result.stdout)
+        self.assertFalse((outside / "pre-push").exists(), result.stdout)
+
     @unittest.skipUnless(shutil.which("pwsh"), "PowerShell 7 is unavailable")
     def test_powershell_rejects_preexisting_untracked_file(self) -> None:
         (self.workspace / "README.md").write_text("# Fixture\n", encoding="utf-8")
@@ -160,6 +209,48 @@ class WorkspaceMigrationSecurityTests(unittest.TestCase):
             check=True,
         ).stdout
         self.assertIn("?? unrelated.txt", status)
+
+    @unittest.skipUnless(shutil.which("pwsh"), "PowerShell 7 is unavailable")
+    def test_powershell_disables_repository_signing_program_for_automatic_commit(self) -> None:
+        (self.workspace / "README.md").write_text("# Fixture\n", encoding="utf-8")
+        self.commit_fixture()
+        marker = Path(self.temporary.name) / "ps-signer-ran"
+        signer = Path(self.temporary.name) / "ps-signer.sh"
+        signer.write_text(f"#!/usr/bin/env bash\nprintf ran > '{marker}'\nexit 1\n", encoding="utf-8")
+        signer.chmod(0o755)
+        subprocess.run(["git", "-C", str(self.workspace), "config", "commit.gpgSign", "true"], check=True)
+        subprocess.run(["git", "-C", str(self.workspace), "config", "gpg.program", str(signer)], check=True)
+
+        result = self.run_powershell()
+
+        self.assertEqual(result.returncode, 0, result.stdout)
+        self.assertFalse(marker.exists(), result.stdout)
+
+    @unittest.skipUnless(shutil.which("pwsh"), "PowerShell 7 is unavailable")
+    def test_powershell_rejects_linked_git_hooks_directory_without_external_write(self) -> None:
+        (self.workspace / "README.md").write_text("# Workspace\n", encoding="utf-8")
+        self.commit_fixture()
+        project = self.workspace / "Project"
+        project.mkdir()
+        subprocess.run(["git", "init", "-q", str(project)], check=True)
+        subprocess.run(["git", "-C", str(project), "config", "user.name", "Security Test"], check=True)
+        subprocess.run(["git", "-C", str(project), "config", "user.email", "security@example.invalid"], check=True)
+        (project / "README.md").write_text("# Project\n", encoding="utf-8")
+        subprocess.run(["git", "-C", str(project), "add", "README.md"], check=True)
+        subprocess.run(["git", "-C", str(project), "commit", "-q", "-m", "fixture"], check=True)
+        hooks = project / ".git" / "hooks"
+        shutil.rmtree(hooks)
+        outside = Path(self.temporary.name) / "ps-outside-hooks"
+        outside.mkdir()
+        hooks.symlink_to(outside, target_is_directory=True)
+        source = self.home / "scripts" / "hooks" / "pre-push"
+        source.parent.mkdir(parents=True)
+        source.write_text("#!/usr/bin/env bash\n", encoding="utf-8")
+
+        result = self.run_powershell()
+
+        self.assertNotEqual(result.returncode, 0, result.stdout)
+        self.assertFalse((outside / "pre-push").exists(), result.stdout)
 
 
 @unittest.skipUnless(shutil.which("pwsh"), "PowerShell 7 is unavailable")

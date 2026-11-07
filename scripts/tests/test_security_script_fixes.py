@@ -442,6 +442,81 @@ class PushHookHistoryTests(unittest.TestCase):
             self.assertEqual(result.returncode, 2, result.stdout + result.stderr)
             self.assertIn("konnten nicht gelesen", result.stdout)
 
+    @unittest.skipIf(os.name == "nt", "POSIX symbolic-link fixture")
+    def test_tracked_symlink_is_rejected_without_reading_external_content(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            repo = root / "repo"
+            repo.mkdir()
+            self.run_git(repo, "init", "-b", "main")
+            external = root / "external.txt"
+            fake_key = "AKIA" + "QWERTYUIOPASDFGH"
+            external.write_text(fake_key + "\n", encoding="utf-8")
+            (repo / "linked.txt").symlink_to(external)
+            self.run_git(repo, "add", "linked.txt")
+
+            binaries = root / "bin"
+            binaries.mkdir()
+            for name in ("git", "rg", "find", "sort", "python3"):
+                resolved = shutil.which(name)
+                self.assertIsNotNone(resolved, name)
+                (binaries / name).symlink_to(Path(resolved))
+            env = os.environ.copy()
+            env["PATH"] = str(binaries)
+
+            bash_result = subprocess.run(
+                [shutil.which("bash"), str(ROOT / "scripts/scan-agent-secrets.sh"), "--fail-on-high", str(repo)],
+                env=env, text=True, capture_output=True,
+            )
+            self.assertEqual(bash_result.returncode, 2, bash_result.stdout + bash_result.stderr)
+            self.assertIn("tracked file could not be read", bash_result.stdout)
+            self.assertNotIn(fake_key, bash_result.stdout + bash_result.stderr)
+
+            if shutil.which("pwsh"):
+                powershell_result = subprocess.run(
+                    [shutil.which("pwsh"), "-NoProfile", "-File", str(ROOT / "scripts/scan-agent-secrets.ps1"),
+                     "-WorkspaceRoot", str(repo), "-FailOnHigh"],
+                    env=env, text=True, capture_output=True,
+                )
+                self.assertEqual(powershell_result.returncode, 2, powershell_result.stdout + powershell_result.stderr)
+                self.assertIn("konnten nicht gelesen", powershell_result.stdout)
+                self.assertNotIn(fake_key, powershell_result.stdout + powershell_result.stderr)
+
+                external.unlink()
+                dangling = subprocess.run(
+                    [shutil.which("pwsh"), "-NoProfile", "-File", str(ROOT / "scripts/scan-agent-secrets.ps1"),
+                     "-WorkspaceRoot", str(repo), "-FailOnHigh"],
+                    env=env, text=True, capture_output=True,
+                )
+                self.assertEqual(dangling.returncode, 2, dangling.stdout + dangling.stderr)
+                self.assertIn("konnten nicht gelesen", dangling.stdout)
+
+    @unittest.skipIf(os.name == "nt", "Sparse-file fixture")
+    def test_bash_fallback_rejects_oversized_tracked_file(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            repo = root / "repo"
+            repo.mkdir()
+            self.run_git(repo, "init", "-b", "main")
+            oversized = repo / "oversized.txt"
+            with oversized.open("wb") as stream:
+                stream.truncate(8 * 1024 * 1024 + 1)
+            self.run_git(repo, "add", "oversized.txt")
+            result = subprocess.run(
+                ["bash", str(ROOT / "scripts/scan-agent-secrets.sh"), "--fail-on-high", str(repo)],
+                text=True, capture_output=True,
+            )
+            self.assertEqual(result.returncode, 2, result.stdout + result.stderr)
+            self.assertIn("oversized.txt", result.stdout)
+            if shutil.which("pwsh"):
+                powershell = subprocess.run(
+                    [shutil.which("pwsh"), "-NoProfile", "-File", str(ROOT / "scripts/scan-agent-secrets.ps1"),
+                     "-WorkspaceRoot", str(repo), "-FailOnHigh"],
+                    text=True, capture_output=True,
+                )
+                self.assertEqual(powershell.returncode, 2, powershell.stdout + powershell.stderr)
+                self.assertIn("oversized.txt", powershell.stdout)
+
 
 class AgentIgnorePolicyTests(unittest.TestCase):
     def test_all_migration_and_homogeneity_variants_use_effective_git_policy(self) -> None:

@@ -284,6 +284,45 @@ class HighFindingRegressionTests(unittest.TestCase):
             self.assertNotEqual(process.returncode, 0, stdout + stderr)
             self.assertEqual(outside.read_text(encoding="utf-8"), "outside\n")
 
+    @unittest.skipIf(os.name == "nt", "POSIX hard-link fixture")
+    def test_memory_patch_replaces_hardlink_without_modifying_outside_inode(self) -> None:
+        for implementation in ("bash", "pwsh"):
+            if implementation == "pwsh" and not shutil.which("pwsh"):
+                continue
+            with self.subTest(implementation=implementation), tempfile.TemporaryDirectory() as tmp:
+                base = Path(tmp)
+                target = base / "target"
+                target.mkdir()
+                outside = base / "outside.md"
+                outside.write_text("outside\n", encoding="utf-8")
+                inside = target / "AGENTS.md"
+                os.link(outside, inside)
+                patch = base / "patch.md"
+                patch.write_text("### Target: AGENTS.md\n\n+++ appended\n", encoding="utf-8")
+                if implementation == "bash":
+                    result = run("bash", str(SCRIPTS / "check-homogeneity.sh"), "--apply-patch", str(patch), "--yes", str(target))
+                else:
+                    result = run("pwsh", "-NoProfile", "-File", str(SCRIPTS / "check-homogeneity.ps1"),
+                                 "-TargetDir", str(target), "-ApplyPatch", str(patch), "-Yes")
+                self.assertEqual(outside.read_text(encoding="utf-8"), "outside\n")
+                if implementation == "pwsh":
+                    self.assertNotEqual(result.returncode, 0, result.stdout + result.stderr)
+                    self.assertEqual(inside.stat().st_ino, outside.stat().st_ino)
+                else:
+                    self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+                    self.assertEqual(inside.read_text(encoding="utf-8"), "outside\nappended\n")
+                    self.assertNotEqual(inside.stat().st_ino, outside.stat().st_ino)
+
+                inside.unlink()
+                inside.write_text("inside\n", encoding="utf-8")
+                if implementation == "bash":
+                    control = run("bash", str(SCRIPTS / "check-homogeneity.sh"), "--apply-patch", str(patch), "--yes", str(target))
+                else:
+                    control = run("pwsh", "-NoProfile", "-File", str(SCRIPTS / "check-homogeneity.ps1"),
+                                  "-TargetDir", str(target), "-ApplyPatch", str(patch), "-Yes")
+                self.assertEqual(control.returncode, 0, control.stdout + control.stderr)
+                self.assertEqual(inside.read_text(encoding="utf-8"), "inside\nappended\n")
+
     def test_teardown_rejects_deceptive_remote_before_deletion(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             fake_home = Path(tmp)
