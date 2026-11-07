@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import hashlib
+import importlib.util
 import os
 from pathlib import Path
 import shutil
@@ -11,6 +12,7 @@ import stat
 import subprocess
 import tempfile
 import unittest
+from unittest import mock
 import zipfile
 
 
@@ -241,6 +243,22 @@ class LearningPackageSecurityTests(unittest.TestCase):
             )
             self.assertNotEqual(result.returncode, 0, result.stdout + result.stderr)
             self.assertFalse(destination.exists())
+
+    def test_windows_copy_opens_the_regular_file_not_its_directory(self) -> None:
+        helper = SCRIPTS / "lib/learning_package_archive.py"
+        specification = importlib.util.spec_from_file_location("learning_package_archive_windows_test", helper)
+        self.assertIsNotNone(specification)
+        self.assertIsNotNone(specification.loader)
+        module = importlib.util.module_from_spec(specification)
+        specification.loader.exec_module(module)
+        with tempfile.TemporaryDirectory() as tmp:
+            base = Path(tmp)
+            source = base / "guide.md"
+            destination = base / "stage" / "guide.md"
+            source.write_text("safe\n", encoding="utf-8")
+            with mock.patch.object(module.os, "name", "nt"):
+                module.copy_regular_nofollow(source, destination)
+            self.assertEqual(destination.read_text(encoding="utf-8"), "safe\n")
 
     def test_bash_dry_run_does_not_require_gitleaks(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:

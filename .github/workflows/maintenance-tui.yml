@@ -46,7 +46,7 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y ripgrep
-          go install github.com/gitleaks/gitleaks/v8@v8.30.1
+          go install github.com/zricethezav/gitleaks/v8@v8.30.1
           echo "$(go env GOPATH)/bin" >> "$GITHUB_PATH"
 
       - name: Install required test tools (macOS)
@@ -54,7 +54,7 @@ jobs:
         shell: bash
         run: |
           brew install ripgrep
-          go install github.com/gitleaks/gitleaks/v8@v8.30.1
+          go install github.com/zricethezav/gitleaks/v8@v8.30.1
           echo "$(go env GOPATH)/bin" >> "$GITHUB_PATH"
 
       - name: Install required test tools (Windows)
@@ -82,7 +82,8 @@ jobs:
           Expand-Archive -LiteralPath $archivePath -DestinationPath $extractRoot -Force
           $binPath = Join-Path $extractRoot "ripgrep-${version}-x86_64-pc-windows-msvc"
           $binPath | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
-          go install github.com/gitleaks/gitleaks/v8@v8.30.1
+          go install github.com/zricethezav/gitleaks/v8@v8.30.1
+          if ($LASTEXITCODE -ne 0) { throw 'Pinned gitleaks installation failed.' }
           (Join-Path (& go env GOPATH) 'bin') | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
 
       - name: Restore locked projects

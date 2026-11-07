@@ -100,6 +100,20 @@ def inspect_archive(archive: Path) -> list[tuple[zipfile.ZipInfo, PurePosixPath,
 def _open_regular_nofollow(source: Path) -> int:
     absolute = source.absolute()
     nofollow = getattr(os, "O_NOFOLLOW", 0)
+    if os.name == "nt":
+        information = os.lstat(absolute)
+        reparse_point = getattr(stat, "FILE_ATTRIBUTE_REPARSE_POINT", 0x400)
+        attributes = getattr(information, "st_file_attributes", 0)
+        if not stat.S_ISREG(information.st_mode) or attributes & reparse_point:
+            raise ArchiveError(f"Quelle ist keine regulaere Datei: {source}")
+        flags = os.O_RDONLY | getattr(os, "O_BINARY", 0) | getattr(os, "O_NOINHERIT", 0)
+        descriptor = os.open(absolute, flags)
+        opened = os.fstat(descriptor)
+        if (opened.st_dev, opened.st_ino) != (information.st_dev, information.st_ino):
+            os.close(descriptor)
+            raise ArchiveError(f"Quelle wurde waehrend des Oeffnens ersetzt: {source}")
+        return descriptor
+
     parent = absolute.parent.resolve(strict=True)
     directory = os.open(parent, os.O_RDONLY | getattr(os, "O_DIRECTORY", 0))
     try:
