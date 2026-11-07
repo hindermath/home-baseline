@@ -595,12 +595,13 @@ def executable_atomic_gate_claim() -> None:
         safe_gate = str(gate_path).replace("'", "''")
         safe_gate_alias = str(gate_alias).replace("'", "''")
         safe_plan = str(plan_path).replace("'", "''")
+        safe_evidence = str(tmp).replace("'", "''")
         holder_script = (
             f"Import-Module '{safe_module}' -Force; "
             f"$a='{safe_gate_alias}';$g=Get-Content -LiteralPath $a -Raw|ConvertFrom-Json -AsHashtable -DateKind String;"
             f"$p=Get-Content -LiteralPath '{safe_plan}' -Raw|ConvertFrom-Json -AsHashtable -DateKind String;"
             "$m=Get-Module CopilotReviewGovernance;"
-            f"$e='{str(tmp).replace("'", "''")}';"
+            f"$e='{safe_evidence}';"
             "$c=& $m {param($a,$e,$g,$p) Enter-HBExternalWriteGateClaim $a $e $g $p} $a $e $g $p;"
             "[Console]::Out.WriteLine('CLAIMED');[Console]::Out.Flush();Start-Sleep -Seconds 3;"
             "& $m {param($a,$c) Complete-HBExternalWriteGateClaim $a $c Revoked} $a $c"
@@ -615,7 +616,7 @@ def executable_atomic_gate_claim() -> None:
             f"Import-Module '{safe_module}' -Force; "
             f"$a='{safe_gate}';$g=Get-Content -LiteralPath $a -Raw|ConvertFrom-Json -AsHashtable -DateKind String;"
             f"$p=Get-Content -LiteralPath '{safe_plan}' -Raw|ConvertFrom-Json -AsHashtable -DateKind String;"
-            f"$e='{str(tmp).replace("'", "''")}';"
+            f"$e='{safe_evidence}';"
             "& (Get-Module CopilotReviewGovernance) {param($a,$e,$g,$p) Enter-HBExternalWriteGateClaim $a $e $g $p} $a $e $g $p|Out-Null"
         )
         contender = run(["pwsh", "-NoProfile", "-Command", contender_script], expected=1)

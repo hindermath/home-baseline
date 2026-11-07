@@ -90,7 +90,7 @@ class GitLabReleaseSecurityTests(unittest.TestCase):
             glab.write_text("#!/usr/bin/env bash\nprintf '%s\\n' \"$*\" >> \"$HB_GLAB_LOG\"\n", encoding="utf-8")
             glab.chmod(0o755)
             env = os.environ.copy()
-            env["PATH"] = f"{tools}:/opt/homebrew/bin:/usr/bin:/bin"
+            env["PATH"] = f"{tools}:{os.environ.get('PATH', '')}"
             env["HB_GLAB_LOG"] = str(log)
             result = run(
                 "pwsh",

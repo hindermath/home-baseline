@@ -112,7 +112,10 @@ write_stats_entry() {
   trap 'rm -f -- "$temporary"' RETURN
   if [ -f "$stats_file" ]; then
     cat -- "$stats_file" > "$temporary"
-    existing_mode="$(stat -f '%Lp' "$stats_file" 2>/dev/null || stat -c '%a' "$stats_file" 2>/dev/null || true)"
+    case "$(uname -s)" in
+      Darwin|FreeBSD) existing_mode="$(stat -f '%Lp' "$stats_file" 2>/dev/null || true)" ;;
+      *) existing_mode="$(stat -c '%a' "$stats_file" 2>/dev/null || true)" ;;
+    esac
   else
     stats_header > "$temporary"
   fi
