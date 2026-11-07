@@ -35,6 +35,7 @@ param(
 
 Set-StrictMode -Version Latest
 $ErrorActionPreference = 'Stop'
+Import-Module (Join-Path $PSScriptRoot 'lib/managed-file-hardening.psm1') -Force
 
 function Invoke-HBGit {
     <#
@@ -277,8 +278,10 @@ try {
     }
     $drift = [Collections.Generic.List[string]]::new()
     foreach ($target in $targets.Keys) {
+        $relativeTarget = [IO.Path]::GetRelativePath($root, $target).Replace('\', '/')
+        $null = Get-HBManagedPath -Root $root -RelativePath $relativeTarget -AllowMissingParent
         $current = if (Test-Path -LiteralPath $target) {
-            (Get-Content -LiteralPath $target -Raw -Encoding UTF8).Replace("`r`n", "`n")
+            (Read-HBManagedText -Root $root -RelativePath $relativeTarget).Replace("`r`n", "`n")
         } else { '' }
         if ($current -ne $targets[$target]) {
             $drift.Add([IO.Path]::GetRelativePath($root, $target))
@@ -297,10 +300,9 @@ try {
         }
     } else {
         foreach ($target in $targets.Keys) {
-            $directory = Split-Path -Parent $target
-            $null = New-Item -ItemType Directory -Path $directory -Force
             if ($PSCmdlet.ShouldProcess($target, 'Write generated script documentation')) {
-                [IO.File]::WriteAllText($target, $targets[$target], [Text.UTF8Encoding]::new($false))
+                $relativeTarget = [IO.Path]::GetRelativePath($root, $target).Replace('\', '/')
+                Write-HBManagedTextAtomic -Root $root -RelativePath $relativeTarget -Content $targets[$target] -CreateParent
             }
         }
         $status = 'WRITTEN'

@@ -198,7 +198,75 @@ function Write-JsonFile {
         New-Item -ItemType Directory -Path $parent -Force | Out-Null
     }
 
+    $parentItem = Get-Item -LiteralPath $parent -Force
+    if ($parentItem.Attributes -band [IO.FileAttributes]::ReparsePoint) {
+        throw "Verknüpftes Audit-Ausgabeverzeichnis wird abgelehnt: $parent"
+    }
+    if (Test-Path -LiteralPath $Path) {
+        $outputItem = Get-Item -LiteralPath $Path -Force
+        if ($outputItem.Attributes -band [IO.FileAttributes]::ReparsePoint) {
+            throw "Verknüpfte Audit-Ausgabedatei wird abgelehnt: $Path"
+        }
+    }
+
+    Protect-PrivateAuditPath -Path $parent -Directory
+    if (-not (Test-Path -LiteralPath $Path)) {
+        New-Item -ItemType File -Path $Path | Out-Null
+    }
+    Protect-PrivateAuditPath -Path $Path
     $Payload | ConvertTo-Json -Depth 10 | Set-Content -LiteralPath $Path -Encoding UTF8
+}
+
+function Protect-PrivateAuditPath {
+    param([string]$Path, [switch]$Directory)
+
+    if ($IsWindows) {
+        $identity = [Security.Principal.WindowsIdentity]::GetCurrent().User
+        $acl = Get-Acl -LiteralPath $Path
+        $acl.SetAccessRuleProtection($true, $false)
+        foreach ($existingRule in @($acl.Access)) {
+            [void]$acl.RemoveAccessRuleSpecific($existingRule)
+        }
+        $acl.SetOwner($identity)
+        $inheritance = if ($Directory) {
+            [Security.AccessControl.InheritanceFlags]'ContainerInherit, ObjectInherit'
+        } else {
+            [Security.AccessControl.InheritanceFlags]::None
+        }
+        $rule = [Security.AccessControl.FileSystemAccessRule]::new(
+            $identity,
+            [Security.AccessControl.FileSystemRights]::FullControl,
+            $inheritance,
+            [Security.AccessControl.PropagationFlags]::None,
+            [Security.AccessControl.AccessControlType]::Allow
+        )
+        $acl.SetAccessRule($rule)
+        Set-Acl -LiteralPath $Path -AclObject $acl
+        return
+    }
+
+    $mode = if ($Directory) { '700' } else { '600' }
+    & chmod $mode $Path
+    if ($LASTEXITCODE -ne 0) { throw "Private Berechtigung konnte nicht gesetzt werden: $Path" }
+}
+
+function Assert-NoAuditReparsePathComponents {
+    param([string]$Path)
+
+    $fullPath = [IO.Path]::GetFullPath($Path)
+    $root = [IO.Path]::GetPathRoot($fullPath)
+    $current = $root
+    $relative = $fullPath.Substring($root.Length)
+    foreach ($component in $relative.Split(
+        [char[]]@([IO.Path]::DirectorySeparatorChar, [IO.Path]::AltDirectorySeparatorChar),
+        [StringSplitOptions]::RemoveEmptyEntries)) {
+        $current = Join-Path $current $component
+        if (-not (Test-Path -LiteralPath $current)) { break }
+        $item = Get-Item -LiteralPath $current -Force
+        if ($item.Attributes -band [IO.FileAttributes]::ReparsePoint) {
+            throw "Verknüpfter Audit-Zustandspfad wird abgelehnt: $current"
+        }
+    }
 }
 
 function Get-FileMap {
@@ -369,11 +437,7 @@ function Find-TermHitsInFile {
         $line = $_
         foreach ($term in $Terms) {
             if ($line.IndexOf($term, [System.StringComparison]::OrdinalIgnoreCase) -ge 0) {
-                $excerpt = $line.Trim()
-                if ($excerpt.Length -gt 180) {
-                    $excerpt = $excerpt.Substring(0, 177) + '...'
-                }
-                $hit = '{0}:{1}: {2}' -f $Path, $lineNo, $excerpt
+                $hit = '{0}:{1}: [content redacted]' -f $Path, $lineNo
                 if (-not $hits.Contains($hit)) {
                     $hits.Add($hit)
                 }
@@ -520,14 +584,36 @@ function Render-HumanReport {
 }
 
 $resolvedHome = (Resolve-Path -LiteralPath $HomeDir).Path
+if ($IsMacOS) {
+    foreach ($alias in @(
+        [pscustomobject]@{ Prefix = '/var'; Canonical = '/private/var' },
+        [pscustomobject]@{ Prefix = '/tmp'; Canonical = '/private/tmp' },
+        [pscustomobject]@{ Prefix = '/etc'; Canonical = '/private/etc' }
+    )) {
+        if ($StateDir -eq $alias.Prefix -or $StateDir.StartsWith($alias.Prefix + '/', [StringComparison]::Ordinal)) {
+            $StateDir = $alias.Canonical + $StateDir.Substring($alias.Prefix.Length)
+            break
+        }
+    }
+}
 $baselineFile = Join-Path $StateDir 'baseline.json'
 $snapshotDir = Join-Path $StateDir 'snapshots'
 $reportDir = Join-Path $StateDir 'reports'
 
+Assert-NoAuditReparsePathComponents -Path $StateDir
 if ($PSCmdlet.ShouldProcess($StateDir, 'Audit-Verzeichnisse vorbereiten / Prepare audit directories')) {
     New-Item -ItemType Directory -Path $StateDir -Force | Out-Null
     New-Item -ItemType Directory -Path $snapshotDir -Force | Out-Null
     New-Item -ItemType Directory -Path $reportDir -Force | Out-Null
+    Protect-PrivateAuditPath -Path $StateDir -Directory
+    Protect-PrivateAuditPath -Path $snapshotDir -Directory
+    Protect-PrivateAuditPath -Path $reportDir -Directory
+    Get-ChildItem -LiteralPath $StateDir -Force -Recurse -ErrorAction Stop | ForEach-Object {
+        if ($_.Attributes -band [IO.FileAttributes]::ReparsePoint) {
+            throw "Verknüpfter Audit-Zustandseintrag wird abgelehnt: $($_.FullName)"
+        }
+        Protect-PrivateAuditPath -Path $_.FullName -Directory:$_.PSIsContainer
+    }
 }
 
 $currentSnapshot = New-AuditSnapshot -RootHome $resolvedHome

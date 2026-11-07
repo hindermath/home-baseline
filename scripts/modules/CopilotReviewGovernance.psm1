@@ -139,6 +139,97 @@ function Write-HBJsonFile {
     [IO.File]::WriteAllText($fullPath, (ConvertTo-HBCanonicalJson $Value), [Text.UTF8Encoding]::new($false))
 }
 
+function Get-HBRegularEvidenceRoot {
+    [CmdletBinding()]
+    param(
+        [Parameter(Mandatory)][string] $Root,
+        [switch] $Create
+    )
+
+    $rootFull = [IO.Path]::GetFullPath($Root).TrimEnd(
+        [IO.Path]::DirectorySeparatorChar,
+        [IO.Path]::AltDirectorySeparatorChar
+    )
+    $item = Get-Item -LiteralPath $rootFull -Force -ErrorAction SilentlyContinue
+    if (-not $item -and $Create) {
+        [void](New-Item -ItemType Directory -Path $rootFull -ErrorAction Stop)
+        $item = Get-Item -LiteralPath $rootFull -Force -ErrorAction Stop
+    }
+    Assert-HBCondition ($null -ne $item) 'EvidenceRoot fehlt / EvidenceRoot is missing.'
+    Assert-HBCondition ($item.PSIsContainer -and -not $item.LinkType -and -not ($item.Attributes -band [IO.FileAttributes]::ReparsePoint)) 'EvidenceRoot muss ein regulaeres Verzeichnis sein / EvidenceRoot must be a regular directory.'
+    return $rootFull
+}
+
+function Assert-HBLiveEvidenceRootAuthority {
+    [CmdletBinding()]
+    param([Parameter(Mandatory)][string] $EvidenceRoot)
+
+    $userProfilePath = [Environment]::GetFolderPath([Environment+SpecialFolder]::UserProfile)
+    Assert-HBCondition (-not [string]::IsNullOrWhiteSpace($userProfilePath)) 'AUTORITAET_BLOCKIERT: User profile is unavailable.'
+    $authorityRoot = [IO.Path]::GetFullPath((Join-Path $userProfilePath '.home-baseline/copilot-review-governance/evidence'))
+    $root = Get-HBRegularEvidenceRoot -Root $EvidenceRoot
+    $comparison = if ($IsWindows) { [StringComparison]::OrdinalIgnoreCase } else { [StringComparison]::Ordinal }
+    $prefix = $authorityRoot.TrimEnd([IO.Path]::DirectorySeparatorChar, [IO.Path]::AltDirectorySeparatorChar) + [IO.Path]::DirectorySeparatorChar
+    Assert-HBCondition ($root.Equals($authorityRoot, $comparison) -or $root.StartsWith($prefix, $comparison)) 'AUTORITAET_BLOCKIERT: Live EvidenceRoot is outside the owner-controlled authority root.'
+
+    $cursor = Get-Item -LiteralPath $root -Force
+    while ($null -ne $cursor -and ($cursor.FullName.Equals($authorityRoot, $comparison) -or $cursor.FullName.StartsWith($prefix, $comparison))) {
+        Assert-HBCondition ($cursor.PSIsContainer -and -not $cursor.LinkType -and -not ($cursor.Attributes -band [IO.FileAttributes]::ReparsePoint)) 'AUTORITAET_BLOCKIERT: Live authority path contains a link or reparse point.'
+        if ($IsWindows) {
+            $acl = Get-Acl -LiteralPath $cursor.FullName
+            $currentSid = [Security.Principal.WindowsIdentity]::GetCurrent().User.Value
+            $ownerSid = ([Security.Principal.NTAccount]$acl.Owner).Translate([Security.Principal.SecurityIdentifier]).Value
+            Assert-HBCondition ($acl.AreAccessRulesProtected -and $ownerSid -ceq $currentSid) 'AUTORITAET_BLOCKIERT: Live authority ACL is inherited or owned by another identity.'
+            $allowSids = @($acl.GetAccessRules($true, $true, [Security.Principal.SecurityIdentifier]) | Where-Object { $_.AccessControlType -eq [Security.AccessControl.AccessControlType]::Allow } | ForEach-Object { $_.IdentityReference.Value } | Sort-Object -Unique)
+            Assert-HBCondition ($allowSids.Count -eq 1 -and $allowSids[0] -ceq $currentSid) 'AUTORITAET_BLOCKIERT: Live authority ACL grants another identity access.'
+        } else {
+            $mode = [IO.File]::GetUnixFileMode($cursor.FullName)
+            $forbidden = [IO.UnixFileMode]::GroupRead -bor [IO.UnixFileMode]::GroupWrite -bor [IO.UnixFileMode]::GroupExecute -bor [IO.UnixFileMode]::OtherRead -bor [IO.UnixFileMode]::OtherWrite -bor [IO.UnixFileMode]::OtherExecute
+            Assert-HBCondition (($mode -band $forbidden) -eq 0) 'AUTORITAET_BLOCKIERT: Live authority directory is accessible by group or other users.'
+            $owner = @(& stat -f '%u' $cursor.FullName 2>$null)
+            if ($LASTEXITCODE -ne 0) { $owner = @(& stat -c '%u' $cursor.FullName 2>$null) }
+            $current = @(& id -u)
+            Assert-HBCondition ($LASTEXITCODE -eq 0 -and $owner.Count -eq 1 -and $current.Count -eq 1 -and [string]$owner[0] -ceq [string]$current[0]) 'AUTORITAET_BLOCKIERT: Live authority directory is owned by another user.'
+        }
+        if ($cursor.FullName.Equals($authorityRoot, $comparison)) { break }
+        $cursor = $cursor.Parent
+    }
+    Assert-HBCondition ($null -ne $cursor -and $cursor.FullName.Equals($authorityRoot, $comparison)) 'AUTORITAET_BLOCKIERT: Owner-controlled authority root is missing.'
+}
+
+function Assert-HBLiveCanonicalRepository {
+    [CmdletBinding()]
+    param([Parameter(Mandatory)] $Repository)
+
+    $slug = [string] $Repository.slug
+    $targetIndex = [Array]::IndexOf($script:CRGTargetSlugs, $slug)
+    Assert-HBCondition ($targetIndex -ge 0) 'AUTORITAET_BLOCKIERT: Live writes require a canonical desired-state target; non-target cleanup is manual.'
+    $expectedBranch = if ($targetIndex -ge 6) { 'master' } else { 'main' }
+    Assert-HBCondition ([string] $Repository.defaultBranch -ceq $expectedBranch) 'AUTORITAET_BLOCKIERT: Live target default branch differs from the canonical desired state.'
+    return $true
+}
+
+function Assert-HBLivePlanCanonicalTargets {
+    [CmdletBinding()]
+    param(
+        [Parameter(Mandatory)][hashtable] $Plan,
+        [Parameter(Mandatory)][hashtable] $Gate,
+        [Parameter(Mandatory)][string] $EvidenceRoot
+    )
+
+    $inventoryPath = Resolve-HBSafePath $EvidenceRoot 'operational/live-read/inventory.json'
+    $inventory = Read-HBInventory $inventoryPath
+    $selected = @($Plan.actions | Where-Object { @($Gate.allowedActionIds) -contains [string] $_.actionId })
+    Assert-HBCondition ($selected.Count -gt 0) 'AUTORITAET_BLOCKIERT: Live gate selects no action.'
+    foreach ($action in $selected) {
+        Assert-HBCondition ($action.ContainsKey('repositoryId')) 'AUTORITAET_BLOCKIERT: Live action has no canonical repository identity.'
+        $repository = @($inventory.repositories | Where-Object { [long] $_.repositoryId -eq [long] $action.repositoryId })
+        Assert-HBCondition ($repository.Count -eq 1) 'AUTORITAET_BLOCKIERT: Live action repository identity is missing or ambiguous.'
+        [void](Assert-HBLiveCanonicalRepository $repository[0])
+    }
+    return $true
+}
+
 function Resolve-HBSafePath {
     [CmdletBinding()]
     param(
@@ -149,7 +240,8 @@ function Resolve-HBSafePath {
 
     Assert-HBCondition (-not [IO.Path]::IsPathRooted($Path)) 'Absolute Pfade sind nicht erlaubt / Absolute paths are not allowed.'
     Assert-HBCondition (@($Path -split '[\\/]' | Where-Object { $_ -eq '..' }).Count -eq 0) 'Pfadtraversal ist nicht erlaubt / Path traversal is not allowed.'
-    $rootFull = [IO.Path]::GetFullPath($Root).TrimEnd([IO.Path]::DirectorySeparatorChar) + [IO.Path]::DirectorySeparatorChar
+    $rootBase = Get-HBRegularEvidenceRoot -Root $Root
+    $rootFull = $rootBase + [IO.Path]::DirectorySeparatorChar
     $full = [IO.Path]::GetFullPath((Join-Path $Root $Path))
     Assert-HBCondition $full.StartsWith($rootFull, [StringComparison]::Ordinal) 'Pfad verlaesst den Evidence-Root / Path escapes evidence root.'
     $probe = if (Test-Path -LiteralPath $full) { $full } else { Split-Path -Parent $full }
@@ -235,13 +327,13 @@ function Get-HBGitHubReadRequestDefinitions {
     )
 
     $requests = [Collections.Generic.List[object]]::new()
-    $requests.Add(@('api', '--method', 'GET', '-H', "X-GitHub-Api-Version: $($script:CRGApiVersion)", '/user/repos?affiliation=owner&visibility=all&sort=full_name&direction=asc&per_page=100', '--paginate'))
+    $requests.Add(@('api', '--hostname', 'github.com', '--method', 'GET', '-H', "X-GitHub-Api-Version: $($script:CRGApiVersion)", '/user/repos?affiliation=owner&visibility=all&sort=full_name&direction=asc&per_page=100', '--paginate'))
     if ($RepositorySlug) {
         Assert-HBCondition ($RepositorySlug -match '^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$') 'Repository-Slug ist ungueltig.'
-        $requests.Add(@('api', '--method', 'GET', '-H', "X-GitHub-Api-Version: $($script:CRGApiVersion)", "repos/$RepositorySlug"))
-        $requests.Add(@('api', '--method', 'GET', '-H', "X-GitHub-Api-Version: $($script:CRGApiVersion)", "repos/$RepositorySlug/rulesets?includes_parents=false&per_page=100", '--paginate'))
+        $requests.Add(@('api', '--hostname', 'github.com', '--method', 'GET', '-H', "X-GitHub-Api-Version: $($script:CRGApiVersion)", "repos/$RepositorySlug"))
+        $requests.Add(@('api', '--hostname', 'github.com', '--method', 'GET', '-H', "X-GitHub-Api-Version: $($script:CRGApiVersion)", "repos/$RepositorySlug/rulesets?includes_parents=false&per_page=100", '--paginate'))
         if ($RulesetId -gt 0) {
-            $requests.Add(@('api', '--method', 'GET', '-H', "X-GitHub-Api-Version: $($script:CRGApiVersion)", "repos/$RepositorySlug/rulesets/$RulesetId"))
+            $requests.Add(@('api', '--hostname', 'github.com', '--method', 'GET', '-H', "X-GitHub-Api-Version: $($script:CRGApiVersion)", "repos/$RepositorySlug/rulesets/$RulesetId"))
         }
     }
     return $requests.ToArray()
@@ -254,7 +346,10 @@ function Invoke-HBGitHubJsonRead {
         [string] $Executable = 'gh'
     )
 
-    Assert-HBCondition ($Arguments.Count -ge 6 -and $Arguments[0] -eq 'api') 'GitHub read arguments are incomplete.'
+    Assert-HBCondition ($Arguments.Count -ge 8 -and $Arguments[0] -eq 'api') 'GitHub read arguments are incomplete.'
+    Assert-HBCondition (@($Arguments | Where-Object { $_ -eq '--hostname' }).Count -eq 1) 'GitHub read must bind exactly one host.'
+    $hostIndex = [Array]::IndexOf($Arguments, '--hostname')
+    Assert-HBCondition ($hostIndex -ge 0 -and [string] $Arguments[$hostIndex + 1] -ceq 'github.com') 'GitHub read host must be github.com.'
     Assert-HBCondition (@($Arguments | Where-Object { $_ -eq '--method' }).Count -eq 1) 'GitHub read must declare exactly one method.'
     $methodIndex = [Array]::IndexOf($Arguments, '--method')
     Assert-HBCondition ($methodIndex -ge 0 -and $Arguments[$methodIndex + 1] -eq 'GET') 'GitHub inventory permits GET only.'
@@ -363,6 +458,22 @@ function ConvertTo-HBLiveRulesetRecord {
     return $record
 }
 
+function Get-HBRulesetConditions {
+    param([Parameter(Mandatory)][string] $DefaultBranch)
+    Assert-HBCondition ($DefaultBranch -match '^[A-Za-z0-9._/-]+$') 'Ruleset scope requires a valid default branch.'
+    return [ordered]@{
+        ref_name = [ordered]@{
+            include = @("refs/heads/$DefaultBranch")
+            exclude = @()
+        }
+    }
+}
+
+function Get-HBRulesetConditionsSha256 {
+    param([Parameter(Mandatory)][string] $DefaultBranch)
+    return Get-HBObjectSha256 (Get-HBRulesetConditions $DefaultBranch)
+}
+
 function Invoke-HBGitHubPagedRead {
     [CmdletBinding()]
     param([Parameter(Mandatory)][string[]] $Arguments)
@@ -455,7 +566,7 @@ function Invoke-HBLiveGitHubInventory {
 
     $browserContainer = Read-HBJsonFile $BrowserEvidencePath
     $repositoryRequest = @(
-        'api', '--method', 'GET', '-H', "X-GitHub-Api-Version: $($script:CRGApiVersion)",
+        'api', '--hostname', 'github.com', '--method', 'GET', '-H', "X-GitHub-Api-Version: $($script:CRGApiVersion)",
         '/user/repos?affiliation=owner&visibility=all&sort=full_name&direction=asc&per_page=100',
         '--paginate', '--slurp'
     )
@@ -469,7 +580,7 @@ function Invoke-HBLiveGitHubInventory {
         $slug = [string] $summary.full_name
         Assert-HBCondition ($slug -match '^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$') 'Live repository slug is invalid.'
         $metadata = (Invoke-HBGitHubJsonRead @(
-            'api', '--method', 'GET', '-H', "X-GitHub-Api-Version: $($script:CRGApiVersion)", "repos/$slug"
+            'api', '--hostname', 'github.com', '--method', 'GET', '-H', "X-GitHub-Api-Version: $($script:CRGApiVersion)", "repos/$slug"
         )).data
         Assert-HBCondition ([long] $metadata.id -eq [long] $summary.id -and [string] $metadata.full_name -ceq $slug) "Live repository summary/detail identity drift: $slug"
         Assert-HBCondition ([string] $metadata.owner.login -ceq 'hindermath') "Live repository is not owned by hindermath: $slug"
@@ -483,7 +594,7 @@ function Invoke-HBLiveGitHubInventory {
         })
 
         $list = Invoke-HBGitHubPagedRead @(
-            'api', '--method', 'GET', '-H', "X-GitHub-Api-Version: $($script:CRGApiVersion)",
+            'api', '--hostname', 'github.com', '--method', 'GET', '-H', "X-GitHub-Api-Version: $($script:CRGApiVersion)",
             "repos/$slug/rulesets?includes_parents=false&per_page=100", '--paginate', '--slurp'
         )
         $rulesetListPages += [int] $list.pages
@@ -491,7 +602,7 @@ function Invoke-HBLiveGitHubInventory {
             $rulesetId = [long] $rulesetSummary.id
             Assert-HBCondition ($rulesetId -gt 0) "Live ruleset ID is invalid for $slug."
             $detail = (Invoke-HBGitHubJsonRead @(
-                'api', '--method', 'GET', '-H', "X-GitHub-Api-Version: $($script:CRGApiVersion)", "repos/$slug/rulesets/$rulesetId"
+                'api', '--hostname', 'github.com', '--method', 'GET', '-H', "X-GitHub-Api-Version: $($script:CRGApiVersion)", "repos/$slug/rulesets/$rulesetId"
             )).data
             Assert-HBCondition ([long] $detail.id -eq $rulesetId) "Live ruleset list/detail identity drift: ${slug}:${rulesetId}"
             $rulesetDetailsRead++
@@ -506,7 +617,7 @@ function Invoke-HBLiveGitHubInventory {
     $billingSource = 'GitHub billing API unavailable to the current least-privilege credential'
     try {
         [void](Invoke-HBGitHubJsonRead @(
-            'api', '--method', 'GET', '-H', "X-GitHub-Api-Version: $($script:CRGApiVersion)",
+            'api', '--hostname', 'github.com', '--method', 'GET', '-H', "X-GitHub-Api-Version: $($script:CRGApiVersion)",
             '/users/hindermath/settings/billing/ai_credit/usage'
         ))
         $billingSource = 'GitHub billing API response requires a separately reviewed field mapping'
@@ -652,7 +763,8 @@ function New-HBMutationPlan {
         $matching = @($Inventory.rulesets | Where-Object { [long] $_.repositoryId -eq [long] $repo.repositoryId -and [bool] $_.containsCopilotCodeReview })
         if ($matching.Count -eq 0) {
             $before = Get-HBObjectSha256 ([ordered]@{ repositoryId = [long] $repo.repositoryId; missing = $true })
-            $desired = Get-HBObjectSha256 ([ordered]@{ repositoryId = [long] $repo.repositoryId; enforcement = 'active'; reviewDraftPullRequests = $false; reviewOnPush = $false })
+            $expectedConditionsSha256 = Get-HBRulesetConditionsSha256 ([string] $repo.defaultBranch)
+            $desired = Get-HBObjectSha256 ([ordered]@{ repositoryId = [long] $repo.repositoryId; target = 'branch'; conditionsSha256 = $expectedConditionsSha256; enforcement = 'active'; reviewDraftPullRequests = $false; reviewOnPush = $false })
             Add-PlanAction -Key "ruleset:$($repo.repositoryId):create" -OperationClass RulesetCreate -Action Create -WriteIntent:$true -AllowedMethod POST `
                 -BeforeSha256 $before -DesiredSha256 $desired -RollbackSha256 $before -PayloadPath "payloads/ruleset-$($target.position).json" `
                 -Rationale 'DedicatedTargetRulesetMissing' -RepositoryId ([long] $repo.repositoryId)
@@ -660,14 +772,16 @@ function New-HBMutationPlan {
         }
         $ruleset = $matching[0]
         $before = [string] $ruleset.stateSha256
-        $desired = Get-HBObjectSha256 ([ordered]@{ repositoryId = [long] $repo.repositoryId; rulesetId = [long] $ruleset.rulesetId; enforcement = 'active'; reviewDraftPullRequests = $false; reviewOnPush = $false })
-        $safe = $matching.Count -eq 1 -and -not [bool] $ruleset.mixedPurpose -and [string] $ruleset.sourceType -eq 'Repository'
-        $converged = $safe -and [string] $ruleset.enforcement -eq 'active' -and -not [bool] $ruleset.reviewDraftPullRequests -and -not [bool] $ruleset.reviewOnPush
+        $expectedConditionsSha256 = Get-HBRulesetConditionsSha256 ([string] $repo.defaultBranch)
+        $desired = Get-HBObjectSha256 ([ordered]@{ repositoryId = [long] $repo.repositoryId; rulesetId = [long] $ruleset.rulesetId; target = 'branch'; conditionsSha256 = $expectedConditionsSha256; enforcement = 'active'; reviewDraftPullRequests = $false; reviewOnPush = $false })
+        $safe = $matching.Count -eq 1 -and -not [bool] $ruleset.mixedPurpose -and [string] $ruleset.sourceType -eq 'Repository' -and [string] $ruleset.target -eq 'branch'
+        $scopeConverged = [string] $ruleset.conditionsSha256 -eq $expectedConditionsSha256
+        $converged = $safe -and $scopeConverged -and [string] $ruleset.enforcement -eq 'active' -and -not [bool] $ruleset.reviewDraftPullRequests -and -not [bool] $ruleset.reviewOnPush
         Add-PlanAction -Key "ruleset:$($repo.repositoryId):$($ruleset.rulesetId)" -OperationClass RulesetUpdate `
             -Action $(if (-not $safe) { 'Blocked' } elseif ($converged) { 'NoOp' } else { 'Update' }) `
             -WriteIntent:($safe -and -not $converged) -AllowedMethod $(if ($safe -and -not $converged) { 'PUT' } else { 'None' }) `
             -BeforeSha256 $before -DesiredSha256 $desired -RollbackSha256 $before -PayloadPath "payloads/ruleset-$($target.position).json" `
-            -Rationale $(if (-not $safe) { 'MixedPurposeInheritedOrDuplicateRuleset' } elseif ($converged) { 'AlreadyConverged' } else { 'TargetRulesetSettingsDrift' }) `
+            -Rationale $(if (-not $safe) { 'MixedPurposeInheritedDuplicateOrNonBranchRuleset' } elseif ($converged) { 'AlreadyConverged' } elseif (-not $scopeConverged) { 'TargetRulesetBranchScopeDrift' } else { 'TargetRulesetSettingsDrift' }) `
             -RepositoryId ([long] $repo.repositoryId) -RulesetId ([long] $ruleset.rulesetId)
     }
 
@@ -781,6 +895,131 @@ function Test-HBExternalWriteGate {
         Assert-HBCondition ([string] $Gate.authoritySha256 -eq (Get-HBObjectSha256 $Authority)) 'Authority record hash mismatch.'
     }
     return $true
+}
+
+function Enter-HBExternalWriteGateClaim {
+    [CmdletBinding()]
+    param(
+        [Parameter(Mandatory)][string] $AuthorizationPath,
+        [Parameter(Mandatory)][string] $EvidenceRoot,
+        [Parameter(Mandatory)][hashtable] $Gate,
+        [Parameter(Mandatory)][hashtable] $Plan
+    )
+
+    [void](Assert-HBJsonSchema $Gate 'external-write-gate')
+    [void](Assert-HBJsonSchema $Plan 'mutation-plan')
+    Assert-HBCondition ([string] $Gate.status -eq 'Authorized') 'External-Write-Gate is not available for an atomic claim.'
+    Assert-HBCondition ([string] $Gate.runId -eq [string] $Plan.runId -and [string] $Gate.planSha256 -eq [string] $Plan.planSha256) 'Gate/plan claim binding mismatch.'
+    $claimDirectory = Resolve-HBSafePath $EvidenceRoot 'operational/gate-claims' -AllowMissingLeaf
+    [void][IO.Directory]::CreateDirectory($claimDirectory)
+    $claimDirectoryItem = Get-Item -LiteralPath $claimDirectory -Force
+    Assert-HBCondition (-not ($claimDirectoryItem.Attributes -band [IO.FileAttributes]::ReparsePoint)) 'Gate claim directory must not be a link or reparse point.'
+    if (-not [OperatingSystem]::IsWindows()) {
+        [IO.File]::SetUnixFileMode($claimDirectory, [IO.UnixFileMode]::UserRead -bor [IO.UnixFileMode]::UserWrite -bor [IO.UnixFileMode]::UserExecute)
+    }
+    $claimPath = Resolve-HBSafePath $EvidenceRoot "operational/gate-claims/$([string] $Gate.gateId).claim" -AllowMissingLeaf
+    $claimId = [guid]::NewGuid().ToString()
+    $record = [ordered]@{
+        schemaVersion = '1.0'
+        claimId = $claimId
+        gateId = [string] $Gate.gateId
+        runId = [string] $Gate.runId
+        planSha256 = [string] $Plan.planSha256
+        gateSha256 = Get-HBObjectSha256 $Gate
+        claimedAt = [DateTimeOffset]::UtcNow.ToString('o')
+    }
+    try {
+        if ([OperatingSystem]::IsWindows()) {
+            $identity = [Security.Principal.WindowsIdentity]::GetCurrent().User
+            $security = [Security.AccessControl.FileSecurity]::new()
+            $security.SetOwner($identity)
+            $security.SetAccessRuleProtection($true, $false)
+            $rule = [Security.AccessControl.FileSystemAccessRule]::new(
+                $identity,
+                [Security.AccessControl.FileSystemRights]::FullControl,
+                [Security.AccessControl.AccessControlType]::Allow
+            )
+            $security.AddAccessRule($rule)
+            $stream = [IO.FileStream]::new(
+                $claimPath, [IO.FileMode]::CreateNew,
+                [Security.AccessControl.FileSystemRights]::Read -bor [Security.AccessControl.FileSystemRights]::Write,
+                [IO.FileShare]::None, 4096, [IO.FileOptions]::WriteThrough, $security
+            )
+        } else {
+            $options = [IO.FileStreamOptions]::new()
+            $options.Mode = [IO.FileMode]::CreateNew
+            $options.Access = [IO.FileAccess]::ReadWrite
+            $options.Share = [IO.FileShare]::None
+            $options.Options = [IO.FileOptions]::WriteThrough
+            $options.UnixCreateMode = [IO.UnixFileMode]::UserRead -bor [IO.UnixFileMode]::UserWrite
+            $stream = [IO.File]::Open($claimPath, $options)
+        }
+    } catch [IO.IOException] {
+        throw 'External-Write-Gate already has an atomic claim and cannot be reused concurrently.'
+    }
+    try {
+        $bytes = [Text.UTF8Encoding]::new($false).GetBytes((ConvertTo-HBCanonicalJson $record))
+        $stream.Write($bytes, 0, $bytes.Length)
+        $stream.Flush($true)
+        return [ordered]@{
+            path = $claimPath
+            stream = $stream
+            claimId = $claimId
+            gateId = [string] $Gate.gateId
+            runId = [string] $Gate.runId
+            planSha256 = [string] $Plan.planSha256
+            gateSha256 = [string] $record.gateSha256
+            writeAttempted = $false
+        }
+    } catch {
+        $stream.Dispose()
+        throw
+    }
+}
+
+function Test-HBExternalWriteGateClaim {
+    param(
+        [Parameter(Mandatory)][string] $AuthorizationPath,
+        [Parameter(Mandatory)][hashtable] $Claim
+    )
+    Assert-HBCondition ($null -ne $Claim.stream -and [bool] $Claim.stream.CanWrite) 'Atomic gate claim is not held by this process.'
+    $persisted = Read-HBJsonFile $AuthorizationPath
+    Assert-HBCondition ([string] $persisted.gateId -eq [string] $Claim.gateId -and [string] $persisted.runId -eq [string] $Claim.runId) 'Persisted gate identity changed after claim.'
+    Assert-HBCondition ([string] $persisted.status -eq 'Authorized') 'Persisted gate was revoked or consumed after claim.'
+    Assert-HBCondition ((Get-HBObjectSha256 $persisted) -eq [string] $Claim.gateSha256) 'Persisted gate content changed after claim.'
+    return $true
+}
+
+function Complete-HBExternalWriteGateClaim {
+    param(
+        [Parameter(Mandatory)][string] $AuthorizationPath,
+        [Parameter(Mandatory)][hashtable] $Claim,
+        [Parameter(Mandatory)][ValidateSet('Consumed', 'Revoked')][string] $TerminalStatus
+    )
+    try {
+        $gateStream = [IO.File]::Open($AuthorizationPath, [IO.FileMode]::Open, [IO.FileAccess]::ReadWrite, [IO.FileShare]::None)
+        try {
+            $reader = [IO.StreamReader]::new($gateStream, [Text.UTF8Encoding]::new($false), $true, 4096, $true)
+            try { $persisted = $reader.ReadToEnd() | ConvertFrom-Json -AsHashtable -DateKind String }
+            finally { $reader.Dispose() }
+            Assert-HBCondition ([string] $persisted.gateId -eq [string] $Claim.gateId) 'Persisted gate identity changed before claim completion.'
+            if ([string] $persisted.status -eq 'Authorized') {
+                Assert-HBCondition ((Get-HBObjectSha256 $persisted) -eq [string] $Claim.gateSha256) 'Persisted gate content changed before claim completion.'
+                $persisted.status = $TerminalStatus
+                $bytes = [Text.UTF8Encoding]::new($false).GetBytes((ConvertTo-HBCanonicalJson $persisted))
+                $gateStream.Position = 0
+                $gateStream.SetLength(0)
+                $gateStream.Write($bytes, 0, $bytes.Length)
+                $gateStream.Flush($true)
+            } else {
+                Assert-HBCondition ([string] $persisted.status -in @('Revoked', 'Consumed')) 'Persisted gate entered an unsafe state during claim completion.'
+            }
+        } finally {
+            $gateStream.Dispose()
+        }
+    } finally {
+        if ($null -ne $Claim.stream) { $Claim.stream.Dispose() }
+    }
 }
 
 function Read-HBExternalWriteContext {
@@ -1016,15 +1255,37 @@ function Publish-HBEvidence {
     )
 
     [void](Protect-HBRedactedValue $Value)
-    [void](New-Item -ItemType Directory -Path $EvidenceRoot -Force)
-    $target = Resolve-HBSafePath $EvidenceRoot $RelativePath -AllowMissingLeaf
+    $evidenceRootFull = Get-HBRegularEvidenceRoot -Root $EvidenceRoot -Create
+    $target = Resolve-HBSafePath $evidenceRootFull $RelativePath -AllowMissingLeaf
     [void](New-Item -ItemType Directory -Path (Split-Path -Parent $target) -Force)
-    $temporary = "$target.tmp.$PID"
+    $target = Resolve-HBSafePath $evidenceRootFull $RelativePath -AllowMissingLeaf
+    $temporary = "$target.tmp.$([guid]::NewGuid().ToString('N'))"
+    $stream = $null
+    $writer = $null
     try {
-        [IO.File]::WriteAllText($temporary, (ConvertTo-HBCanonicalJson $Value), [Text.UTF8Encoding]::new($false))
+        $stream = [IO.FileStream]::new(
+            $temporary,
+            [IO.FileMode]::CreateNew,
+            [IO.FileAccess]::Write,
+            [IO.FileShare]::None,
+            65536,
+            [IO.FileOptions]::WriteThrough
+        )
+        $writer = [IO.StreamWriter]::new($stream, [Text.UTF8Encoding]::new($false))
+        $stream = $null
+        $writer.Write((ConvertTo-HBCanonicalJson $Value))
+        $writer.Flush()
+        $writer.Dispose()
+        $writer = $null
         if (-not $IsWindows) { [IO.File]::SetUnixFileMode($temporary, [IO.UnixFileMode]::UserRead -bor [IO.UnixFileMode]::UserWrite) }
-        Move-Item -LiteralPath $temporary -Destination $target -Force
-    } finally { Remove-Item -LiteralPath $temporary -Force -ErrorAction SilentlyContinue }
+        [void](Get-HBRegularEvidenceRoot -Root $evidenceRootFull)
+        $target = Resolve-HBSafePath $evidenceRootFull $RelativePath -AllowMissingLeaf
+        [IO.File]::Move($temporary, $target, $true)
+    } finally {
+        if ($writer) { $writer.Dispose() }
+        if ($stream) { $stream.Dispose() }
+        Remove-Item -LiteralPath $temporary -Force -ErrorAction SilentlyContinue
+    }
     return [ordered]@{ path = $RelativePath.Replace('\\', '/'); sha256 = Get-HBSha256 -Bytes ([IO.File]::ReadAllBytes($target)); classification = 'MachineLocalRestricted' }
 }
 
@@ -1105,6 +1366,8 @@ function Set-HBFakeInventoryActionState {
             $maximum = @($Provider.inventory.rulesets | ForEach-Object { [long] $_.rulesetId } | Measure-Object -Maximum).Maximum
             $createdRulesetId = if ($null -eq $maximum) { 1 } else { [long] $maximum + 1 }
             $Provider.beforeStates[$actionId] = [ordered]@{ kind = 'RulesetCreate'; createdRulesetId = $createdRulesetId }
+            $repository = @($Provider.inventory.repositories | Where-Object { [long] $_.repositoryId -eq [long] $Action.repositoryId })
+            Assert-HBCondition ($repository.Count -eq 1) 'Drift: RulesetCreate repository is missing.'
             $Provider.inventory.rulesets += [ordered]@{
                 repositoryId = [long] $Action.repositoryId
                 rulesetId = $createdRulesetId
@@ -1112,7 +1375,7 @@ function Set-HBFakeInventoryActionState {
                 sourceType = 'Repository'
                 target = 'branch'
                 enforcement = 'active'
-                conditionsSha256 = [string] $Action.desiredSha256
+                conditionsSha256 = Get-HBRulesetConditionsSha256 ([string] $repository[0].defaultBranch)
                 rulesSha256 = [string] $Action.desiredSha256
                 containsCopilotCodeReview = $true
                 mixedPurpose = $false
@@ -1132,6 +1395,10 @@ function Set-HBFakeInventoryActionState {
             if ([string] $Action.operationClass -eq 'RulesetDisable') {
                 $Provider.inventory.rulesets[$index].enforcement = 'disabled'
             } else {
+                $repository = @($Provider.inventory.repositories | Where-Object { [long] $_.repositoryId -eq [long] $Action.repositoryId })
+                Assert-HBCondition ($repository.Count -eq 1) 'Drift: RulesetUpdate repository is missing.'
+                $Provider.inventory.rulesets[$index].target = 'branch'
+                $Provider.inventory.rulesets[$index].conditionsSha256 = Get-HBRulesetConditionsSha256 ([string] $repository[0].defaultBranch)
                 $Provider.inventory.rulesets[$index].enforcement = 'active'
                 $Provider.inventory.rulesets[$index].reviewDraftPullRequests = $false
                 $Provider.inventory.rulesets[$index].reviewOnPush = $false
@@ -1230,7 +1497,7 @@ function Get-HBLiveRulesetDetail {
     )
 
     $detail = (Invoke-HBGitHubJsonRead @(
-        'api', '--method', 'GET', '-H', "X-GitHub-Api-Version: $($script:CRGApiVersion)",
+        'api', '--hostname', 'github.com', '--method', 'GET', '-H', "X-GitHub-Api-Version: $($script:CRGApiVersion)",
         "repos/$RepositorySlug/rulesets/$RulesetId"
     )).data
     Assert-HBCondition ([long] $detail.id -eq $RulesetId) "Live ruleset identity drift: ${RepositorySlug}:${RulesetId}"
@@ -1245,7 +1512,7 @@ function Get-HBLiveCopilotRulesets {
     )
 
     $list = Invoke-HBGitHubPagedRead @(
-        'api', '--method', 'GET', '-H', "X-GitHub-Api-Version: $($script:CRGApiVersion)",
+        'api', '--hostname', 'github.com', '--method', 'GET', '-H', "X-GitHub-Api-Version: $($script:CRGApiVersion)",
         "repos/$RepositorySlug/rulesets?includes_parents=false&per_page=100", '--paginate', '--slurp'
     )
     $copilotMatches = [Collections.Generic.List[object]]::new()
@@ -1271,7 +1538,7 @@ function New-HBLiveRulesetPayload {
             target = 'branch'
             enforcement = 'active'
             bypass_actors = @()
-            conditions = [ordered]@{ ref_name = [ordered]@{ include = @("refs/heads/$DefaultBranch"); exclude = @() } }
+            conditions = Get-HBRulesetConditions $DefaultBranch
             rules = @([ordered]@{
                 type = 'copilot_code_review'
                 parameters = [ordered]@{ review_on_push = $false; review_draft_pull_requests = $false }
@@ -1284,15 +1551,16 @@ function New-HBLiveRulesetPayload {
     $copilot = @($rules | Where-Object { [string] $_.type -eq 'copilot_code_review' })
     Assert-HBCondition ($copilot.Count -eq 1 -and @($rules | Where-Object { [string] $_.type -ne 'copilot_code_review' }).Count -eq 0) 'Live ruleset write requires one dedicated Copilot rule.'
     if ($OperationClass -eq 'RulesetUpdate') {
+        Assert-HBCondition ($DefaultBranch -match '^[A-Za-z0-9._/-]+$') 'Update requires a valid default branch.'
         $copilot[0].parameters.review_on_push = $false
         $copilot[0].parameters.review_draft_pull_requests = $false
     }
     return [ordered]@{
         name = [string] $CurrentDetail.name
-        target = [string] $CurrentDetail.target
+        target = if ($OperationClass -eq 'RulesetUpdate') { 'branch' } else { [string] $CurrentDetail.target }
         enforcement = if ($OperationClass -eq 'RulesetDisable') { 'disabled' } else { 'active' }
         bypass_actors = @($CurrentDetail.bypass_actors | ForEach-Object { Copy-HBValue -Value $_ })
-        conditions = Copy-HBValue -Value $CurrentDetail.conditions
+        conditions = if ($OperationClass -eq 'RulesetUpdate') { Get-HBRulesetConditions $DefaultBranch } else { Copy-HBValue -Value $CurrentDetail.conditions }
         rules = $rules
     }
 }
@@ -1301,7 +1569,8 @@ function Test-HBLiveRulesetDesiredState {
     [CmdletBinding()]
     param(
         [Parameter(Mandatory)][ValidateSet('RulesetCreate', 'RulesetUpdate', 'RulesetDisable')][string] $OperationClass,
-        [Parameter(Mandatory)][hashtable] $Record
+        [Parameter(Mandatory)][hashtable] $Record,
+        [string] $DefaultBranch = ''
     )
 
     Assert-HBCondition ([string] $Record.sourceType -eq 'Repository' -and [string] $Record.target -eq 'branch') 'Live ruleset after-state identity is unsafe.'
@@ -1309,6 +1578,8 @@ function Test-HBLiveRulesetDesiredState {
     if ($OperationClass -eq 'RulesetDisable') {
         Assert-HBCondition ([string] $Record.enforcement -eq 'disabled') 'Live ruleset was not disabled.'
     } else {
+        Assert-HBCondition ($DefaultBranch -match '^[A-Za-z0-9._/-]+$') 'Live target after-state requires the expected default branch.'
+        Assert-HBCondition ([string] $Record.conditionsSha256 -eq (Get-HBRulesetConditionsSha256 $DefaultBranch)) 'Live target ruleset has the wrong branch scope.'
         Assert-HBCondition ([string] $Record.enforcement -eq 'active' -and -not [bool] $Record.reviewDraftPullRequests -and -not [bool] $Record.reviewOnPush) 'Live target ruleset did not converge.'
     }
     return $true
@@ -1322,9 +1593,12 @@ function Invoke-HBLiveApply {
         [Parameter(Mandatory)][string] $AuthorizationPath,
         [Parameter(Mandatory)][string] $EvidenceRoot,
         [Parameter(Mandatory)][string] $ResultPath,
-        [Parameter(Mandatory)][string] $BrowserEvidencePath
+        [Parameter(Mandatory)][string] $BrowserEvidencePath,
+        [Parameter(Mandatory)][hashtable] $Claim,
+        [switch] $ReadOnly
     )
 
+    Assert-HBCondition (-not $ReadOnly) 'ReadOnly mode blocks live provider mutations.'
     $operationClass = [string] $Gate.operationClass
     Assert-HBCondition ($operationClass -in @('RulesetCreate', 'RulesetUpdate', 'RulesetDisable')) 'Live Apply supports only the approved repository-ruleset operation classes.'
     [void](Assert-HBJsonSchema $Plan 'mutation-plan')
@@ -1338,14 +1612,12 @@ function Invoke-HBLiveApply {
     $gateSha256 = Get-HBObjectSha256 $Gate
     $started = [DateTimeOffset]::UtcNow
     $results = [Collections.Generic.List[object]]::new()
-    $writeAttempted = $false
-    $completed = $false
-    try {
-        foreach ($action in $selected) {
+    foreach ($action in $selected) {
             $actionStarted = [DateTimeOffset]::UtcNow
             $repository = @($inventory.repositories | Where-Object { [long] $_.repositoryId -eq [long] $action.repositoryId })
             Assert-HBCondition ($repository.Count -eq 1 -and [string] $repository[0].slug -match '^hindermath/[A-Za-z0-9_.-]+$') 'Live Apply repository identity mismatch.'
             $slug = [string] $repository[0].slug
+            [void](Assert-HBLiveCanonicalRepository $repository[0])
             $current = $null
             if ($operationClass -eq 'RulesetCreate') {
                 $currentCopilot = @(Get-HBLiveCopilotRulesets $slug ([long] $action.repositoryId))
@@ -1356,7 +1628,7 @@ function Invoke-HBLiveApply {
             } else {
                 $current = Get-HBLiveRulesetDetail $slug ([long] $action.repositoryId) ([long] $action.rulesetId)
                 $currentHash = [string] $current.record.stateSha256
-                $payload = New-HBLiveRulesetPayload $operationClass -CurrentDetail $current.detail
+                $payload = New-HBLiveRulesetPayload $operationClass -CurrentDetail $current.detail -DefaultBranch ([string] $repository[0].defaultBranch)
                 $endpoint = "repos/$slug/rulesets/$([long] $action.rulesetId)"
             }
             Assert-HBCondition ($currentHash -eq [string] $action.beforeSha256) 'Drift: action beforeSha256 no longer matches the live provider.'
@@ -1366,10 +1638,11 @@ function Invoke-HBLiveApply {
             $writeInventory = Read-HBInventory $inventoryPath
             [void](Read-HBExternalWriteContext $EvidenceRoot $Gate $Plan $writeInventory)
             [void](Test-HBExternalWriteGate $Gate $operationClass $Plan $context.authority $writeInventory)
+            [void](Test-HBExternalWriteGateClaim $AuthorizationPath $Claim)
             $temporaryInput = [IO.Path]::GetTempFileName()
             try {
                 Write-HBJsonFile $temporaryInput $payload
-                $writeAttempted = $true
+                $Claim.writeAttempted = $true
                 $writeResult = Invoke-HBGitHubJsonWrite -Arguments @(
                     'api', '--hostname', 'github.com', '--method', [string] $action.allowedMethod,
                     '-H', "X-GitHub-Api-Version: $($script:CRGApiVersion)", $endpoint,
@@ -1384,14 +1657,14 @@ function Invoke-HBLiveApply {
             } else { [long] $action.rulesetId }
             if ($operationClass -eq 'RulesetCreate' -and $rulesetId -le 0) {
                 $reconciled = @(Get-HBLiveCopilotRulesets $slug ([long] $action.repositoryId) | Where-Object {
-                    [void](Test-HBLiveRulesetDesiredState $operationClass $_.record)
+                    [void](Test-HBLiveRulesetDesiredState $operationClass $_.record ([string] $repository[0].defaultBranch))
                     return $true
                 })
                 Assert-HBCondition ($reconciled.Count -eq 1) 'Ambiguous create could not be reconciled to one exact ruleset.'
                 $rulesetId = [long] $reconciled[0].record.rulesetId
             }
             $after = Get-HBLiveRulesetDetail $slug ([long] $action.repositoryId) $rulesetId
-            [void](Test-HBLiveRulesetDesiredState $operationClass $after.record)
+            [void](Test-HBLiveRulesetDesiredState $operationClass $after.record ([string] $repository[0].defaultBranch))
             $outcome = if ([bool] $writeResult.succeeded) { 'Applied' } else { 'Reconciled' }
             $statusClass = if ([bool] $writeResult.succeeded) { 'Success' } else { 'Ambiguous' }
             $evidenceRecord = [ordered]@{
@@ -1428,7 +1701,7 @@ function Invoke-HBLiveApply {
             }
             if ($operationClass -eq 'RulesetCreate') { $result.rulesetIdSource = 'ProviderResponseAndPostInventoryExactMatch' }
             $results.Add($result)
-        }
+    }
 
         $afterInventoryPath = Resolve-HBSafePath $EvidenceRoot 'operational/provider-convergence/after-inventory.json' -AllowMissingLeaf
         [void](Invoke-HBLiveGitHubInventory $BrowserEvidencePath $afterInventoryPath)
@@ -1454,15 +1727,7 @@ function Invoke-HBLiveApply {
         $envelope.resultSha256 = Get-HBObjectSha256 $envelope @('resultSha256')
         [void](Assert-HBJsonSchema $envelope 'mutation-result')
         Write-HBJsonFile $ResultPath $envelope
-        $completed = $true
-        return $envelope
-    } finally {
-        $persistedGate = Read-HBJsonFile $AuthorizationPath
-        if ([string] $persistedGate.gateId -eq [string] $Gate.gateId) {
-            $persistedGate.status = if ($completed -or $writeAttempted) { 'Consumed' } else { 'Revoked' }
-            Write-HBJsonFile $AuthorizationPath $persistedGate
-        }
-    }
+    return $envelope
 }
 
 function Invoke-HBFakeApply {
@@ -1471,8 +1736,12 @@ function Invoke-HBFakeApply {
         [Parameter(Mandatory)][hashtable] $Gate,
         [Parameter(Mandatory)][string] $ProviderPath,
         [Parameter(Mandatory)][string] $EvidenceRoot,
-        [Parameter(Mandatory)][string] $ResultPath
+        [Parameter(Mandatory)][string] $ResultPath,
+        [Parameter(Mandatory)][string] $AuthorizationPath,
+        [Parameter(Mandatory)][hashtable] $Claim,
+        [switch] $ReadOnly
     )
+    Assert-HBCondition (-not $ReadOnly) 'ReadOnly mode blocks fake-provider mutations.'
     [void](Assert-HBJsonSchema $Plan 'mutation-plan')
     Assert-HBCondition ([string] $Plan.planSha256 -eq (Get-HBObjectSha256 $Plan @('planSha256'))) 'Plan hash mismatch.'
     $provider = Read-HBFakeProvider $ProviderPath
@@ -1512,6 +1781,8 @@ function Invoke-HBFakeApply {
             # Re-read and re-hash the complete authority/evidence/inventory/plan tuple at the last possible point.
             $writeInventory = Read-HBInventory (Resolve-HBSafePath $EvidenceRoot 'operational/live-read/inventory.json')
             [void](Read-HBExternalWriteContext $EvidenceRoot $Gate $Plan $writeInventory)
+            [void](Test-HBExternalWriteGateClaim $AuthorizationPath $Claim)
+            $Claim.writeAttempted = $true
             $writes = 1
             $totalWrites++
             $provider.actionStateHashes[$actionId] = [string] $action.desiredSha256
@@ -1686,6 +1957,7 @@ function Test-HBAfterState {
         $ruleset = @($Inventory.rulesets | Where-Object { [long] $_.repositoryId -eq $repoId -and [bool] $_.containsCopilotCodeReview })
         Assert-HBCondition ($ruleset.Count -eq 1) "After-state requires exactly one Copilot ruleset: $($target.slug)"
         Assert-HBCondition ([string] $ruleset[0].sourceType -eq 'Repository' -and -not [bool] $ruleset[0].mixedPurpose) 'After-state review gate isolation was not preserved.'
+        Assert-HBCondition ([string] $ruleset[0].target -eq 'branch' -and [string] $ruleset[0].conditionsSha256 -eq (Get-HBRulesetConditionsSha256 ([string] $repository[0].defaultBranch))) 'After-state ruleset branch scope drifted.'
         Assert-HBCondition ([string] $ruleset[0].enforcement -eq 'active' -and -not [bool] $ruleset[0].reviewDraftPullRequests -and -not [bool] $ruleset[0].reviewOnPush) 'After-state automatic review settings drifted.'
     }
     $nonTarget = @($Inventory.rulesets | Where-Object { -not $targetIds.Contains([long] $_.repositoryId) -and [bool] $_.containsCopilotCodeReview -and [string] $_.enforcement -eq 'active' })
@@ -1711,6 +1983,10 @@ function Invoke-HBCopilotReviewGovernance {
         [switch] $ReadOnly,
         [switch] $DryRun
     )
+
+    if ($ReadOnly -and $Action -in @('Apply', 'Rollback')) {
+        throw "ReadOnly mode blocks the mutating action '$Action'."
+    }
 
     switch ($Action) {
         'ValidateDesiredState' {
@@ -1785,22 +2061,36 @@ function Invoke-HBCopilotReviewGovernance {
             Assert-HBCondition (-not [string]::IsNullOrWhiteSpace($EvidenceRoot)) 'Apply requires an EvidenceRoot.'
             $gate = Read-HBJsonFile $AuthorizationPath
             $plan = Read-HBJsonFile $PlanPath
-            if (-not [string]::IsNullOrWhiteSpace($FakeProviderPath)) {
-                Assert-HBCondition (-not [string]::IsNullOrWhiteSpace($ResultPath)) 'FakeProvider Apply requires ResultPath.'
-                return Invoke-HBFakeApply $plan $gate $FakeProviderPath $EvidenceRoot $ResultPath
+            if ([string]::IsNullOrWhiteSpace($FakeProviderPath)) {
+                Assert-HBLiveEvidenceRootAuthority -EvidenceRoot $EvidenceRoot
+                [void](Assert-HBLivePlanCanonicalTargets -Plan $plan -Gate $gate -EvidenceRoot $EvidenceRoot)
             }
-            Assert-HBCondition (-not $DryRun) 'Live Apply cannot run with -DryRun or -WhatIf.'
-            $effectiveResultPath = if ($ResultPath) { $ResultPath } else {
-                $fileName = switch ([string] $gate.operationClass) {
-                    'RulesetCreate' { 'ruleset-create.json' }
-                    'RulesetUpdate' { 'ruleset-update.json' }
-                    'RulesetDisable' { 'ruleset-disable.json' }
-                    default { throw 'Live Apply requires ResultPath for this operation class.' }
+            $claim = Enter-HBExternalWriteGateClaim $AuthorizationPath $EvidenceRoot $gate $plan
+            $applySucceeded = $false
+            try {
+                if (-not [string]::IsNullOrWhiteSpace($FakeProviderPath)) {
+                    Assert-HBCondition (-not [string]::IsNullOrWhiteSpace($ResultPath)) 'FakeProvider Apply requires ResultPath.'
+                    $result = Invoke-HBFakeApply $plan $gate $FakeProviderPath $EvidenceRoot $ResultPath $AuthorizationPath $claim -ReadOnly:$ReadOnly
+                } else {
+                    Assert-HBCondition (-not $DryRun) 'Live Apply cannot run with -DryRun or -WhatIf.'
+                    $effectiveResultPath = if ($ResultPath) { $ResultPath } else {
+                        $fileName = switch ([string] $gate.operationClass) {
+                            'RulesetCreate' { 'ruleset-create.json' }
+                            'RulesetUpdate' { 'ruleset-update.json' }
+                            'RulesetDisable' { 'ruleset-disable.json' }
+                            default { throw 'Live Apply requires ResultPath for this operation class.' }
+                        }
+                        Resolve-HBSafePath $EvidenceRoot "operational/provider-results/$fileName" -AllowMissingLeaf
+                    }
+                    $effectiveBrowserEvidencePath = if ($BrowserEvidencePath) { $BrowserEvidencePath } else { Resolve-HBSafePath $EvidenceRoot 'browser-manual/before.json' }
+                    $result = Invoke-HBLiveApply $plan $gate $AuthorizationPath $EvidenceRoot $effectiveResultPath $effectiveBrowserEvidencePath $claim -ReadOnly:$ReadOnly
                 }
-                Resolve-HBSafePath $EvidenceRoot "operational/provider-results/$fileName" -AllowMissingLeaf
+                $applySucceeded = $true
+                return $result
+            } finally {
+                $terminalStatus = if ($applySucceeded -or [bool] $claim.writeAttempted) { 'Consumed' } else { 'Revoked' }
+                Complete-HBExternalWriteGateClaim $AuthorizationPath $claim $terminalStatus
             }
-            $effectiveBrowserEvidencePath = if ($BrowserEvidencePath) { $BrowserEvidencePath } else { Resolve-HBSafePath $EvidenceRoot 'browser-manual/before.json' }
-            return Invoke-HBLiveApply $plan $gate $AuthorizationPath $EvidenceRoot $effectiveResultPath $effectiveBrowserEvidencePath
         }
         'Rollback' {
             Assert-HBCondition (-not [string]::IsNullOrWhiteSpace($AuthorizationPath)) 'External-Write-Gate fehlt / External write gate is missing.'

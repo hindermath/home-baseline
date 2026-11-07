@@ -11,6 +11,14 @@ eigenstaendige Projektvertraege.
 releases, including new major versions. Package version, active command and
 upstream release are checked separately. Project pins remain independent.*
 
+Temporäre Profilstände und Backups werden bereits beim exklusiven Anlegen auf
+Benutzerzugriff (`0600`) begrenzt. Erst vollständig geschriebene temporäre
+Dateien übernehmen vor dem atomaren Austausch einen zuvor vorhandenen Modus.
+
+*Temporary profile files and backups are restricted to the user (`0600`) at
+exclusive creation time. A complete temporary file inherits an existing mode
+only immediately before the atomic replacement.*
+
 ## Begrenzter Lauf / Bounded run
 
 macOS/Linux:

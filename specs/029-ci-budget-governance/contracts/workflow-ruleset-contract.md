@@ -85,10 +85,17 @@ gleichzeitig beweisen:
 6. Direkte, Web- und API-Schreibpfade auf den Default Branch sind gesperrt.
 7. Admin-Bypass ist weder Voraussetzung noch normaler Pfad.
 8. Ein fehlender oder umgangener lokaler Hook verändert keine dieser Regeln.
+9. Solange kein fuer alle zugewiesenen Scaffold-Repositories ausfuehrbarer
+   technischer Gate-Satz installiert ist, endet der Status zwingend rot und
+   Stage B blockiert die Ruleset-Aktivierung. Eine reine Identitaetspruefung
+   darf nie den erforderlichen Status erfuellen.
 
 Ein Template mit null oder mehr als einem erforderlichen Minimal-Gate, einem
 ungefilterten Full Build, einem `push`-Main-Trigger oder einem erlaubten
 Default-Branch-Bypass ist ungültig.
+Ein Template ohne nachweislich ausführbare technische Gates ist nur mit
+`home-baseline-technical-gates-ready: false`, einem zwingend fehlschlagenden
+Blockierschritt und blockierter Stage-B-Aktivierung gültig.
 
 ## Pfadvertrag / Path Contract
 

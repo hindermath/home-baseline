@@ -102,6 +102,50 @@ if (-not $VSCodeRegistry) {
     $VSCodeRegistry = Join-Path $repoRoot 'scripts/config/vscode-extensions-registry.json'
 }
 $cliRegistry = Join-Path $repoRoot 'scripts/config/required-cli-tools-registry.json'
+$approvedSpecKitRevision = '464d57fe30c72e9a88d279cc49834539ec989c03'
+$approvedSpecKitSource = "git+https://github.com/github/spec-kit.git@${approvedSpecKitRevision}"
+$approvedCliProbes = @{
+    pandoc      = @{ Command = 'pandoc';      Arguments = @('--version') }
+    typst       = @{ Command = 'typst';       Arguments = @('--version') }
+    tinymist    = @{ Command = 'tinymist';    Arguments = @('--version') }
+    dotnet      = @{ Command = 'dotnet';      Arguments = @('--version') }
+    go          = @{ Command = 'go';          Arguments = @('version') }
+    java        = @{ Command = 'java';        Arguments = @('-version') }
+    javac       = @{ Command = 'javac';       Arguments = @('-version') }
+    python      = @{ Command = 'python';      Arguments = @('--version') }
+    cargo       = @{ Command = 'cargo';       Arguments = @('--version') }
+    rustc       = @{ Command = 'rustc';       Arguments = @('--version') }
+    swift       = @{ Command = 'swift';       Arguments = @('--version') }
+    syft        = @{ Command = 'syft';        Arguments = @('version') }
+    lychee      = @{ Command = 'lychee';      Arguments = @('--version') }
+    specify     = @{ Command = 'specify';     Arguments = @('--version') }
+    codex       = @{ Command = 'codex';       Arguments = @('--version') }
+    claude      = @{ Command = 'claude';      Arguments = @('--version') }
+    antigravity = @{ Command = 'agy';         Arguments = @('--version') }
+    copilot     = @{ Command = 'copilot';     Arguments = @('--version') }
+}
+
+function Assert-HBCLIProbeContract {
+    param([Parameter(Mandatory)] $Tool)
+
+    $id = [string]$Tool.id
+    if (-not $approvedCliProbes.ContainsKey($id)) {
+        throw "CLI-Probe ist nicht durch die Code-Policy autorisiert: ${id}"
+    }
+    $approved = $approvedCliProbes[$id]
+    $arguments = if ($Tool.PSObject.Properties.Name -contains 'args') {
+        @($Tool.args | ForEach-Object { [string]$_ })
+    } else { @() }
+    if ([string]$Tool.command -cne [string]$approved.Command -or
+        $arguments.Count -ne $approved.Arguments.Count) {
+        throw "CLI-Probe ist nicht durch die Code-Policy autorisiert: ${id}"
+    }
+    for ($index = 0; $index -lt $arguments.Count; $index++) {
+        if ($arguments[$index] -cne $approved.Arguments[$index]) {
+            throw "CLI-Probe ist nicht durch die Code-Policy autorisiert: ${id}"
+        }
+    }
+}
 if (-not $NpmAgentRegistry) {
     $NpmAgentRegistry = Join-Path $repoRoot 'scripts/config/npm-agent-cli-registry.json'
 }
@@ -135,6 +179,10 @@ if (-not (Test-Path -Path $NpmAgentRegistry -PathType Leaf)) {
 if (-not (Test-Path -Path $PowerShellModuleRegistry -PathType Leaf)) {
     Write-Error "PowerShell-Modul-Registry nicht gefunden: $PowerShellModuleRegistry"
 }
+$cliRegistryData = Get-Content -Path $cliRegistry -Raw | ConvertFrom-Json
+foreach ($tool in @($cliRegistryData.tools | Where-Object { @($_.platforms) -contains 'Windows' })) {
+    Assert-HBCLIProbeContract -Tool $tool
+}
 
 $wingetCommand = Get-Command winget -ErrorAction SilentlyContinue
 if (-not $wingetCommand) {
@@ -150,7 +198,6 @@ $mslIdPatterns = @($registryData.packages | Where-Object { $_.PSObject.Propertie
     '^' + [regex]::Escape([string]$_.id).Replace('\{major}', '[0-9]+').Replace('\{minor}', '[0-9]+') + '$'
 })
 $vscodeRegistryData = if ($SkipVSCodeExtensions) { $null } else { Get-Content -Path $VSCodeRegistry -Raw | ConvertFrom-Json }
-$cliRegistryData = Get-Content -Path $cliRegistry -Raw | ConvertFrom-Json
 if ($cliRegistryData.PSObject.Properties.Name -contains 'mslToolchains') {
     # Dynamic major-version package IDs are resolved exclusively by the MSL engine.
     $registryData.packages = @($registryData.packages | Where-Object { $_.PSObject.Properties.Name -notcontains 'mslToolchain' })
@@ -484,6 +531,7 @@ function Test-HBCommandWithTimeout {
 function Test-HBCLITool {
     param([Parameter(Mandatory)] $Tool)
 
+    Assert-HBCLIProbeContract -Tool $Tool
     $command = Get-Command $Tool.command -ErrorAction SilentlyContinue
     if (-not $command) { return $false }
 
@@ -586,6 +634,15 @@ function Install-HBCLITool {
     $install = if ($Tool.PSObject.Properties.Name -contains 'install') { $Tool.install } else { $null }
     if ($install -and $install.manager -eq 'uv') {
         $arguments = @($install.arguments | ForEach-Object { [string]$_ })
+        $approvedArguments = @('tool', 'install', 'specify-cli', '--from', $approvedSpecKitSource)
+        if ([string]$Tool.id -ne 'specify' -or $arguments.Count -ne $approvedArguments.Count) {
+            throw "Nicht autorisierter uv-Installationsvertrag für CLI-Tool: $($Tool.id)"
+        }
+        for ($index = 0; $index -lt $approvedArguments.Count; $index++) {
+            if ($arguments[$index] -cne $approvedArguments[$index]) {
+                throw 'Spec-Kit-Quelle ist nicht an den freigegebenen Commit gebunden.'
+            }
+        }
         Write-Host "INSTALL cli tool: $($Tool.id)"
         if ($WhatIfPreference -or (Get-Command uv -ErrorAction SilentlyContinue)) {
             [void](Invoke-HBExternal -Command 'uv' -Arguments $arguments -Action "Install CLI tool $($Tool.id)")

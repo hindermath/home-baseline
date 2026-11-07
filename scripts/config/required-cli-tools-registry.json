@@ -4,7 +4,7 @@
   "description": "CLI command checks for the learning-series MSL toolchains, document tools, SBOM tooling, GitHub Spec Kit, and required agent CLI surfaces.",
   "policy": {
     "defaultScope": "required",
-    "specKitInstallCommand": "uv tool install specify-cli --from git+https://github.com/github/spec-kit.git",
+    "specKitInstallCommand": "uv tool install specify-cli --from git+https://github.com/github/spec-kit.git@464d57fe30c72e9a88d279cc49834539ec989c03",
     "npmAgentRegistry": "scripts/config/npm-agent-cli-registry.json",
     "agentCliPolicy": "codex, claude, the standalone GitHub Copilot CLI, and Google Antigravity CLI are required cross-platform CLI surfaces. Google Antigravity replaces Gemini CLI. macOS uses Homebrew, Windows uses WinGet, and Linux uses the checksum-verified official vendor installer. npm fallback installations are maintained through npm-agent-cli-registry.json.",
     "hostingAccountPolicy": "Learners need an account on the selected institutional Git hosting system. A GitHub account is required only for the direct GitHub profile or optional GitHub Copilot sign-in.",
@@ -222,7 +222,7 @@
       "args": ["--version"],
       "install": {
         "manager": "uv",
-        "arguments": ["tool", "install", "specify-cli", "--from", "git+https://github.com/github/spec-kit.git"]
+        "arguments": ["tool", "install", "specify-cli", "--from", "git+https://github.com/github/spec-kit.git@464d57fe30c72e9a88d279cc49834539ec989c03"]
       },
       "purpose": "GitHub Spec Kit CLI for specification-driven development"
     },

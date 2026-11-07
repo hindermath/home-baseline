@@ -1,5 +1,11 @@
 # home-baseline
 
+Model Routing Governance **0.2.6** und Autonomous Run Governance **0.4.10**:
+Diese Lieferung aktualisiert die lokale Preset-Integration und den geprüften
+normalen Ausführungspfad. [Nachweis und Grenzen](docs/maintenance/model-routing-v026-installation.md).
+This delivery updates the local preset integration and its resolvers; see the
+linked evidence and verification limits.
+
 [Veröffentlichungsstatus und Verbesserungen aller 14 Presets](docs/maintenance/preset-release-documentation-closeout-2026-10-24.md):
 Nacharbeiten zu #342 und #343. Veröffentlichtes Paket, historischer
 Validierungsstand und neuer Dokumentations-PR sind getrennte Zustände.
@@ -209,15 +215,17 @@ bash scripts/maintain-agentic-workspace.sh --stage-b-action preflight --dry-run
 pwsh -NoProfile -File scripts/maintain-agentic-workspace.ps1 -StageBAction Preflight -WhatIf
 ```
 
-Ein realer `Deliver`- oder `Resume`-Lauf benötigt aktuelle `MergeAndSync`-
-Autorität und stoppt vor dem nächsten Repository, sobald ein nicht behebbarer
-Fehler auftritt. [Quickstart](specs/030-stage-b-rollout/quickstart.md) und
+Aktuell ist nur `Preflight` operativ implementiert. `Validate`, `Deliver`,
+`Resume` und `Verify` enden bis zu ihrer vollständigen Implementierung
+fail-closed mit `Blocked` und Exitcode `1`; sie melden keinen Erfolg und führen
+keine Delivery aus. [Quickstart](specs/030-stage-b-rollout/quickstart.md) und
 [Manpage](docs/man/maintain-agentic-workspace.1.md#stage-b-flottenrollout-stage-b-fleet-rollout)
 erklären Evidence, Exitcodes, Review/Bypass-Grenze und die getrennte G4-Folge.
 
-*Stage B rolls out the accepted governance serially. Preview is read-only; real
-delivery or resume requires current MergeAndSync authority and stops before the
-next repository on a non-recoverable failure.*
+*Stage B rolls out the accepted governance serially. Preview is read-only. Only
+Preflight is operationally implemented now; Validate, Deliver, Resume, and
+Verify fail closed with `Blocked` and exit code `1` until fully implemented and
+perform no delivery.*
 
 ## Voraussetzungen
 

@@ -56,7 +56,58 @@ $ErrorActionPreference = 'Stop'
 $ScriptRoot = Split-Path -Parent $MyInvocation.MyCommand.Path
 $RepositoryRoot = Split-Path -Parent $ScriptRoot
 . (Join-Path $ScriptRoot 'lib/resolve-home-baseline-source.ps1')
+Import-Module (Join-Path $ScriptRoot 'lib/managed-file-hardening.psm1') -Force
 $Level0Source = Resolve-HBSourceRepository -StartPath $MyInvocation.MyCommand.Path -AllowLegacy
+
+function Assert-HBContainedUnlinkedPath {
+    param(
+        [Parameter(Mandatory)][string]$Root,
+        [Parameter(Mandatory)][string]$Path
+    )
+    $rootFull = [IO.Path]::GetFullPath($Root).TrimEnd([IO.Path]::DirectorySeparatorChar, [IO.Path]::AltDirectorySeparatorChar)
+    $pathFull = [IO.Path]::GetFullPath($Path)
+    $comparison = if ($IsWindows) { [StringComparison]::OrdinalIgnoreCase } else { [StringComparison]::Ordinal }
+    if (-not $pathFull.StartsWith($rootFull + [IO.Path]::DirectorySeparatorChar, $comparison) -and
+        -not $pathFull.Equals($rootFull, $comparison)) {
+        throw "Pfad verlaesst die erlaubte Wurzel / path escapes allowed root: $Path"
+    }
+    $relative = [IO.Path]::GetRelativePath($rootFull, $pathFull)
+    $current = $rootFull
+    foreach ($part in $relative.Split([IO.Path]::DirectorySeparatorChar, [StringSplitOptions]::RemoveEmptyEntries)) {
+        $current = Join-Path $current $part
+        $item = Get-Item -LiteralPath $current -Force -ErrorAction SilentlyContinue
+        if ($item -and $item.LinkType) {
+            throw "Pfad enthaelt einen symbolischen Link / path contains a symbolic link: $current"
+        }
+    }
+}
+
+function Assert-HBManagedPathsSafe {
+    param([Parameter(Mandatory)][string]$Repo)
+    foreach ($relative in @(
+        '.specify', '.specify/templates', '.specify/memory',
+        '.specify/templates/spec-template.md', '.specify/templates/plan-template.md',
+        '.specify/templates/tasks-template.md', '.specify/memory/constitution.md',
+        '.specify/scripts', '.specify/extensions', '.opencode', '.opencode/command',
+        '.gitignore', '.vscode', '.vscode/settings.json', '.claude', '.claude/skills',
+        '.agents', '.agents/skills', '.github', '.github/agents', '.github/prompts', '.gemini'
+    )) {
+        Assert-HBContainedUnlinkedPath -Root $Repo -Path (Join-Path $Repo $relative)
+    }
+    foreach ($relative in @(
+        '.specify', '.opencode/command', '.claude/skills', '.agents/skills',
+        '.github/agents', '.github/prompts'
+    )) {
+        $managedRoot = Join-Path $Repo $relative
+        if (-not (Test-Path -LiteralPath $managedRoot)) { continue }
+        $linked = Get-ChildItem -LiteralPath $managedRoot -Force -Recurse -ErrorAction Stop |
+            Where-Object { $_.LinkType } |
+            Select-Object -First 1
+        if ($linked) {
+            throw "Verlinkter Eintrag im verwalteten Spec-Kit-Ziel / linked entry in managed Spec Kit destination: $($linked.FullName)"
+        }
+    }
+}
 
 function Test-HBSpecKitRepo {
     param([Parameter(Mandatory)][string]$Path)
@@ -66,10 +117,12 @@ function Test-HBSpecKitRepo {
 function Add-HBRepo {
     param(
         [System.Collections.Generic.List[string]]$Repos,
-        [Parameter(Mandatory)][string]$Path
+        [Parameter(Mandatory)][string]$Path,
+        [string]$ScopeRoot = $HomeDir
     )
 
     if (-not (Test-Path $Path)) { return }
+    Assert-HBContainedUnlinkedPath -Root $ScopeRoot -Path $Path
     if (-not (Test-HBSpecKitRepo -Path $Path)) { return }
     if (-not $Repos.Contains($Path)) { $Repos.Add($Path) | Out-Null }
 }
@@ -81,7 +134,7 @@ function Get-HBSpecKitRepos {
     )
 
     $repos = [System.Collections.Generic.List[string]]::new()
-    Add-HBRepo -Repos $repos -Path $Level0
+    Add-HBRepo -Repos $repos -Path $Level0 -ScopeRoot $Level0
 
     Get-ChildItem -Path $Root -Directory -ErrorAction SilentlyContinue |
         Where-Object { $_.FullName -ne $Level0 } |
@@ -122,7 +175,8 @@ function Copy-HBGovernanceTemplatesToCache {
     foreach ($name in @('spec-template.md', 'plan-template.md', 'tasks-template.md')) {
         $src = Join-Path $sourceTemplates $name
         if (-not (Test-Path $src)) { throw "Template fehlt: $src" }
-        Copy-Item $src (Join-Path $CacheDir $name) -Force
+        Copy-HBManagedFileAtomic -SourceRoot $SourceRepo -SourceRelativePath ".specify/templates/$name" `
+            -Root $CacheDir -RelativePath $name
     }
 }
 
@@ -164,18 +218,21 @@ function Restore-HBGovernanceTemplates {
         if ($WhatIfPreference) {
             Write-Host "  [WhatIf] Restore $name"
         } else {
-            Copy-Item $src $dst -Force
+            Copy-HBManagedFileAtomic -SourceRoot $CacheDir -SourceRelativePath $name `
+                -Root $Repo -RelativePath ".specify/templates/$name"
         }
     }
 
     if (-not $WhatIfPreference) {
         Get-ChildItem -Path (Join-Path $Repo '.specify/templates') -Filter '*.md' -File |
             ForEach-Object {
-                $text = Get-Content -Raw -Path $_.FullName
+                Assert-HBContainedUnlinkedPath -Root $Repo -Path $_.FullName
+                $relative = [IO.Path]::GetRelativePath($Repo, $_.FullName).Replace('\', '/')
+                $text = Read-HBManagedText -Root $Repo -RelativePath $relative
                 $text = $text -replace '/speckit\.checklist', '/speckit-checklist'
                 $text = $text -replace '/speckit\.plan', '/speckit-plan'
                 $text = $text -replace '/speckit\.tasks', '/speckit-tasks'
-                Set-Content -Path $_.FullName -Value $text -NoNewline
+                Write-HBManagedTextAtomic -Root $Repo -RelativePath $relative -Content $text
             }
     }
 }
@@ -195,10 +252,10 @@ function Enable-HBOpenCodeCommandTracking {
         return
     }
 
-    $content = Get-Content -Raw -Path $gitignore
+    $content = Read-HBManagedText -Root $Repo -RelativePath '.gitignore'
     if ($content.Contains('!.opencode/command/*.md')) { return }
 
-    Add-Content -Path $gitignore -Value @'
+    $content += @'
 
 # opencode Spec-Kit Commands (nur commands/, NICHT root - root kann Cache enthalten)
 !.opencode/
@@ -206,6 +263,7 @@ function Enable-HBOpenCodeCommandTracking {
 !.opencode/command/
 !.opencode/command/*.md
 '@
+    Write-HBManagedTextAtomic -Root $Repo -RelativePath '.gitignore' -Content $content
 }
 
 function Repair-HBGeneratedWhitespace {
@@ -235,22 +293,43 @@ function Repair-HBGeneratedWhitespace {
 
         Get-ChildItem -Path $dir -File -Recurse |
             ForEach-Object {
-                $text = Get-Content -Raw -Path $_.FullName
+                Assert-HBContainedUnlinkedPath -Root $Repo -Path $_.FullName
+                $relative = [IO.Path]::GetRelativePath($Repo, $_.FullName).Replace('\', '/')
+                $text = Read-HBManagedText -Root $Repo -RelativePath $relative
                 $text = $text -replace '[ \t]+(?=\r?\n|$)', ''
                 $text = $text -replace "(\r?\n)+\z", "`n"
-                Set-Content -Path $_.FullName -Value $text -NoNewline
+                Write-HBManagedTextAtomic -Root $Repo -RelativePath $relative -Content $text
             }
     }
 
     $settings = Join-Path $Repo '.vscode/settings.json'
     if (Test-Path $settings) {
-        $text = (Get-Content -Raw -Path $settings) -replace "(\r?\n)+\z", "`n"
-        Set-Content -Path $settings -Value $text -NoNewline
+        $text = (Read-HBManagedText -Root $Repo -RelativePath '.vscode/settings.json') -replace "(\r?\n)+\z", "`n"
+        Write-HBManagedTextAtomic -Root $Repo -RelativePath '.vscode/settings.json' -Content $text
     }
 }
 
 function Remove-HBLegacyGeminiIntegration {
     param([Parameter(Mandatory)][string]$Repo)
+
+    $repoRoot = [IO.Path]::GetFullPath($Repo).TrimEnd(
+        [IO.Path]::DirectorySeparatorChar,
+        [IO.Path]::AltDirectorySeparatorChar
+    )
+    $comparison = if ($IsWindows) { [StringComparison]::OrdinalIgnoreCase } else { [StringComparison]::Ordinal }
+    foreach ($relative in @('.gemini', '.gemini/commands')) {
+        $candidate = Join-Path $repoRoot $relative
+        $item = Get-Item -LiteralPath $candidate -Force -ErrorAction SilentlyContinue
+        if ($item -and $item.LinkType) {
+            throw "Legacy-Gemini-Pfad enthaelt einen symbolischen Link / legacy Gemini path contains a symbolic link: ${relative}"
+        }
+        if ($item -and -not $item.FullName.StartsWith(
+            $repoRoot + [IO.Path]::DirectorySeparatorChar,
+            $comparison
+        )) {
+            throw "Legacy-Gemini-Pfad verlaesst das Repository / legacy Gemini path escapes repository: ${relative}"
+        }
+    }
 
     $paths = @(
         (Join-Path $Repo '.gemini/commands'),
@@ -304,6 +383,8 @@ function Invoke-HBSpecKitUpdate {
     )
 
     Write-Host "## $Repo"
+    Assert-HBContainedUnlinkedPath -Root $HomeDir -Path $Repo
+    Assert-HBManagedPathsSafe -Repo $Repo
 
     if (-not $WhatIfPreference -and -not $AllowDirty) {
         $status = git -C $Repo status --short
@@ -321,8 +402,11 @@ function Invoke-HBSpecKitUpdate {
         Invoke-HBSpecifyInit -Repo $Repo -Agent $agent
     }
 
+    Assert-HBManagedPathsSafe -Repo $Repo
+
     if ($constitutionBackup) {
-        Copy-Item $constitutionBackup $constitution -Force
+        $constitutionContent = [IO.File]::ReadAllText($constitutionBackup, [Text.UTF8Encoding]::new($false, $true))
+        Write-HBManagedTextAtomic -Root $Repo -RelativePath '.specify/memory/constitution.md' -Content $constitutionContent
         Remove-Item $constitutionBackup -Force
     }
 

@@ -51,10 +51,22 @@ Repository, sein Index, seine Views und andere Repositories werden nicht
 veraendert. `jq` wird fuer das bereits etablierte JSON-Fixture im Bash-Test
 verwendet; der PowerShell-Test nutzt `ConvertFrom-Json`.
 
+Vor der ersten Materialisierung werden alle `intakePath`-Werte vollständig
+geprüft. Absolute Pfade, Laufwerkspraefixe, Backslashes, leere oder
+`.`/`..`-Segmente, Steuerzeichen und verlinkte Pfadkomponenten werden
+abgewiesen. Auch die wiederholten Transaktions-Fixtures prüfen unmittelbar
+vor jedem Schreibzugriff erneut die temporaere Repository-Grenze.
+
 *The tests write only below an operating-system-created temporary directory
 and remove it on exit. They do not change the current repository, its index,
 its views, or other repositories. The Bash test uses the already established
 `jq` JSON dependency; the PowerShell test uses `ConvertFrom-Json`.*
+
+*Every `intakePath` is validated before the first materialization. Absolute
+paths, drive prefixes, backslashes, empty or `.`/`..` segments, control
+characters and linked path components are rejected. Replayed transaction
+fixtures recheck the temporary repository boundary immediately before every
+write.*
 
 ## Exitcodes / Exit Codes
 

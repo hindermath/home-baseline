@@ -37,12 +37,7 @@ title = "Repository gitleaks config"
 [extend]
 useDefault = true
 
-[allowlist]
-description = "False positives in secure-development teaching documentation (illustrative example patterns, not real secrets)"
-# DE: Nur Markdown-Lehrmaterial unter docs/secure-development/ ausnehmen — echter
-#     Code/echte Konfiguration außerhalb dieses Pfads wird weiterhin voll gescannt.
-# EN: Only exempt Markdown teaching material under docs/secure-development/ — real
-#     code/config outside this path is still fully scanned.
-paths = [
-  '''docs/secure-development/.*\.md$''',
-]
+# DE: Es gibt bewusst keine pfadweite Ausnahme. Lehrbeispiele werden so
+#     geschrieben, dass sie kein vollstaendiges Secret-Muster enthalten.
+# EN: There intentionally is no path-wide exception. Teaching examples are
+#     written without a complete secret pattern.

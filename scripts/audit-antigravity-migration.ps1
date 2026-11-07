@@ -99,9 +99,17 @@ foreach ($repo in Get-HBRepositories -Root (Resolve-Path $HomeDir).ProviderPath 
     if (-not (Test-Path $gitignore)) {
         $findings.Add('missing .gitignore')
     } else {
-        $ignoreText = Get-Content $gitignore -Raw
-        if (-not $ignoreText.Contains('.agents/*') -or -not $ignoreText.Contains('!.agents/skills/')) {
-            $findings.Add('unsafe or incomplete .agents gitignore allowlist')
+        $privateIgnored = $true
+        foreach ($privatePath in @('.agents/private-state.json', '.agents/mcp_config.json', '.agents/runtime/session.json')) {
+            & git -C $repo.Path check-ignore -q --no-index -- $privatePath
+            if ($LASTEXITCODE -ne 0) { $privateIgnored = $false }
+        }
+        & git -C $repo.Path check-ignore -q --no-index -- '.agents/skills/speckit-probe/SKILL.md'
+        $skillVisible = $LASTEXITCODE -eq 1
+        $trackedAgents = @(& git -C $repo.Path ls-files -- '.agents')
+        $trackingValid = $LASTEXITCODE -eq 0 -and @($trackedAgents | Where-Object { $_ -notlike '.agents/skills/*' }).Count -eq 0
+        if (-not ($privateIgnored -and $skillVisible -and $trackingValid)) {
+            $findings.Add('unsafe or ineffective .agents gitignore allowlist')
         }
     }
     & git -C $repo.Path ls-files --error-unmatch .agents/mcp_config.json *> $null

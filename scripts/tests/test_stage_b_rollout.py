@@ -784,6 +784,33 @@ class FleetPreflightTests(unittest.TestCase):
             )
             self.assertTrue(state_path.is_file())
 
+    def test_stage_b_publication_rejects_linked_intermediate_evidence_roots(self):
+        plan, state = self._all_noop_plan_and_state()
+        with tempfile.TemporaryDirectory() as directory:
+            root = pathlib.Path(directory)
+            outside = root / "outside"
+            outside.mkdir()
+            (root / ".specify").symlink_to(outside, target_is_directory=True)
+            stage_b = root / ".specify/runtime/stage-b"
+            with self.assertRaisesRegex(self.engine.ContractError, "untrusted link"):
+                self.engine.publish_stage_b_preflight(
+                    stage_b / "rollout-plan.json",
+                    stage_b / "stage-b-run-state.json",
+                    plan,
+                    state,
+                    RUNTIME_SCHEMAS / "stage-b-rollout-plan.schema.json",
+                    RUNTIME_SCHEMAS / "stage-b-run-state.schema.json",
+                )
+            self.assertEqual(list(outside.iterdir()), [])
+
+            evidence_link = root / "evidence"
+            evidence_link.symlink_to(outside, target_is_directory=True)
+            with self.assertRaisesRegex(self.engine.ContractError, "untrusted link"):
+                self.engine._atomic_stage_b_json(
+                    evidence_link / "repositories/fixture/premerge.json", {"safe": True}
+                )
+            self.assertEqual(list(outside.iterdir()), [])
+
     def test_state_without_matching_plan_is_invalid(self):
         _, state = self._all_noop_plan_and_state()
         with tempfile.TemporaryDirectory() as directory:
@@ -1254,15 +1281,15 @@ class PrivateRulesetTests(unittest.TestCase):
             self.restores += 1
             self.current = before
 
-    def test_exact_private_ruleset_updates_once_and_verifies(self):
+    def test_private_ruleset_activation_is_blocked_until_technical_gates_exist(self):
         engine = load_engine()
         fixture = json.loads(
             (FIXTURES / "delivery/private-ruleset.json").read_text(encoding="utf-8")
         )
         provider = self.Provider({"state": "old"}, fixture["desiredRuleset"])
-        result = engine.StageBRulesetTransaction(fixture, provider).execute()
-        self.assertEqual(result["action"], "Update")
-        self.assertEqual(provider.writes, 1)
+        with self.assertRaisesRegex(engine.CIGateBlocked, "technical gates"):
+            engine.StageBRulesetTransaction(fixture, provider).execute()
+        self.assertEqual(provider.writes, 0)
         self.assertEqual(provider.restores, 0)
 
     def test_additional_status_or_bypass_actor_is_rejected_before_write(self):
@@ -1805,6 +1832,33 @@ class PlatformParityTests(unittest.TestCase):
         ])
         self.assertEqual(result.returncode, 2)
         self.assertIn("fixture input is forbidden", result.stderr)
+
+    def test_unimplemented_operational_actions_fail_closed_in_both_wrappers(self):
+        for action in ("validate", "deliver", "resume", "verify"):
+            commands = [
+                [self.bash_executable(), "scripts/maintain-agentic-workspace.sh", "--stage-b-action", action],
+                ["pwsh", "-NoProfile", "-File", "scripts/maintain-agentic-workspace.ps1", "-StageBAction", action.capitalize()],
+            ]
+            for command in commands:
+                with self.subTest(action=action, command=command[0]):
+                    result = self.run_wrapper(command)
+                    self.assertEqual(result.returncode, 1, result.stdout + result.stderr)
+                    self.assertIn("Status: Blocked", result.stdout)
+                    self.assertIn(f"Stage-B action {action.capitalize()} is not implemented", result.stdout)
+                    self.assertNotIn("Status: Passed", result.stdout)
+
+    def test_unimplemented_action_blocks_before_action_specific_input_validation(self):
+        engine = load_engine()
+        parser = engine.build_parser()
+        args = parser.parse_args([
+            "stage-b", "--action", "deliver", "--repository-root", str(ROOT),
+            "--repository-id", "bad space", "--profile-id", "bad space",
+        ])
+        with mock.patch("builtins.print") as printed:
+            self.assertEqual(engine.execute_stage_b_action(args), 1)
+        output = "\n".join(str(call.args[0]) for call in printed.call_args_list)
+        self.assertIn("Status: Blocked", output)
+        self.assertNotIn("STAGE_B\tFAILED", output)
 
     def test_whitespace_unicode_and_metacharacter_ids_fail_closed(self):
         engine = load_engine()

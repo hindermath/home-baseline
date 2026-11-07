@@ -79,26 +79,11 @@ def validate_primary(repository_root: Path, evidence_root: Path, gate_id: str) -
     primary = evidence_root / "primary" / f"{gate_id}.json"
     if not primary.is_file():
         return False, "Primary evidence is absent; Supplemental/Open remains truthful."
-    data = json.loads(primary.read_text(encoding="utf-8"))
-    required = {
-        "gateId": gate_id,
-        "evidenceRole": "Primary",
-        "status": "Passed",
-        "providerMutationsOutsideAuthorizedScope": 0,
-        "secretFindings": 0,
-    }
-    if any(data.get(key) != value for key, value in required.items()):
-        return False, "Primary evidence is incomplete or violates the closed-world gate contract."
-    payload_path = data.get("payloadPath")
-    payload_hash = data.get("payloadSha256")
-    if not isinstance(payload_path, str) or not isinstance(payload_hash, str):
-        return False, "Primary payload binding is missing."
-    payload = (repository_root / payload_path).resolve()
-    if repository_root.resolve() not in payload.parents or not payload.is_file():
-        return False, "Primary payload path is unsafe or missing."
-    if sha256_file(payload) != payload_hash:
-        return False, "Primary payload hash mismatch."
-    return True, "Primary evidence passed."
+    del repository_root
+    # Repository-local JSON and payload hashes are self-attested by the same
+    # writer. Until an independently verifiable runner/provider receipt is
+    # implemented, they can never satisfy a Primary gate.
+    return False, "Repository-local Primary evidence is self-attested; trusted runner/provider receipt validation is unavailable."
 
 
 def main() -> int:
@@ -114,7 +99,8 @@ def main() -> int:
     repository_root = Path(args.repository_root).resolve()
     evidence_root = Path(args.evidence_root)
     if not evidence_root.is_absolute():
-        evidence_root = (repository_root / evidence_root).resolve()
+        evidence_root = repository_root / evidence_root
+    evidence_root = evidence_root.resolve()
     if repository_root not in evidence_root.parents:
         raise SystemExit("Evidence root must remain below the repository root")
 

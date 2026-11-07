@@ -20,7 +20,14 @@
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+SECURE_DEV_LIB="$SCRIPT_DIR/lib/secure-development-hardening.sh"
 FORGEJO_LIB="$SCRIPT_DIR/lib/hg-forgejo.sh"
+if [ ! -f "$SECURE_DEV_LIB" ]; then
+  echo "Fehler: Security-Bibliothek fehlt: $SECURE_DEV_LIB" >&2
+  exit 1
+fi
+# shellcheck source=scripts/lib/secure-development-hardening.sh
+source "$SECURE_DEV_LIB"
 if [ ! -f "$FORGEJO_LIB" ]; then
   echo "Fehler: Forgejo-Bibliothek fehlt: $FORGEJO_LIB" >&2
   exit 1
@@ -44,6 +51,7 @@ usage() {
 log()  { echo "  $*"; }
 ok()   { echo "✓ $*"; }
 info() { echo "→ $*"; }
+warn() { echo "WARN: $*" >&2; }
 
 normalize_name() {
   echo "$1" | tr '[:upper:]' '[:lower:]' | sed 's/[^a-z0-9]/-/g' | sed 's/-\+/-/g' | sed 's/^-\|-$//g'
@@ -57,6 +65,154 @@ json_escape() {
   value="${value//$'\r'/\\r}"
   value="${value//$'\t'/\\t}"
   printf '%s' "$value"
+}
+
+validate_bootstrap_name() {
+  local label="$1" value="$2"
+  case "$value" in
+    ""|.|..|-*|*/*|*\\*)
+      echo "Fehler: $label muss ein einzelner sicherer Verzeichnisname sein: $value" >&2
+      return 1
+      ;;
+  esac
+  if [ "$value" != "$(LC_ALL=C printf '%s' "$value" | tr -d '[:cntrl:]')" ]; then
+    echo "Fehler: $label darf keine Steuerzeichen enthalten." >&2
+    return 1
+  fi
+}
+
+assert_safe_workspace_targets() {
+  local relative candidate
+  for relative in \
+    .gitignore README.md AGENTS.md CLAUDE.md GEMINI.md constitution.md STATS.md \
+    release-please-config.json .release-please-manifest.json scripts .github \
+    .github/copilot-instructions.md .github/workflows \
+    .github/workflows/homogeneity-check.yml .github/workflows/release-please.yml \
+    docs docs/project-statistics.md docs/project-statistics.config.json \
+    .specify .specify/memory .specify/memory/constitution.md; do
+    candidate="$WORKSPACE_DIR/$relative"
+    sdh_assert_no_untrusted_link_components "$candidate" || return 1
+    if [ -L "$candidate" ]; then
+      echo "Fehler: Verwaltetes Bootstrap-Ziel ist ein symbolischer Link: $candidate" >&2
+      return 1
+    fi
+  done
+  sdh_assert_no_untrusted_link_components "$HOME_DIR/README.md" || return 1
+  if [ -L "$HOME_DIR/README.md" ]; then
+    echo "Fehler: HOME-README darf kein symbolischer Link sein: $HOME_DIR/README.md" >&2
+    return 1
+  fi
+}
+
+assert_regular_source_tree() {
+  local source_root="$1" linked
+  [ -d "$source_root" ] && [ ! -L "$source_root" ] || {
+    echo "Fehler: Bootstrap-Quellverzeichnis ist kein reguläres Verzeichnis: $source_root" >&2
+    return 1
+  }
+  sdh_assert_no_untrusted_link_components "$source_root" || return 1
+  linked="$(find "$source_root" -type l -print -quit)"
+  if [ -n "$linked" ]; then
+    echo "Fehler: Bootstrap-Quellbaum enthält einen symbolischen Link: $linked" >&2
+    return 1
+  fi
+}
+
+resolve_tracked_source_root() {
+  local candidate
+  for candidate in \
+    "$(cd "$SCRIPT_DIR/.." 2>/dev/null && pwd)" \
+    "${HOME_BASELINE_SOURCE:-}" \
+    "$HOME_DIR/home-baseline-source"; do
+    [ -n "$candidate" ] || continue
+    if git -C "$candidate" ls-files --error-unmatch scripts/bootstrap-workspace.sh >/dev/null 2>&1; then
+      printf '%s\n' "$(cd "$candidate" && pwd -P)"
+      return 0
+    fi
+  done
+  return 1
+}
+
+copy_tracked_scripts() {
+  local target_root="$1" tracked relative source target
+  while IFS= read -r -d '' tracked; do
+    relative="${tracked#scripts/}"
+    source="$SOURCE_REPO_ROOT/$tracked"
+    target="$target_root/$relative"
+    [ -f "$source" ] && [ ! -L "$source" ] || return 1
+    mkdir -p "$(dirname "$target")"
+    cp -P "$source" "$target"
+  done < <(git -C "$SOURCE_REPO_ROOT" ls-files -z -- scripts)
+}
+
+sha256_file() {
+  if command -v sha256sum >/dev/null 2>&1; then
+    sha256sum "$1" | awk '{print $1}'
+  else
+    shasum -a 256 "$1" | awk '{print $1}'
+  fi
+}
+
+install_verified_pre_push_hook() {
+  local repo_root="$1" source_hook="$SCRIPTS_SRC/hooks/pre-push"
+  local hooks_dir="$repo_root/.git/home-baseline-hooks"
+  local target_hook="$hooks_dir/pre-push" temporary
+  [ -f "$source_hook" ] && [ ! -L "$source_hook" ] || {
+    echo "Fehler: Kanonischer pre-push Hook fehlt oder ist verlinkt: $source_hook" >&2
+    return 1
+  }
+  [ ! -L "$hooks_dir" ] && [ ! -L "$target_hook" ] || {
+    echo "Fehler: Hook-Ziel darf kein symbolischer Link sein: $target_hook" >&2
+    return 1
+  }
+  mkdir -p "$hooks_dir"
+  temporary="$(mktemp "$hooks_dir/.pre-push.XXXXXX")"
+  cp -P "$source_hook" "$temporary"
+  chmod 0755 "$temporary"
+  mv -f "$temporary" "$target_hook"
+  git -C "$repo_root" config --local core.hooksPath "$hooks_dir"
+  [ "$(sha256_file "$source_hook")" = "$(sha256_file "$target_hook")" ] || {
+    echo "Fehler: Installierter pre-push Hook stimmt nicht mit der kanonischen Quelle überein." >&2
+    return 1
+  }
+  [ -x "$target_hook" ] || {
+    echo "Fehler: Installierter pre-push Hook ist nicht ausführbar." >&2
+    return 1
+  }
+  [ "$(git -C "$repo_root" config --path core.hooksPath)" = "$hooks_dir" ] || {
+    echo "Fehler: Effektiver Git-Hook-Pfad ist nicht das verifizierte Hook-Verzeichnis." >&2
+    return 1
+  }
+}
+
+stage_workspace_baseline() {
+  local relative
+  git -C "$WORKSPACE_DIR" reset --quiet
+  for relative in \
+    .gitignore README.md AGENTS.md CLAUDE.md GEMINI.md constitution.md STATS.md \
+    release-please-config.json .release-please-manifest.json \
+    .github/copilot-instructions.md .github/workflows/homogeneity-check.yml \
+    .github/workflows/release-please.yml docs/project-statistics.md \
+    docs/project-statistics.config.json; do
+    if [ -e "$WORKSPACE_DIR/$relative" ] && [ ! -L "$WORKSPACE_DIR/$relative" ]; then
+      git -C "$WORKSPACE_DIR" add -- "$relative"
+    fi
+  done
+  while IFS= read -r -d '' relative; do
+    git -C "$WORKSPACE_DIR" add -- "$relative"
+  done < <(git -C "$SOURCE_REPO_ROOT" ls-files -z -- scripts)
+}
+
+scan_bootstrap_publication() {
+  local repo_root="$1" mode="$2" args=(git --redact --no-banner --no-color --log-level warn --exit-code 2)
+  command -v gitleaks >/dev/null 2>&1 || {
+    echo "Fehler: Remote-Veröffentlichung benötigt gitleaks." >&2
+    return 1
+  }
+  if [ "$mode" = "staged" ]; then
+    args+=(--staged)
+  fi
+  gitleaks "${args[@]}" "$repo_root"
 }
 
 # --- Parameter parsen ----------------------------------------------------------
@@ -125,6 +281,7 @@ while [ $# -gt 0 ]; do
 done
 
 [ -z "$WORKSPACE_NAME" ] && usage
+validate_bootstrap_name "Workspace-Name" "$WORKSPACE_NAME"
 
 case "$PLATFORM" in
   github|gitlab|forgejo|codeberg) ;;
@@ -152,9 +309,14 @@ if [ "$NO_REMOTE" -eq 0 ] && { [ "$PLATFORM" = "forgejo" ] || [ "$PLATFORM" = "c
   FORGEJO_BASE_URL="$(hb_forgejo_resolve_base_url "$PLATFORM" "$FORGEJO_URL")"
 fi
 
-HOME_DIR="$(cd ~ && pwd)"
+HOME_DIR="$(cd -P ~ && pwd)"
 WORKSPACE_DIR="$HOME_DIR/$WORKSPACE_NAME"
-SCRIPTS_SRC="$HOME_DIR/scripts"
+SOURCE_REPO_ROOT="$(resolve_tracked_source_root)" || {
+  echo "Fehler: Keine vertrauenswürdige Git-getrackte Level-0-Quelle gefunden." >&2
+  exit 1
+}
+SCRIPTS_SRC="$SOURCE_REPO_ROOT/scripts"
+assert_regular_source_tree "$SCRIPTS_SRC"
 
 if [ -z "$REPO_NAME" ]; then
   REPO_NAME="$(echo "$WORKSPACE_NAME" | tr '[:upper:]' '[:lower:]' | sed 's/projects$/-baseline/' | sed 's/ /-/g')"
@@ -181,6 +343,16 @@ fi
 
 if [ ! -d "$WORKSPACE_DIR" ]; then
   echo "Fehler: Verzeichnis '$WORKSPACE_DIR' existiert nicht." >&2
+  exit 1
+fi
+
+if [ -L "$WORKSPACE_DIR" ] || [ "$(cd -P "$(dirname "$WORKSPACE_DIR")" && pwd)" != "$HOME_DIR" ]; then
+  echo "Fehler: Workspace muss ein echtes direktes Unterverzeichnis von HOME sein: $WORKSPACE_DIR" >&2
+  exit 1
+fi
+assert_safe_workspace_targets
+if [ -d "$WORKSPACE_DIR/scripts" ] && [ -n "$(find "$WORKSPACE_DIR/scripts" -mindepth 1 -print -quit)" ]; then
+  echo "Fehler: Vorhandenes nicht-leeres scripts/-Ziel wird nicht übernommen: $WORKSPACE_DIR/scripts" >&2
   exit 1
 fi
 
@@ -263,7 +435,9 @@ echo "╔═══════════════════════�
 echo "║  bootstrap-workspace – Neue Workspace-Einrichtung               ║"
 echo "╠══════════════════════════════════════════════════════════════════╣"
 printf "║  Verzeichnis : %-51s║\n" "$WORKSPACE_DIR"
-printf "║  Beschreibung: %-51s║\n" "${REPO_DESC:0:51}"
+# Bash 3.2 can split a UTF-8 code point when slicing by bytes in a C locale.
+# Preserve the complete description so redirected output stays valid UTF-8.
+printf "║  Beschreibung: %-51s║\n" "$REPO_DESC"
 if [ "$NO_REMOTE" -eq 1 ]; then
   printf "║  Remote      : %-51s║\n" "kein Remote / no remote"
 elif [ "$PLATFORM" = "github" ]; then
@@ -288,9 +462,11 @@ echo ""
 
 run() {
   if [ "$DRY_RUN" -eq 1 ]; then
-    echo "  [dry-run] $*"
+    printf '  [dry-run]'
+    printf ' %q' "$@"
+    printf '\n'
   else
-    eval "$@"
+    "$@"
   fi
 }
 
@@ -310,7 +486,14 @@ info "Erstelle .gitignore …"
 GITIGNORE_PATH="$WORKSPACE_DIR/.gitignore"
 
 if [ "$DRY_RUN" -eq 0 ]; then
-  {
+  gitignore_tmp="$(mktemp "$WORKSPACE_DIR/.gitignore.XXXXXX")"
+  if [ -f "$GITIGNORE_PATH" ]; then
+    cat "$GITIGNORE_PATH" > "$gitignore_tmp"
+  fi
+  if ! grep -qF '# home-baseline bootstrap managed ignores' "$gitignore_tmp"; then
+    {
+    [ ! -s "$gitignore_tmp" ] || echo ""
+    echo "# home-baseline bootstrap managed ignores"
     echo "# Sub-Verzeichnisse mit eigenen Git-Repositories (automatisch erkannt)"
     for repo in "${SUB_REPOS[@]+"${SUB_REPOS[@]}"}"; do
       echo "$repo/"
@@ -337,7 +520,9 @@ obj/
 build/
 node_modules/
 STATIC
-  } > "$GITIGNORE_PATH"
+    } >> "$gitignore_tmp"
+  fi
+  mv -f "$gitignore_tmp" "$GITIGNORE_PATH"
   ok ".gitignore erstellt"
 else
   sub_repos_display="keine"
@@ -350,9 +535,13 @@ fi
 # --- Scripts kopieren ----------------------------------------------------------
 
 info "Kopiere Scripts …"
-run "mkdir -p '$WORKSPACE_DIR/scripts'"
-run "cp -R '$SCRIPTS_SRC/.' '$WORKSPACE_DIR/scripts/'"
-run "chmod +x '$WORKSPACE_DIR/scripts/'*.sh '$WORKSPACE_DIR/scripts/hooks/pre-push' 2>/dev/null || true"
+run mkdir -p "$WORKSPACE_DIR/scripts"
+if [ "$DRY_RUN" -eq 0 ]; then
+  copy_tracked_scripts "$WORKSPACE_DIR/scripts"
+else
+  echo "  [dry-run] Git-getrackte Dateien aus $SCRIPTS_SRC würden kopiert."
+fi
+run chmod +x "$WORKSPACE_DIR/scripts/"*.sh "$WORKSPACE_DIR/scripts/hooks/pre-push" 2>/dev/null || true
 ok "Scripts kopiert"
 
 # --- README.md erzeugen --------------------------------------------------------
@@ -361,7 +550,17 @@ info "Erstelle Workspace-README.md …"
 WS_README_TMPL="$SCRIPTS_SRC/templates/workspace-readme-template.md"
 if [ -f "$WS_README_TMPL" ]; then
   if [ $DRY_RUN -eq 0 ]; then
-    sed "s/{{WORKSPACE_NAME}}/${WORKSPACE_NAME}/g" "$WS_README_TMPL" > "$WORKSPACE_DIR/README.md"
+    WORKSPACE_NAME_VALUE="$WORKSPACE_NAME" awk '
+      function replace_literal(value, marker, replacement, result, at) {
+        result = ""
+        while ((at = index(value, marker)) > 0) {
+          result = result substr(value, 1, at - 1) replacement
+          value = substr(value, at + length(marker))
+        }
+        return result value
+      }
+      { print replace_literal($0, "{{WORKSPACE_NAME}}", ENVIRON["WORKSPACE_NAME_VALUE"]) }
+    ' "$WS_README_TMPL" > "$WORKSPACE_DIR/README.md"
     ok "Workspace-README.md erstellt"
   else
     echo "  [dry-run] Workspace-README.md würde aus $WS_README_TMPL erstellt."
@@ -377,10 +576,21 @@ TEMPLATES_DIR="$SCRIPTS_SRC/templates"
 
 render_workspace_template() {
   local template="$1" output="$2"
-  sed \
-    -e "s|{{PROJECT_NAME}}|${WORKSPACE_NAME}|g" \
-    -e "s|{{WORKSPACE}}|~/${WORKSPACE_NAME}|g" \
-    "$template" > "$output"
+  WORKSPACE_NAME_VALUE="$WORKSPACE_NAME" awk '
+    function replace_literal(value, marker, replacement, result, at) {
+      result = ""
+      while ((at = index(value, marker)) > 0) {
+        result = result substr(value, 1, at - 1) replacement
+        value = substr(value, at + length(marker))
+      }
+      return result value
+    }
+    {
+      line = replace_literal($0, "{{PROJECT_NAME}}", ENVIRON["WORKSPACE_NAME_VALUE"])
+      line = replace_literal(line, "{{WORKSPACE}}", "~/" ENVIRON["WORKSPACE_NAME_VALUE"])
+      print line
+    }
+  ' "$template" > "$output"
 }
 
 if [ "$DRY_RUN" -eq 0 ]; then
@@ -558,9 +768,18 @@ fi
 # --- git init + commit ---------------------------------------------------------
 
 info "Initialisiere Git-Repository …"
-run "git -C '$WORKSPACE_DIR' init"
-run "git -C '$WORKSPACE_DIR' add -A"
-run "git -C '$WORKSPACE_DIR' commit -m 'chore: initiale Baseline-Konfiguration für $WORKSPACE_NAME
+run git -C "$WORKSPACE_DIR" init
+if [ "$DRY_RUN" -eq 0 ]; then
+  install_verified_pre_push_hook "$WORKSPACE_DIR"
+  stage_workspace_baseline
+  if [ "$NO_REMOTE" -eq 0 ]; then
+    scan_bootstrap_publication "$WORKSPACE_DIR" staged
+  fi
+else
+  echo "  [dry-run] kanonischer pre-push Hook würde vor Commit und Push installiert und verifiziert."
+  echo "  [dry-run] nur verwaltete Bootstrap-Dateien würden gestaged."
+fi
+run git -c core.hooksPath=/dev/null -C "$WORKSPACE_DIR" commit -m "chore: initiale Baseline-Konfiguration für $WORKSPACE_NAME
 
 - .gitignore        – schließt Sub-Repos und Artefakte aus
 - scripts/          – Secret-Scan, Hook-Installation (Bash + PowerShell)
@@ -570,15 +789,15 @@ Nach dem Clonen auf neuem Gerät:
   bash scripts/install-hooks.sh       (macOS/Linux)
   pwsh scripts/install-hooks.ps1      (Windows)
 
-Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>'"
+Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>"
 ok "Initialer Commit erstellt"
 
-if [ -f "$WORKSPACE_DIR/scripts/render-project-statistics.sh" ]; then
+if [ -f "$SCRIPTS_SRC/render-project-statistics.sh" ]; then
   info "Initialisiere ASCII-Statistikprofil 2 ..."
-  if bash "$WORKSPACE_DIR/scripts/render-project-statistics.sh" --repo "$WORKSPACE_DIR" >/dev/null; then
+  if bash "$SCRIPTS_SRC/render-project-statistics.sh" --repo "$WORKSPACE_DIR" >/dev/null; then
     if [ -n "$(git -C "$WORKSPACE_DIR" status --porcelain -- docs/project-statistics.md)" ]; then
       git -C "$WORKSPACE_DIR" add docs/project-statistics.md
-      git -C "$WORKSPACE_DIR" commit -m "docs: initialize ASCII statistics profile 2
+      git -c core.hooksPath=/dev/null -C "$WORKSPACE_DIR" commit -m "docs: initialize ASCII statistics profile 2
 
 Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>"
     fi
@@ -590,19 +809,23 @@ fi
 
 # --- Remote-Repo erstellen und pushen ------------------------------------------
 
+if [ "$NO_REMOTE" -eq 0 ] && [ "$DRY_RUN" -eq 0 ]; then
+  scan_bootstrap_publication "$WORKSPACE_DIR" history
+fi
+
 if [ "$NO_REMOTE" -eq 1 ]; then
   info "Remote-Erstellung uebersprungen (--no-remote)."
 elif [ "$PLATFORM" = "github" ]; then
   info "Erstelle privates GitHub-Repository '$REPO_NAME' …"
-  run "gh repo create '$REPO_NAME' --private --description '$REPO_DESC' --source '$WORKSPACE_DIR' --remote origin --push"
+  run gh repo create "$REPO_NAME" --private --description "$REPO_DESC" --source "$WORKSPACE_DIR" --remote origin --push
   ok "GitHub-Repo erstellt und gepusht"
 elif [ "$PLATFORM" = "gitlab" ]; then
   REMOTE_URL="https://${GITLAB_HOSTNAME}/${GITLAB_USER}/${REPO_SLUG}.git"
   info "Erstelle privates GitLab-Repository '$REPO_SLUG' …"
-  run "GITLAB_HOST='$GITLAB_HOSTNAME' glab repo create '$REPO_SLUG' --private --description '$REPO_DESC'"
+  run env "GITLAB_HOST=$GITLAB_HOSTNAME" glab repo create "$REPO_SLUG" --private --description "$REPO_DESC"
   ok "GitLab-Repo erstellt"
-  run "git -C '$WORKSPACE_DIR' remote add origin '$REMOTE_URL'"
-  run "git -C '$WORKSPACE_DIR' push -u origin HEAD"
+  run git -C "$WORKSPACE_DIR" remote add origin "$REMOTE_URL"
+  run git -C "$WORKSPACE_DIR" push -u origin HEAD
   ok "Remote gesetzt und gepusht"
 else
   if [ "$DRY_RUN" -eq 1 ]; then
@@ -628,11 +851,7 @@ else
   fi
 fi
 
-# --- Hooks installieren --------------------------------------------------------
-
-info "Installiere Git-Hooks …"
-run "bash '$WORKSPACE_DIR/scripts/install-hooks.sh'"
-ok "Hooks installiert"
+# Der kanonische pre-push Hook wurde vor dem ersten Commit verifiziert installiert.
 
 # --- ~/README.md aktualisieren ------------------------------------------------
 
@@ -675,14 +894,14 @@ fi
 HOME_GIT="$HOME_DIR/.git"
 if [ -d "$HOME_GIT" ]; then
   info "Committe Änderungen in home-baseline …"
-  run "git -C '$HOME_DIR' add README.md"
-  run "git -C '$HOME_DIR' commit -m 'chore: $WORKSPACE_NAME in Workspace-Übersicht eingetragen
+  run git -C "$HOME_DIR" add README.md
+  run git -C "$HOME_DIR" commit -m "chore: $WORKSPACE_NAME in Workspace-Übersicht eingetragen
 
 Automatisch durch bootstrap-workspace.sh hinzugefügt.
 
-Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>'"
+Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>"
   if git -C "$HOME_DIR" remote get-url origin >/dev/null 2>&1; then
-    run "git -C '$HOME_DIR' push"
+    run git -C "$HOME_DIR" push
     ok "home-baseline aktualisiert und gepusht"
   else
     ok "home-baseline committed (kein Remote konfiguriert — Push übersprungen / no remote configured — push skipped)"
@@ -700,7 +919,7 @@ GITCONFIG="${HOME_DIR}/.gitconfig"
 
 if [ -d "$GITCONFIG_D" ]; then
   # core.autocrlf im lokalen .git/config setzen
-  run "git -C '$WORKSPACE_DIR' config --local core.autocrlf input"
+  run git -C "$WORKSPACE_DIR" config --local core.autocrlf input
 
   # Idempotenz-Prüfung: bereits ein includeIf-Block für diesen Workspace?
   if ! grep -qF "gitdir:~/${WORKSPACE_NAME}/" "${GITCONFIG}" 2>/dev/null; then

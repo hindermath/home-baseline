@@ -6,7 +6,18 @@
 
 Diese Anleitung ist nach Implementierung der geplanten Stage-B-Oberflächen
 ausführbar. Sie beginnt immer mit einer mutationsfreien Vorschau. Ein echter
-`Deliver`- oder `Resume`-Aufruf kann Commits, Pushes, Pull Requests, Merges und
+> **Sicherheitsstatus / Security status:** Derzeit ist nur `Preflight`
+> operativ implementiert. `Validate`, `Deliver`, `Resume` und `Verify` enden
+> fail-closed mit `Blocked` und Exitcode `1`. Die unten beschriebenen Abläufe
+> bleiben Zielvertrag und dürfen bis zur vollständigen Implementierung nicht
+> als ausführbare Delivery-Anleitung oder Erfolgsevidence behandelt werden.
+>
+> *Only `Preflight` is operationally implemented at present. `Validate`,
+> `Deliver`, `Resume`, and `Verify` fail closed with `Blocked` and exit code
+> `1`. The flows below remain the target contract and must not be treated as
+> executable delivery guidance or success evidence until fully implemented.*
+
+Ein zukünftig vollständig implementierter `Deliver`- oder `Resume`-Aufruf kann Commits, Pushes, Pull Requests, Merges und
 Rulesets in der autoritativen Flotte verändern. Er ist nur mit einem aktuellen,
 schema-validierten `MergeAndSync`-Authority Binding zulässig.
 
@@ -42,6 +53,9 @@ Ein anderer Exitcode stoppt vor Stage B.
 Verwende für alle zwölf Primary-Befehle genau den repository-relativen,
 versionierten Stage-B-Evidence-Root
 `.specify/runtime/autonomous-routing/954ff259-ffed-44a8-883f-28742b031a9b/stage-b/evidence/v1`.
+Alle Komponenten dieses Pfads müssen reguläre Verzeichnisse beziehungsweise
+Dateien sein. Benutzer-Links und Windows-Reparse-Points blockieren Preflight,
+Delivery und Stop-Evidence vor dem Schreiben.
 Die Engine schreibt kausale Repository-, Wellen-, Budget-, Terminal- und
 Closeout-Evidence nach `operational/`; der Gate-Aggregator schreibt nur
 temporäre AC-SBR-Snapshots nach `primary/`. Interne Phasenresultate wie

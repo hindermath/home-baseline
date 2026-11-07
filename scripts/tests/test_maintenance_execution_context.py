@@ -29,12 +29,81 @@ fleet_spec.loader.exec_module(fleet)
 
 
 def contract():
-    return {"schemaVersion": 1, "container": "test-sandbox", "user": "tester",
-            "source": "/opt/reference", "approvalPath": "sandbox/approval.md",
-            "expiresOn": "2099-12-31", "mounts": [{"host": "Projects", "container": "/projects"}]}
+    value = {"schemaVersion": 2, "container": "test-sandbox", "user": "tester",
+             "source": "/opt/reference", "approvalPath": "sandbox/approval.md",
+             "approvalSha256": "a" * 64, "approvalBindingSha256": "0" * 64,
+             "approvedImage": "sha256:" + "b" * 64,
+             "approvedSourceRevision": "c" * 40,
+             "approvalTrustState": "PendingOwnerProvisioning",
+             "approvalPublicKeyPath": ".home-baseline/trust/sandbox-owner-approval-public.pem",
+             "approvalPublicKeySha256": "0" * 64,
+             "approvalSignaturePath": ".home-baseline/trust/sandbox-owner-approval.sig",
+             "expiresOn": "2099-12-31", "mounts": [{"host": "Projects", "container": "/projects"}]}
+    value["approvalBindingSha256"] = context.approval_binding_sha256(value)
+    return value
 
 
 class ExecutionContextTests(unittest.TestCase):
+    def test_owner_approval_requires_independently_signed_contract_binding(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory).resolve()
+            approval = root / "approval.md"
+            approval.write_text("Owner\n31.12.2099\n", encoding="utf-8")
+            value = contract()
+            value["approvalSha256"] = context.hashlib.sha256(approval.read_bytes()).hexdigest()
+            trust = root / ".home-baseline/trust"
+            trust.mkdir(parents=True)
+            private_key = trust / "owner-private.pem"
+            public_key = trust / "sandbox-owner-approval-public.pem"
+            signature = trust / "sandbox-owner-approval.sig"
+            subprocess.run(["openssl", "genpkey", "-algorithm", "RSA", "-pkeyopt", "rsa_keygen_bits:2048", "-out", str(private_key)], check=True, capture_output=True)
+            subprocess.run(["openssl", "pkey", "-in", str(private_key), "-pubout", "-out", str(public_key)], check=True, capture_output=True)
+            key_hash = context.hashlib.sha256(public_key.read_bytes()).hexdigest()
+            value["approvalTrustState"] = "Active"
+            value["approvalPublicKeySha256"] = key_hash
+            value["approvalBindingSha256"] = context.approval_binding_sha256(value)
+            with patch.object(context, "OWNER_APPROVAL_PUBLIC_KEY_SHA256", key_hash):
+                context.validate_contract(value)
+                subprocess.run(
+                    ["openssl", "dgst", "-sha256", "-sign", str(private_key), "-out", str(signature)],
+                    input=(value["approvalBindingSha256"] + "\n").encode("ascii"), check=True, capture_output=True,
+                )
+                self.assertEqual(context.verify_owner_approval(value, approval, value["approvedImage"], value["approvedSourceRevision"], root), value["approvalSha256"])
+                forged = {**value, "mounts": [{"host": "Other", "container": "/other"}]}
+                forged["approvalBindingSha256"] = context.approval_binding_sha256(forged)
+                with self.assertRaises(context.ExecutionContextError):
+                    context.verify_owner_approval(forged, approval, forged["approvedImage"], forged["approvedSourceRevision"], root)
+
+    def test_pending_owner_trust_anchor_fails_closed(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory).resolve()
+            approval = root / "approval.md"
+            approval.write_text("approved\n", encoding="utf-8")
+            value = contract()
+            value["approvalSha256"] = context.hashlib.sha256(approval.read_bytes()).hexdigest()
+            value["approvalBindingSha256"] = context.approval_binding_sha256(value)
+            context.validate_contract(value)
+            with self.assertRaisesRegex(context.ExecutionContextError, "not provisioned"):
+                context.verify_owner_approval(value, approval, value["approvedImage"], value["approvedSourceRevision"], root)
+
+    def test_owner_approval_rejects_link_and_contract_binding_drift(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory).resolve()
+            approval = root / "approval.md"
+            approval.write_text("approved\n", encoding="utf-8")
+            link = root / "approval-link.md"
+            link.symlink_to(approval)
+            value = contract()
+            value["approvalSha256"] = context.hashlib.sha256(approval.read_bytes()).hexdigest()
+            value["approvalBindingSha256"] = context.approval_binding_sha256(value)
+            with self.assertRaises(context.ExecutionContextError):
+                context.verify_owner_approval(
+                    value, link, value["approvedImage"], value["approvedSourceRevision"]
+                )
+            drifted = {**value, "mounts": [{"host": "Other", "container": "/other"}]}
+            with self.assertRaisesRegex(context.ExecutionContextError, "binding"):
+                context.validate_contract(drifted)
+
     def test_windows_mount_accepts_only_exact_native_or_vm_drive_path(self):
         expected = PureWindowsPath("C:/Users/test user/Projects")
         with patch.object(context.sys, "platform", "win32"):
@@ -130,11 +199,15 @@ class ExecutionContextTests(unittest.TestCase):
 
     def test_strict_contract_and_expiry(self):
         self.assertEqual(context.validate_contract(contract()), contract())
-        for changes in ({"schemaVersion": True}, {"schemaVersion": 2}, {"expiresOn": "2000-01-01"},
+        for changes in ({"schemaVersion": True}, {"schemaVersion": 1}, {"expiresOn": "2000-01-01"},
                         {"source": "/opt/../root"}, {"approvalPath": "../secret"}, {"unknown": True},
-                        {"container": "--latest"}):
+                        {"container": "--latest"}, {"approvalSha256": "0"},
+                        {"approvedImage": "latest"}, {"approvedSourceRevision": "main"}):
             with self.subTest(changes=changes), self.assertRaises(context.ExecutionContextError):
-                context.validate_contract({**contract(), **changes})
+                candidate = {**contract(), **changes}
+                if set(candidate) == set(contract()) and "approvalBindingSha256" not in changes:
+                    candidate["approvalBindingSha256"] = context.approval_binding_sha256(candidate)
+                context.validate_contract(candidate)
 
     def test_paths_reject_escape_and_ambiguity(self):
         for value in ("", ".", "../escape", "/root", "a//b", "a/./b", "a\\b", 1):
@@ -235,11 +308,27 @@ class ExecutionContextTests(unittest.TestCase):
     def test_real_package_binds_worker_and_contract(self):
         bindings = context.source_bindings(MODULE.parents[2])
         self.assertIn("scripts/lib/maintenance_container_worker.py", bindings)
+        self.assertIn("scripts/lib/secure-development-hardening.sh", bindings)
+        self.assertIn("scripts/register-level2-repository.sh", bindings)
+        self.assertIn("scripts/propagate-agentic-toolchain-maintenance.sh", bindings)
         self.assertIn("scripts/config/maintenance-execution-contexts.json", bindings)
         self.assertTrue(all(len(value) == 64 for value in bindings.values()))
 
+    def test_contract_must_cover_every_active_protected_workspace_root(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            contract_path = root / "contract.json"
+            contract_path.write_text(json.dumps(contract()), encoding="utf-8")
+            targets = [
+                {"path": "Projects/ordinary", "active": True, "kind": "git-repository"},
+                {"path": "SecureOrderDeskProjects", "active": True, "kind": "collection"},
+            ]
+            with self.assertRaisesRegex(context.ExecutionContextError, "SecureOrderDeskProjects"):
+                context.ExecutionContexts(contract_path, root, targets)
+
     def test_expired_contract_can_be_routed_but_not_executed(self):
         expired = {**contract(), "expiresOn": "2000-01-01"}
+        expired["approvalBindingSha256"] = context.approval_binding_sha256(expired)
         self.assertEqual(context.validate_contract(expired, check_expiry=False), expired)
         with self.assertRaises(context.ExecutionContextError):
             context.validate_contract(expired)
@@ -362,57 +451,45 @@ class ExecutionContextTests(unittest.TestCase):
             self.assertEqual(report["findings"][0]["code"], "SandboxPreflightBlocked")
 
     @central_only
-    def test_two_delegated_fast_forwards_follow_all_fetches(self):
-        fixture_spec = importlib.util.spec_from_file_location("fleet_fixtures", Path(__file__).with_name("test_agentic_workspace_maintenance.py"))
-        fixtures = importlib.util.module_from_spec(fixture_spec)
-        fixture_spec.loader.exec_module(fixtures)
+    def test_sandbox_bound_repositories_never_use_host_git_transport(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory).resolve()
-            fixture = fixtures.FleetFixture(root)
-            fixture.run("update")
-            second = fixture.home / "Fleet/Second"
-            second_remote = root / "second.git"
-            subprocess.run(["git", "clone", "--bare", "-q", str(fixture.remote), str(second_remote)], check=True)
-            subprocess.run(["git", "clone", "-q", str(second_remote), str(second)], check=True)
-            manifest_path = fixture.manifest()
-            manifest = json.loads(manifest_path.read_text())
-            manifest["targets"] = [manifest["targets"][0], manifest["targets"][1], {**manifest["targets"][1], "id": "second", "path": "Fleet/Second", "remote": str(second_remote)}]
-            manifest_path.write_text(json.dumps(manifest))
-            (fixture.seed / "README.md").write_text("remote update\n")
-            fixtures.git(fixture.seed, "commit", "-qam", "advance")
-            fixtures.git(fixture.seed, "push", "-q")
-            fixtures.git(fixture.seed, "push", "-q", str(second_remote), "main")
-            expected = fixtures.git(fixture.seed, "rev-parse", "HEAD")
-            contract_path = root / "contract.json"
-            contract_path.write_text(json.dumps({**contract(), "mounts": [{"host": "Fleet", "container": "/fleet"}]}))
-            args = fleet.build_parser().parse_args(["fleet", "--manifest", str(manifest_path), "--home-dir", str(fixture.home),
-                "--mode", "update", "--report", str(root / "delegated.json"), "--log", str(root / "run.log"),
-                "--execution-contract", str(contract_path)])
-            operations = []
-            original_network = fleet.run_git_network
-            def network(repository, *arguments):
-                operations.append(arguments[0])
-                return original_network(repository, *arguments)
-            def request(router, repository, action, arguments=()):
-                if arguments and arguments[0] == "merge":
-                    self.assertEqual(operations.count("fetch"), 2)
-                    operations.append("local-ff")
-                result = subprocess.run([sys.executable, "-c", context.REMOTE_PROGRAM],
-                    input=json.dumps({"root": str(fixture.home / "Fleet"), "repository": str(repository),
-                                      "action": action, "arguments": arguments}), text=True, capture_output=True)
-                self.assertEqual(result.returncode, 0, result.stderr)
-                return json.loads(result.stdout)
-            with patch.dict(sys.modules, {"maintenance_execution_context": context}), \
-                    patch.object(context.ExecutionContexts, "preflight", return_value={"context": "container"}), \
-                    patch.object(context.ExecutionContexts, "request", request), \
-                    patch.object(fleet, "run_git_network", network):
-                self.assertEqual(fleet.execute_fleet(args), 0)
-            self.assertEqual(operations.count("local-ff"), 2)
-            report = json.loads(args.report.read_text())
-            self.assertTrue(report["mutationBarrier"]["domainMutationAllowed"])
-            for name in ("Example", "Second"):
-                self.assertEqual(fixtures.git(fixture.home / "Fleet" / name, "rev-parse", "HEAD"), expected)
-            fleet.EXECUTION_CONTEXTS = None
+            repository = root / "Projects/repo with spaces"
+
+            class Router:
+                @staticmethod
+                def mapping(path):
+                    return ("/projects", "/projects/repo with spaces") if path == repository else None
+
+                @staticmethod
+                def request(path, action):
+                    self.assertEqual((path, action), (repository, "probe"))
+                    return {"exists": True, "directory": True, "git": True}
+
+                @staticmethod
+                def git(path, arguments):
+                    self.assertEqual(path, repository)
+                    if tuple(arguments) == ("remote", "get-url", "origin"):
+                        return subprocess.CompletedProcess([], 0, "https://example.invalid/repo.git\n", "")
+                    raise AssertionError(f"Unexpected delegated Git operation: {arguments}")
+
+            fleet.EXECUTION_CONTEXTS = Router()
+            try:
+                with patch.object(fleet.subprocess, "run") as host_git:
+                    for operation in ("fetch", "ls-remote", "pull"):
+                        with self.subTest(operation=operation), self.assertRaises(fleet.ContractError):
+                            fleet.run_git_network(repository, operation)
+                    result = fleet.classify_repository(
+                        {"id": "fixture", "path": "Projects/repo with spaces",
+                         "kind": "git-repository", "maintenanceClass": "canonical-fleet",
+                         "remote": "https://example.invalid/repo.git"},
+                        repository, "update",
+                    )
+                host_git.assert_not_called()
+                self.assertEqual(result["result"], "Blocked")
+                self.assertEqual(result["findingCode"], "HostGitTransportBlocked")
+            finally:
+                fleet.EXECUTION_CONTEXTS = None
 
     def phase_fixture(self, root, mode="update"):
         router = self.make_context(root)

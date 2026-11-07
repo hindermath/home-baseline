@@ -65,6 +65,9 @@ SUMMARY_DISPLAY_REPO=""
 RESOLVED_PRESET_PROFILE=""
 RESOLVED_PRESET_CONFIG=""
 RESOLVED_CONSTITUTION_VERSION=""
+BOOTSTRAP_SCRIPTS_COPIED=false
+SOURCE_REPO_ROOT=""
+TRUSTED_SCRIPT_DIR="$SCRIPT_DIR"
 
 normalize_name() {
   echo "$1" | tr '[:upper:]' '[:lower:]' | sed 's/[^a-z0-9]/-/g' | sed 's/-\+/-/g' | sed 's/^-\|-$//g'
@@ -181,6 +184,154 @@ json_escape() {
   printf '%s' "$value"
 }
 
+bootstrap_sha256_file() {
+  if command -v sha256sum >/dev/null 2>&1; then
+    sha256sum "$1" | awk '{print $1}'
+  else
+    shasum -a 256 "$1" | awk '{print $1}'
+  fi
+}
+
+resolve_project_source_root() {
+  local candidate
+  for candidate in \
+    "$(cd "$SCRIPT_DIR/.." 2>/dev/null && pwd)" \
+    "${HOME_BASELINE_SOURCE:-}" \
+    "$HOME/home-baseline-source"; do
+    [ -n "$candidate" ] || continue
+    if git -C "$candidate" ls-files --error-unmatch scripts/bootstrap-project.sh >/dev/null 2>&1; then
+      printf '%s\n' "$(cd "$candidate" && pwd -P)"
+      return 0
+    fi
+  done
+  return 1
+}
+
+copy_project_tracked_scripts() {
+  local tracked relative source target
+  while IFS= read -r -d '' tracked; do
+    relative="${tracked#scripts/}"
+    source="$SOURCE_REPO_ROOT/$tracked"
+    target="$TARGET_DIR/scripts/$relative"
+    [ -f "$source" ] && [ ! -L "$source" ] || return 1
+    mkdir -p "$(dirname "$target")"
+    cp -P "$source" "$target"
+  done < <(git -C "$SOURCE_REPO_ROOT" ls-files -z -- scripts)
+}
+
+verify_bootstrap_pre_push_hook() {
+  local source_hook="$TRUSTED_SCRIPT_DIR/hooks/pre-push" target_hook="$TARGET_DIR/.git/home-baseline-hooks/pre-push"
+  [ -f "$source_hook" ] && [ ! -L "$source_hook" ] || return 1
+  [ -f "$target_hook" ] && [ ! -L "$target_hook" ] && [ -x "$target_hook" ] || return 1
+  [ "$(bootstrap_sha256_file "$source_hook")" = "$(bootstrap_sha256_file "$target_hook")" ] || return 1
+  [ "$(git -C "$TARGET_DIR" config --path core.hooksPath 2>/dev/null || true)" = "$TARGET_DIR/.git/home-baseline-hooks" ]
+}
+
+stage_project_baseline() {
+  local relative
+  git -C "$TARGET_DIR" reset --quiet
+  for relative in \
+    .gitignore README.md AGENTS.md CLAUDE.md GEMINI.md constitution.md STATS.md \
+    release-please-config.json .release-please-manifest.json \
+    .github/copilot-instructions.md .github/workflows/homogeneity-check.yml \
+    .github/workflows/release-please.yml docs/project-statistics.md \
+    docs/project-statistics.config.json; do
+    if [ -e "$TARGET_DIR/$relative" ] && [ ! -L "$TARGET_DIR/$relative" ]; then
+      git -C "$TARGET_DIR" add -- "$relative"
+    fi
+  done
+  if $BOOTSTRAP_SCRIPTS_COPIED; then
+    while IFS= read -r -d '' relative; do
+      git -C "$TARGET_DIR" add -- "$relative"
+    done < <(git -C "$SOURCE_REPO_ROOT" ls-files -z -- scripts)
+  fi
+}
+
+scan_project_publication() {
+  local mode="$1" args=(git --redact --no-banner --no-color --log-level warn --exit-code 2)
+  command -v gitleaks >/dev/null 2>&1 || {
+    echo "FATAL: remote publication requires gitleaks" >&2
+    return 2
+  }
+  if [ "$mode" = "staged" ]; then
+    args+=(--staged)
+  fi
+  gitleaks "${args[@]}" "$TARGET_DIR"
+}
+
+parse_project_remote() {
+  python3 - "$1" <<'PY'
+import re
+import sys
+from urllib.parse import urlsplit
+
+value = sys.argv[1].strip()
+if re.fullmatch(r"[^@/]+@[^:/]+:[^?#]+", value):
+    user_host, path = value.split(":", 1)
+    host = user_host.rsplit("@", 1)[1]
+else:
+    parsed = urlsplit(value)
+    if parsed.scheme not in ("https", "ssh") or parsed.query or parsed.fragment or parsed.password:
+        raise SystemExit(2)
+    host = parsed.hostname or ""
+    if parsed.port is not None:
+        host = f"{host}:{parsed.port}"
+    path = parsed.path.lstrip("/")
+parts = path.rstrip("/").split("/")
+if len(parts) != 2 or not all(parts):
+    raise SystemExit(2)
+owner, name = parts
+if name.endswith(".git"):
+    name = name[:-4]
+if not host or not owner or not name:
+    raise SystemExit(2)
+print(host, owner, name, sep="\t")
+PY
+}
+
+validate_project_origin() {
+  local remote_url="$1" host owner name expected_name api_record encoded
+  IFS=$'\t' read -r host owner name < <(parse_project_remote "$remote_url") || return 2
+  case "$OPT_PLATFORM" in
+    github)
+      expected_name="$(printf '%s' "$PROJECT_NAME" | tr '[:upper:]' '[:lower:]' | tr ' ' '-')"
+      [ "$host" = "github.com" ] && command -v gh >/dev/null 2>&1 || return 2
+      GH_USER_LOCAL="$(gh api user --jq '.login' 2>/dev/null || true)"
+      [ -n "$GH_USER_LOCAL" ] && [ "$owner" = "$GH_USER_LOCAL" ] && [ "$name" = "$expected_name" ] || return 2
+      api_record="$(gh api "repos/$owner/$name" --jq '[.owner.login,.name,(.private|tostring)] | @tsv' 2>/dev/null || true)"
+      [ "$api_record" = "$owner"$'\t'"$name"$'\t'true ] || return 2
+      SUMMARY_REPO_URL="https://github.com/$owner/$name"
+      ;;
+    gitlab)
+      [ "$host" = "$OPT_GITLAB_HOSTNAME" ] && [ "$owner" = "$GITLAB_USER_LOCAL" ] && [ "$name" = "$PROJECT_SLUG" ] || return 2
+      encoded="$(python3 -c 'import sys,urllib.parse; print(urllib.parse.quote(sys.argv[1], safe=""))' "$owner/$name")"
+      api_record="$(GITLAB_HOST="$OPT_GITLAB_HOSTNAME" glab api "projects/$encoded" --jq '[.namespace.path,.path,.visibility] | @tsv' 2>/dev/null || true)"
+      [ "$api_record" = "$owner"$'\t'"$name"$'\t'private ] || return 2
+      SUMMARY_REPO_URL="${OPT_GITLAB_URL%/}/$owner/$name"
+      ;;
+    forgejo|codeberg)
+      hb_forgejo_create_or_get_repository "$FORGEJO_BASE_URL" "$PROJECT_SLUG" "Project repository for $PROJECT_NAME" || return 2
+      [ "$owner" = "$HB_FORGEJO_REPOSITORY_OWNER" ] && [ "$name" = "$HB_FORGEJO_REPOSITORY_NAME" ] || return 2
+      [ "${remote_url%/}" = "${HB_FORGEJO_CLONE_URL%/}" ] || return 2
+      SUMMARY_REPO_URL="$HB_FORGEJO_HTML_URL"
+      ;;
+    *) return 2 ;;
+  esac
+  SUMMARY_DISPLAY_REPO="$name"
+}
+
+validate_effective_project_push_target() {
+  local fetch_url push_urls push_url push_count
+  fetch_url="$(git -C "$TARGET_DIR" remote get-url origin 2>/dev/null || true)"
+  push_urls="$(git -C "$TARGET_DIR" remote get-url --all --push origin 2>/dev/null || true)"
+  push_count="$(printf '%s\n' "$push_urls" | awk 'NF { count++ } END { print count + 0 }')"
+  [ "$push_count" -eq 1 ] || return 2
+  push_url="$(printf '%s\n' "$push_urls" | awk 'NF { print; exit }')"
+  [ -n "$fetch_url" ] && [ "$fetch_url" = "$push_url" ] || return 2
+  validate_project_origin "$fetch_url"
+  validate_project_origin "$push_url"
+}
+
 while [ $# -gt 0 ]; do
   case "$1" in
     --preview|--dry-run) OPT_PREVIEW=true; OPT_DRY_RUN=true ;;
@@ -222,10 +373,50 @@ if [ -z "$PROJECT_NAME" ]; then
   exit 2
 fi
 
+case "$PROJECT_NAME" in
+  .|..|-*|*/*|*\\*)
+    echo "ERROR: ProjectName must be one safe path component: $PROJECT_NAME" >&2
+    exit 2
+    ;;
+esac
+if [ "$PROJECT_NAME" != "$(LC_ALL=C printf '%s' "$PROJECT_NAME" | tr -d '[:cntrl:]')" ]; then
+  echo "ERROR: ProjectName must not contain control characters" >&2
+  exit 2
+fi
+
 TARGET_WORKSPACE="${TARGET_WORKSPACE:-$PWD}"
 TARGET_WORKSPACE="${TARGET_WORKSPACE/#\~/$HOME}"
 TARGET_WORKSPACE="${TARGET_WORKSPACE%/}"
+if [ ! -d "$TARGET_WORKSPACE" ] || [ -L "$TARGET_WORKSPACE" ]; then
+  echo "ERROR: target workspace must be an existing regular directory: $TARGET_WORKSPACE" >&2
+  exit 2
+fi
+sdh_assert_no_untrusted_link_components "$TARGET_WORKSPACE" || exit 2
+TARGET_WORKSPACE="$(cd -P "$TARGET_WORKSPACE" && pwd)"
 TARGET_DIR="${TARGET_WORKSPACE}/${PROJECT_NAME}"
+sdh_assert_no_untrusted_link_components "$TARGET_DIR" || exit 2
+if [ -L "$TARGET_DIR" ]; then
+  echo "ERROR: project target must not be a symbolic link: $TARGET_DIR" >&2
+  exit 2
+fi
+if [ -d "$TARGET_DIR" ] && find "$TARGET_DIR" -type l -print -quit | grep -q .; then
+  echo "ERROR: existing project target contains symbolic links: $TARGET_DIR" >&2
+  exit 2
+fi
+if [ -L "$SCRIPT_DIR" ] || find "$SCRIPT_DIR" -type l -print -quit | grep -q .; then
+  echo "ERROR: trusted bootstrap source tree must not contain symbolic links: $SCRIPT_DIR" >&2
+  exit 2
+fi
+SOURCE_REPO_ROOT="$(resolve_project_source_root)" || {
+  echo "ERROR: no trusted Git-tracked level-0 source found" >&2
+  exit 2
+}
+TRUSTED_SCRIPT_DIR="$SOURCE_REPO_ROOT/scripts"
+sdh_assert_no_untrusted_link_components "$HOME/README.md" || exit 2
+if [ -L "$HOME/README.md" ]; then
+  echo "ERROR: HOME README must not be a symbolic link: $HOME/README.md" >&2
+  exit 2
+fi
 
 RESOLVED_CONSTITUTION_VERSION="$(resolve_constitution_version "${HOME}/constitution.md")" || exit $?
 IFS=$'\t' read -r RESOLVED_PRESET_PROFILE RESOLVED_PRESET_CONFIG < <(
@@ -451,10 +642,21 @@ ensure_workspace_gitignore_entry() {
 
 render_template() {
   local template="$1" output="$2"
-  sed \
-    -e "s|{{PROJECT_NAME}}|${PROJECT_NAME}|g" \
-    -e "s|{{WORKSPACE}}|${TARGET_WORKSPACE/#$HOME/\~}|g" \
-    "$template" > "$output"
+  HB_PROJECT_NAME="$PROJECT_NAME" HB_WORKSPACE_NAME="${TARGET_WORKSPACE/#$HOME/\~}" awk '
+    function replace_literal(value, marker, replacement, result, index_at) {
+      result = ""
+      while ((index_at = index(value, marker)) > 0) {
+        result = result substr(value, 1, index_at - 1) replacement
+        value = substr(value, index_at + length(marker))
+      }
+      return result value
+    }
+    {
+      line = replace_literal($0, "{{PROJECT_NAME}}", ENVIRON["HB_PROJECT_NAME"])
+      line = replace_literal(line, "{{WORKSPACE}}", ENVIRON["HB_WORKSPACE_NAME"])
+      print line
+    }
+  ' "$template" > "$output"
 }
 
 # ─── Preview Mode ────────────────────────────────────────────────────────────
@@ -690,6 +892,9 @@ on:
   pull_request:
     branches: [main, master]
 
+permissions:
+  contents: read
+
 jobs:
   homogeneity:
     runs-on: ubuntu-latest
@@ -862,8 +1067,9 @@ elif [ "$OPT_PLATFORM" = "forgejo" ] || [ "$OPT_PLATFORM" = "codeberg" ]; then
 elif [ -f "${TARGET_DIR}/release-please-config.json" ] && ! $OPT_FORCE; then
   step_skip "Konfiguration existiert bereits"
 else
-  mkdir -p "${TARGET_DIR}/.github/workflows"
-  cat > "${TARGET_DIR}/release-please-config.json" <<'RPCFG'
+  release_stage_dir="$(mktemp -d "${TMPDIR:-/tmp}/home-baseline-release.XXXXXX")"
+  trap 'rm -rf -- "$release_stage_dir"' EXIT
+  cat > "${release_stage_dir}/release-please-config.json" <<'RPCFG'
 {
   "$schema": "https://raw.githubusercontent.com/googleapis/release-please/main/schemas/config.json",
   "release-type": "simple",
@@ -880,8 +1086,8 @@ else
   }
 }
 RPCFG
-  printf '{\n  ".": "0.1.0"\n}\n' > "${TARGET_DIR}/.release-please-manifest.json"
-  cat > "${TARGET_DIR}/.github/workflows/release-please.yml" <<'RPWF'
+  printf '{\n  ".": "0.1.0"\n}\n' > "${release_stage_dir}/release-please-manifest.json"
+  cat > "${release_stage_dir}/release-please.yml" <<'RPWF'
 name: Release Please
 
 on:
@@ -903,6 +1109,14 @@ jobs:
           config-file: release-please-config.json
           manifest-file: .release-please-manifest.json
 RPWF
+  sdh_replace_managed_file_atomic "$TARGET_DIR" "release-please-config.json" \
+    "${release_stage_dir}/release-please-config.json"
+  sdh_replace_managed_file_atomic "$TARGET_DIR" ".release-please-manifest.json" \
+    "${release_stage_dir}/release-please-manifest.json"
+  sdh_replace_managed_file_atomic "$TARGET_DIR" ".github/workflows/release-please.yml" \
+    "${release_stage_dir}/release-please.yml"
+  rm -rf -- "$release_stage_dir"
+  trap - EXIT
   step_done
 fi
 
@@ -911,8 +1125,10 @@ step_start "scripts/ kopieren"
 if [ -d "${TARGET_DIR}/scripts" ] && ! $OPT_FORCE; then
   step_skip "scripts/ vorhanden"
 else
-  if [ -d "${HOME}/scripts" ]; then
-    cp -r "${HOME}/scripts" "${TARGET_DIR}/scripts"
+  if [ -d "$SCRIPT_DIR" ]; then
+    mkdir -p "${TARGET_DIR}/scripts"
+    copy_project_tracked_scripts
+    BOOTSTRAP_SCRIPTS_COPIED=true
     step_done
   else
     step_warn "~/scripts/ nicht gefunden"
@@ -921,9 +1137,9 @@ fi
 
 # ─── Step 11: Install pre-push hook ──────────────────────────────────────────
 step_start "pre-push Hook installieren"
-hook_src="${HOME}/scripts/hooks/pre-push"
-hook_dst="${TARGET_DIR}/.git/hooks/pre-push"
-if [ -f "$hook_src" ]; then
+hook_src="${TRUSTED_SCRIPT_DIR}/hooks/pre-push"
+hook_dst="${TARGET_DIR}/.git/home-baseline-hooks/pre-push"
+if [ -f "$hook_src" ] && [ ! -L "$hook_src" ]; then
   if [ -f "$hook_dst" ]; then
     src_hash=""
     dst_hash=""
@@ -937,19 +1153,25 @@ if [ -f "$hook_src" ]; then
     if [ "$src_hash" = "$dst_hash" ] && ! $OPT_FORCE; then
       step_skip "Hook SHA-256 match"
     else
-      mkdir -p "${TARGET_DIR}/.git/hooks"
+      mkdir -p "${TARGET_DIR}/.git/home-baseline-hooks"
       cp "$hook_src" "$hook_dst"
       chmod +x "$hook_dst"
       step_done "aktualisiert"
     fi
   else
-    mkdir -p "${TARGET_DIR}/.git/hooks"
+    mkdir -p "${TARGET_DIR}/.git/home-baseline-hooks"
     cp "$hook_src" "$hook_dst"
     chmod +x "$hook_dst"
     step_done
   fi
 else
-  step_warn "~/scripts/hooks/pre-push nicht gefunden"
+  echo "FATAL: kanonischer pre-push Hook fehlt oder ist verlinkt: $hook_src" >&2
+  exit 2
+fi
+git -C "$TARGET_DIR" config --local core.hooksPath "$TARGET_DIR/.git/home-baseline-hooks"
+if ! verify_bootstrap_pre_push_hook; then
+  echo "FATAL: pre-push Hook konnte nicht verifiziert installiert werden" >&2
+  exit 2
 fi
 
 # ─── Step 12: Initial git commit ─────────────────────────────────────────────
@@ -957,18 +1179,24 @@ step_start "Initialer git-Commit"
 if git -C "$TARGET_DIR" log --oneline 2>/dev/null | grep -q .; then
   step_skip "Commits vorhanden"
 else
-  git -C "$TARGET_DIR" add -A >/dev/null 2>&1
-  git -C "$TARGET_DIR" commit -m "feat: initial project bootstrap — ${PROJECT_NAME}" >/dev/null 2>&1
+  stage_project_baseline
+  if ! $OPT_NO_REMOTE; then
+    if ! scan_project_publication staged; then
+      echo "FATAL: staged publication scan failed" >&2
+      exit 2
+    fi
+  fi
+  git -c core.hooksPath=/dev/null -C "$TARGET_DIR" commit -m "feat: initial project bootstrap — ${PROJECT_NAME}" >/dev/null 2>&1
   step_done
 fi
 
 step_start "ASCII-Statistikprofil 2 initialisieren"
-if [ ! -f "${TARGET_DIR}/scripts/render-project-statistics.sh" ]; then
+if [ ! -f "${TRUSTED_SCRIPT_DIR}/render-project-statistics.sh" ]; then
   step_warn "Statistikrenderer nicht gefunden"
-elif bash "${TARGET_DIR}/scripts/render-project-statistics.sh" --repo "$TARGET_DIR" >/dev/null; then
+elif bash "${TRUSTED_SCRIPT_DIR}/render-project-statistics.sh" --repo "$TARGET_DIR" >/dev/null; then
   if [ -n "$(git -C "$TARGET_DIR" status --porcelain -- docs/project-statistics.md)" ]; then
     git -C "$TARGET_DIR" add docs/project-statistics.md >/dev/null 2>&1
-    git -C "$TARGET_DIR" commit -m "docs: initialize ASCII statistics profile 2
+    git -c core.hooksPath=/dev/null -C "$TARGET_DIR" commit -m "docs: initialize ASCII statistics profile 2
 
 Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>" >/dev/null 2>&1
   fi
@@ -983,9 +1211,12 @@ if $OPT_NO_REMOTE; then
   step_skip "--no-remote"
 elif git -C "$TARGET_DIR" remote get-url origin >/dev/null 2>&1; then
   remote_url="$(git -C "$TARGET_DIR" remote get-url origin 2>/dev/null || true)"
-  SUMMARY_REPO_URL="$(repo_url_from_remote "$remote_url")"
-  SUMMARY_DISPLAY_REPO="$(repo_name_from_url "$remote_url")"
-  step_skip "Remote vorhanden"
+  if validate_project_origin "$remote_url"; then
+    step_skip "verifiziertes privates Remote vorhanden"
+  else
+    echo "FATAL: vorhandenes origin stimmt nicht mit dem authentifizierten privaten Ziel ueberein" >&2
+    exit 2
+  fi
 elif [ "$OPT_PLATFORM" = "github" ] && command -v gh >/dev/null 2>&1; then
   repo_name=$(echo "$PROJECT_NAME" | tr '[:upper:]' '[:lower:]' | tr ' ' '-')
   if gh repo create "$repo_name" --private --source "$TARGET_DIR" --remote origin >/dev/null 2>&1; then
@@ -1039,6 +1270,18 @@ if $OPT_NO_REMOTE; then
 elif ! git -C "$TARGET_DIR" remote get-url origin >/dev/null 2>&1; then
   step_skip "kein Remote konfiguriert"
 else
+  if ! validate_effective_project_push_target; then
+    echo "FATAL: effektives origin/pushurl konnte nicht als einheitliches authentifiziertes privates Ziel verifiziert werden" >&2
+    exit 2
+  fi
+  if ! verify_bootstrap_pre_push_hook; then
+    echo "FATAL: verifizierter pre-push Hook fehlt; Push abgebrochen" >&2
+    exit 2
+  fi
+  if ! scan_project_publication history; then
+    echo "FATAL: repository history publication scan failed" >&2
+    exit 2
+  fi
   if git -C "$TARGET_DIR" push -u origin HEAD >/dev/null 2>&1; then
     step_done
   else
@@ -1055,9 +1298,9 @@ elif [ -z "$SUMMARY_REPO_URL" ]; then
 elif command -v gh >/dev/null 2>&1; then
   _rp_repo="${SUMMARY_REPO_URL#https://github.com/}"
   if gh api --method PUT "repos/${_rp_repo}/actions/permissions/workflow" \
-    -f default_workflow_permissions=write \
-    -F can_approve_pull_request_reviews=true >/dev/null 2>&1; then
-    step_done "PR-Erstellung fuer GitHub Actions erlaubt"
+    -f default_workflow_permissions=read \
+    -F can_approve_pull_request_reviews=false >/dev/null 2>&1; then
+    step_done "GitHub Actions standardmaessig schreibgeschuetzt"
   else
     step_warn "Berechtigungen nicht gesetzt — bitte manuell in Repo-Settings > Actions > General aktivieren"
   fi
@@ -1112,7 +1355,7 @@ elif command -v specify >/dev/null 2>&1; then
   [ -d "${TARGET_DIR}/.specify" ] && step_done || step_warn "specify init kein .specify/ erstellt"
 else
   step_warn "specify nicht installiert"
-  echo "          -> uv tool install specify-cli --from git+https://github.com/github/spec-kit.git"
+  echo "          -> uv tool install specify-cli --from git+https://github.com/github/spec-kit.git@464d57fe30c72e9a88d279cc49834539ec989c03"
   echo "          -> Dann je Agent: cd ${TARGET_DIR/#$HOME/\~} && specify init --here --force --integration {agy|opencode|claude|copilot|codex}"
 fi
 
@@ -1194,14 +1437,18 @@ elif [ -f "$home_readme" ] && grep -q '<!-- workspace-table-end -->' "$home_read
   else
     repo_cell="—"
   fi
-  row="| \`${short_target}/\` | ${repo_cell} | \`bootstrap-project\` |\n"
-  sed -i "" "s|<!-- workspace-table-end -->|${row}<!-- workspace-table-end -->|" "$home_readme" 2>/dev/null || \
-  python3 -c "
-content = open('${home_readme}').read()
-row = '${row}'
-content = content.replace('<!-- workspace-table-end -->', row + '<!-- workspace-table-end -->')
-open('${home_readme}','w').write(content)
-" 2>/dev/null || step_warn "README.md Update fehlgeschlagen"
+  printf -v row '| `%s/` | %s | `bootstrap-project` |\n' "$short_target" "$repo_cell"
+  python3 - "$home_readme" "$row" <<'PY' || step_warn "README.md Update fehlgeschlagen"
+from pathlib import Path
+import sys
+
+readme = Path(sys.argv[1])
+content = readme.read_text(encoding="utf-8")
+readme.write_text(
+    content.replace("<!-- workspace-table-end -->", sys.argv[2] + "<!-- workspace-table-end -->"),
+    encoding="utf-8",
+)
+PY
   step_done
 else
   step_skip "README.md oder Marker nicht gefunden"

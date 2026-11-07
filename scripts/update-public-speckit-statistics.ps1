@@ -32,6 +32,7 @@ param(
 Set-StrictMode -Version Latest
 $ErrorActionPreference = 'Stop'
 Import-Module (Join-Path $PSScriptRoot 'lib/public-speckit-statistics.psm1') -Force
+Import-Module (Join-Path $PSScriptRoot 'lib/managed-file-hardening.psm1') -Force
 try {
     if (-not $PSBoundParameters.ContainsKey('Repo')) {
         . (Join-Path $PSScriptRoot 'lib/resolve-home-baseline-source.ps1')
@@ -39,9 +40,12 @@ try {
     }
     $root = [IO.Path]::GetFullPath($Repo)
     $data = Join-Path $root 'docs/spec-kit-runs'
-    $registry = Read-HBJson (Join-Path $data 'registry.json')
+    $registryRelative = 'docs/spec-kit-runs/registry.json'
+    $snapshotRelative = 'docs/spec-kit-runs/snapshot.json'
+    $registryPath = Get-HBManagedPath -Root $root -RelativePath $registryRelative
+    $snapshotPath = Get-HBManagedPath -Root $root -RelativePath $snapshotRelative
+    $registry = Read-HBJson $registryPath
     Assert-HBRegistry $registry
-    $snapshotPath = Join-Path $data 'snapshot.json'
     if ($Action -eq 'Collect') {
         $previous = if (Test-Path -LiteralPath $snapshotPath) { Read-HBJson $snapshotPath } else { @{} }
         $snapshot = Get-HBStatisticsSnapshot $registry $previous
@@ -57,7 +61,7 @@ try {
         }
         if ($CheckOnly) { Write-Host 'DRIFT: new evidence available.'; exit 1 }
         if ($PSCmdlet.ShouldProcess($snapshotPath, 'Write public evidence snapshot')) {
-            [IO.File]::WriteAllText($snapshotPath, (ConvertTo-HBJson $snapshot), [Text.UTF8Encoding]::new($false))
+            Write-HBManagedTextAtomic -Root $root -RelativePath $snapshotRelative -Content (ConvertTo-HBJson $snapshot)
         }
         Write-Host 'COLLECTED: candidate validated; run Render next.'
         exit 0
@@ -65,15 +69,30 @@ try {
     $snapshot = Read-HBJson $snapshotPath
     Test-HBStatisticsSnapshot $snapshot
     Assert-HBStatisticsRegistryBinding $snapshot $registry
-    $aggregate = if ($snapshot.ruleVersion -ge 2) { Read-HBJson (Join-Path $data 'private-aggregate.json') } else { $null }
+    $aggregate = if ($snapshot.ruleVersion -ge 2) {
+        $aggregatePath = Get-HBManagedPath -Root $root -RelativePath 'docs/spec-kit-runs/private-aggregate.json'
+        Read-HBJson $aggregatePath
+    } else { $null }
     if ($snapshot.ruleVersion -ge 2) { Assert-HBPrivateAggregate $aggregate }
     if ($Action -eq 'Validate') { Write-Host 'PASS: public snapshot, register and applicable private aggregate.'; exit 0 }
     $de = Get-HBStatisticsTable $snapshot de $aggregate; $en = Get-HBStatisticsTable $snapshot en $aggregate
     $outputs = [ordered]@{}
+    $managedOutputs = @(
+        'README.md',
+        'README.en.md',
+        'docs/spec-kit-runs/table.md',
+        'docs/spec-kit-runs/table.en.md',
+        'docs/spec-kit-runs/review-queue.md',
+        'docs/spec-kit-runs/publication.json'
+    )
+    foreach ($relativeOutput in $managedOutputs) {
+        $null = Get-HBManagedPath -Root $root -RelativePath $relativeOutput
+    }
     # Compute every result before writing any file, so malformed markers cannot cause a partial render.
     foreach ($pair in @(@('README.md', $de), @('README.en.md', $en))) {
         $path = Join-Path $root $pair[0]
-        $outputs[$path] = Set-HBStatisticsBlock ([IO.File]::ReadAllText($path)) $pair[1]
+        $relativePath = [IO.Path]::GetRelativePath($root, $path).Replace('\', '/')
+        $outputs[$path] = Set-HBStatisticsBlock (Read-HBManagedText -Root $root -RelativePath $relativePath) $pair[1]
     }
     $outputs[(Join-Path $data 'table.md')] = $de
     $outputs[(Join-Path $data 'table.en.md')] = $en
@@ -84,13 +103,18 @@ try {
         tableSha256 = Get-HBTextHash $de; tableEnSha256 = Get-HBTextHash $en
     })
     $drift = $false
+    $contentByRelativePath = [ordered]@{}
     foreach ($path in $outputs.Keys) {
-        if ((Test-Path -LiteralPath $path) -and [IO.File]::ReadAllText($path) -ceq $outputs[$path]) { continue }
+        $relativePath = [IO.Path]::GetRelativePath($root, $path).Replace('\', '/')
+        $contentByRelativePath[$relativePath] = $outputs[$path]
+        if ((Test-Path -LiteralPath $path) -and (Read-HBManagedText -Root $root -RelativePath $relativePath) -ceq $outputs[$path]) { continue }
         $drift = $true
         if ($CheckOnly) { Write-Host "DRIFT: $([IO.Path]::GetRelativePath($root, $path))" }
-        elseif ($PSCmdlet.ShouldProcess($path, 'Render public statistics')) { [IO.File]::WriteAllText($path, $outputs[$path], [Text.UTF8Encoding]::new($false)) }
     }
     if ($CheckOnly -and $drift) { exit 1 }
+    if ($drift -and -not $CheckOnly -and $PSCmdlet.ShouldProcess($root, 'Render public statistics output set')) {
+        Write-HBManagedTextSetAtomic -Root $root -ContentByRelativePath $contentByRelativePath
+    }
     Write-Host 'PASS: public statistics rendering.'
 } catch {
     Write-Error $_.Exception.Message -ErrorAction Continue

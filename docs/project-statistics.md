@@ -220,6 +220,9 @@
 | 2026-10-05 | Intake Authoring v0.3.7: zentrale Integration / Central integration | N/A | N/A | N/A | UpdateRequired: Authoring-Patch mit unveraenderlicher Tag-/Commit-/ZIP-Bindung in fuenf Profilen und installierter 14er-Matrix; README-Sprachpartner, Constitution, fuenf Guidance-Flaechen und Vorlagen synchron aktualisiert. Begrenzter Auftrag: Level 0/Home Runtime und zwei Piloten, technische GSDB-Hashpflege ohne neue fachliche Freigabe. Andere Presets und historische Evidence erhalten; keine Produktimplementierung oder weiterer Flotten-Rollout. [Nachweis / Evidence](maintenance/intake-authoring-v037-rollout.md). / Immutable source integration and bounded pilot authority; unchanged methodology, no product or wider fleet acceptance. |
 | 2026-10-06 | macOS-15 CI runner migration | — | — | — | CI-Matrizen und gemeinsame Guidance auf macOS 15 umgestellt; Linux-/Windows-Auswahl erhalten, Required-Check-Migration und exakte PR-CI als Liefergates. / Migrated CI labels and guidance; preserved other platforms and required exact-head CI proof. |
 | 2026-10-06 | Public statistics after macOS-15 delivery | — | — | — | Öffentliche Belege auf main gesammelt und deterministisch veröffentlicht; geprüfte Registerentscheidungen und Laufzahlen erhalten. / Collected and published public evidence on main; preserved reviewed registry decisions and run counts. |
+| 2026-11-03 | Model Routing Governance 0.2.1 | N/A | N/A | N/A | UpdateRequired: hashgebundenes Release, ein Preset aktualisiert, andere 13 erhalten; vollständige Resolver-Ressourcen und Root-/Preset-Parität geprüft. Keine Modellaufrufe oder Profilmigration. / Hash-bound release, one preset updated, other 13 preserved; complete runtime closure and root/preset parity verified. No inference or profile migration. [Evidence](maintenance/model-routing-v021-installation.md). |
+| 2026-11-03 | Model Routing Governance 0.2.3 | N/A | N/A | N/A | UpdateRequired: hashgebundenes Release mit strukturiertem Harness-Rückkanal und kanonischem Adapterpfad, ein Preset aktualisiert, andere 13 erhalten; vollständige Resolver-Ressourcen und Root-/Preset-Parität geprüft. Keine Modellaufrufe oder Profilmigration. / Hash-bound release with structured harness result transport and canonical adapter path, one preset updated, other 13 preserved; complete runtime closure and root/preset parity verified. No inference or profile migration. [Evidence](maintenance/model-routing-v023-installation.md). |
+| 2026-11-05 | Model Routing 0.2.6 und Autonomous Run 0.4.10 | N/A | N/A | N/A | UpdateRequired: zwei hashgebundene Presets in der 14er-Matrix und vier autorisierten Repositories installiert; die übrigen zwölf Payloads erhalten. Root-/Preset-Parität, normale Rollenrechte, Agentenflächen, PSScriptAnalyzer und Secret-Scan sind grün. Keine Modellaufrufe, API-Key-Konfiguration oder Profilmigration. / Two hash-bound presets installed in the fourteen-preset matrix and four authorized repositories; the other twelve payloads were preserved. Root/preset parity, normal role permissions, agent surfaces, PSScriptAnalyzer and secret scanning passed. No model calls, API-key setup or profile migration. [Evidence](maintenance/model-routing-v026-installation.md). |
 
 ## Gesamtstand des Repositories / Repository Snapshot
 
@@ -1604,6 +1607,56 @@ PSScriptAnalyzer, and two read-only live inventories. Documentation and the
 Home Runtime contract are synchronized; statistics represent Git-based
 project transparency, not measured AI productivity.
 
+### 2026-11-01 - Workspace-Sicherheitsfixes und CI / Workspace security fixes and CI
+
+DE: Vier bestaetigte Skriptbefunde durch sichere Argumentuebergabe und
+historische Secret-Pruefung behoben. CI-Nacharbeit erhaelt gueltiges UTF-8
+auch mit Bash 3.2 im C-Locale und macht die WSL-/Hook-Test-Fixtures portabel.
+Skriptreferenz und Profil 2 werden aus ihren kanonischen Quellen neu erzeugt.
+Nachweis: `docs/maintenance/security-fix-ci-2026-11-01.md` und PR 350.
+Statistik bleibt Git-basierte Projekttransparenz, keine Zeitmessung.
+
+EN: Four confirmed script findings addressed with safe argument passing and
+historical secret scanning. CI follow-up preserves valid UTF-8 with Bash 3.2
+in the C locale and makes WSL/hook test fixtures portable. The script reference
+and Profile 2 are regenerated from their canonical sources. Evidence:
+`docs/maintenance/security-fix-ci-2026-11-01.md` and PR 350. Statistics remain
+Git-based project transparency, not a measurement of time.
+
+### 2026-11-01 - Parallel-Worker-Pfadgrenze / Parallel worker path boundary
+
+DE: PR 349 begrenzt Worker-Kennungen auf portable Dateinamen und prueft
+vorhandene Git-Worktrees gegen Repository und Branch, auch ueber Pfadaliase.
+Die separate Installed-Lock-Payload-Bindung wird fuer den geprueften Fix
+fortgeschrieben; andere Presets und Release-Quellen bleiben unveraendert.
+Nachweis: `docs/maintenance/security-fix-ci-2026-11-01.md` und PR 349.
+
+EN: PR 349 confines worker IDs to portable filenames and checks existing Git
+worktrees against repository and branch, including path aliases. The separate
+installed payload binding is updated for the reviewed fix; other presets and
+release sources remain unchanged. Evidence:
+`docs/maintenance/security-fix-ci-2026-11-01.md` and PR 349.
+
+### 2026-11-03 - Dependabot-Wartung / Dependabot maintenance
+
+DE: Branch `codex/dependabot-maintenance-20261103`, Arbeitsfenster 2026-11-03.
+Repository-spezifische Versions-/Sicherheitsgruppen und zweisprachige
+Wartungshinweise ergaenzt. Kein Produktions- oder Testcode geaendert;
+Konfigurations-/Dokumentationsumfang ist im PR-Diff belegt. Profil 2 wird
+aus der committed Inhaltsrevision gerendert; bestehende Referenzen bleiben.
+YAML/Schema, Manifestabdeckung, Policy, Dokumentation, Liefermenge und
+Secret-Scan bestanden. Hosted-Checks werden am PR verfolgt. Keine Pakete
+aktualisiert; Git-basierte Statistik misst keine KI-Zeitersparnis.
+
+EN: Branch `codex/dependabot-maintenance-20261103`, work window 2026-11-03.
+Adds repository-specific version/security groups and bilingual maintenance
+guidance. No production or test code changed; the PR diff records the exact
+configuration/documentation scope. Profile 2 is rendered from the committed
+content revision with existing references. YAML/schema, manifest coverage,
+policy, documentation, delivery scope and secret scan passed. Hosted checks
+are tracked on the PR. No packages updated; Git statistics do not measure
+AI time savings.
+
 ## Gesamtstatistik / Overall Statistics
 
 <!-- project-statistics-v2:begin -->
@@ -1614,27 +1667,27 @@ Profil 2 verwendet Git-getrackte Textdateien und sichtbare Git-Aktivitaet. Die W
 
 | Kennzahl / Metric | Wert / Value |
 |---|---:|
-| Textbasis / Text base | 756549 lines |
-| Textdateien / Text files | 3670 |
-| Beobachtbarer Zeitraum / Observable period | 2025-11-09..2026-11-01 |
-| Aktivtage / Active days | 132 |
-| Relevante Commits / Relevant commits | 949 |
-| Zeilen je Aktivtag / Lines per active day | 5731.4 |
+| Textbasis / Text base | 775849 lines |
+| Textdateien / Text files | 3786 |
+| Beobachtbarer Zeitraum / Observable period | 2025-11-09..2026-11-07 |
+| Aktivtage / Active days | 135 |
+| Relevante Commits / Relevant commits | 993 |
+| Zeilen je Aktivtag / Lines per active day | 5747.0 |
 | Peak-Tag im Fenster / Peak day in window | 2026-08-01 / 161357 |
 | Peak-Woche im Fenster / Peak week in window | 2026-07-26 / 284516 |
 | Laengste Serie / Longest streak | 38 days |
-| Speedup vs. 80 lines/day | 71.6x |
-| Speedup vs. 100 lines/day | 57.3x |
-| Methodik / Methodology | v2; source `3c5a858dd248` |
+| Speedup vs. 80 lines/day | 71.8x |
+| Speedup vs. 100 lines/day | 57.5x |
+| Methodik / Methodology | v2; source `493db6ca7f23` |
 
 ### Artefaktmix / Artifact Mix
 
 ```text
 Produktiv / Production          [#...................]   0.3% | 2237
-Tests                           [#...................]   3.7% | 28307
-Dokumentation / Documentation   [###########.........]  54.8% | 414308
-Skripte / Scripts               [##..................]   7.8% | 58718
-Konfiguration / Configuration   [#######.............]  33.4% | 252623
+Tests                           [#...................]   4.4% | 33994
+Dokumentation / Documentation   [###########.........]  54.4% | 421810
+Skripte / Scripts               [##..................]   8.3% | 64654
+Konfiguration / Configuration   [#######.............]  32.6% | 252798
 Daten und Medien / Data and media [....................]   0.0% | 0
 Sonstiger Text / Other text     [#...................]   0.0% | 356
 ```
@@ -1659,12 +1712,12 @@ Sa/Sa  0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 4 3 4 0 0
 ```text
 Wochen / Weeks 27..52 | 2026-05-10..2026-11-07
 So/Su  0 0 0 2 0 4 0 4 4 4 4 4 4 4 4 4 0 4 4 4 2 4 0 4 0 3
-Mo/Mo  0 0 0 0 0 0 0 4 4 4 4 3 0 2 1 0 0 3 3 0 3 2 0 4 0 -
-Di/Tu  0 0 3 0 0 0 0 2 4 4 4 4 0 0 0 0 4 2 4 0 0 3 0 4 0 -
-Mi/We  0 0 0 1 0 4 0 4 4 4 4 4 4 0 4 3 0 4 2 0 0 0 0 0 0 -
-Do/Th  0 3 2 1 4 0 0 2 4 3 4 4 0 4 4 0 4 4 0 0 3 0 0 0 2 -
-Fr/Fr  0 1 2 2 1 4 2 3 4 3 4 4 4 3 0 4 0 4 1 0 0 2 0 0 3 -
-Sa/Sa  0 0 0 0 0 4 4 4 4 4 4 4 4 4 4 4 4 4 4 2 4 3 0 4 0 -
+Mo/Mo  0 0 0 0 0 0 0 4 4 4 4 3 0 2 1 0 0 3 3 0 3 2 0 4 0 0
+Di/Tu  0 0 3 0 0 0 0 2 4 4 4 4 0 0 0 0 4 2 4 0 0 3 0 4 0 4
+Mi/We  0 0 0 1 0 4 0 4 4 4 4 4 4 0 4 3 0 4 2 0 0 0 0 0 0 0
+Do/Th  0 3 2 1 4 0 0 2 4 3 4 4 0 4 4 0 4 4 0 0 3 0 0 0 2 4
+Fr/Fr  0 1 2 2 1 4 2 3 4 3 4 4 4 3 0 4 0 4 1 0 0 2 0 0 3 0
+Sa/Sa  0 0 0 0 0 4 4 4 4 4 4 4 4 4 4 4 4 4 4 2 4 3 0 4 0 4
 ```
 
 DE: 0 = keine Aenderung; 1 = 1..79; 2 = 80..399; 3 = 400..1599; 4 = 1600+ geaenderte Textzeilen; - = noch nicht abgelaufen.
@@ -1790,15 +1843,15 @@ Slots 64..79
 ```
 
 ```text
-Slots 80..85
-    cap 2000 | . . . . . .
-        1667 | # . . . . .
-        1333 | # . . . . .
-        1000 | # . . . . .
-         667 | # # . . . .
-         333 | # # . . . .
-           0 +-------------
-             80 81 82 83 84 85
+Slots 80..86
+    cap 5000 | . . . . . . .
+        4167 | . . . . . . .
+        3333 | . . . . . . #
+        2500 | . . . . . . #
+        1667 | # . . . . . #
+         833 | # . . . . . #
+           0 +---------------
+             80 81 82 83 84 85 86
 ```
 
 | Slot | Phase | Nettozeilen / Net lines |
@@ -1889,6 +1942,7 @@ Slots 80..85
 | 83 | Feature 032 Flottenabschluss / Feature 032 fleet closeout | 282 |
 | 84 | Dauerhafter Admin-PR-Bypass / Persistent admin PR bypass | 133 |
 | 85 | Storage-Check-only-Make-Härtung / Storage check-only Make hardening | 230 |
+| 86 | Model-Routing-v0.2.5-/Autonomous-v0.4.9-Rollout / Model Routing v0.2.6 and Autonomous v0.4.10 rollout | 4040 |
 
 Die festen Slots halten den Phasenvergleich auch bei fehlenden oder spaeter ergaenzten Werten stabil.
 
@@ -1898,8 +1952,8 @@ Die festen Slots halten den Phasenvergleich auch bei fehlenden oder spaeter erga
 
 ```text
 Scale: 0..100x
-80 lines/day       [##############......] 71.6x
-100 lines/day      [###########.........] 57.3x
+80 lines/day       [##############......] 71.8x
+100 lines/day      [###########.........] 57.5x
 ```
 
 Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen Referenzen. Sie messen keine Arbeitszeit.
@@ -1912,7 +1966,7 @@ Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen
 Scale: 0..10000 lines/day
 Experienced manual [#...................] 80
 Thorsten solo      [#...................] 100
-Visible repository [###########.........] 5731.4
+Visible repository [###########.........] 5747.0
 ```
 
 Die gemeinsame Skala vergleicht Referenzen und sichtbare Lieferdichte. Sie schreibt die Git-Aktivitaet keiner Person oder KI pauschal zu.
@@ -1921,9 +1975,9 @@ Die gemeinsame Skala vergleicht Referenzen und sichtbare Lieferdichte. Sie schre
 
 ### Textalternative / Text Alternative
 
-DE: Das Fenster beginnt am 2025-11-09 und endet am 2026-11-01. Es enthaelt 132 aktive und 226 inaktive vergangene Tage. Peak-Tag: 2026-08-01 / 161357. Peak-Woche: 2026-07-26 / 284516. Laengste Serie: 38 Tage (2026-06-26..2026-08-02).
+DE: Das Fenster beginnt am 2025-11-09 und endet am 2026-11-07. Es enthaelt 135 aktive und 229 inaktive vergangene Tage. Peak-Tag: 2026-08-01 / 161357. Peak-Woche: 2026-07-26 / 284516. Laengste Serie: 38 Tage (2026-06-26..2026-08-02).
 
-*EN: The window starts on 2025-11-09 and ends on 2026-11-01. It contains 132 active and 226 inactive elapsed days. Peak day: 2026-08-01 / 161357. Peak week: 2026-07-26 / 284516. Longest streak: 38 days (2026-06-26..2026-08-02).*
+*EN: The window starts on 2025-11-09 and ends on 2026-11-07. It contains 135 active and 229 inactive elapsed days. Peak day: 2026-08-01 / 161357. Peak week: 2026-07-26 / 284516. Longest streak: 38 days (2026-06-26..2026-08-02).*
 
 | Monat / Month | Geaenderte Textzeilen / Changed text lines |
 |---|---:|
@@ -1938,6 +1992,6 @@ DE: Das Fenster beginnt am 2025-11-09 und endet am 2026-11-01. Es enthaelt 132 a
 | 2026-08 | 278228 |
 | 2026-09 | 144845 |
 | 2026-10 | 73816 |
-| 2026-11 | 750 |
+| 2026-11 | 27376 |
 
 <!-- project-statistics-v2:end -->

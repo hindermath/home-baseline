@@ -10,6 +10,8 @@ START_GUIDE="docs/learning-units/START-HERE-FUER-LERNENDE.md"
 GIT_GUIDE="docs/learning-units/GIT-START-FUER-LERNENDE.md"
 HOSTING_GUIDE="docs/learning-units/INSTITUTIONELLES-GIT-HOSTING.md"
 DRY_RUN=0
+SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+ARCHIVE_HELPER="${SCRIPT_DIR}/lib/learning_package_archive.py"
 
 usage() {
   cat <<'USAGE'
@@ -105,9 +107,13 @@ require_tool git
 require_tool rsync
 require_tool zip
 require_tool shasum
+require_tool python3
 
-SOURCE_DIR="$(cd "$SOURCE_DIR" && pwd)"
+[ ! -L "$SOURCE_DIR" ] || { echo "ERROR: Quelle darf kein symbolischer Link sein: $SOURCE_DIR" >&2; exit 1; }
+SOURCE_DIR="$(cd "$SOURCE_DIR" && pwd -P)"
 [ -d "$SOURCE_DIR" ] || { echo "ERROR: Quelle nicht gefunden: $SOURCE_DIR" >&2; exit 1; }
+linked_source="$(find -H "$SOURCE_DIR" -type l -print -quit)"
+[ -z "$linked_source" ] || { echo "ERROR: Quelle enthaelt einen symbolischen Link: $linked_source" >&2; exit 1; }
 
 ROOT_NAME="$(basename "$SOURCE_DIR")"
 [ -n "$SERIES_NAME" ] || SERIES_NAME="$ROOT_NAME"
@@ -133,9 +139,28 @@ else
   HOSTING_GUIDE_PATH="${SOURCE_DIR}/${HOSTING_GUIDE}"
 fi
 
-[ -f "$START_GUIDE_PATH" ] || { echo "ERROR: verbindliche Startanleitung fehlt: $START_GUIDE_PATH" >&2; exit 1; }
-[ -f "$GIT_GUIDE_PATH" ] || { echo "ERROR: verbindliche Git-Startanleitung fehlt: $GIT_GUIDE_PATH" >&2; exit 1; }
-[ -f "$HOSTING_GUIDE_PATH" ] || { echo "ERROR: Leitfaden fuer institutionelles Git-Hosting fehlt: $HOSTING_GUIDE_PATH" >&2; exit 1; }
+for guide_path in "$START_GUIDE_PATH" "$GIT_GUIDE_PATH" "$HOSTING_GUIDE_PATH"; do
+  [ -f "$guide_path" ] && [ ! -L "$guide_path" ] || {
+    echo "ERROR: Anleitung muss eine regulaere Datei ohne Link sein: $guide_path" >&2
+    exit 1
+  }
+done
+
+sensitive_path=""
+while IFS= read -r -d '' candidate; do
+  candidate_name="$(basename "$candidate")"
+  if [[ "$candidate_name" =~ \.(example|sample|template|dist)(\.[^./]+)?$ ]]; then
+    continue
+  fi
+  sensitive_path="$candidate"
+  break
+done < <(find "$SOURCE_DIR" -type f \( \
+  -iname '.env' -o -iname '.env.*' -o -iname '*.pem' -o -iname '*.key' -o \
+  -iname '*.p12' -o -iname '*.pfx' -o -iname 'id_rsa' -o -iname 'id_ed25519' -o \
+  -iname 'credentials*' -o -iname 'secret.*' -o -iname 'secrets.*' -o \
+  -path '*/.aws/*' -o -path '*/.ssh/*' -o -path '*/secrets/*' \
+\) -print0)
+[ -z "$sensitive_path" ] || { echo "ERROR: credential-verdaechtige Datei in Quelle: $sensitive_path" >&2; exit 1; }
 
 short_sha="$(git -C "$SOURCE_DIR" rev-parse --short HEAD 2>/dev/null || printf 'nogit')"
 stamp="$(date -u '+%Y%m%dT%H%M%SZ')"
@@ -174,16 +199,23 @@ if [ "$DRY_RUN" -eq 1 ]; then
   exit 0
 fi
 
+[ ! -L "$OUTPUT_DIR" ] || { echo "ERROR: Zielordner darf kein symbolischer Link sein: $OUTPUT_DIR" >&2; exit 1; }
+require_tool gitleaks
 mkdir -p "$OUTPUT_DIR"
 tmp_dir="$(mktemp -d)"
 trap 'rm -rf "$tmp_dir"' EXIT
 package_root="${tmp_dir}/${ROOT_NAME}"
 mkdir -p "$package_root"
 
-rsync -a --delete "${excludes[@]}" "${SOURCE_DIR}/" "${package_root}/"
-cp "$START_GUIDE_PATH" "${package_root}/$(basename "$START_GUIDE_PATH")"
-cp "$GIT_GUIDE_PATH" "${package_root}/$(basename "$GIT_GUIDE_PATH")"
-cp "$HOSTING_GUIDE_PATH" "${package_root}/$(basename "$HOSTING_GUIDE_PATH")"
+linked_source="$(find -H "$SOURCE_DIR" -type l -print -quit)"
+[ -z "$linked_source" ] || { echo "ERROR: Quelle enthaelt inzwischen einen symbolischen Link: $linked_source" >&2; exit 1; }
+rsync -rt --delete "${excludes[@]}" "${SOURCE_DIR}/" "${package_root}/"
+for guide_path in "$START_GUIDE_PATH" "$GIT_GUIDE_PATH" "$HOSTING_GUIDE_PATH"; do
+  guide_name="$(basename "$guide_path")"
+  guide_stage="${package_root}/.${guide_name}.copy"
+  python3 "$ARCHIVE_HELPER" --copy-file "$guide_path" "$guide_stage"
+  mv -f -- "$guide_stage" "${package_root}/${guide_name}"
+done
 
 manifest="${package_root}/PACKAGING-MANIFEST.txt"
 {
@@ -210,6 +242,12 @@ manifest="${package_root}/PACKAGING-MANIFEST.txt"
   echo "Git guide: $(basename "$GIT_GUIDE_PATH")"
   echo "Institutional hosting guide: $(basename "$HOSTING_GUIDE_PATH")"
 } > "$manifest"
+
+gitleaks_args=(dir "$package_root" --no-banner --redact --timeout 120)
+if [ -f "$(dirname "$0")/templates/gitleaks.toml" ]; then
+  gitleaks_args+=(--config "$(dirname "$0")/templates/gitleaks.toml")
+fi
+gitleaks "${gitleaks_args[@]}" >/dev/null
 
 rm -f "$zip_path" "$sha_path"
 (

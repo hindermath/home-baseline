@@ -50,6 +50,18 @@ It contains:
 
 These files are local machine state and are not intended to be committed.
 
+Audit reports retain only the matching log path and line number; raw agent-log
+text is never copied into JSON or terminal output. The state directories and
+files are restricted to the current account (`0700`/`0600` on Unix and an
+owner-only ACL on Windows), including existing entries encountered by a run.
+
+Die Audit-Berichte speichern nur Pfad und Zeilennummer eines Treffers; rohe
+Agenten-Logtexte werden weder in JSON noch in die Konsolenausgabe übernommen.
+Verzeichnisse und Dateien sind ausschließlich für das aktuelle Benutzerkonto
+zugänglich. Berichte, die mit einer älteren Skriptversion erzeugt wurden,
+sollten einmalig auf vertrauliche Auszüge geprüft und bei Bedarf sicher
+entfernt werden.
+
 ## OPTIONS
 
 ### Bash

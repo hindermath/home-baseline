@@ -73,7 +73,30 @@ param(
 Set-StrictMode -Version Latest
 $ErrorActionPreference = 'Stop'
 
-$ScriptDir    = Split-Path -Parent $MyInvocation.MyCommand.Path
+$InvocationScriptDir = Split-Path -Parent $MyInvocation.MyCommand.Path
+$HomeRoot = if ($env:HOME) { $env:HOME } else { $env:USERPROFILE }
+$SourceRepositoryRoot = $null
+foreach ($candidate in @(
+    (Split-Path -Parent $InvocationScriptDir),
+    $env:HOME_BASELINE_SOURCE,
+    (Join-Path $HomeRoot 'home-baseline-source')
+)) {
+    if (-not $candidate) { continue }
+    $trackedProbe = (& git -C $candidate ls-files --error-unmatch scripts/bootstrap-project.ps1 2>$null | Out-String).Trim()
+    if ($LASTEXITCODE -eq 0 -and $trackedProbe) {
+        $SourceRepositoryRoot = (Get-Item -LiteralPath $candidate -Force).FullName
+        break
+    }
+}
+if (-not $SourceRepositoryRoot) { throw 'No trusted Git-tracked level-0 source was found.' }
+$ScriptDir = Join-Path $SourceRepositoryRoot 'scripts'
+$TrackedScriptPaths = @(& git -C $SourceRepositoryRoot ls-files -- scripts)
+if ($LASTEXITCODE -ne 0 -or -not $TrackedScriptPaths) { throw 'Tracked scripts inventory is unavailable.' }
+foreach ($tracked in $TrackedScriptPaths) {
+    if ($tracked -match '[\x00-\x1f]' -or -not $tracked.StartsWith('scripts/')) {
+        throw "Unsafe tracked scripts path: $tracked"
+    }
+}
 $TemplatesDir = Join-Path $ScriptDir 'templates'
 $SecureDevLib = Join-Path $ScriptDir 'lib/secure-development-hardening.ps1'
 $ForgejoLib   = Join-Path $ScriptDir 'lib/hg-forgejo.ps1'
@@ -86,8 +109,52 @@ if (-not (Test-Path $ForgejoLib)) {
 }
 . $ForgejoLib
 $Preview = $Preview -or $WhatIfPreference
+$invalidProjectName = $ProjectName -in @('.', '..') `
+    -or $ProjectName.StartsWith('-') `
+    -or $ProjectName.IndexOfAny([char[]]@('/', '\')) -ge 0 `
+    -or $ProjectName -match '[\x00-\x1f]'
+if ($invalidProjectName) {
+    throw "ProjectName must be one safe path component: $ProjectName"
+}
 $TargetWorkspace = $TargetWorkspace.TrimEnd([IO.Path]::DirectorySeparatorChar)
+$workspaceItem = Get-Item -LiteralPath $TargetWorkspace -Force -ErrorAction Stop
+if (-not $workspaceItem.PSIsContainer `
+    -or $workspaceItem.LinkType `
+    -or ($workspaceItem.Attributes -band [IO.FileAttributes]::ReparsePoint)) {
+    throw "TargetWorkspace must be an existing regular directory: $TargetWorkspace"
+}
+Assert-SdhNoUntrustedLinkComponents -Path $TargetWorkspace
+$TargetWorkspace = $workspaceItem.FullName
 $TargetDir    = Join-Path $TargetWorkspace $ProjectName
+Assert-SdhNoUntrustedLinkComponents -Path $TargetDir
+$targetItem = Get-Item -LiteralPath $TargetDir -Force -ErrorAction SilentlyContinue
+if ($targetItem -and ($targetItem.LinkType -or ($targetItem.Attributes -band [IO.FileAttributes]::ReparsePoint))) {
+    throw "Project target must not be a link or reparse point: $TargetDir"
+}
+if ($targetItem) {
+    $linkedChild = Get-ChildItem -LiteralPath $TargetDir -Force -Recurse -ErrorAction Stop |
+        Where-Object { $_.LinkType -or ($_.Attributes -band [IO.FileAttributes]::ReparsePoint) } |
+        Select-Object -First 1
+    if ($linkedChild) {
+        throw "Existing project target contains a link or reparse point: $($linkedChild.FullName)"
+    }
+}
+$sourceRootItem = Get-Item -LiteralPath $ScriptDir -Force -ErrorAction Stop
+if ($sourceRootItem.LinkType -or ($sourceRootItem.Attributes -band [IO.FileAttributes]::ReparsePoint)) {
+    throw "Trusted bootstrap source must not be a link or reparse point: $ScriptDir"
+}
+$linkedSource = Get-ChildItem -LiteralPath $ScriptDir -Force -Recurse -ErrorAction Stop |
+    Where-Object { $_.LinkType -or ($_.Attributes -band [IO.FileAttributes]::ReparsePoint) } |
+    Select-Object -First 1
+if ($linkedSource) {
+    throw "Trusted bootstrap source tree contains a link or reparse point: $($linkedSource.FullName)"
+}
+$homeReadmeCandidate = Join-Path $(if ($env:HOME) { $env:HOME } else { $env:USERPROFILE }) 'README.md'
+Assert-SdhNoUntrustedLinkComponents -Path $homeReadmeCandidate
+$homeReadmeItem = Get-Item -LiteralPath $homeReadmeCandidate -Force -ErrorAction SilentlyContinue
+if ($homeReadmeItem -and ($homeReadmeItem.LinkType -or ($homeReadmeItem.Attributes -band [IO.FileAttributes]::ReparsePoint))) {
+    throw "HOME README must not be a link or reparse point: $homeReadmeCandidate"
+}
 
 $Step = 0
 $TotalSteps = 31
@@ -100,9 +167,9 @@ $projectSlug = ''
 $projectSlugChanged = $false
 $summaryRepoUrl = ''
 $summaryDisplayRepo = ''
+$ScriptsCopied = $false
 $WorkspaceGitignoreHeader = '# Sub-Verzeichnisse mit eigenen Git-Repositories (automatisch erkannt)'
 $SpecifyAgents = @('agy', 'opencode', 'claude', 'copilot', 'codex')
-$HomeRoot = if ($env:HOME) { $env:HOME } else { $env:USERPROFILE }
 $HomeConstitution = Join-Path $HomeRoot 'constitution.md'
 
 function Get-HBConstitutionVersion {
@@ -120,6 +187,146 @@ function Get-HBConstitutionVersion {
         throw "Constitution-Version muss genau einmal als '# Constitution vX.Y.Z' vorkommen / must occur exactly once: ${Path}"
     }
     return $versionMatches[0]
+}
+
+function Test-HBBootstrapPrePushHook {
+    $sourceHook = Join-Path $ScriptDir 'hooks/pre-push'
+    $targetHook = Join-Path $TargetDir '.git/home-baseline-hooks/pre-push'
+    $sourceItem = Get-Item -LiteralPath $sourceHook -Force -ErrorAction SilentlyContinue
+    $targetItem = Get-Item -LiteralPath $targetHook -Force -ErrorAction SilentlyContinue
+    if (-not $sourceItem -or -not $targetItem) { return $false }
+    if ($sourceItem.LinkType -or $targetItem.LinkType `
+        -or ($sourceItem.Attributes -band [IO.FileAttributes]::ReparsePoint) `
+        -or ($targetItem.Attributes -band [IO.FileAttributes]::ReparsePoint)) {
+        return $false
+    }
+    if ((Get-FileHash -Algorithm SHA256 $sourceHook).Hash -ne (Get-FileHash -Algorithm SHA256 $targetHook).Hash) {
+        return $false
+    }
+    if ($IsLinux -or $IsMacOS) {
+        & test -x $targetHook
+        if ($LASTEXITCODE -ne 0) { return $false }
+    }
+    $effectiveHooksPath = ((& git -C $TargetDir config --path core.hooksPath 2>$null) | Out-String).Trim()
+    return $effectiveHooksPath -eq (Join-Path $TargetDir '.git/home-baseline-hooks')
+}
+
+function Add-HBProjectBaselineToIndex {
+    & git -C $TargetDir reset --quiet
+    foreach ($relative in @(
+        '.gitignore', 'README.md', 'AGENTS.md', 'CLAUDE.md', 'GEMINI.md', 'constitution.md', 'STATS.md',
+        'release-please-config.json', '.release-please-manifest.json', '.github/copilot-instructions.md',
+        '.github/workflows/homogeneity-check.yml', '.github/workflows/release-please.yml',
+        'docs/project-statistics.md', 'docs/project-statistics.config.json'
+    )) {
+        $candidate = Join-Path $TargetDir $relative
+        if (Test-Path -LiteralPath $candidate) { & git -C $TargetDir add -- $relative }
+    }
+    if ($ScriptsCopied) {
+        foreach ($tracked in $TrackedScriptPaths) { & git -C $TargetDir add -- $tracked }
+    }
+}
+
+function Invoke-HBProjectPublicationScan {
+    param([switch]$Staged)
+
+    if (-not (Get-Command gitleaks -ErrorAction SilentlyContinue)) {
+        throw 'Remote publication requires gitleaks.'
+    }
+    $arguments = @('git', '--redact', '--no-banner', '--no-color', '--log-level', 'warn', '--exit-code', '2')
+    if ($Staged) { $arguments += '--staged' }
+    $arguments += $TargetDir
+    & gitleaks @arguments
+    if ($LASTEXITCODE -ne 0) { throw 'Gitleaks rejected or could not scan project publication.' }
+}
+
+function Get-HBProjectRemoteIdentity {
+    param([Parameter(Mandatory)][string]$RemoteUrl)
+
+    $value = $RemoteUrl.Trim()
+    if ($value -match '^[^@/]+@(?<Host>[^:/]+):(?<Path>[^?#]+)$') {
+        $hostName = $Matches.Host
+        $path = $Matches.Path
+    } else {
+        $uri = $null
+        if (-not [uri]::TryCreate($value, [UriKind]::Absolute, [ref]$uri) `
+            -or $uri.Scheme -notin @('https', 'ssh') `
+            -or $uri.Query `
+            -or $uri.Fragment `
+            -or ($uri.UserInfo -and $uri.UserInfo.Contains(':'))) {
+            throw 'Origin URL is not an accepted HTTPS or SSH repository URL.'
+        }
+        $hostName = if ($uri.IsDefaultPort) { $uri.Host } else { $uri.Authority }
+        $path = $uri.AbsolutePath.TrimStart('/')
+    }
+    $parts = @($path.TrimEnd('/') -split '/')
+    if ($parts.Count -ne 2 -or -not $parts[0] -or -not $parts[1]) {
+        throw 'Origin URL must identify exactly owner/repository.'
+    }
+    $repository = $parts[1] -replace '\.git$', ''
+    if (-not $repository) { throw 'Origin repository name is empty.' }
+    [pscustomobject]@{ Host = $hostName; Owner = $parts[0]; Name = $repository }
+}
+
+function Assert-HBProjectOrigin {
+    param([Parameter(Mandatory)][string]$RemoteUrl)
+
+    $identity = Get-HBProjectRemoteIdentity -RemoteUrl $RemoteUrl
+    switch ($Platform) {
+        'github' {
+            if ($identity.Host -cne 'github.com' -or -not (Get-Command gh -ErrorAction SilentlyContinue)) {
+                throw 'Origin is not the expected GitHub host.'
+            }
+            $expectedName = $ProjectName.ToLower() -replace '\s+', '-'
+            $authenticatedOwner = ((& gh api user --jq '.login' 2>$null) | Out-String).Trim()
+            if ($identity.Owner -cne $authenticatedOwner -or $identity.Name -cne $expectedName) {
+                throw 'GitHub origin owner or repository does not match the authenticated bootstrap target.'
+            }
+            $record = ((& gh api "repos/$($identity.Owner)/$($identity.Name)" 2>$null) | Out-String).Trim() | ConvertFrom-Json
+            if (-not $record.private -or [string]$record.owner.login -cne $identity.Owner -or [string]$record.name -cne $identity.Name) {
+                throw 'GitHub repository is not the expected private authenticated target.'
+            }
+            $script:summaryRepoUrl = "https://github.com/$($identity.Owner)/$($identity.Name)"
+        }
+        'gitlab' {
+            if ($identity.Host -cne $gitlabHostname -or $identity.Owner -cne $gitlabUser -or $identity.Name -cne $projectSlug) {
+                throw 'GitLab origin does not match the authenticated bootstrap target.'
+            }
+            $encoded = [uri]::EscapeDataString("$($identity.Owner)/$($identity.Name)")
+            $env:GITLAB_HOST = $gitlabHostname
+            try { $record = ((& glab api "projects/$encoded" 2>$null) | Out-String).Trim() | ConvertFrom-Json }
+            finally { $env:GITLAB_HOST = $null }
+            if ([string]$record.visibility -cne 'private' `
+                -or [string]$record.namespace.path -cne $identity.Owner `
+                -or [string]$record.path -cne $identity.Name) {
+                throw 'GitLab repository is not the expected private authenticated target.'
+            }
+            $script:summaryRepoUrl = "$($GitLabUrl.TrimEnd('/'))/$($identity.Owner)/$($identity.Name)"
+        }
+        { $_ -in @('forgejo', 'codeberg') } {
+            $repository = New-HBForgejoRepository -BaseUrl $forgejoBaseUrl -RepositoryName $projectSlug -Description "Project repository for $ProjectName"
+            if ($RemoteUrl.TrimEnd('/') -cne ([string]$repository.CloneUrl).TrimEnd('/') `
+                -or $identity.Owner -cne $repository.Owner `
+                -or $identity.Name -cne $repository.Name) {
+                throw 'Forgejo origin does not match the private authenticated bootstrap target.'
+            }
+            $script:summaryRepoUrl = $repository.HtmlUrl
+        }
+        default { throw "Unsupported project platform: $Platform" }
+    }
+    $script:summaryDisplayRepo = $identity.Name
+}
+
+function Assert-HBEffectiveProjectPushTarget {
+    $fetchUrl = ((& git -C $TargetDir remote get-url origin 2>$null) | Out-String).Trim()
+    $pushUrls = @(& git -C $TargetDir remote get-url --all --push origin 2>$null) |
+        ForEach-Object { ([string]$_).Trim() } |
+        Where-Object { $_ }
+    if (-not $fetchUrl -or $pushUrls.Count -ne 1 -or $pushUrls[0] -cne $fetchUrl) {
+        throw 'Effective origin and push URL must be one identical authenticated target.'
+    }
+    Assert-HBProjectOrigin -RemoteUrl $fetchUrl
+    Assert-HBProjectOrigin -RemoteUrl $pushUrls[0]
 }
 
 function Resolve-HBBootstrapPresetProfile {
@@ -216,7 +423,7 @@ function Set-DefaultWorkspaceGitignore {
         $lines.Add("$name/")
     }
     $lines.Add('')
-    $lines.AddRange(@(
+    $lines.AddRange([string[]]@(
         '# macOS',
         '.DS_Store',
         '.AppleDouble',
@@ -343,7 +550,8 @@ if ($Platform -eq 'gitlab') {
         Write-Error "Fehler: -GitLabUrl muss mit 'https://' beginnen.`nError: -GitLabUrl must start with 'https://'."
         exit 2
     }
-    $gitlabHostname = ($GitLabUrl -replace '^https://', '').TrimEnd('/')
+    $gitlabUri = [uri]$GitLabUrl
+    $gitlabHostname = if ($gitlabUri.IsDefaultPort) { $gitlabUri.Host } else { $gitlabUri.Authority }
     $projectSlug = ConvertTo-GitLabSlug $ProjectName
     $projectSlugChanged = $projectSlug -ne $ProjectName
 
@@ -564,6 +772,9 @@ on:
   pull_request:
     branches: [main, master]
 
+permissions:
+  contents: read
+
 jobs:
   homogeneity:
     runs-on: ubuntu-latest
@@ -729,8 +940,7 @@ elseif ($Platform -eq 'gitlab') { Step-Skip "GitLab: via setup-gitlab-release.ps
 elseif ($Platform -in @('forgejo', 'codeberg')) { Step-Skip "Forgejo Actions: institutionell freigegebene Konfiguration erforderlich" }
 elseif ((Test-Path (Join-Path $TargetDir 'release-please-config.json')) -and -not $Force) { Step-Skip "Konfiguration existiert bereits" }
 else {
-    New-Item -ItemType Directory -Path (Join-Path $TargetDir '.github/workflows') -Force | Out-Null
-    @'
+    $releaseConfig = @'
 {
   "$schema": "https://raw.githubusercontent.com/googleapis/release-please/main/schemas/config.json",
   "release-type": "simple",
@@ -746,13 +956,13 @@ else {
     }
   }
 }
-'@ | Set-Content (Join-Path $TargetDir 'release-please-config.json') -Encoding UTF8
-    @'
+'@
+    $releaseManifest = @'
 {
   ".": "0.1.0"
 }
-'@ | Set-Content (Join-Path $TargetDir '.release-please-manifest.json') -Encoding UTF8
-    @'
+'@
+    $releaseWorkflow = @'
 name: Release Please
 
 on:
@@ -773,7 +983,13 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           config-file: release-please-config.json
           manifest-file: .release-please-manifest.json
-'@ | Set-Content (Join-Path $TargetDir '.github/workflows/release-please.yml') -Encoding UTF8
+'@
+    Write-HBManagedTextAtomic -Root $TargetDir -RelativePath 'release-please-config.json' `
+        -Content ($releaseConfig + "`n")
+    Write-HBManagedTextAtomic -Root $TargetDir -RelativePath '.release-please-manifest.json' `
+        -Content ($releaseManifest + "`n")
+    Write-HBManagedTextAtomic -Root $TargetDir -RelativePath '.github/workflows/release-please.yml' `
+        -Content ($releaseWorkflow + "`n") -CreateParent
     Step-Done
 }
 
@@ -781,13 +997,24 @@ jobs:
 Step-Start "scripts/ kopieren"
 $scriptsTarget = Join-Path $TargetDir 'scripts'
 if ((Test-Path $scriptsTarget) -and -not $Force) { Step-Skip "scripts/ vorhanden" }
-elseif (Test-Path $ScriptDir) { Copy-Item $ScriptDir $scriptsTarget -Recurse -Force; Step-Done }
+elseif (Test-Path $ScriptDir) {
+    $null = New-Item -ItemType Directory -Path $scriptsTarget -Force
+    foreach ($tracked in $TrackedScriptPaths) {
+        $relative = $tracked.Substring('scripts/'.Length)
+        $source = Join-Path $SourceRepositoryRoot $tracked
+        $target = Join-Path $scriptsTarget $relative
+        $null = New-Item -ItemType Directory -Path (Split-Path -Parent $target) -Force
+        Copy-Item -LiteralPath $source -Destination $target -Force
+    }
+    $ScriptsCopied = $true
+    Step-Done
+}
 else { Step-Warn "~/scripts/ nicht gefunden" }
 
 # 11. Install hook
 Step-Start "pre-push Hook installieren"
-$hookSrc = Join-Path $(if ($env:HOME) { $env:HOME } else { $env:USERPROFILE }) 'scripts/hooks/pre-push'
-$hookDst = Join-Path $TargetDir '.git/hooks/pre-push'
+$hookSrc = Join-Path $ScriptDir 'hooks/pre-push'
+$hookDst = Join-Path $TargetDir '.git/home-baseline-hooks/pre-push'
 if (Test-Path $hookSrc) {
     $hooksDir = Split-Path $hookDst
     if (-not (Test-Path $hooksDir)) { New-Item -ItemType Directory -Path $hooksDir -Force | Out-Null }
@@ -797,20 +1024,24 @@ if (Test-Path $hookSrc) {
         if ($srcH -eq $dstH) { Step-Skip "Hook SHA-256 match" }
         else { Copy-Item $hookSrc $hookDst -Force; Step-Done "aktualisiert" }
     } else { Copy-Item $hookSrc $hookDst -Force; Step-Done }
-} else { Step-Warn "~/scripts/hooks/pre-push nicht gefunden" }
+    if ($IsLinux -or $IsMacOS) { & chmod 0755 $hookDst }
+    & git -C $TargetDir config --local core.hooksPath (Join-Path $TargetDir '.git/home-baseline-hooks')
+    if (-not (Test-HBBootstrapPrePushHook)) { throw 'Pre-push hook could not be verified after installation.' }
+} else { throw "Canonical pre-push hook is missing: $hookSrc" }
 
 # 12. Initial commit
 Step-Start "Initialer git-Commit"
 $logOutput = git -C $TargetDir log --oneline 2>$null
 if ($logOutput) { Step-Skip "Commits vorhanden" }
 else {
-    git -C $TargetDir add -A 2>$null | Out-Null
-    git -C $TargetDir commit -m "feat: initial project bootstrap -- $ProjectName" 2>$null | Out-Null
+    Add-HBProjectBaselineToIndex
+    if (-not $NoRemote) { Invoke-HBProjectPublicationScan -Staged }
+    git -c core.hooksPath=/dev/null -C $TargetDir commit -m "feat: initial project bootstrap -- $ProjectName" 2>$null | Out-Null
     Step-Done
 }
 
 Step-Start "ASCII-Statistikprofil 2 initialisieren"
-$statisticsRenderer = Join-Path $TargetDir 'scripts/render-project-statistics.ps1'
+$statisticsRenderer = Join-Path $ScriptDir 'render-project-statistics.ps1'
 if (-not (Test-Path $statisticsRenderer)) {
     Step-Warn "Statistikrenderer nicht gefunden"
 } else {
@@ -824,7 +1055,7 @@ docs: initialize ASCII statistics profile 2
 
 Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>
 '@
-            git -C $TargetDir commit -m $statisticsCommitMessage 2>$null | Out-Null
+            git -c core.hooksPath=/dev/null -C $TargetDir commit -m $statisticsCommitMessage 2>$null | Out-Null
         }
         Step-Done
     } else {
@@ -840,9 +1071,8 @@ if (-not $NoRemote) {
 }
 if ($NoRemote) { Step-Skip "-NoRemote" }
 elseif ($existingRemote) {
-    $summaryRepoUrl = Convert-RemoteUrlToRepoUrl $existingRemote
-    $summaryDisplayRepo = Get-RepoNameFromRemoteUrl $existingRemote
-    Step-Skip "Remote vorhanden"
+    Assert-HBProjectOrigin -RemoteUrl $existingRemote
+    Step-Skip "verifiziertes privates Remote vorhanden"
 }
 elseif ($Platform -eq 'github' -and (Get-Command gh -ErrorAction SilentlyContinue)) {
     $repoName = $ProjectName.ToLower() -replace '\s+','-'
@@ -895,6 +1125,9 @@ if (-not $NoRemote) {
 if ($NoRemote) { Step-Skip "-NoRemote" }
 elseif (-not $originRemote) { Step-Skip "kein Remote konfiguriert" }
 else {
+    Assert-HBEffectiveProjectPushTarget
+    if (-not (Test-HBBootstrapPrePushHook)) { throw 'Verified pre-push hook is required before push.' }
+    Invoke-HBProjectPublicationScan
     git -C $TargetDir push -u origin HEAD 2>$null | Out-Null
     if ($LASTEXITCODE -eq 0) { Step-Done } else { Step-Warn "git push fehlgeschlagen" }
 }
@@ -906,9 +1139,9 @@ elseif (-not $summaryRepoUrl) { Step-Skip "kein Remote konfiguriert" }
 elseif (Get-Command gh -ErrorAction SilentlyContinue) {
     $rpRepo = $summaryRepoUrl -replace '^https://github\.com/', ''
     & gh api --method PUT "repos/$rpRepo/actions/permissions/workflow" `
-        -f default_workflow_permissions=write `
-        -F can_approve_pull_request_reviews=true 2>$null | Out-Null
-    if ($LASTEXITCODE -eq 0) { Step-Done "PR-Erstellung fuer GitHub Actions erlaubt" }
+        -f default_workflow_permissions=read `
+        -F can_approve_pull_request_reviews=false 2>$null | Out-Null
+    if ($LASTEXITCODE -eq 0) { Step-Done "GitHub Actions standardmaessig schreibgeschuetzt" }
     else { Step-Warn "Berechtigungen nicht gesetzt — bitte manuell in Repo-Settings > Actions > General aktivieren" }
 } else { Step-Skip "gh nicht installiert" }
 
@@ -958,7 +1191,7 @@ elseif (Get-Command specify -ErrorAction SilentlyContinue) {
     if (Test-Path (Join-Path $TargetDir '.specify')) { Step-Done } else { Step-Warn "specify init kein .specify/ erstellt" }
 } else {
     Step-Warn "specify nicht installiert"
-    Write-Host "          -> uv tool install specify-cli --from git+https://github.com/github/spec-kit.git"
+    Write-Host "          -> uv tool install specify-cli --from git+https://github.com/github/spec-kit.git@464d57fe30c72e9a88d279cc49834539ec989c03"
     Write-Host "          -> Dann je Agent: cd $tdShort && specify init --here --force --integration {agy|opencode|claude|copilot|codex}"
 }
 

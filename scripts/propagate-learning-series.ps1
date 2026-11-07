@@ -82,7 +82,7 @@ Die Bash-Version ist kanonisch / The Bash version is canonical.
     exit 1
 }
 
-# Argumente sicher zusammensetzen / assemble arguments safely (keine Invoke-Expression)
+# Argumentgrenzen auch beim WSL-Aufruf erhalten / preserve argument boundaries through WSL
 $argsToPass = @()
 if ($DryRun) { $argsToPass += '--dry-run' }
 if ($NoPush) { $argsToPass += '--no-push' }
@@ -92,12 +92,10 @@ if ($FilePrefix) { $argsToPass += @('--file-prefix', $FilePrefix) }
 if ($HomeDir)    { $argsToPass += @('--home-dir', $HomeDir) }
 if ($VerbosePreference -ne 'SilentlyContinue') { $argsToPass += '--verbose' }
 
-$bashCmd = "bash ~/scripts/propagate-learning-series.sh " + ($argsToPass -join ' ')
-
 if ($WhatIfPreference) {
-    Write-Host "[WhatIf] Wuerde ausfuehren / Would execute: wsl ${bashCmd}"
+    Write-Host "[WhatIf] Wuerde ausfuehren / Would execute: wsl bash ~/scripts/propagate-learning-series.sh $($argsToPass -join ' ')"
     exit 0
 }
 
-wsl bash -c $bashCmd
+wsl --exec bash -c 'exec bash "$HOME/scripts/propagate-learning-series.sh" "$@"' bash @argsToPass
 exit $LASTEXITCODE
