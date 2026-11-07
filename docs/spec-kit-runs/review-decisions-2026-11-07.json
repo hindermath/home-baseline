@@ -1,0 +1,1356 @@
+{
+  "schemaVersion": 1,
+  "reviewDate": "2026-11-07",
+  "sourcePublicationCommit": "3df58f8d5583386ded7c21ffad89177a24080f9d",
+  "publicCountsBefore": [
+    94,
+    94,
+    93,
+    0,
+    52,
+    0,
+    0,
+    42
+  ],
+  "publicCountsAfter": [
+    101,
+    100,
+    96,
+    0,
+    54,
+    0,
+    0,
+    46
+  ],
+  "decisions": [
+    {
+      "repository": "hindermath/home-baseline",
+      "feature": "specs/029-ci-budget-governance",
+      "observedCommit": "38d70258dd3d1ff14a3a402ca5210129c10e0958",
+      "action": "repin-reviewed-specification",
+      "tasks": {
+        "checked": 93,
+        "open": 0
+      },
+      "executed": true,
+      "completed": true,
+      "executionMode": "serial",
+      "reason": "Historical task acceptance: 93 checked tasks, no open task markers; specification and full task evidence pinned to the public source commit. Reviewed as feature completion, not universal product acceptance. Review 2026-11-07: current specification adds fail-closed security/evidence requirements; start proof repinned after semantic comparison. Historical task/run classifications remain at their accepted evidence cutoffs; this does not assert current Primary/Pass, product acceptance or fulfillment of subsequently added requirements.",
+      "openReason": "",
+      "previousProofs": [
+        {
+          "kind": "file",
+          "ref": "2d1dc80065817426b97c13eeba8387f653b8cc41",
+          "path": "specs/029-ci-budget-governance/spec.md",
+          "roles": [
+            "started"
+          ],
+          "sha256": "db6a997838eff94123de32d855531d29632776fc58bbca8eb29a62dad302109a"
+        },
+        {
+          "kind": "file",
+          "ref": "2d1dc80065817426b97c13eeba8387f653b8cc41",
+          "path": "specs/029-ci-budget-governance/tasks.md",
+          "roles": [
+            "executed",
+            "completed"
+          ],
+          "sha256": "859a4daf4138e072b0b0ea595a76f556c047e06e24552ba0f171771e2080d684"
+        },
+        {
+          "kind": "file",
+          "ref": "2d1dc80065817426b97c13eeba8387f653b8cc41",
+          "path": "specs/029-ci-budget-governance/autonomous-run-state.json",
+          "roles": [],
+          "sha256": "2a4cc7f5435bb77e74010435dc5eafb03937469a32fec888d08e4ac4eeeb5bcc"
+        },
+        {
+          "path": "specs/029-ci-budget-governance/autonomous-run-state.json",
+          "sha256": "2a4cc7f5435bb77e74010435dc5eafb03937469a32fec888d08e4ac4eeeb5bcc",
+          "kind": "file",
+          "roles": [
+            "mode"
+          ],
+          "ref": "8bfd92c0a6054feb947a6b00cd4b2ee3dca24bd4"
+        }
+      ],
+      "proofs": [
+        {
+          "kind": "file",
+          "ref": "38d70258dd3d1ff14a3a402ca5210129c10e0958",
+          "path": "specs/029-ci-budget-governance/spec.md",
+          "roles": [
+            "started"
+          ],
+          "sha256": "7bed937f1d7d66be5a500be24c94d8593897769cc806cc569d09f170e943afae"
+        },
+        {
+          "kind": "file",
+          "ref": "2d1dc80065817426b97c13eeba8387f653b8cc41",
+          "path": "specs/029-ci-budget-governance/tasks.md",
+          "roles": [
+            "executed",
+            "completed"
+          ],
+          "sha256": "859a4daf4138e072b0b0ea595a76f556c047e06e24552ba0f171771e2080d684"
+        },
+        {
+          "kind": "file",
+          "ref": "2d1dc80065817426b97c13eeba8387f653b8cc41",
+          "path": "specs/029-ci-budget-governance/autonomous-run-state.json",
+          "roles": [],
+          "sha256": "2a4cc7f5435bb77e74010435dc5eafb03937469a32fec888d08e4ac4eeeb5bcc"
+        },
+        {
+          "path": "specs/029-ci-budget-governance/autonomous-run-state.json",
+          "sha256": "2a4cc7f5435bb77e74010435dc5eafb03937469a32fec888d08e4ac4eeeb5bcc",
+          "kind": "file",
+          "roles": [
+            "mode"
+          ],
+          "ref": "8bfd92c0a6054feb947a6b00cd4b2ee3dca24bd4"
+        }
+      ]
+    },
+    {
+      "repository": "hindermath/home-baseline",
+      "feature": "specs/030-stage-b-rollout",
+      "observedCommit": "38d70258dd3d1ff14a3a402ca5210129c10e0958",
+      "action": "repin-reviewed-specification",
+      "tasks": {
+        "checked": 171,
+        "open": 23
+      },
+      "executed": true,
+      "completed": false,
+      "executionMode": "serial",
+      "reason": "Feature 030 Stage B: implementation and delivery exist, but the tracked Active/Publish state retains pending final validation. Public PR #259 does not itself prove all terminal read-only tasks. Completion remains unproven. Review 2026-11-07: current specification adds fail-closed security/evidence requirements; start proof repinned after semantic comparison. Historical task/run classifications remain at their accepted evidence cutoffs; this does not assert current Primary/Pass, product acceptance or fulfillment of subsequently added requirements.",
+      "openReason": "Run remains Active; 171/194 tasks, finalValidation Pending and postMergeActions Pending. SBR-025/026 do not create missing operative executors or independent acceptance evidence.",
+      "previousProofs": [
+        {
+          "kind": "file",
+          "ref": "2d1dc80065817426b97c13eeba8387f653b8cc41",
+          "path": "specs/030-stage-b-rollout/spec.md",
+          "roles": [
+            "started"
+          ],
+          "sha256": "be9ab2eed3d4210014b6982c4240ae5b36be004357d6d82085021086ac776955"
+        },
+        {
+          "kind": "file",
+          "ref": "2d1dc80065817426b97c13eeba8387f653b8cc41",
+          "path": "specs/030-stage-b-rollout/tasks.md",
+          "roles": [
+            "executed"
+          ],
+          "sha256": "0c6cc01552b08869dde4e611dde9d5c3264535de34be96868abe779d889bc455"
+        },
+        {
+          "kind": "file",
+          "ref": "2d1dc80065817426b97c13eeba8387f653b8cc41",
+          "path": "specs/030-stage-b-rollout/autonomous-run-state.json",
+          "roles": [],
+          "sha256": "23d1fd76e82fae7b8ebc820ac5275aab2d6a27a15226afc6ba6d0345921c70bb"
+        },
+        {
+          "path": "specs/030-stage-b-rollout/autonomous-run-state.json",
+          "sha256": "23d1fd76e82fae7b8ebc820ac5275aab2d6a27a15226afc6ba6d0345921c70bb",
+          "kind": "file",
+          "roles": [
+            "mode"
+          ],
+          "ref": "8bfd92c0a6054feb947a6b00cd4b2ee3dca24bd4"
+        }
+      ],
+      "proofs": [
+        {
+          "kind": "file",
+          "ref": "38d70258dd3d1ff14a3a402ca5210129c10e0958",
+          "path": "specs/030-stage-b-rollout/spec.md",
+          "roles": [
+            "started"
+          ],
+          "sha256": "5841954edaa0b75d224ac17e055a77072ef2b58d6c0555f12e4a10f334052377"
+        },
+        {
+          "kind": "file",
+          "ref": "2d1dc80065817426b97c13eeba8387f653b8cc41",
+          "path": "specs/030-stage-b-rollout/tasks.md",
+          "roles": [
+            "executed"
+          ],
+          "sha256": "0c6cc01552b08869dde4e611dde9d5c3264535de34be96868abe779d889bc455"
+        },
+        {
+          "kind": "file",
+          "ref": "2d1dc80065817426b97c13eeba8387f653b8cc41",
+          "path": "specs/030-stage-b-rollout/autonomous-run-state.json",
+          "roles": [],
+          "sha256": "23d1fd76e82fae7b8ebc820ac5275aab2d6a27a15226afc6ba6d0345921c70bb"
+        },
+        {
+          "path": "specs/030-stage-b-rollout/autonomous-run-state.json",
+          "sha256": "23d1fd76e82fae7b8ebc820ac5275aab2d6a27a15226afc6ba6d0345921c70bb",
+          "kind": "file",
+          "roles": [
+            "mode"
+          ],
+          "ref": "8bfd92c0a6054feb947a6b00cd4b2ee3dca24bd4"
+        }
+      ]
+    },
+    {
+      "repository": "hindermath/home-baseline",
+      "feature": "specs/031-github-copilot-review-governance",
+      "observedCommit": "38d70258dd3d1ff14a3a402ca5210129c10e0958",
+      "action": "repin-reviewed-specification",
+      "tasks": {
+        "checked": 168,
+        "open": 0
+      },
+      "executed": true,
+      "completed": true,
+      "executionMode": "serial",
+      "reason": "Historical task acceptance: 168 checked tasks, no open task markers; specification and full task evidence pinned to the public source commit. Reviewed as feature completion, not universal product acceptance. Review 2026-11-07: current specification adds fail-closed security/evidence requirements; start proof repinned after semantic comparison. Historical task/run classifications remain at their accepted evidence cutoffs; this does not assert current Primary/Pass, product acceptance or fulfillment of subsequently added requirements.",
+      "openReason": "",
+      "previousProofs": [
+        {
+          "kind": "file",
+          "ref": "2d1dc80065817426b97c13eeba8387f653b8cc41",
+          "path": "specs/031-github-copilot-review-governance/spec.md",
+          "roles": [
+            "started"
+          ],
+          "sha256": "5233e2c15472405e8d11fa7ac07b7da0c0a246dba0d60a2ac8a545f1421d1310"
+        },
+        {
+          "kind": "file",
+          "ref": "2d1dc80065817426b97c13eeba8387f653b8cc41",
+          "path": "specs/031-github-copilot-review-governance/tasks.md",
+          "roles": [
+            "executed",
+            "completed"
+          ],
+          "sha256": "11e08ddcf84ea1fb800f7f98c4c4d7c2a3419cd431d52424fe469eb88feb169a"
+        },
+        {
+          "kind": "file",
+          "ref": "2d1dc80065817426b97c13eeba8387f653b8cc41",
+          "path": "specs/031-github-copilot-review-governance/autonomous-run-state.json",
+          "roles": [],
+          "sha256": "f25357985ac9738f64a41f57e9523632eee155bbfc447a4b53d8cd8909edede4"
+        },
+        {
+          "path": "specs/031-github-copilot-review-governance/autonomous-run-state.json",
+          "sha256": "f25357985ac9738f64a41f57e9523632eee155bbfc447a4b53d8cd8909edede4",
+          "kind": "file",
+          "roles": [
+            "mode"
+          ],
+          "ref": "8bfd92c0a6054feb947a6b00cd4b2ee3dca24bd4"
+        }
+      ],
+      "proofs": [
+        {
+          "kind": "file",
+          "ref": "38d70258dd3d1ff14a3a402ca5210129c10e0958",
+          "path": "specs/031-github-copilot-review-governance/spec.md",
+          "roles": [
+            "started"
+          ],
+          "sha256": "18b2bca6a3591004f65a3c35c9d2b3378d289b3c05e9c231311cb7d8df553b56"
+        },
+        {
+          "kind": "file",
+          "ref": "2d1dc80065817426b97c13eeba8387f653b8cc41",
+          "path": "specs/031-github-copilot-review-governance/tasks.md",
+          "roles": [
+            "executed",
+            "completed"
+          ],
+          "sha256": "11e08ddcf84ea1fb800f7f98c4c4d7c2a3419cd431d52424fe469eb88feb169a"
+        },
+        {
+          "kind": "file",
+          "ref": "2d1dc80065817426b97c13eeba8387f653b8cc41",
+          "path": "specs/031-github-copilot-review-governance/autonomous-run-state.json",
+          "roles": [],
+          "sha256": "f25357985ac9738f64a41f57e9523632eee155bbfc447a4b53d8cd8909edede4"
+        },
+        {
+          "path": "specs/031-github-copilot-review-governance/autonomous-run-state.json",
+          "sha256": "f25357985ac9738f64a41f57e9523632eee155bbfc447a4b53d8cd8909edede4",
+          "kind": "file",
+          "roles": [
+            "mode"
+          ],
+          "ref": "8bfd92c0a6054feb947a6b00cd4b2ee3dca24bd4"
+        }
+      ]
+    },
+    {
+      "repository": "hindermath/agent-operations-cockpit",
+      "feature": "specs/004-series-eligibility",
+      "observedCommit": "1d812605b78eff2b3e4e0303e8aa570b768756ba",
+      "action": "accept-completed-feature",
+      "tasks": {
+        "checked": 57,
+        "open": 0
+      },
+      "executed": true,
+      "completed": true,
+      "executionMode": "serial",
+      "reason": "Reviewed complete Series Eligibility feature: 57/57 tasks, hash-bound Completed autonomous run and all closeout fields Completed. The pinned causal closeout binds merged PRs 49/52/53; GitHub independently confirms PR53 merge 7e53a8b327410ba241d90a9c60bc286b16f7bc44. Counts one feature, not its remediations or delivery stages.",
+      "openReason": "",
+      "previousProofs": null,
+      "proofs": [
+        {
+          "kind": "file",
+          "ref": "1d812605b78eff2b3e4e0303e8aa570b768756ba",
+          "path": "specs/004-series-eligibility/spec.md",
+          "roles": [
+            "started"
+          ],
+          "sha256": "61027fb8e2f7b6e8a0e579c56f0bbc404a29c8446a61f548c2617459c4ef1f3b"
+        },
+        {
+          "kind": "file",
+          "ref": "1d812605b78eff2b3e4e0303e8aa570b768756ba",
+          "path": "specs/004-series-eligibility/completion-closeout.md",
+          "roles": [
+            "completed"
+          ],
+          "sha256": "4e76ce26fc11bfc0451d7b78d86265370ed963655efbe356a66d1fe0998c8672"
+        },
+        {
+          "kind": "file",
+          "ref": "1d812605b78eff2b3e4e0303e8aa570b768756ba",
+          "path": "specs/004-series-eligibility/tasks.md",
+          "roles": [
+            "executed",
+            "completed"
+          ],
+          "sha256": "31602678f0c0af4525289c241c528528992fe37ade0847d2df5d73d39d9f038d"
+        },
+        {
+          "kind": "file",
+          "ref": "1d812605b78eff2b3e4e0303e8aa570b768756ba",
+          "path": "specs/004-series-eligibility/autonomous-run-state.json",
+          "roles": [
+            "mode",
+            "completed"
+          ],
+          "sha256": "ea257ea2f4cb8c9578ce7755835f2f585ab4023b8177fc2e806cfc545986bec5"
+        }
+      ]
+    },
+    {
+      "repository": "hindermath/TinyCalc",
+      "feature": "specs/006-tui-functional-contract",
+      "observedCommit": "14f47971026c4172f5e05e0d18863b2a95bfff4b",
+      "action": "accept-completed-feature",
+      "tasks": {
+        "checked": 83,
+        "open": 0
+      },
+      "executed": true,
+      "completed": true,
+      "executionMode": "unknown",
+      "reason": "Reviewed completed TUI contract: 83/83 tasks after separately authorized administrative closeout. The completion report preserves its pre-delivery cutoff; later administrative closeout binds actual product PR104 merge 946e392151fcaba5db0d76cf2974e055ba616e66 and archival. GitHub confirms that merge. The stale historical planning stop is not the final delivery state; no next feature is accepted.",
+      "openReason": "",
+      "previousProofs": null,
+      "proofs": [
+        {
+          "kind": "file",
+          "ref": "14f47971026c4172f5e05e0d18863b2a95bfff4b",
+          "path": "specs/006-tui-functional-contract/spec.md",
+          "roles": [
+            "started"
+          ],
+          "sha256": "ecc1fc6d61388ce0f393f0babf950b547361283d442257183177dbfebeaa2bc4"
+        },
+        {
+          "kind": "file",
+          "ref": "14f47971026c4172f5e05e0d18863b2a95bfff4b",
+          "path": "specs/006-tui-functional-contract/completion-report.md",
+          "roles": [
+            "executed"
+          ],
+          "sha256": "6046e478a336b66cd42c56174ecc1159b6ab37e542c014691fffd0a4322085f3"
+        },
+        {
+          "kind": "file",
+          "ref": "14f47971026c4172f5e05e0d18863b2a95bfff4b",
+          "path": "specs/006-tui-functional-contract/evidence/administrative-closeout.md",
+          "roles": [
+            "completed"
+          ],
+          "sha256": "1049b9e223f065dbb67bfc4e1dde51522dad8840550bce7b3c62e6a353f84eb2"
+        },
+        {
+          "kind": "file",
+          "ref": "14f47971026c4172f5e05e0d18863b2a95bfff4b",
+          "path": "specs/006-tui-functional-contract/tasks.md",
+          "roles": [
+            "executed",
+            "completed"
+          ],
+          "sha256": "fef5d71594d6b403647e5966acac2959e492d6f811c99679ef826ba8db06b8f3"
+        }
+      ]
+    },
+    {
+      "repository": "hindermath/TinyCalc",
+      "feature": "specs/007-tui-accessibility",
+      "observedCommit": "14f47971026c4172f5e05e0d18863b2a95bfff4b",
+      "action": "accept-start-only",
+      "tasks": {
+        "checked": 0,
+        "open": 60
+      },
+      "executed": false,
+      "completed": false,
+      "executionMode": "unknown",
+      "reason": "Reviewed concrete specified and clarified accessibility feature, so start is evidenced. All 60 implementation tasks remain unchecked; spec explicitly withholds implementation authority. Planning, task generation and analysis corrections alone do not prove substantive feature execution.",
+      "openReason": "0/60 implementation tasks; no implementation or completion evidence. Requires a separate authorized implementation, platform/accessibility proofs and closure review.",
+      "previousProofs": null,
+      "proofs": [
+        {
+          "kind": "file",
+          "ref": "14f47971026c4172f5e05e0d18863b2a95bfff4b",
+          "path": "specs/007-tui-accessibility/spec.md",
+          "roles": [
+            "started"
+          ],
+          "sha256": "645a04d7cdab2220d6744ae4743fabd38b12e8d772e351380d0a5dff0e3c65ed"
+        },
+        {
+          "kind": "file",
+          "ref": "14f47971026c4172f5e05e0d18863b2a95bfff4b",
+          "path": "specs/007-tui-accessibility/tasks.md",
+          "roles": [
+            null
+          ],
+          "sha256": "b815e1d0354005414c8cc4240ec20998a0f7d5e42d24b4a415fc7da374e1bfc9"
+        }
+      ]
+    },
+    {
+      "repository": "hindermath/TuiVision",
+      "feature": "specs/037-wave6-combined-delta-closure",
+      "observedCommit": "9cd09387c44c1d1e7c929a26f555c269a40dd75e",
+      "action": "repin-archive-only-state",
+      "tasks": {
+        "checked": 169,
+        "open": 0
+      },
+      "executed": true,
+      "completed": true,
+      "executionMode": "serial",
+      "reason": "Historical task acceptance: 169 checked tasks, no open task markers; specification and full task evidence pinned to the public source commit. Reviewed as feature completion, not universal product acceptance. Review 2026-11-07: only the active-to-archive intake path changed; archived bytes and all other run-state fields, run identity, completed tasks and closeout remain identical. State proof repinned; no additional run or acceptance claim.",
+      "openReason": "",
+      "previousProofs": [
+        {
+          "kind": "file",
+          "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+          "path": "specs/037-wave6-combined-delta-closure/spec.md",
+          "roles": [
+            "started"
+          ],
+          "sha256": "29b2708910e720dc007c268c2668087b5b70a26c2d6eb09d9b5c6b41bd82f0c8"
+        },
+        {
+          "kind": "file",
+          "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+          "path": "specs/037-wave6-combined-delta-closure/tasks.md",
+          "roles": [
+            "executed",
+            "completed"
+          ],
+          "sha256": "b93ed6717e4883c3bfaed73d41ddb497d35f86f6904f3e94cfc90b7c82ecc0d5"
+        },
+        {
+          "kind": "file",
+          "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+          "path": "specs/037-wave6-combined-delta-closure/autonomous-run-state.json",
+          "roles": [],
+          "sha256": "827afa08fee1de1b2ab101bb3b8a44691e3596e44e2b556d759b8b13d8bee04d"
+        },
+        {
+          "path": "specs/037-wave6-combined-delta-closure/autonomous-run-state.json",
+          "sha256": "827afa08fee1de1b2ab101bb3b8a44691e3596e44e2b556d759b8b13d8bee04d",
+          "kind": "file",
+          "roles": [
+            "mode"
+          ],
+          "ref": "26a09dd73f4626c7a86ff5bbaef1bbed54ee9c1e"
+        }
+      ],
+      "proofs": [
+        {
+          "kind": "file",
+          "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+          "path": "specs/037-wave6-combined-delta-closure/spec.md",
+          "roles": [
+            "started"
+          ],
+          "sha256": "29b2708910e720dc007c268c2668087b5b70a26c2d6eb09d9b5c6b41bd82f0c8"
+        },
+        {
+          "kind": "file",
+          "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+          "path": "specs/037-wave6-combined-delta-closure/tasks.md",
+          "roles": [
+            "executed",
+            "completed"
+          ],
+          "sha256": "b93ed6717e4883c3bfaed73d41ddb497d35f86f6904f3e94cfc90b7c82ecc0d5"
+        },
+        {
+          "kind": "file",
+          "ref": "9cd09387c44c1d1e7c929a26f555c269a40dd75e",
+          "path": "specs/037-wave6-combined-delta-closure/autonomous-run-state.json",
+          "roles": [
+            "mode",
+            "completed"
+          ],
+          "sha256": "4107c66394e51704b3144f91342a74776dd6f4db212eee4f84d3c6efc4cb70f7"
+        }
+      ]
+    },
+    {
+      "repository": "hindermath/TuiVision",
+      "feature": "specs/038-example-portfolio-conformance-audit",
+      "observedCommit": "9cd09387c44c1d1e7c929a26f555c269a40dd75e",
+      "action": "repin-archive-only-state",
+      "tasks": {
+        "checked": 225,
+        "open": 0
+      },
+      "executed": true,
+      "completed": true,
+      "executionMode": "serial",
+      "reason": "Historical task acceptance: 225 checked tasks, no open task markers; specification and full task evidence pinned to the public source commit. Reviewed as feature completion, not universal product acceptance. Review 2026-11-07: only the active-to-archive intake path changed; archived bytes and all other run-state fields, run identity, completed tasks and closeout remain identical. State proof repinned; no additional run or acceptance claim.",
+      "openReason": "",
+      "previousProofs": [
+        {
+          "kind": "file",
+          "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+          "path": "specs/038-example-portfolio-conformance-audit/spec.md",
+          "roles": [
+            "started"
+          ],
+          "sha256": "f9f7309d4903db88ef038b6b2f0c1b1296433d3a9f821693f72ace3d35873436"
+        },
+        {
+          "kind": "file",
+          "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+          "path": "specs/038-example-portfolio-conformance-audit/tasks.md",
+          "roles": [
+            "executed",
+            "completed"
+          ],
+          "sha256": "b9db46eb8b28f76e6748a8ed62d459eb7a5c9640579f3abea096e7dbaa1e0c91"
+        },
+        {
+          "kind": "file",
+          "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+          "path": "specs/038-example-portfolio-conformance-audit/autonomous-run-state.json",
+          "roles": [],
+          "sha256": "3fc474777b0a7374569948f6ef9c3f1cdcf015951ba5aab825b0d5dd3ca422ad"
+        },
+        {
+          "path": "specs/038-example-portfolio-conformance-audit/autonomous-run-state.json",
+          "sha256": "3fc474777b0a7374569948f6ef9c3f1cdcf015951ba5aab825b0d5dd3ca422ad",
+          "kind": "file",
+          "roles": [
+            "mode"
+          ],
+          "ref": "26a09dd73f4626c7a86ff5bbaef1bbed54ee9c1e"
+        }
+      ],
+      "proofs": [
+        {
+          "kind": "file",
+          "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+          "path": "specs/038-example-portfolio-conformance-audit/spec.md",
+          "roles": [
+            "started"
+          ],
+          "sha256": "f9f7309d4903db88ef038b6b2f0c1b1296433d3a9f821693f72ace3d35873436"
+        },
+        {
+          "kind": "file",
+          "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+          "path": "specs/038-example-portfolio-conformance-audit/tasks.md",
+          "roles": [
+            "executed",
+            "completed"
+          ],
+          "sha256": "b9db46eb8b28f76e6748a8ed62d459eb7a5c9640579f3abea096e7dbaa1e0c91"
+        },
+        {
+          "kind": "file",
+          "ref": "9cd09387c44c1d1e7c929a26f555c269a40dd75e",
+          "path": "specs/038-example-portfolio-conformance-audit/autonomous-run-state.json",
+          "roles": [
+            "mode",
+            "completed"
+          ],
+          "sha256": "9b44b4b8ed12e096175e1d1b6d8bf3f27c33387337c0fdad1eda9915583fa93f"
+        }
+      ]
+    },
+    {
+      "repository": "hindermath/TuiVision",
+      "feature": "specs/039-example-portfolio-closure",
+      "observedCommit": "9cd09387c44c1d1e7c929a26f555c269a40dd75e",
+      "action": "repin-archive-only-state",
+      "tasks": {
+        "checked": 10,
+        "open": 0
+      },
+      "executed": true,
+      "completed": true,
+      "executionMode": "serial",
+      "reason": "Historical task acceptance: 10 checked tasks, no open task markers; specification and full task evidence pinned to the public source commit. Reviewed as feature completion, not universal product acceptance. Review 2026-11-07: only the active-to-archive intake path changed; archived bytes and all other run-state fields, run identity, completed tasks and closeout remain identical. State proof repinned; no additional run or acceptance claim.",
+      "openReason": "",
+      "previousProofs": [
+        {
+          "kind": "file",
+          "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+          "path": "specs/039-example-portfolio-closure/spec.md",
+          "roles": [
+            "started"
+          ],
+          "sha256": "de8caa3935a6535951703c8a32cd4d2234f4bd2a6ad218b7d436257c664686df"
+        },
+        {
+          "kind": "file",
+          "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+          "path": "specs/039-example-portfolio-closure/tasks.md",
+          "roles": [
+            "executed",
+            "completed"
+          ],
+          "sha256": "2292f132a9a622031af5073142ac8ecc53ea92d0f1816e012b1cbb321203daae"
+        },
+        {
+          "kind": "file",
+          "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+          "path": "specs/039-example-portfolio-closure/autonomous-run-state.json",
+          "roles": [],
+          "sha256": "279fa4169e77c0a8b0037983ebdf2f7275875ee68ca5fe34882ca6ff6906b4a7"
+        },
+        {
+          "path": "specs/039-example-portfolio-closure/autonomous-run-state.json",
+          "sha256": "279fa4169e77c0a8b0037983ebdf2f7275875ee68ca5fe34882ca6ff6906b4a7",
+          "kind": "file",
+          "roles": [
+            "mode"
+          ],
+          "ref": "26a09dd73f4626c7a86ff5bbaef1bbed54ee9c1e"
+        }
+      ],
+      "proofs": [
+        {
+          "kind": "file",
+          "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+          "path": "specs/039-example-portfolio-closure/spec.md",
+          "roles": [
+            "started"
+          ],
+          "sha256": "de8caa3935a6535951703c8a32cd4d2234f4bd2a6ad218b7d436257c664686df"
+        },
+        {
+          "kind": "file",
+          "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+          "path": "specs/039-example-portfolio-closure/tasks.md",
+          "roles": [
+            "executed",
+            "completed"
+          ],
+          "sha256": "2292f132a9a622031af5073142ac8ecc53ea92d0f1816e012b1cbb321203daae"
+        },
+        {
+          "kind": "file",
+          "ref": "9cd09387c44c1d1e7c929a26f555c269a40dd75e",
+          "path": "specs/039-example-portfolio-closure/autonomous-run-state.json",
+          "roles": [
+            "mode",
+            "completed"
+          ],
+          "sha256": "b2b81ef790c5a4589f67faa3616d91403c8975c21f302e080795d3b7cd40c004"
+        }
+      ]
+    },
+    {
+      "repository": "hindermath/TuiVision",
+      "feature": "specs/040-constitution-governance-closure",
+      "observedCommit": "9cd09387c44c1d1e7c929a26f555c269a40dd75e",
+      "action": "repin-archive-only-state",
+      "tasks": {
+        "checked": 7,
+        "open": 0
+      },
+      "executed": true,
+      "completed": true,
+      "executionMode": "serial",
+      "reason": "Historical task acceptance: 7 checked tasks, no open task markers; specification and full task evidence pinned to the public source commit. Reviewed as feature completion, not universal product acceptance. Review 2026-11-07: only the active-to-archive intake path changed; archived bytes and all other run-state fields, run identity, completed tasks and closeout remain identical. State proof repinned; no additional run or acceptance claim.",
+      "openReason": "",
+      "previousProofs": [
+        {
+          "kind": "file",
+          "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+          "path": "specs/040-constitution-governance-closure/spec.md",
+          "roles": [
+            "started"
+          ],
+          "sha256": "be87b7e1e590afb317569c3d0bd5a80c7e7f7c9ee35f3fda5d012c6644627428"
+        },
+        {
+          "kind": "file",
+          "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+          "path": "specs/040-constitution-governance-closure/tasks.md",
+          "roles": [
+            "executed",
+            "completed"
+          ],
+          "sha256": "b9ce45e3b1933ddbc26ee049399e714b91c12819c6d27230727eb7063df1b6d3"
+        },
+        {
+          "kind": "file",
+          "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+          "path": "specs/040-constitution-governance-closure/autonomous-run-state.json",
+          "roles": [],
+          "sha256": "14723a92f49eeb8e5d46a1e4fd78ee1f9f3959ba51e0b79ee09a1d548776622d"
+        },
+        {
+          "path": "specs/040-constitution-governance-closure/autonomous-run-state.json",
+          "sha256": "14723a92f49eeb8e5d46a1e4fd78ee1f9f3959ba51e0b79ee09a1d548776622d",
+          "kind": "file",
+          "roles": [
+            "mode"
+          ],
+          "ref": "26a09dd73f4626c7a86ff5bbaef1bbed54ee9c1e"
+        }
+      ],
+      "proofs": [
+        {
+          "kind": "file",
+          "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+          "path": "specs/040-constitution-governance-closure/spec.md",
+          "roles": [
+            "started"
+          ],
+          "sha256": "be87b7e1e590afb317569c3d0bd5a80c7e7f7c9ee35f3fda5d012c6644627428"
+        },
+        {
+          "kind": "file",
+          "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+          "path": "specs/040-constitution-governance-closure/tasks.md",
+          "roles": [
+            "executed",
+            "completed"
+          ],
+          "sha256": "b9ce45e3b1933ddbc26ee049399e714b91c12819c6d27230727eb7063df1b6d3"
+        },
+        {
+          "kind": "file",
+          "ref": "9cd09387c44c1d1e7c929a26f555c269a40dd75e",
+          "path": "specs/040-constitution-governance-closure/autonomous-run-state.json",
+          "roles": [
+            "mode",
+            "completed"
+          ],
+          "sha256": "e5aaf3f22a38a9a0caae15c6f8ea0aaa23f31d81abd9b237fa3d27cd5c68521c"
+        }
+      ]
+    },
+    {
+      "repository": "hindermath/TuiVision",
+      "feature": "specs/041-source-reference-policy",
+      "observedCommit": "9cd09387c44c1d1e7c929a26f555c269a40dd75e",
+      "action": "repin-archive-only-state",
+      "tasks": {
+        "checked": 15,
+        "open": 0
+      },
+      "executed": true,
+      "completed": true,
+      "executionMode": "serial",
+      "reason": "Historical task acceptance: 15 checked tasks, no open task markers; specification and full task evidence pinned to the public source commit. Reviewed as feature completion, not universal product acceptance. Review 2026-11-07: only the active-to-archive intake path changed; archived bytes and all other run-state fields, run identity, completed tasks and closeout remain identical. State proof repinned; no additional run or acceptance claim.",
+      "openReason": "",
+      "previousProofs": [
+        {
+          "kind": "file",
+          "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+          "path": "specs/041-source-reference-policy/spec.md",
+          "roles": [
+            "started"
+          ],
+          "sha256": "a56fb0230257ea09f6e7af9ae77788f8114b5d42ffd6cb5a8edca1b2c19d9e72"
+        },
+        {
+          "kind": "file",
+          "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+          "path": "specs/041-source-reference-policy/tasks.md",
+          "roles": [
+            "executed",
+            "completed"
+          ],
+          "sha256": "eb342bf115ba593336d206c6da74d01021a9ac7f1428331f31b25a48ad5b237f"
+        },
+        {
+          "kind": "file",
+          "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+          "path": "specs/041-source-reference-policy/autonomous-run-state.json",
+          "roles": [],
+          "sha256": "ceccf547168018b3cfc7a42e43397a7cc233667ae6a72e7cb93a7ee75be86537"
+        },
+        {
+          "path": "specs/041-source-reference-policy/autonomous-run-state.json",
+          "sha256": "ceccf547168018b3cfc7a42e43397a7cc233667ae6a72e7cb93a7ee75be86537",
+          "kind": "file",
+          "roles": [
+            "mode"
+          ],
+          "ref": "26a09dd73f4626c7a86ff5bbaef1bbed54ee9c1e"
+        }
+      ],
+      "proofs": [
+        {
+          "kind": "file",
+          "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+          "path": "specs/041-source-reference-policy/spec.md",
+          "roles": [
+            "started"
+          ],
+          "sha256": "a56fb0230257ea09f6e7af9ae77788f8114b5d42ffd6cb5a8edca1b2c19d9e72"
+        },
+        {
+          "kind": "file",
+          "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+          "path": "specs/041-source-reference-policy/tasks.md",
+          "roles": [
+            "executed",
+            "completed"
+          ],
+          "sha256": "eb342bf115ba593336d206c6da74d01021a9ac7f1428331f31b25a48ad5b237f"
+        },
+        {
+          "kind": "file",
+          "ref": "9cd09387c44c1d1e7c929a26f555c269a40dd75e",
+          "path": "specs/041-source-reference-policy/autonomous-run-state.json",
+          "roles": [
+            "mode",
+            "completed"
+          ],
+          "sha256": "636faaec8a627979c01714d7bb21147064009c41d8104cad6a4e9d123a21eeab"
+        }
+      ]
+    },
+    {
+      "repository": "hindermath/TuiVision",
+      "feature": "specs/042-transactional-form-model",
+      "observedCommit": "9cd09387c44c1d1e7c929a26f555c269a40dd75e",
+      "action": "repin-archive-only-state",
+      "tasks": {
+        "checked": 19,
+        "open": 0
+      },
+      "executed": true,
+      "completed": true,
+      "executionMode": "serial",
+      "reason": "Historical task acceptance: 19 checked tasks, no open task markers; specification and full task evidence pinned to the public source commit. Reviewed as feature completion, not universal product acceptance. Review 2026-11-07: only the active-to-archive intake path changed; archived bytes and all other run-state fields, run identity, completed tasks and closeout remain identical. State proof repinned; no additional run or acceptance claim.",
+      "openReason": "",
+      "previousProofs": [
+        {
+          "kind": "file",
+          "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+          "path": "specs/042-transactional-form-model/spec.md",
+          "roles": [
+            "started"
+          ],
+          "sha256": "0079830ed1d262a50ab71371d43ef05796fb500258dccbb7e2b92e2ec58d79aa"
+        },
+        {
+          "kind": "file",
+          "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+          "path": "specs/042-transactional-form-model/tasks.md",
+          "roles": [
+            "executed",
+            "completed"
+          ],
+          "sha256": "775e4deaeef851357157c60477358e487d7f2ad305a6b9ec9ebe34fef8894cf6"
+        },
+        {
+          "kind": "file",
+          "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+          "path": "specs/042-transactional-form-model/autonomous-run-state.json",
+          "roles": [],
+          "sha256": "408c5635cfa92bab5033bbd5032db65171d3f110df7e9c6e8b4de1d7060956fe"
+        },
+        {
+          "path": "specs/042-transactional-form-model/autonomous-run-state.json",
+          "sha256": "408c5635cfa92bab5033bbd5032db65171d3f110df7e9c6e8b4de1d7060956fe",
+          "kind": "file",
+          "roles": [
+            "mode"
+          ],
+          "ref": "26a09dd73f4626c7a86ff5bbaef1bbed54ee9c1e"
+        }
+      ],
+      "proofs": [
+        {
+          "kind": "file",
+          "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+          "path": "specs/042-transactional-form-model/spec.md",
+          "roles": [
+            "started"
+          ],
+          "sha256": "0079830ed1d262a50ab71371d43ef05796fb500258dccbb7e2b92e2ec58d79aa"
+        },
+        {
+          "kind": "file",
+          "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+          "path": "specs/042-transactional-form-model/tasks.md",
+          "roles": [
+            "executed",
+            "completed"
+          ],
+          "sha256": "775e4deaeef851357157c60477358e487d7f2ad305a6b9ec9ebe34fef8894cf6"
+        },
+        {
+          "kind": "file",
+          "ref": "9cd09387c44c1d1e7c929a26f555c269a40dd75e",
+          "path": "specs/042-transactional-form-model/autonomous-run-state.json",
+          "roles": [
+            "mode",
+            "completed"
+          ],
+          "sha256": "9b9ea964b973a18389ac5b6fba563ee7ffa5225aae6f6b21881e2c020feed85a"
+        }
+      ]
+    },
+    {
+      "repository": "hindermath/TuiVision",
+      "feature": "specs/043-documentation-publishing-closure",
+      "observedCommit": "9cd09387c44c1d1e7c929a26f555c269a40dd75e",
+      "action": "repin-archive-only-state",
+      "tasks": {
+        "checked": 40,
+        "open": 0
+      },
+      "executed": true,
+      "completed": true,
+      "executionMode": "serial",
+      "reason": "Historical task acceptance: 40 checked tasks, no open task markers; specification and full task evidence pinned to the public source commit. Reviewed as feature completion, not universal product acceptance. Review 2026-11-07: only the active-to-archive intake path changed; archived bytes and all other run-state fields, run identity, completed tasks and closeout remain identical. State proof repinned; no additional run or acceptance claim.",
+      "openReason": "",
+      "previousProofs": [
+        {
+          "kind": "file",
+          "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+          "path": "specs/043-documentation-publishing-closure/spec.md",
+          "roles": [
+            "started"
+          ],
+          "sha256": "151b4a82105c2dbbd635719ed8a21e53a0fdc2d0358508cddf5880ebf5b0d32d"
+        },
+        {
+          "kind": "file",
+          "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+          "path": "specs/043-documentation-publishing-closure/tasks.md",
+          "roles": [
+            "executed",
+            "completed"
+          ],
+          "sha256": "e9a703bf9727d9324a087793377e9fe67cfbef358179b01c3a28cb59f4738c54"
+        },
+        {
+          "kind": "file",
+          "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+          "path": "specs/043-documentation-publishing-closure/autonomous-run-state.json",
+          "roles": [],
+          "sha256": "7c56533e30c4bbc1dcd1b8467d9cfb94ac7042e6150496f85182d05261e5879a"
+        },
+        {
+          "path": "specs/043-documentation-publishing-closure/autonomous-run-state.json",
+          "sha256": "7c56533e30c4bbc1dcd1b8467d9cfb94ac7042e6150496f85182d05261e5879a",
+          "kind": "file",
+          "roles": [
+            "mode"
+          ],
+          "ref": "26a09dd73f4626c7a86ff5bbaef1bbed54ee9c1e"
+        }
+      ],
+      "proofs": [
+        {
+          "kind": "file",
+          "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+          "path": "specs/043-documentation-publishing-closure/spec.md",
+          "roles": [
+            "started"
+          ],
+          "sha256": "151b4a82105c2dbbd635719ed8a21e53a0fdc2d0358508cddf5880ebf5b0d32d"
+        },
+        {
+          "kind": "file",
+          "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+          "path": "specs/043-documentation-publishing-closure/tasks.md",
+          "roles": [
+            "executed",
+            "completed"
+          ],
+          "sha256": "e9a703bf9727d9324a087793377e9fe67cfbef358179b01c3a28cb59f4738c54"
+        },
+        {
+          "kind": "file",
+          "ref": "9cd09387c44c1d1e7c929a26f555c269a40dd75e",
+          "path": "specs/043-documentation-publishing-closure/autonomous-run-state.json",
+          "roles": [
+            "mode",
+            "completed"
+          ],
+          "sha256": "c953d8348bd4721aefdfee49178869a24b5cac083dda561a73c16cada306b98b"
+        }
+      ]
+    },
+    {
+      "repository": "hindermath/TuiVision",
+      "feature": "specs/044-sandbox-secure-development-hardening",
+      "observedCommit": "9cd09387c44c1d1e7c929a26f555c269a40dd75e",
+      "action": "repin-archive-only-state",
+      "tasks": {
+        "checked": 75,
+        "open": 0
+      },
+      "executed": true,
+      "completed": true,
+      "executionMode": "serial",
+      "reason": "Historical task acceptance: 75 checked tasks, no open task markers; specification and full task evidence pinned to the public source commit. Reviewed as feature completion, not universal product acceptance. Review 2026-11-07: only the active-to-archive intake path changed; archived bytes and all other run-state fields, run identity, completed tasks and closeout remain identical. State proof repinned; no additional run or acceptance claim.",
+      "openReason": "",
+      "previousProofs": [
+        {
+          "kind": "file",
+          "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+          "path": "specs/044-sandbox-secure-development-hardening/spec.md",
+          "roles": [
+            "started"
+          ],
+          "sha256": "d203b77ae04be1309ebd8905f8365cd7d0b0544f9acf4b21d4f05b9a9574d718"
+        },
+        {
+          "kind": "file",
+          "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+          "path": "specs/044-sandbox-secure-development-hardening/tasks.md",
+          "roles": [
+            "executed",
+            "completed"
+          ],
+          "sha256": "c0304636819a4151ee1a1a330d73df0cc26b1f49f018018d74676f2e1d83c766"
+        },
+        {
+          "kind": "file",
+          "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+          "path": "specs/044-sandbox-secure-development-hardening/autonomous-run-state.json",
+          "roles": [],
+          "sha256": "7931839f360a1ef21edd86c1f7884d891597959bda95a704c502727a52ca2de0"
+        },
+        {
+          "path": "specs/044-sandbox-secure-development-hardening/autonomous-run-state.json",
+          "sha256": "7931839f360a1ef21edd86c1f7884d891597959bda95a704c502727a52ca2de0",
+          "kind": "file",
+          "roles": [
+            "mode"
+          ],
+          "ref": "26a09dd73f4626c7a86ff5bbaef1bbed54ee9c1e"
+        }
+      ],
+      "proofs": [
+        {
+          "kind": "file",
+          "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+          "path": "specs/044-sandbox-secure-development-hardening/spec.md",
+          "roles": [
+            "started"
+          ],
+          "sha256": "d203b77ae04be1309ebd8905f8365cd7d0b0544f9acf4b21d4f05b9a9574d718"
+        },
+        {
+          "kind": "file",
+          "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+          "path": "specs/044-sandbox-secure-development-hardening/tasks.md",
+          "roles": [
+            "executed",
+            "completed"
+          ],
+          "sha256": "c0304636819a4151ee1a1a330d73df0cc26b1f49f018018d74676f2e1d83c766"
+        },
+        {
+          "kind": "file",
+          "ref": "9cd09387c44c1d1e7c929a26f555c269a40dd75e",
+          "path": "specs/044-sandbox-secure-development-hardening/autonomous-run-state.json",
+          "roles": [
+            "mode",
+            "completed"
+          ],
+          "sha256": "b94fdfdb9e6d10da28f9b58d9d3928cd645516f9c578f17a2a4b62affeb5ddca"
+        }
+      ]
+    },
+    {
+      "repository": "hindermath/TuiVision",
+      "feature": "specs/047-evidence-quality-audit",
+      "observedCommit": "9cd09387c44c1d1e7c929a26f555c269a40dd75e",
+      "action": "accept-completed-feature",
+      "tasks": {
+        "checked": 58,
+        "open": 0
+      },
+      "executed": true,
+      "completed": true,
+      "executionMode": "serial",
+      "reason": "Reviewed bounded evidence-quality audit, not remediation of audited findings: 58/58 tasks, hash-bound Completed autonomous state and Completed MergeAndSync closeout. Pinned PR evidence and GitHub confirm delivery PR180 merge 18f3387a3c9edbf9a3f133e5ffd3b3dca0c13e84. Open audit findings are outputs, not incomplete audit tasks.",
+      "openReason": "",
+      "previousProofs": null,
+      "proofs": [
+        {
+          "kind": "file",
+          "ref": "9cd09387c44c1d1e7c929a26f555c269a40dd75e",
+          "path": "specs/047-evidence-quality-audit/spec.md",
+          "roles": [
+            "started"
+          ],
+          "sha256": "59ebb5a274e28937d285ee91ed98314edb5deb762e6bc6bbac73521f37dd178b"
+        },
+        {
+          "kind": "file",
+          "ref": "9cd09387c44c1d1e7c929a26f555c269a40dd75e",
+          "path": "specs/047-evidence-quality-audit/pr-evidence.md",
+          "roles": [
+            "completed"
+          ],
+          "sha256": "e243058249904abd1a0dee902cb5953c226a43bd21ba99ebf4b5f5d71f31f311"
+        },
+        {
+          "kind": "file",
+          "ref": "9cd09387c44c1d1e7c929a26f555c269a40dd75e",
+          "path": "specs/047-evidence-quality-audit/tasks.md",
+          "roles": [
+            "executed",
+            "completed"
+          ],
+          "sha256": "0c2a55afc926d9ef7f2b734e7cdf29d3f4ec4e6e38134e50002422e037ab13f1"
+        },
+        {
+          "kind": "file",
+          "ref": "9cd09387c44c1d1e7c929a26f555c269a40dd75e",
+          "path": "specs/047-evidence-quality-audit/autonomous-run-state.json",
+          "roles": [
+            "mode",
+            "completed"
+          ],
+          "sha256": "b30b30806f65a37edd43ba6fae1bc18f7d49eab7fde9ffa9390a064a19ba4676"
+        }
+      ]
+    },
+    {
+      "repository": "hindermath/absdd-image-sandbox",
+      "feature": "specs/004-container-hardening-followup",
+      "observedCommit": "9d8338a7c39c1e2a0175667f59681e7c06b6921f",
+      "action": "accept-executed-feature-open-completion",
+      "tasks": {
+        "checked": 52,
+        "open": 28
+      },
+      "executed": true,
+      "completed": false,
+      "executionMode": "unknown",
+      "reason": "Reviewed concrete sandbox-hardening feature and substantive implementation/test work in 52 checked tasks. Twenty-eight tasks remain open, including final freeze/coverage T053 and independent handoff. Historical drafting-only paragraphs retain their original cutoff; later checked production work proves execution, not full compliance or completion.",
+      "openReason": "52/80 tasks; Q2/Q4 final freeze/coverage and remaining independent/platform/handoff obligations remain open. No full compliance or runtime acceptance inferred.",
+      "previousProofs": null,
+      "proofs": [
+        {
+          "kind": "file",
+          "ref": "9d8338a7c39c1e2a0175667f59681e7c06b6921f",
+          "path": "specs/004-container-hardening-followup/spec.md",
+          "roles": [
+            "started"
+          ],
+          "sha256": "2b4c407f2900e1cb97e8c373804e4f66dfb32a5eef2b7ec25b238811801cdf25"
+        },
+        {
+          "kind": "file",
+          "ref": "9d8338a7c39c1e2a0175667f59681e7c06b6921f",
+          "path": "specs/004-container-hardening-followup/tasks.md",
+          "roles": [
+            "executed"
+          ],
+          "sha256": "aaecb3043214ae99988074811c45d6855b62b6cba2312cf4a9964acb6a020d6e"
+        }
+      ]
+    },
+    {
+      "repository": "hindermath/Show-CommandTui400",
+      "feature": "specs/001-lh00-intake-process",
+      "observedCommit": "1a9ae46177649c4b6c6d51457393928929c59a00",
+      "action": "accept-executed-feature-open-completion",
+      "tasks": {
+        "checked": 45,
+        "open": 22
+      },
+      "executed": true,
+      "completed": false,
+      "executionMode": "unknown",
+      "reason": "Reviewed concrete LH00 process and substantive paired-script, migration/lineage and Mac pilot work in 45 checked tasks. Twenty-two tasks remain open. Limited pilot permission and fixture checks do not prove full LH00 acceptance, practical accessibility or all target hosts.",
+      "openReason": "45/67 tasks; outstanding full LH00, native target-host and practical accessibility/independent acceptance obligations. Limited pilot acceptance is not feature completion.",
+      "previousProofs": null,
+      "proofs": [
+        {
+          "kind": "file",
+          "ref": "1a9ae46177649c4b6c6d51457393928929c59a00",
+          "path": "specs/001-lh00-intake-process/spec.md",
+          "roles": [
+            "started"
+          ],
+          "sha256": "c1f051af44072c5f089a9376cfaad421faf5f49a9468b0214d56fe2350de6201"
+        },
+        {
+          "kind": "file",
+          "ref": "1a9ae46177649c4b6c6d51457393928929c59a00",
+          "path": "specs/001-lh00-intake-process/tasks.md",
+          "roles": [
+            "executed"
+          ],
+          "sha256": "4d55a2c5e690bac4cac090e586ed8e17654d0697523a81d7841c0521b98519bc"
+        }
+      ]
+    },
+    {
+      "repository": "hindermath/Show-CommandTui400",
+      "feature": "specs/002-lh01-tui-foundation",
+      "observedCommit": "1a9ae46177649c4b6c6d51457393928929c59a00",
+      "action": "accept-executed-feature-open-completion",
+      "tasks": {
+        "checked": 53,
+        "open": 12
+      },
+      "executed": true,
+      "completed": false,
+      "executionMode": "unknown",
+      "reason": "Reviewed concrete LH01 TUI foundation and substantive product/session/test implementation through T053. Twelve tasks remain open; T054 is partial and actual target-host runs and distinct result reviews remain missing. A planned or green CI binding is not target-host/product acceptance.",
+      "openReason": "53/65 tasks; T054 partial, T055-T065 open, target-host tests, distinct result review and practical acceptance still missing.",
+      "previousProofs": null,
+      "proofs": [
+        {
+          "kind": "file",
+          "ref": "1a9ae46177649c4b6c6d51457393928929c59a00",
+          "path": "specs/002-lh01-tui-foundation/spec.md",
+          "roles": [
+            "started"
+          ],
+          "sha256": "a1702b8fb71c32536e9cf1699cadd18adf83a197c8371f7b1c41d30b22d8796f"
+        },
+        {
+          "kind": "file",
+          "ref": "1a9ae46177649c4b6c6d51457393928929c59a00",
+          "path": "specs/002-lh01-tui-foundation/tasks.md",
+          "roles": [
+            "executed"
+          ],
+          "sha256": "f20ec275dd2e1d75253d546bbb85e14e7a5739e0d21e2dbed643756f6c2f1ceb"
+        }
+      ]
+    }
+  ],
+  "archiveVerification": [
+    {
+      "repo": "hindermath/TuiVision",
+      "feature": "specs/037-wave6-combined-delta-closure",
+      "head": "9cd09387c44c1d1e7c929a26f555c269a40dd75e",
+      "path": "requirements/intakes/archive/Lastenheft_22_Wave6-Combined-Delta-Closure.037-wave6-combined-delta-closure.md",
+      "sha256": "1b8ac280514c3415dfa51f2807f2b9183e51cd46b446d59980974cdce0ac70ad",
+      "disposition": "archive-only-identical-content"
+    },
+    {
+      "repo": "hindermath/TuiVision",
+      "feature": "specs/038-example-portfolio-conformance-audit",
+      "head": "9cd09387c44c1d1e7c929a26f555c269a40dd75e",
+      "path": "requirements/intakes/archive/Lastenheft_15_Post-Wave6-Example-Portfolio-Conformance-Audit.038-example-portfolio-conformance-audit.md",
+      "sha256": "f46be28ad27bb2dd5644390a7d50bed4912b514ce924e58bfd304135b33c0ad2",
+      "disposition": "archive-only-identical-content"
+    },
+    {
+      "repo": "hindermath/TuiVision",
+      "feature": "specs/039-example-portfolio-closure",
+      "head": "9cd09387c44c1d1e7c929a26f555c269a40dd75e",
+      "path": "requirements/intakes/archive/Lastenheft_Example-Portfolio-Closure.039-example-portfolio-closure.md",
+      "sha256": "f5dc617b7c20d718304bb91f7f63d4a95d5c27cf09a7d0a4685a3bc4a824ab1a",
+      "disposition": "archive-only-identical-content"
+    },
+    {
+      "repo": "hindermath/TuiVision",
+      "feature": "specs/040-constitution-governance-closure",
+      "head": "9cd09387c44c1d1e7c929a26f555c269a40dd75e",
+      "path": "requirements/intakes/archive/Lastenheft_Constitution_Change.040-constitution-governance-closure.md",
+      "sha256": "b7dbf455ff4e84b336ffe3cca3ff184e1897860592d4f53fb52f1776e7eb9e91",
+      "disposition": "archive-only-identical-content"
+    },
+    {
+      "repo": "hindermath/TuiVision",
+      "feature": "specs/041-source-reference-policy",
+      "head": "9cd09387c44c1d1e7c929a26f555c269a40dd75e",
+      "path": "requirements/intakes/archive/Lastenheft_Source-Reference-Policy.041-source-reference-policy.md",
+      "sha256": "a59e9588363e385c19d48c361df9ebb019323cf25865672dd77152292e8d2776",
+      "disposition": "archive-only-identical-content"
+    },
+    {
+      "repo": "hindermath/TuiVision",
+      "feature": "specs/042-transactional-form-model",
+      "head": "9cd09387c44c1d1e7c929a26f555c269a40dd75e",
+      "path": "requirements/intakes/archive/Lastenheft_Transactional-Form-Model.042-transactional-form-model.md",
+      "sha256": "45d8f8b589c3d9fd417f9b8dc9d25d09c0597f02c075b04454bbce95e095a239",
+      "disposition": "archive-only-identical-content"
+    },
+    {
+      "repo": "hindermath/TuiVision",
+      "feature": "specs/043-documentation-publishing-closure",
+      "head": "9cd09387c44c1d1e7c929a26f555c269a40dd75e",
+      "path": "requirements/intakes/archive/Lastenheft_23_Documentation-Publishing-Closure.043-documentation-publishing-closure.md",
+      "sha256": "df5f1876c781632c13594e9ec60c3cc8f9408c586ac03aeb48aa87442987878c",
+      "disposition": "archive-only-identical-content"
+    },
+    {
+      "repo": "hindermath/TuiVision",
+      "feature": "specs/044-sandbox-secure-development-hardening",
+      "head": "9cd09387c44c1d1e7c929a26f555c269a40dd75e",
+      "path": "requirements/intakes/archive/Lastenheft_Sandbox-gestuetzte-Secure-Development-Haertung.044-sandbox-secure-development-hardening.md",
+      "sha256": "d1f6a20535f90b78d00f7f6974a32156d7c08eeb77ebad9961a41ffbe3f84858",
+      "disposition": "archive-only-identical-content"
+    }
+  ],
+  "providerMergeVerification": [
+    {
+      "repository": "hindermath/agent-operations-cockpit",
+      "number": 53,
+      "mergedAt": "2026-09-13T16:09:59Z",
+      "mergeCommit": "7e53a8b327410ba241d90a9c60bc286b16f7bc44",
+      "head": "1e4e35ba24c5c7952a82c6f19910ed49ad7820e3"
+    },
+    {
+      "repository": "hindermath/TuiVision",
+      "number": 180,
+      "mergedAt": "2026-09-13T15:46:05Z",
+      "mergeCommit": "18f3387a3c9edbf9a3f133e5ffd3b3dca0c13e84",
+      "head": "df49962a46809672f5fb29e1f77cb0e197217d99"
+    },
+    {
+      "repository": "hindermath/TinyCalc",
+      "number": 104,
+      "mergedAt": "2026-10-10T22:48:19Z",
+      "mergeCommit": "946e392151fcaba5db0d76cf2974e055ba616e66",
+      "head": "6a86182d86c6b80d29029eac8e1f71f344a6b261"
+    }
+  ]
+}

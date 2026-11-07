@@ -1,0 +1,65 @@
+{
+  "schemaVersion": "1.1",
+  "feature": "semantic-spec-kit-evidence-register-review",
+  "entries": [
+    {
+      "changeId": "CHG001",
+      "scope": "Seven semantic feature decisions and eleven proof updates at immutable public commits",
+      "decision": "UpdateRequired",
+      "rationale": "Accept only evidenced starts, execution and completion; distinguish later security requirements from historical closure, verify archive-only moves and explain every incomplete case and unknown mode.",
+      "documents": [
+        "docs/spec-kit-runs/registry.json",
+        "docs/spec-kit-runs/review-decisions-2026-11-07.json",
+        "docs/spec-kit-runs/review-decisions-2026-11-07.md",
+        "docs/spec-kit-runs/README.md"
+      ],
+      "owner": "Thorsten Hindermann / Statistics Maintainer",
+      "audiences": ["Public statistics readers", "Maintainers", "Evidence reviewers"],
+      "readerPaths": ["README -> methodology -> semantic decisions -> exact proof refs and remaining completion gaps"],
+      "canonicalSource": "docs/spec-kit-runs/registry.json",
+      "navigationImpact": "Add a dated semantic-review link to the existing methodology entrypoint; preserve all previous review records.",
+      "documentClass": "ActiveSemantic",
+      "languageStrategy": "German first and English second in the review report; machine-readable proof metadata remains language-neutral with explicit English reasons.",
+      "languagePartners": [],
+      "platformAndExampleProof": "Immutable public spec/tasks/state comparison, eight archive content hashes, three independently confirmed provider merges, source-tree campaign inventory, registry validation and canonical native PR CI.",
+      "distributionClass": "sourceOnly",
+      "homeSyncRequired": false,
+      "evidence": "docs/spec-kit-runs/review-decisions-2026-11-07.md",
+      "risk": "Do not equate planning with implementation, task markers with acceptance, missing autonomous state with manual work, or historical completion with fulfillment of later security obligations.",
+      "criticality": "Normal",
+      "reevaluationTrigger": "Changed evidence, task/run state, explicit mode proof, current security obligations or a newly reviewed completion chain."
+    },
+    {
+      "changeId": "CHG002",
+      "scope": "Derived bilingual statistics, queue, publication hashes, project statistics and profile export",
+      "decision": "GeneratedUpdate",
+      "rationale": "Regenerate all publication surfaces from the reviewed register and unchanged approved private aggregate; update the reproducible Profile-2 block from committed text and Git history.",
+      "documents": [
+        "README.md", "README.en.md",
+        "docs/spec-kit-runs/snapshot.json",
+        "docs/spec-kit-runs/table.md", "docs/spec-kit-runs/table.en.md",
+        "docs/spec-kit-runs/review-queue.md", "docs/spec-kit-runs/publication.json",
+        "docs/project-statistics.md"
+      ],
+      "owner": "Thorsten Hindermann / Statistics Maintainer",
+      "audiences": ["Public profile readers", "Workspace operators", "Maintainers"],
+      "readerPaths": ["Published README table -> method -> register and dated review -> unresolved completion proof"],
+      "canonicalSource": "docs/spec-kit-runs/registry.json and approved snapshot/private aggregate; docs/project-statistics.config.json and Git history for Profile 2",
+      "navigationImpact": "Existing marked README blocks and table links remain; the profile imports only merged Level-0 output.",
+      "documentClass": "Generated",
+      "languageStrategy": "German README/table with equivalent English partners and explicit public/private observation dates.",
+      "languagePartners": ["README.en.md", "docs/spec-kit-runs/table.en.md"],
+      "platformAndExampleProof": "Canonical fixture tests, snapshot/register/aggregate validation, renderer drift checks, queue and count reconciliation, README marker preservation and exact-head native CI.",
+      "distributionClass": "homeRuntime",
+      "homeSyncRequired": true,
+      "evidence": "docs/spec-kit-runs/review-decisions-2026-11-07.md",
+      "risk": "Only the manifest-bound Home README is synchronized. Proofs remain source-only. The personal profile requires its separate import PR, preserved MOTD and green CI. No private individual evidence is published.",
+      "criticality": "Normal",
+      "reevaluationTrigger": "Registry classifications, source/private aggregate changes, counting or rendering rules, distribution or profile import contract changes.",
+      "generatedSource": {
+        "path": "docs/spec-kit-runs/registry.json",
+        "renderer": "bash scripts/update-public-speckit-statistics.sh --action Collect && bash scripts/update-public-speckit-statistics.sh --action Render; bash scripts/render-project-statistics.sh"
+      }
+    }
+  ]
+}

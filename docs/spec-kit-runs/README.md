@@ -179,6 +179,7 @@ working time. A completed governance run is not product acceptance.*
 - [Repository- und Belegregister / Repository and evidence register](registry.json)
 - [Vollständiger Snapshot / Complete snapshot](snapshot.json)
 - [Prüfbedarf und Abschlusslücken / Review queue and completion gaps](review-queue.md)
+- [Registerreview vom 7. November / Evidence register review, 7 November](review-decisions-2026-11-07.md)
 - [Veröffentlichungsprüfsummen / Publication checksums](publication.json)
 
 Das Register ist die fachliche Quelle. Es enthält je Feature eine begründete

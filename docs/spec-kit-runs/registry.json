@@ -1056,16 +1056,16 @@
           "executed": true,
           "completed": true,
           "reviewedBy": "hindermath-maintained-evidence-register",
-          "reason": "Historical task acceptance: 93 checked tasks, no open task markers; specification and full task evidence pinned to the public source commit. Reviewed as feature completion, not universal product acceptance.",
+          "reason": "Historical task acceptance: 93 checked tasks, no open task markers; specification and full task evidence pinned to the public source commit. Reviewed as feature completion, not universal product acceptance. Review 2026-11-07: current specification adds fail-closed security/evidence requirements; start proof repinned after semantic comparison. Historical task/run classifications remain at their accepted evidence cutoffs; this does not assert current Primary/Pass, product acceptance or fulfillment of subsequently added requirements.",
           "proofs": [
             {
               "kind": "file",
-              "ref": "2d1dc80065817426b97c13eeba8387f653b8cc41",
+              "ref": "38d70258dd3d1ff14a3a402ca5210129c10e0958",
               "path": "specs/029-ci-budget-governance/spec.md",
               "roles": [
                 "started"
               ],
-              "sha256": "db6a997838eff94123de32d855531d29632776fc58bbca8eb29a62dad302109a"
+              "sha256": "7bed937f1d7d66be5a500be24c94d8593897769cc806cc569d09f170e943afae"
             },
             {
               "kind": "file",
@@ -1102,16 +1102,16 @@
           "executed": true,
           "completed": false,
           "reviewedBy": "hindermath-maintained-evidence-register",
-          "reason": "Feature 030 Stage B: implementation and delivery exist, but the tracked Active/Publish state retains pending final validation. Public PR #259 does not itself prove all terminal read-only tasks. Completion remains unproven.",
+          "reason": "Feature 030 Stage B: implementation and delivery exist, but the tracked Active/Publish state retains pending final validation. Public PR #259 does not itself prove all terminal read-only tasks. Completion remains unproven. Review 2026-11-07: current specification adds fail-closed security/evidence requirements; start proof repinned after semantic comparison. Historical task/run classifications remain at their accepted evidence cutoffs; this does not assert current Primary/Pass, product acceptance or fulfillment of subsequently added requirements.",
           "proofs": [
             {
               "kind": "file",
-              "ref": "2d1dc80065817426b97c13eeba8387f653b8cc41",
+              "ref": "38d70258dd3d1ff14a3a402ca5210129c10e0958",
               "path": "specs/030-stage-b-rollout/spec.md",
               "roles": [
                 "started"
               ],
-              "sha256": "be9ab2eed3d4210014b6982c4240ae5b36be004357d6d82085021086ac776955"
+              "sha256": "5841954edaa0b75d224ac17e055a77072ef2b58d6c0555f12e4a10f334052377"
             },
             {
               "kind": "file",
@@ -1147,16 +1147,16 @@
           "executed": true,
           "completed": true,
           "reviewedBy": "hindermath-maintained-evidence-register",
-          "reason": "Historical task acceptance: 168 checked tasks, no open task markers; specification and full task evidence pinned to the public source commit. Reviewed as feature completion, not universal product acceptance.",
+          "reason": "Historical task acceptance: 168 checked tasks, no open task markers; specification and full task evidence pinned to the public source commit. Reviewed as feature completion, not universal product acceptance. Review 2026-11-07: current specification adds fail-closed security/evidence requirements; start proof repinned after semantic comparison. Historical task/run classifications remain at their accepted evidence cutoffs; this does not assert current Primary/Pass, product acceptance or fulfillment of subsequently added requirements.",
           "proofs": [
             {
               "kind": "file",
-              "ref": "2d1dc80065817426b97c13eeba8387f653b8cc41",
+              "ref": "38d70258dd3d1ff14a3a402ca5210129c10e0958",
               "path": "specs/031-github-copilot-review-governance/spec.md",
               "roles": [
                 "started"
               ],
-              "sha256": "5233e2c15472405e8d11fa7ac07b7da0c0a246dba0d60a2ac8a545f1421d1310"
+              "sha256": "18b2bca6a3591004f65a3c35c9d2b3378d289b3c05e9c231311cb7d8df553b56"
             },
             {
               "kind": "file",
@@ -1380,6 +1380,55 @@
           ],
           "executionMode": "serial",
           "modeReason": "Reviewed autonomous feature state with substantive tasks executed. The pinned repository source inventory has no executed parallel campaign worker assigned to this feature/run identity; unrelated replicated runtime installation campaigns are excluded."
+        },
+        {
+          "feature": "specs/004-series-eligibility",
+          "executed": true,
+          "completed": true,
+          "reviewedBy": "hindermath-maintained-evidence-register",
+          "reason": "Reviewed complete Series Eligibility feature: 57/57 tasks, hash-bound Completed autonomous run and all closeout fields Completed. The pinned causal closeout binds merged PRs 49/52/53; GitHub independently confirms PR53 merge 7e53a8b327410ba241d90a9c60bc286b16f7bc44. Counts one feature, not its remediations or delivery stages.",
+          "proofs": [
+            {
+              "kind": "file",
+              "ref": "1d812605b78eff2b3e4e0303e8aa570b768756ba",
+              "path": "specs/004-series-eligibility/spec.md",
+              "roles": [
+                "started"
+              ],
+              "sha256": "61027fb8e2f7b6e8a0e579c56f0bbc404a29c8446a61f548c2617459c4ef1f3b"
+            },
+            {
+              "kind": "file",
+              "ref": "1d812605b78eff2b3e4e0303e8aa570b768756ba",
+              "path": "specs/004-series-eligibility/completion-closeout.md",
+              "roles": [
+                "completed"
+              ],
+              "sha256": "4e76ce26fc11bfc0451d7b78d86265370ed963655efbe356a66d1fe0998c8672"
+            },
+            {
+              "kind": "file",
+              "ref": "1d812605b78eff2b3e4e0303e8aa570b768756ba",
+              "path": "specs/004-series-eligibility/tasks.md",
+              "roles": [
+                "executed",
+                "completed"
+              ],
+              "sha256": "31602678f0c0af4525289c241c528528992fe37ade0847d2df5d73d39d9f038d"
+            },
+            {
+              "kind": "file",
+              "ref": "1d812605b78eff2b3e4e0303e8aa570b768756ba",
+              "path": "specs/004-series-eligibility/autonomous-run-state.json",
+              "roles": [
+                "mode",
+                "completed"
+              ],
+              "sha256": "ea257ea2f4cb8c9578ce7755835f2f585ab4023b8177fc2e806cfc545986bec5"
+            }
+          ],
+          "executionMode": "serial",
+          "modeReason": "Affirmative completed autonomous feature state; reviewed pinned source-tree inventory has no executed parallel campaign assignment for this feature/run. Retries, remediation phases and delivery PRs do not add runs."
         }
       ]
     },
@@ -1655,6 +1704,83 @@
           ],
           "executionMode": "unknown",
           "modeReason": "Substantive execution is evidenced, but no affirmative historical mode record has been reviewed. Missing autonomous files do not prove manual execution."
+        },
+        {
+          "feature": "specs/006-tui-functional-contract",
+          "executed": true,
+          "completed": true,
+          "reviewedBy": "hindermath-maintained-evidence-register",
+          "reason": "Reviewed completed TUI contract: 83/83 tasks after separately authorized administrative closeout. The completion report preserves its pre-delivery cutoff; later administrative closeout binds actual product PR104 merge 946e392151fcaba5db0d76cf2974e055ba616e66 and archival. GitHub confirms that merge. The stale historical planning stop is not the final delivery state; no next feature is accepted.",
+          "proofs": [
+            {
+              "kind": "file",
+              "ref": "14f47971026c4172f5e05e0d18863b2a95bfff4b",
+              "path": "specs/006-tui-functional-contract/spec.md",
+              "roles": [
+                "started"
+              ],
+              "sha256": "ecc1fc6d61388ce0f393f0babf950b547361283d442257183177dbfebeaa2bc4"
+            },
+            {
+              "kind": "file",
+              "ref": "14f47971026c4172f5e05e0d18863b2a95bfff4b",
+              "path": "specs/006-tui-functional-contract/completion-report.md",
+              "roles": [
+                "executed"
+              ],
+              "sha256": "6046e478a336b66cd42c56174ecc1159b6ab37e542c014691fffd0a4322085f3"
+            },
+            {
+              "kind": "file",
+              "ref": "14f47971026c4172f5e05e0d18863b2a95bfff4b",
+              "path": "specs/006-tui-functional-contract/evidence/administrative-closeout.md",
+              "roles": [
+                "completed"
+              ],
+              "sha256": "1049b9e223f065dbb67bfc4e1dde51522dad8840550bce7b3c62e6a353f84eb2"
+            },
+            {
+              "kind": "file",
+              "ref": "14f47971026c4172f5e05e0d18863b2a95bfff4b",
+              "path": "specs/006-tui-functional-contract/tasks.md",
+              "roles": [
+                "executed",
+                "completed"
+              ],
+              "sha256": "fef5d71594d6b403647e5966acac2959e492d6f811c99679ef826ba8db06b8f3"
+            }
+          ],
+          "executionMode": "unknown",
+          "modeReason": "Substantive work is evidenced, but no affirmative mode record has been reviewed. Missing autonomous state does not prove manual execution; task parallelism markers do not prove campaign-worker execution."
+        },
+        {
+          "feature": "specs/007-tui-accessibility",
+          "executed": false,
+          "completed": false,
+          "reviewedBy": "hindermath-maintained-evidence-register",
+          "reason": "Reviewed concrete specified and clarified accessibility feature, so start is evidenced. All 60 implementation tasks remain unchecked; spec explicitly withholds implementation authority. Planning, task generation and analysis corrections alone do not prove substantive feature execution.",
+          "proofs": [
+            {
+              "kind": "file",
+              "ref": "14f47971026c4172f5e05e0d18863b2a95bfff4b",
+              "path": "specs/007-tui-accessibility/spec.md",
+              "roles": [
+                "started"
+              ],
+              "sha256": "645a04d7cdab2220d6744ae4743fabd38b12e8d772e351380d0a5dff0e3c65ed"
+            },
+            {
+              "kind": "file",
+              "ref": "14f47971026c4172f5e05e0d18863b2a95bfff4b",
+              "path": "specs/007-tui-accessibility/tasks.md",
+              "roles": [
+                null
+              ],
+              "sha256": "b815e1d0354005414c8cc4240ec20998a0f7d5e42d24b4a415fc7da374e1bfc9"
+            }
+          ],
+          "executionMode": "unknown",
+          "modeReason": "Feature execution is not evidenced. Specification, planning and available parallelism do not establish an execution mode."
         }
       ]
     },
@@ -3169,7 +3295,7 @@
           "executed": true,
           "completed": true,
           "reviewedBy": "hindermath-maintained-evidence-register",
-          "reason": "Historical task acceptance: 169 checked tasks, no open task markers; specification and full task evidence pinned to the public source commit. Reviewed as feature completion, not universal product acceptance.",
+          "reason": "Historical task acceptance: 169 checked tasks, no open task markers; specification and full task evidence pinned to the public source commit. Reviewed as feature completion, not universal product acceptance. Review 2026-11-07: only the active-to-archive intake path changed; archived bytes and all other run-state fields, run identity, completed tasks and closeout remain identical. State proof repinned; no additional run or acceptance claim.",
           "proofs": [
             {
               "kind": "file",
@@ -3192,19 +3318,13 @@
             },
             {
               "kind": "file",
-              "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+              "ref": "9cd09387c44c1d1e7c929a26f555c269a40dd75e",
               "path": "specs/037-wave6-combined-delta-closure/autonomous-run-state.json",
-              "roles": [],
-              "sha256": "827afa08fee1de1b2ab101bb3b8a44691e3596e44e2b556d759b8b13d8bee04d"
-            },
-            {
-              "path": "specs/037-wave6-combined-delta-closure/autonomous-run-state.json",
-              "sha256": "827afa08fee1de1b2ab101bb3b8a44691e3596e44e2b556d759b8b13d8bee04d",
-              "kind": "file",
               "roles": [
-                "mode"
+                "mode",
+                "completed"
               ],
-              "ref": "26a09dd73f4626c7a86ff5bbaef1bbed54ee9c1e"
+              "sha256": "4107c66394e51704b3144f91342a74776dd6f4db212eee4f84d3c6efc4cb70f7"
             }
           ],
           "executionMode": "serial",
@@ -3215,7 +3335,7 @@
           "executed": true,
           "completed": true,
           "reviewedBy": "hindermath-maintained-evidence-register",
-          "reason": "Historical task acceptance: 225 checked tasks, no open task markers; specification and full task evidence pinned to the public source commit. Reviewed as feature completion, not universal product acceptance.",
+          "reason": "Historical task acceptance: 225 checked tasks, no open task markers; specification and full task evidence pinned to the public source commit. Reviewed as feature completion, not universal product acceptance. Review 2026-11-07: only the active-to-archive intake path changed; archived bytes and all other run-state fields, run identity, completed tasks and closeout remain identical. State proof repinned; no additional run or acceptance claim.",
           "proofs": [
             {
               "kind": "file",
@@ -3238,19 +3358,13 @@
             },
             {
               "kind": "file",
-              "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+              "ref": "9cd09387c44c1d1e7c929a26f555c269a40dd75e",
               "path": "specs/038-example-portfolio-conformance-audit/autonomous-run-state.json",
-              "roles": [],
-              "sha256": "3fc474777b0a7374569948f6ef9c3f1cdcf015951ba5aab825b0d5dd3ca422ad"
-            },
-            {
-              "path": "specs/038-example-portfolio-conformance-audit/autonomous-run-state.json",
-              "sha256": "3fc474777b0a7374569948f6ef9c3f1cdcf015951ba5aab825b0d5dd3ca422ad",
-              "kind": "file",
               "roles": [
-                "mode"
+                "mode",
+                "completed"
               ],
-              "ref": "26a09dd73f4626c7a86ff5bbaef1bbed54ee9c1e"
+              "sha256": "9b44b4b8ed12e096175e1d1b6d8bf3f27c33387337c0fdad1eda9915583fa93f"
             }
           ],
           "executionMode": "serial",
@@ -3261,7 +3375,7 @@
           "executed": true,
           "completed": true,
           "reviewedBy": "hindermath-maintained-evidence-register",
-          "reason": "Historical task acceptance: 10 checked tasks, no open task markers; specification and full task evidence pinned to the public source commit. Reviewed as feature completion, not universal product acceptance.",
+          "reason": "Historical task acceptance: 10 checked tasks, no open task markers; specification and full task evidence pinned to the public source commit. Reviewed as feature completion, not universal product acceptance. Review 2026-11-07: only the active-to-archive intake path changed; archived bytes and all other run-state fields, run identity, completed tasks and closeout remain identical. State proof repinned; no additional run or acceptance claim.",
           "proofs": [
             {
               "kind": "file",
@@ -3284,19 +3398,13 @@
             },
             {
               "kind": "file",
-              "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+              "ref": "9cd09387c44c1d1e7c929a26f555c269a40dd75e",
               "path": "specs/039-example-portfolio-closure/autonomous-run-state.json",
-              "roles": [],
-              "sha256": "279fa4169e77c0a8b0037983ebdf2f7275875ee68ca5fe34882ca6ff6906b4a7"
-            },
-            {
-              "path": "specs/039-example-portfolio-closure/autonomous-run-state.json",
-              "sha256": "279fa4169e77c0a8b0037983ebdf2f7275875ee68ca5fe34882ca6ff6906b4a7",
-              "kind": "file",
               "roles": [
-                "mode"
+                "mode",
+                "completed"
               ],
-              "ref": "26a09dd73f4626c7a86ff5bbaef1bbed54ee9c1e"
+              "sha256": "b2b81ef790c5a4589f67faa3616d91403c8975c21f302e080795d3b7cd40c004"
             }
           ],
           "executionMode": "serial",
@@ -3307,7 +3415,7 @@
           "executed": true,
           "completed": true,
           "reviewedBy": "hindermath-maintained-evidence-register",
-          "reason": "Historical task acceptance: 7 checked tasks, no open task markers; specification and full task evidence pinned to the public source commit. Reviewed as feature completion, not universal product acceptance.",
+          "reason": "Historical task acceptance: 7 checked tasks, no open task markers; specification and full task evidence pinned to the public source commit. Reviewed as feature completion, not universal product acceptance. Review 2026-11-07: only the active-to-archive intake path changed; archived bytes and all other run-state fields, run identity, completed tasks and closeout remain identical. State proof repinned; no additional run or acceptance claim.",
           "proofs": [
             {
               "kind": "file",
@@ -3330,19 +3438,13 @@
             },
             {
               "kind": "file",
-              "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+              "ref": "9cd09387c44c1d1e7c929a26f555c269a40dd75e",
               "path": "specs/040-constitution-governance-closure/autonomous-run-state.json",
-              "roles": [],
-              "sha256": "14723a92f49eeb8e5d46a1e4fd78ee1f9f3959ba51e0b79ee09a1d548776622d"
-            },
-            {
-              "path": "specs/040-constitution-governance-closure/autonomous-run-state.json",
-              "sha256": "14723a92f49eeb8e5d46a1e4fd78ee1f9f3959ba51e0b79ee09a1d548776622d",
-              "kind": "file",
               "roles": [
-                "mode"
+                "mode",
+                "completed"
               ],
-              "ref": "26a09dd73f4626c7a86ff5bbaef1bbed54ee9c1e"
+              "sha256": "e5aaf3f22a38a9a0caae15c6f8ea0aaa23f31d81abd9b237fa3d27cd5c68521c"
             }
           ],
           "executionMode": "serial",
@@ -3353,7 +3455,7 @@
           "executed": true,
           "completed": true,
           "reviewedBy": "hindermath-maintained-evidence-register",
-          "reason": "Historical task acceptance: 15 checked tasks, no open task markers; specification and full task evidence pinned to the public source commit. Reviewed as feature completion, not universal product acceptance.",
+          "reason": "Historical task acceptance: 15 checked tasks, no open task markers; specification and full task evidence pinned to the public source commit. Reviewed as feature completion, not universal product acceptance. Review 2026-11-07: only the active-to-archive intake path changed; archived bytes and all other run-state fields, run identity, completed tasks and closeout remain identical. State proof repinned; no additional run or acceptance claim.",
           "proofs": [
             {
               "kind": "file",
@@ -3376,19 +3478,13 @@
             },
             {
               "kind": "file",
-              "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+              "ref": "9cd09387c44c1d1e7c929a26f555c269a40dd75e",
               "path": "specs/041-source-reference-policy/autonomous-run-state.json",
-              "roles": [],
-              "sha256": "ceccf547168018b3cfc7a42e43397a7cc233667ae6a72e7cb93a7ee75be86537"
-            },
-            {
-              "path": "specs/041-source-reference-policy/autonomous-run-state.json",
-              "sha256": "ceccf547168018b3cfc7a42e43397a7cc233667ae6a72e7cb93a7ee75be86537",
-              "kind": "file",
               "roles": [
-                "mode"
+                "mode",
+                "completed"
               ],
-              "ref": "26a09dd73f4626c7a86ff5bbaef1bbed54ee9c1e"
+              "sha256": "636faaec8a627979c01714d7bb21147064009c41d8104cad6a4e9d123a21eeab"
             }
           ],
           "executionMode": "serial",
@@ -3399,7 +3495,7 @@
           "executed": true,
           "completed": true,
           "reviewedBy": "hindermath-maintained-evidence-register",
-          "reason": "Historical task acceptance: 19 checked tasks, no open task markers; specification and full task evidence pinned to the public source commit. Reviewed as feature completion, not universal product acceptance.",
+          "reason": "Historical task acceptance: 19 checked tasks, no open task markers; specification and full task evidence pinned to the public source commit. Reviewed as feature completion, not universal product acceptance. Review 2026-11-07: only the active-to-archive intake path changed; archived bytes and all other run-state fields, run identity, completed tasks and closeout remain identical. State proof repinned; no additional run or acceptance claim.",
           "proofs": [
             {
               "kind": "file",
@@ -3422,19 +3518,13 @@
             },
             {
               "kind": "file",
-              "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+              "ref": "9cd09387c44c1d1e7c929a26f555c269a40dd75e",
               "path": "specs/042-transactional-form-model/autonomous-run-state.json",
-              "roles": [],
-              "sha256": "408c5635cfa92bab5033bbd5032db65171d3f110df7e9c6e8b4de1d7060956fe"
-            },
-            {
-              "path": "specs/042-transactional-form-model/autonomous-run-state.json",
-              "sha256": "408c5635cfa92bab5033bbd5032db65171d3f110df7e9c6e8b4de1d7060956fe",
-              "kind": "file",
               "roles": [
-                "mode"
+                "mode",
+                "completed"
               ],
-              "ref": "26a09dd73f4626c7a86ff5bbaef1bbed54ee9c1e"
+              "sha256": "9b9ea964b973a18389ac5b6fba563ee7ffa5225aae6f6b21881e2c020feed85a"
             }
           ],
           "executionMode": "serial",
@@ -3445,7 +3535,7 @@
           "executed": true,
           "completed": true,
           "reviewedBy": "hindermath-maintained-evidence-register",
-          "reason": "Historical task acceptance: 40 checked tasks, no open task markers; specification and full task evidence pinned to the public source commit. Reviewed as feature completion, not universal product acceptance.",
+          "reason": "Historical task acceptance: 40 checked tasks, no open task markers; specification and full task evidence pinned to the public source commit. Reviewed as feature completion, not universal product acceptance. Review 2026-11-07: only the active-to-archive intake path changed; archived bytes and all other run-state fields, run identity, completed tasks and closeout remain identical. State proof repinned; no additional run or acceptance claim.",
           "proofs": [
             {
               "kind": "file",
@@ -3468,19 +3558,13 @@
             },
             {
               "kind": "file",
-              "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+              "ref": "9cd09387c44c1d1e7c929a26f555c269a40dd75e",
               "path": "specs/043-documentation-publishing-closure/autonomous-run-state.json",
-              "roles": [],
-              "sha256": "7c56533e30c4bbc1dcd1b8467d9cfb94ac7042e6150496f85182d05261e5879a"
-            },
-            {
-              "path": "specs/043-documentation-publishing-closure/autonomous-run-state.json",
-              "sha256": "7c56533e30c4bbc1dcd1b8467d9cfb94ac7042e6150496f85182d05261e5879a",
-              "kind": "file",
               "roles": [
-                "mode"
+                "mode",
+                "completed"
               ],
-              "ref": "26a09dd73f4626c7a86ff5bbaef1bbed54ee9c1e"
+              "sha256": "c953d8348bd4721aefdfee49178869a24b5cac083dda561a73c16cada306b98b"
             }
           ],
           "executionMode": "serial",
@@ -3491,7 +3575,7 @@
           "executed": true,
           "completed": true,
           "reviewedBy": "hindermath-maintained-evidence-register",
-          "reason": "Historical task acceptance: 75 checked tasks, no open task markers; specification and full task evidence pinned to the public source commit. Reviewed as feature completion, not universal product acceptance.",
+          "reason": "Historical task acceptance: 75 checked tasks, no open task markers; specification and full task evidence pinned to the public source commit. Reviewed as feature completion, not universal product acceptance. Review 2026-11-07: only the active-to-archive intake path changed; archived bytes and all other run-state fields, run identity, completed tasks and closeout remain identical. State proof repinned; no additional run or acceptance claim.",
           "proofs": [
             {
               "kind": "file",
@@ -3514,19 +3598,13 @@
             },
             {
               "kind": "file",
-              "ref": "a58c202668209b3b0cf116bcc8a0b0c5d6ac5d9b",
+              "ref": "9cd09387c44c1d1e7c929a26f555c269a40dd75e",
               "path": "specs/044-sandbox-secure-development-hardening/autonomous-run-state.json",
-              "roles": [],
-              "sha256": "7931839f360a1ef21edd86c1f7884d891597959bda95a704c502727a52ca2de0"
-            },
-            {
-              "path": "specs/044-sandbox-secure-development-hardening/autonomous-run-state.json",
-              "sha256": "7931839f360a1ef21edd86c1f7884d891597959bda95a704c502727a52ca2de0",
-              "kind": "file",
               "roles": [
-                "mode"
+                "mode",
+                "completed"
               ],
-              "ref": "26a09dd73f4626c7a86ff5bbaef1bbed54ee9c1e"
+              "sha256": "b94fdfdb9e6d10da28f9b58d9d3928cd645516f9c578f17a2a4b62affeb5ddca"
             }
           ],
           "executionMode": "serial",
@@ -3623,6 +3701,55 @@
           ],
           "executionMode": "serial",
           "modeReason": "Reviewed autonomous feature state with substantive tasks executed. The pinned repository source inventory has no executed parallel campaign worker assigned to this feature/run identity; unrelated replicated runtime installation campaigns are excluded."
+        },
+        {
+          "feature": "specs/047-evidence-quality-audit",
+          "executed": true,
+          "completed": true,
+          "reviewedBy": "hindermath-maintained-evidence-register",
+          "reason": "Reviewed bounded evidence-quality audit, not remediation of audited findings: 58/58 tasks, hash-bound Completed autonomous state and Completed MergeAndSync closeout. Pinned PR evidence and GitHub confirm delivery PR180 merge 18f3387a3c9edbf9a3f133e5ffd3b3dca0c13e84. Open audit findings are outputs, not incomplete audit tasks.",
+          "proofs": [
+            {
+              "kind": "file",
+              "ref": "9cd09387c44c1d1e7c929a26f555c269a40dd75e",
+              "path": "specs/047-evidence-quality-audit/spec.md",
+              "roles": [
+                "started"
+              ],
+              "sha256": "59ebb5a274e28937d285ee91ed98314edb5deb762e6bc6bbac73521f37dd178b"
+            },
+            {
+              "kind": "file",
+              "ref": "9cd09387c44c1d1e7c929a26f555c269a40dd75e",
+              "path": "specs/047-evidence-quality-audit/pr-evidence.md",
+              "roles": [
+                "completed"
+              ],
+              "sha256": "e243058249904abd1a0dee902cb5953c226a43bd21ba99ebf4b5f5d71f31f311"
+            },
+            {
+              "kind": "file",
+              "ref": "9cd09387c44c1d1e7c929a26f555c269a40dd75e",
+              "path": "specs/047-evidence-quality-audit/tasks.md",
+              "roles": [
+                "executed",
+                "completed"
+              ],
+              "sha256": "0c2a55afc926d9ef7f2b734e7cdf29d3f4ec4e6e38134e50002422e037ab13f1"
+            },
+            {
+              "kind": "file",
+              "ref": "9cd09387c44c1d1e7c929a26f555c269a40dd75e",
+              "path": "specs/047-evidence-quality-audit/autonomous-run-state.json",
+              "roles": [
+                "mode",
+                "completed"
+              ],
+              "sha256": "b30b30806f65a37edd43ba6fae1bc18f7d49eab7fde9ffa9390a064a19ba4676"
+            }
+          ],
+          "executionMode": "serial",
+          "modeReason": "Affirmative completed autonomous feature state; reviewed pinned source-tree inventory has no executed parallel campaign assignment for this feature/run. Retries, remediation phases and delivery PRs do not add runs."
         }
       ]
     },
@@ -3751,13 +3878,101 @@
           ],
           "executionMode": "serial",
           "modeReason": "Reviewed autonomous feature state with substantive tasks executed. The pinned repository source inventory has no executed parallel campaign worker assigned to this feature/run identity; unrelated replicated runtime installation campaigns are excluded."
+        },
+        {
+          "feature": "specs/004-container-hardening-followup",
+          "executed": true,
+          "completed": false,
+          "reviewedBy": "hindermath-maintained-evidence-register",
+          "reason": "Reviewed concrete sandbox-hardening feature and substantive implementation/test work in 52 checked tasks. Twenty-eight tasks remain open, including final freeze/coverage T053 and independent handoff. Historical drafting-only paragraphs retain their original cutoff; later checked production work proves execution, not full compliance or completion.",
+          "proofs": [
+            {
+              "kind": "file",
+              "ref": "9d8338a7c39c1e2a0175667f59681e7c06b6921f",
+              "path": "specs/004-container-hardening-followup/spec.md",
+              "roles": [
+                "started"
+              ],
+              "sha256": "2b4c407f2900e1cb97e8c373804e4f66dfb32a5eef2b7ec25b238811801cdf25"
+            },
+            {
+              "kind": "file",
+              "ref": "9d8338a7c39c1e2a0175667f59681e7c06b6921f",
+              "path": "specs/004-container-hardening-followup/tasks.md",
+              "roles": [
+                "executed"
+              ],
+              "sha256": "aaecb3043214ae99988074811c45d6855b62b6cba2312cf4a9964acb6a020d6e"
+            }
+          ],
+          "executionMode": "unknown",
+          "modeReason": "Substantive work is evidenced, but no affirmative mode record has been reviewed. Missing autonomous state does not prove manual execution; task parallelism markers do not prove campaign-worker execution."
         }
       ]
     },
     {
       "name": "hindermath/Show-CommandTui400",
       "level": 2,
-      "reviews": []
+      "reviews": [
+        {
+          "feature": "specs/001-lh00-intake-process",
+          "executed": true,
+          "completed": false,
+          "reviewedBy": "hindermath-maintained-evidence-register",
+          "reason": "Reviewed concrete LH00 process and substantive paired-script, migration/lineage and Mac pilot work in 45 checked tasks. Twenty-two tasks remain open. Limited pilot permission and fixture checks do not prove full LH00 acceptance, practical accessibility or all target hosts.",
+          "proofs": [
+            {
+              "kind": "file",
+              "ref": "1a9ae46177649c4b6c6d51457393928929c59a00",
+              "path": "specs/001-lh00-intake-process/spec.md",
+              "roles": [
+                "started"
+              ],
+              "sha256": "c1f051af44072c5f089a9376cfaad421faf5f49a9468b0214d56fe2350de6201"
+            },
+            {
+              "kind": "file",
+              "ref": "1a9ae46177649c4b6c6d51457393928929c59a00",
+              "path": "specs/001-lh00-intake-process/tasks.md",
+              "roles": [
+                "executed"
+              ],
+              "sha256": "4d55a2c5e690bac4cac090e586ed8e17654d0697523a81d7841c0521b98519bc"
+            }
+          ],
+          "executionMode": "unknown",
+          "modeReason": "Substantive work is evidenced, but no affirmative mode record has been reviewed. Missing autonomous state does not prove manual execution; task parallelism markers do not prove campaign-worker execution."
+        },
+        {
+          "feature": "specs/002-lh01-tui-foundation",
+          "executed": true,
+          "completed": false,
+          "reviewedBy": "hindermath-maintained-evidence-register",
+          "reason": "Reviewed concrete LH01 TUI foundation and substantive product/session/test implementation through T053. Twelve tasks remain open; T054 is partial and actual target-host runs and distinct result reviews remain missing. A planned or green CI binding is not target-host/product acceptance.",
+          "proofs": [
+            {
+              "kind": "file",
+              "ref": "1a9ae46177649c4b6c6d51457393928929c59a00",
+              "path": "specs/002-lh01-tui-foundation/spec.md",
+              "roles": [
+                "started"
+              ],
+              "sha256": "a1702b8fb71c32536e9cf1699cadd18adf83a197c8371f7b1c41d30b22d8796f"
+            },
+            {
+              "kind": "file",
+              "ref": "1a9ae46177649c4b6c6d51457393928929c59a00",
+              "path": "specs/002-lh01-tui-foundation/tasks.md",
+              "roles": [
+                "executed"
+              ],
+              "sha256": "f20ec275dd2e1d75253d546bbb85e14e7a5739e0d21e2dbed643756f6c2f1ceb"
+            }
+          ],
+          "executionMode": "unknown",
+          "modeReason": "Substantive work is evidenced, but no affirmative mode record has been reviewed. Missing autonomous state does not prove manual execution; task parallelism markers do not prove campaign-worker execution."
+        }
+      ]
     }
   ]
 }
