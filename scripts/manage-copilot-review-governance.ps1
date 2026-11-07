@@ -14,7 +14,9 @@
     per GET, fester API-Version und begrenztem Transport-Retry erzeugen. Apply
     kann ohne FakeProviderPath ausschliesslich die drei GitHub-Rulesetklassen
     mit aktuellem operationsspezifischem Gate, exakten IDs, POST/PUT und ohne
-    Blind-Retry live ausfuehren. Account-/Effortwrites bleiben manuelle
+    Blind-Retry live ausfuehren. Apply beansprucht das Single-Use-Gate vor dem
+    ersten Providerzugriff atomar; parallele oder spaetere Wiederverwendung
+    bleibt blockiert. Account-/Effortwrites bleiben manuelle
     Browsertransaktionen; Rollback bleibt explizit getrennt und FakeProvider-
     gebunden.
     Ausgabe ist linear, textorientiert und farbunabhaengig.
@@ -26,8 +28,10 @@
     live GitHub inventory through GET-only requests, a fixed API version, and
     bounded transport retries. Without FakeProviderPath, Apply supports only
     the three GitHub ruleset classes under a fresh operation-specific gate,
-    exact IDs, POST/PUT, and no blind retry. Account and effort writes remain
-    manual browser transactions; rollback stays separate and fake-provider
+    exact IDs, POST/PUT, and no blind retry. Apply atomically claims its
+    single-use gate before provider access; concurrent or later reuse remains
+    blocked. Account and effort writes remain manual browser transactions;
+    rollback stays separate and fake-provider
     bound. Output is linear, text-first, and independent of colour.
 
 .PARAMETER Action
@@ -63,7 +67,8 @@
     Inventory, Mutation Plan, Change-Set-Review und vier Gate-Evidenceklassen.
 
 .PARAMETER ReadOnly
-    Erzwingt eine mutationsfreie Inventur-/Validierungsoberflaeche.
+    Erzwingt eine mutationsfreie Inventur-/Validierungsoberflaeche. Apply und
+    Rollback werden vor jedem Live- oder Fake-Providerzugriff blockiert.
 
 .PARAMETER DryRun
     Erzwingt Preview/Read-only und null reale Providerwrites. Fake-Provider-

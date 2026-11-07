@@ -44,6 +44,11 @@ param(
 
 Set-StrictMode -Version Latest
 $ErrorActionPreference = 'Stop'
+$secureDevLib = Join-Path $PSScriptRoot 'lib/secure-development-hardening.ps1'
+if (-not (Test-Path -LiteralPath $secureDevLib -PathType Leaf)) {
+    throw "Security support library is missing: $secureDevLib"
+}
+. $secureDevLib
 $forgejoLib = Join-Path $PSScriptRoot 'lib/hg-forgejo.ps1'
 if (-not (Test-Path $forgejoLib)) {
     throw "Forgejo support library is missing: $forgejoLib"
@@ -70,6 +75,12 @@ if ($Teardown) {
 if (-not $WorkspaceName) {
     throw "Fehler: -WorkspaceName ist erforderlich / Error: -WorkspaceName is required"
 }
+if ($WorkspaceName -in @('.', '..') `
+    -or $WorkspaceName.StartsWith('-') `
+    -or $WorkspaceName.IndexOfAny([char[]]@('/', '\')) -ge 0 `
+    -or $WorkspaceName -match '[\x00-\x1f]') {
+    throw "WorkspaceName must be one safe path component: $WorkspaceName"
+}
 
 if ($Platform -notin @('github', 'gitlab', 'forgejo', 'codeberg')) {
     throw "Fehler: Ungültige Plattform '$Platform'. Gültige Werte: github, gitlab, forgejo, codeberg.`nError: Invalid platform '$Platform'. Valid values: github, gitlab, forgejo, codeberg."
@@ -81,7 +92,8 @@ if ($Platform -eq 'gitlab') {
     if (-not $GitLabUrl.StartsWith('https://')) {
         throw "Fehler: -GitLabUrl muss mit 'https://' beginnen.`nError: -GitLabUrl must start with 'https://'."
     }
-    $gitlabHostname = ($GitLabUrl -replace '^https://', '').TrimEnd('/')
+    $gitlabUri = [uri]$GitLabUrl
+    $gitlabHostname = if ($gitlabUri.IsDefaultPort) { $gitlabUri.Host } else { $gitlabUri.Authority }
 }
 if (-not $NoRemote -and $Platform -in @('forgejo', 'codeberg')) {
     $forgejoBaseUrl = Resolve-HBForgejoBaseUrl -Platform $Platform -ConfiguredUrl $ForgejoUrl
@@ -91,9 +103,106 @@ function ConvertTo-NormalizedName([string]$Name) {
     $Name.ToLower() -replace '[^a-z0-9]', '-' -replace '-+', '-' -replace '^-|-$', ''
 }
 
+function Install-HBVerifiedPrePushHook {
+    param([Parameter(Mandatory)][string]$RepositoryRoot)
+
+    $sourceHook = Join-Path $scriptsSource 'hooks/pre-push'
+    $hooksDirectory = Join-Path $RepositoryRoot '.git/home-baseline-hooks'
+    $targetHook = Join-Path $hooksDirectory 'pre-push'
+    $sourceItem = Get-Item -LiteralPath $sourceHook -Force -ErrorAction Stop
+    if ($sourceItem.LinkType -or ($sourceItem.Attributes -band [IO.FileAttributes]::ReparsePoint)) {
+        throw "Canonical pre-push hook must be a regular file: $sourceHook"
+    }
+    $targetItem = Get-Item -LiteralPath $targetHook -Force -ErrorAction SilentlyContinue
+    if ($targetItem -and ($targetItem.LinkType -or ($targetItem.Attributes -band [IO.FileAttributes]::ReparsePoint))) {
+        throw "Pre-push hook target must not be a link or reparse point: $targetHook"
+    }
+    $null = New-Item -ItemType Directory -Path $hooksDirectory -Force
+    Copy-Item -LiteralPath $sourceHook -Destination $targetHook -Force
+    if ($IsLinux -or $IsMacOS) { & chmod 0755 $targetHook }
+    & git -C $RepositoryRoot config --local core.hooksPath $hooksDirectory
+    if ((Get-FileHash -Algorithm SHA256 $sourceHook).Hash -ne (Get-FileHash -Algorithm SHA256 $targetHook).Hash) {
+        throw 'Installed pre-push hook does not match canonical source.'
+    }
+    if ($IsLinux -or $IsMacOS) {
+        & test -x $targetHook
+        if ($LASTEXITCODE -ne 0) { throw 'Installed pre-push hook is not executable.' }
+    }
+    $effectiveHooksPath = ((& git -C $RepositoryRoot config --path core.hooksPath) | Out-String).Trim()
+    if ($effectiveHooksPath -ne $hooksDirectory) { throw 'Effective Git hooks path is not the verified hooks directory.' }
+}
+
+function Add-HBWorkspaceBaselineToIndex {
+    param([Parameter(Mandatory)][string]$RepositoryRoot)
+
+    & git -C $RepositoryRoot reset --quiet
+    foreach ($relative in @(
+        '.gitignore', 'README.md', 'AGENTS.md', 'CLAUDE.md', 'GEMINI.md', 'constitution.md', 'STATS.md',
+        'release-please-config.json', '.release-please-manifest.json', '.github/copilot-instructions.md',
+        '.github/workflows/homogeneity-check.yml', '.github/workflows/release-please.yml',
+        'docs/project-statistics.md', 'docs/project-statistics.config.json'
+    )) {
+        $candidate = Join-Path $RepositoryRoot $relative
+        if (Test-Path -LiteralPath $candidate) { & git -C $RepositoryRoot add -- $relative }
+    }
+    foreach ($tracked in $trackedScriptPaths) {
+        & git -C $RepositoryRoot add -- $tracked
+    }
+}
+
+function Invoke-HBBootstrapPublicationScan {
+    param(
+        [Parameter(Mandatory)][string]$RepositoryRoot,
+        [switch]$Staged
+    )
+
+    if (-not (Get-Command gitleaks -ErrorAction SilentlyContinue)) {
+        throw 'Remote publication requires gitleaks.'
+    }
+    $arguments = @('git', '--redact', '--no-banner', '--no-color', '--log-level', 'warn', '--exit-code', '2')
+    if ($Staged) { $arguments += '--staged' }
+    $arguments += $RepositoryRoot
+    & gitleaks @arguments
+    if ($LASTEXITCODE -ne 0) { throw 'Gitleaks rejected or could not scan bootstrap publication.' }
+}
+
 $homeDir       = $(if ($env:HOME) { $env:HOME } else { $env:USERPROFILE })
 $workspaceDir  = Join-Path $homeDir $WorkspaceName
-$scriptsSource = Join-Path $homeDir 'scripts'
+$sourceRepositoryRoot = $null
+foreach ($candidate in @(
+    (Split-Path -Parent $PSScriptRoot),
+    $env:HOME_BASELINE_SOURCE,
+    (Join-Path $homeDir 'home-baseline-source')
+)) {
+    if (-not $candidate) { continue }
+    $trackedProbe = (& git -C $candidate ls-files --error-unmatch scripts/bootstrap-workspace.ps1 2>$null | Out-String).Trim()
+    if ($LASTEXITCODE -eq 0 -and $trackedProbe) {
+        $sourceRepositoryRoot = (Get-Item -LiteralPath $candidate -Force).FullName
+        break
+    }
+}
+if (-not $sourceRepositoryRoot) { throw 'No trusted Git-tracked level-0 source was found.' }
+$scriptsSource = Join-Path $sourceRepositoryRoot 'scripts'
+$trackedScriptPaths = @(& git -C $sourceRepositoryRoot ls-files -- scripts)
+if ($LASTEXITCODE -ne 0 -or -not $trackedScriptPaths) { throw 'Tracked scripts inventory is unavailable.' }
+foreach ($tracked in $trackedScriptPaths) {
+    if ($tracked -match '[\x00-\x1f]' -or -not $tracked.StartsWith('scripts/')) {
+        throw "Unsafe tracked scripts path: $tracked"
+    }
+}
+$sourceRootItem = Get-Item -LiteralPath $scriptsSource -Force -ErrorAction Stop
+if (-not $sourceRootItem.PSIsContainer `
+    -or $sourceRootItem.LinkType `
+    -or ($sourceRootItem.Attributes -band [IO.FileAttributes]::ReparsePoint)) {
+    throw "Bootstrap source must be a regular directory: $scriptsSource"
+}
+Assert-SdhNoUntrustedLinkComponents -Path $scriptsSource
+$linkedSource = Get-ChildItem -LiteralPath $scriptsSource -Force -Recurse -ErrorAction Stop |
+    Where-Object { $_.LinkType -or ($_.Attributes -band [IO.FileAttributes]::ReparsePoint) } |
+    Select-Object -First 1
+if ($linkedSource) {
+    throw "Bootstrap source tree must not contain links or reparse points: $($linkedSource.FullName)"
+}
 
 if (-not $RepoName) {
     $RepoName = ($WorkspaceName -replace 'Projects$', '-baseline' -replace ' ', '-').ToLower()
@@ -177,6 +286,41 @@ if ($LASTEXITCODE -ne 0) {
 if (-not (Test-Path $workspaceDir -PathType Container)) {
     Write-Error "Verzeichnis '$workspaceDir' existiert nicht."
 }
+$workspaceItem = Get-Item -LiteralPath $workspaceDir -Force
+if ($workspaceItem.LinkType -or ($workspaceItem.Attributes -band [IO.FileAttributes]::ReparsePoint)) {
+    throw "Workspace must not be a link or reparse point: $workspaceDir"
+}
+$homeFull = [IO.Path]::GetFullPath((Get-Item -LiteralPath $homeDir -Force).FullName).TrimEnd([IO.Path]::DirectorySeparatorChar)
+$workspaceParent = [IO.Path]::GetFullPath($workspaceItem.Directory.FullName).TrimEnd([IO.Path]::DirectorySeparatorChar)
+$comparison = if ($IsWindows) { [StringComparison]::OrdinalIgnoreCase } else { [StringComparison]::Ordinal }
+if (-not $workspaceParent.Equals($homeFull, $comparison)) {
+    throw "Workspace must be a direct child of HOME: $workspaceDir"
+}
+foreach ($relative in @(
+    '.gitignore', 'README.md', 'AGENTS.md', 'CLAUDE.md', 'GEMINI.md', 'constitution.md', 'STATS.md',
+    'release-please-config.json', '.release-please-manifest.json', 'scripts', '.github',
+    '.github/copilot-instructions.md', '.github/workflows', '.github/workflows/homogeneity-check.yml',
+    '.github/workflows/release-please.yml', 'docs', 'docs/project-statistics.md',
+    'docs/project-statistics.config.json', '.specify', '.specify/memory', '.specify/memory/constitution.md'
+)) {
+    $candidate = Join-Path $workspaceDir $relative
+    Assert-SdhNoUntrustedLinkComponents -Path $candidate
+    $candidateItem = Get-Item -LiteralPath $candidate -Force -ErrorAction SilentlyContinue
+    if ($candidateItem -and ($candidateItem.LinkType -or ($candidateItem.Attributes -band [IO.FileAttributes]::ReparsePoint))) {
+        throw "Managed bootstrap target must not be a link or reparse point: $candidate"
+    }
+}
+$homeReadmeCandidate = Join-Path $homeDir 'README.md'
+Assert-SdhNoUntrustedLinkComponents -Path $homeReadmeCandidate
+$homeReadmeItem = Get-Item -LiteralPath $homeReadmeCandidate -Force -ErrorAction SilentlyContinue
+if ($homeReadmeItem -and ($homeReadmeItem.LinkType -or ($homeReadmeItem.Attributes -band [IO.FileAttributes]::ReparsePoint))) {
+    throw "HOME README must not be a link or reparse point: $homeReadmeCandidate"
+}
+$existingScripts = Join-Path $workspaceDir 'scripts'
+if ((Test-Path -LiteralPath $existingScripts -PathType Container) `
+    -and (Get-ChildItem -LiteralPath $existingScripts -Force | Select-Object -First 1)) {
+    throw "Existing non-empty scripts target will not be adopted: $existingScripts"
+}
 if (Test-Path (Join-Path $workspaceDir '.git') -PathType Container) {
     Write-Error "'$workspaceDir' ist bereits ein Git-Repository."
 }
@@ -221,7 +365,10 @@ $subRepos | ForEach-Object { Write-Host "    Gefunden: $_/" }
 Write-Host '→ Erstelle .gitignore …'
 $gitignorePath = Join-Path $workspaceDir '.gitignore'
 if ($PSCmdlet.ShouldProcess($gitignorePath, '.gitignore erstellen')) {
-    $lines  = @('# Sub-Verzeichnisse mit eigenen Git-Repositories (automatisch erkannt)')
+    $existingGitignore = if (Test-Path -LiteralPath $gitignorePath -PathType Leaf) {
+        Get-Content -LiteralPath $gitignorePath -Raw -Encoding UTF8
+    } else { '' }
+    $lines  = @('# home-baseline bootstrap managed ignores', '# Sub-Verzeichnisse mit eigenen Git-Repositories (automatisch erkannt)')
     $lines += $subRepos | ForEach-Object { "$_/" }
     $lines += @(
         '',
@@ -245,7 +392,12 @@ if ($PSCmdlet.ShouldProcess($gitignorePath, '.gitignore erstellen')) {
         'build/',
         'node_modules/'
     )
-    $lines | Set-Content -Path $gitignorePath -Encoding UTF8
+    if ($existingGitignore -notmatch '(?m)^# home-baseline bootstrap managed ignores$') {
+        $managed = $lines -join [Environment]::NewLine
+        $separator = if ($existingGitignore -and -not $existingGitignore.EndsWith("`n")) { [Environment]::NewLine } else { '' }
+        $content = $existingGitignore + $separator + $(if ($existingGitignore) { [Environment]::NewLine } else { '' }) + $managed + [Environment]::NewLine
+        Set-Content -LiteralPath $gitignorePath -Value $content -Encoding UTF8 -NoNewline
+    }
     Write-Host '    OK  .gitignore erstellt' -ForegroundColor Green
 }
 
@@ -257,7 +409,13 @@ $targetHooks   = Join-Path $targetScripts 'hooks'
 
 if ($PSCmdlet.ShouldProcess($targetScripts, 'Scripts kopieren')) {
     New-Item -ItemType Directory -Path $targetScripts -Force | Out-Null
-    Copy-Item (Join-Path $scriptsSource '*') $targetScripts -Recurse -Force
+    foreach ($tracked in $trackedScriptPaths) {
+        $relative = $tracked.Substring('scripts/'.Length)
+        $source = Join-Path $sourceRepositoryRoot $tracked
+        $target = Join-Path $targetScripts $relative
+        $null = New-Item -ItemType Directory -Path (Split-Path -Parent $target) -Force
+        Copy-Item -LiteralPath $source -Destination $target -Force
+    }
     if ($IsLinux -or $IsMacOS) {
         Get-ChildItem $targetScripts -Filter '*.sh' | ForEach-Object { & chmod +x $_.FullName }
         if (Test-Path (Join-Path $targetHooks 'pre-push')) {
@@ -478,7 +636,11 @@ jobs:
 Write-Host '→ Initialisiere Git-Repository …'
 if ($PSCmdlet.ShouldProcess($workspaceDir, 'git init + commit')) {
     & git -C $workspaceDir init
-    & git -C $workspaceDir add -A
+    Install-HBVerifiedPrePushHook -RepositoryRoot $workspaceDir
+    Add-HBWorkspaceBaselineToIndex -RepositoryRoot $workspaceDir
+    if (-not $NoRemote) {
+        Invoke-HBBootstrapPublicationScan -RepositoryRoot $workspaceDir -Staged
+    }
     $commitMsg = @"
 chore: initiale Baseline-Konfiguration für $WorkspaceName
 
@@ -491,10 +653,10 @@ Nach dem Clonen auf neuem Gerät:
 
 Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>
 "@
-    & git -C $workspaceDir commit -m $commitMsg
+    & git -c core.hooksPath=/dev/null -C $workspaceDir commit -m $commitMsg
     Write-Host '    OK  Initialer Commit erstellt' -ForegroundColor Green
 
-    $statisticsRenderer = Join-Path $workspaceDir 'scripts/render-project-statistics.ps1'
+    $statisticsRenderer = Join-Path $scriptsSource 'render-project-statistics.ps1'
     if (Test-Path $statisticsRenderer) {
         Write-Host '→ Initialisiere ASCII-Statistikprofil 2 …'
         & pwsh -NoProfile -File $statisticsRenderer -Repo $workspaceDir 2>$null | Out-Null
@@ -507,7 +669,7 @@ docs: initialize ASCII statistics profile 2
 
 Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>
 '@
-                & git -C $workspaceDir commit -m $statisticsCommitMessage
+                & git -c core.hooksPath=/dev/null -C $workspaceDir commit -m $statisticsCommitMessage
             }
             Write-Host '    OK  ASCII-Statistikprofil 2 initialisiert' -ForegroundColor Green
         } else {
@@ -517,6 +679,10 @@ Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>
 }
 
 # --- Remote-Repo erstellen und pushen ------------------------------------------
+
+if (-not $NoRemote -and -not $WhatIfPreference) {
+    Invoke-HBBootstrapPublicationScan -RepositoryRoot $workspaceDir
+}
 
 if ($NoRemote) {
     Write-Host '→ Remote-Erstellung uebersprungen (-NoRemote).'
@@ -555,13 +721,7 @@ if ($NoRemote) {
     }
 }
 
-# --- Hooks installieren --------------------------------------------------------
-
-Write-Host '→ Installiere Git-Hooks …'
-if ($PSCmdlet.ShouldProcess($workspaceDir, 'Hooks installieren')) {
-    pwsh (Join-Path $targetScripts 'install-hooks.ps1')
-    Write-Host '    OK  Hooks installiert' -ForegroundColor Green
-}
+# Der kanonische pre-push Hook wurde vor dem ersten Commit verifiziert installiert.
 
 # --- ~/README.md aktualisieren ------------------------------------------------
 

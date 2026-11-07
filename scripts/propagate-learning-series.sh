@@ -30,9 +30,10 @@ set -euo pipefail
 
 # --- Konfiguration / Configuration --------------------------------------------
 
-SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
-LEVEL0_DIR="$(cd -- "${SCRIPT_DIR}/.." && pwd)"
+SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd -P)"
+LEVEL0_DIR="$(cd -- "${SCRIPT_DIR}/.." && pwd -P)"
 SRC_UNITS="${LEVEL0_DIR}/docs/learning-units"
+. "${SCRIPT_DIR}/lib/secure-development-hardening.sh"
 
 HOME_DIR="$(cd -- ~ && pwd)"
 SERIES="SecureCaseTracker"        # Registry-/Verzeichnis-Token (ohne Bindestrich)
@@ -103,6 +104,10 @@ fi
 
 # --- Vorabpruefungen / Prerequisite checks ------------------------------------
 
+if [ -L "$LEVEL0_DIR/docs" ] || [ -L "$SRC_UNITS" ]; then
+  echo "Fehler / Error: kanonische Lernreihen-Quelle darf kein symbolischer Link sein / canonical learning-series source must not be a symbolic link" >&2
+  exit 1
+fi
 if [ ! -d "$SRC_UNITS" ]; then
   echo "Fehler / Error: Quelle nicht gefunden / source not found: $SRC_UNITS" >&2
   exit 1
@@ -121,6 +126,39 @@ info() { echo "→ $*"; }
 ok()   { echo "✓ $*"; }
 warn() { echo "⚠ $*"; }
 plan() { if [ "$DRY_RUN" -eq 1 ]; then echo "  [DRY-RUN] $*"; else echo "  [OK] $*"; fi; }
+
+assert_safe_source_file() {
+  local rel="$1"
+  sdh_assert_safe_managed_source "$SRC_UNITS" "$rel"
+}
+
+validate_source_inventory() {
+  local rel
+  while IFS= read -r rel; do
+    if ! assert_safe_source_file "$rel"; then
+      echo "Fehler / Error: unsichere Lernreihen-Quelldatei abgelehnt / unsafe learning-series source rejected: ${rel}" >&2
+      return 1
+    fi
+  done < <(propagation_unit_files)
+}
+
+validate_target_inventory() {
+  local level="$1" repo="$2" rel
+  while IFS= read -r rel; do
+    sdh_assert_safe_managed_destination "$repo" "docs/learning-units/$rel" || return 1
+  done < <(propagation_unit_files)
+  if [ "$SHARED_GUIDES_ONLY" -eq 0 ] && [ "$level" = "2" ]; then
+    while IFS= read -r rel; do
+      sdh_assert_safe_managed_destination "$repo" "$rel" || return 1
+    done < <(series_root_intakes)
+  fi
+  while IFS= read -r rel; do
+    sdh_assert_safe_managed_destination "$repo" "$rel" || return 1
+  done < <(shared_root_guides)
+  if [ "$SHARED_GUIDES_ONLY" -eq 0 ]; then
+    sdh_assert_safe_managed_destination "$repo" 'README.md' || return 1
+  fi
+}
 
 # --- Quell-Dateimengen der Serie / Series source file sets --------------------
 # Gibt relative Pfade (unter docs/learning-units) der zur Serie gehoerenden
@@ -182,7 +220,9 @@ series_root_intakes() {
 discover_repos() {
   python3 - "$REGISTRY" "$SERIES" "$HOME_DIR" <<'PYEOF'
 import json, sys, os
+from pathlib import Path
 reg, series, home = sys.argv[1], sys.argv[2], sys.argv[3]
+home_root = Path(home).resolve()
 data = json.load(open(reg, encoding="utf-8"))
 repos = data.get("repositories", []) if isinstance(data, dict) else data
 rows = []
@@ -191,14 +231,37 @@ level1_slugs = {
     "secureorderdesk": "secure-orderdesk-baseline",
     "secureserviceharvester": "secure-serviceharvester",
 }
+
+def contains_control(value):
+    return any(ord(char) < 32 or ord(char) == 127 for char in value)
+
+def has_untrusted_link_component(path):
+    current = Path(path.anchor)
+    for part in path.parts[1:]:
+        current = current / part
+        if current.is_symlink() and current.lstat().st_uid != 0:
+            return True
+    return False
+
 for e in repos:
     if not isinstance(e, dict):
         continue
     path = e.get("path", "")
+    if not isinstance(path, str) or not path or contains_control(path):
+        continue
     if series.lower() not in path.lower():
         continue
     level = e.get("level", 0)
-    abspath = path if os.path.isabs(path) else os.path.join(home, path)
+    lexical = Path(path).expanduser() if os.path.isabs(path) else home_root / path
+    lexical = Path(os.path.abspath(lexical))
+    if has_untrusted_link_component(lexical):
+        continue
+    resolved = lexical.resolve()
+    try:
+        resolved.relative_to(home_root)
+    except ValueError:
+        continue
+    abspath = str(resolved)
     if int(level) == 1:
         slug = level1_slugs.get(series.lower(), "")
     else:
@@ -279,6 +342,11 @@ copy_one() {
   local rel="$1" destbase="$2" repo="$3" target_rel="$4"
   local src="${SRC_UNITS}/${rel}"
   local dst="${destbase}/${rel}"
+  assert_safe_source_file "$rel" || {
+    echo "Fehler / Error: unsichere Lernreihen-Quelldatei abgelehnt / unsafe learning-series source rejected: ${rel}" >&2
+    return 3
+  }
+  sdh_assert_safe_managed_destination "$repo" "$target_rel" || return 3
   if [ -f "$dst" ] && cmp -s -- "$src" "$dst"; then
     return 1  # unveraendert
   fi
@@ -287,8 +355,7 @@ copy_one() {
     return 2
   fi
   if [ "$DRY_RUN" -eq 0 ]; then
-    mkdir -p -- "$(dirname -- "$dst")"
-    cp -- "$src" "$dst"
+    sdh_copy_managed_file_atomic "$SRC_UNITS" "$rel" "$repo" "$target_rel"
   fi
   return 0    # geaendert
 }
@@ -297,12 +364,16 @@ ensure_readme_start_link() {
   local repo="$1"
   local readme="${repo}/README.md"
   local marker='<!-- home-baseline-learner-start -->'
+  local tmp_file
 
+  sdh_assert_safe_managed_destination "$repo" 'README.md' || return 3
   if [ -f "$readme" ] && grep -Fq "$marker" "$readme"; then
     return 1
   fi
   if [ "$DRY_RUN" -eq 0 ]; then
-    cat >> "$readme" <<'EOF'
+    tmp_file="$(mktemp)"
+    if [ -f "$readme" ]; then cp -- "$readme" "$tmp_file"; else : > "$tmp_file"; fi
+    cat >> "$tmp_file" <<'EOF'
 
 <!-- home-baseline-learner-start -->
 ## Start fuer Lernende / Start for Learners
@@ -313,6 +384,8 @@ du Unit 00 oder einen KI-Agenten startest.
 *Start with [`START-HERE-FUER-LERNENDE.md`](START-HERE-FUER-LERNENDE.md) before
 starting unit 00 or an AI agent.*
 EOF
+    sdh_replace_managed_file_atomic "$repo" 'README.md' "$tmp_file"
+    rm -f -- "$tmp_file"
   fi
   return 0
 }
@@ -323,6 +396,7 @@ ensure_readme_guiding_principle() {
   local marker='<!-- include-everyone-guiding-principle -->'
   local block_file tmp_file
 
+  sdh_assert_safe_managed_destination "$repo" 'README.md' || return 3
   [ -f "$readme" ] || return 1
   grep -Fq "$marker" "$readme" && return 1
 
@@ -362,7 +436,8 @@ EOF
       cat "$readme" >> "$tmp_file"
     fi
 
-    mv "$tmp_file" "$readme"
+    sdh_replace_managed_file_atomic "$repo" 'README.md' "$tmp_file"
+    rm -f -- "$tmp_file"
     rm -f "$block_file"
   fi
   return 0
@@ -375,7 +450,7 @@ process_repo() {
   REPOS_TOTAL=$((REPOS_TOTAL + 1))
   local name; name="$(basename -- "$repo")"
 
-  if [ ! -d "$repo/.git" ]; then
+  if [ -L "$repo" ] || [ ! -d "$repo/.git" ]; then
     warn "Uebersprungen (kein Git-Repo) / skipped (not a git repo): $repo"
     REPOS_SKIPPED=$((REPOS_SKIPPED + 1))
     return
@@ -433,6 +508,12 @@ process_repo() {
     fi
   fi
 
+  if ! validate_target_inventory "$level" "$repo"; then
+    warn "Uebersprungen (unsicherer Zielpfad) / skipped (unsafe target path): $name"
+    REPOS_SKIPPED=$((REPOS_SKIPPED + 1))
+    return
+  fi
+
   if ! preflight_newer_targets "$level" "$repo"; then
     warn "Uebersprungen (mindestens eine Zieldatei ist neuer) / skipped (at least one target file is newer): $name"
     REPOS_SKIPPED=$((REPOS_SKIPPED + 1))
@@ -440,13 +521,16 @@ process_repo() {
   fi
 
   info "Repo (Level ${level}): ${name}"
-  local changed=0 rel
+  local changed=0 rel copy_status readme_status
 
   # 1) docs/learning-units/ synchronisieren (alle Ebenen)
   while IFS= read -r rel; do
     if copy_one "$rel" "${repo}/docs/learning-units" "$repo" "docs/learning-units/${rel}"; then
       changed=$((changed + 1)); FILES_CHANGED=$((FILES_CHANGED + 1))
       [ "$VERBOSE" -eq 1 ] && plan "docs/learning-units/${rel}"
+    else
+      copy_status=$?
+      [ "$copy_status" -eq 1 ] || [ "$copy_status" -eq 2 ] || return "$copy_status"
     fi
   done < <(propagation_unit_files)
 
@@ -456,6 +540,9 @@ process_repo() {
       if copy_one "$rel" "$repo" "$repo" "$rel"; then
         changed=$((changed + 1)); FILES_CHANGED=$((FILES_CHANGED + 1))
         [ "$VERBOSE" -eq 1 ] && plan "(root) ${rel}"
+      else
+        copy_status=$?
+        [ "$copy_status" -eq 1 ] || [ "$copy_status" -eq 2 ] || return "$copy_status"
       fi
     done < <(series_root_intakes)
   fi
@@ -465,6 +552,9 @@ process_repo() {
     if copy_one "$rel" "$repo" "$repo" "$rel"; then
       changed=$((changed + 1)); FILES_CHANGED=$((FILES_CHANGED + 1))
       [ "$VERBOSE" -eq 1 ] && plan "(root) ${rel}"
+    else
+      copy_status=$?
+      [ "$copy_status" -eq 1 ] || [ "$copy_status" -eq 2 ] || return "$copy_status"
     fi
   done < <(shared_root_guides)
 
@@ -474,10 +564,16 @@ process_repo() {
     if ensure_readme_guiding_principle "$repo"; then
       changed=$((changed + 1)); FILES_CHANGED=$((FILES_CHANGED + 1))
       [ "$VERBOSE" -eq 1 ] && plan "README.md (Leitsatz)"
+    else
+      readme_status=$?
+      [ "$readme_status" -eq 1 ] || return "$readme_status"
     fi
     if ensure_readme_start_link "$repo"; then
       changed=$((changed + 1)); FILES_CHANGED=$((FILES_CHANGED + 1))
       [ "$VERBOSE" -eq 1 ] && plan "README.md (Lernenden-Einstieg)"
+    else
+      readme_status=$?
+      [ "$readme_status" -eq 1 ] || return "$readme_status"
     fi
   fi
 
@@ -548,6 +644,8 @@ echo "Registry:         ${REGISTRY}"
 [ "$DRY_RUN" -eq 1 ] && echo "Modus / Mode:     DRY-RUN (keine Aenderungen / no changes)"
 [ "$SHARED_GUIDES_ONLY" -eq 1 ] && echo "Umfang / Scope:   SHARED-GUIDES-ONLY"
 echo
+
+validate_source_inventory || exit 1
 
 file_count="$(propagation_unit_files | wc -l | tr -d ' ')"
 lb_count="$(propagation_unit_files | grep -c '^lernbegleiter/' || true)"

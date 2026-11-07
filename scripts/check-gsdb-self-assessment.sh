@@ -255,6 +255,7 @@ render_gsdb_intake() {
   local rendered tmp archived
 
   [ -f "$template" ] || die "GSDB-Intake-Template nicht gefunden: $template"
+  sdh_assert_safe_managed_destination "$repo" 'Lastenheft_GSDB-Spec-Kit-Intensivpruefung.md'
 
   archived="$(find_archived_intake "$repo" "$(basename "$target")")"
   if [ ! -f "$target" ] && [ -n "$archived" ]; then
@@ -277,13 +278,14 @@ render_gsdb_intake() {
     return 0
   fi
 
-  rendered="$(mktemp)"
+  rendered="$(mktemp "$repo/.gsdb-intake.XXXXXX")"
   sdh_render_template "$template" "$rendered" "$project_name"
 
   if [ -f "$target" ]; then
+    sdh_assert_safe_managed_destination "$repo" 'Lastenheft_GSDB-Spec-Kit-Intensivpruefung.md'
     if grep -q '<!-- gsdb-spec-kit-intensivpruefung:start -->' "$target" \
       && grep -q '<!-- gsdb-spec-kit-intensivpruefung:end -->' "$target"; then
-      tmp="$(mktemp)"
+      tmp="$(mktemp "$repo/.gsdb-intake-merge.XXXXXX")"
       awk -v rendered="$rendered" '
         BEGIN {
           while ((getline line < rendered) > 0) block = block line "\n"
@@ -300,13 +302,15 @@ render_gsdb_intake() {
         }
         in_generated == 0 { print }
       ' "$target" > "$tmp"
-      mv "$tmp" "$target"
+      sdh_assert_safe_managed_destination "$repo" 'Lastenheft_GSDB-Spec-Kit-Intensivpruefung.md'
+      mv -f -- "$tmp" "$target"
     else
       printf '  Hinweis: vorhandenes GSDB-Intake ohne Marker bleibt unveraendert: %s\n' "$target"
     fi
     rm -f "$rendered"
   else
-    mv "$rendered" "$target"
+    sdh_assert_safe_managed_destination "$repo" 'Lastenheft_GSDB-Spec-Kit-Intensivpruefung.md'
+    mv -f -- "$rendered" "$target"
   fi
 }
 
@@ -338,7 +342,7 @@ EOF
 
 check_repo() {
   local repo="$1"
-  local project_name language report_tmp report_target open_count=0 preset_output preset_id dry_mode
+  local project_name language report_tmp report_target open_count=0 preset_output preset_id dry_mode order_status
   local gsdb_intake_missing=false
   local registry_meta registry_level="" registry_language="" registry_msl_status="" registry_preset_profile=""
 
@@ -359,7 +363,14 @@ check_repo() {
   printf '## %s\n' "$repo"
   printf '  Sprache / language: %s\n' "$language"
 
-  report_tmp="$(mktemp)"
+  if $OPT_CHECK_ONLY || $OPT_DRY_RUN; then
+    report_tmp="$(mktemp)"
+  else
+    sdh_assert_safe_managed_destination "$repo" 'docs/security/gsdb-self-assessment.md'
+    mkdir -p "$repo/docs/security"
+    sdh_assert_safe_managed_destination "$repo" 'docs/security/gsdb-self-assessment.md'
+    report_tmp="$(mktemp "$repo/docs/security/.gsdb-report.XXXXXX")"
+  fi
   write_report_header "$report_tmp" "$repo" "$project_name" "$language"
 
   check_path "$repo" "$report_tmp" "GSDB README" "docs/secure-development/README.md" "GSDB synchronisieren" || open_count=$((open_count + 1))
@@ -457,14 +468,16 @@ check_repo() {
 - Naechster Schritt / Next step: \`Lastenheft_GSDB-Spec-Kit-Intensivpruefung.md\` spaeter manuell mit \`/speckit-specify\` starten, wenn die intensive Pruefung erfolgen soll.
 EOF
 
+  sdh_assert_safe_managed_destination "$repo" 'docs/security/gsdb-self-assessment.md'
+  sdh_assert_safe_managed_destination "$repo" 'Lastenheft_GSDB-Spec-Kit-Intensivpruefung.md'
   if $OPT_CHECK_ONLY; then
     printf '  check-only: Bericht und Intake nicht geschrieben; Open=%s\n' "$open_count"
   elif $OPT_DRY_RUN; then
     printf '  [dry-run] docs/security/gsdb-self-assessment.md schreiben; Open=%s\n' "$open_count"
   else
-    mkdir -p "$repo/docs/security"
     report_target="$repo/docs/security/gsdb-self-assessment.md"
-    mv "$report_tmp" "$report_target"
+    sdh_assert_safe_managed_destination "$repo" 'docs/security/gsdb-self-assessment.md'
+    mv -f -- "$report_tmp" "$report_target"
     printf '  geschrieben: docs/security/gsdb-self-assessment.md\n'
   fi
 
@@ -484,10 +497,15 @@ EOF
     else
       printf '  aktualisiert: Lastenheft_Abarbeitungsreihenfolge.md\n'
     fi
-  elif $OPT_DRY_RUN && $gsdb_intake_missing; then
-    printf '  [dry-run] Lastenheft_Abarbeitungsreihenfolge.md aktualisieren\n'
   else
-    printf '  unveraendert: Lastenheft_Abarbeitungsreihenfolge.md\n'
+    order_status=$?
+    if [ "$order_status" -ne 1 ]; then
+      die 'Lastenheft_Abarbeitungsreihenfolge.md konnte nicht sicher aktualisiert werden'
+    elif $OPT_DRY_RUN && $gsdb_intake_missing; then
+      printf '  [dry-run] Lastenheft_Abarbeitungsreihenfolge.md aktualisieren\n'
+    else
+      printf '  unveraendert: Lastenheft_Abarbeitungsreihenfolge.md\n'
+    fi
   fi
 
   return "$open_count"

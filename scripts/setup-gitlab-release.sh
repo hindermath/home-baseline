@@ -8,9 +8,11 @@ set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 TEMPLATES_DIR="${SCRIPT_DIR}/templates"
+. "${SCRIPT_DIR}/lib/secure-development-hardening.sh"
 
 TARGET_REPO="$PWD"
 OPT_GITLAB_URL=""
+OPT_EXPECTED_PROJECT=""
 OPT_SKIP_PROJECT_SETTINGS=false
 OPT_FORCE=false
 
@@ -21,6 +23,7 @@ USAGE:
 
 OPTIONS:
   --gitlab-url URL         GitLab base URL, for example https://gitlab-ce.gwdg.de
+  --expected-project ID    Exact HOST/GROUP/PROJECT authorization for project settings
   --skip-project-settings  Do not enable ci_push_repository_for_job_token_allowed
   --force                  Overwrite release-gitlab.sh and CHANGELOG.md if present
   -h, --help               Show this help
@@ -37,38 +40,61 @@ normalize_repo_path() {
   printf '%s' "${path%/}"
 }
 
-repo_path_from_remote() {
-  case "$1" in
-    https://*)
-      printf '%s' "${1#https://}" | sed -E 's#^[^/]+/##; s#\.git$##'
-      ;;
-    git@*:*)
-      printf '%s' "$1" | sed -E 's#^git@[^:]+:##; s#\.git$##'
-      ;;
-    ssh://git@*/*)
-      printf '%s' "$1" | sed -E 's#^ssh://git@[^/]+/##; s#\.git$##'
-      ;;
-    *)
-      printf '%s' ""
-      ;;
-  esac
+install_template_atomic() {
+  local source="$1" repo="$2" relative="$3" executable="${4:-false}"
+  local target="$repo/$relative" parent temp
+  sdh_assert_safe_managed_destination "$repo" "$relative"
+  parent="$(dirname "$target")"
+  mkdir -p "$parent"
+  sdh_assert_safe_managed_destination "$repo" "$relative"
+  temp="$(mktemp "$parent/.$(basename "$target").XXXXXX")"
+  cp -- "$source" "$temp"
+  if [ "$executable" = true ]; then chmod 700 "$temp"; fi
+  sdh_assert_safe_managed_destination "$repo" "$relative"
+  mv -f -- "$temp" "$target"
 }
 
-repo_host_from_remote() {
-  case "$1" in
+parse_gitlab_remote() {
+  local remote="$1" authority path
+  REMOTE_HOST=""
+  REMOTE_PATH=""
+  case "$remote" in
     https://*)
-      printf '%s' "${1#https://}" | cut -d/ -f1
+      authority="${remote#https://}"
+      [ "$authority" != "${authority#*/}" ] || return 1
+      path="${authority#*/}"
+      authority="${authority%%/*}"
+      [[ "$authority" != *"@"* ]] || return 1
+      REMOTE_HOST="$authority"
+      REMOTE_PATH="${path%.git}"
       ;;
     git@*:*)
-      printf '%s' "$1" | sed -E 's#^git@([^:]+):.*#\1#'
+      REMOTE_HOST="${remote#git@}"
+      REMOTE_HOST="${REMOTE_HOST%%:*}"
+      REMOTE_PATH="${remote#*:}"
+      REMOTE_PATH="${REMOTE_PATH%.git}"
       ;;
     ssh://git@*/*)
-      printf '%s' "$1" | sed -E 's#^ssh://git@([^/]+)/.*#\1#'
+      authority="${remote#ssh://git@}"
+      REMOTE_HOST="${authority%%/*}"
+      REMOTE_PATH="${authority#*/}"
+      REMOTE_PATH="${REMOTE_PATH%.git}"
       ;;
-    *)
-      printf '%s' ""
-      ;;
+    *) return 1 ;;
   esac
+  [[ "$REMOTE_HOST" =~ ^[A-Za-z0-9.-]+(:[0-9]+)?$ ]] || return 1
+  [[ "$REMOTE_PATH" =~ ^[A-Za-z0-9._-]+(/[A-Za-z0-9._-]+)+$ ]] || return 1
+  [[ "/$REMOTE_PATH/" != *"/../"* ]] || return 1
+}
+
+gitlab_url_host() {
+  local value="$1" authority
+  [[ "$value" == https://* ]] || return 1
+  authority="${value#https://}"
+  authority="${authority%/}"
+  [[ "$authority" != */* && "$authority" != *"@"* ]] || return 1
+  [[ "$authority" =~ ^[A-Za-z0-9.-]+(:[0-9]+)?$ ]] || return 1
+  printf '%s\n' "$authority"
 }
 
 ensure_release_stage() {
@@ -80,7 +106,7 @@ ensure_release_stage() {
     return 0
   fi
 
-  tmp_file="$(mktemp)"
+  tmp_file="$(mktemp "${ci_file}.stage.XXXXXX")"
   if grep -Eq '^stages:[[:space:]]*\[.*\]' "$ci_file"; then
     awk '
       BEGIN { done = 0 }
@@ -121,7 +147,7 @@ ensure_release_stage() {
     } > "$tmp_file"
   fi
 
-  mv "$tmp_file" "$ci_file"
+  mv -f -- "$tmp_file" "$ci_file"
 }
 
 enable_job_token_push() {
@@ -144,21 +170,36 @@ enable_job_token_push() {
     return 0
   fi
 
-  repo_path="$(repo_path_from_remote "$remote_url")"
-  if [ -z "$repo_path" ]; then
-    echo "  WARN: could not derive GitLab project path from origin remote"
+  if ! parse_gitlab_remote "$remote_url"; then
+    echo "  WARN: origin remote is not a supported credential-free GitLab URL"
     return 0
   fi
+  repo_path="$REMOTE_PATH"
 
   if [ -n "$OPT_GITLAB_URL" ]; then
-    gitlab_host="${OPT_GITLAB_URL#https://}"
-    gitlab_host="${gitlab_host%/}"
+    if ! gitlab_host="$(gitlab_url_host "$OPT_GITLAB_URL")"; then
+      echo "  WARN: --gitlab-url must be a credential-free HTTPS host"
+      return 0
+    fi
+    if [ "$gitlab_host" != "$REMOTE_HOST" ]; then
+      echo "  WARN: --gitlab-url host does not match origin; project setting not changed"
+      return 0
+    fi
   else
-    gitlab_host="$(repo_host_from_remote "$remote_url")"
+    gitlab_host="$REMOTE_HOST"
   fi
 
   if [ -z "$gitlab_host" ]; then
     echo "  WARN: could not derive GitLab host from origin remote"
+    return 0
+  fi
+
+  if [ -z "$OPT_EXPECTED_PROJECT" ]; then
+    echo "  WARN: --expected-project is required before changing project settings"
+    return 0
+  fi
+  if [ "$OPT_EXPECTED_PROJECT" != "${gitlab_host}/${repo_path}" ]; then
+    echo "  WARN: expected GitLab project does not match origin; project setting not changed"
     return 0
   fi
 
@@ -180,6 +221,12 @@ while [ $# -gt 0 ]; do
   case "$1" in
     --gitlab-url)
       OPT_GITLAB_URL="${2:-}"
+      [ -n "$OPT_GITLAB_URL" ] || { echo "ERROR: --gitlab-url requires a value" >&2; exit 2; }
+      shift
+      ;;
+    --expected-project)
+      OPT_EXPECTED_PROJECT="${2:-}"
+      [ -n "$OPT_EXPECTED_PROJECT" ] || { echo "ERROR: --expected-project requires a value" >&2; exit 2; }
       shift
       ;;
     --skip-project-settings)
@@ -216,21 +263,32 @@ for required in \
   fi
 done
 
-if [ ! -d "$TARGET_REPO/.git" ]; then
+if [ -L "$TARGET_REPO" ] || [ ! -e "$TARGET_REPO/.git" ]; then
   echo "ERROR: target is not a git repository: $(short_path "$TARGET_REPO")" >&2
   exit 2
 fi
+TARGET_REPO="$(cd "$TARGET_REPO" && pwd -P)"
+git_root="$(git -C "$TARGET_REPO" rev-parse --show-toplevel 2>/dev/null || true)"
+[ -n "$git_root" ] || { echo "ERROR: target is not a git repository root" >&2; exit 2; }
+git_root="$(cd "$git_root" && pwd -P)"
+[ "$git_root" = "$TARGET_REPO" ] || { echo "ERROR: target must be the exact repository root" >&2; exit 2; }
+
+for managed_path in scripts/release-gitlab.sh CHANGELOG.md .gitlab-ci.yml; do
+  sdh_assert_safe_managed_destination "$TARGET_REPO" "$managed_path"
+done
 
 echo "GitLab release automation"
 echo "Target: $(short_path "$TARGET_REPO")"
 
-mkdir -p "${TARGET_REPO}/scripts"
-cp "${TEMPLATES_DIR}/release-gitlab.sh.tmpl" "${TARGET_REPO}/scripts/release-gitlab.sh"
-chmod +x "${TARGET_REPO}/scripts/release-gitlab.sh"
-echo "  OK: wrote scripts/release-gitlab.sh"
+if [ ! -e "${TARGET_REPO}/scripts/release-gitlab.sh" ] || $OPT_FORCE; then
+  install_template_atomic "${TEMPLATES_DIR}/release-gitlab.sh.tmpl" "$TARGET_REPO" scripts/release-gitlab.sh true
+  echo "  OK: wrote scripts/release-gitlab.sh"
+else
+  echo "  INFO: scripts/release-gitlab.sh already present"
+fi
 
 if [ ! -f "${TARGET_REPO}/CHANGELOG.md" ] || $OPT_FORCE; then
-  cp "${TEMPLATES_DIR}/changelog-template.md" "${TARGET_REPO}/CHANGELOG.md"
+  install_template_atomic "${TEMPLATES_DIR}/changelog-template.md" "$TARGET_REPO" CHANGELOG.md false
   echo "  OK: wrote CHANGELOG.md"
 else
   echo "  INFO: CHANGELOG.md already present"
@@ -240,19 +298,26 @@ ci_file="${TARGET_REPO}/.gitlab-ci.yml"
 job_template="$(cat "${TEMPLATES_DIR}/gitlab-release-job.yml.tmpl")"
 
 if [ ! -f "$ci_file" ]; then
+  ci_tmp="$(mktemp "${TARGET_REPO}/.gitlab-ci.XXXXXX")"
   {
     printf 'stages:\n  - release\n\n'
     printf '%s\n' "$job_template"
-  } > "$ci_file"
+  } > "$ci_tmp"
+  sdh_assert_safe_managed_destination "$TARGET_REPO" '.gitlab-ci.yml'
+  mv -f -- "$ci_tmp" "$ci_file"
   echo "  OK: created .gitlab-ci.yml"
 else
-  ensure_release_stage "$ci_file"
-  if grep -q 'home-baseline gitlab release automation' "$ci_file"; then
+  ci_tmp="$(mktemp "${TARGET_REPO}/.gitlab-ci.XXXXXX")"
+  cp -- "$ci_file" "$ci_tmp"
+  ensure_release_stage "$ci_tmp"
+  if grep -q 'home-baseline gitlab release automation' "$ci_tmp"; then
     echo "  INFO: release job already present in .gitlab-ci.yml"
   else
-    printf '\n%s\n' "$job_template" >> "$ci_file"
+    printf '\n%s\n' "$job_template" >> "$ci_tmp"
     echo "  OK: appended release job to .gitlab-ci.yml"
   fi
+  sdh_assert_safe_managed_destination "$TARGET_REPO" '.gitlab-ci.yml'
+  mv -f -- "$ci_tmp" "$ci_file"
 fi
 
 enable_job_token_push "$TARGET_REPO"

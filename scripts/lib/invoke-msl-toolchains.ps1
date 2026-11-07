@@ -36,6 +36,35 @@ Import-Module (Join-Path $PSScriptRoot 'msl-toolchains.psm1') -Force
 try {
     if ($CompareOnly -and $WhatIfPreference) { throw 'Vergleich und Vorschau sind getrennte Modi / compare and preview are distinct modes.' }
     $cli = Get-Content -LiteralPath $Registry -Raw | ConvertFrom-Json -AsHashtable
+    $approvedMslProbes = @{
+        dotnet = [ordered]@{ command = 'dotnet'; args = @('--version'); companions = @() }
+        go = [ordered]@{ command = 'go'; args = @('version'); companions = @() }
+        java = [ordered]@{ command = 'java'; args = @('-version'); companions = @([ordered]@{ command = 'javac'; args = @('-version') }) }
+        python = [ordered]@{ command = 'python3'; args = @('--version'); companions = @() }
+        rust = [ordered]@{ command = 'rustc'; args = @('--version'); companions = @([ordered]@{ command = 'cargo'; args = @('--version') }) }
+        swift = [ordered]@{ command = 'swift'; args = @('--version'); companions = @() }
+    }
+    foreach ($tool in @($cli['mslToolchains'])) {
+        $expected = $approvedMslProbes[[string]$tool['id']]
+        if (-not $expected) {
+            throw "CLI-Probe ist nicht in der Code-Policy autorisiert / probe is not code-authorized: $($tool['id'])"
+        }
+        $actualContract = [ordered]@{
+            command = [string]$tool['command']; args = @($tool['args']);
+            companions = @($tool['companions'] | ForEach-Object {
+                [ordered]@{ command = [string]$_['command']; args = @($_['args']) }
+            })
+        } | ConvertTo-Json -Depth 8 -Compress
+        $expectedContract = [ordered]@{
+            command = [string]$expected['command']; args = @($expected['args']);
+            companions = @($expected['companions'] | ForEach-Object {
+                [ordered]@{ command = [string]$_['command']; args = @($_['args']) }
+            })
+        } | ConvertTo-Json -Depth 8 -Compress
+        if ($actualContract -cne $expectedContract) {
+            throw "CLI-Probe weicht von der Code-Policy ab / probe differs from code policy: $($tool['id'])"
+        }
+    }
     $packages = Get-Content -LiteralPath $PackageRegistry -Raw | ConvertFrom-Json -AsHashtable
     $result = Invoke-HBMslMaintenance -CliRegistry $cli -PackageRegistry $packages -Platform $platform `
         -CompareOnly:$CompareOnly -Preview:$WhatIfPreference -SkipUpgrade:$SkipUpgrade -AllowAdminPrompts:$AllowAdminPrompts

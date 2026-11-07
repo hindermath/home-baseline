@@ -6,6 +6,9 @@
 
 set -euo pipefail
 
+SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd -P)"
+. "${SCRIPT_DIR}/lib/secure-development-hardening.sh"
+
 OPT_DRY_RUN=false
 OPT_YES=false
 
@@ -19,9 +22,10 @@ while [ $# -gt 0 ]; do
   shift
 done
 
-HOME_CONSTITUTION="${HOME}/constitution.md"
+HOME_ROOT="$(cd -- "$HOME" && pwd -P)"
+HOME_CONSTITUTION="${HOME_ROOT}/constitution.md"
 
-if [ ! -f "$HOME_CONSTITUTION" ]; then
+if ! sdh_assert_safe_managed_source "$HOME_ROOT" 'constitution.md'; then
   echo "ERROR: ~/constitution.md nicht gefunden — bitte zuerst erstellen." >&2
   exit 2
 fi
@@ -38,6 +42,7 @@ echo "$(printf '=%.0s' {1..50})"
 ws_get_status() {
   local ws="$1"
   local ws_const="${ws}/constitution.md"
+  sdh_assert_safe_managed_destination "$ws" 'constitution.md' || return 1
   if [ -f "$ws_const" ]; then
     local ws_ver
     ws_ver=$(head -1 "$ws_const" | grep -o 'v[0-9]*\.[0-9]*\.[0-9]*' || true)
@@ -58,7 +63,7 @@ while IFS= read -r ws; do
   ws_short="${ws/#$HOME/~}"
   status=$(ws_get_status "$ws")
   echo "  ${status}: ${ws_short}"
-done < <(find "$HOME" -mindepth 1 -maxdepth 1 -type d 2>/dev/null | sort)
+done < <(find "$HOME_ROOT" -mindepth 1 -maxdepth 1 -type d 2>/dev/null | sort)
 
 if ! $HAS_WORKSPACES; then
   echo "Keine Level-1-Workspaces gefunden."
@@ -102,7 +107,7 @@ while IFS= read -r ws; do
     continue
   fi
 
-  if ! cp "$HOME_CONSTITUTION" "${ws}/constitution.md" 2>/dev/null; then
+  if ! sdh_copy_managed_file_atomic "$HOME_ROOT" 'constitution.md' "$ws" 'constitution.md'; then
     echo "  ERROR: Kopieren fehlgeschlagen: ${ws_short}" >&2
     SKIPPED=$((SKIPPED + 1))
     continue
@@ -115,7 +120,7 @@ Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>" >/dev/null
 
   echo "  UPDATED: ${ws_short} (${CONST_VER})"
   UPDATED=$((UPDATED + 1))
-done < <(find "$HOME" -mindepth 1 -maxdepth 1 -type d 2>/dev/null | sort)
+done < <(find "$HOME_ROOT" -mindepth 1 -maxdepth 1 -type d 2>/dev/null | sort)
 
 echo ""
 echo "$(printf '=%.0s' {1..50})"

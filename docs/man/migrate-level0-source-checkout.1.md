@@ -18,11 +18,15 @@ The command requires a clean `main` checkout with `HEAD == origin/main`, one
 worktree, the expected remote, and an absent target. It moves the checkout to
 `~/home-baseline-source`, writes `~/.home-baseline/source-repository.json`,
 updates local path-scoped configuration, and retains a temporary legacy link.
+Rejected origin URLs are never echoed in text or JSON diagnostics, preventing
+embedded credentials from entering logs.
 
 Der Befehl verlangt einen sauberen, synchronen `main`-Checkout, genau einen
 Worktree, das erwartete Remote und ein freies Ziel. Danach schreibt er einen
 lokalen, geheimnisfreien Zustandsnachweis und behaelt voruebergehend einen
 Kompatibilitaetslink.
+Abgelehnte Origin-URLs werden nie in Text- oder JSON-Diagnosen wiedergegeben,
+damit eingebettete Zugangsdaten nicht in Logs gelangen.
 
 Use `--finalize` or `-Finalize` only after every local tool has been validated
 at the new path. Finalization is idempotent: an already absent compatibility

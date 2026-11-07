@@ -109,8 +109,58 @@ contains_repo() {
   return 1
 }
 
+assert_contained_unlinked_path() {
+  local root="$1"
+  local candidate="$2"
+  python3 - "$root" "$candidate" <<'PY'
+import pathlib, sys
+root = pathlib.Path(sys.argv[1]).absolute()
+candidate = pathlib.Path(sys.argv[2]).absolute()
+try:
+    relative = candidate.relative_to(root)
+except ValueError:
+    raise SystemExit(2)
+current = root
+for part in relative.parts:
+    current /= part
+    if current.is_symlink():
+        raise SystemExit(2)
+try:
+    candidate.resolve(strict=False).relative_to(root.resolve(strict=True))
+except (OSError, ValueError):
+    raise SystemExit(2)
+PY
+}
+
+assert_managed_paths_safe() {
+  local repo="$1"
+  local relative
+  local managed_root
+  for relative in \
+    .specify .specify/templates .specify/memory \
+    .specify/templates/spec-template.md .specify/templates/plan-template.md \
+    .specify/templates/tasks-template.md .specify/memory/constitution.md \
+    .specify/scripts .specify/extensions .opencode .opencode/command \
+    .gitignore .vscode .vscode/settings.json .claude .claude/skills \
+    .agents .agents/skills .github .github/agents .github/prompts .gemini; do
+    assert_contained_unlinked_path "$repo" "$repo/$relative" ||
+      die "Unsicherer verlinkter Spec-Kit-Zielpfad: $repo/$relative"
+  done
+  for managed_root in \
+    "$repo/.specify" "$repo/.opencode/command" "$repo/.claude/skills" \
+    "$repo/.agents/skills" "$repo/.github/agents" "$repo/.github/prompts"; do
+    if [ -d "$managed_root" ] && [ -n "$(find "$managed_root" -type l -print -quit)" ]; then
+      die "Verlinkter Eintrag im verwalteten Spec-Kit-Ziel: $managed_root"
+    fi
+  done
+}
+
 add_repo() {
   local repo="$1"
+  local scope_root="${2:-$HOME_DIR}"
+  [ -e "$repo" ] || return 0
+  assert_contained_unlinked_path "$scope_root" "$repo" ||
+    die "Repository verlaesst den Suchbereich oder enthaelt einen symbolischen Link: $repo"
   [ -d "$repo" ] || return 0
   is_spec_repo "$repo" || return 0
   contains_repo "$repo" && return 0
@@ -120,7 +170,7 @@ add_repo() {
 discover_repos() {
   REPOS=()
 
-  add_repo "$LEVEL0_SOURCE"
+  add_repo "$LEVEL0_SOURCE" "$LEVEL0_SOURCE"
 
   local workspace project
   for workspace in "${HOME_DIR}"/*; do
@@ -198,12 +248,18 @@ restore_constitution() {
 apply_governance_templates() {
   local repo="$1"
   local name
+  local template
 
   for name in spec-template.md plan-template.md tasks-template.md; do
     run_or_show cp "$TEMPLATE_CACHE/$name" "$repo/.specify/templates/$name"
   done
 
   if ! $OPT_DRY_RUN; then
+    for template in "$repo"/.specify/templates/*.md; do
+      [ -e "$template" ] || [ -L "$template" ] || continue
+      assert_contained_unlinked_path "$repo" "$template" ||
+        die "Unsicheres verlinktes Template-Ziel: $template"
+    done
     perl -0pi -e 's#/speckit\.checklist#/speckit-checklist#g; s#/speckit\.plan#/speckit-plan#g; s#/speckit\.tasks#/speckit-tasks#g' \
       "$repo"/.specify/templates/*.md
   fi
@@ -269,6 +325,20 @@ clean_generated_whitespace() {
 
 remove_legacy_gemini_integration() {
   local repo="$1"
+  local resolved_repo resolved_parent
+
+  if [ -L "$repo/.gemini" ] || [ -L "$repo/.gemini/commands" ]; then
+    log "  Fehler: Legacy-Gemini-Pfad enthaelt einen symbolischen Link / legacy Gemini path contains a symbolic link"
+    return 1
+  fi
+  resolved_repo="$(realpath "$repo")" || return 1
+  if [ -e "$repo/.gemini" ]; then
+    resolved_parent="$(realpath "$repo/.gemini")" || return 1
+    case "$resolved_parent" in
+      "$resolved_repo"/*) ;;
+      *) log "  Fehler: Legacy-Gemini-Pfad verlaesst das Repository / legacy Gemini path escapes repository"; return 1 ;;
+    esac
+  fi
 
   if $OPT_DRY_RUN; then
     log "  [dry-run] legacy .gemini/commands und gemini.manifest.json entfernen"
@@ -317,6 +387,9 @@ update_repo() {
   local agent
 
   log "## $repo"
+  assert_contained_unlinked_path "$HOME_DIR" "$repo" ||
+    die "Repository verlaesst Home oder enthaelt einen symbolischen Link: $repo"
+  assert_managed_paths_safe "$repo"
 
   if ! $OPT_DRY_RUN && ! $OPT_ALLOW_DIRTY; then
     status="$(git -C "$repo" status --short)"
@@ -331,6 +404,9 @@ update_repo() {
   for agent in "${AGENTS[@]}"; do
     run_specify "$repo" "$agent"
   done
+
+  # Revalidate after the external generator before restoring governed files.
+  assert_managed_paths_safe "$repo"
 
   restore_constitution "$repo" "$constitution_backup"
   [ -n "$constitution_backup" ] && rm -f "$constitution_backup"

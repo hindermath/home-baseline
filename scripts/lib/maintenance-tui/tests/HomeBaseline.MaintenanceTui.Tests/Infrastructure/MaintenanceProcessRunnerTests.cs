@@ -72,6 +72,48 @@ public sealed class MaintenanceProcessRunnerTests
         Assert.IsNull(result.Report);
     }
 
+    [TestMethod]
+    public async Task NoisyChildOutputIsBounded()
+    {
+        var directory = Path.Combine(Path.GetTempPath(), $"home-baseline-noisy-{Guid.NewGuid():N}");
+        Directory.CreateDirectory(directory);
+        try
+        {
+            var script = Path.Combine(directory, "noisy.ps1");
+            File.WriteAllText(
+                script,
+                "$value='x'*300000;[Console]::Out.Write($value);[Console]::Error.Write($value)");
+            var invocation = new ProcessInvocation(
+                "pwsh",
+                ["-NoProfile", "-NonInteractive", "-File", script],
+                "noisy fixture",
+                Path.Combine(directory, "events.jsonl"),
+                Path.Combine(directory, "report.json"),
+                Guid.NewGuid());
+
+            var result = await new MaintenanceProcessRunner().RunAsync(invocation, CancellationToken.None);
+
+            Assert.IsTrue(result.OutputTruncated);
+            Assert.IsLessThanOrEqualTo(262_144, System.Text.Encoding.UTF8.GetByteCount(result.StandardOutput));
+            Assert.IsLessThanOrEqualTo(262_144, System.Text.Encoding.UTF8.GetByteCount(result.StandardError));
+        }
+        finally
+        {
+            Directory.Delete(directory, recursive: true);
+        }
+    }
+
+    [TestMethod]
+    public async Task OversizedFinalReportIsRejectedBeforeParsing()
+    {
+        using var fixture = new ReportFixture();
+        File.WriteAllText(fixture.ReportPath, new string('x', 1_100_000));
+
+        var result = await fixture.RunAsync();
+
+        Assert.IsNull(result.Report);
+    }
+
     private sealed class ReportFixture : IDisposable
     {
         private readonly string _directory = Path.Combine(

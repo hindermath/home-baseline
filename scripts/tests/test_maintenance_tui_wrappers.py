@@ -553,6 +553,48 @@ PY
             if os.name != "nt":
                 self.assertEqual(event_stream.stat().st_mode & 0o077, 0)
 
+    def test_event_writer_rejects_linked_parent_and_leaf_without_external_write(self) -> None:
+        def invoke(path: Path) -> subprocess.CompletedProcess[str]:
+            return subprocess.run(
+                [
+                    "python3", str(FLEET_ENGINE), "event", "--event-stream", str(path),
+                    "--run-id", str(uuid.uuid4()), "--sequence", "1",
+                    "--event-type", "run-started", "--status", "RUNNING",
+                    "--message-de", "Start", "--message-en", "Start",
+                    "--details-json", "{}",
+                ],
+                text=True, capture_output=True, check=False,
+            )
+
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            outside_dir = root / "outside"
+            outside_dir.mkdir()
+            linked_parent = root / "events"
+            linked_parent.symlink_to(outside_dir, target_is_directory=True)
+            parent_result = invoke(linked_parent / "events.jsonl")
+            self.assertNotEqual(parent_result.returncode, 0, parent_result.stderr)
+            self.assertFalse((outside_dir / "events.jsonl").exists())
+
+            linked_parent.unlink()
+            linked_parent.mkdir()
+            sentinel = root / "sentinel.jsonl"
+            sentinel.write_text("sentinel\n", encoding="utf-8")
+            (linked_parent / "events.jsonl").symlink_to(sentinel)
+            leaf_result = invoke(linked_parent / "events.jsonl")
+            self.assertNotEqual(leaf_result.returncode, 0, leaf_result.stderr)
+            self.assertEqual(sentinel.read_text(encoding="utf-8"), "sentinel\n")
+
+    def test_wrappers_delegate_event_creation_to_handle_anchored_engine(self) -> None:
+        bash_source = BASH_WRAPPER.read_text(encoding="utf-8")
+        powershell_source = POWERSHELL_WRAPPER.read_text(encoding="utf-8")
+        engine_source = FLEET_ENGINE.read_text(encoding="utf-8")
+        self.assertNotIn(': > "$EVENT_STREAM"', bash_source)
+        self.assertNotIn("[IO.FileStream]::new($EventStream", powershell_source)
+        self.assertIn("_open_private_parent_fd(event_stream)", engine_source)
+        self.assertIn("dir_fd=parent_fd", engine_source)
+        self.assertIn('getattr(os, "O_NOFOLLOW", 0)', engine_source)
+
     def test_event_writer_rejects_non_object_details(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
             result = subprocess.run(

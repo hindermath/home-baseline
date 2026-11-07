@@ -13,8 +13,9 @@ import unittest
 
 
 REPO = Path(__file__).resolve().parents[2]
-SCRIPT = REPO / "scripts" / "propagate-learning-series.sh"
-POWERSHELL_WRAPPER = REPO / "scripts" / "propagate-learning-series.ps1"
+SCRIPTS = REPO / "scripts"
+SCRIPT = SCRIPTS / "propagate-learning-series.sh"
+POWERSHELL_WRAPPER = SCRIPTS / "propagate-learning-series.ps1"
 GUIDES = (
     "START-HERE-FUER-LERNENDE.md",
     "GIT-START-FUER-LERNENDE.md",
@@ -51,8 +52,13 @@ class SharedGuidePropagationTests(unittest.TestCase):
             units = level0 / "docs" / "learning-units"
             scripts = level0 / "scripts"
             scripts.mkdir(parents=True)
+            (scripts / "lib").mkdir()
             units.mkdir(parents=True)
             shutil.copy2(SCRIPT, scripts / SCRIPT.name)
+            shutil.copy2(
+                SCRIPTS / "lib" / "secure-development-hardening.sh",
+                scripts / "lib",
+            )
 
             for guide in GUIDES:
                 (units / guide).write_text(f"canonical {guide}\n", encoding="utf-8")

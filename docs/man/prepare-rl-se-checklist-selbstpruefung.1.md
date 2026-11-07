@@ -27,12 +27,17 @@ Suche unter dem Home-Verzeichnis. Das Skript synchronisiert
 die zentrale Secure-Development-Basis, erzeugt bei Bedarf
 `Lastenheft_RL-SE-Checklist-Selbstpruefung.md` und pflegt die sichtbare
 `Lastenheft_Abarbeitungsreihenfolge.md`.
+Ein vorhandener oder dangling Link am Lastenheft-Ziel blockiert bereits vor
+der Baseline-Synchronisierung, sodass kein Teilergebnis entsteht.
 
 *`prepare-rl-se-checklist-selbstpruefung` discovers repositories below the home
 directory or uses explicit `--repo` / `-Repo` targets. It synchronizes the
 central secure-development baseline, creates
 `Lastenheft_RL-SE-Checklist-Selbstpruefung.md` when missing, and maintains the
 visible `Lastenheft_Abarbeitungsreihenfolge.md`.*
+
+*An existing or dangling link at the intake destination blocks before baseline
+synchronization so no partial result is created.*
 
 Die Vorbereitung ist nicht auf Memory-Safe Languages beschraenkt. MSL-Status ist
 ein Pruefpunkt des spaeteren Spec-Kit-Laufs, aber keine Voraussetzung fuer diese
@@ -62,6 +67,14 @@ does not populate project-specific `docs/security/` evidence.*
 | `--commit` | `-Commit` | Pro geaendertem Repo committen |
 | `--push` | `-Push` | Pro Repo pushen; aktiviert Commit |
 | `--allow-dirty` | `-AllowDirty` | Bestehende lokale Aenderungen erlauben |
+
+Auch mit `--allow-dirty` / `-AllowDirty` wird ausschließlich der verwaltete
+RL-SE-/Baseline-Pfadsatz per `commit --only` committed. Bereits gestagte
+Fremddateien bleiben unverändert im Index und gelangen nicht in einen Push.
+
+*Even with `--allow-dirty` / `-AllowDirty`, only the managed RL-SE/baseline
+path set is committed via `commit --only`. Previously staged unrelated files
+remain in the index and do not enter a push.*
 
 ## Beispiele / Examples
 

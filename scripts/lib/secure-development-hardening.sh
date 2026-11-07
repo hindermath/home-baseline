@@ -294,6 +294,115 @@ sdh_manifest_paths() {
   ' "$manifest"
 }
 
+sdh_assert_safe_managed_destination() {
+  local repo="$1"
+  local relative="$2"
+  local target current component resolved_repo resolved_existing
+  local existing
+
+  if [ ! -d "$repo" ] || [ -L "$repo" ] \
+      || printf '%s' "$relative" | LC_ALL=C grep -q '[[:cntrl:]]'; then
+    sdh_log 'LIE003: unsicherer verwalteter Pfad / unsafe managed path: [redacted]' >&2
+    return 1
+  fi
+
+  case "$relative" in
+    ""|/*|\\*|[A-Za-z]:*|..|../*|*/../*|*/..|-*|*/-*|*'\'*|*$'\n'*|*$'\r'*|*$'\t'*)
+      sdh_log 'LIE003: unsicherer verwalteter Pfad / unsafe managed path: [redacted]' >&2
+      return 1
+      ;;
+  esac
+
+  current="$repo"
+  while IFS= read -r component; do
+    [ -n "$component" ] || continue
+    current="$current/$component"
+    if [ -L "$current" ]; then
+      sdh_log "LIE005: verwalteter Pfad enthaelt einen symbolischen Link / managed path contains a symbolic link: $relative" >&2
+      return 1
+    fi
+  done < <(printf '%s\n' "$relative" | tr '/' '\n')
+
+  target="$repo/$relative"
+  existing="$target"
+  while [ ! -e "$existing" ] && [ ! -L "$existing" ]; do
+    [ "$existing" != "$repo" ] || break
+    existing="$(dirname "$existing")"
+  done
+  resolved_repo="$(realpath "$repo")" || return 1
+  resolved_existing="$(realpath "$existing")" || return 1
+  case "$resolved_existing" in
+    "$resolved_repo"|"$resolved_repo"/*) ;;
+    *)
+      sdh_log "LIE005: verwalteter Pfad verlaesst das Repository / managed path escapes repository: $relative" >&2
+      return 1
+      ;;
+  esac
+}
+
+sdh_assert_safe_managed_source() {
+  local root="$1"
+  local relative="$2"
+  local source resolved_root resolved_source
+
+  sdh_assert_safe_managed_destination "$root" "$relative" || return 1
+  source="$root/$relative"
+  [ -f "$source" ] && [ ! -L "$source" ] || {
+    sdh_log "LIE004: verwaltete Quelldatei fehlt oder ist unsicher / managed source is missing or unsafe: $relative" >&2
+    return 1
+  }
+  resolved_root="$(realpath "$root")" || return 1
+  resolved_source="$(realpath "$source")" || return 1
+  case "$resolved_source" in
+    "$resolved_root"/*) ;;
+    *)
+      sdh_log "LIE005: verwaltete Quelle verlaesst den Quellbaum / managed source escapes source root: $relative" >&2
+      return 1
+      ;;
+  esac
+}
+
+sdh_replace_managed_file_atomic() {
+  local repo="$1"
+  local relative="$2"
+  local staged_source="$3"
+  local mode="${4:-}"
+  local target parent temporary
+
+  [ -f "$staged_source" ] && [ ! -L "$staged_source" ] || {
+    sdh_log 'LIE004: temporaere Quelldatei fehlt oder ist unsicher / staged source is missing or unsafe' >&2
+    return 1
+  }
+  sdh_assert_safe_managed_destination "$repo" "$relative" || return 1
+  target="$repo/$relative"
+  parent="$(dirname "$target")"
+  mkdir -p -- "$parent"
+  sdh_assert_safe_managed_destination "$repo" "$relative" || return 1
+  temporary="$(mktemp "$parent/.$(basename "$target").XXXXXX")" || return 1
+  if ! cp -P -- "$staged_source" "$temporary" \
+      || [ -L "$temporary" ] || [ ! -f "$temporary" ]; then
+    rm -f -- "$temporary"
+    return 1
+  fi
+  if [ -n "$mode" ]; then
+    chmod "$mode" "$temporary" || { rm -f -- "$temporary"; return 1; }
+  fi
+  sdh_assert_safe_managed_destination "$repo" "$relative" || { rm -f -- "$temporary"; return 1; }
+  mv -f -- "$temporary" "$target"
+}
+
+sdh_copy_managed_file_atomic() {
+  local source_root="$1"
+  local source_relative="$2"
+  local target_root="$3"
+  local target_relative="$4"
+  local mode="${5:-}"
+
+  sdh_assert_safe_managed_source "$source_root" "$source_relative" || return 1
+  sdh_replace_managed_file_atomic "$target_root" "$target_relative" \
+    "$source_root/$source_relative" "$mode"
+}
+
 sdh_sync_baseline() {
   local source_dir="$1"
   local target_dir="$2"
@@ -301,9 +410,17 @@ sdh_sync_baseline() {
   local source_manifest="$source_dir/baseline-manifest.json"
   local target_manifest="$target_dir/baseline-manifest.json"
   local new_paths old_paths relative source_file target_file copied=0 removed=0
+  local target_repo target_relative
 
   command -v jq >/dev/null 2>&1 || { sdh_log "  Fehler: jq wird fuer die manifestgesteuerte Synchronisation benoetigt"; return 1; }
-  [ -f "$source_manifest" ] || { sdh_log "  Fehler: Baseline-Manifest fehlt: $source_manifest"; return 1; }
+  sdh_assert_safe_managed_source "$source_dir" 'baseline-manifest.json' || {
+    sdh_log "  Fehler: Baseline-Manifest fehlt oder ist unsicher: $source_manifest"
+    return 1
+  }
+  target_repo="$(cd "$(dirname "$target_dir")/.." 2>/dev/null && pwd -P)" || return 1
+  target_relative="${target_dir#"$target_repo"/}"
+  [ "$target_relative" != "$target_dir" ] || { sdh_log 'LIE005: Baseline-Ziel liegt ausserhalb des Repositorys / baseline target is outside the repository' >&2; return 1; }
+  sdh_assert_safe_managed_destination "$target_repo" "$target_relative/baseline-manifest.json" || return 1
   new_paths="$(mktemp)"
   old_paths="$(mktemp)"
   sdh_manifest_paths "$source_manifest" > "$new_paths"
@@ -316,6 +433,7 @@ sdh_sync_baseline() {
   while IFS= read -r relative; do
     [ -n "$relative" ] || continue
     case "$relative" in /*|*../*) sdh_log "  Fehler: unsicherer Manifestpfad: $relative"; rm -f "$new_paths" "$old_paths"; return 1 ;; esac
+    sdh_assert_safe_managed_destination "$target_repo" "$target_relative/$relative" || { rm -f "$new_paths" "$old_paths"; return 1; }
     if ! grep -Fqx "$relative" "$new_paths"; then
       target_file="$target_dir/$relative"
       if [ -f "$target_file" ]; then
@@ -328,21 +446,22 @@ sdh_sync_baseline() {
   while IFS= read -r relative; do
     [ -n "$relative" ] || continue
     case "$relative" in /*|*../*) sdh_log "  Fehler: unsicherer Manifestpfad: $relative"; rm -f "$new_paths" "$old_paths"; return 1 ;; esac
+    sdh_assert_safe_managed_destination "$target_repo" "$target_relative/$relative" || { rm -f "$new_paths" "$old_paths"; return 1; }
     source_file="$source_dir/$relative"
     target_file="$target_dir/$relative"
-    [ -f "$source_file" ] || { sdh_log "  Fehler: verwaltete Quelldatei fehlt: $relative"; rm -f "$new_paths" "$old_paths"; return 1; }
+    sdh_assert_safe_managed_source "$source_dir" "$relative" || { rm -f "$new_paths" "$old_paths"; return 1; }
     if [ ! -f "$target_file" ] || ! cmp -s "$source_file" "$target_file"; then
       copied=$((copied + 1))
       if [ "$dry_run" != "1" ] && [ "$relative" != "baseline-manifest.json" ]; then
-        mkdir -p "$(dirname "$target_file")"
-        cp "$source_file" "$target_file"
+        sdh_copy_managed_file_atomic "$source_dir" "$relative" "$target_repo" \
+          "$target_relative/$relative" || { rm -f "$new_paths" "$old_paths"; return 1; }
       fi
     fi
   done < "$new_paths"
 
   if [ "$dry_run" != "1" ]; then
-    mkdir -p "$target_dir"
-    cp "$source_manifest" "$target_manifest"
+    sdh_copy_managed_file_atomic "$source_dir" 'baseline-manifest.json' "$target_repo" \
+      "$target_relative/baseline-manifest.json" || { rm -f "$new_paths" "$old_paths"; return 1; }
     find "$target_dir" -depth -type d -empty -delete 2>/dev/null || true
   fi
   sdh_log "  Baseline-Sync: $copied aktualisiert, $removed veraltet entfernt"
@@ -368,17 +487,53 @@ sdh_find_template_file() {
   return 1
 }
 
+sdh_assert_no_untrusted_link_components() {
+  local path="$1" current="" component owner
+  case "$path" in /*) ;; *) path="$PWD/$path" ;; esac
+  while IFS= read -r component; do
+    [ -n "$component" ] || continue
+    current="$current/$component"
+    if [ -L "$current" ]; then
+      owner="$(stat -f '%u' "$current" 2>/dev/null || stat -c '%u' "$current" 2>/dev/null || true)"
+      [ "$owner" = "0" ] || {
+        sdh_log 'LIE005: Pfad enthaelt einen nicht vertrauenswuerdigen symbolischen Link / path contains an untrusted symbolic link' >&2
+        return 1
+      }
+    fi
+  done < <(printf '%s\n' "$path" | tr '/' '\n')
+}
+
 sdh_render_template() {
   local template="$1"
   local output="$2"
   local project_name="$3"
-  local today
+  local today output_parent temporary
+  sdh_assert_no_untrusted_link_components "$template" || return 1
+  [ -f "$template" ] && [ ! -L "$template" ] || return 1
+  [ ! -L "$output" ] || return 1
+  output_parent="$(dirname "$output")"
+  sdh_assert_no_untrusted_link_components "$output_parent" || return 1
+  [ -d "$output_parent" ] && [ ! -L "$output_parent" ] || return 1
+  temporary="$(mktemp "$output_parent/.$(basename "$output").XXXXXX")" || return 1
   today="$(date +%Y-%m-%d)"
 
-  sed \
-    -e "s|{{PROJECT_NAME}}|${project_name}|g" \
-    -e "s|{{DATE}}|${today}|g" \
-    "$template" > "$output"
+  SDH_PROJECT_NAME="$project_name" SDH_TEMPLATE_DATE="$today" awk '
+    function replace_literal(value, marker, replacement, before, after, index_at) {
+      while ((index_at = index(value, marker)) > 0) {
+        before = substr(value, 1, index_at - 1)
+        after = substr(value, index_at + length(marker))
+        value = before replacement after
+      }
+      return value
+    }
+    {
+      line = replace_literal($0, "{{PROJECT_NAME}}", ENVIRON["SDH_PROJECT_NAME"])
+      line = replace_literal(line, "{{DATE}}", ENVIRON["SDH_TEMPLATE_DATE"])
+      print line
+    }
+  ' "$template" > "$temporary"
+  [ ! -L "$output" ] || { rm -f -- "$temporary"; return 1; }
+  mv -f -- "$temporary" "$output"
 }
 
 sdh_order_rank() {
@@ -992,6 +1147,40 @@ sdh_view_semantics() {
   ' "$file" | sed -E 's/\]\([^)]*\)/\]/g'
 }
 
+sdh_stage_private_copy() {
+  local source="$1"
+  local parent="$2"
+  local prefix="$3"
+  python3 - "$source" "$parent" "$prefix" <<'PY'
+import os
+import pathlib
+import shutil
+import sys
+import tempfile
+
+source = pathlib.Path(sys.argv[1])
+parent = pathlib.Path(sys.argv[2])
+descriptor, temporary = tempfile.mkstemp(prefix=f".{sys.argv[3]}-", suffix=".tmp", dir=parent)
+try:
+    os.fchmod(descriptor, 0o600)
+    with source.open("rb") as input_stream, os.fdopen(descriptor, "wb", closefd=True) as output_stream:
+        shutil.copyfileobj(input_stream, output_stream)
+        output_stream.flush()
+        os.fsync(output_stream.fileno())
+    print(temporary)
+except Exception:
+    try:
+        os.close(descriptor)
+    except OSError:
+        pass
+    try:
+        os.unlink(temporary)
+    except FileNotFoundError:
+        pass
+    raise
+PY
+}
+
 sdh_restore_linked_intake_outputs() {
   local repo="$1"
   local backup_dir="$2"
@@ -1000,11 +1189,11 @@ sdh_restore_linked_intake_outputs() {
 
   for relative in "$@"; do
     target="$repo/$relative"
-    restore_tmp="$(dirname "$target")/.sdh-restore-$$-$index.tmp"
     if [ -f "$backup_dir/$index.file" ]; then
-      cp "$backup_dir/$index.file" "$restore_tmp" && mv "$restore_tmp" "$target"
+      restore_tmp="$(sdh_stage_private_copy "$backup_dir/$index.file" "$(dirname "$target")" "sdh-restore")" \
+        && mv "$restore_tmp" "$target"
     else
-      rm -f -- "$target" "$restore_tmp"
+      rm -f -- "$target"
     fi
     index=$((index + 1))
   done
@@ -1129,10 +1318,8 @@ sdh_render_linked_intake_views() {
   for ((index = 0; index < ${#outputs[@]}; index++)); do
     target="$repo/${outputs[$index]}"
     [ ! -f "$target" ] || cp "$target" "$backup_dir/$index.file"
-    publish_tmp="$(dirname "$target")/.sdh-publish-$$-$index.tmp"
-    if ! cp "${candidates[$index]}" "$publish_tmp"; then
+    if ! publish_tmp="$(sdh_stage_private_copy "${candidates[$index]}" "$(dirname "$target")" "sdh-publish")"; then
       for candidate in "${publish_temps[@]+"${publish_temps[@]}"}"; do rm -f -- "$candidate"; done
-      rm -f -- "$publish_tmp"
       rm -rf -- "$work_dir"
       return 10
     fi
@@ -1187,10 +1374,15 @@ sdh_update_order_file() {
   local order_file="$repo/Lastenheft_Abarbeitungsreihenfolge.md"
   local section_file tmp_file normalized_file
 
+  sdh_assert_safe_managed_destination "$repo" 'Lastenheft_Abarbeitungsreihenfolge.md' || return 2
+
   section_file="$(mktemp)"
   tmp_file="$(mktemp)"
   normalized_file="$(mktemp)"
-  sdh_build_order_section "$repo" > "$section_file"
+  if ! sdh_build_order_section "$repo" > "$section_file"; then
+    rm -f -- "$section_file" "$tmp_file" "$normalized_file"
+    return 2
+  fi
 
   if [ -f "$order_file" ]; then
     if grep -q '<!-- secure-development-hardening-order:start -->' "$order_file" \
@@ -1250,7 +1442,11 @@ EOF
     return 0
   fi
 
-  mv "$tmp_file" "$order_file"
+  sdh_replace_managed_file_atomic "$repo" 'Lastenheft_Abarbeitungsreihenfolge.md' "$tmp_file" || {
+    rm -f "$section_file" "$tmp_file" "$normalized_file"
+    return 2
+  }
+  rm -f "$tmp_file"
   rm -f "$section_file" "$normalized_file"
   return 0
 }
@@ -1262,7 +1458,7 @@ sdh_prepare_repo() {
   local dry_run="${4:-0}"
   local force="${5:-0}"
   local script_dir="${6:-}"
-  local language source_dir template_file target_docs intake_file
+  local language source_dir template_file target_docs intake_file rendered_intake order_status
 
   SDH_PREPARE_RESULT="skipped"
   SDH_PREPARE_REASON=""
@@ -1306,11 +1502,18 @@ sdh_prepare_repo() {
 
   target_docs="$repo/docs/secure-development"
   intake_file="$repo/Lastenheft_Secure-Development-Hardening.md"
+  sdh_assert_safe_managed_destination "$repo" 'docs/secure-development/baseline-manifest.json' || return 1
+  sdh_assert_safe_managed_destination "$repo" 'Lastenheft_Secure-Development-Hardening.md' || return 1
+  sdh_assert_safe_managed_destination "$repo" 'Lastenheft_Abarbeitungsreihenfolge.md' || return 1
 
   if [ "$dry_run" = "1" ]; then
     sdh_log "  [dry-run] docs/secure-development nach ${repo}/docs/secure-development synchronisieren"
   else
-    sdh_sync_baseline "$source_dir" "$target_docs" 0
+    if ! sdh_sync_baseline "$source_dir" "$target_docs" 0; then
+      SDH_PREPARE_RESULT="error"
+      SDH_PREPARE_REASON="Secure-Development-Baseline konnte nicht sicher synchronisiert werden"
+      return 1
+    fi
   fi
 
   if [ -f "$intake_file" ] && [ "$force" != "1" ]; then
@@ -1319,13 +1522,27 @@ sdh_prepare_repo() {
     if [ "$dry_run" = "1" ]; then
       sdh_log "  [dry-run] Lastenheft_Secure-Development-Hardening.md erzeugen"
     else
-      sdh_render_template "$template_file" "$intake_file" "$project_name"
+      if ! rendered_intake="$(mktemp)" \
+          || ! sdh_render_template "$template_file" "$rendered_intake" "$project_name" \
+          || ! sdh_replace_managed_file_atomic "$repo" 'Lastenheft_Secure-Development-Hardening.md' "$rendered_intake"; then
+        rm -f -- "${rendered_intake:-}"
+        SDH_PREPARE_RESULT="error"
+        SDH_PREPARE_REASON="Secure-Development-Intake konnte nicht sicher erzeugt werden"
+        return 1
+      fi
+      rm -f -- "$rendered_intake"
     fi
   fi
 
   if sdh_update_order_file "$repo" "$dry_run"; then
     [ "$dry_run" = "1" ] && sdh_log "  [dry-run] Lastenheft_Abarbeitungsreihenfolge.md aktualisieren"
   else
+    order_status=$?
+    if [ "$order_status" -ne 1 ]; then
+      SDH_PREPARE_RESULT="error"
+      SDH_PREPARE_REASON="Lastenheft-Abarbeitungsreihenfolge konnte nicht sicher aktualisiert werden"
+      return 1
+    fi
     [ "$dry_run" = "1" ] && sdh_log "  [dry-run] Lastenheft_Abarbeitungsreihenfolge.md unveraendert"
   fi
 

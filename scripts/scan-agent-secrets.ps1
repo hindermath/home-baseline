@@ -39,15 +39,16 @@ $AllowedSecretNamePatterns = @(
 )
 
 $SecretContentPatterns = @(
-    'id_token\s*[:=]',
-    'access_token\s*[:=]',
-    'refresh_token\s*[:=]',
-    'api[_-]?key\s*[:=]',
-    'client[_-]?secret\s*[:=]',
-    'password\s*=',
-    'authorization:\s*bearer',
-    'bearer\s+[A-Za-z0-9\-._~+/]+=*',
-    'sk-[A-Za-z0-9]{20,}',
+    'id_token\s*[:=]\s*["'']?[A-Za-z0-9._~+/=-]{8,}',
+    'access_token\s*[:=]\s*["'']?[A-Za-z0-9._~+/=-]{8,}',
+    'refresh_token\s*[:=]\s*["'']?[A-Za-z0-9._~+/=-]{8,}',
+    'api[_-]?key\s*[:=]\s*["'']?[A-Za-z0-9._~+/=-]{8,}',
+    'client[_-]?secret\s*[:=]\s*["'']?[A-Za-z0-9._~+/=-]{8,}',
+    'password\s*[:=]\s*["'']?[A-Za-z0-9._~+/=-]{8,}',
+    '--api-key\s+\S{8,}',
+    'authorization:\s*bearer\s+[A-Za-z0-9._~+/=-]{8,}',
+    'bearer\s+[A-Za-z0-9._~+/=-]{20,}',
+    '(^|[^A-Za-z0-9])sk-[A-Za-z0-9]{20,}',
     'ghp_[A-Za-z0-9]{20,}',
     'github_pat_[A-Za-z0-9_]{20,}',
     'AIza[0-9A-Za-z_-]{20,}',
@@ -103,19 +104,7 @@ if (-not $trackedRelative) {
     exit 0
 }
 
-$trackedFiles = $trackedRelative |
-    Where-Object {
-        $relative = $_.Replace('\', '/')
-        $relative.StartsWith('.agents/') -or
-        $relative.StartsWith('.claude/') -or
-        $relative.StartsWith('.codex/') -or
-        $relative.StartsWith('.gemini/') -or
-        $relative.StartsWith('.junie/') -or
-        $relative.StartsWith('.opencode/') -or
-        $relative.StartsWith('.github/agents/') -or
-        $relative.StartsWith('.github/prompts/')
-    } |
-    ForEach-Object { Join-Path $rootPath $_ }
+$trackedFiles = @($trackedRelative | ForEach-Object { Join-Path $rootPath $_ })
 Write-Verbose "$($trackedFiles.Count) getrackte Datei(en) werden geprüft."
 
 # --- Scan: Dateinamen ----------------------------------------------------------------
@@ -134,22 +123,68 @@ $nameHits = $trackedFiles | Where-Object {
 
 # --- Scan: Dateiinhalte (Select-String) ----------------------------------------------
 
-$contentScanFiles = @($trackedFiles |
-    Where-Object {
-        if (-not (Test-Path $_ -PathType Leaf)) { return $false }
-        $relative = [IO.Path]::GetRelativePath($rootPath, $_).Replace('\', '/')
-        return -not $relative.StartsWith('.agents/skills/')
-    })
-$contentHits = if ($contentScanFiles.Count -gt 0) {
-    Select-String -Path $contentScanFiles -Pattern $SecretContentPatterns -List |
-        Select-Object -ExpandProperty Path -Unique
-} else {
-    @()
+function Get-HBSecretScanContent {
+    param([Parameter(Mandatory)][string]$Path)
+
+    $relative = [IO.Path]::GetRelativePath($rootPath, $Path).Replace('\', '/')
+    $lines = @(
+        Get-Content -LiteralPath $Path -ErrorAction Stop |
+            Where-Object {
+                $_ -notmatch '(?i)password\s*[:=]\s*(super-secret|secret-value|literal-fixture-value)' `
+                    -and $_ -notmatch '(?i)bearer\s+abcdefghijk\b'
+            }
+    )
+    switch ($relative) {
+        'scripts/hooks/pre-push' {
+            return @($lines | Where-Object { $_ -notmatch '^secret_content_regex=' })
+        }
+        'scripts/scan-agent-secrets.sh' {
+            return @($lines | Where-Object { $_ -notmatch '^secret_content_regex=' })
+        }
+        'scripts/lib/hg-secrets.sh' {
+            return @($lines | Where-Object { $_ -notmatch '^HG_SECRET_PATTERNS=' })
+        }
+        'scripts/lib/hg-secrets.ps1' {
+            return @($lines | Where-Object { $_ -notmatch '^\$HG_SECRET_PATTERN\s*=' })
+        }
+        'scripts/scan-agent-secrets.ps1' {
+            $filtered = [Collections.Generic.List[string]]::new()
+            $insidePatterns = $false
+            foreach ($line in $lines) {
+                if ($line -match '^\$SecretContentPatterns\s*=\s*@\(') { $insidePatterns = $true; continue }
+                if ($insidePatterns -and $line -match '^\)\s*$') { $insidePatterns = $false; continue }
+                if (-not $insidePatterns) { $filtered.Add($line) }
+            }
+            return @($filtered)
+        }
+        default { return $lines }
+    }
+}
+
+$contentHits = [Collections.Generic.List[string]]::new()
+$scanErrors = [Collections.Generic.List[string]]::new()
+foreach ($file in $trackedFiles) {
+    if (-not (Test-Path -LiteralPath $file -PathType Leaf)) { continue }
+    try {
+        $content = (Get-HBSecretScanContent -Path $file) -join "`n"
+    } catch {
+        $scanErrors.Add($file)
+        continue
+    }
+    if ($content | Select-String -Pattern $SecretContentPatterns -Quiet) {
+        $contentHits.Add($file)
+    }
 }
 
 # --- Ergebnis ausgeben ---------------------------------------------------------------
 
 $foundHigh = [bool]$gitleaksFoundHigh
+
+if ($scanErrors.Count -gt 0) {
+    $foundHigh = $true
+    Write-Host 'HIGH  Getrackte Dateien konnten nicht gelesen werden:' -ForegroundColor Red
+    $scanErrors | ForEach-Object { Write-Host "      $_" -ForegroundColor Red }
+}
 
 if ($nameHits) {
     $foundHigh = $true

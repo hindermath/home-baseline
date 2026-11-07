@@ -80,7 +80,13 @@ function Get-HBRepositoryFacts {
     $head = (Invoke-HBNative git @('-C', $root, 'rev-parse', 'HEAD')).Output[0]
     $origin = (Invoke-HBNative git @('-C', $root, 'rev-parse', 'origin/main')).Output[0]
     $remote = (Invoke-HBNative git @('-C', $root, 'remote', 'get-url', 'origin')).Output[0]
-    $status = @((Invoke-HBNative git @('-C', $root, 'status', '--porcelain=v1')).Output)
+    $savedOptionalLocks = $env:GIT_OPTIONAL_LOCKS
+    try {
+        $env:GIT_OPTIONAL_LOCKS = '0'
+        $status = @((Invoke-HBNative git @('-C', $root, 'status', '--porcelain=v1')).Output)
+    } finally {
+        $env:GIT_OPTIONAL_LOCKS = $savedOptionalLocks
+    }
     $worktrees = @((Invoke-HBNative git @('-C', $root, 'worktree', 'list', '--porcelain')).Output |
         Where-Object { $_ -like 'worktree *' })
     [pscustomobject]@{
@@ -92,6 +98,66 @@ function Get-HBRepositoryFacts {
         DirtyEntries = @($status | Where-Object { $_ })
         WorktreeCount = $worktrees.Count
     }
+}
+
+function Assert-HBCanonicalLevel0Origin {
+    param([Parameter(Mandatory)][string]$Remote)
+
+    $value = $Remote.Trim()
+    $valid = $false
+    if ($value -match '^git@github\.com:hindermath/home-baseline(?:\.git)?$') {
+        $valid = $true
+    } else {
+        $uri = $null
+        if ([uri]::TryCreate($value, [UriKind]::Absolute, [ref]$uri) `
+            -and $uri.Scheme -in @('https', 'ssh') `
+            -and $uri.Host -ceq 'github.com' `
+            -and $uri.IsDefaultPort `
+            -and -not $uri.Query `
+            -and -not $uri.Fragment `
+            -and $uri.AbsolutePath.TrimEnd('/') -cmatch '^/hindermath/home-baseline(?:\.git)?$') {
+            if ($uri.Scheme -eq 'https') {
+                $valid = -not $uri.UserInfo
+            } else {
+                $valid = $uri.UserInfo -ceq 'git'
+            }
+        }
+    }
+    if (-not $valid) { throw 'Unexpected Level-0 origin remote; value omitted from diagnostics.' }
+}
+
+function Get-HBLiveCanonicalMainCommit {
+    $canonicalRemote = 'https://github.com/hindermath/home-baseline.git'
+    $savedGlobal = $env:GIT_CONFIG_GLOBAL
+    $savedNoSystem = $env:GIT_CONFIG_NOSYSTEM
+    $savedInlineConfig = @{}
+    Get-ChildItem Env: | Where-Object {
+        $_.Name -eq 'GIT_CONFIG_PARAMETERS' -or
+        $_.Name -match '^GIT_CONFIG_(COUNT|KEY_[0-9]+|VALUE_[0-9]+)$'
+    } | ForEach-Object {
+        $savedInlineConfig[$_.Name] = $_.Value
+        Remove-Item -LiteralPath "Env:$($_.Name)"
+    }
+    try {
+        $env:GIT_CONFIG_GLOBAL = if ($IsWindows) { 'NUL' } else { '/dev/null' }
+        $env:GIT_CONFIG_NOSYSTEM = '1'
+        $temporaryRoot = [IO.Path]::GetTempPath()
+        $result = Invoke-HBNative git @(
+            '-C', $temporaryRoot,
+            '-c', 'credential.helper=',
+            '-c', 'protocol.file.allow=never',
+            'ls-remote', '--exit-code', $canonicalRemote, 'refs/heads/main'
+        )
+    } finally {
+        $env:GIT_CONFIG_GLOBAL = $savedGlobal
+        $env:GIT_CONFIG_NOSYSTEM = $savedNoSystem
+        foreach ($entry in $savedInlineConfig.GetEnumerator()) {
+            Set-Item -LiteralPath "Env:$($entry.Key)" -Value $entry.Value
+        }
+    }
+    $records = @($result.Output | Where-Object { $_ -match '^[0-9a-fA-F]{40,64}\s+refs/heads/main$' })
+    if ($records.Count -ne 1) { throw 'Canonical GitHub main ref could not be resolved uniquely.' }
+    return ([string]$records[0] -split '\s+')[0].ToLowerInvariant()
 }
 
 function Set-HBJsonProperty {
@@ -181,14 +247,14 @@ try {
         $Source = Resolve-HBSourceRepository -StartPath $PSScriptRoot -AllowLegacy
     }
     $facts = Get-HBRepositoryFacts -Path $Source
+    Assert-HBCanonicalLevel0Origin -Remote $facts.Remote
+    $liveOriginMain = Get-HBLiveCanonicalMainCommit
     $problems = [Collections.Generic.List[string]]::new()
     if ($facts.Branch -ne 'main') { $problems.Add("branch is '$($facts.Branch)', expected main") }
     if ($facts.Head -ne $facts.OriginMain) { $problems.Add('HEAD differs from origin/main') }
+    if ($facts.Head.ToLowerInvariant() -ne $liveOriginMain) { $problems.Add('HEAD differs from live canonical GitHub main') }
     if ($facts.DirtyEntries.Count -gt 0) { $problems.Add('working tree is not clean') }
     if ($facts.WorktreeCount -ne 1) { $problems.Add("worktree count is $($facts.WorktreeCount), expected 1") }
-    if ($facts.Remote -notmatch 'hindermath/home-baseline(?:\.git)?$') {
-        $problems.Add("unexpected origin remote: $($facts.Remote)")
-    }
     if ($facts.Root -ne $targetPath -and (Test-Path -LiteralPath $targetPath)) {
         $problems.Add("target already exists: $targetPath")
     }

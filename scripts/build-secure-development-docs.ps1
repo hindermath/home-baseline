@@ -25,6 +25,7 @@ param([switch]$Check)
 
 Set-StrictMode -Version Latest
 $ErrorActionPreference = 'Stop'
+Import-Module (Join-Path $PSScriptRoot 'lib/managed-file-hardening.psm1') -Force
 
 $RepoRoot = Split-Path -Parent $PSScriptRoot
 $DocRoot = Join-Path $RepoRoot 'docs/secure-development'
@@ -161,14 +162,19 @@ $content += @"
 | $($manifest.compendium.version) | $($manifest.releaseDate) | Aus den zwölf kanonischen Einzelchecklisten der sicheren-Entwicklung-Basis $($manifest.baselineVersion) erzeugt; einheitliches zweiachsiges Statusmodell und klare Trennung zwischen Vorlage und Projektnachweis. / Generated from the twelve canonical individual checklists of secure-development baseline $($manifest.baselineVersion); unified two-axis status model and clear separation between template and project evidence. |
 "@
 $content = ($content -replace "`r`n", "`n").TrimEnd("`r", "`n") + "`n"
-$output = Join-Path $DocRoot $manifest.compendium.path
+$compendiumRelative = [string]$manifest.compendium.path
+if ($compendiumRelative -cne 'Checklistensammelband_Sichere-Entwicklung.md') {
+    throw 'Unsafe compendium output path in manifest.'
+}
+$managedRelative = "docs/secure-development/$compendiumRelative"
+$output = Get-HBManagedPath -Root $RepoRoot -RelativePath $managedRelative
 
 if ($Check) {
     if (-not (Test-Path $output)) { throw "Generated compendium missing: ${output}" }
-    $existing = (Get-Content $output -Raw) -replace "`r`n", "`n"
+    $existing = (Read-HBManagedText -Root $RepoRoot -RelativePath $managedRelative) -replace "`r`n", "`n"
     if ($existing -ne $content) { throw "Generated compendium is stale: ${output}" }
     Write-Host 'Secure-development generated documents are current.'
 } else {
-    [System.IO.File]::WriteAllText($output, $content, [System.Text.UTF8Encoding]::new($false))
+    Write-HBManagedTextAtomic -Root $RepoRoot -RelativePath $managedRelative -Content $content
     Write-Host "Generated ${output}"
 }

@@ -35,7 +35,7 @@
 
 **DE:** Swift ist eine MSL. Das ist besonders relevant für iOS-, watchOS- und macOS-Projekte. Swift-Code muss trotzdem auf Force-Unwraps bei nicht vertrauenswürdigen Daten, validierte Eingaben, sichere Dateizugriffe, Keychain/CryptoKit-Nutzung und Dependency-Risiken geprüft werden.
 
-**EN:** Swift is an MSL. This is especially relevant for iOS, watchOS, and macOS projects. Swift code still needs review for force unwraps on untrusted data, validated input, safe file access, Keychain/CryptoKit use, and dependency risks.
+**EN:** Swift is an MSL. This is especially relevant for iOS, watchOS, and macOS projects. Swift code still needs review for force unwraps on untrusted data, validated input, safe file handling, Keychain/CryptoKit use, and dependency risks.
 
 ## Für Auszubildende kurz erklärt / Short Explanation for Apprentices
 

@@ -213,22 +213,27 @@ discover_repos() {
 commit_and_push() {
   local repo="$1"
   local branch
+  local -a managed_paths=(
+    docs/secure-development
+    Lastenheft_Secure-Development-Hardening.md
+    Lastenheft_Abarbeitungsreihenfolge.md
+  )
 
   if ! $OPT_COMMIT && ! $OPT_PUSH; then
     return 0
   fi
 
   if $OPT_DRY_RUN; then
-    $OPT_COMMIT && log "  [dry-run] git add docs/secure-development Lastenheft_Secure-Development-Hardening.md Lastenheft_Abarbeitungsreihenfolge.md && git commit"
+    $OPT_COMMIT && log "  [dry-run] git add <managed paths> && git commit --only -- <managed paths>"
     $OPT_PUSH && log "  [dry-run] git push origin <branch>"
     return 0
   fi
 
-  git -C "$repo" add docs/secure-development Lastenheft_Secure-Development-Hardening.md Lastenheft_Abarbeitungsreihenfolge.md
-  git -C "$repo" diff --cached --check
+  git -C "$repo" add -- "${managed_paths[@]}"
+  git -C "$repo" diff --cached --check -- "${managed_paths[@]}"
 
-  if ! git -C "$repo" diff --cached --quiet; then
-    git -C "$repo" commit -m "docs: prepare secure development hardening"
+  if ! git -C "$repo" diff --cached --quiet -- "${managed_paths[@]}"; then
+    git -C "$repo" commit --only -m "docs: prepare secure development hardening" -- "${managed_paths[@]}"
   fi
 
   if $OPT_PUSH; then

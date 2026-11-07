@@ -295,9 +295,25 @@ function Write-HBMslTextFile {
     # A concurrently starting shell must see either complete profile version.
     $temporary = "$Path.$([guid]::NewGuid().ToString('N')).tmp"
     try {
-        [IO.File]::WriteAllText($temporary, $Content, [Text.UTF8Encoding]::new($false))
-        if (-not $IsWindows -and (Test-Path -LiteralPath $Path)) {
-            [IO.File]::SetUnixFileMode($temporary, [IO.File]::GetUnixFileMode($Path))
+        $options = [IO.FileStreamOptions]::new()
+        $options.Mode = [IO.FileMode]::CreateNew
+        $options.Access = [IO.FileAccess]::Write
+        $options.Share = [IO.FileShare]::None
+        $originalMode = $null
+        if (-not $IsWindows) {
+            if (Test-Path -LiteralPath $Path) { $originalMode = [IO.File]::GetUnixFileMode($Path) }
+            $options.UnixCreateMode = [IO.UnixFileMode]::UserRead -bor [IO.UnixFileMode]::UserWrite
+        }
+        $stream = [IO.FileStream]::new($temporary, $options)
+        try {
+            $bytes = [Text.UTF8Encoding]::new($false).GetBytes($Content)
+            $stream.Write($bytes, 0, $bytes.Length)
+            $stream.Flush($true)
+        } finally {
+            $stream.Dispose()
+        }
+        if (-not $IsWindows -and $null -ne $originalMode) {
+            [IO.File]::SetUnixFileMode($temporary, $originalMode)
         }
         [IO.File]::Move($temporary, $Path, $true)
     } finally { if (Test-Path -LiteralPath $temporary) { [IO.File]::Delete($temporary) } }
@@ -306,12 +322,21 @@ function Write-HBMslTextFile {
 function Copy-HBMslBackup {
     param([string]$Path)
     $backup = "$Path.hb-backup-$([datetime]::UtcNow.ToString('yyyyMMddHHmmssfff'))"
-    Copy-Item -LiteralPath $Path -Destination $backup
-    # Profile koennen Zugangsdaten enthalten; Backups bleiben benutzereigen.
-    # Profiles may contain credentials; keep backups private to the user.
+    $options = [IO.FileStreamOptions]::new()
+    $options.Mode = [IO.FileMode]::CreateNew
+    $options.Access = [IO.FileAccess]::Write
+    $options.Share = [IO.FileShare]::None
     if (-not $IsWindows) {
-        [IO.File]::SetUnixFileMode($backup, [IO.UnixFileMode]::UserRead -bor [IO.UnixFileMode]::UserWrite)
+        $options.UnixCreateMode = [IO.UnixFileMode]::UserRead -bor [IO.UnixFileMode]::UserWrite
     }
+    $source = [IO.File]::Open($Path, [IO.FileMode]::Open, [IO.FileAccess]::Read, [IO.FileShare]::Read)
+    try {
+        $destination = [IO.FileStream]::new($backup, $options)
+        try {
+            $source.CopyTo($destination)
+            $destination.Flush($true)
+        } finally { $destination.Dispose() }
+    } finally { $source.Dispose() }
 }
 
 function Set-HBMslUnixPath {

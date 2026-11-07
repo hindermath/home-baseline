@@ -24,6 +24,7 @@ $ScriptDir = Split-Path -Parent $MyInvocation.MyCommand.Path
 $LibFile = Join-Path $ScriptDir 'lib/secure-development-hardening.ps1'
 if (-not (Test-Path $LibFile)) { throw "Hilfsbibliothek nicht gefunden: $LibFile" }
 . $LibFile
+Import-Module (Join-Path $ScriptDir 'lib/managed-file-hardening.psm1') -Force
 
 
 function Resolve-HBPath {
@@ -150,7 +151,8 @@ function Test-GsdbNonMslJustification {
 
 function Write-GsdbIntake {
     param([string]$Repository, [string]$ProjectName)
-    $target = Join-Path $Repository 'Lastenheft_GSDB-Spec-Kit-Intensivpruefung.md'
+    $targetRelative = 'Lastenheft_GSDB-Spec-Kit-Intensivpruefung.md'
+    $target = Get-HBManagedPath -Root $Repository -RelativePath $targetRelative
     $template = Join-Path $ScriptDir 'templates/gsdb-spec-kit-intensivpruefung-lastenheft.md'
     if (-not (Test-Path $template)) { throw "GSDB-Intake-Template nicht gefunden: $template" }
 
@@ -172,15 +174,15 @@ function Write-GsdbIntake {
     $today = Get-Date -Format 'yyyy-MM-dd'
     $rendered = (Get-Content $template -Raw).Replace('{{PROJECT_NAME}}', $ProjectName).Replace('{{DATE}}', $today)
     if (Test-Path $target) {
-        $content = Get-Content $target -Raw
+        $content = Read-HBManagedText -Root $Repository -RelativePath $targetRelative
         if ($content -match '(?s)<!-- gsdb-spec-kit-intensivpruefung:start -->.*?<!-- gsdb-spec-kit-intensivpruefung:end -->') {
             $content = [regex]::Replace($content, '(?s)<!-- gsdb-spec-kit-intensivpruefung:start -->.*?<!-- gsdb-spec-kit-intensivpruefung:end -->', [System.Text.RegularExpressions.MatchEvaluator]{ param($m) $rendered })
-            $content | Set-Content -Path $target -Encoding UTF8
+            Write-HBManagedTextAtomic -Root $Repository -RelativePath $targetRelative -Content $content
         } else {
             Write-Host "  Hinweis: vorhandenes GSDB-Intake ohne Marker bleibt unveraendert: $target"
         }
     } else {
-        $rendered | Set-Content -Path $target -Encoding UTF8
+        Write-HBManagedTextAtomic -Root $Repository -RelativePath $targetRelative -Content $rendered
     }
 }
 
@@ -189,6 +191,8 @@ function Invoke-GsdbRepoCheck {
     if (-not (Test-Path (Join-Path $Repository '.git'))) {
         throw "kein Git-Repository / not a Git repository: $Repository"
     }
+    Assert-SdhSafeManagedDestination -Repo $Repository -RelativePath 'docs/security/gsdb-self-assessment.md'
+    Assert-SdhSafeManagedDestination -Repo $Repository -RelativePath 'Lastenheft_GSDB-Spec-Kit-Intensivpruefung.md'
 
     $projectName = Split-Path -Leaf $Repository
     $registryEntry = Get-RegistryEntryForRepo -RegistryPath $Registry -Root $HomeDir -Repository $Repository
@@ -331,9 +335,8 @@ function Invoke-GsdbRepoCheck {
     } elseif ($WhatIfPreference) {
         Write-Host "  [WhatIf] docs/security/gsdb-self-assessment.md schreiben; Open=$open"
     } else {
-        $securityDir = Join-Path $Repository 'docs/security'
-        New-Item -ItemType Directory -Path $securityDir -Force | Out-Null
-        $lines -join [Environment]::NewLine | Set-Content -Path (Join-Path $securityDir 'gsdb-self-assessment.md') -Encoding UTF8
+        Write-HBManagedTextAtomic -Root $Repository -RelativePath 'docs/security/gsdb-self-assessment.md' `
+            -Content (($lines -join [Environment]::NewLine) + [Environment]::NewLine) -CreateParent
         Write-Host '  geschrieben: docs/security/gsdb-self-assessment.md'
     }
 

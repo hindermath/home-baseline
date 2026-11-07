@@ -756,6 +756,28 @@ class AgenticWorkspaceMaintenanceTests(unittest.TestCase):
             self.assertEqual(report["overallStatus"], "PARTIAL")
             self.assertEqual(report["counts"]["failed"], 1)
 
+    def test_linked_collection_blocks_all_update_mutations(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            fixture = FleetFixture(Path(directory))
+            outside = fixture.root / "outside"
+            outside.mkdir()
+            manifest_path = fixture.manifest()
+            manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+            manifest["targets"][0]["path"] = "Linked/Fleet"
+            manifest["targets"][1]["path"] = "Linked/Fleet/Example"
+            manifest_path.write_text(json.dumps(manifest), encoding="utf-8")
+            (fixture.home / "Linked").symlink_to(outside, target_is_directory=True)
+
+            completed, report = fixture.run("update", manifest_path)
+
+            self.assertEqual(completed.returncode, 1, completed.stdout)
+            collection = next(item for item in report["targets"] if item["targetId"] == "fleet")
+            repository = next(item for item in report["targets"] if item["targetId"] == "example")
+            self.assertEqual(collection["status"], "PATH_CONFLICT")
+            self.assertEqual(repository["status"], "PATH_CONFLICT")
+            self.assertEqual(repository["findingCode"], "AncestorPathConflict")
+            self.assertFalse((outside / "Fleet" / "Example").exists())
+
     def test_stage_update_preserves_targets_and_changes_terminal_status(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
             fixture = FleetFixture(Path(directory))
@@ -952,6 +974,62 @@ class AgenticWorkspaceMaintenanceTests(unittest.TestCase):
             self.assertNotIn("Legacy", completed.stdout)
             self.assertNotIn("Preset", completed.stdout)
             self.assertNotIn("Inactive", completed.stdout)
+
+    def test_fleet_manifest_rejects_windows_drive_prefixed_home_path(self) -> None:
+        spec = importlib.util.spec_from_file_location("agentic_workspace_fleet_path_test", ENGINE)
+        assert spec is not None and spec.loader is not None
+        engine = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(engine)
+        for raw in ("C:/outside/repository", "d:relative/repository"):
+            with self.subTest(raw=raw), self.assertRaisesRegex(
+                engine.ContractError, "unsafe HOME-relative path"
+            ):
+                engine.validate_relative_path(raw)
+
+    def test_execution_required_rejects_incomplete_secure_workspace_contract(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            manifest = root / "manifest.json"
+            manifest.write_text(json.dumps({
+                "schemaVersion": "1.0",
+                "targets": [
+                    {
+                        "id": "secure-order-desk-projects",
+                        "kind": "collection",
+                        "level": 1,
+                        "path": "SecureOrderDeskProjects",
+                        "active": True,
+                        "maintenanceClass": "canonical-fleet",
+                        "memberDiscovery": "declared-targets",
+                    },
+                    {
+                        "id": "secure-order-desk",
+                        "kind": "git-repository",
+                        "level": 2,
+                        "path": "SecureOrderDeskProjects/App",
+                        "active": True,
+                        "maintenanceClass": "canonical-fleet",
+                        "remote": "https://example.invalid/app.git",
+                        "forge": "generic-git",
+                        "defaultBranch": "main",
+                    }
+                ],
+            }), encoding="utf-8")
+            contract_path = root / "contract.json"
+            contract_path.write_text(json.dumps({
+                "schemaVersion": 1,
+                "container": "test-sandbox",
+                "user": "tester",
+                "source": "/opt/reference",
+                "approvalPath": "sandbox/approval.md",
+                "expiresOn": "2099-12-31",
+                "mounts": [{"host": "Projects", "container": "/projects"}],
+            }), encoding="utf-8")
+            completed = self.run_engine(
+                "execution-required", "--manifest", str(manifest), "--contract", str(contract_path)
+            )
+            self.assertEqual(completed.returncode, 2, completed.stdout)
+            self.assertIn("SecureOrderDeskProjects", completed.stdout)
 
     def test_propagation_includes_every_advertised_preset_matrix(self) -> None:
         # DE: Ein verteilter Profilkatalog darf keine fehlenden Matrizen anbieten.

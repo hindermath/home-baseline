@@ -46,6 +46,15 @@ Bei MSL-Repositories werden:
 `Lastenheft_Abarbeitungsreihenfolge.md` from one unambiguous canonical series
 manifest or, when none exists, from `Lastenheft*.md`.*
 
+Eine fehlgeschlagene Baseline-Synchronisierung, Intake-Publikation oder
+Aktualisierung der Abarbeitungsreihenfolge beendet die Vorbereitung explizit
+mit Fehler. In diesem Zustand wird weder `prepared` gemeldet noch Commit oder
+Push erreicht.
+
+*A failed baseline synchronization, intake publication, or processing-order
+update explicitly terminates preparation with an error. That state neither
+reports `prepared` nor reaches commit or push.*
+
 ## Erzeugte Ansicht / Generated View
 
 Die manifestgestuetzte Tabelle besitzt genau diese Spaltenfolge:
@@ -108,6 +117,14 @@ guidance files.*
 | `--allow-dirty` | `-AllowDirty` | Bestehende lokale Aenderungen erlauben |
 | `--help` | `-Help` | Vollstaendige zweisprachige Hilfe; keine Writes |
 
+Auch mit `--allow-dirty` / `-AllowDirty` begrenzen Commit und Push den neuen
+Commit auf die verwalteten Secure-Development-Pfade. Bereits zuvor gestagte
+Fremddateien bleiben im Index und werden weder committed noch gepusht.
+
+*Even with `--allow-dirty` / `-AllowDirty`, commit and push restrict the new
+commit to managed secure-development paths. Previously staged unrelated files
+remain in the index and are neither committed nor pushed.*
+
 `--dry-run` und `-WhatIf` fuehren Manifest-, Link-, Kanten-, Positions- und
 Feature-Pruefungen aus, veroeffentlichen aber keine Ausgabe. Relative Links
 werden vom erzeugten View aus berechnet und muessen innerhalb des Repositorys
@@ -131,6 +148,17 @@ repository and a repository-relative manifest. Commit and push are forbidden.
 Multiple outputs are prepared candidate-first, revalidated against the complete
 consumed input set, and then atomically replaced or fully rolled back. Outputs
 must not overlap canonical inputs.*
+
+Publication und Rollback verwenden zufaellige, exklusiv angelegte temporaere
+Dateien im bereits validierten Zielverzeichnis. Der Inhalt wird ueber den bei
+der Anlage geoeffneten Dateideskriptor geschrieben; vorbereitete Links mit
+vorhersagbaren Namen koennen deshalb weder Ausgabe noch Wiederherstellung nach
+ausserhalb des Repositorys umleiten.
+
+*Publication and rollback use random, exclusively created temporary files in
+the validated destination directory. Content is written through the descriptor
+opened at creation, so pre-planted links with predictable names cannot redirect
+output or restoration outside the repository.*
 
 ## Diagnostik und Wiederherstellung / Diagnostics and Recovery
 

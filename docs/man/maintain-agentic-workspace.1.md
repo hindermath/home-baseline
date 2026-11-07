@@ -22,10 +22,19 @@ Secure-Trader-Ziele werden anhand von
 `scripts/config/maintenance-execution-contexts.json` einer freigegebenen
 Podman-Sandbox zugeordnet. Podman ist die hier verwendete Container-Laufzeit.
 Lokale Git- und Wartungsoperationen dieser Ziele haben keinen Host-Fallback.
-Authentifizierte Fetches verbleiben auf dem Host; Zugangsdaten werden nicht
-in den Container kopiert. Vor Fetches und Änderungen müssen Mounts,
+Host-Git-Netzwerkoperationen fuer diese beschreibbar eingebundenen Ziele sind
+gesperrt, damit deren Repository-Konfiguration keine Host-Prozesse auswaehlen
+kann. Bis ein isolierter, repo-unabhaengiger Transport geprueft ist, werden
+diese Ziele mit `HostGitTransportBlocked` gemeldet. Zugangsdaten werden nicht
+in den Container kopiert. Vor spaeteren Fetches und Änderungen müssen Mounts,
 Owner-Freigabe, Ablaufdatum und Hashbindung des eingebauten Quellpakets
 übereinstimmen. Ein laufender Container allein genügt nicht.
+Die Freigabe ist nicht mehr durch Textfragmente oder gemeinsam veraenderbare
+Hashes erfuellbar: Eine externe, kryptografische Owner-Signatur deckt den
+kanonischen Binding-Hash mit Image-Digest, Mountmenge, Quellrevision und
+Ablaufdatum ab. Der oeffentliche Schluessel wird durch geprueften Code
+verankert. Bis Owner-Schluessel und Signatur separat provisioniert sind, bleibt
+der Lauf ebenso wie bei einem neueren Image fail-closed blockiert.
 Bei `SandboxPreflightBlocked` zuerst den Bericht prüfen und das geprüfte
 Quellpaket ausdrücklich veröffentlichen sowie im Sandbox-Image pinnen.
 Das Wartungsskript baut oder ersetzt kein Image automatisch.
@@ -35,10 +44,19 @@ Arbeits- und Freigabestand:
 *Secure Trader targets use the approved Podman sandbox declared in
 `scripts/config/maintenance-execution-contexts.json`. Podman is the container
 runtime used here. Local Git and maintenance operations never fall back to
-the host. Authenticated fetches stay on the host; credentials are not copied
-into the container. Before fetches or changes, mounts, Owner approval,
+the host. Host Git network operations are blocked for these writable mounted
+targets so repository-controlled configuration cannot select host processes.
+Until an isolated repository-independent transport is reviewed, these targets
+report `HostGitTransportBlocked`. Credentials are not copied into the
+container. Before later fetches or changes, mounts, Owner approval,
 expiry and embedded package hashes must match. A running container alone
-is insufficient. For `SandboxPreflightBlocked`, inspect the report, explicitly
+is insufficient. Approval can no longer be satisfied by text fragments: its
+SHA-256 and a canonical binding hash cover the image digest, mount set, source
+revision, and expiry. The currently running newer image remains fail-closed
+until the owner explicitly renews approval. Every active Secure Trader root must be present in the
+contract, and the package hash covers every helper executed by the leaf
+worker. An incomplete mount or helper closure blocks before Git. For
+`SandboxPreflightBlocked`, inspect the report, explicitly
 publish the reviewed package and pin it in the sandbox image. Maintenance
 never rebuilds or replaces the image automatically.*
 
@@ -104,9 +122,13 @@ authority.*
 Nach dem Engine-Start gilt folgende Reihenfolge:
 
 1. Lock, Log und atomarer Bericht werden als Kontroll-Evidence angelegt.
+   State-, Log- und Reportverzeichnisse sind nur fuer den Benutzer zugaenglich;
+   neue Logs werden exklusiv mit Modus `0600` angelegt. Link- oder
+   Namenskollisionen blockieren den Lauf.
 2. Die **Remote-Freshness-Barriere** prueft Level 0 und jedes aktive
-   Git-Ziel. Sie fuehrt alle begrenzten `fetch --prune`-Versuche aus, bevor
-   Home-Sync, Registry, Propagation, Preset-Reparatur oder Toolchain beginnen.
+   Git-Ziel. Nicht sandboxgebundene Ziele erhalten begrenzte
+   `fetch --prune`-Versuche. Sandboxgebundene Ziele blockieren derzeit vor
+   Host-Git-Netzwerkzugriff mit `HostGitTransportBlocked`.
 3. Nur ein sauberer kanonischer Default-Branch mit eindeutigem Upstream,
    `ahead=0` und `behind>0` wird per `pull --ff-only` aktualisiert.
 4. Die kanonische Baseline wird nach `~/` synchronisiert.
@@ -184,6 +206,16 @@ active, explicitly declared Git members exactly match the twelve repository
 sources of the managed `model-routing-twelve-governance-presets` profile; a
 regression test binds both contracts together.*
 
+Collection-Wurzeln und alle manifestierten Zielpfade bleiben physisch unter
+`HOME`. Windows-Laufwerkspraefixe sowie verlinkte oder konfliktbehaftete
+Collection-Wurzeln werden abgewiesen. Deren deklarierte Kinder werden nur als
+blockiert inventarisiert; Clone, Fetch und Fast-forward werden nicht gestartet.
+
+*Collection roots and every declared target remain physically below `HOME`.
+Windows drive prefixes and linked or conflicting collection roots are rejected.
+Declared children are inventoried as blocked; clone, fetch and fast-forward do
+not start.*
+
 Im Check-only-Modus wird der manifestgesteuerte Home-Sync jetzt ebenfalls
 schreibfrei ausgefuehrt. Nach einem echten Sync wiederholt die
 Abschlusspruefung diesen Check, damit SHA-256-, Dateimodus- oder
@@ -200,11 +232,17 @@ Python-Engine-Prozess. Die Vorschau `--dry-run` / `-WhatIf` zeigt Profil,
 Entscheidung, Status, Blocker, nächste Aktion, Gate-Set-Hash, geordnete Gates
 und Evidence-Ziel in stabiler linearer Reihenfolge. Sie schreibt weder Evidence
 noch Repository- oder Home-Dateien. Ein echter Gate-Lauf publiziert nur nach
-stabilem HEAD und vollständigem Erfolg atomare maschinenlokale Evidence.
+stabilem, sauberem HEAD und vollständigem Erfolg atomare maschinenlokale
+Evidence. Fixture-Identitäten sind auf Vorschau und explizite Tests beschränkt.
+Der Pre-Push-Hook akzeptiert Evidence nur für den aktuell ausgecheckten,
+tatsächlich geprüften ausgehenden Commit; Pfadgates werden aus dessen
+Commit-Diff abgeleitet.
 
 *The CI-gate surface starts exactly one shared engine process. Preview is
 read-only and text-first. A real run publishes machine-local evidence only
-after all gates, HEAD, and the gate-set hash pass.*
+for an exact clean and stable HEAD after all gates and the gate-set hash pass.
+Fixture identities are preview/test-only; pre-push binds evidence and path
+selection to the checked-out outgoing commit.*
 
 <a id="stage-b-flottenrollout-stage-b-fleet-rollout"></a>
 
@@ -241,6 +279,10 @@ pwsh -NoProfile -File scripts/maintain-agentic-workspace.ps1 -StageBAction Prefl
 
 `preflight`, `validate`, `deliver`, `resume` und `verify` starten genau einen
 gemeinsamen Engine-Prozess. Vorschauen öffnen das `ExternalWriteGate` nicht.
+Derzeit ist ausschließlich `preflight` operativ implementiert. `validate`,
+`deliver`, `resume` und `verify` beenden sich bis zu ihrer vollständigen
+Implementierung fail-closed mit `Blocked` und Exitcode `1`; sie erzeugen keine
+Erfolgs- oder Konvergenzevidence.
 Die Preflight-Vorschau berechnet und zeigt den vollständigen Live-Plan, schreibt
 aber weder Evidence, Git, Provider, Home, Zielrepositories, Plan noch State.
 Ein echter `preflight` darf erst nach separater Lieferung der
@@ -256,7 +298,10 @@ Writer. Beim ersten nicht behebbaren Fehler stoppt er vor dem nächsten Ziel;
 `resume` prüft Plan, Flotte, Providerzustand, Budget und Autorität erneut.
 
 *The five Stage-B actions start exactly one shared engine process. Preview
-never opens the ExternalWriteGate. Preflight preview calculates and prints the
+never opens the ExternalWriteGate. Only `preflight` is operationally
+implemented at present. Until their complete implementation, `validate`,
+`deliver`, `resume`, and `verify` fail closed with `Blocked` and exit code `1`;
+they produce no success or convergence evidence. Preflight preview calculates and prints the
 complete live plan with zero evidence, Git, provider, Home, target, plan, or
 state writes. After the implementation has been delivered
 separately, a real preflight may publish only the local atomic plan followed by
@@ -267,14 +312,18 @@ the next target on the first non-recoverable failure; resume revalidates the
 plan, fleet, provider state, budget, and authority.*
 
 Maschinenlokale Evidence wird atomar unter dem laufgebundenen Evidence-Root
-veröffentlicht. Exitcode `0` bedeutet Erfolg oder sichere Vorschau, `1` einen
+veröffentlicht. Vor Anlage und Austausch werden alle Pfadkomponenten geprüft;
+benutzergesteuerte Links sowie Windows-Reparse-Points blockieren die
+Veröffentlichung. Exitcode `0` bedeutet Erfolg oder sichere Vorschau, `1` einen
 fachlichen Blocker, `2` Vertrags-, Betriebs- oder Sicherheitsfehler und `130`
 einen kontrollierten Abbruch. Regulärer Review und Merge sind der Normalweg.
 Der Admin-Bypass ist nur nach belegter Schutzregel-Ablehnung erlaubt und ersetzt
 keine Acceptance-, Security-, Review- oder Gate-Evidence. G4, Intake-Serie,
 Copilot-, Konto- und Abonnementkonfiguration liegen außerhalb von Stage B.
 
-*Evidence is published atomically below the run-bound evidence root. Exit codes
+*Evidence is published atomically below the run-bound evidence root. Every path
+component is checked before creation and replacement; user-controlled links and
+Windows reparse points block publication. Exit codes
 are 0 success/preview, 1 business blocker, 2 contract/operational/security
 failure, and 130 controlled stop. Regular review and merge are normal. Admin
 bypass is restricted to an evidenced protection-only refusal and replaces no
@@ -404,6 +453,18 @@ linearen Modus. Bericht und Exitcode bleiben die Abschlusswahrheit. Die
 Schlussansicht nennt Mutationsbarriere, Repository-Zählung, Preset-Phase,
 Bericht, Log und nächste Aktion als kopierbaren Text.
 
+Elternkomponenten und Zieldatei des Ereigniskanals werden vor der Anlage
+link-sicher geprüft. Ein bereits vorhandenes oder umgeleitetes Ziel blockiert
+den Start; die neue Datei wird privat und exklusiv angelegt.
+
+Die Frontends begrenzen gespeicherte Kindprozessausgaben, einzelne
+Ereignisdatensätze, den Ereigniskanal, die Anzahl vorgehaltener Ereignisse und
+den Abschlussbericht. Eine überschrittene PowerShell-Ausgabegrenze ist ein
+Fehler und darf nicht als erfolgreicher, nur abgeschnittener Paket- oder
+Git-Status weiterverarbeitet werden. Die TUI verwirft überzählige Anzeigedaten
+beziehungsweise wechselt in den degradierten Modus; der begrenzte,
+laufzugehörige Abschlussbericht und der Prozess-Exitcode bleiben kanonisch.
+
 Der erwartete Berichtspfad wird vor dem Engine-Start aus Home-Verzeichnis und
 Run-ID gebildet. Deshalb bleibt ein finalisierter, laufzugehöriger Bericht auch
 ohne nutzbares `run-completed`-Ereignis auffindbar. Ein vorhandenes
@@ -426,6 +487,13 @@ metadata. Internal JSONL events support live display only. Event drift causes
 permanent linear degradation with `EVENT_STREAM_DEGRADED`, while report and
 process exit remain canonical. The final view keeps the mutation barrier,
 repository counts, preset phase, report, log, and next action copyable. The
+event channel's parent components and target are checked against links before
+creation. An existing or redirected target blocks startup; a new file is
+created privately and exclusively. The
+frontends place fixed limits on retained child output, individual events, the
+event stream, retained event count, and the final report. PowerShell output
+overflow fails closed; the TUI discards excess presentation data or degrades
+while the bounded run-owned report and process exit remain canonical. The
 first `Ctrl+C` is forwarded exactly once; later signals cannot start another
 process or trigger automatic cleanup. The expected report path is bound from
 the home directory and run ID before engine start, so a finalized run-owned

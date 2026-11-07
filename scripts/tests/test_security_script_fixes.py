@@ -145,7 +145,7 @@ class PushHookHistoryTests(unittest.TestCase):
     def test_workflow_cli_environment_reference_preserves_literal_detection(self) -> None:
         source = HOOK.read_text(encoding="utf-8")
         helper = "secret_content_present() {" + source.split("secret_content_present() {", 1)[1].split("\n}\n", 1)[0] + "\n}\n"
-        pattern = source.split("secret_content_regex='", 1)[1].split("'\n", 1)[0]
+        assignment = next(line for line in source.splitlines() if line.startswith("secret_content_regex="))
         option = "--api" + "-key"
         variable = "$env:NUGET_" + "API_KEY"
         cases = [
@@ -154,10 +154,11 @@ class PushHookHistoryTests(unittest.TestCase):
             (".github/workflows/release.yml", f"dotnet nuget push file {option} {variable}; api" + "_key=literal-fixture-value\n", True),
             ("scripts/release.ps1", f"dotnet nuget push file {option} {variable}\n", True),
             (".github/workflows/release.yml", f"dotnet nuget push file {option} {variable}-literal\n", True),
+            ("scripts/hooks/pre-push", assignment + "\npass" + "word=literal-fixture-value\n", True),
         ]
         for path, value, expected in cases:
             with self.subTest(path=path, value=value):
-                program = "set -euo pipefail\nsecret_content_regex=" + shlex.quote(pattern) + "\n" + helper + 'secret_content_present "$1"\n'
+                program = "set -euo pipefail\n" + assignment + "\n" + helper + 'secret_content_present "$1"\n'
                 result = subprocess.run([shutil.which("bash"), "-c", program, "bash", path], input=value, text=True, capture_output=True)
                 self.assertEqual(result.returncode, 0 if expected else 1, result.stderr)
                 self.assertEqual(result.stdout, "")
@@ -257,6 +258,9 @@ class PushHookHistoryTests(unittest.TestCase):
 
             clean_result = invoke(clean, base)
             self.assertEqual(clean_result.returncode, 0, clean_result.stderr)
+            unavailable_base = invoke(clean, "1" * 40)
+            self.assertEqual(unavailable_base.returncode, 2, unavailable_base.stderr)
+            self.assertIn("Remote-Basiscommit", unavailable_base.stderr)
             blocked_result = invoke(head, clean)
             self.assertEqual(blocked_result.returncode, 2, blocked_result.stderr)
             self.assertIn("Push-Historie", blocked_result.stderr)
@@ -268,6 +272,227 @@ class PushHookHistoryTests(unittest.TestCase):
             self.assertEqual(other_remote_result.returncode, 2, other_remote_result.stderr)
             clean_new_ref_result = invoke(clean, "0" * 40)
             self.assertEqual(clean_new_ref_result.returncode, 0, clean_new_ref_result.stderr)
+
+    @unittest.skipUnless(shutil.which("pwsh"), "PowerShell 7 is unavailable")
+    def test_powershell_fallback_scans_ordinary_tracked_files(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            repo = root / "repo"
+            repo.mkdir()
+            self.run_git(repo, "init", "-b", "main")
+            self.run_git(repo, "config", "user.name", "Security Fixture")
+            self.run_git(repo, "config", "user.email", "fixture@example.invalid")
+            fake_key = "AKIA" + "QWERTYUIOPASDFGH"
+            (repo / "ordinary-config.txt").write_text(
+                f"aws_access_key_id = {fake_key}\n", encoding="utf-8"
+            )
+            self.run_git(repo, "add", "ordinary-config.txt")
+
+            env = os.environ.copy()
+            env["PATH"] = "/usr/bin:/bin"
+            result = subprocess.run(
+                [
+                    shutil.which("pwsh"),
+                    "-NoProfile",
+                    "-File",
+                    str(ROOT / "scripts/scan-agent-secrets.ps1"),
+                    "-WorkspaceRoot",
+                    str(repo),
+                    "-FailOnHigh",
+                ],
+                env=env,
+                text=True,
+                capture_output=True,
+            )
+            self.assertEqual(result.returncode, 2, result.stdout + result.stderr)
+            self.assertIn("ordinary-config.txt", result.stdout)
+
+    @unittest.skipIf(os.name == "nt", "Bash fallback fixture")
+    def test_bash_fallback_scans_clean_committed_non_agent_file_without_gitleaks(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            repo = root / "repo"
+            repo.mkdir()
+            self.run_git(repo, "init", "-b", "main")
+            self.run_git(repo, "config", "user.name", "Security Fixture")
+            self.run_git(repo, "config", "user.email", "fixture@example.invalid")
+            fake_key = "AKIA" + "QWERTYUIOPASDFGH"
+            (repo / "ordinary[1].txt").write_text(
+                f"aws_access_key_id = {fake_key}\n", encoding="utf-8"
+            )
+            self.run_git(repo, "add", "ordinary[1].txt")
+            self.run_git(repo, "commit", "-m", "fixture")
+
+            binaries = root / "bin"
+            binaries.mkdir()
+            for name in ("git", "rg", "find", "sort", "python3"):
+                resolved = shutil.which(name)
+                self.assertIsNotNone(resolved, name)
+                (binaries / name).symlink_to(Path(resolved))
+            env = os.environ.copy()
+            env["PATH"] = str(binaries)
+            result = subprocess.run(
+                [
+                    shutil.which("bash"),
+                    str(ROOT / "scripts/scan-agent-secrets.sh"),
+                    "--fail-on-high",
+                    str(repo),
+                ],
+                env=env,
+                text=True,
+                capture_output=True,
+            )
+            self.assertEqual(result.returncode, 2, result.stdout + result.stderr)
+            self.assertIn("ordinary[1].txt", result.stdout)
+            self.assertNotIn(fake_key, result.stdout + result.stderr)
+
+            (repo / "ordinary[1].txt").write_text("ordinary configuration\n", encoding="utf-8")
+            self.run_git(repo, "add", "ordinary[1].txt")
+            self.run_git(repo, "commit", "-m", "remove fixture")
+            clean = subprocess.run(
+                [
+                    shutil.which("bash"),
+                    str(ROOT / "scripts/scan-agent-secrets.sh"),
+                    "--fail-on-high",
+                    str(repo),
+                ],
+                env=env,
+                text=True,
+                capture_output=True,
+            )
+            self.assertEqual(clean.returncode, 0, clean.stdout + clean.stderr)
+
+            (repo / "production.conf").write_text(
+                "pass" + "word=super-secret\n", encoding="utf-8"
+            )
+            self.run_git(repo, "add", "production.conf")
+            self.run_git(repo, "commit", "-m", "production fixture")
+            production = subprocess.run(
+                [
+                    shutil.which("bash"),
+                    str(ROOT / "scripts/scan-agent-secrets.sh"),
+                    "--fail-on-high",
+                    str(repo),
+                ],
+                env=env,
+                text=True,
+                capture_output=True,
+            )
+            self.assertEqual(production.returncode, 2, production.stdout + production.stderr)
+            self.assertIn("production.conf", production.stdout)
+            self.assertNotIn("super-secret", production.stdout + production.stderr)
+
+    @unittest.skipUnless(shutil.which("pwsh"), "PowerShell 7 is unavailable")
+    def test_powershell_fallback_treats_metacharacter_filename_literally(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            repo = root / "repo"
+            repo.mkdir()
+            self.run_git(repo, "init", "-b", "main")
+            fake_key = "AKIA" + "ZXCVBNMASDFGHJKL"
+            (repo / "tracked[1].txt").write_text(
+                f"aws_access_key_id = {fake_key}\n", encoding="utf-8"
+            )
+            self.run_git(repo, "add", "tracked[1].txt")
+            env = os.environ.copy()
+            env["PATH"] = "/usr/bin:/bin"
+            result = subprocess.run(
+                [
+                    shutil.which("pwsh"), "-NoProfile", "-File",
+                    str(ROOT / "scripts/scan-agent-secrets.ps1"),
+                    "-WorkspaceRoot", str(repo), "-FailOnHigh",
+                ],
+                env=env, text=True, capture_output=True,
+            )
+            self.assertEqual(result.returncode, 2, result.stdout + result.stderr)
+            self.assertIn("tracked[1].txt", result.stdout)
+            self.assertNotIn(fake_key, result.stdout + result.stderr)
+
+    @unittest.skipIf(os.name == "nt", "POSIX permissions fixture")
+    @unittest.skipUnless(shutil.which("pwsh"), "PowerShell 7 is unavailable")
+    def test_powershell_fallback_fails_closed_on_unreadable_tracked_file(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            repo = root / "repo"
+            repo.mkdir()
+            self.run_git(repo, "init", "-b", "main")
+            unreadable = repo / "ordinary.txt"
+            unreadable.write_text("clean\n", encoding="utf-8")
+            self.run_git(repo, "add", "ordinary.txt")
+            unreadable.chmod(0)
+            try:
+                env = os.environ.copy()
+                env["PATH"] = "/usr/bin:/bin"
+                result = subprocess.run(
+                    [
+                        shutil.which("pwsh"),
+                        "-NoProfile",
+                        "-File",
+                        str(ROOT / "scripts/scan-agent-secrets.ps1"),
+                        "-WorkspaceRoot",
+                        str(repo),
+                        "-FailOnHigh",
+                    ],
+                    env=env,
+                    text=True,
+                    capture_output=True,
+                )
+            finally:
+                unreadable.chmod(0o600)
+            self.assertEqual(result.returncode, 2, result.stdout + result.stderr)
+            self.assertIn("konnten nicht gelesen", result.stdout)
+
+
+class AgentIgnorePolicyTests(unittest.TestCase):
+    def test_all_migration_and_homogeneity_variants_use_effective_git_policy(self) -> None:
+        for relative in (
+            "scripts/audit-antigravity-migration.sh",
+            "scripts/audit-antigravity-migration.ps1",
+            "scripts/check-homogeneity.sh",
+            "scripts/check-homogeneity.ps1",
+        ):
+            with self.subTest(relative=relative):
+                source = (ROOT / relative).read_text(encoding="utf-8")
+                self.assertIn("check-ignore", source)
+                self.assertIn("ls-files", source)
+                self.assertIn(".agents/private-state.json", source)
+                self.assertIn(".agents/mcp_config.json", source)
+                self.assertIn(".agents/runtime/session.json", source)
+                self.assertIn(".agents/skills/speckit-probe/SKILL.md", source)
+
+    def test_git_policy_distinguishes_comments_negations_and_tracking(self) -> None:
+        def effective(repo: Path) -> bool:
+            private = all(subprocess.run(
+                ["git", "-C", str(repo), "check-ignore", "-q", "--no-index", "--", path]
+            ).returncode == 0 for path in (
+                ".agents/private-state.json", ".agents/mcp_config.json", ".agents/runtime/session.json",
+            ))
+            skill = subprocess.run(
+                ["git", "-C", str(repo), "check-ignore", "-q", "--no-index", "--", ".agents/skills/speckit-probe/SKILL.md"]
+            ).returncode == 1
+            tracked = subprocess.run(
+                ["git", "-C", str(repo), "ls-files", "-z", "--", ".agents"], capture_output=True, check=True
+            ).stdout.split(b"\0")
+            return private and skill and all(not path or path.startswith(b".agents/skills/") for path in tracked)
+
+        with tempfile.TemporaryDirectory() as temporary:
+            repo = Path(temporary)
+            subprocess.run(["git", "-C", str(repo), "init", "-q"], check=True)
+            gitignore = repo / ".gitignore"
+            gitignore.write_text("# .agents/*\n# !.agents/skills/**\n", encoding="utf-8")
+            self.assertFalse(effective(repo))
+            gitignore.write_text(".agents/private-state.json\n!.agents/skills/**\n", encoding="utf-8")
+            self.assertFalse(effective(repo))
+            gitignore.write_text(".agents/*\n!.agents/skills/\n!.agents/skills/**\n", encoding="utf-8")
+            self.assertTrue(effective(repo))
+            gitignore.write_text(".agents/*\n!.agents/skills/\n!.agents/skills/**\n!.agents/private-state.json\n", encoding="utf-8")
+            self.assertFalse(effective(repo))
+            gitignore.write_text(".agents/*\n!.agents/skills/\n!.agents/skills/**\n", encoding="utf-8")
+            private = repo / ".agents/private-state.json"
+            private.parent.mkdir(parents=True)
+            private.write_text("private\n", encoding="utf-8")
+            subprocess.run(["git", "-C", str(repo), "add", "-f", ".agents/private-state.json"], check=True)
+            self.assertFalse(effective(repo))
 
 
 if __name__ == "__main__":

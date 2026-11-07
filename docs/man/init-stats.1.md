@@ -20,6 +20,15 @@ Das Skript ruft `check-homogeneity` auf und schreibt aus dem Ergebnis eine `STAT
 
 *The script invokes `check-homogeneity` and writes a `STATS.md` baseline from the result, including the compliance score and an ASCII progress bar. Without an argument the current workspace is used.*
 
+Workspace-Wurzeln, Elternverzeichnisse und `STATS.md` duerfen keine Links oder
+Reparse Points sein. Die Aktualisierung entsteht in einer neuen Datei im
+gleichen Verzeichnis und ersetzt das Ziel atomar; bestehender Inhalt und Modus
+bleiben erhalten.
+
+*Workspace roots, parent directories, and `STATS.md` must not be links or
+reparse points. Updates are built in a new file in the same directory and
+replace the destination atomically while preserving existing content and mode.*
+
 ## OPTIONS
 
 | Bash | PowerShell | Bedeutung / Meaning |

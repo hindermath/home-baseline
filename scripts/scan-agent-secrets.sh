@@ -31,12 +31,18 @@ if ! command -v find >/dev/null 2>&1; then
   exit 1
 fi
 
+if ! command -v python3 >/dev/null 2>&1; then
+  echo "error: python3 is required for the tracked-file fallback" >&2
+  exit 1
+fi
+
 workspace_root="$(cd "$workspace_root" && pwd)"
 
 gitleaks_high=0
 high_count=0
 medium_count=0
 low_count=0
+repository_fallback_high=0
 
 print_result() {
   local risk="$1"
@@ -80,6 +86,124 @@ agent_dir_patterns=(
 
 run_gitleaks_worktree_scan
 
+run_tracked_repository_fallback() {
+  python3 - "$workspace_root" <<'PY'
+# HB_SECRET_PATTERN_DEFINITIONS_START
+import os
+import pathlib
+import re
+import subprocess
+import sys
+
+root = pathlib.Path(sys.argv[1])
+listed = subprocess.run(
+    ["git", "-C", os.fspath(root), "ls-files", "-z"],
+    stdout=subprocess.PIPE,
+    stderr=subprocess.PIPE,
+    check=False,
+)
+if listed.returncode != 0:
+    print("HIGH   | tracked files | git ls-files failed", file=sys.stderr)
+    raise SystemExit(2)
+
+name_patterns = (
+    re.compile(r"(^|/)(auth\.json|\.env(?:\..*)?|[^/]*id_rsa[^/]*|[^/]*\.(?:pem|key|p12|pfx))$", re.I),
+)
+allowed_names = re.compile(r"(^|/)\.env\.(?:example|sample|template|dist)$", re.I)
+content_patterns = (
+    re.compile(r"(?:id_token|access_token|refresh_token|api[_-]?key|client[_-]?secret|password)\s*[:=]\s*[\"']?[A-Za-z0-9._~+/=-]{8,}", re.I),
+    re.compile(r"--api-key\s+\S{8,}", re.I),
+    re.compile(r"authorization:\s*bearer\s+[A-Za-z0-9._~+/=-]{8,}", re.I),
+    re.compile(r"bearer\s+[A-Za-z0-9._~+/=-]{20,}", re.I),
+    re.compile(r"(?:^|[^A-Za-z0-9])sk-[A-Za-z0-9]{20,}"),
+    re.compile(r"ghp_[A-Za-z0-9]{20,}"),
+    re.compile(r"github_pat_[A-Za-z0-9_]{20,}"),
+    re.compile(r"AIza[0-9A-Za-z_-]{20,}"),
+    re.compile(r"AKIA[0-9A-Z]{16}"),
+    re.compile(r"-----BEGIN (?:RSA|OPENSSH|EC|DSA) PRIVATE KEY-----"),
+)
+# HB_SECRET_PATTERN_DEFINITIONS_END
+
+def filtered_lines(relative: str, text: str):
+    lines = text.splitlines()
+    if relative == "scripts/scan-agent-secrets.sh":
+        inside = False
+        kept = []
+        for line in lines:
+            if line.strip() == "# HB_SECRET_PATTERN_DEFINITIONS_START":
+                inside = True
+                continue
+            if line.strip() == "# HB_SECRET_PATTERN_DEFINITIONS_END":
+                inside = False
+                continue
+            if not inside:
+                kept.append(line)
+        lines = kept
+    elif relative == "scripts/scan-agent-secrets.ps1":
+        inside = False
+        kept = []
+        for line in lines:
+            if re.match(r"^\$SecretContentPatterns\s*=\s*@\(", line):
+                inside = True
+                continue
+            if inside and re.match(r"^\)\s*$", line):
+                inside = False
+                continue
+            if not inside:
+                kept.append(line)
+        lines = kept
+    elif relative in {"scripts/hooks/pre-push", "scripts/lib/hg-secrets.sh"}:
+        lines = [line for line in lines if not re.match(r"^(secret_content_regex|HG_SECRET_PATTERNS)=", line)]
+    elif relative == "scripts/lib/hg-secrets.ps1":
+        lines = [line for line in lines if not re.match(r"^\$HG_SECRET_PATTERN\s*=", line)]
+    if relative.startswith("tests/") or "/tests/" in relative or "/fixtures/" in relative:
+        lines = [
+            line for line in lines
+            if not re.search(r"password\s*[:=]\s*(?:super-secret|secret-value|literal-fixture-value)", line, re.I)
+            and not re.search(r"bearer\s+abcdefghijk\b", line, re.I)
+        ]
+    return lines
+
+hits = set()
+errors = set()
+for raw in listed.stdout.split(b"\0"):
+    if not raw:
+        continue
+    relative = os.fsdecode(raw)
+    if relative.startswith(".github/workflows/"):
+        name_allowed = True
+    else:
+        name_allowed = False
+    if not name_allowed and not allowed_names.search(relative) and any(pattern.search(relative) for pattern in name_patterns):
+        hits.add(relative)
+    path = root / relative
+    try:
+        content = path.read_bytes()
+    except OSError:
+        errors.add(relative)
+        continue
+    if b"\0" in content:
+        continue
+    text = content.decode("utf-8", errors="replace")
+    if any(pattern.search(line) for line in filtered_lines(relative, text) for pattern in content_patterns):
+        hits.add(relative)
+
+for relative in sorted(errors):
+    print(f"HIGH   | {relative} | tracked file could not be read")
+for relative in sorted(hits):
+    print(f"HIGH   | {relative} | possible secret in tracked file")
+raise SystemExit(2 if errors or hits else 0)
+PY
+}
+
+set +e
+run_tracked_repository_fallback
+tracked_status=$?
+set -e
+if [ "$tracked_status" -ne 0 ]; then
+  repository_fallback_high=1
+fi
+
 declare -a agent_dirs=()
 while IFS= read -r dir; do
   agent_dirs+=("$dir")
@@ -93,8 +217,9 @@ done < <(
 if [ "${#agent_dirs[@]}" -eq 0 ]; then
   echo "No agent directories found under $workspace_root"
   echo
-  echo "Summary: high=$gitleaks_high medium=0 low=0 total_agent_dirs=0 gitleaks_high=$gitleaks_high"
-  if [ "$fail_on_high" -eq 1 ] && [ "$gitleaks_high" -gt 0 ]; then
+  total_high=$((gitleaks_high + repository_fallback_high))
+  echo "Summary: high=$total_high medium=0 low=0 total_agent_dirs=0 gitleaks_high=$gitleaks_high tracked_fallback_high=$repository_fallback_high"
+  if [ "$fail_on_high" -eq 1 ] && [ "$total_high" -gt 0 ]; then
     exit 2
   fi
   exit 0
@@ -208,8 +333,8 @@ for dir in "${agent_dirs[@]}"; do
 done
 
 echo
-total_high=$((high_count + gitleaks_high))
-echo "Summary: high=$total_high medium=$medium_count low=$low_count total_agent_dirs=${#agent_dirs[@]} gitleaks_high=$gitleaks_high"
+total_high=$((high_count + gitleaks_high + repository_fallback_high))
+echo "Summary: high=$total_high medium=$medium_count low=$low_count total_agent_dirs=${#agent_dirs[@]} gitleaks_high=$gitleaks_high tracked_fallback_high=$repository_fallback_high"
 
 if [ "$fail_on_high" -eq 1 ] && [ "$total_high" -gt 0 ]; then
   exit 2

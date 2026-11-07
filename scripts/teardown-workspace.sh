@@ -20,6 +20,7 @@ EXIT_CODE=0
 DRY_RUN=0
 FORCE=0
 YES=0
+EXPECTED_REMOTE_TARGET=""
 BACKUP=0
 KEEP_REMOTE=0
 RECURSIVE=0
@@ -51,6 +52,8 @@ Optionen / Options:
   --recursive     Verarbeitet Level-2-Repositories vor dem Workspace / Process Level-2 repositories first
   --force         Überspringt Sicherheitsprüfungen / Skip safety checks
   --yes           Überspringt die Rückfrage / Skip confirmation prompt
+  --expected-remote ZIEL
+                  Bindet --yes an das exakte Remote-Ziel / Bind --yes to the exact remote target
   --dry-run       Zeigt alle Aktionen ohne Ausführung / Show all actions without executing
   --help          Zeigt diese Hilfe / Show this help
 EOF
@@ -153,6 +156,11 @@ parse_args() {
       --yes)
         YES=1
         ;;
+      --expected-remote)
+        [ $# -ge 2 ] || { echo "Fehler: --expected-remote braucht ein Ziel / Error: --expected-remote requires a target" >&2; exit 2; }
+        EXPECTED_REMOTE_TARGET="$2"
+        shift
+        ;;
       --dry-run)
         DRY_RUN=1
         ;;
@@ -248,21 +256,54 @@ discover_level2_projects() {
   done < <(find "$WORKSPACE_DIR" -mindepth 2 -maxdepth 2 -name ".git" -type d 2>/dev/null | sort)
 }
 
+parse_hosted_remote_identity() {
+  local remote_url="$1"
+  local provider host slug
+
+  case "$remote_url" in
+    https://github.com/*) provider="GitHub"; host="github.com"; slug="${remote_url#https://github.com/}" ;;
+    git@github.com:*) provider="GitHub"; host="github.com"; slug="${remote_url#git@github.com:}" ;;
+    ssh://git@github.com/*) provider="GitHub"; host="github.com"; slug="${remote_url#ssh://git@github.com/}" ;;
+    https://gitlab.com/*) provider="GitLab"; host="gitlab.com"; slug="${remote_url#https://gitlab.com/}" ;;
+    git@gitlab.com:*) provider="GitLab"; host="gitlab.com"; slug="${remote_url#git@gitlab.com:}" ;;
+    ssh://git@gitlab.com/*) provider="GitLab"; host="gitlab.com"; slug="${remote_url#ssh://git@gitlab.com/}" ;;
+    *) return 1 ;;
+  esac
+  slug="${slug%.git}"
+  case "$slug" in ""|/*|*/|*'?'*|*'#'*|*'//'*) return 1 ;; esac
+  if [ "$provider" = "GitHub" ]; then
+    [[ "$slug" =~ ^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$ ]] || return 1
+  else
+    [[ "$slug" =~ ^[A-Za-z0-9_.-]+(/[A-Za-z0-9_.-]+)+$ ]] || return 1
+  fi
+  printf '%s|%s|%s\n' "$provider" "$host" "$slug"
+}
+
 remote_platform_for_dir() {
   local dir="$1"
   local remote_url=""
   local configured_platform=""
+  local remote_identity="" remote_provider="" remote_host="" remote_slug=""
+  local configured_base="" configured_owner="" configured_repo=""
 
   remote_url="$(git -C "$dir" remote get-url origin 2>/dev/null || true)"
   configured_platform="$(git -C "$dir" config --local --get home-baseline.remote-platform 2>/dev/null || true)"
   if [ -z "$remote_url" ]; then
     echo "kein Remote / no remote"
   elif [ "$configured_platform" = "forgejo" ] || [ "$configured_platform" = "codeberg" ]; then
-    echo "$configured_platform"
-  elif echo "$remote_url" | grep -qi 'github\.com'; then
-    echo "GitHub"
-  elif echo "$remote_url" | grep -qi 'gitlab\.com'; then
-    echo "GitLab"
+    configured_base="$(git -C "$dir" config --local --get home-baseline.remote-base-url 2>/dev/null || true)"
+    configured_owner="$(git -C "$dir" config --local --get home-baseline.remote-owner 2>/dev/null || true)"
+    configured_repo="$(git -C "$dir" config --local --get home-baseline.remote-repository 2>/dev/null || true)"
+    if [ -n "$configured_base" ] && [ -n "$configured_owner" ] && [ -n "$configured_repo" ]; then
+      printf '%s (%s/%s/%s)\n' "$configured_platform" "${configured_base%/}" "$configured_owner" "$configured_repo"
+    else
+      printf '%s (ungültige Metadaten / invalid metadata)\n' "$configured_platform"
+    fi
+  elif remote_identity="$(parse_hosted_remote_identity "$remote_url" 2>/dev/null)"; then
+    IFS='|' read -r remote_provider remote_host remote_slug <<EOF
+$remote_identity
+EOF
+    printf '%s (%s/%s)\n' "$remote_provider" "$remote_host" "$remote_slug"
   else
     echo "anderes Remote / other remote"
   fi
@@ -350,6 +391,9 @@ confirm_or_abort() {
 check_safety() {
   local label="$1"
   local dir="$2"
+  local status_output=""
+  local unpushed_output=""
+  local upstream_ref=""
 
   if [ "$FORCE" -eq 1 ]; then
     add_result "skip" "Sicherheitsprüfung übersprungen / Safety check skipped: $label"
@@ -361,18 +405,39 @@ check_safety() {
     return 0
   fi
 
-  if [ -n "$(git -C "$dir" status --porcelain 2>/dev/null)" ]; then
+  if ! status_output="$(git -C "$dir" status --porcelain 2>/dev/null)"; then
+    add_result "fail" "Git-Status konnte nicht geprüft werden / Git status could not be verified: $label"
+    set_warning_exit
+    return 1
+  fi
+  if [ -n "$status_output" ]; then
     add_result "fail" "Uncommittete Änderungen erkannt / Uncommitted changes detected: $label"
     set_warning_exit
     return 1
   fi
 
-  if git -C "$dir" rev-parse @{u} >/dev/null 2>&1; then
-    if [ -n "$(git -C "$dir" log @{u}..HEAD --oneline 2>/dev/null)" ]; then
+  if ! upstream_ref="$(git -C "$dir" rev-parse --symbolic-full-name '@{u}' 2>/dev/null)"; then
+    add_result "fail" "Upstream konnte nicht geprüft werden / Upstream could not be verified: $label"
+    set_warning_exit
+    return 1
+  fi
+  case "$upstream_ref" in
+    refs/remotes/origin/*) ;;
+    *)
+      add_result "fail" "Upstream gehört nicht zu origin / Upstream is not bound to origin: $label"
+      set_warning_exit
+      return 1
+      ;;
+  esac
+  if ! unpushed_output="$(git -C "$dir" log '@{u}..HEAD' --oneline 2>/dev/null)"; then
+    add_result "fail" "Commit-Stand konnte nicht geprüft werden / Commit state could not be verified: $label"
+    set_warning_exit
+    return 1
+  fi
+  if [ -n "$unpushed_output" ]; then
       add_result "fail" "Ungepushte Commits erkannt / Unpushed commits detected: $label"
       set_warning_exit
       return 1
-    fi
   fi
 
   add_result "done" "Sicherheitsprüfung bestanden / Safety check passed: $label"
@@ -407,23 +472,40 @@ create_backup() {
   if ! command -v tar >/dev/null 2>&1; then
     add_result "fail" "Backup nicht erstellt, tar fehlt / Backup not created, tar missing: $label"
     set_warning_exit
-    return 0
+    return 1
   fi
 
   archive="$(unique_backup_path "$target_name")"
-  if tar czf "$archive" -C "$(dirname "$dir")" "$(basename "$dir")" >/dev/null 2>&1; then
+  if tar czf "$archive" -C "$(dirname "$dir")" "$(basename "$dir")" >/dev/null 2>&1 \
+    && [ -f "$archive" ] && [ -r "$archive" ] && [ -s "$archive" ] \
+    && tar tzf "$archive" 2>/dev/null | grep -Fqx "$(basename "$dir")/"; then
     add_result "done" "Backup erstellt / Backup created: $(basename "$archive")"
   else
+    [ ! -e "$archive" ] || rm -f -- "$archive"
     add_result "fail" "Backup fehlgeschlagen / Backup failed: $label"
     set_warning_exit
+    return 1
   fi
 }
 
-extract_owner_repo() {
-  local remote_url="$1"
-  local host="$2"
-
-  echo "$remote_url" | sed -E "s#.*${host}[:/]##" | sed 's/\.git$//'
+confirm_exact_remote_target() {
+  local target="$1"
+  local answer
+  if [ "$YES" -eq 1 ]; then
+    if [ -n "$EXPECTED_REMOTE_TARGET" ] && [ "$EXPECTED_REMOTE_TARGET" = "$target" ]; then
+      return 0
+    fi
+    add_result "fail" "Nicht-interaktive Remote-Löschung benötigt --expected-remote mit dem exakten Ziel / Non-interactive remote deletion requires --expected-remote with the exact target: $target"
+    set_warning_exit
+    return 1
+  fi
+  printf 'Exaktes Remote-Ziel zum Löschen eingeben / Enter exact remote target to delete [%s]: ' "$target"
+  read -r answer
+  if [ "$answer" != "$target" ]; then
+    add_result "fail" "Remote-Ziel nicht exakt bestätigt / Remote target not confirmed exactly: $target"
+    set_warning_exit
+    return 1
+  fi
 }
 
 delete_remote_repo() {
@@ -435,6 +517,7 @@ delete_remote_repo() {
   local forgejo_base_url=""
   local forgejo_owner=""
   local forgejo_repository=""
+  local remote_identity="" remote_provider="" remote_host=""
 
   if [ "$KEEP_REMOTE" -eq 1 ]; then
     add_result "skip" "Remote bewusst behalten / Remote intentionally kept: $label"
@@ -467,6 +550,20 @@ delete_remote_repo() {
       set_warning_exit
       return 1
     fi
+    if ! forgejo_base_url="$(hb_forgejo_validate_base_url "$forgejo_base_url")"; then
+      add_result "fail" "Forgejo-Basis-URL ist ungültig / Forgejo base URL is invalid: $label"
+      set_warning_exit
+      return 1
+    fi
+    case "${remote_url%.git}" in
+      "${forgejo_base_url%/}/${forgejo_owner}/${forgejo_repository}") ;;
+      *)
+        add_result "fail" "Forgejo-Metadaten stimmen nicht mit origin überein / Forgejo metadata does not match origin: $label"
+        set_warning_exit
+        return 1
+        ;;
+    esac
+    confirm_exact_remote_target "${forgejo_base_url%/}/${forgejo_owner}/${forgejo_repository}" || return 1
     if hb_forgejo_delete_repository "$forgejo_base_url" "$forgejo_owner" "$forgejo_repository"; then
       add_result "done" "$configured_platform-Remote gelöscht / remote deleted: $forgejo_owner/$forgejo_repository"
       return 0
@@ -476,14 +573,24 @@ delete_remote_repo() {
     return 1
   fi
 
-  if echo "$remote_url" | grep -qi 'github\.com'; then
+  remote_identity="$(parse_hosted_remote_identity "$remote_url" 2>/dev/null || true)"
+  if [ -z "$remote_identity" ]; then
+    add_result "fail" "Nicht unterstütztes oder mehrdeutiges Remote, bitte --keep-remote verwenden / Unsupported or ambiguous remote, use --keep-remote: $label"
+    set_warning_exit
+    return 1
+  fi
+  IFS='|' read -r remote_provider remote_host owner_repo <<EOF
+$remote_identity
+EOF
+  confirm_exact_remote_target "$remote_host/$owner_repo" || return 1
+
+  if [ "$remote_provider" = "GitHub" ]; then
     if ! command -v gh >/dev/null 2>&1; then
       add_result "fail" "gh fehlt, Remote-Löschung abgebrochen / gh missing, remote deletion aborted: $label"
       set_warning_exit
       return 1
     fi
-    owner_repo="$(extract_owner_repo "$remote_url" 'github\.com')"
-    if gh repo delete "$owner_repo" --yes >/dev/null 2>&1; then
+    if GH_HOST="$remote_host" gh repo delete "$owner_repo" --yes >/dev/null 2>&1; then
       add_result "done" "Remote-Repo gelöscht / Remote repo deleted: $owner_repo"
       return 0
     fi
@@ -492,14 +599,13 @@ delete_remote_repo() {
     return 1
   fi
 
-  if echo "$remote_url" | grep -qi 'gitlab\.com'; then
-    owner_repo="$(extract_owner_repo "$remote_url" 'gitlab\.com')"
+  if [ "$remote_provider" = "GitLab" ]; then
     if ! command -v glab >/dev/null 2>&1; then
       add_result "skip" "glab fehlt, GitLab-Remote übersprungen / glab missing, GitLab remote skipped: $owner_repo"
       set_warning_exit
       return 0
     fi
-    if glab repo delete "$owner_repo" --yes >/dev/null 2>&1; then
+    if GITLAB_HOST="$remote_host" glab repo delete "$owner_repo" --yes >/dev/null 2>&1; then
       add_result "done" "GitLab-Remote gelöscht / GitLab remote deleted: $owner_repo"
       return 0
     fi
@@ -685,7 +791,9 @@ teardown_target() {
   fi
   dir="$validated_dir"
 
-  create_backup "$label" "$dir" "$backup_name"
+  if ! create_backup "$label" "$dir" "$backup_name"; then
+    return 1
+  fi
 
   if ! check_safety "$label" "$dir"; then
     return 1

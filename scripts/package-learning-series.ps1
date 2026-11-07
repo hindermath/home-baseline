@@ -54,7 +54,11 @@ if (-not $SourceDir) {
     throw 'SourceDir ist erforderlich.'
 }
 
-$SourceDir = (Resolve-Path $SourceDir).Path
+$sourceItem = Get-Item -LiteralPath $SourceDir -Force
+if (-not $sourceItem.PSIsContainer -or ($sourceItem.Attributes -band [System.IO.FileAttributes]::ReparsePoint)) {
+    throw "SourceDir muss ein regulaeres Verzeichnis ohne Link sein: $SourceDir"
+}
+$SourceDir = $sourceItem.FullName
 $rootName = Split-Path $SourceDir -Leaf
 if (-not $SeriesName) { $SeriesName = $rootName }
 if (-not $OutputDir) { $OutputDir = Join-Path $SourceDir 'docs/learning-units/dist' }
@@ -71,14 +75,8 @@ if (-not $PackagePrefix) { $PackagePrefix = ConvertTo-HBLearningSafeName -Name $
 function Test-HBExcludedLearningPath {
     param([string]$RelativePath)
     $path = $RelativePath.Replace('\', '/')
-    if ($path -eq '.git' -or $path -like '*/.git' -or $path -like '*/.git/*') { return $true }
+    if ($path -match '(^|/)(\.git|bin|obj|build|node_modules|\.vs|\.idea)(/|$)') { return $true }
     if ($path -eq 'docs/learning-units/dist' -or $path -like 'docs/learning-units/dist/*') { return $true }
-    if ($path -like '*/bin' -or $path -like '*/bin/*') { return $true }
-    if ($path -like '*/obj' -or $path -like '*/obj/*') { return $true }
-    if ($path -like '*/build' -or $path -like '*/build/*') { return $true }
-    if ($path -like '*/node_modules' -or $path -like '*/node_modules/*') { return $true }
-    if ($path -like '*/.vs' -or $path -like '*/.vs/*') { return $true }
-    if ($path -like '*/.idea' -or $path -like '*/.idea/*') { return $true }
     if ((Split-Path $path -Leaf) -eq '.DS_Store') { return $true }
     if ($path -eq '__MACOSX' -or $path -like '*/__MACOSX/*') { return $true }
     if ((Split-Path $path -Leaf) -eq 'settings.local.json') { return $true }
@@ -88,19 +86,56 @@ function Test-HBExcludedLearningPath {
     return $false
 }
 
+function Test-HBSensitiveLearningPath {
+    param([string]$RelativePath)
+    $path = $RelativePath.Replace('\', '/')
+    $leaf = Split-Path $path -Leaf
+    if ($leaf -match '(?i)\.(?:example|sample|template|dist)(?:\.[^./]+)?$') { return $false }
+    if ($leaf -match '^(?i:\.env(?:\..*)?|id_rsa|id_ed25519|credentials.*|secrets?\..*)$') { return $true }
+    if ($leaf -match '(?i:\.(?:pem|key|p12|pfx))$') { return $true }
+    return $path -match '(^|/)(?:\.aws|\.ssh|secrets)(/|$)'
+}
+
+function Assert-HBLearningSourceInventory {
+    param([string]$SourceRoot)
+    Get-ChildItem -LiteralPath $SourceRoot -Recurse -Force | ForEach-Object {
+        $relative = [System.IO.Path]::GetRelativePath($SourceRoot, $_.FullName).Replace('\', '/')
+        if ($_.Attributes -band [System.IO.FileAttributes]::ReparsePoint) {
+            throw "Quelle enthaelt einen Link oder Reparse Point: $($_.FullName)"
+        }
+        if (Test-HBExcludedLearningPath -RelativePath $relative) { return }
+        if (-not $_.PSIsContainer -and (Test-HBSensitiveLearningPath -RelativePath $relative)) {
+            throw "Credential-verdaechtige Datei in Quelle: $($_.FullName)"
+        }
+    }
+}
+
 function Copy-HBLearningTree {
-    param([string]$SourceRoot, [string]$DestinationRoot, [string]$CurrentPath)
+    param(
+        [string]$SourceRoot,
+        [string]$DestinationRoot,
+        [string]$CurrentPath,
+        [string]$Python,
+        [string]$ArchiveHelper
+    )
     Get-ChildItem -LiteralPath $CurrentPath -Force | Sort-Object FullName | ForEach-Object {
         $relative = [System.IO.Path]::GetRelativePath($SourceRoot, $_.FullName).Replace('\', '/')
+        if ($_.Attributes -band [System.IO.FileAttributes]::ReparsePoint) {
+            throw "Quelle enthaelt einen Link oder Reparse Point: $($_.FullName)"
+        }
         if (Test-HBExcludedLearningPath -RelativePath $relative) { return }
+        if (-not $_.PSIsContainer -and (Test-HBSensitiveLearningPath -RelativePath $relative)) {
+            throw "Credential-verdaechtige Datei in Quelle: $($_.FullName)"
+        }
         $target = Join-Path $DestinationRoot $relative
         if ($_.PSIsContainer) {
             New-Item -ItemType Directory -Path $target -Force | Out-Null
-            Copy-HBLearningTree -SourceRoot $SourceRoot -DestinationRoot $DestinationRoot -CurrentPath $_.FullName
+            Copy-HBLearningTree -SourceRoot $SourceRoot -DestinationRoot $DestinationRoot -CurrentPath $_.FullName -Python $Python -ArchiveHelper $ArchiveHelper
         } else {
             $parent = Split-Path -Parent $target
             if (-not (Test-Path $parent)) { New-Item -ItemType Directory -Path $parent -Force | Out-Null }
-            Copy-Item -LiteralPath $_.FullName -Destination $target -Force
+            & $Python $ArchiveHelper --copy-file $_.FullName $target
+            if ($LASTEXITCODE -ne 0) { throw "Quelldatei konnte nicht sicher kopiert werden: $($_.FullName)" }
         }
     }
 }
@@ -137,6 +172,13 @@ if (-not (Test-Path -LiteralPath $gitGuidePath -PathType Leaf)) {
 if (-not (Test-Path -LiteralPath $hostingGuidePath -PathType Leaf)) {
     throw "Leitfaden fuer institutionelles Git-Hosting fehlt: $hostingGuidePath"
 }
+foreach ($guidePath in @($startGuidePath, $gitGuidePath, $hostingGuidePath)) {
+    $guideItem = Get-Item -LiteralPath $guidePath -Force
+    if ($guideItem.Attributes -band [System.IO.FileAttributes]::ReparsePoint) {
+        throw "Anleitung darf kein Link oder Reparse Point sein: $guidePath"
+    }
+}
+Assert-HBLearningSourceInventory -SourceRoot $SourceDir
 
 $shortSha = Get-HBGitValue -Repo $SourceDir -GitArgs @('rev-parse', '--short', 'HEAD')
 if (-not $shortSha) { $shortSha = 'nogit' }
@@ -158,15 +200,36 @@ if ($WhatIfPreference) {
 }
 
 if ($PSCmdlet.ShouldProcess($zipPath, 'Create learning series ZIP package')) {
+    if (Test-Path -LiteralPath $OutputDir) {
+        $outputItem = Get-Item -LiteralPath $OutputDir -Force
+        if (-not $outputItem.PSIsContainer -or $outputItem.LinkType -or ($outputItem.Attributes -band [IO.FileAttributes]::ReparsePoint)) {
+            throw "OutputDir muss ein regulaeres Verzeichnis ohne Link sein: $OutputDir"
+        }
+    } else {
+        $outputParent = Get-Item -LiteralPath (Split-Path -Parent $OutputDir) -Force
+        if (-not $outputParent.PSIsContainer -or $outputParent.LinkType -or ($outputParent.Attributes -band [IO.FileAttributes]::ReparsePoint)) {
+            throw "OutputDir-Elternpfad ist unsicher: $($outputParent.FullName)"
+        }
+    }
     New-Item -ItemType Directory -Path $OutputDir -Force | Out-Null
+    $outputItem = Get-Item -LiteralPath $OutputDir -Force
+    if ($outputItem.LinkType -or ($outputItem.Attributes -band [IO.FileAttributes]::ReparsePoint)) {
+        throw "OutputDir wurde zu einem Link oder Reparse Point: $OutputDir"
+    }
     $tempRoot = Join-Path ([System.IO.Path]::GetTempPath()) ([System.Guid]::NewGuid().ToString())
     $packageRoot = Join-Path $tempRoot $rootName
     New-Item -ItemType Directory -Path $packageRoot -Force | Out-Null
     try {
-        Copy-HBLearningTree -SourceRoot $SourceDir -DestinationRoot $packageRoot -CurrentPath $SourceDir
-        Copy-Item -LiteralPath $startGuidePath -Destination (Join-Path $packageRoot (Split-Path $startGuidePath -Leaf)) -Force
-        Copy-Item -LiteralPath $gitGuidePath -Destination (Join-Path $packageRoot (Split-Path $gitGuidePath -Leaf)) -Force
-        Copy-Item -LiteralPath $hostingGuidePath -Destination (Join-Path $packageRoot (Split-Path $hostingGuidePath -Leaf)) -Force
+        $python = (Get-Command python3 -ErrorAction Stop).Source
+        $archiveHelper = Join-Path $PSScriptRoot 'lib/learning_package_archive.py'
+        Copy-HBLearningTree -SourceRoot $SourceDir -DestinationRoot $packageRoot -CurrentPath $SourceDir -Python $python -ArchiveHelper $archiveHelper
+        foreach ($guidePath in @($startGuidePath, $gitGuidePath, $hostingGuidePath)) {
+            $guideName = Split-Path $guidePath -Leaf
+            $guideStage = Join-Path $packageRoot ".${guideName}.copy"
+            & $python $archiveHelper --copy-file $guidePath $guideStage
+            if ($LASTEXITCODE -ne 0) { throw "Anleitung konnte nicht sicher kopiert werden: $guidePath" }
+            Move-Item -LiteralPath $guideStage -Destination (Join-Path $packageRoot $guideName) -Force
+        }
 
         $manifest = Join-Path $packageRoot 'PACKAGING-MANIFEST.txt'
         $lines = [System.Collections.Generic.List[string]]::new()
@@ -191,6 +254,17 @@ if ($PSCmdlet.ShouldProcess($zipPath, 'Create learning series ZIP package')) {
         $lines.Add("Git guide: $(Split-Path $gitGuidePath -Leaf)")
         $lines.Add("Institutional hosting guide: $(Split-Path $hostingGuidePath -Leaf)")
         Set-Content -Path $manifest -Value $lines -Encoding UTF8
+
+        $gitleaks = Get-Command gitleaks -ErrorAction Stop
+        $gitleaksArguments = @('dir', $packageRoot, '--no-banner', '--redact', '--timeout', '120')
+        $gitleaksConfig = Join-Path $PSScriptRoot 'templates/gitleaks.toml'
+        if (Test-Path -LiteralPath $gitleaksConfig -PathType Leaf) {
+            $gitleaksArguments += @('--config', $gitleaksConfig)
+        }
+        & $gitleaks.Source @gitleaksArguments *> $null
+        if ($LASTEXITCODE -ne 0) {
+            throw 'gitleaks hat einen moeglichen Secret-Befund gemeldet oder konnte nicht abgeschlossen werden.'
+        }
 
         if (Test-Path $zipPath) { Remove-Item -Path $zipPath -Force }
         if (Test-Path $shaPath) { Remove-Item -Path $shaPath -Force }

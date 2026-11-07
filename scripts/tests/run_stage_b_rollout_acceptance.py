@@ -491,26 +491,54 @@ def load_requirement(root: pathlib.Path, gate: str) -> tuple[pathlib.Path, dict]
 
 
 def runner_tokens(gate: str, evidence_root: pathlib.Path) -> list[str]:
-    tokens = ["macOS"] if sys.platform == "darwin" else []
-    if gate in {"AC-SBR-001", "AC-SBR-010", "AC-SBR-011", "AC-SBR-012"}:
-        tokens.append("GitHubReadOnly")
-    elif gate in {"AC-SBR-003", "AC-SBR-004", "AC-SBR-005", "AC-SBR-006", "AC-SBR-007"}:
-        tokens.append("GitHub")
-    for token, relative in (
-        ("Linux", "operational/platform/linux.json"),
-        ("Windows", "operational/platform/windows.json"),
-    ):
-        candidate = evidence_root / relative
-        if candidate.is_file():
-            value = json.loads(candidate.read_text(encoding="utf-8"))
-            if value.get("runnerOrPlatform") == token and value.get("result") in {"Pass", "Passed"}:
-                tokens.append(token)
-    return tokens
+    del gate, evidence_root
+    if sys.platform == "darwin":
+        return ["macOS", "LocalFixture"]
+    if sys.platform.startswith("linux"):
+        return ["Linux", "LocalFixture"]
+    if sys.platform == "win32":
+        return ["Windows", "LocalFixture"]
+    return ["LocalFixture"]
+
+
+def build_local_evidence_entry(
+    gate: str, requirement: dict, head_sha: str, observed_tokens: list[str],
+    requirements_sha256: str, executed_command: str,
+    missing_primary_runner_tokens: list[str] | None = None,
+) -> dict:
+    """Classify repository-local execution truthfully; it is never Primary."""
+    return {
+        "gateId": gate,
+        "evidenceRole": "Supplemental",
+        "applicability": requirement["applicability"],
+        "requiredScope": requirement["requiredScope"],
+        "headSha": head_sha,
+        "provider": "LocalFixture",
+        "runId": STAGE_B_RUN_ID,
+        "snapshotId": str(uuid.uuid4()),
+        "capturedAt": datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z"),
+        "workflow": "local-fixture",
+        "job": GATE_TESTS[gate],
+        "runnerOrPlatform": ",".join(observed_tokens),
+        "executedCommand": executed_command,
+        "result": "Open",
+        "requirementsSha256": requirements_sha256,
+        "rationale": requirement["rationale"],
+        "reevaluationTrigger": requirement["reevaluationTrigger"],
+        "supplementalFor": gate,
+        "primaryCommandExecuted": False,
+        "providerWrites": 0,
+        "networkWrites": 0,
+        "openPrimaryRequirements": {
+            "missingRunnerOrPlatformTokens": list(missing_primary_runner_tokens or []),
+            "trustedReceiptValidatorImplemented": False,
+        },
+    }
 
 
 def validate_command_and_tokens(
     requirement: dict, executed_command: str, observed_runner_tokens: list[str]
-) -> None:
+) -> list[str]:
     missing_command = [
         token for token in requirement.get("requiredCommandTokens", []) if token not in executed_command
     ]
@@ -520,8 +548,7 @@ def validate_command_and_tokens(
     ]
     if missing_command:
         raise ValueError(f"required command token drift: {missing_command}")
-    if missing_runner:
-        raise ValueError(f"required runner/platform token missing: {missing_runner}")
+    return missing_runner
 
 
 def main() -> int:
@@ -542,7 +569,7 @@ def main() -> int:
             ".specify/runtime/autonomous-routing/954ff259-ffed-44a8-883f-28742b031a9b/stage-b/evidence/v1"
         )
         observed_tokens = runner_tokens(args.gate, evidence_root)
-        validate_command_and_tokens(requirement, executed_command, observed_tokens)
+        missing_primary_runner_tokens = validate_command_and_tokens(requirement, executed_command, observed_tokens)
         test_command = [sys.executable, "scripts/tests/test_stage_b_rollout.py", GATE_TESTS[args.gate]]
         completed = subprocess.run(test_command, cwd=root, text=True, check=False)
         if completed.returncode != 0:
@@ -554,35 +581,17 @@ def main() -> int:
         head_sha = head.stdout.strip()
         if head.returncode != 0 or not all(character in "0123456789abcdef" for character in head_sha) or len(head_sha) != 40:
             raise ValueError("full reviewed HEAD is unavailable")
-        entry = {
-            "gateId": args.gate,
-            "evidenceRole": "Primary",
-            "applicability": requirement["applicability"],
-            "requiredScope": requirement["requiredScope"],
-            "headSha": head_sha,
-            "provider": (
-                "GitHubReadOnly" if "GitHubReadOnly" in observed_tokens
-                else "GitHub" if "GitHub" in observed_tokens else "LocalImplementation"
-            ),
-            "runId": STAGE_B_RUN_ID,
-            "snapshotId": str(uuid.uuid4()),
-            "capturedAt": datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z"),
-            "workflow": "speckit.implement",
-            "job": GATE_TESTS[args.gate],
-            "runnerOrPlatform": ",".join(observed_tokens),
-            "executedCommand": executed_command,
-            "result": "Pass",
-            "requirementsSha256": normalized_sha256(requirements_path),
-            "rationale": requirement["rationale"],
-            "reevaluationTrigger": requirement["reevaluationTrigger"],
-            "supplementalFor": "",
-        }
+        entry = build_local_evidence_entry(
+            args.gate, requirement, head_sha, observed_tokens,
+            normalized_sha256(requirements_path), executed_command,
+            missing_primary_runner_tokens,
+        )
         if args.gate == "AC-SBR-001":
             entry["livePlanBinding"] = build_ac_sbr_001_live_binding(root)
         elif args.gate == "AC-SBR-002":
             entry["preflightCaseEvidence"] = build_ac_sbr_002_case_evidence(root)
-        atomic_write_json(evidence_root / "primary" / f"{args.gate}.json", entry)
-        return 0
+        atomic_write_json(evidence_root / "supplemental" / f"{args.gate}-local.json", entry)
+        return 3
     except (OSError, UnicodeError, json.JSONDecodeError, ValueError) as exc:
         print(f"STAGE_B_ACCEPTANCE\tFAILED\t{exc}", file=sys.stderr)
         return 2
