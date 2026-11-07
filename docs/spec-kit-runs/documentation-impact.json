@@ -4,17 +4,20 @@
   "entries": [
     {
       "changeId": "CHG079",
-      "scope": "Source-bound repository acceleration estimates, weighted totals and private CI publication",
+      "scope": "PR348 monthly evidence refresh, review-queue validation and reconciliation with current Main",
       "decision": "GeneratedUpdate",
-      "rationale": "Version 3 adds estimates against 80 lines/workday from validated existing statistics or GitHub fallback; version 1 and 2 replay remains unchanged.",
+      "rationale": "Refresh public evidence and regenerate both language tables while preserving the reviewed register, the approved private aggregate date, historical evidence and all current Main content outside marked README blocks. No counting-rule change or automatic candidate approval.",
       "documents": [
         "README.md",
         "README.en.md",
-        "docs/spec-kit-runs/README.md",
+        "docs/spec-kit-runs/snapshot.json",
+        "docs/spec-kit-runs/private-aggregate.json",
         "docs/spec-kit-runs/table.md",
         "docs/spec-kit-runs/table.en.md",
-        "docs/scripts/reference.md",
-        "docs/man/update-public-speckit-statistics.1.md"
+        "docs/spec-kit-runs/review-queue.md",
+        "docs/spec-kit-runs/publication.json",
+        "docs/project-statistics.md",
+        "docs/maintenance/pr348-statistics-review-2026-11-07.md"
       ],
       "owner": "@hindermath",
       "audiences": [
@@ -26,17 +29,17 @@
         "Profile or Level-0 README -> method -> register and snapshot -> reproduction commands"
       ],
       "canonicalSource": "docs/spec-kit-runs/registry.json",
-      "navigationImpact": "Add a public run table and one methodology link; preserve existing profile MOTD and content order.",
-      "documentClass": "ActiveSemantic",
-      "languageStrategy": "German table on both public entrypoints; equivalent English README partner and bilingual methodology/help",
+      "navigationImpact": "Existing README-to-method/register/review-queue navigation remains unchanged; preserve Main content outside the generated blocks.",
+      "documentClass": "Generated",
+      "languageStrategy": "German README/table and equivalent English language partners; bilingual maintenance evidence",
       "languagePartners": [
         "README.en.md",
         "docs/spec-kit-runs/table.en.md"
       ],
-      "platformAndExampleProof": "macOS Bash entrypoint and PowerShell fixture tests; native Linux/macOS/Windows CI tests on the proposed PR head",
+      "platformAndExampleProof": "75 deterministic macOS assertions, public snapshot/register/private aggregate validation, renderer drift and README-boundary checks; native Linux/macOS/Windows CI on the proposed PR head",
       "distributionClass": "homeRuntime",
       "homeSyncRequired": true,
-      "evidence": "docs/spec-kit-runs/validation.md",
+      "evidence": "docs/maintenance/pr348-statistics-review-2026-11-07.md",
       "risk": "Private disclosure or misleading acceleration claims; strict aggregate allowlists, weighted numeric bases, explicit coverage/source dates and a repository-estimate label enforce the boundary.",
       "criticality": "Normal",
       "reevaluationTrigger": "Project-statistics format, reference, window, source access, visibility or publishing permissions change.",

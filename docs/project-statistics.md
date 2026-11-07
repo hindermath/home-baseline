@@ -1657,6 +1657,21 @@ policy, documentation, delivery scope and secret scan passed. Hosted checks
 are tracked on the PR. No packages updated; Git statistics do not measure
 AI time savings.
 
+### 2026-11-07 - Monatliche Spec-Kit-Statistik / Monthly Spec Kit statistics
+
+DE: PR 348 mit dem aktuellen Main-Stand abgeglichen. Das aktuelle Ledger bleibt
+erhalten; oeffentliche Erhebung, private freigegebene Summen, beide Tabellen,
+README-Bloecke und Review-Warteschlange werden konsistent validiert und
+gerendert. Keine automatische Freigabe neuer Kandidaten oder Umdeutung
+historischer Nachweise. Nachweis:
+`docs/maintenance/pr348-statistics-review-2026-11-07.md` und PR 348.
+
+EN: PR 348 reconciled with current Main. The current ledger is preserved;
+public collection, approved private totals, both tables, README blocks and
+review queue are validated and rendered consistently. No automatic approval
+of new candidates or reinterpretation of historical evidence. Evidence:
+`docs/maintenance/pr348-statistics-review-2026-11-07.md` and PR 348.
+
 ## Gesamtstatistik / Overall Statistics
 
 <!-- project-statistics-v2:begin -->
