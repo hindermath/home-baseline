@@ -159,7 +159,10 @@ class BootstrapPathSecurityTests(unittest.TestCase):
                     "--force",
                 ],
                 home=home,
-                timeout=40,
+                # This fixture intentionally runs the complete secure bootstrap,
+                # including hook installation and the staged secret scan. Hosted
+                # macOS runners can need more than 40 seconds under parallel load.
+                timeout=90,
             )
 
             self.assertIn(result.returncode, (0, 1), result.stdout)
