@@ -1672,6 +1672,24 @@ review queue are validated and rendered consistently. No automatic approval
 of new candidates or reinterpretation of historical evidence. Evidence:
 `docs/maintenance/pr348-statistics-review-2026-11-07.md` and PR 348.
 
+### 2026-11-08 - Inhaltlicher Registerreview / Semantic register review
+
+DE: Sieben Statistik-Kandidaten und elf Nachweisaenderungen an gepinnten
+oeffentlichen Quellen inhaltlich geprueft. Drei neue Abschluesse, drei weitere
+Ausfuehrungen mit offenem Abschluss und ein reiner Startnachweis aufgenommen.
+Acht inhaltsgleiche Intake-Archivierungen und drei Spec-Haertungsnachtraege
+geprueft, ohne historische Laeufe neu zu zaehlen oder heutige Produkt-/Primary-
+Abnahme zu behaupten. Register, Snapshot, DE/EN-Tabellen und Warteschlange
+werden konsistent fortgeschrieben. Nachweis:
+`docs/spec-kit-runs/review-decisions-2026-11-07.md`.
+
+EN: Reviewed seven candidates and eleven changed proofs at pinned public
+sources. Accepted three new completions, three other executed features with
+open completion and one start-only feature. Verified eight byte-preserving
+intake archives and three specification security addenda without recounting
+runs or asserting current product/Primary acceptance. Register, snapshot,
+bilingual tables and queue are updated consistently; see the review record.
+
 ## Gesamtstatistik / Overall Statistics
 
 <!-- project-statistics-v2:begin -->
