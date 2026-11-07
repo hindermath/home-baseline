@@ -164,9 +164,9 @@ function Assert-HBLiveEvidenceRootAuthority {
     [CmdletBinding()]
     param([Parameter(Mandatory)][string] $EvidenceRoot)
 
-    $home = [Environment]::GetFolderPath([Environment+SpecialFolder]::UserProfile)
-    Assert-HBCondition (-not [string]::IsNullOrWhiteSpace($home)) 'AUTORITAET_BLOCKIERT: User profile is unavailable.'
-    $authorityRoot = [IO.Path]::GetFullPath((Join-Path $home '.home-baseline/copilot-review-governance/evidence'))
+    $userProfilePath = [Environment]::GetFolderPath([Environment+SpecialFolder]::UserProfile)
+    Assert-HBCondition (-not [string]::IsNullOrWhiteSpace($userProfilePath)) 'AUTORITAET_BLOCKIERT: User profile is unavailable.'
+    $authorityRoot = [IO.Path]::GetFullPath((Join-Path $userProfilePath '.home-baseline/copilot-review-governance/evidence'))
     $root = Get-HBRegularEvidenceRoot -Root $EvidenceRoot
     $comparison = if ($IsWindows) { [StringComparison]::OrdinalIgnoreCase } else { [StringComparison]::Ordinal }
     $prefix = $authorityRoot.TrimEnd([IO.Path]::DirectorySeparatorChar, [IO.Path]::AltDirectorySeparatorChar) + [IO.Path]::DirectorySeparatorChar

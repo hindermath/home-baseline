@@ -60,3 +60,22 @@ bewerten.
 are canonical; focused regression suites live under `scripts/tests/` and in the
 Maintenance TUI test project. This document is bilingual and must be
 reevaluated when a remediated security boundary or distribution path changes.*
+
+## CI-Nachprüfung / CI follow-up
+
+Die erste PR-Matrix nach der Korrektur zeigte plattformspezifische
+Nachlaufprobleme: Windows besitzt kein `os.fchmod`, lokale Skill-Lock-Daten
+waren trotz Ignore-Regel noch versioniert, und die vollständige
+Regression-Suite setzte `ripgrep` sowie `gitleaks` voraus. Die Windows-Pfade
+verwenden nun den DACL-Schutz ohne den nicht verfügbaren POSIX-Aufruf, die
+lokale Lock-Datei ist aus Git entfernt, und die Workflows stellen die
+benötigten Prüfwerkzeuge versionsgebunden bereit. Generierte Skriptreferenz und
+Projektstatistik werden über ihre kanonischen Renderer aktualisiert.
+
+*The first post-remediation PR matrix exposed platform follow-up issues:
+Windows has no `os.fchmod`, local skill-lock state was still tracked despite
+the ignore policy, and the complete regression suite required `ripgrep` and
+`gitleaks`. Windows now applies its DACL boundary without the unavailable
+POSIX call, the local lock file is removed from Git, and CI provisions pinned
+test tools. The canonical renderers update the script reference and project
+statistics.*

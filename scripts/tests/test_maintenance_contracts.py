@@ -866,6 +866,8 @@ prepare_preset_validation_target {shlex.quote(str(repository))}
             )
             registry_directory = home / ".home-baseline"
             registry_directory.mkdir()
+            workspace = home / "workspace"
+            workspace.mkdir()
             (registry_directory / "level2-repository-registry.json").write_text(
                 json.dumps(
                     {
@@ -885,7 +887,7 @@ prepare_preset_validation_target {shlex.quote(str(repository))}
                     "bash",
                     str(REPOSITORY / "scripts" / "bootstrap-project.sh"),
                     "Fixture",
-                    str(home / "workspace"),
+                    str(workspace),
                     "--no-remote",
                     "--preview",
                 ],
@@ -901,7 +903,8 @@ prepare_preset_validation_target {shlex.quote(str(repository))}
                 "intake-sequencing-eleven-governance-presets",
                 completed.stdout,
             )
-            self.assertFalse((home / "workspace").exists())
+            self.assertTrue(workspace.is_dir())
+            self.assertFalse((workspace / "Fixture").exists())
 
     @unittest.skipIf(os.name == "nt", "The Bash bootstrap contract test runs on macOS and Linux.")
     def test_bash_bootstrap_rejects_missing_or_ambiguous_constitution_version(self) -> None:
@@ -912,6 +915,8 @@ prepare_preset_validation_target {shlex.quote(str(repository))}
             with self.subTest(content=content), tempfile.TemporaryDirectory() as directory:
                 home = Path(directory)
                 (home / "constitution.md").write_text(content, encoding="utf-8")
+                workspace = home / "workspace"
+                workspace.mkdir()
                 environment = os.environ.copy()
                 environment["HOME"] = str(home)
                 completed = subprocess.run(
@@ -919,7 +924,7 @@ prepare_preset_validation_target {shlex.quote(str(repository))}
                         "bash",
                         str(REPOSITORY / "scripts" / "bootstrap-project.sh"),
                         "Fixture",
-                        str(home / "workspace"),
+                        str(workspace),
                         "--no-remote",
                         "--preview",
                     ],
@@ -931,7 +936,8 @@ prepare_preset_validation_target {shlex.quote(str(repository))}
                 )
                 self.assertNotEqual(completed.returncode, 0, completed.stdout)
                 self.assertIn("genau einmal", completed.stdout)
-                self.assertFalse((home / "workspace").exists())
+                self.assertTrue(workspace.is_dir())
+                self.assertFalse((workspace / "Fixture").exists())
 
     @unittest.skipIf(os.name == "nt", "The Bash registration test runs on macOS and Linux.")
     def test_bash_registration_dry_run_creates_no_registry_directory(self) -> None:
@@ -1026,6 +1032,8 @@ prepare_preset_validation_target {shlex.quote(str(repository))}
             )
             registry_directory = home / ".home-baseline"
             registry_directory.mkdir()
+            workspace = home / "workspace"
+            workspace.mkdir()
             registry = registry_directory / "level2-repository-registry.json"
             registry.write_text(
                 json.dumps(
@@ -1049,7 +1057,7 @@ prepare_preset_validation_target {shlex.quote(str(repository))}
                     "-ProjectName",
                     "Fixture",
                     "-TargetWorkspace",
-                    str(home / "workspace"),
+                    str(workspace),
                     "-NoRemote",
                     "-PresetProfile",
                     "intake-sequencing-eleven-governance-presets",
@@ -1067,7 +1075,8 @@ prepare_preset_validation_target {shlex.quote(str(repository))}
                 "intake-sequencing-eleven-governance-presets",
                 preview.stdout,
             )
-            self.assertFalse((home / "workspace").exists())
+            self.assertTrue(workspace.is_dir())
+            self.assertFalse((workspace / "Fixture").exists())
 
             dry_run_registry = home / "dry-run" / "nested" / "registry.json"
             dry_run_repository = home / "DryRunProjects" / "Fixture"

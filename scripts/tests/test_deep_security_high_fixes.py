@@ -925,7 +925,7 @@ Remove-HBLegacyGeminiIntegration -Repo $args[1]
             subprocess.run(["git", "-C", str(repo), "add", "secret-marker.txt"], check=True)
             result = run(
                 "bash", "-c",
-                "source <(sed -n '/^commit_and_push()/,/^}/p' \"$1\"); "
+                "eval \"$(sed -n '/^commit_and_push()/,/^}/p' \"$1\")\"; "
                 "OPT_COMMIT=true; OPT_PUSH=false; OPT_DRY_RUN=false; log(){ :; }; "
                 "commit_and_push \"$2\"",
                 "security-test", str(SCRIPTS / "prepare-secure-development-hardening.sh"), str(repo),

@@ -51,6 +51,13 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Install pinned gitleaks
+        shell: pwsh
+        run: |
+          go install github.com/gitleaks/gitleaks/v8@v8.30.1
+          $goBin = Join-Path (& go env GOPATH) 'bin'
+          $goBin | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
+
       - name: Run Bash package self-test
         if: runner.os != 'Windows'
         run: bash scripts/check-learning-package.sh --self-test

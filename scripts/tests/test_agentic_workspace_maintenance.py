@@ -3,6 +3,7 @@
 
 from __future__ import annotations
 
+import hashlib
 import importlib.util
 import json
 import os
@@ -1016,15 +1017,38 @@ class AgenticWorkspaceMaintenanceTests(unittest.TestCase):
                 ],
             }), encoding="utf-8")
             contract_path = root / "contract.json"
-            contract_path.write_text(json.dumps({
-                "schemaVersion": 1,
+            contract = {
+                "schemaVersion": 2,
                 "container": "test-sandbox",
                 "user": "tester",
                 "source": "/opt/reference",
                 "approvalPath": "sandbox/approval.md",
+                "approvalSha256": "a" * 64,
+                "approvalBindingSha256": "0" * 64,
+                "approvedImage": "sha256:" + "b" * 64,
+                "approvedSourceRevision": "c" * 40,
+                "approvalTrustState": "PendingOwnerProvisioning",
+                "approvalPublicKeyPath": ".home-baseline/trust/sandbox-owner-approval-public.pem",
+                "approvalPublicKeySha256": "0" * 64,
+                "approvalSignaturePath": ".home-baseline/trust/sandbox-owner-approval.sig",
                 "expiresOn": "2099-12-31",
                 "mounts": [{"host": "Projects", "container": "/projects"}],
-            }), encoding="utf-8")
+            }
+            bound_keys = (
+                "container", "user", "source", "approvalPath", "approvalSha256",
+                "approvedImage", "approvedSourceRevision", "approvalTrustState",
+                "approvalPublicKeyPath", "approvalPublicKeySha256", "approvalSignaturePath",
+                "expiresOn", "mounts",
+            )
+            contract["approvalBindingSha256"] = hashlib.sha256(
+                json.dumps(
+                    {key: contract[key] for key in bound_keys},
+                    ensure_ascii=False,
+                    sort_keys=True,
+                    separators=(",", ":"),
+                ).encode("utf-8")
+            ).hexdigest()
+            contract_path.write_text(json.dumps(contract), encoding="utf-8")
             completed = self.run_engine(
                 "execution-required", "--manifest", str(manifest), "--contract", str(contract_path)
             )

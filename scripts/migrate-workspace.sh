@@ -467,18 +467,22 @@ migrate_workspace() {
   local ws_dir="$1"
   local ws_name
   ws_name=$(basename "$ws_dir")
-  local -a project_dirs=()
+  # Bash 3.2 treats an empty array expansion as unbound under `set -u`.
+  # Keep a harmless sentinel so an empty Level-1 workspace remains valid.
+  local -a project_dirs=("")
   local discovered_dir=""
 
   while IFS= read -r discovered_dir; do
     [ -d "${discovered_dir}/.git" ] && project_dirs+=("$discovered_dir")
   done < <(find "$ws_dir" -mindepth 1 -maxdepth 1 -type d 2>/dev/null | sort)
-  local -a project_names=()
+  local -a project_names=("")
   for discovered_dir in "${project_dirs[@]}"; do
+    [ -n "$discovered_dir" ] || continue
     project_names+=("$(basename "$discovered_dir")")
   done
   assert_safe_clean_repository "$ws_dir" "Level-1-Workspace" "${project_names[@]}" || return 1
   for discovered_dir in "${project_dirs[@]}"; do
+    [ -n "$discovered_dir" ] || continue
     assert_safe_clean_repository "$discovered_dir" "Level-2-Projekt" || return 1
   done
 
@@ -526,6 +530,7 @@ migrate_workspace() {
 
   # Level-2 projects within this workspace
   for proj_dir in "${project_dirs[@]}"; do
+    [ -n "$proj_dir" ] || continue
     local proj_name
     proj_name=$(basename "$proj_dir")
     echo "  Level-2: ${proj_name}/"

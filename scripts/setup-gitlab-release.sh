@@ -159,11 +159,6 @@ enable_job_token_push() {
     return 0
   fi
 
-  if ! command -v glab >/dev/null 2>&1; then
-    echo "  WARN: glab not installed — project setting not changed"
-    return 0
-  fi
-
   remote_url="$(git -C "$target_repo" remote get-url origin 2>/dev/null || true)"
   if [ -z "$remote_url" ]; then
     echo "  WARN: origin remote missing — project setting not changed"
@@ -175,6 +170,11 @@ enable_job_token_push() {
     return 0
   fi
   repo_path="$REMOTE_PATH"
+
+  if ! command -v glab >/dev/null 2>&1; then
+    echo "  WARN: glab not installed — project setting not changed"
+    return 0
+  fi
 
   if [ -n "$OPT_GITLAB_URL" ]; then
     if ! gitlab_host="$(gitlab_url_host "$OPT_GITLAB_URL")"; then

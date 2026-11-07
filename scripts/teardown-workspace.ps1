@@ -287,7 +287,9 @@ function Get-RemotePlatform([string]$Dir) {
     try {
         $identity = Get-HostedRemoteIdentity -RemoteUrl $remoteUrl
         return "$($identity.Provider) ($($identity.Host)/$($identity.Slug))"
-    } catch { }
+    } catch {
+        Write-Verbose "Remote-Identitaet konnte nicht aufgeloest werden / remote identity could not be resolved: $($_.Exception.Message)"
+    }
 
     return 'anderes Remote / other remote'
 }
