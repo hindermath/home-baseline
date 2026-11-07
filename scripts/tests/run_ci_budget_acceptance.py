@@ -165,7 +165,8 @@ def atomic_write_json(path: pathlib.Path, value: object) -> None:
     descriptor, temporary_name = tempfile.mkstemp(prefix=f".{path.name}.", dir=path.parent)
     temporary = pathlib.Path(temporary_name)
     try:
-        os.fchmod(descriptor, 0o600)
+        if hasattr(os, "fchmod"):
+            os.fchmod(descriptor, 0o600)
         encoded = (json.dumps(value, ensure_ascii=False, separators=(",", ":")) + "\n").encode("utf-8")
         os.write(descriptor, encoded)
         os.fsync(descriptor)

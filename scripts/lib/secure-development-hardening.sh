@@ -1162,7 +1162,8 @@ source = pathlib.Path(sys.argv[1])
 parent = pathlib.Path(sys.argv[2])
 descriptor, temporary = tempfile.mkstemp(prefix=f".{sys.argv[3]}-", suffix=".tmp", dir=parent)
 try:
-    os.fchmod(descriptor, 0o600)
+    if hasattr(os, "fchmod"):
+        os.fchmod(descriptor, 0o600)
     with source.open("rb") as input_stream, os.fdopen(descriptor, "wb", closefd=True) as output_stream:
         shutil.copyfileobj(input_stream, output_stream)
         output_stream.flush()

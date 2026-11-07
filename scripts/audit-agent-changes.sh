@@ -249,7 +249,8 @@ def write_json(path: pathlib.Path, payload: Dict[str, object]) -> None:
         flags |= os.O_NOFOLLOW
     descriptor = os.open(path, flags, 0o600)
     try:
-        os.fchmod(descriptor, 0o600)
+        if hasattr(os, "fchmod"):
+            os.fchmod(descriptor, 0o600)
         with os.fdopen(descriptor, "w", encoding="utf-8") as handle:
             descriptor = -1
             handle.write(json.dumps(payload, indent=2, ensure_ascii=True) + "\n")
