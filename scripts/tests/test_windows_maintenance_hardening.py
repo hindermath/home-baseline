@@ -55,11 +55,14 @@ class BoundedProcessOutputTests(unittest.TestCase):
         self.assertLessEqual(len(result["StandardError"].encode("utf-8")), 1024)
 
     def test_timeout_remains_primary_when_output_also_overflows(self) -> None:
+        # A hosted Windows runner can need more than 200 ms to initialize a
+        # nested PowerShell process. Leave enough time for the fixture to emit
+        # its bounded output before the deliberately long sleep is terminated.
         result = run_json(
             "$code=\"[Console]::Out.Write('x'*4096);Start-Sleep -Seconds 10\"; "
             "Invoke-HBBoundedProcess -FilePath 'pwsh' "
             "-Arguments @('-NoProfile','-NonInteractive','-Command',$code) "
-            "-MaximumOutputBytes 1024 -TimeoutMilliseconds 200 -CleanupMilliseconds 3000"
+            "-MaximumOutputBytes 1024 -TimeoutMilliseconds 1500 -CleanupMilliseconds 3000"
         )
         self.assertEqual(result["Status"], "TimedOut")
         self.assertEqual(result["ExitCode"], 124)
