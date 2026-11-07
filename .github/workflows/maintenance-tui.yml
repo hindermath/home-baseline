@@ -53,9 +53,8 @@ jobs:
         if: runner.os == 'macOS'
         shell: bash
         run: |
-          brew install ripgrep
-          go install github.com/zricethezav/gitleaks/v8@v8.30.1
-          echo "$(go env GOPATH)/bin" >> "$GITHUB_PATH"
+          brew install ripgrep gitleaks
+          test "$(gitleaks version)" = '8.30.1'
 
       - name: Install required test tools (Windows)
         if: runner.os == 'Windows'
