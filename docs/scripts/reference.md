@@ -5,7 +5,7 @@
 > Generated from `scripts/config/script-catalog.json` and the Git index. Do not edit manually.
 
 Stand / Updated: 2026-09-09
-Kanonische Skriptdateien / Canonical script files: 157
+Kanonische Skriptdateien / Canonical script files: 172
 
 ## Workspace-Lebenszyklus / Workspace lifecycle
 
@@ -778,6 +778,28 @@ python3 scripts/tests/run_copilot_review_governance_acceptance.py --help
 python3 scripts/tests/run_stage_b_rollout_acceptance.py --help
 ```
 
+### `scripts/tests/test_acceptance_provenance_security.py`
+
+- **Rolle / Role:** oeffentliches Kommando / public command
+- **Kurzbeschreibung / Summary:** Siehe Quelltext und Hilfe. / See source and help.
+- **Voraussetzungen / Prerequisites:** passende Shell; weitere Anforderungen stehen in `--help` oder `Get-Help`.
+- **Nebenwirkungen / Side effects:** zuerst Check-, Dry-Run- oder WhatIf-Modus verwenden, sofern angeboten.
+
+```text
+python3 scripts/tests/test_acceptance_provenance_security.py --help
+```
+
+### `scripts/tests/test_agent_audit_security.py`
+
+- **Rolle / Role:** oeffentliches Kommando / public command
+- **Kurzbeschreibung / Summary:** Siehe Quelltext und Hilfe. / See source and help.
+- **Voraussetzungen / Prerequisites:** passende Shell; weitere Anforderungen stehen in `--help` oder `Get-Help`.
+- **Nebenwirkungen / Side effects:** zuerst Check-, Dry-Run- oder WhatIf-Modus verwenden, sofern angeboten.
+
+```text
+python3 scripts/tests/test_agent_audit_security.py --help
+```
+
 ### `scripts/tests/test_agentic_workspace_maintenance.py`
 
 - **Rolle / Role:** oeffentliches Kommando / public command
@@ -787,6 +809,17 @@ python3 scripts/tests/run_stage_b_rollout_acceptance.py --help
 
 ```text
 python3 scripts/tests/test_agentic_workspace_maintenance.py --help
+```
+
+### `scripts/tests/test_bootstrap_path_security.py`
+
+- **Rolle / Role:** oeffentliches Kommando / public command
+- **Kurzbeschreibung / Summary:** Siehe Quelltext und Hilfe. / See source and help.
+- **Voraussetzungen / Prerequisites:** passende Shell; weitere Anforderungen stehen in `--help` oder `Get-Help`.
+- **Nebenwirkungen / Side effects:** zuerst Check-, Dry-Run- oder WhatIf-Modus verwenden, sofern angeboten.
+
+```text
+python3 scripts/tests/test_bootstrap_path_security.py --help
 ```
 
 ### `scripts/tests/test_ci_budget_governance.py`
@@ -800,6 +833,17 @@ python3 scripts/tests/test_agentic_workspace_maintenance.py --help
 python3 scripts/tests/test_ci_budget_governance.py --help
 ```
 
+### `scripts/tests/test_constitution_sync_security.py`
+
+- **Rolle / Role:** oeffentliches Kommando / public command
+- **Kurzbeschreibung / Summary:** Siehe Quelltext und Hilfe. / See source and help.
+- **Voraussetzungen / Prerequisites:** passende Shell; weitere Anforderungen stehen in `--help` oder `Get-Help`.
+- **Nebenwirkungen / Side effects:** zuerst Check-, Dry-Run- oder WhatIf-Modus verwenden, sofern angeboten.
+
+```text
+python3 scripts/tests/test_constitution_sync_security.py --help
+```
+
 ### `scripts/tests/test_copilot_review_governance.py`
 
 - **Rolle / Role:** oeffentliches Kommando / public command
@@ -809,6 +853,17 @@ python3 scripts/tests/test_ci_budget_governance.py --help
 
 ```text
 python3 scripts/tests/test_copilot_review_governance.py --help
+```
+
+### `scripts/tests/test_deep_security_high_fixes.py`
+
+- **Rolle / Role:** oeffentliches Kommando / public command
+- **Kurzbeschreibung / Summary:** Siehe Quelltext und Hilfe. / See source and help.
+- **Voraussetzungen / Prerequisites:** passende Shell; weitere Anforderungen stehen in `--help` oder `Get-Help`.
+- **Nebenwirkungen / Side effects:** zuerst Check-, Dry-Run- oder WhatIf-Modus verwenden, sofern angeboten.
+
+```text
+python3 scripts/tests/test_deep_security_high_fixes.py --help
 ```
 
 ### `scripts/tests/test_feature_020_documentation_architecture.py`
@@ -822,6 +877,17 @@ python3 scripts/tests/test_copilot_review_governance.py --help
 python3 scripts/tests/test_feature_020_documentation_architecture.py --help
 ```
 
+### `scripts/tests/test_gitlab_release_security.py`
+
+- **Rolle / Role:** oeffentliches Kommando / public command
+- **Kurzbeschreibung / Summary:** Siehe Quelltext und Hilfe. / See source and help.
+- **Voraussetzungen / Prerequisites:** passende Shell; weitere Anforderungen stehen in `--help` oder `Get-Help`.
+- **Nebenwirkungen / Side effects:** zuerst Check-, Dry-Run- oder WhatIf-Modus verwenden, sofern angeboten.
+
+```text
+python3 scripts/tests/test_gitlab_release_security.py --help
+```
+
 ### `scripts/tests/test_home_sync_files.py`
 
 - **Rolle / Role:** oeffentliches Kommando / public command
@@ -831,6 +897,39 @@ python3 scripts/tests/test_feature_020_documentation_architecture.py --help
 
 ```text
 python3 scripts/tests/test_home_sync_files.py --help
+```
+
+### `scripts/tests/test_init_stats_security.py`
+
+- **Rolle / Role:** oeffentliches Kommando / public command
+- **Kurzbeschreibung / Summary:** Siehe Quelltext und Hilfe. / See source and help.
+- **Voraussetzungen / Prerequisites:** passende Shell; weitere Anforderungen stehen in `--help` oder `Get-Help`.
+- **Nebenwirkungen / Side effects:** zuerst Check-, Dry-Run- oder WhatIf-Modus verwenden, sofern angeboten.
+
+```text
+python3 scripts/tests/test_init_stats_security.py --help
+```
+
+### `scripts/tests/test_learning_package_security.py`
+
+- **Rolle / Role:** oeffentliches Kommando / public command
+- **Kurzbeschreibung / Summary:** Siehe Quelltext und Hilfe. / See source and help.
+- **Voraussetzungen / Prerequisites:** passende Shell; weitere Anforderungen stehen in `--help` oder `Get-Help`.
+- **Nebenwirkungen / Side effects:** zuerst Check-, Dry-Run- oder WhatIf-Modus verwenden, sofern angeboten.
+
+```text
+python3 scripts/tests/test_learning_package_security.py --help
+```
+
+### `scripts/tests/test_learning_propagation_target_security.py`
+
+- **Rolle / Role:** oeffentliches Kommando / public command
+- **Kurzbeschreibung / Summary:** Siehe Quelltext und Hilfe. / See source and help.
+- **Voraussetzungen / Prerequisites:** passende Shell; weitere Anforderungen stehen in `--help` oder `Get-Help`.
+- **Nebenwirkungen / Side effects:** zuerst Check-, Dry-Run- oder WhatIf-Modus verwenden, sofern angeboten.
+
+```text
+python3 scripts/tests/test_learning_propagation_target_security.py --help
 ```
 
 ### `scripts/tests/test_linux_maintenance_hardening.py`
@@ -877,6 +976,28 @@ python3 scripts/tests/test_maintenance_execution_context.py --help
 python3 scripts/tests/test_maintenance_tui_wrappers.py --help
 ```
 
+### `scripts/tests/test_managed_output_security.py`
+
+- **Rolle / Role:** oeffentliches Kommando / public command
+- **Kurzbeschreibung / Summary:** Siehe Quelltext und Hilfe. / See source and help.
+- **Voraussetzungen / Prerequisites:** passende Shell; weitere Anforderungen stehen in `--help` oder `Get-Help`.
+- **Nebenwirkungen / Side effects:** zuerst Check-, Dry-Run- oder WhatIf-Modus verwenden, sofern angeboten.
+
+```text
+python3 scripts/tests/test_managed_output_security.py --help
+```
+
+### `scripts/tests/test_migration_security.py`
+
+- **Rolle / Role:** oeffentliches Kommando / public command
+- **Kurzbeschreibung / Summary:** Siehe Quelltext und Hilfe. / See source and help.
+- **Voraussetzungen / Prerequisites:** passende Shell; weitere Anforderungen stehen in `--help` oder `Get-Help`.
+- **Nebenwirkungen / Side effects:** zuerst Check-, Dry-Run- oder WhatIf-Modus verwenden, sofern angeboten.
+
+```text
+python3 scripts/tests/test_migration_security.py --help
+```
+
 ### `scripts/tests/test_msl_toolchains.py`
 
 - **Rolle / Role:** oeffentliches Kommando / public command
@@ -886,6 +1007,28 @@ python3 scripts/tests/test_maintenance_tui_wrappers.py --help
 
 ```text
 python3 scripts/tests/test_msl_toolchains.py --help
+```
+
+### `scripts/tests/test_platform_test_launchers_security.py`
+
+- **Rolle / Role:** oeffentliches Kommando / public command
+- **Kurzbeschreibung / Summary:** Siehe Quelltext und Hilfe. / See source and help.
+- **Voraussetzungen / Prerequisites:** passende Shell; weitere Anforderungen stehen in `--help` oder `Get-Help`.
+- **Nebenwirkungen / Side effects:** zuerst Check-, Dry-Run- oder WhatIf-Modus verwenden, sofern angeboten.
+
+```text
+python3 scripts/tests/test_platform_test_launchers_security.py --help
+```
+
+### `scripts/tests/test_security_guidance_propagation_security.py`
+
+- **Rolle / Role:** oeffentliches Kommando / public command
+- **Kurzbeschreibung / Summary:** Siehe Quelltext und Hilfe. / See source and help.
+- **Voraussetzungen / Prerequisites:** passende Shell; weitere Anforderungen stehen in `--help` oder `Get-Help`.
+- **Nebenwirkungen / Side effects:** zuerst Check-, Dry-Run- oder WhatIf-Modus verwenden, sofern angeboten.
+
+```text
+python3 scripts/tests/test_security_guidance_propagation_security.py --help
 ```
 
 ### `scripts/tests/test_security_script_fixes.py`
@@ -943,10 +1086,21 @@ python3 scripts/tests/test_stage_b_rollout.py --help
 python3 scripts/tests/test_sync_home_cli.py --help
 ```
 
+### `scripts/tests/test_toolchain_propagation_security.py`
+
+- **Rolle / Role:** oeffentliches Kommando / public command
+- **Kurzbeschreibung / Summary:** Siehe Quelltext und Hilfe. / See source and help.
+- **Voraussetzungen / Prerequisites:** passende Shell; weitere Anforderungen stehen in `--help` oder `Get-Help`.
+- **Nebenwirkungen / Side effects:** zuerst Check-, Dry-Run- oder WhatIf-Modus verwenden, sofern angeboten.
+
+```text
+python3 scripts/tests/test_toolchain_propagation_security.py --help
+```
+
 ### `scripts/tests/test_windows_maintenance_hardening.py`
 
 - **Rolle / Role:** oeffentliches Kommando / public command
-- **Kurzbeschreibung / Summary:** Load only function definitions: never run the fleet installer in tests.
+- **Kurzbeschreibung / Summary:** Siehe Quelltext und Hilfe. / See source and help.
 - **Voraussetzungen / Prerequisites:** passende Shell; weitere Anforderungen stehen in `--help` oder `Get-Help`.
 - **Nebenwirkungen / Side effects:** zuerst Check-, Dry-Run- oder WhatIf-Modus verwenden, sofern angeboten.
 
@@ -1406,7 +1560,7 @@ bash scripts/mac-test.sh --dry-run  # falls angeboten / when supported
 ### `scripts/windows-test.ps1`
 
 - **Rolle / Role:** oeffentliches Kommando / public command
-- **Kurzbeschreibung / Summary:** windows-test.ps1 — Sammelt System-Info und Testergebnisse auf Windows
+- **Kurzbeschreibung / Summary:** Sammelt Windows-Testevidence und veröffentlicht ausschließlich diese Datei.
 - **Voraussetzungen / Prerequisites:** passende Shell; weitere Anforderungen stehen in `--help` oder `Get-Help`.
 - **Nebenwirkungen / Side effects:** zuerst Check-, Dry-Run- oder WhatIf-Modus verwenden, sofern angeboten.
 
@@ -1709,6 +1863,18 @@ Nicht direkt aufrufen; wird von oeffentlichen Skripten geladen.
 Do not invoke directly; it is loaded by public scripts.
 ```
 
+### `scripts/lib/learning_package_archive.py`
+
+- **Rolle / Role:** intern oder installiert / internal or installed
+- **Kurzbeschreibung / Summary:** Siehe Quelltext und Hilfe. / See source and help.
+- **Voraussetzungen / Prerequisites:** passende Shell; weitere Anforderungen stehen in `--help` oder `Get-Help`.
+- **Nebenwirkungen / Side effects:** zuerst Check-, Dry-Run- oder WhatIf-Modus verwenden, sofern angeboten.
+
+```text
+Nicht direkt aufrufen; wird von oeffentlichen Skripten geladen.
+Do not invoke directly; it is loaded by public scripts.
+```
+
 ### `scripts/lib/linux-maintenance-hardening.py`
 
 - **Rolle / Role:** intern oder installiert / internal or installed
@@ -1736,7 +1902,7 @@ Do not invoke directly; it is loaded by public scripts.
 ### `scripts/lib/maintenance_execution_context.py`
 
 - **Rolle / Role:** intern oder installiert / internal or installed
-- **Kurzbeschreibung / Summary:** Siehe Quelltext und Hilfe. / See source and help.
+- **Kurzbeschreibung / Summary:** Owner provisioning replaces this empty anchor in a separately reviewed change.
 - **Voraussetzungen / Prerequisites:** passende Shell; weitere Anforderungen stehen in `--help` oder `Get-Help`.
 - **Nebenwirkungen / Side effects:** zuerst Check-, Dry-Run- oder WhatIf-Modus verwenden, sofern angeboten.
 

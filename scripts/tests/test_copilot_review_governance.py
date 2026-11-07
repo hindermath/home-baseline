@@ -30,6 +30,7 @@ LOCAL_TEST_RESULT = (
     "copilot-review-governance/evidence/v1/operational/quality/full-tests.json"
 )
 HASH = "a" * 64
+MAIN_CONDITIONS_HASH = "768242af1173250e578940f5fe0dff255a8f1ceafc6eeed81138b300b1625267"
 
 
 class ContractFailure(RuntimeError):
@@ -579,6 +580,59 @@ def executable_gate_tuple_toctou() -> None:
                     f"{component} TOCTOU mismatch reached a provider write")
 
 
+def executable_atomic_gate_claim() -> None:
+    with tempfile.TemporaryDirectory(prefix="crg-atomic-claim-") as raw:
+        tmp = Path(raw)
+        inventory_path = tmp / "inventory.json"
+        inventory = fresh_inventory(inventory_path, drift=True)
+        plan_path, plan = preview(tmp, inventory_path)
+        action = next(item for item in plan["actions"] if item["operationClass"] == "RulesetUpdate" and item["writeIntent"])
+        gate_path = tmp / "gate.json"
+        make_gate(gate_path, plan, action, inventory)
+        gate_alias = tmp / "gate-alias.json"
+        gate_alias.hardlink_to(gate_path)
+        safe_module = str(MODULE).replace("'", "''")
+        safe_gate = str(gate_path).replace("'", "''")
+        safe_gate_alias = str(gate_alias).replace("'", "''")
+        safe_plan = str(plan_path).replace("'", "''")
+        safe_evidence = str(tmp).replace("'", "''")
+        holder_script = (
+            f"Import-Module '{safe_module}' -Force; "
+            f"$a='{safe_gate_alias}';$g=Get-Content -LiteralPath $a -Raw|ConvertFrom-Json -AsHashtable -DateKind String;"
+            f"$p=Get-Content -LiteralPath '{safe_plan}' -Raw|ConvertFrom-Json -AsHashtable -DateKind String;"
+            "$m=Get-Module CopilotReviewGovernance;"
+            f"$e='{safe_evidence}';"
+            "$c=& $m {param($a,$e,$g,$p) Enter-HBExternalWriteGateClaim $a $e $g $p} $a $e $g $p;"
+            "[Console]::Out.WriteLine('CLAIMED');[Console]::Out.Flush();Start-Sleep -Seconds 3;"
+            "& $m {param($a,$c) Complete-HBExternalWriteGateClaim $a $c Revoked} $a $c"
+        )
+        holder = subprocess.Popen(
+            ["pwsh", "-NoProfile", "-Command", holder_script], cwd=ROOT,
+            text=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
+        )
+        assert holder.stdout is not None
+        require(holder.stdout.readline().strip() == "CLAIMED", "first worker did not acquire the atomic gate claim")
+        contender_script = (
+            f"Import-Module '{safe_module}' -Force; "
+            f"$a='{safe_gate}';$g=Get-Content -LiteralPath $a -Raw|ConvertFrom-Json -AsHashtable -DateKind String;"
+            f"$p=Get-Content -LiteralPath '{safe_plan}' -Raw|ConvertFrom-Json -AsHashtable -DateKind String;"
+            f"$e='{safe_evidence}';"
+            "& (Get-Module CopilotReviewGovernance) {param($a,$e,$g,$p) Enter-HBExternalWriteGateClaim $a $e $g $p} $a $e $g $p|Out-Null"
+        )
+        contender = run(["pwsh", "-NoProfile", "-Command", contender_script], expected=1)
+        require("already has an atomic claim" in contender.stderr, "second worker was not rejected by the atomic claim")
+        gate = load_json(gate_path)
+        gate["status"] = "Revoked"
+        write_json(gate_path, gate)
+        stdout, stderr = holder.communicate(timeout=10)
+        require(holder.returncode == 0, f"claim holder failed: {stdout}{stderr}")
+        require(load_json(gate_path)["status"] == "Revoked", "claim completion overwrote an intervening revocation")
+        claim_path = tmp / "operational/gate-claims" / f"{load_json(gate_path)['gateId']}.claim"
+        require(claim_path.is_file(), "single-use claim record was not retained")
+        if sys.platform != "win32":
+            require(claim_path.stat().st_mode & 0o777 == 0o600, "claim record permissions are not private")
+
+
 def executable_account_transaction(negative: bool = False) -> None:
     with tempfile.TemporaryDirectory(prefix="crg-account-") as raw:
         tmp = Path(raw)
@@ -685,11 +739,13 @@ def executable_ruleset_operation(operation: str) -> None:
         changed = [item for item in state["inventory"]["rulesets"] if item["repositoryId"] == action["repositoryId"]]
         require(len(changed) == 1, f"{operation} did not preserve exact repository/ruleset identity")
         if operation == "RulesetCreate":
-            require(changed[0]["rulesetId"] == result["results"][0]["rulesetId"] and changed[0]["enforcement"] == "active",
+            require(changed[0]["rulesetId"] == result["results"][0]["rulesetId"] and changed[0]["enforcement"] == "active"
+                    and changed[0]["target"] == "branch" and changed[0]["conditionsSha256"] == MAIN_CONDITIONS_HASH,
                     "RulesetCreate ID/enforcement transition was not observable")
         elif operation == "RulesetUpdate":
             require(changed[0]["rulesetId"] == action["rulesetId"] and changed[0]["enforcement"] == "active"
-                    and changed[0]["reviewOnPush"] is False and changed[0]["reviewDraftPullRequests"] is False,
+                    and changed[0]["reviewOnPush"] is False and changed[0]["reviewDraftPullRequests"] is False
+                    and changed[0]["target"] == "branch" and changed[0]["conditionsSha256"] == MAIN_CONDITIONS_HASH,
                     "RulesetUpdate did not mutate exact ID/reviewOnPush/enforcement state")
         else:
             require(changed[0]["rulesetId"] == action["rulesetId"] and changed[0]["enforcement"] == "disabled",
@@ -766,6 +822,23 @@ def executable_preview_surface(blocked: bool = False) -> None:
         _, plan = preview(tmp, inventory_path)
         if blocked:
             require(any(item["action"] == "Blocked" for item in plan["actions"]), "planner negative did not execute a Blocked decision")
+            wrong_scope_path = tmp / "wrong-scope.json"
+            wrong_scope = fresh_inventory(wrong_scope_path)
+            wrong_scope["rulesets"][0]["conditionsSha256"] = "f" * 64
+            wrong_scope["rulesets"][0]["stateSha256"] = "e" * 64
+            seal_inventory(wrong_scope_path, wrong_scope)
+            _, wrong_scope_plan = preview(tmp, wrong_scope_path)
+            wrong_scope_action = next(item for item in wrong_scope_plan["actions"] if item.get("repositoryId") == 101 and item["operationClass"] == "RulesetUpdate")
+            require(wrong_scope_action["action"] == "Update" and wrong_scope_action["rationale"] == "TargetRulesetBranchScopeDrift", "wrong-branch ruleset was not scheduled for exact scope repair")
+
+            tag_scope_path = tmp / "tag-scope.json"
+            tag_scope = fresh_inventory(tag_scope_path)
+            tag_scope["rulesets"][0]["target"] = "tag"
+            tag_scope["rulesets"][0]["stateSha256"] = "d" * 64
+            seal_inventory(tag_scope_path, tag_scope)
+            _, tag_scope_plan = preview(tmp, tag_scope_path)
+            tag_scope_action = next(item for item in tag_scope_plan["actions"] if item.get("repositoryId") == 101 and item["operationClass"] == "RulesetUpdate")
+            require(tag_scope_action["action"] == "Blocked", "tag-targeted ruleset was not blocked")
         else:
             require(len(plan["actions"]) == 17 and all(item["action"] == "NoOp" for item in plan["actions"]), "positive complete plan must contain account, eight effort and eight ruleset NoOps")
 
@@ -798,12 +871,22 @@ def executable_canonicalization_surface() -> None:
               "if($j.Trim()-ne'{\"a\":2,\"z\":1}'){exit 1}; "
               "$h=Get-HBSha256 -Text $j; if($h-notmatch'^[0-9a-f]{64}$'){exit 2}")
     run(["pwsh", "-NoProfile", "-Command", script])
+    module_source = MODULE.read_text(encoding="utf-8")
+    target_guard = module_source.index("Assert-HBLivePlanCanonicalTargets -Plan $plan")
+    claim = module_source.index("$claim = Enter-HBExternalWriteGateClaim", target_guard)
+    require(target_guard < claim, "live canonical target validation does not precede the gate claim")
 
 
 def executable_provider_read_surface() -> None:
     script = (f"Import-Module '{MODULE}' -Force; "
               "$r=Get-HBGitHubReadRequestDefinitions -RepositorySlug 'hindermath/home-baseline' -RulesetId 201; "
-              "$t=$r|ConvertTo-Json -Depth 10; if($t-notmatch'2026-03-10'-or$t-match'(?i)DELETE'){exit 1}")
+              "$t=$r|ConvertTo-Json -Depth 10; if($t-notmatch'2026-03-10'-or$t-match'(?i)DELETE'){exit 1}; "
+              "foreach($request in $r){if(@($request|Where-Object{$_-eq'--hostname'}).Count-ne 1){exit 2};"
+              "$hostIndex=[Array]::IndexOf($request,'--hostname');if($request[$hostIndex+1]-cne'github.com'){exit 3}}; "
+              "$missing=@('api','--method','GET','-H','X-GitHub-Api-Version: 2026-03-10','/user/repos');"
+              "$wrong=@('api','--hostname','enterprise.invalid','--method','GET','-H','X-GitHub-Api-Version: 2026-03-10','/user/repos');"
+              "foreach($bad in @($missing,$wrong)){$blocked=$false;try{&(Get-Module CopilotReviewGovernance){param($a)"
+              "Invoke-HBGitHubJsonRead -Arguments $a -Executable 'gh'} $bad|Out-Null}catch{$blocked=$true};if(-not$blocked){exit 4}}")
     run(["pwsh", "-NoProfile", "-Command", script])
 
 
@@ -844,7 +927,7 @@ def executable_live_get_retry_surface() -> None:
         safe_launcher = str(launcher).replace("'", "''")
         script = (
             f"Import-Module '{safe_module}' -Force; "
-            "$arguments=@('api','--method','GET','-H','X-GitHub-Api-Version: 2026-03-10','/user/repos?per_page=1'); "
+            "$arguments=@('api','--hostname','github.com','--method','GET','-H','X-GitHub-Api-Version: 2026-03-10','/user/repos?per_page=1'); "
             "$result=& (Get-Module CopilotReviewGovernance) { param($arguments,$executable) "
             "Invoke-HBGitHubJsonRead -Arguments $arguments -Executable $executable } "
             f"$arguments '{safe_launcher}'; "
@@ -905,7 +988,7 @@ def executable_live_write_boundary_surface() -> None:
             "conditions=@{ref_name=@{include=@('refs/heads/main');exclude=@()}};rules=@(@{type='copilot_code_review';"
             "parameters=@{review_on_push=$true;review_draft_pull_requests=$true}})}; "
             "$payloads=& (Get-Module CopilotReviewGovernance) { param($detail) "
-            "$u=New-HBLiveRulesetPayload RulesetUpdate -CurrentDetail $detail; "
+            "$u=New-HBLiveRulesetPayload RulesetUpdate -CurrentDetail $detail -DefaultBranch main; "
             "$d=New-HBLiveRulesetPayload RulesetDisable -CurrentDetail $detail; "
             "$c=New-HBLiveRulesetPayload RulesetCreate -DefaultBranch main; @($u,$d,$c) } $detail; "
             "if($payloads.Count-ne 3-or$payloads[0].rules.Count-ne 1-or$payloads[0].rules[0].parameters.review_on_push"
@@ -914,6 +997,18 @@ def executable_live_write_boundary_surface() -> None:
         )
         run(["pwsh", "-NoProfile", "-Command", script])
         require(counter.read_text(encoding="utf-8") == "1", "live write boundary attempted more than once")
+        for provider_arguments in ([], ["-FakeProviderPath", str(tmp / "provider.json")]):
+            blocked = product([
+                "-Action", "Apply", "-ReadOnly",
+                "-AuthorizationPath", str(tmp / "missing-gate.json"),
+                "-PlanPath", str(tmp / "missing-plan.json"),
+                "-EvidenceRoot", str(tmp / "evidence"),
+                "-ResultPath", str(tmp / "result.json"),
+                *provider_arguments,
+            ], expected=1)
+            require("ReadOnly mode blocks" in blocked.stderr, "ReadOnly Apply did not fail at the central mutation boundary")
+        require(not (tmp / "result.json").exists(), "ReadOnly Apply wrote a result")
+        require(not (tmp / "provider.json").exists(), "ReadOnly Apply reached the fake provider")
 
 
 def executable_accessibility_surface() -> None:
@@ -1024,7 +1119,7 @@ def action_for(name: str) -> Callable[[], None]:
     if name in {"RollbackTests", "TransactionAndRollbackTests"}:
         return lambda: executable_transaction("rollback")
     if name == "TocTouTests":
-        return executable_gate_tuple_toctou
+        return lambda: (executable_gate_tuple_toctou(), executable_atomic_gate_claim())
     if name == "HistoricalSnapshotBoundaryTests":
         return lambda: executable_transaction("toctou")
     if name in {"ReadBeforeRetryTests", "ReadRetryTests"}:
@@ -1116,9 +1211,10 @@ def semantic_contract_for(name: str) -> tuple[dict[str, object], str, tuple[str,
         return ({"fixture": "fresh-inventory", "transaction": "rollback"}, "Apply+Rollback",
                 ("write-observed", "rollback-restored-exact-before-state", "foreign-state-preserved"))
     if name == "TocTouTests":
-        return ({"fixture": "fresh-inventory", "perturbation": "complete-gate-tuple"},
+        return ({"fixture": "fresh-inventory", "perturbation": "complete-gate-tuple+parallel-claim+revocation"},
                 "ValidateExternalWriteGate+Apply",
-                ("first-tuple-authorized", "second-tuple-drift-rejected", "provider-writes-zero"))
+                ("first-tuple-authorized", "second-tuple-drift-rejected", "provider-writes-zero",
+                 "one-atomic-claim", "parallel-worker-rejected", "revocation-preserved"))
     if name == "HistoricalSnapshotBoundaryTests":
         return ({"fixture": "fresh-inventory", "transaction": "toctou"}, "Apply",
                 ("snapshot-drift-blocked", "provider-writes-zero"))
@@ -1145,8 +1241,12 @@ def semantic_contract_for(name: str) -> tuple[dict[str, object], str, tuple[str,
                 ("account-disabled", "rollback-account-enabled", "exact-account-owner"))
     if name in {"RulesetCreateTests", "RulesetUpdateTests", "RulesetDisableTests"}:
         operation = name.removesuffix("Tests")
+        assertions = ["single-bounded-write", "exact-ruleset-state-transition"]
+        if operation in {"RulesetCreate", "RulesetUpdate"}:
+            assertions.append("exact-default-branch-scope")
+        assertions.append("foreign-rulesets-preserved")
         return ({"fixture": "fresh-inventory", "operation": operation}, f"Apply({operation})",
-                ("single-bounded-write", "exact-ruleset-state-transition", "foreign-rulesets-preserved"))
+                tuple(assertions))
     if name == "BrowserTransactionTests":
         return ({"fixture": "repository-effort-balanced", "operation": "EffortLevel"},
                 "Apply(EffortLevel)",
@@ -1184,8 +1284,8 @@ def semantic_contract_for(name: str) -> tuple[dict[str, object], str, tuple[str,
         return ({"fixture": "fresh-inventory", "drift": False}, "Preview",
                 ("seventeen-actions", "all-actions-noop"))
     if name in {"VerticalSliceRedTests", "PlannerNegativeTests"}:
-        return ({"fixture": "fresh-inventory", "defaultBranch": "drifted"}, "Preview",
-                ("blocked-action-observed",))
+        return ({"fixture": "fresh-inventory", "mutations": ["repository-default-branch", "ruleset-wrong-branch", "ruleset-tag-target"]}, "Preview",
+                ("identity-drift-blocked", "wrong-branch-updated", "tag-target-blocked"))
     if name in {"UsageFixtureTests", "BillingOwnerTests", "UsageAdapterTests", "TriggerAttributionTests"}:
         return ({"fixture": "fresh-inventory", "usage": "known+unknown"}, "ValidateUsage",
                 ("no-fixed-price-claim", "automatic-manual-unknown-separated"))
@@ -1201,7 +1301,7 @@ def semantic_contract_for(name: str) -> tuple[dict[str, object], str, tuple[str,
                 ("one-browser-record", "browser-writes-zero", "api-version-2026-03-10",
                  "no-delete-method", "transient-get-retried-exactly-three-times",
                  "fixed-host-post-put-only", "single-live-write-attempt", "no-blind-write-retry",
-                 "ruleset-payload-arrays-and-semantics"))
+                 "ruleset-payload-arrays-and-semantics", "readonly-apply-blocked-live-and-fake"))
     if name == "RedactionNegativeTests":
         return ({"fixture": "github-token+email-pii"}, "Protect-HBRedactedValue",
                 ("sensitive-input-rejected", "secret-not-echoed", "pii-not-echoed"))

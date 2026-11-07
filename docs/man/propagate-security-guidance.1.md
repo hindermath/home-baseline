@@ -21,9 +21,14 @@ pwsh -NoProfile scripts/propagate-security-guidance.ps1 [-DryRun] [-OnlyLevel1]
 
 Das Script erkennt automatisch alle Level-1- und Level-2-Repos unter `~/` und
 propagiert aktuelle Security-Guidance-Inhalte aus `~/home-baseline-source` (Level-0).
+Verwaltete Guidance-Ziele und ihre Eltern duerfen keine symbolischen Links
+enthalten. Bestehende und dangling Links blockieren vor dem atomaren Ersatz.
 
 *The script automatically discovers all Level-1 and Level-2 repos under `~/` and
 propagates the current security guidance content from `~/home-baseline-source` (Level-0).*
+
+*Managed guidance destinations and their parents must not contain symbolic
+links. Existing and dangling links block before atomic replacement.*
 
 ### Kernprinzipien / Core principles
 

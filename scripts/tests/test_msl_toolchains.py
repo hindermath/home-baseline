@@ -347,9 +347,10 @@ $answer=& (Get-Module msl-toolchains) {
         [IO.File]::WriteAllText($launcher,'user-owned')
         $refused=$false
         try {Set-HBMslManagedFile $launcher 'replacement' 'MANAGED'} catch {$refused=$true}
+        $backupFiles=@(Get-ChildItem -LiteralPath $userRoot -Force -Filter '*.hb-backup-*')
         @{ same=($first -eq $second); preserved=$second.Contains('# preserve me'); profile=$second;
            count=[regex]::Matches($second,'# BEGIN HOME-BASELINE MSL PATH').Count; refused=$refused;
-           backups=@(Get-ChildItem -LiteralPath $userRoot -Force -Filter '*.hb-backup-*').Count }
+           backups=$backupFiles.Count; backupMode=if($IsWindows){'N/A'}else{[int][IO.File]::GetUnixFileMode($backupFiles[0].FullName)} }
     } finally { $env:SHELL=$oldShell; $env:PATH=$oldPath; Remove-Item $userRoot -Recurse -Force }
 }
 $answer | ConvertTo-Json
@@ -357,6 +358,8 @@ $answer | ConvertTo-Json
         self.assertTrue(data["same"] and data["preserved"] and data["refused"])
         self.assertEqual(data["count"], 1)
         self.assertEqual(data["backups"], 1)
+        if os.name != "nt":
+            self.assertEqual(data["backupMode"] & 0o077, 0)
         if os.name != "nt":
             with tempfile.TemporaryDirectory() as temporary:
                 home = Path(temporary)

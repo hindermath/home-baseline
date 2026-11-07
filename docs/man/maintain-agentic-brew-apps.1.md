@@ -19,6 +19,15 @@ deren Manager-/Paketabhaengigkeiten. Vergleich (`--compare-only`) und Vorschau
 (`--dry-run`) bleiben ohne Installations- und Profilveraenderungen. Hersteller-,
 Paket- und aktive CLI-Versionen werden getrennt geprueft; offene MSL-Befunde
 verhindern einen vollstaendigen Erfolg auch im normalen Lauf.
+
+Registry-Vergleich und Vorschau dürfen ausschließlich die im Code fest
+freigegebenen Versionsproben ausführen. Eine alternative CLI-Registry kann
+weder Programm noch Argumente einer Probe ändern; dies gilt auch für primäre
+MSL- und Begleitproben.
+
+*Compare and preview may execute only version probes fixed in code policy. An
+alternate CLI registry cannot change a probe executable or its arguments,
+including primary and companion MSL probes.*
 [Quellen und Benutzerumgebung](../maintenance/msl-toolchains.md).
 
 *Use `--msl-only` for the six stable MSL toolchains and their dependencies.
@@ -73,8 +82,12 @@ Auf Systemen mit Homebrew fuehrt ein normaler Lauf `brew update`,
 werden zusaetzlich Required-Casks gepflegt. Formulae mit `ensureLinked: true`
 werden nach dem Upgrade idempotent verlinkt; `--compare-only` meldet einen
 abweichend aufgeloesten Befehl als `LINK-DRIFT`, ohne ihn zu veraendern.
-Fehlt `agy` auf Linux, wird der offizielle Installer nur nach erfolgreicher
-SHA-256-Pruefung gegen die Required-CLI-Registry ausgefuehrt.
+Fehlt `specify`, akzeptiert die Wartung ausschließlich den in der Code-Policy
+freigegebenen vollständigen Spec-Kit-Commit und den daraus konstruierten
+`uv`-Aufruf. Fehlt `agy` auf Linux, wird der offizielle Installer nur ausgeführt,
+wenn URL, Interpreter und SHA-256 sowohl zur Registry als auch zur unabhängigen
+Code-Policy passen. Eine alternative CLI-Registry kann diese Freigaben nicht
+ersetzen.
 Registry-Schleifen verwenden geordnete Snapshots und eigene Dateideskriptoren.
 Ein Unterprozess, der stdin bis EOF liest, kann deshalb keine spaeteren
 Eintraege verschlucken. CLI-Funktionsproben laufen in einer eigenen
@@ -92,7 +105,11 @@ Dateipfade aus.
 Auf Ubuntu 22.04/24.04 (`x86_64`/`aarch64`) kann Swiftly ueber den gepinnten
 offiziellen Bootstrap-Vertrag `1.1.2` bereitgestellt werden. Die Swift-Version
 folgt dem gemeinsamen stabilen Release-Snapshot. URL und SHA-256 werden vor dem sicheren Extrahieren
-validiert. Swiftly veraendert mit `--no-modify-profile` kein Shell-Profil; seine
+validiert. Die
+Archivextraktion begrenzt unabhängig vom Download-Hash die Mitgliederzahl, die
+gesamte deklarierte Entpackgröße sowie die deklarierte und tatsächlich gelesene
+Größe des `swiftly`-Programms. Bei Überschreitung bleibt das bisherige Ziel
+unverändert und die temporäre Datei wird entfernt. Swiftly veraendert mit `--no-modify-profile` kein Shell-Profil; seine
 erzeugte Umgebung wird nur im aktuellen Prozess aktiviert. Eventuelle
 Systemnacharbeit laeuft ausschließlich mit aktueller
 `--allow-admin-prompts`-Freigabe.
@@ -118,8 +135,11 @@ module maintainer. On systems with Homebrew, a normal run executes `brew update`
 installs missing required formulae. On macOS it also maintains required casks.
 Formulae marked with `ensureLinked: true` are linked idempotently after the
 upgrade; `--compare-only` reports command-resolution drift without changing it.
-When `agy` is missing on Linux, the official installer runs only after its
-SHA-256 digest matches the required CLI registry.
+When `specify` is missing, maintenance accepts only the full Spec Kit commit
+approved in code policy and constructs that exact `uv` invocation. When `agy`
+is missing on Linux, URL, interpreter, and SHA-256 must match both the registry
+and the independent code policy. An alternate CLI registry cannot replace
+these approvals.
 Registry loops use ordered snapshots and dedicated file descriptors, so a child
 that reads stdin to EOF cannot consume later entries. CLI probes run in their
 own process group, stop after five seconds, and distinguish `Missing`,
@@ -133,7 +153,7 @@ private file paths.
 
 On Ubuntu 22.04/24.04 (`x86_64`/`aarch64`), Swiftly can be provisioned through
 the pinned official `1.1.2` bootstrap contract. The Swift language version
-follows the shared stable release snapshot. URL and SHA-256 are validated before safe extraction. Swiftly runs
+follows the shared stable release snapshot. URL and SHA-256 are validated before safe extraction. Extraction independently caps member count, total declared expanded bytes, and both declared and copied `swiftly` bytes; limit failures preserve the prior target and remove temporary output. Swiftly runs
 with `--no-modify-profile`; its generated environment is activated only in the
 current process. System post-install work requires current
 `--allow-admin-prompts` authority.

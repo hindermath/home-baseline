@@ -38,6 +38,7 @@ $ErrorActionPreference = 'Stop'
 
 $packageScript = Join-Path $PSScriptRoot 'package-learning-series.ps1'
 $gitleaksConfig = Join-Path $PSScriptRoot 'templates/gitleaks.toml'
+$archiveHelper = Join-Path $PSScriptRoot 'lib/learning_package_archive.py'
 
 function Test-HBLearningPackage {
     param(
@@ -52,15 +53,27 @@ function Test-HBLearningPackage {
         throw "SHA-256-Datei nicht gefunden: $ShaPath"
     }
 
-    $expected = ((Get-Content -LiteralPath $ShaPath -Raw).Trim() -split '\s+')[0].ToLowerInvariant()
-    $actual = (Get-FileHash -LiteralPath $ZipPath -Algorithm SHA256).Hash.ToLowerInvariant()
-    if ($expected -ne $actual) { throw "SHA-256 stimmt nicht: $ShaPath" }
-
+    $checksumLines = @(Get-Content -LiteralPath $ShaPath | Where-Object { -not [string]::IsNullOrWhiteSpace($_) })
+    if ($checksumLines.Count -ne 1 -or $checksumLines[0] -notmatch '^(?<hash>[0-9a-fA-F]{64})(?:\s+.*)?$') {
+        throw "Ungueltige SHA-256-Datei: $ShaPath"
+    }
+    $expected = $Matches.hash.ToLowerInvariant()
+    $python = Get-Command python3 -ErrorAction Stop
     $tempRoot = Join-Path ([System.IO.Path]::GetTempPath()) ([System.Guid]::NewGuid().ToString())
-    New-Item -ItemType Directory -Path $tempRoot -Force | Out-Null
+    New-Item -ItemType Directory -Path $tempRoot | Out-Null
     try {
-        Expand-Archive -LiteralPath $ZipPath -DestinationPath $tempRoot -Force
-        $roots = @(Get-ChildItem -LiteralPath $tempRoot -Force)
+        $archive = Join-Path $tempRoot 'package.zip'
+        & $python.Source $archiveHelper --snapshot $ZipPath $archive
+        if ($LASTEXITCODE -ne 0) { throw 'ZIP konnte nicht unveraenderlich uebernommen werden.' }
+        $actual = (Get-FileHash -LiteralPath $archive -Algorithm SHA256).Hash.ToLowerInvariant()
+        if ($expected -ne $actual) { throw "SHA-256 stimmt nicht: $ShaPath" }
+
+        & $python.Source $archiveHelper $archive
+        if ($LASTEXITCODE -ne 0) { throw 'ZIP verletzt die Groessen- oder Strukturgrenzen.' }
+        $extractRoot = Join-Path $tempRoot 'extracted'
+        & $python.Source $archiveHelper $archive --extract $extractRoot
+        if ($LASTEXITCODE -ne 0) { throw 'ZIP konnte nicht sicher entpackt werden.' }
+        $roots = @(Get-ChildItem -LiteralPath $extractRoot -Force)
         if ($roots.Count -ne 1 -or -not $roots[0].PSIsContainer) {
             throw 'ZIP muss genau einen Paket-Root enthalten.'
         }
@@ -94,17 +107,13 @@ function Test-HBLearningPackage {
             throw 'Manifest nennt den Hosting-Leitfaden nicht.'
         }
 
-        $gitleaks = Get-Command gitleaks -ErrorAction SilentlyContinue
-        if ($gitleaks) {
-            $gitleaksArguments = @('dir', $root, '--no-banner', '--redact')
-            if (Test-Path -LiteralPath $gitleaksConfig -PathType Leaf) {
-                $gitleaksArguments += @('--config', $gitleaksConfig)
-            }
-            & $gitleaks.Source @gitleaksArguments *> $null
-            if ($LASTEXITCODE -ne 0) { throw 'gitleaks hat einen moeglichen Secret-Befund gemeldet.' }
-        } else {
-            Write-Warning 'gitleaks nicht verfuegbar; Secret-Scan uebersprungen.'
+        $gitleaks = Get-Command gitleaks -ErrorAction Stop
+        $gitleaksArguments = @('dir', $root, '--no-banner', '--redact', '--timeout', '120')
+        if (Test-Path -LiteralPath $gitleaksConfig -PathType Leaf) {
+            $gitleaksArguments += @('--config', $gitleaksConfig)
         }
+        & $gitleaks.Source @gitleaksArguments *> $null
+        if ($LASTEXITCODE -ne 0) { throw 'gitleaks hat einen moeglichen Secret-Befund gemeldet oder konnte nicht abgeschlossen werden.' }
 
         Write-Host "PASS: Lernpaket ist strukturell und gegen die Ausschlussregeln geprueft: $ZipPath"
     } finally {

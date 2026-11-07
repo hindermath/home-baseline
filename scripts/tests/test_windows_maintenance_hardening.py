@@ -6,6 +6,7 @@ from __future__ import annotations
 import json
 import os
 from pathlib import Path
+import shutil
 import subprocess
 import tempfile
 import time
@@ -34,6 +35,51 @@ def run_json(script: str) -> object:
     if completed.returncode != 0:
         raise AssertionError(completed.stdout)
     return json.loads(completed.stdout)
+
+
+@unittest.skipUnless(shutil.which("pwsh"), "PowerShell 7 is unavailable")
+class BoundedProcessOutputTests(unittest.TestCase):
+    def test_process_output_overflow_is_bounded_and_fails_closed(self) -> None:
+        result = run_json(
+            "$code=\"`$value='x'*4096;[Console]::Out.Write(`$value);"
+            "[Console]::Error.Write(`$value)\"; "
+            "Invoke-HBBoundedProcess -FilePath 'pwsh' "
+            "-Arguments @('-NoProfile','-NonInteractive','-Command',$code) "
+            "-MaximumOutputBytes 1024 -TimeoutMilliseconds 5000"
+        )
+        self.assertEqual(result["Status"], "OutputLimitExceeded")
+        self.assertFalse(result["Succeeded"])
+        self.assertTrue(result["OutputTruncated"])
+        self.assertEqual(result["ExitCode"], 125)
+        self.assertLessEqual(len(result["StandardOutput"].encode("utf-8")), 1024)
+        self.assertLessEqual(len(result["StandardError"].encode("utf-8")), 1024)
+
+    def test_timeout_remains_primary_when_output_also_overflows(self) -> None:
+        # A hosted Windows runner can need more than 200 ms to initialize a
+        # nested PowerShell process. Leave enough time for the fixture to emit
+        # its bounded output before the deliberately long sleep is terminated.
+        result = run_json(
+            "$code=\"[Console]::Out.Write('x'*4096);Start-Sleep -Seconds 10\"; "
+            "Invoke-HBBoundedProcess -FilePath 'pwsh' "
+            "-Arguments @('-NoProfile','-NonInteractive','-Command',$code) "
+            "-MaximumOutputBytes 1024 -TimeoutMilliseconds 1500 -CleanupMilliseconds 3000"
+        )
+        self.assertEqual(result["Status"], "TimedOut")
+        self.assertEqual(result["ExitCode"], 124)
+        self.assertTrue(result["OutputTruncated"])
+        self.assertTrue(result["ProcessTreeCleaned"])
+
+    def test_utf8_output_limit_ends_on_complete_character(self) -> None:
+        result = run_json(
+            "$code=\"[Console]::OutputEncoding=[Text.UTF8Encoding]::new(`$false);"
+            "[Console]::Out.Write(('a'*1023)+'é')\"; "
+            "Invoke-HBBoundedProcess -FilePath 'pwsh' "
+            "-Arguments @('-NoProfile','-NonInteractive','-Command',$code) "
+            "-MaximumOutputBytes 1024 -TimeoutMilliseconds 5000"
+        )
+        self.assertTrue(result["OutputTruncated"])
+        self.assertNotIn("�", result["StandardOutput"])
+        self.assertLessEqual(len(result["StandardOutput"].encode("utf-8")), 1024)
 
 
 @unittest.skipUnless(os.name == "nt", "Windows-specific process contracts")

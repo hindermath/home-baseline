@@ -35,24 +35,42 @@ Credentials, ein Merge-Gate oder Admin-Bypass erteilen keine Setting-Autorität.
 Inventory darf mit `--read-only` und redigierter Browser-Evidence eine
 vollstaendige GitHub-Live-Inventur ausschliesslich per GET erzeugen. Die
 Read-Definitionen verwenden die akzeptierte GitHub-API-Version `2026-03-10`;
+alle Live-Reads und unmittelbar vor dem Schreiben wiederholten Reads binden
+genau einmal `--hostname github.com`, unabhaengig von `GH_HOST`;
 transiente Transportfehler werden hoechstens dreimal versucht. Apply darf ohne
 `--fake-provider` ausschliesslich `RulesetCreate`, `RulesetUpdate` und
 `RulesetDisable` mit aktuellem operationsspezifischem Gate, exakten IDs,
 festem Host/API-Header und genau einem POST-/PUT-Versuch pro Aktion live
-ausfuehren. Ein unklares Ergebnis wird GET-only reconciled und nie blind
+ausfuehren. Zielrulesets gelten nur mit `target=branch` und exakt
+`refs/heads/<defaultBranch>` ohne Ausschluss als konvergent; abweichende
+Branch-Bedingungen werden korrigiert, Tag-/Push-Ziele blockiert. Ein unklares Ergebnis wird GET-only reconciled und nie blind
 wiederholt. Account-/Effortwrites bleiben BrowserManual; Rollback bleibt eine
-separat autorisierte Fake-Provider-Transaktion.
+separat autorisierte Fake-Provider-Transaktion. `--read-only` blockiert Apply
+und Rollback zentral vor jedem Live- oder Fake-Providerzugriff. Apply erzeugt
+vor dem ersten Providerzugriff atomar einen privaten, dauerhaft erhaltenen
+Single-Use-Claim. Ein zweiter Prozess oder eine spätere Wiederverwendung wird
+abgelehnt; eine zwischenzeitliche Revocation wird beim Abschluss nicht
+überschrieben.
 
 ## OPTIONEN / OPTIONS
 
 - `--action`: validate, inventory, preview, apply, validate-after-state oder rollback.
-- `--dry-run`, `--read-only`, `-WhatIf`: mutationsfreier Modus.
+- `--dry-run`, `--read-only`, `-WhatIf`: mutationsfreier Modus; Read-only
+  lehnt Apply und Rollback ausnahmslos ab.
 - `--authorization`: operationsspezifisches Gate.
 - `--plan`: aktueller Mutation Plan; wird niemals durch `--rollback-plan` ersetzt.
 - `--rollback-plan`: separater gebundener Rollbackrecord; keine Autorität.
 - `--result`: deterministische Mutation-/Rollback-Ergebnisdatei; fuer Live-Ruleset-Apply optional mit operationsspezifischem Standardpfad.
 - `--fake-provider`: explizite lokale Fixture-/Transaktionsdatei; fuer Rollback weiterhin zwingend.
 - `--evidence-root`: restriktiver, symlinkfreier Evidence-Root.
+
+Ein echter Live-Apply akzeptiert Evidence nur unter
+`~/.home-baseline/copilot-review-governance/evidence`, wenn der komplette
+Verzeichnispfad dem aktuellen Benutzer gehört und keine Gruppen-/Fremdrechte
+beziehungsweise geerbten Windows-ACLs besitzt. Live-Providerwrites sind auf
+die acht kanonischen Desired-State-Ziele und deren festen Default-Branch
+begrenzt. Das Deaktivieren von Nichtziel-Rulesets bleibt bis zu einer separat
+geprüften Cleanup-Allowlist manuell.
 
 Der öffentliche Gate-Validator liest unter diesem Root zwingend
 `operational/live-read/{authority,inventory,mutation-plan,change-set-review}.json`
@@ -69,7 +87,9 @@ dedizierten Review-Gate-Invarianten.
 ## EVIDENCE UND ROLLBACK
 
 Evidence wird vor dem Hashen redigiert, atomar geschrieben und auf Benutzerzugriff
-beschränkt. Rollback ist eine neue Transaktion mit eigenem Gate und stoppt bei
+beschränkt. Der Evidence-Root selbst muss ein regulaeres, unverlinktes
+Verzeichnis sein und wird vor Anlage und unmittelbar vor Publication erneut
+geprueft. Rollback ist eine neue Transaktion mit eigenem Gate und stoppt bei
 After-State-Drift. Ein erstelltes Ruleset wird deaktiviert, nie gelöscht.
 
 ## EXIT STATUS

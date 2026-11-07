@@ -303,10 +303,26 @@ function Add-ReadmeSection {
 function Install-HookIfNeeded {
     param([string]$TargetDir)
     $hookSrc = Join-Path $HomeDir 'scripts/hooks/pre-push'
+    $gitDir = Join-Path $TargetDir '.git'
+    $hooksDir = Join-Path $gitDir 'hooks'
     $hookDst = Join-Path $TargetDir '.git/hooks/pre-push'
-    if (-not (Test-Path (Join-Path $TargetDir '.git'))) { return $false }
-    if (-not (Test-Path $hookSrc)) { return $false }
-    if (Test-Path $hookDst) {
+    if (-not (Test-Path -LiteralPath $gitDir -PathType Container)) { return $false }
+    $gitItem = Get-Item -LiteralPath $gitDir -Force
+    if ($gitItem.LinkType -or ($gitItem.Attributes -band [IO.FileAttributes]::ReparsePoint)) {
+        throw ".git ist kein reguläres Verzeichnis: $TargetDir"
+    }
+    if (-not (Test-Path -LiteralPath $hookSrc -PathType Leaf)) { return $false }
+    $sourceItem = Get-Item -LiteralPath $hookSrc -Force
+    if ($sourceItem.LinkType -or ($sourceItem.Attributes -band [IO.FileAttributes]::ReparsePoint)) {
+        throw "Hook-Quelle ist verlinkt: $hookSrc"
+    }
+    $existingHooks = Get-Item -LiteralPath $hooksDir -Force -ErrorAction SilentlyContinue
+    $existingHook = Get-Item -LiteralPath $hookDst -Force -ErrorAction SilentlyContinue
+    if (($existingHooks -and ($existingHooks.LinkType -or ($existingHooks.Attributes -band [IO.FileAttributes]::ReparsePoint))) `
+        -or ($existingHook -and ($existingHook.LinkType -or ($existingHook.Attributes -band [IO.FileAttributes]::ReparsePoint)))) {
+        throw ".git/hooks enthält einen Link oder Reparse Point: $TargetDir"
+    }
+    if ($existingHook) {
         Write-Host "  INFO: pre-push hook already installed — skip ($($TargetDir -replace [regex]::Escape($HomeDir), '~'))"
         return $false
     }
@@ -314,9 +330,26 @@ function Install-HookIfNeeded {
         Write-Host "  WOULD INSTALL: pre-push hook in $($TargetDir -replace [regex]::Escape($HomeDir), '~')"
         return $true
     }
-    $hooksDir = Join-Path $TargetDir '.git/hooks'
-    New-Item -ItemType Directory -Path $hooksDir -Force | Out-Null
-    Copy-Item $hookSrc $hookDst
+    if (-not $existingHooks) {
+        New-Item -ItemType Directory -Path $hooksDir | Out-Null
+    }
+    $hooksItem = Get-Item -LiteralPath $hooksDir -Force
+    if (-not $hooksItem.PSIsContainer -or $hooksItem.LinkType `
+        -or ($hooksItem.Attributes -band [IO.FileAttributes]::ReparsePoint)) {
+        throw ".git/hooks ist kein reguläres Verzeichnis: $TargetDir"
+    }
+    $temporary = Join-Path $hooksDir ('.pre-push.' + [Guid]::NewGuid().ToString('N') + '.tmp')
+    try {
+        [IO.File]::Copy($sourceItem.FullName, $temporary, $false)
+        $hooksItem = Get-Item -LiteralPath $hooksDir -Force
+        $existingHook = Get-Item -LiteralPath $hookDst -Force -ErrorAction SilentlyContinue
+        if ($hooksItem.LinkType -or ($hooksItem.Attributes -band [IO.FileAttributes]::ReparsePoint) -or $existingHook) {
+            throw ".git/hooks änderte sich während der Installation: $TargetDir"
+        }
+        [IO.File]::Move($temporary, $hookDst, $false)
+    } finally {
+        if (Test-Path -LiteralPath $temporary) { Remove-Item -LiteralPath $temporary -Force }
+    }
     Write-Host "  INSTALLED: pre-push hook in $($TargetDir -replace [regex]::Escape($HomeDir), '~')"
     return $true
 }
@@ -325,9 +358,77 @@ function Install-HookIfNeeded {
 
 $PartialFail = $false
 
+function Assert-SafeCleanRepository {
+    param([string]$RepositoryDir, [string]$Label, [string[]]$AllowedUntrackedDirectories = @())
+
+    $repoItem = Get-Item -LiteralPath $RepositoryDir -Force
+    $gitPath = Join-Path $RepositoryDir '.git'
+    $gitItem = Get-Item -LiteralPath $gitPath -Force
+    if (($repoItem.Attributes -band [IO.FileAttributes]::ReparsePoint) -or
+        -not $repoItem.PSIsContainer -or
+        ($gitItem.Attributes -band [IO.FileAttributes]::ReparsePoint) -or
+        -not $gitItem.PSIsContainer) {
+        throw "$Label ist kein reguläres Git-Repository: $RepositoryDir"
+    }
+    $filterConfig = @(& git -C $RepositoryDir config --local --includes --get-regexp '^filter\..*\.(clean|process|required)$' 2>$null)
+    $filterExit = $LASTEXITCODE
+    if ($filterExit -eq 0) { throw "$Label enthält einen repository-gesteuerten Git-Filter: $RepositoryDir" }
+    if ($filterExit -ne 1) { throw "Git-Filterkonfiguration für $Label konnte nicht geprüft werden: $RepositoryDir" }
+    $configuredFsMonitor = @(& git -C $RepositoryDir config --local --includes --get core.fsmonitor 2>$null)
+    $fsMonitorExit = $LASTEXITCODE
+    if ($fsMonitorExit -notin @(0, 1)) { throw "FSMonitor-Konfiguration für $Label konnte nicht geprüft werden: $RepositoryDir" }
+    if ($fsMonitorExit -eq 0 -and $configuredFsMonitor -and $configuredFsMonitor[0] -ne 'false') {
+        throw "$Label enthält einen repository-gesteuerten FSMonitor-Hook: $RepositoryDir"
+    }
+    $gitPrefix = $gitPath.TrimEnd([IO.Path]::DirectorySeparatorChar) + [IO.Path]::DirectorySeparatorChar
+    $linkedItem = Get-ChildItem -LiteralPath $RepositoryDir -Force -Recurse -ErrorAction Stop |
+        Where-Object {
+            -not $_.FullName.StartsWith($gitPrefix, [StringComparison]::OrdinalIgnoreCase) -and
+            ($_.Attributes -band [IO.FileAttributes]::ReparsePoint)
+        } | Select-Object -First 1
+    if ($linkedItem) { throw "$Label enthält einen symbolischen Link oder Reparse Point: $($linkedItem.FullName)" }
+
+    $status = @(& git -C $RepositoryDir -c core.fsmonitor=false -c core.quotePath=false status --porcelain=v1 --untracked-files=normal 2>$null)
+    if ($LASTEXITCODE -ne 0) { throw "Git-Status für $Label konnte nicht geprüft werden: $RepositoryDir" }
+    $allowedStatus = @($AllowedUntrackedDirectories | ForEach-Object { "?? $_/" })
+    $unexpectedStatus = @($status | Where-Object { $_ -and $_ -notin $allowedStatus })
+    if ($unexpectedStatus.Count -gt 0) { throw "$Label enthält bereits Änderungen oder ungetrackte Dateien: $RepositoryDir" }
+}
+
+function Invoke-OwnedPathsCommit {
+    param([string]$RepositoryDir, [string]$Message, [string[]]$OwnedPaths)
+
+    $stagePaths = @($OwnedPaths | Where-Object {
+        if (Test-Path -LiteralPath (Join-Path $RepositoryDir $_)) { return $true }
+        & git -C $RepositoryDir ls-files --error-unmatch -- $_ 2>$null | Out-Null
+        return $LASTEXITCODE -eq 0
+    })
+    if ($stagePaths.Count -eq 0) { return $false }
+    & git -C $RepositoryDir -c core.fsmonitor=false add -A -- @stagePaths
+    if ($LASTEXITCODE -ne 0) { throw "Verwaltete Pfade konnten nicht gestagt werden: $RepositoryDir" }
+    $cachedPaths = @(& git -C $RepositoryDir -c core.fsmonitor=false diff --cached --name-only --diff-filter=ACDMRTUXB)
+    if ($LASTEXITCODE -ne 0) { throw "Git-Index konnte nicht geprüft werden: $RepositoryDir" }
+    foreach ($cachedPath in $cachedPaths) {
+        if ($cachedPath -notin $OwnedPaths) { throw "Unerwarteter Pfad im Git-Index: $cachedPath" }
+    }
+    if ($cachedPaths.Count -eq 0) { return $false }
+    & git -C $RepositoryDir -c core.fsmonitor=false -c core.hooksPath=/dev/null `
+        -c commit.gpgSign=false commit -m $Message 2>$null | Out-Null
+    if ($LASTEXITCODE -ne 0) { throw "Commit fehlgeschlagen: $RepositoryDir" }
+    return $true
+}
+
 function Migrate-Workspace {
     param([string]$WsDir)
     $wsName = Split-Path $WsDir -Leaf
+    $projectDirs = @(Get-ChildItem -LiteralPath $WsDir -Directory -Force -ErrorAction Stop |
+        Where-Object { Test-Path -LiteralPath (Join-Path $_.FullName '.git') } |
+        Sort-Object Name | ForEach-Object { $_.FullName })
+    $projectNames = @($projectDirs | ForEach-Object { Split-Path $_ -Leaf })
+    Assert-SafeCleanRepository -RepositoryDir $WsDir -Label 'Level-1-Workspace' -AllowedUntrackedDirectories $projectNames
+    foreach ($projectDir in $projectDirs) {
+        Assert-SafeCleanRepository -RepositoryDir $projectDir -Label 'Level-2-Projekt'
+    }
     Write-Host "Migriere: $($WsDir -replace [regex]::Escape($HomeDir), '~')"
 
     $changed = $false
@@ -352,9 +453,7 @@ function Migrate-Workspace {
     if (Write-WorkflowYml -TargetDir $WsDir) { $changed = $true }
 
     # Level-2 projects
-    Get-ChildItem -Path $WsDir -Directory -ErrorAction SilentlyContinue | Sort-Object Name | ForEach-Object {
-        $projDir = $_.FullName
-        if (-not (Test-Path (Join-Path $projDir '.git'))) { return }
+    foreach ($projDir in $projectDirs) {
         $projName = Split-Path $projDir -Leaf
         Write-Host "  Level-2: $projName/"
         $workspaceGitignoreState = Update-WorkspaceGitignoreEntry -WorkspaceDir $WsDir -ProjectName $projName
@@ -368,6 +467,18 @@ function Migrate-Workspace {
         if (Write-WorkflowYml -TargetDir $projDir) { $changed = $true }
         if (Write-Editorconfig -TargetDir $projDir) { $changed = $true }
         if (Install-HookIfNeeded -TargetDir $projDir) { $changed = $true }
+        if (-not $WhatIfPreference) {
+            $projStatus = @(& git -C $projDir -c core.fsmonitor=false status --porcelain=v1 --untracked-files=all 2>$null)
+            if ($LASTEXITCODE -ne 0) { throw "Git-Status konnte nicht geprüft werden: $projDir" }
+            if ($projStatus.Count -gt 0) {
+                $projMessage = "chore: migrate $projName to homogeneity baseline $constitutionVersion`n`nCo-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>"
+                $null = Invoke-OwnedPathsCommit -RepositoryDir $projDir -Message $projMessage -OwnedPaths @(
+                    'constitution.md', 'README.md', 'AGENTS.md', 'CLAUDE.md', 'GEMINI.md',
+                    '.github/copilot-instructions.md', '.github/workflows/homogeneity-check.yml', '.editorconfig'
+                )
+                Write-Host "    COMMITTED: migrate $projName"
+            }
+        }
     }
 
     if (-not $changed) {
@@ -381,10 +492,13 @@ function Migrate-Workspace {
     }
 
     # Git commit
-    $status = & git -C $WsDir status --porcelain 2>$null
+    $status = & git -C $WsDir -c core.fsmonitor=false status --porcelain 2>$null
     if ($status) {
-        & git -C $WsDir add -A 2>$null
-        & git -C $WsDir commit -m "chore: migrate $wsName to homogeneity baseline $constitutionVersion`n`nCo-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>" 2>$null | Out-Null
+        $message = "chore: migrate $wsName to homogeneity baseline $constitutionVersion`n`nCo-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>"
+        $null = Invoke-OwnedPathsCommit -RepositoryDir $WsDir -Message $message -OwnedPaths @(
+            'AGENTS.md', 'CLAUDE.md', 'GEMINI.md', 'constitution.md', 'README.md', '.gitignore',
+            '.github/copilot-instructions.md', '.github/workflows/homogeneity-check.yml'
+        )
         Write-Host "  COMMITTED: migrate $wsName to homogeneity baseline $constitutionVersion"
     }
 
@@ -455,7 +569,7 @@ foreach ($ws in $workspaces) {
 # ─── Post-Migration: init-stats ───────────────────────────────────────────────
 
 $initStatsScript = Join-Path $ScriptDir 'init-stats.ps1'
-if (Test-Path $initStatsScript) {
+if (-not $PartialFail -and (Test-Path $initStatsScript)) {
     Write-Host "Starte init-stats.ps1..."
     try {
         & pwsh $initStatsScript 2>$null

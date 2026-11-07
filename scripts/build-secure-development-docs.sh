@@ -5,6 +5,7 @@ set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
+. "$SCRIPT_DIR/lib/secure-development-hardening.sh"
 DOC_ROOT="$REPO_ROOT/docs/secure-development"
 MANIFEST="$DOC_ROOT/baseline-manifest.json"
 HEADER_TEMPLATE="$SCRIPT_DIR/templates/secure-development-compendium-header.md"
@@ -34,7 +35,14 @@ done
 command -v jq >/dev/null 2>&1 || { printf 'jq is required.\n' >&2; exit 1; }
 [ -f "$MANIFEST" ] || { printf 'Manifest missing: %s\n' "$MANIFEST" >&2; exit 1; }
 [ -f "$HEADER_TEMPLATE" ] || { printf 'Header template missing: %s\n' "$HEADER_TEMPLATE" >&2; exit 1; }
-jq -e '.schemaVersion == 1 and (.checklists | length) == 12' "$MANIFEST" >/dev/null
+jq -e '
+  .schemaVersion == 1
+  and (.checklists | length) == 12
+  and (.baselineVersion | type == "string" and test("^[0-9]+\\.[0-9]+\\.[0-9]+$"))
+  and (.guideline.version | type == "string" and test("^[0-9]+\\.[0-9]+\\.[0-9]+$"))
+  and (.compendium.version | type == "string" and test("^[0-9]+\\.[0-9]+\\.[0-9]+$"))
+  and (.releaseDate | type == "string" and test("^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$"))
+' "$MANIFEST" >/dev/null
 
 baseline_version="$(jq -r '.baselineVersion' "$MANIFEST")"
 # DE: Nur der erste zusammenhaengende Metadatenblock ist aktiv. Ein Treffer im
@@ -72,8 +80,18 @@ done < <(jq -r '.profiles | keys[] | select(. != "none")' "$SCRIPT_DIR/config/sp
 compendium_version="$(jq -r '.compendium.version' "$MANIFEST")"
 release_date="$(jq -r '.releaseDate' "$MANIFEST")"
 expected_item_count="$(jq -r '.checklistItemCount' "$MANIFEST")"
-output="$DOC_ROOT/$(jq -r '.compendium.path' "$MANIFEST")"
-tmp="$(mktemp)"
+compendium_path="$(jq -r '.compendium.path' "$MANIFEST")"
+[ "$compendium_path" = 'Checklistensammelband_Sichere-Entwicklung.md' ] || {
+  printf 'Unsafe compendium output path in manifest.\n' >&2
+  exit 1
+}
+sdh_assert_safe_managed_destination "$REPO_ROOT" "docs/secure-development/$compendium_path"
+output="$DOC_ROOT/$compendium_path"
+if $CHECK_ONLY; then
+  tmp="$(mktemp)"
+else
+  tmp="$(mktemp "$DOC_ROOT/.compendium.XXXXXX")"
+fi
 trap 'rm -f "$tmp"' EXIT
 
 guideline_path="$(jq -r '.guideline.path' "$MANIFEST")"
@@ -110,11 +128,25 @@ while IFS= read -r relative; do
   [ -f "$DOC_ROOT/$relative" ] || { printf 'Managed reference missing: %s\n' "$relative" >&2; exit 1; }
 done < <(jq -r '(.managedBinaryFiles + .managedReferenceFiles)[]' "$MANIFEST")
 
-sed \
-  -e "s/{{BASELINE_VERSION}}/$baseline_version/g" \
-  -e "s/{{COMPENDIUM_VERSION}}/$compendium_version/g" \
-  -e "s/{{RELEASE_DATE}}/$release_date/g" \
-  "$HEADER_TEMPLATE" > "$tmp"
+HB_BASELINE_VERSION="$baseline_version" \
+HB_COMPENDIUM_VERSION="$compendium_version" \
+HB_RELEASE_DATE="$release_date" \
+awk '
+  function replace_literal(value, marker, replacement, before, after, index_at) {
+    while ((index_at = index(value, marker)) > 0) {
+      before = substr(value, 1, index_at - 1)
+      after = substr(value, index_at + length(marker))
+      value = before replacement after
+    }
+    return value
+  }
+  {
+    line = replace_literal($0, "{{BASELINE_VERSION}}", ENVIRON["HB_BASELINE_VERSION"])
+    line = replace_literal(line, "{{COMPENDIUM_VERSION}}", ENVIRON["HB_COMPENDIUM_VERSION"])
+    line = replace_literal(line, "{{RELEASE_DATE}}", ENVIRON["HB_RELEASE_DATE"])
+    print line
+  }
+' "$HEADER_TEMPLATE" > "$tmp"
 header_content="$(cat "$tmp")"
 printf '%s\n' "$header_content" > "$tmp"
 
@@ -162,6 +194,7 @@ if $CHECK_ONLY; then
   cmp -s "$tmp" "$output" || { printf 'Generated compendium is stale: %s\n' "$output" >&2; exit 1; }
   printf 'Secure-development generated documents are current.\n'
 else
-  cp "$tmp" "$output"
+  sdh_assert_safe_managed_destination "$REPO_ROOT" "docs/secure-development/$compendium_path"
+  mv -f -- "$tmp" "$output"
   printf 'Generated %s\n' "$output"
 fi

@@ -75,6 +75,8 @@ if (-not (Test-Path -LiteralPath $hardeningModule -PathType Leaf)) {
     throw "Windows-Wartungsmodul fehlt / Windows maintenance module missing: ${hardeningModule}"
 }
 Import-Module $hardeningModule -Force
+$managedFileModule = Join-Path $sourceRoot 'scripts/lib/managed-file-hardening.psm1'
+Import-Module $managedFileModule -Force
 $HomeDir = [IO.Path]::GetFullPath((Resolve-Path -LiteralPath $HomeDir).Path)
 if (-not $Registry) {
     $Registry = Join-Path $HomeDir '.home-baseline/level2-repository-registry.json'
@@ -106,11 +108,12 @@ $seenPaths = [Collections.Generic.HashSet[string]]::new([StringComparer]::Ordina
 foreach ($entry in $manifestData.files) {
     $relativePath = [string] $entry.path
     if (-not $relativePath -or [IO.Path]::IsPathRooted($relativePath) -or
-        $relativePath.Split([char[]]@('/', '\')) -contains '..' -or
+        $relativePath -match '[\x00-\x1f]' -or $relativePath.Contains('\') -or
+        @($relativePath.Split('/') | Where-Object { -not $_ -or $_ -in '.', '..' -or $_.StartsWith('-') }).Count -gt 0 -or
         -not $seenPaths.Add($relativePath)) {
         throw "Unsicherer oder doppelter Pfad / Unsafe or duplicate path: ${relativePath}"
     }
-    $sourceFile = Join-Path $sourceRoot $relativePath
+    $sourceFile = Get-HBManagedPath -Root $sourceRoot -RelativePath $relativePath
     if (-not (Test-Path -LiteralPath $sourceFile -PathType Leaf)) {
         throw "Kanonische Datei fehlt / Canonical file missing: ${sourceFile}"
     }
@@ -165,12 +168,35 @@ function Test-HBManagedRepository {
          (Test-Path -LiteralPath (Join-Path $Path 'CLAUDE.md') -PathType Leaf))
 }
 
+function Get-HBExplicitRepositoryPath {
+    [CmdletBinding()]
+    param([Parameter(Mandatory)][string]$Path)
+
+    $absolute = [IO.Path]::GetFullPath($Path)
+    $comparison = if ($IsWindows) { [StringComparison]::OrdinalIgnoreCase } else { [StringComparison]::Ordinal }
+    $anchors = @(
+        $HomeDir,
+        [IO.Path]::GetFullPath([IO.Path]::GetTempPath()),
+        [IO.Path]::GetFullPath($PWD.Path)
+    ) | Sort-Object Length -Descending -Unique
+    foreach ($anchor in $anchors) {
+        $prefix = $anchor.TrimEnd([IO.Path]::DirectorySeparatorChar, [IO.Path]::AltDirectorySeparatorChar) + [IO.Path]::DirectorySeparatorChar
+        if ($absolute.StartsWith($prefix, $comparison)) {
+            $relative = [IO.Path]::GetRelativePath($anchor, $absolute).Replace('\', '/')
+            return Get-HBManagedDirectoryPath -Root $anchor -RelativePath $relative
+        }
+    }
+    $root = [IO.Path]::GetPathRoot($absolute)
+    $relative = [IO.Path]::GetRelativePath($root, $absolute).Replace('\', '/')
+    return Get-HBManagedDirectoryPath -Root $root -RelativePath $relative
+}
+
 function Get-HBManagedRepositories {
     [CmdletBinding()]
     param()
 
     if ($Repo) {
-        $targetPath = [IO.Path]::GetFullPath((Resolve-Path -LiteralPath $Repo).Path)
+        $targetPath = Get-HBExplicitRepositoryPath -Path $Repo
         if (-not (Test-HBManagedRepository -Path $targetPath)) {
             throw "Kein verwaltetes Git-Repository / Not a managed Git repository: ${targetPath}"
         }
@@ -183,11 +209,13 @@ function Get-HBManagedRepositories {
         if ($entry.level -notin 1, 2 -or -not $entry.path) {
             continue
         }
-        $path = [IO.Path]::GetFullPath((Join-Path $HomeDir ([string] $entry.path)))
-        $homePrefix = $HomeDir.TrimEnd([IO.Path]::DirectorySeparatorChar) + [IO.Path]::DirectorySeparatorChar
-        if (-not $path.StartsWith($homePrefix, [StringComparison]::OrdinalIgnoreCase)) {
+        $registryPath = [string]$entry.path
+        if ([IO.Path]::IsPathRooted($registryPath) -or $registryPath -match '[\x00-\x1f]') {
             continue
         }
+        try {
+            $path = Get-HBManagedDirectoryPath -Root $HomeDir -RelativePath $registryPath.Replace('\', '/')
+        } catch { continue }
         if ($path -ne $sourceRoot -and (Test-HBManagedRepository -Path $path)) {
             $repositories[$path] = [int] $entry.level
         }
@@ -255,7 +283,7 @@ function Test-HBManagedPathDirty {
         [Parameter(Mandatory)] $File
     )
 
-    $target = Join-Path $Repository $File.Path
+    $target = Get-HBManagedPath -Root $Repository -RelativePath $File.Path -AllowMissingParent
     if (Test-HBFileMatches -Repository $Repository -Source $File.Source -Target $target `
         -RepositoryRelativePath $File.Path -Executable $File.Executable) {
         return $false
@@ -307,6 +335,11 @@ foreach ($repository in $repositories) {
     Write-Host ''
     Write-Host "-> Level $($repository.Level): ${repoPath}"
 
+    foreach ($file in $managedFiles) {
+        $null = Get-HBManagedPath -Root $sourceRoot -RelativePath $file.Path
+        $null = Get-HBManagedPath -Root $repoPath -RelativePath $file.Path -AllowMissingParent
+    }
+
     $dirtyFiles = @($managedFiles | Where-Object {
         Test-HBManagedPathDirty -Repository $repoPath -File $_
     })
@@ -321,7 +354,7 @@ foreach ($repository in $repositories) {
 
     $repoDifferences = 0
     foreach ($file in $managedFiles) {
-        $target = Join-Path $repoPath $file.Path
+        $target = Get-HBManagedPath -Root $repoPath -RelativePath $file.Path -AllowMissingParent
         if (-not (Test-HBRawFileMatches -Source $file.Source -Target $target -Executable $file.Executable)) {
             $rawDifferences++
         }
@@ -355,18 +388,15 @@ foreach ($repository in $repositories) {
             continue
         }
         if ($PSCmdlet.ShouldProcess($target, 'Kanonische Wartungsdatei kopieren / Copy canonical maintenance file')) {
-            $targetDirectory = Split-Path -Parent $target
-            New-Item -ItemType Directory -Path $targetDirectory -Force | Out-Null
-            $temporary = "${target}.tmp.$PID"
-            Copy-Item -LiteralPath $file.Source -Destination $temporary -Force
+            Copy-HBManagedFileAtomic -SourceRoot $sourceRoot -SourceRelativePath $file.Path `
+                -Root $repoPath -RelativePath $file.Path -CreateParent
             if (-not $IsWindows) {
                 if ($file.Executable) {
-                    & chmod 0755 $temporary
+                    & chmod 0755 $target
                 } else {
-                    & chmod 0644 $temporary
+                    & chmod 0644 $target
                 }
             }
-            Move-Item -LiteralPath $temporary -Destination $target -Force
             Write-Host "  [CHANGED] $($file.Path)"
         }
     }

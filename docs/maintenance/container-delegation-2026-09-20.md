@@ -34,13 +34,20 @@ bounded admin bypass. Technical gates remain mandatory.*
 
 ## Vertrag / Contract
 
-- Der Host besitzt Netzwerk-Git und die zentrale Registry; keine Übertragung
-  von Provider-Zugangsdaten.
+- Der Host besitzt Netzwerk-Git und die zentrale Registry. Fuer beschreibbar
+  eingebundene Secure-Trader-Ziele ist Host-Git-Netzwerkzugriff jedoch
+  gesperrt, bis ein isolierter, repository-unabhaengiger Transport geprueft
+  ist; keine Übertragung von Provider-Zugangsdaten.
 - 21 Secure-Trader-Repositories werden ausschließlich in den drei vorhandenen
-  Workspace-Mounts bearbeitet. Keine neuen Mounts oder stillen Host-Fallbacks.
+  Workspace-Mounts bearbeitet. Der Vertrag muss jede aktive Secure-Trader-
+  Wurzel vollständig abdecken; eine Teilmenge blockiert den Lauf vor Git.
+  Keine neuen Mounts oder stillen Host-Fallbacks.
 - Vorabprüfung bindet Container-ID, Image, Freigabedokument und Paket-Hashes.
-  Das Quellpaket muss für den Containerbenutzer schreibgeschützt sein.
-- Lokale Fast-forwards verwenden geprüfte Commit-IDs nach allen Fetches.
+  Die Hashbindung umfasst auch alle vom Leaf-Worker ausgeführten und direkt
+  eingebundenen Hilfsskripte. Das Quellpaket muss für den Containerbenutzer
+  schreibgeschützt sein.
+- Secure-Trader-Fast-forwards bleiben bis zum geprueften isolierten Transport
+  mit `HostGitTransportBlocked` gesperrt.
 - Leaf-Worker führen einzelne Phasen aus, niemals rekursive Vollwartung.
 - Container-Storage beschränkt sich auf Projektartefakte; keine globalen
   Caches, Images oder Agentenvolumes. Vor Änderungen erfolgt eine Vorschau.
@@ -49,10 +56,15 @@ bounded admin bypass. Technical gates remain mandatory.*
 
 *The host owns network Git and the central registry; credentials are not
 transferred. The 21 Secure Trader repositories use only the three existing
-workspace mounts, without new mounts or host fallback. Preflight binds the
-container ID, image, approval document and package hashes. The source package
-must be read-only to the container user. Local fast-forwards use checked
-commit IDs after all fetches. Leaf workers execute individual phases, never
+workspace mounts; every active Secure Trader root must be covered, and a
+partial contract blocks before Git. There are no new mounts or host fallbacks.
+Host network Git remains available for non-mapped repositories. It is blocked
+for writable mounted Secure Trader targets until an isolated,
+repository-independent transport has been reviewed. Preflight binds the
+container ID, image, approval document and the complete
+executed helper closure. The source package must be read-only to the container
+user. Secure Trader fast-forwards report `HostGitTransportBlocked` until that
+transport exists. Leaf workers execute individual phases, never
 recursive full maintenance. Container storage covers only project artifacts,
 not global caches, images or agent volumes; changes require a preview. Owner
 approval expires on 31 December 2026 and does not replace pending approval
@@ -60,8 +72,9 @@ by the designated security or AI governance roles.*
 
 ## Noch ausstehend / Still pending
 
-Lokal bestanden 22 gezielte Delegationstests, darunter echte isolierte
-Registry-/Paketprüfungen und Fast-forwards nach allen Fetches. Die erste
+Die fruehere Fast-forward-Evidence ist durch die neue Host-Transportbarriere
+ersetzt. Gezielte Delegationstests pruefen jetzt, dass `fetch`, `ls-remote` und
+`pull` fuer gemappte Ziele keinen Host-Prozess starten. Die erste
 Gesamtregression bestand mit 287 Tests, darunter 12 ausdrücklich übersprungene
 Tests. Native Plattformnachweise werden am veröffentlichten Commit geprüft.
 Vor produktiver Aktivierung folgen Veröffentlichung des geprüften Quellpakets,
@@ -73,8 +86,9 @@ Container-Reparaturen bleiben ausdrücklich zustimmungspflichtig. Dirty-Ziele
 und alte Container-Resume-Evidence benötigen separaten Review; sie werden
 weder überschrieben noch auf dem Host wiederaufgenommen.
 
-*Locally, 22 focused delegation tests passed, including real isolated
-registry/package checks and fast-forwards after all fetches. The first full
+*The earlier fast-forward evidence is superseded by the host transport
+barrier. Focused delegation tests now verify that `fetch`, `ls-remote`, and
+`pull` start no host process for mapped targets. The first full
 regression passed with 287 tests, including 12 explicit skips. Native platform
 evidence is checked against the published commit. Before production
 activation, publish the reviewed package, update the explicitly

@@ -34,9 +34,12 @@ placeholder values and helps fix them permanently.*
    (GECOS-Feld), Windows ADSI (FullName).
    *System user account: macOS dscl, Linux getent, Windows ADSI.*
 
-3. **`git log`** — Name und E-Mail aus vorhandenen Commits im Home-Verzeichnis
-   (Platzhalter-Werte werden übersprungen).
-   *Name and email from existing commits in the home directory (placeholders skipped).*
+Commit-Autoren werden nicht als automatische Identitaetsquelle verwendet, da
+sie nicht vertrauenswuerdiger Repository-Inhalt sind. Fehlen GitHub- oder
+Systemwerte, fragt der interaktive Modus nach; `--auto`/`-Auto` bricht ab.
+*Commit authors are not used as an automatic identity source because they are
+untrusted repository content. Without GitHub or system values, interactive
+mode prompts and automatic mode fails closed.*
 
 ## OPTIONEN / OPTIONS
 

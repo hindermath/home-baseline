@@ -10,6 +10,10 @@ CLI_REGISTRY="$REPO_ROOT/scripts/config/required-cli-tools-registry.json"
 NPM_AGENT_REGISTRY="$REPO_ROOT/scripts/config/npm-agent-cli-registry.json"
 POWERSHELL_MODULE_REGISTRY="$REPO_ROOT/scripts/config/powershell-modules-registry.json"
 LINUX_HARDENING="$REPO_ROOT/scripts/lib/linux-maintenance-hardening.py"
+APPROVED_SPEC_KIT_REVISION="464d57fe30c72e9a88d279cc49834539ec989c03"
+APPROVED_SPEC_KIT_SOURCE="git+https://github.com/github/spec-kit.git@${APPROVED_SPEC_KIT_REVISION}"
+APPROVED_ANTIGRAVITY_URL="https://antigravity.google/cli/install.sh"
+APPROVED_ANTIGRAVITY_SHA256="ee1ea43ce4e9e56356c4ab6dad907ef357ae4bdfcaadb682735909fb57c9c640"
 DRY_RUN=0
 MSL_ONLY=0
 COMPARE_ONLY=0
@@ -512,6 +516,40 @@ for item in data.get("tools", []):
 PY
 }
 
+validate_cli_probe_contract() {
+  local id="$1"
+  local command_name="$2"
+  local args_json="$3"
+  python3 - "$id" "$command_name" "$args_json" <<'PY'
+import json
+import sys
+
+item_id, command_name, args_json = sys.argv[1:4]
+approved = {
+    "pandoc": ("pandoc", ["--version"]), "typst": ("typst", ["--version"]),
+    "tinymist": ("tinymist", ["--version"]),
+    "bash": ("bash", ["--noprofile", "--norc", "-c", "printf '%s\\n' \"$BASH_VERSION\"; (( BASH_VERSINFO[0] >= 5 ))"]),
+    "dotnet": ("dotnet", ["--version"]), "go": ("go", ["version"]),
+    "java": ("java", ["-version"]), "javac": ("javac", ["-version"]),
+    "python3": ("python3", ["--version"]), "python": ("python", ["--version"]),
+    "cargo": ("cargo", ["--version"]), "rustc": ("rustc", ["--version"]),
+    "swift": ("swift", ["--version"]), "syft": ("syft", ["version"]),
+    "lychee": ("lychee", ["--version"]), "specify": ("specify", ["--version"]),
+    "codex": ("codex", ["--version"]), "claude": ("claude", ["--version"]),
+    "antigravity": ("agy", ["--version"]), "copilot": ("copilot", ["--version"]),
+}
+expected = approved.get(item_id)
+if expected is None:
+    raise SystemExit(1)
+try:
+    arguments = json.loads(args_json)
+except (TypeError, ValueError):
+    raise SystemExit(1)
+if command_name != expected[0] or arguments != expected[1]:
+    raise SystemExit(1)
+PY
+}
+
 npm_agent_registry_items() {
   local scope="${1:-all}"
   python3 - "$NPM_AGENT_REGISTRY" "$OS_NAME" "$scope" <<'PY'
@@ -898,6 +936,20 @@ install_cli_tool() {
       while IFS= read -r arg; do
         install_args+=("$arg")
       done < <(json_array_items "$install_args_json")
+      local -a approved_uv_args=(tool install specify-cli --from "$APPROVED_SPEC_KIT_SOURCE")
+      if [ "$id" != "specify" ] || [ "${#install_args[@]}" -ne "${#approved_uv_args[@]}" ]; then
+        log "SKIP cli tool install: $id (nicht autorisierter uv-Installationsvertrag)"
+        mark_failed_attempt cli "$id"
+        return 0
+      fi
+      local index
+      for index in "${!approved_uv_args[@]}"; do
+        if [ "${install_args[$index]}" != "${approved_uv_args[$index]}" ]; then
+          log "SKIP cli tool install: $id (Spec-Kit-Quelle ist nicht commitgebunden)"
+          mark_failed_attempt cli "$id"
+          return 0
+        fi
+      done
       log "INSTALL cli tool: $id"
       mark_attempt cli "$id"
       if [ "$DRY_RUN" -eq 1 ] || command -v uv >/dev/null 2>&1; then
@@ -914,8 +966,10 @@ install_cli_tool() {
         log "MISSING cli tool: $id (vendor installer is Linux-only)"
         return 0
       fi
-      if [ -z "$install_url" ] || [ -z "$install_sha256" ] || [ "$interpreter" != "bash" ]; then
-        log "SKIP cli tool install: $id (ungueltige vendor-script Registrydaten)"
+      if [ "$id" != "antigravity" ] || [ "$install_url" != "$APPROVED_ANTIGRAVITY_URL" ] || \
+          [ "$install_sha256" != "$APPROVED_ANTIGRAVITY_SHA256" ] || [ "$interpreter" != "bash" ]; then
+        log "SKIP cli tool install: $id (vendor-script nicht durch Code-Policy autorisiert)"
+        mark_failed_attempt cli "$id"
         return 0
       fi
       log "INSTALL cli tool: $id (verified vendor script)"
@@ -947,7 +1001,7 @@ install_cli_tool() {
         mark_failed_attempt cli "$id"
         return 0
       fi
-      if [ "$actual_sha256" != "$install_sha256" ]; then
+      if [ "$actual_sha256" != "$APPROVED_ANTIGRAVITY_SHA256" ]; then
         rm -f -- "$installer"
         log "SKIP cli tool install: $id (Installer-Pruefsumme geaendert; Registry zuerst pruefen)"
         mark_failed_attempt cli "$id"
@@ -976,6 +1030,11 @@ install_cli_tools() {
   while IFS=$'\t' read -r -u 3 id command_name args_json manager install_args_json install_url install_sha256 interpreter; do
     [ -n "$id" ] || continue
     validate_item_id "$id"
+    if ! validate_cli_probe_contract "$id" "$command_name" "$args_json"; then
+      log "SKIP cli tool probe: $id (nicht durch Code-Policy autorisiert)"
+      mark_failed_attempt cli "$id"
+      continue
+    fi
     if cli_tool_available "$id" "$command_name" "$args_json"; then
       log "OK cli tool: $id"
     else
@@ -1020,7 +1079,13 @@ compare_cli_scope() {
     [ -n "$id" ] || continue
     attempted=false
     was_attempted cli "$id" && attempted=true
-    if cli_tool_available "$id" "$command_name" "$args_json"; then
+    if ! validate_cli_probe_contract "$id" "$command_name" "$args_json"; then
+      CURRENT_PROBE_STATUS="CapabilityBlocked"
+      CURRENT_PROBE_EVIDENCE="Probe ist nicht durch die Code-Policy autorisiert."
+      CURRENT_PROBE_NEXT_ACTION="CLI-Registry an den kanonischen Probevertrag angleichen."
+      missing="${missing}${id}"$'\n'
+      final_status="Failed"
+    elif cli_tool_available "$id" "$command_name" "$args_json"; then
       final_status="Present"
       [ "$attempted" = true ] && final_status="Installed"
     else

@@ -1,9 +1,16 @@
 #Requires -Version 7
-# windows-test.ps1 — Sammelt System-Info und Testergebnisse auf Windows
-# Ausgabe wird nach ~/home-baseline-source/windows-test-output.txt geschrieben
-# und automatisch committet + gepusht.
-#
-# Verwendung: pwsh ~/home-baseline-source/scripts/windows-test.ps1
+<#
+.SYNOPSIS
+Sammelt Windows-Testevidence und veröffentlicht ausschließlich diese Datei.
+
+.DESCRIPTION
+Requires a clean main checkout exactly based on origin/main. The output is
+written through a private temporary file, checked against links/reparse points,
+committed as the only changed path, and pushed only after parent/path checks.
+
+.EXAMPLE
+pwsh -NoProfile -File ~/home-baseline-source/scripts/windows-test.ps1
+#>
 Set-StrictMode -Version Latest
 $ErrorActionPreference = 'Stop'
 
@@ -12,8 +19,66 @@ $ScriptDir = Split-Path -Parent $MyInvocation.MyCommand.Path
 . (Join-Path $ScriptDir 'lib/resolve-home-baseline-source.ps1')
 $RepoDir   = Resolve-HBSourceRepository -StartPath $MyInvocation.MyCommand.Path -AllowLegacy
 $OutFile   = Join-Path $RepoDir 'windows-test-output.txt'
+$OutputName = 'windows-test-output.txt'
 $Date      = Get-Date -Format 'yyyy-MM-dd HH:mm:ss'
 $Lines     = [System.Collections.Generic.List[string]]::new()
+
+function Invoke-HBTestGit {
+    param([Parameter(Mandatory)][string[]]$Arguments)
+    $output = @(& git -C $RepoDir @Arguments 2>&1)
+    if ($LASTEXITCODE -ne 0) {
+        throw "Git-Aufruf fehlgeschlagen: git $($Arguments -join ' ')"
+    }
+    return $output
+}
+
+function Assert-HBSafeCleanPublicationState {
+    $repoItem = Get-Item -LiteralPath $RepoDir -Force
+    if ($repoItem.Attributes -band [IO.FileAttributes]::ReparsePoint) {
+        throw "Verknüpftes Repository wird abgelehnt: $RepoDir"
+    }
+    if (Test-Path -LiteralPath $OutFile) {
+        $outputItem = Get-Item -LiteralPath $OutFile -Force
+        if ($outputItem.Attributes -band [IO.FileAttributes]::ReparsePoint) {
+            throw "Verknüpfte Ausgabedatei wird abgelehnt: $OutFile"
+        }
+    }
+    $stage = @(Invoke-HBTestGit -Arguments @('ls-files', '-s', '--', $OutputName))
+    if ($stage.Count -gt 0 -and ($stage[0] -split '\s+')[0] -eq '120000') {
+        throw 'Git-Symlink als Ausgabedatei wird abgelehnt.'
+    }
+    if (@(Invoke-HBTestGit -Arguments @('status', '--porcelain=v1', '--untracked-files=all')).Count -gt 0) {
+        throw 'Repository enthält bereits Änderungen oder ungetrackte Dateien.'
+    }
+}
+
+function Assert-HBOriginPushMatchesFetch {
+    $fetchUrl = @(Invoke-HBTestGit -Arguments @('remote', 'get-url', 'origin'))
+    $pushUrls = @(Invoke-HBTestGit -Arguments @('remote', 'get-url', '--push', '--all', 'origin'))
+    if ($fetchUrl.Count -ne 1 -or $pushUrls.Count -ne 1 -or $pushUrls[0] -cne $fetchUrl[0]) {
+        throw 'origin-Pushziel weicht vom verifizierten Fetchziel ab.'
+    }
+}
+
+function Initialize-HBExactMainBase {
+    $branch = @(Invoke-HBTestGit -Arguments @('branch', '--show-current'))[-1]
+    if ($branch -cne 'main') { throw 'Launcher benötigt Branch main.' }
+    Assert-HBOriginPushMatchesFetch
+    $null = Invoke-HBTestGit -Arguments @('fetch', '--no-tags', 'origin', 'main')
+    $head = @(Invoke-HBTestGit -Arguments @('rev-parse', 'HEAD'))[-1]
+    $remoteHead = @(Invoke-HBTestGit -Arguments @('rev-parse', 'origin/main'))[-1]
+    if ($head -cne $remoteHead) {
+        & git -C $RepoDir merge-base --is-ancestor $head $remoteHead
+        if ($LASTEXITCODE -ne 0) {
+            throw 'Lokale Ahead-/Diverged-Commits dürfen nicht nach main veröffentlicht werden.'
+        }
+        $null = Invoke-HBTestGit -Arguments @('merge', '--ff-only', $remoteHead)
+    }
+}
+
+Assert-HBSafeCleanPublicationState
+Initialize-HBExactMainBase
+$BaseCommit = @(Invoke-HBTestGit -Arguments @('rev-parse', 'HEAD'))[-1]
 
 function Add-Line { param([string]$Text = '') $Lines.Add($Text); Write-Host $Text }
 
@@ -145,13 +210,41 @@ $checkScript = Join-Path $HomeDir 'scripts\check-homogeneity.ps1'
 $checkOutput = pwsh -NoProfile -File $checkScript -TargetDir $HomeDir 2>&1
 $checkOutput | ForEach-Object { Add-Line "$_" }
 
-# Datei schreiben
-$Lines | Set-Content -Path $OutFile -Encoding UTF8
+$null = Invoke-HBTestGit -Arguments @('fetch', '--no-tags', 'origin', 'main')
+$headBeforePublish = @(Invoke-HBTestGit -Arguments @('rev-parse', 'HEAD'))[-1]
+$remoteBeforePublish = @(Invoke-HBTestGit -Arguments @('rev-parse', 'origin/main'))[-1]
+if ($headBeforePublish -cne $remoteBeforePublish) {
+    throw 'origin/main hat sich während des Tests geändert; bitte erneut ausführen.'
+}
+Assert-HBSafeCleanPublicationState
 
-# Committen und pushen
-Set-Location $RepoDir
-git pull --rebase --autostash origin main 2>&1 | ForEach-Object { Write-Host $_ }
-git add windows-test-output.txt
-git commit -m "test: Windows Test-Output (${Date})" -m "Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>"
-git push origin HEAD:main
+$publishTemp = Join-Path $RepoDir ".windows-test-output.$([Guid]::NewGuid().ToString('N')).tmp"
+try {
+    $stream = [IO.File]::Open($publishTemp, [IO.FileMode]::CreateNew, [IO.FileAccess]::Write, [IO.FileShare]::None)
+    try {
+        $writer = [IO.StreamWriter]::new($stream, [Text.UTF8Encoding]::new($false))
+        try { foreach ($line in $Lines) { $writer.WriteLine($line) } } finally { $writer.Dispose() }
+    } finally {
+        if ($null -ne $stream) { $stream.Dispose() }
+    }
+    [IO.File]::Move($publishTemp, $OutFile, $true)
+} finally {
+    if (Test-Path -LiteralPath $publishTemp) { Remove-Item -LiteralPath $publishTemp -Force }
+}
+
+$null = Invoke-HBTestGit -Arguments @('add', '--', $OutputName)
+$cached = @(Invoke-HBTestGit -Arguments @('diff', '--cached', '--name-only'))
+if ($cached.Count -ne 1 -or $cached[0] -cne $OutputName) { throw 'Unerwartete Pfade im Git-Index.' }
+if (@(Invoke-HBTestGit -Arguments @('diff', '--name-only')).Count -gt 0) { throw 'Nicht gestagte Änderungen erkannt.' }
+if (@(Invoke-HBTestGit -Arguments @('ls-files', '--others', '--exclude-standard')).Count -gt 0) { throw 'Ungetrackte Dateien erkannt.' }
+$null = Invoke-HBTestGit -Arguments @('-c', 'core.hooksPath=NUL', 'commit', '--only',
+    '-m', "test: Windows Test-Output (${Date})",
+    '-m', 'Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>', '--', $OutputName)
+$verifiedCommit = @(Invoke-HBTestGit -Arguments @('rev-parse', 'HEAD'))[-1]
+$parent = @(Invoke-HBTestGit -Arguments @('rev-parse', "${verifiedCommit}^"))[-1]
+if ($parent -cne $BaseCommit) { throw 'Unerwartete Commit-Elternbeziehung.' }
+$commitPaths = @(Invoke-HBTestGit -Arguments @('diff-tree', '--no-commit-id', '--name-only', '-r', "${verifiedCommit}^", $verifiedCommit))
+if ($commitPaths.Count -ne 1 -or $commitPaths[0] -cne $OutputName) { throw 'Commit enthält unerwartete Pfade.' }
+Assert-HBOriginPushMatchesFetch
+$null = Invoke-HBTestGit -Arguments @('push', "--force-with-lease=refs/heads/main:$BaseCommit", 'origin', "${verifiedCommit}:refs/heads/main")
 Add-Line "Gepusht."

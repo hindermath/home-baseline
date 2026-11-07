@@ -45,7 +45,7 @@ while [ $# -gt 0 ]; do
       echo "Erkennungsquellen / Detection sources (in priority order):"
       echo "  1. gh api user  (GitHub-Profil-Name und E-Mail)"
       echo "  2. dscl / getent (macOS/Linux System-Benutzername)"
-      echo "  3. git log       (Name/E-Mail aus vorhandenen Commits)"
+  echo "  3. Interaktiv    (keine Identitaet aus nicht vertrauenswuerdigen Commits)"
       exit 0
       ;;
     --)
@@ -137,22 +137,9 @@ if [ -z "$detected_name" ] && command -v getent >/dev/null 2>&1; then
   [ -n "$gecos" ] && detected_name="$gecos"
 fi
 
-# Quelle 4: vorhandene Git-Commits (außerhalb des aktuellen Repos, falls vorhanden)
-# Source 4: existing Git commits (excludes placeholder values)
-if [ -z "$detected_name" ]; then
-  # Suche in globalen git-config-gesetzten Werten über bestehende Repos (best-effort)
-  # Dies funktioniert nur, wenn git log in einem Repo ausgeführt wird
-  detected_name="$(git -C ~ log --format='%an' 2>/dev/null \
-    | grep -v "^${PLACEHOLDER_NAME}$" \
-    | grep -v "^$" \
-    | head -1 || true)"
-fi
-if [ -z "$detected_email" ]; then
-  detected_email="$(git -C ~ log --format='%ae' 2>/dev/null \
-    | grep -v "^${PLACEHOLDER_EMAIL}$" \
-    | grep -v "^$" \
-    | head -1 || true)"
-fi
+# Commit-Autoren sind Repository-Inhalt und daher keine vertrauenswuerdige
+# Identitaetsquelle. Fehlende Werte werden interaktiv erfragt; --auto bricht ab.
+# Commit authors are repository content and are not a trusted identity source.
 
 # --- Auto-Modus: Abbruch wenn Erkennung unvollständig --------------------------
 

@@ -119,7 +119,13 @@ from typing import Dict, Iterable, List, Tuple
 
 ACTION = sys.argv[1]
 HOME_DIR = pathlib.Path(sys.argv[2]).expanduser().resolve()
-STATE_DIR = pathlib.Path(sys.argv[3]).expanduser().resolve()
+state_text = os.path.abspath(os.path.expanduser(sys.argv[3]))
+if sys.platform == "darwin":
+    for alias, canonical in (("/var", "/private/var"), ("/tmp", "/private/tmp"), ("/etc", "/private/etc")):
+        if state_text == alias or state_text.startswith(alias + os.sep):
+            state_text = canonical + state_text[len(alias):]
+            break
+STATE_DIR = pathlib.Path(state_text)
 WINDOW_HOURS = int(sys.argv[4])
 OUTPUT_JSON = sys.argv[5].lower() == "true"
 REFRESH_BASELINE = sys.argv[6].lower() == "true"
@@ -174,6 +180,16 @@ def iso(ts: float) -> str:
     return dt.datetime.fromtimestamp(ts, tz=dt.timezone.utc).astimezone().isoformat()
 
 
+def reject_linked_path_components(path: pathlib.Path) -> None:
+    current = pathlib.Path(path.anchor)
+    for component in path.parts[1:]:
+        current /= component
+        if current.is_symlink():
+            raise RuntimeError(f"Refusing linked audit state path: {current}")
+        if not current.exists():
+            break
+
+
 def sha256_file(path: pathlib.Path) -> str:
     digest = hashlib.sha256()
     with path.open("rb") as handle:
@@ -224,8 +240,23 @@ def collect_snapshot(home_dir: pathlib.Path) -> Dict[str, object]:
 
 
 def write_json(path: pathlib.Path, payload: Dict[str, object]) -> None:
-    path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(payload, indent=2, ensure_ascii=True) + "\n", encoding="utf-8")
+    path.parent.mkdir(parents=True, exist_ok=True, mode=0o700)
+    path.parent.chmod(0o700)
+    if path.is_symlink():
+        raise RuntimeError(f"Refusing linked audit output: {path}")
+    flags = os.O_WRONLY | os.O_CREAT | os.O_TRUNC
+    if hasattr(os, "O_NOFOLLOW"):
+        flags |= os.O_NOFOLLOW
+    descriptor = os.open(path, flags, 0o600)
+    try:
+        if hasattr(os, "fchmod"):
+            os.fchmod(descriptor, 0o600)
+        with os.fdopen(descriptor, "w", encoding="utf-8") as handle:
+            descriptor = -1
+            handle.write(json.dumps(payload, indent=2, ensure_ascii=True) + "\n")
+    finally:
+        if descriptor >= 0:
+            os.close(descriptor)
 
 
 def save_snapshot(snapshot: Dict[str, object]) -> pathlib.Path:
@@ -356,10 +387,7 @@ def search_terms_in_file(path: pathlib.Path, terms: List[str]) -> List[str]:
             for line_no, line in enumerate(handle, start=1):
                 lowered = line.lower()
                 if any(term in lowered for term in term_map):
-                    excerpt = line.strip()
-                    if len(excerpt) > 180:
-                        excerpt = excerpt[:177] + "..."
-                    hits.append(f"{path}:{line_no}: {excerpt}")
+                    hits.append(f"{path}:{line_no}: [content redacted]")
                     if len(hits) >= 3:
                         break
     except OSError:
@@ -462,9 +490,17 @@ def render_human_report(report: Dict[str, object]) -> str:
 
 
 def main() -> None:
-    STATE_DIR.mkdir(parents=True, exist_ok=True)
-    SNAPSHOT_DIR.mkdir(parents=True, exist_ok=True)
-    REPORT_DIR.mkdir(parents=True, exist_ok=True)
+    reject_linked_path_components(STATE_DIR)
+    STATE_DIR.mkdir(parents=True, exist_ok=True, mode=0o700)
+    SNAPSHOT_DIR.mkdir(parents=True, exist_ok=True, mode=0o700)
+    REPORT_DIR.mkdir(parents=True, exist_ok=True, mode=0o700)
+    STATE_DIR.chmod(0o700)
+    SNAPSHOT_DIR.chmod(0o700)
+    REPORT_DIR.chmod(0o700)
+    for existing in STATE_DIR.rglob("*"):
+        if existing.is_symlink():
+            raise RuntimeError(f"Refusing linked audit state entry: {existing}")
+        existing.chmod(0o700 if existing.is_dir() else 0o600)
 
     current_snapshot = collect_snapshot(HOME_DIR)
 

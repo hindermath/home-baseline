@@ -14,7 +14,13 @@
     Erkennungsquellen (in Reihenfolge) / Detection sources (in priority order):
       1. gh api user         (GitHub-Profil-Name und E-Mail)
       2. System-Benutzerkonto (Windows: ADSI/WMI; macOS: dscl; Linux: getent)
-      3. git log             (Name/E-Mail aus vorhandenen Commits)
+      3. Interaktiver Dialog; -Auto bricht bei unvollstaendiger Erkennung ab.
+
+    Commit-Autoren sind nicht vertrauenswuerdiger Repository-Inhalt und werden
+    nie als Quelle fuer die globale Identitaet verwendet.
+
+    Commit authors are untrusted repository content and are never used as a
+    global identity source. Interactive mode prompts; -Auto fails closed.
 
 .PARAMETER CheckOnly
     Nur prüfen; Exit 1 wenn Platzhalter erkannt. Kein Dialog, keine Änderungen.
@@ -153,20 +159,9 @@ if (-not $DetectedName -and $IsLinux) {
     }
 }
 
-# Quelle 3: git log — vorhandene Commits (ohne Platzhalter)
-# Source 3: git log — existing commits (excluding placeholders)
-if (-not $DetectedName) {
-    $LogName = git -C ~ log --format='%an' 2>$null |
-        Where-Object { $_ -and $_ -ne $PlaceholderName } |
-        Select-Object -First 1
-    if ($LogName) { $DetectedName = $LogName }
-}
-if (-not $DetectedEmail) {
-    $LogEmail = git -C ~ log --format='%ae' 2>$null |
-        Where-Object { $_ -and $_ -ne $PlaceholderEmail } |
-        Select-Object -First 1
-    if ($LogEmail) { $DetectedEmail = $LogEmail }
-}
+# Commit-Autoren sind Repository-Inhalt und keine vertrauenswuerdige Quelle
+# fuer globale Identitaet. Fehlende Werte werden interaktiv erfragt; -Auto
+# bricht ab. Commit authors are untrusted repository content.
 
 # --- Auto-Modus: Abbruch wenn Erkennung unvollständig -------------------------
 
