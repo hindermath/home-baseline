@@ -115,12 +115,30 @@ for level, repo in discover():
     if not skill_root.is_dir() or not any(skill_root.glob("speckit-*")):
         findings.append("missing .agents/skills/speckit-*")
     gitignore = repo / ".gitignore"
-    if gitignore.is_file():
-        ignore_text = gitignore.read_text(encoding="utf-8", errors="replace")
-        if ".agents/*" not in ignore_text or "!.agents/skills/" not in ignore_text:
-            findings.append("unsafe or incomplete .agents gitignore allowlist")
-    else:
+    if not gitignore.is_file():
         findings.append("missing .gitignore")
+    else:
+        private_ignored = all(
+            subprocess.run(
+                ["git", "-C", str(repo), "check-ignore", "-q", "--no-index", "--", private_path],
+                check=False,
+            ).returncode == 0
+            for private_path in (
+                ".agents/private-state.json", ".agents/mcp_config.json", ".agents/runtime/session.json",
+            )
+        )
+        skill_visible = subprocess.run(
+            ["git", "-C", str(repo), "check-ignore", "-q", "--no-index", "--", ".agents/skills/speckit-probe/SKILL.md"],
+            check=False,
+        ).returncode == 1
+        tracked_agents = subprocess.run(
+            ["git", "-C", str(repo), "ls-files", "-z", "--", ".agents"],
+            check=False, capture_output=True,
+        )
+        tracked_paths = [item.decode("utf-8", errors="surrogateescape") for item in tracked_agents.stdout.split(b"\0") if item]
+        tracking_valid = tracked_agents.returncode == 0 and all(path.startswith(".agents/skills/") for path in tracked_paths)
+        if not (private_ignored and skill_visible and tracking_valid):
+            findings.append("unsafe or ineffective .agents gitignore allowlist")
     tracked_mcp = subprocess.run(
         ["git", "-C", str(repo), "ls-files", "--error-unmatch", ".agents/mcp_config.json"],
         check=False,

@@ -24,9 +24,18 @@ if [ "$current_branch" != "$default_branch" ] && [ "$release_dry_run" != "true" 
 fi
 
 if [ "${CI:-}" = "true" ]; then
+  ci_commit_sha="${CI_COMMIT_SHA:-}"
+  [[ "$ci_commit_sha" =~ ^[0-9a-fA-F]{40}([0-9a-fA-F]{24})?$ ]] || {
+    echo "CI_COMMIT_SHA is required and must be a full Git object ID." >&2
+    exit 1
+  }
   git fetch origin "$default_branch" --tags
-  git checkout "$default_branch"
-  git reset --hard "origin/$default_branch"
+  fetched_default_sha="$(git rev-parse "refs/remotes/origin/$default_branch")"
+  if [ "$fetched_default_sha" != "$ci_commit_sha" ]; then
+    echo "Default branch advanced after pipeline creation; start a fresh release job." >&2
+    exit 1
+  fi
+  git checkout --detach "$ci_commit_sha"
 else
   git fetch origin --tags >/dev/null 2>&1 || true
 fi
@@ -265,6 +274,9 @@ if [ -z "${CI_JOB_TOKEN:-}" ] || [ -z "${CI_PROJECT_ID:-}" ] || [ -z "${CI_API_V
   echo "CI_JOB_TOKEN, CI_PROJECT_ID and CI_API_V4_URL are required for a real release run." >&2
   exit 1
 fi
+[[ "$CI_JOB_TOKEN" =~ ^[A-Za-z0-9_-]+$ ]] || { echo "CI_JOB_TOKEN contains unsupported characters." >&2; exit 1; }
+[[ "${CI_SERVER_HOST:-}" =~ ^[A-Za-z0-9.-]+(:[0-9]+)?$ ]] || { echo "CI_SERVER_HOST is invalid." >&2; exit 1; }
+[[ "${CI_PROJECT_PATH:-}" =~ ^[A-Za-z0-9._-]+(/[A-Za-z0-9._-]+)+$ ]] || { echo "CI_PROJECT_PATH is invalid." >&2; exit 1; }
 
 git config user.name "${RELEASE_GIT_NAME:-GitLab Release Bot}"
 git config user.email "${RELEASE_GIT_EMAIL:-gitlab-release-bot@users.noreply.local}"
@@ -272,8 +284,18 @@ git config user.email "${RELEASE_GIT_EMAIL:-gitlab-release-bot@users.noreply.loc
 if ! git diff --quiet -- CHANGELOG.md; then
   git add CHANGELOG.md
   git commit -m "chore(release): v${next_version} [skip ci]"
-  push_url="https://gitlab-ci-token:${CI_JOB_TOKEN}@${CI_SERVER_HOST}/${CI_PROJECT_PATH}.git"
-  git push "$push_url" HEAD:"${default_branch}"
+  askpass_script="${temp_dir}/git-askpass.sh"
+  cat > "$askpass_script" <<'ASKPASS'
+#!/usr/bin/env bash
+case "${1:-}" in
+  *Username*) printf '%s\n' 'gitlab-ci-token' ;;
+  *Password*) printf '%s\n' "${CI_JOB_TOKEN:?}" ;;
+  *) exit 1 ;;
+esac
+ASKPASS
+  chmod 700 "$askpass_script"
+  GIT_ASKPASS="$askpass_script" GIT_TERMINAL_PROMPT=0 \
+    git push "https://${CI_SERVER_HOST}/${CI_PROJECT_PATH}.git" HEAD:"${default_branch}"
 fi
 
 release_ref="$(git rev-parse HEAD)"
@@ -287,9 +309,11 @@ jq -n \
   '{name: $name, tag_name: $tag_name, ref: $ref, description: $description, tag_message: $tag_message}' \
   > "$release_payload"
 
-status_code="$(curl --silent --show-error --output "${temp_dir}/release-response.json" --write-out '%{http_code}' \
+curl_config="${temp_dir}/curl-auth.conf"
+umask 077
+printf 'header = "JOB-TOKEN: %s"\n' "$CI_JOB_TOKEN" > "$curl_config"
+status_code="$(curl --config "$curl_config" --silent --show-error --output "${temp_dir}/release-response.json" --write-out '%{http_code}' \
   --request POST \
-  --header "JOB-TOKEN: ${CI_JOB_TOKEN}" \
   --header 'Content-Type: application/json' \
   --data @"${release_payload}" \
   "${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/releases")"

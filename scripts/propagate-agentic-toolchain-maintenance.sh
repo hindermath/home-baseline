@@ -4,6 +4,7 @@ set -euo pipefail
 
 SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 SOURCE_ROOT="$(cd -- "${SCRIPT_DIR}/.." && pwd)"
+. "${SCRIPT_DIR}/lib/secure-development-hardening.sh"
 HOME_DIR="$(cd -- ~ && pwd)"
 REGISTRY="${HOME_DIR}/.home-baseline/level2-repository-registry.json"
 MANIFEST="${SOURCE_ROOT}/scripts/config/agentic-toolchain-maintenance-files.json"
@@ -91,11 +92,7 @@ warn() { echo "WARN: $*" >&2; }
 
 MANAGED_PATHS=()
 MANAGED_EXECUTABLE=()
-while IFS=$'\t' read -r relative_path executable; do
-  [ -n "$relative_path" ] || continue
-  MANAGED_PATHS+=("$relative_path")
-  MANAGED_EXECUTABLE+=("$executable")
-done < <(python3 - "$MANIFEST" <<'PYEOF'
+if ! MANAGED_ROWS="$(python3 - "$MANIFEST" <<'PYEOF'
 import json
 import pathlib
 import sys
@@ -107,15 +104,31 @@ if data.get("schemaVersion") != 1 or not isinstance(data.get("files"), list):
 seen = set()
 for entry in data["files"]:
     path = entry.get("path") if isinstance(entry, dict) else None
-    if not isinstance(path, str) or not path or pathlib.PurePosixPath(path).is_absolute():
+    if (
+        not isinstance(path, str)
+        or not path
+        or any(ord(char) < 32 or ord(char) == 127 for char in path)
+        or "\\" in path
+        or pathlib.PurePosixPath(path).is_absolute()
+    ):
         raise SystemExit(f"Invalid managed path: {path!r}")
-    parts = pathlib.PurePosixPath(path).parts
-    if ".." in parts or path in seen:
-        raise SystemExit(f"Unsafe or duplicate managed path: {path}")
+    parts = path.split("/")
+    if any(part in ("", ".", "..") or part.startswith("-") for part in parts) or path in seen:
+        raise SystemExit(f"Unsafe or duplicate managed path: {path!r}")
     seen.add(path)
     print(f"{path}\t{'true' if entry.get('executable') else 'false'}")
 PYEOF
-)
+)"; then
+  echo "Fehler / Error: Manifest-Dateiliste ist ungueltig / manifest file list is invalid." >&2
+  exit 2
+fi
+while IFS=$'\t' read -r relative_path executable; do
+  [ -n "$relative_path" ] || continue
+  MANAGED_PATHS+=("$relative_path")
+  MANAGED_EXECUTABLE+=("$executable")
+done <<EOF
+${MANAGED_ROWS}
+EOF
 
 if [ "${#MANAGED_PATHS[@]}" -eq 0 ]; then
   echo "Fehler / Error: Manifest enthaelt keine Dateien / contains no files." >&2
@@ -124,7 +137,7 @@ fi
 
 for index in "${!MANAGED_PATHS[@]}"; do
   source_file="${SOURCE_ROOT}/${MANAGED_PATHS[$index]}"
-  if [ ! -f "$source_file" ]; then
+  if ! sdh_assert_safe_managed_source "$SOURCE_ROOT" "${MANAGED_PATHS[$index]}"; then
     echo "Fehler / Error: Kanonische Datei fehlt / canonical file missing: $source_file" >&2
     exit 2
   fi
@@ -183,7 +196,8 @@ for entry in data.get("exceptions", []):
     print(f"{repository}\t{path}\t{reason}")
 PYEOF
 )"; then
-  fail "Ausnahmen im Manifest sind ungueltig / Manifest exceptions are invalid."
+  echo "Fehler / Error: Ausnahmen im Manifest sind ungueltig / manifest exceptions are invalid." >&2
+  exit 2
 fi
 while IFS=$'\t' read -r repository_path relative_path reason; do
   [ -n "$repository_path" ] || continue
@@ -228,8 +242,35 @@ only_level2 = sys.argv[6] == "1"
 def is_repo(path):
     return (path / ".git").exists() and ((path / "AGENTS.md").is_file() or (path / "CLAUDE.md").is_file())
 
+def contains_control(value):
+    return any(ord(char) < 32 or ord(char) == 127 for char in value)
+
+def has_link_component(path, anchor=None):
+    if anchor is None:
+        current = pathlib.Path(path.anchor)
+        parts = path.parts[1:]
+    else:
+        current = anchor
+        parts = path.relative_to(anchor).parts
+    for part in parts:
+        current = current / part
+        if current.is_symlink():
+            return True
+    return False
+
+def has_untrusted_link_component(path):
+    current = pathlib.Path(path.anchor)
+    for part in path.parts[1:]:
+        current = current / part
+        if current.is_symlink() and current.lstat().st_uid != 0:
+            return True
+    return False
+
 if target:
-    path = pathlib.Path(target).expanduser().resolve()
+    lexical = pathlib.Path(target).expanduser().absolute()
+    if contains_control(str(lexical)) or has_untrusted_link_component(lexical):
+        raise SystemExit("Target repository path contains a link or control character")
+    path = lexical.resolve()
     if not is_repo(path):
         raise SystemExit(f"Target is not a managed Git repository: {path}")
     print(f"target\t{path}")
@@ -242,13 +283,22 @@ for entry in entries:
     if not isinstance(entry, dict) or entry.get("level") not in (1, 2):
         continue
     raw = entry.get("path")
-    if not isinstance(raw, str) or not raw:
+    if (
+        not isinstance(raw, str)
+        or not raw
+        or contains_control(raw)
+        or pathlib.PurePath(raw).is_absolute()
+        or ".." in pathlib.PurePath(raw).parts
+    ):
         continue
-    path = (home / raw).resolve()
+    lexical = home / raw
     try:
-        path.relative_to(home)
+        lexical.relative_to(home)
     except ValueError:
         continue
+    if has_link_component(lexical, home):
+        continue
+    path = lexical.resolve()
     if path != source and is_repo(path):
         repos[path] = int(entry["level"])
 
@@ -278,13 +328,17 @@ file_mode_matches() {
 }
 
 raw_file_matches() {
-  local source_file="$1" target_file="$2" executable="$3"
+  local source_file="$1" target_file="$2" executable="$3" repo="$4" relative_path="$5"
+  sdh_assert_safe_managed_source "$SOURCE_ROOT" "$relative_path" || return 2
+  sdh_assert_safe_managed_destination "$repo" "$relative_path" || return 2
   [ -f "$target_file" ] && cmp -s -- "$source_file" "$target_file" && file_mode_matches "$target_file" "$executable"
 }
 
 file_matches() {
   local repo="$1" source_file="$2" target_file="$3" relative_path="$4" executable="$5"
   local source_hash target_hash
+  sdh_assert_safe_managed_source "$SOURCE_ROOT" "$relative_path" || return 2
+  sdh_assert_safe_managed_destination "$repo" "$relative_path" || return 2
   [ -f "$target_file" ] || return 1
   source_hash="$(git -C "$repo" hash-object --path="$relative_path" -- "$source_file" 2>/dev/null)" || return 1
   target_hash="$(git -C "$repo" hash-object --path="$relative_path" -- "$target_file" 2>/dev/null)" || return 1
@@ -294,6 +348,8 @@ file_matches() {
 managed_path_is_dirty() {
   local repo="$1" relative_path="$2" source_file="$3" executable="$4"
   local target_file="${repo}/${relative_path}"
+  sdh_assert_safe_managed_source "$SOURCE_ROOT" "$relative_path" || return 2
+  sdh_assert_safe_managed_destination "$repo" "$relative_path" || return 2
   if file_matches "$repo" "$source_file" "$target_file" "$relative_path" "$executable"; then
     return 1
   fi
@@ -306,10 +362,17 @@ managed_path_is_dirty() {
 
 process_repository() {
   local level="$1" repo="$2" index relative_path executable source_file target_file
-  local exception dirty=0 drift=0
+  local exception target_mode dirty=0 drift=0
   REPOS_TOTAL=$((REPOS_TOTAL + 1))
   echo ""
   info "Level ${level}: ${repo}"
+
+  [ ! -L "$repo" ] || { warn "Repositorypfad ist ein symbolischer Link / repository path is a symbolic link: ${repo}"; return 2; }
+  for index in "${!MANAGED_PATHS[@]}"; do
+    relative_path="${MANAGED_PATHS[$index]}"
+    sdh_assert_safe_managed_source "$SOURCE_ROOT" "$relative_path" || return 2
+    sdh_assert_safe_managed_destination "$repo" "$relative_path" || return 2
+  done
 
   for index in "${!MANAGED_PATHS[@]}"; do
     relative_path="${MANAGED_PATHS[$index]}"
@@ -331,13 +394,14 @@ process_repository() {
     executable="${MANAGED_EXECUTABLE[$index]}"
     source_file="${SOURCE_ROOT}/${relative_path}"
     target_file="${repo}/${relative_path}"
-    if ! raw_file_matches "$source_file" "$target_file" "$executable"; then
+    if ! raw_file_matches "$source_file" "$target_file" "$executable" "$repo" "$relative_path"; then
       RAW_DIFFERENCES=$((RAW_DIFFERENCES + 1))
     fi
     if file_matches "$repo" "$source_file" "$target_file" "$relative_path" "$executable"; then
       [ "$VERBOSE" -eq 1 ] && echo "  [CURRENT] ${relative_path}"
       continue
     fi
+    sdh_assert_safe_managed_destination "$repo" "$relative_path" || return 2
     if [ -f "$target_file" ] &&
        file_mode_matches "$target_file" "$executable" &&
        git -C "$repo" ls-files --error-unmatch -- "$relative_path" >/dev/null 2>&1 &&
@@ -354,15 +418,12 @@ process_repository() {
     elif [ "$DRY_RUN" -eq 1 ]; then
       echo "  [DRY-RUN] ${relative_path}"
     else
-      mkdir -p -- "$(dirname -- "$target_file")"
-      temporary_file="${target_file}.tmp.$$"
-      cp -- "$source_file" "$temporary_file"
       if [ "$executable" = "true" ]; then
-        chmod 0755 "$temporary_file"
+        target_mode=0755
       else
-        chmod 0644 "$temporary_file"
+        target_mode=0644
       fi
-      mv -- "$temporary_file" "$target_file"
+      sdh_copy_managed_file_atomic "$SOURCE_ROOT" "$relative_path" "$repo" "$relative_path" "$target_mode"
       echo "  [CHANGED] ${relative_path}"
     fi
   done
@@ -377,10 +438,16 @@ process_repository() {
   fi
 }
 
+if ! REPOSITORY_ROWS="$(discover_repositories)"; then
+  echo "Fehler / Error: Repository-Erkennung ist fehlgeschlagen / repository discovery failed." >&2
+  exit 2
+fi
 while IFS=$'\t' read -r level repository; do
   [ -n "$repository" ] || continue
   process_repository "$level" "$repository"
-done < <(discover_repositories)
+done <<EOF
+${REPOSITORY_ROWS}
+EOF
 
 echo ""
 echo "Zusammenfassung / Summary"

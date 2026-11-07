@@ -418,6 +418,10 @@
       "executable": false
     },
     {
+      "path": "scripts/lib/managed-file-hardening.psm1",
+      "executable": false
+    },
+    {
       "path": "scripts/check-homogeneity.sh",
       "executable": true
     },

@@ -551,6 +551,24 @@ Write-Output 'PASS'
             self.assertTrue(item["command"])
             self.assertIsInstance(item["args"], list)
 
+        approved_spec_kit_revision = "464d57fe30c72e9a88d279cc49834539ec989c03"
+        approved_spec_kit_source = (
+            "git+https://github.com/github/spec-kit.git@" + approved_spec_kit_revision
+        )
+        specify = next(item for item in tools if item["id"] == "specify")
+        self.assertEqual(
+            specify["install"]["arguments"],
+            ["tool", "install", "specify-cli", "--from", approved_spec_kit_source],
+        )
+        self.assertEqual(
+            registry["policy"]["specKitInstallCommand"],
+            "uv tool install specify-cli --from " + approved_spec_kit_source,
+        )
+        bash_maintainer = (REPOSITORY / "scripts/maintain-agentic-brew-apps.sh").read_text(encoding="utf-8")
+        windows_maintainer = (REPOSITORY / "scripts/maintain-agentic-winget-apps.ps1").read_text(encoding="utf-8")
+        for source in (bash_maintainer, windows_maintainer):
+            self.assertIn(approved_spec_kit_revision, source)
+
         swift = next(item for item in tools if item["id"] == "swift")
         install = swift["install"]
         self.assertEqual(install["manager"], "swiftly")

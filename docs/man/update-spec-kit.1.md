@@ -65,6 +65,30 @@ Level-1 repository with `.git` and `.specify/`. Git worktrees with a
 `.git` file are recognized in the same way as regular clones with a `.git`
 directory.*
 
+Automatisch erkannte Level-1-/Level-2-Pfade müssen physisch im jeweiligen
+Suchbereich liegen und dürfen keine symbolischen Links oder Reparse Points
+enthalten. Vor und nach `specify init` prüft der Updater außerdem alle von ihm
+verwalteten Zielpfade; ein verlinktes Template, eine verlinkte
+`.specify`-Struktur oder ein verlinktes Ausgabeziel blockiert vor dem Schreiben.
+`--allow-dirty` / `-AllowDirty` hebt diese Pfadgrenze nicht auf.
+
+*Automatically discovered Level 1/2 paths must remain physically within their
+search scope and contain no symbolic links or reparse points. Before and after
+`specify init`, the updater also checks every managed destination; a linked
+template, `.specify` tree, or output blocks before writing. `--allow-dirty` /
+`-AllowDirty` does not bypass this path boundary.*
+
+Die PowerShell-Variante liest und ersetzt Governance-Templates, `.gitignore`,
+generierte Dateien, `settings.json` und die gesicherte Constitution ueber den
+gemeinsamen atomaren Managed-File-Writer. Jede einzelne Zieldatei wird dabei
+erneut auf physische Repository-Zugehoerigkeit, Links und Reparse Points
+geprueft.
+
+*The PowerShell variant reads and replaces governance templates, `.gitignore`,
+generated files, `settings.json`, and the preserved constitution through the
+shared atomic managed-file writer. Every destination is rechecked for physical
+repository containment, links, and reparse points.*
+
 ## Optionen / Options
 
 | Bash | PowerShell | Bedeutung / Meaning |

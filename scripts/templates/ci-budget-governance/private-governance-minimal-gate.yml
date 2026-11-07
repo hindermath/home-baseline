@@ -2,6 +2,7 @@
 # home-baseline-workflow-id: private-governance-minimal-gate
 # home-baseline-full-build: false
 # home-baseline-path-dependent: true
+# home-baseline-technical-gates-ready: false
 # home-baseline-gate-id: build-contract
 # home-baseline-gate-id: security-contract
 # home-baseline-gate-id: governance-contract
@@ -85,3 +86,9 @@ jobs:
               raise SystemExit("pull-request identity is incomplete")
           print("home-baseline/ci-minimal-gate: pull-request identity valid")
           PY
+      - name: Block activation until technical gates are installed
+        shell: bash
+        run: |
+          set -euo pipefail
+          echo "Technical build, security, dependency, product, documentation and governance gates are not installed." >&2
+          exit 1

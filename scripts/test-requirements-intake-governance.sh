@@ -59,6 +59,31 @@ command -v jq >/dev/null 2>&1 || {
 # shellcheck source=/dev/null
 . "$LIB_FILE"
 
+resolve_fixture_output_path() {
+  local root="$1"
+  local raw="$2"
+  python3 - "$root" "$raw" <<'PY'
+import pathlib, re, sys
+root = pathlib.Path(sys.argv[1]).resolve(strict=True)
+raw = sys.argv[2]
+if (not raw or any(ord(char) < 32 or ord(char) == 127 for char in raw)
+        or "\\" in raw or raw.startswith("/") or re.match(r"^[A-Za-z]:", raw)
+        or any(part in ("", ".", "..") for part in raw.split("/"))):
+    raise SystemExit(2)
+candidate = root.joinpath(*pathlib.PurePosixPath(raw).parts)
+current = root
+for part in pathlib.PurePosixPath(raw).parts:
+    current /= part
+    if current.is_symlink():
+        raise SystemExit(2)
+try:
+    candidate.resolve(strict=False).relative_to(root)
+except ValueError:
+    raise SystemExit(2)
+print(candidate)
+PY
+}
+
 fixture_repo="$(mktemp -d)"
 cleanup() {
   rm -rf -- "$fixture_repo"
@@ -74,6 +99,13 @@ actual_series_section="$fixture_repo/actual-series-section.md"
 actual_series_table="$fixture_repo/actual-series-table.md"
 mkdir -p -- "$(dirname "$manifest_file")"
 
+# Validate the complete tracked fixture before materializing even the first
+# manifest or intake file; later loop checks also close link-race windows.
+while IFS= read -r intake_path; do
+  resolve_fixture_output_path "$fixture_repo" "$intake_path" >/dev/null ||
+    die "Unsicherer intakePath in positivem Fixture: $intake_path"
+done < <(sdh_jq -r '.entries[].intakePath' "$cases_file")
+
 sdh_jq '{
   schemaVersion,
   documentType: "IntakeSeriesManifest",
@@ -85,7 +117,8 @@ sdh_jq '{
 }' "$cases_file" > "$manifest_file"
 
 while IFS=$'\t' read -r intake_path display_position; do
-  intake_file="$fixture_repo/$intake_path"
+  intake_file="$(resolve_fixture_output_path "$fixture_repo" "$intake_path")" ||
+    die "Unsicherer intakePath in positivem Fixture: $intake_path"
   mkdir -p -- "$(dirname "$intake_file")"
   printf '# Fixture\n\n**Reihenfolge:** sichtbare Position %s\n' "$display_position" > "$intake_file"
 done < <(sdh_jq -r '.entries[] | [.intakePath, (.displayPosition | tostring)] | @tsv' "$cases_file")
@@ -237,7 +270,8 @@ create_transaction_fixture() {
     dependencies: [.entries[].incomingDependencies[]]
   }' "$cases_file" > "$CASE_MANIFEST"
   while IFS=$'\t' read -r intake_path display_position; do
-    intake_file="$CASE_REPO/$intake_path"
+    intake_file="$(resolve_fixture_output_path "$CASE_REPO" "$intake_path")" ||
+      die "Unsicherer intakePath im Transaktions-Fixture: $intake_path"
     mkdir -p -- "$(dirname "$intake_file")"
     printf '# Fixture\n\n**Reihenfolge:** sichtbare Position %s\n' "$display_position" > "$intake_file"
   done < <(sdh_jq -r '.entries[] | [.intakePath, (.displayPosition | tostring)] | @tsv' "$cases_file")

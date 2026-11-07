@@ -10,16 +10,19 @@ param(
 $ErrorActionPreference = 'Stop'
 Set-StrictMode -Version Latest
 
-$HomeConstitution = Join-Path $(if ($env:HOME) { $env:HOME } else { $env:USERPROFILE }) 'constitution.md'
+$ScriptDir = Split-Path -Parent $MyInvocation.MyCommand.Path
+Import-Module (Join-Path $ScriptDir 'lib/managed-file-hardening.psm1') -Force
+$HomeRoot = $(if ($env:HOME) { $env:HOME } else { $env:USERPROFILE })
+$HomeConstitution = Get-HBManagedPath -Root $HomeRoot -RelativePath 'constitution.md'
 
 # ─── 1. Version aus ~/constitution.md extrahieren ────────────────────────────
 
-if (-not (Test-Path $HomeConstitution)) {
+if (-not (Test-Path -LiteralPath $HomeConstitution -PathType Leaf)) {
     Write-Error "ERROR: ~/constitution.md nicht gefunden — bitte zuerst erstellen."
     exit 2
 }
 
-$firstLine = Get-Content $HomeConstitution -TotalCount 1
+$firstLine = [IO.File]::ReadLines($HomeConstitution) | Select-Object -First 1
 if ($firstLine -notmatch '(v\d+\.\d+\.\d+)') {
     Write-Error "ERROR: constitution.md hat keine Versionszeile (erwartet: # Constitution vX.Y.Z)"
     exit 2
@@ -31,23 +34,27 @@ Write-Host ('=' * 50)
 
 # ─── 2. Level-1-Workspaces ermitteln ─────────────────────────────────────────
 
-$Workspaces = Get-ChildItem -Path $(if ($env:HOME) { $env:HOME } else { $env:USERPROFILE }) -Directory |
+$Workspaces = @(Get-ChildItem -LiteralPath $HomeRoot -Directory |
     Where-Object { Test-Path (Join-Path $_.FullName '.git') } |
-    Sort-Object Name
+    Sort-Object Name)
 
 if ($Workspaces.Count -eq 0) {
     Write-Host "Keine Level-1-Workspaces gefunden."
     exit 0
 }
 
+foreach ($ws in $Workspaces) {
+    $null = Get-HBManagedPath -Root $ws.FullName -RelativePath 'constitution.md' -AllowMissingParent
+}
+
 # ─── Preview ─────────────────────────────────────────────────────────────────
 
 $WsStatus = @{}
 foreach ($ws in $Workspaces) {
-    $wsShort  = $ws.FullName -replace [regex]::Escape($(if ($env:HOME) { $env:HOME } else { $env:USERPROFILE })), '~'
-    $wsConst  = Join-Path $ws.FullName 'constitution.md'
-    if (Test-Path $wsConst) {
-        $wsFirstLine = Get-Content $wsConst -TotalCount 1
+    $wsShort  = $ws.FullName -replace [regex]::Escape($HomeRoot), '~'
+    $wsConst  = Get-HBManagedPath -Root $ws.FullName -RelativePath 'constitution.md' -AllowMissingParent
+    if (Test-Path -LiteralPath $wsConst -PathType Leaf) {
+        $wsFirstLine = [IO.File]::ReadLines($wsConst) | Select-Object -First 1
         if ($wsFirstLine -match '(v\d+\.\d+\.\d+)') { $wsVer = $Matches[1] } else { $wsVer = '?' }
         if ($wsVer -eq $ConstVer) {
             $WsStatus[$ws.FullName] = 'ALREADY UP-TO-DATE'
@@ -80,7 +87,7 @@ if (-not $Force) {
 $Updated = 0; $Skipped = 0; $Already = 0
 
 foreach ($ws in $Workspaces) {
-    $wsShort = $ws.FullName -replace [regex]::Escape($(if ($env:HOME) { $env:HOME } else { $env:USERPROFILE })), '~'
+    $wsShort = $ws.FullName -replace [regex]::Escape($HomeRoot), '~'
     $status  = $WsStatus[$ws.FullName]
 
     if ($status -eq 'ALREADY UP-TO-DATE') {
@@ -98,7 +105,8 @@ foreach ($ws in $Workspaces) {
     }
 
     # Copy constitution.md
-    Copy-Item $HomeConstitution (Join-Path $ws.FullName 'constitution.md') -Force
+    Copy-HBManagedFileAtomic -SourceRoot $HomeRoot -SourceRelativePath 'constitution.md' `
+        -Root $ws.FullName -RelativePath 'constitution.md'
     git -C $ws.FullName add 'constitution.md' 2>$null | Out-Null
     $msg = "chore: sync constitution to $ConstVer`n`nCo-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>"
     git -C $ws.FullName commit -m $msg 2>$null | Out-Null

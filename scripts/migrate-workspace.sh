@@ -338,10 +338,17 @@ append_readme_section() {
 install_hook_if_needed() {
   local target_dir="$1"
   local hook_src="${HOME}/scripts/hooks/pre-push"
+  local git_dir="${target_dir}/.git"
+  local hooks_dir="${target_dir}/.git/hooks"
   local hook_dst="${target_dir}/.git/hooks/pre-push"
-  [ -d "${target_dir}/.git" ] || return 0
-  [ -f "$hook_src" ] || return 0
-  if [ -f "$hook_dst" ]; then
+  local temporary=""
+  [ -d "$git_dir" ] && [ ! -L "$git_dir" ] || return 0
+  [ -f "$hook_src" ] && [ ! -L "$hook_src" ] || return 0
+  if [ -L "$hooks_dir" ] || [ -L "$hook_dst" ]; then
+    echo "ERROR: .git/hooks enthält einen symbolischen Link: ${target_dir}" >&2
+    return 1
+  fi
+  if [ -e "$hook_dst" ]; then
     echo "  INFO: pre-push hook already installed — skip (${target_dir/#$HOME/~})"
     return 0
   fi
@@ -349,9 +356,24 @@ install_hook_if_needed() {
     echo "  WOULD INSTALL: pre-push hook in ${target_dir/#$HOME/~}"
     return 0
   fi
-  mkdir -p "${target_dir}/.git/hooks"
-  cp "$hook_src" "$hook_dst"
-  chmod +x "$hook_dst"
+  if [ ! -e "$hooks_dir" ]; then
+    mkdir -- "$hooks_dir"
+  fi
+  [ -d "$hooks_dir" ] && [ ! -L "$hooks_dir" ] || {
+    echo "ERROR: .git/hooks ist kein reguläres Verzeichnis: ${target_dir}" >&2
+    return 1
+  }
+  temporary="$(mktemp "${hooks_dir}/.pre-push.XXXXXX")"
+  if ! cp -P -- "$hook_src" "$temporary" || ! chmod +x "$temporary"; then
+    rm -f -- "$temporary"
+    return 1
+  fi
+  if [ -L "$hooks_dir" ] || [ -e "$hook_dst" ] || [ -L "$hook_dst" ]; then
+    rm -f -- "$temporary"
+    echo "ERROR: .git/hooks änderte sich während der Installation: ${target_dir}" >&2
+    return 1
+  fi
+  mv -- "$temporary" "$hook_dst"
   echo "  INSTALLED: pre-push hook in ${target_dir/#$HOME/~}"
 }
 
@@ -359,19 +381,108 @@ install_hook_if_needed() {
 
 PARTIAL_FAIL=false
 
+assert_safe_clean_repository() {
+  local repo_dir="$1"
+  local repo_label="$2"
+  shift 2
+  local -a allowed_untracked_dirs=("$@")
+  local linked_path=""
+  local status=""
+  local status_line="" allowed_dir=""
+  local allowed=false
+
+  if [ -L "$repo_dir" ] || [ ! -d "$repo_dir" ] || [ -L "${repo_dir}/.git" ] || [ ! -d "${repo_dir}/.git" ]; then
+    echo "ERROR: ${repo_label} ist kein reguläres Git-Repository: ${repo_dir}" >&2
+    return 1
+  fi
+  if git -C "$repo_dir" config --local --includes --get-regexp '^filter\..*\.(clean|process|required)$' >/dev/null 2>&1; then
+    echo "ERROR: ${repo_label} enthält einen repository-gesteuerten Git-Filter: ${repo_dir}" >&2
+    return 1
+  else
+    local filter_status=$?
+    if [ "$filter_status" -ne 1 ]; then
+      echo "ERROR: Git-Filterkonfiguration für ${repo_label} konnte nicht geprüft werden" >&2
+      return 1
+    fi
+  fi
+  local configured_fsmonitor=""
+  configured_fsmonitor=$(git -C "$repo_dir" config --local --includes --get core.fsmonitor 2>/dev/null || true)
+  if [ -n "$configured_fsmonitor" ] && [ "$configured_fsmonitor" != "false" ]; then
+    echo "ERROR: ${repo_label} enthält einen repository-gesteuerten FSMonitor-Hook: ${repo_dir}" >&2
+    return 1
+  fi
+  linked_path=$(find "$repo_dir" -path "${repo_dir}/.git" -prune -o -type l -print -quit 2>/dev/null || true)
+  if [ -n "$linked_path" ]; then
+    echo "ERROR: ${repo_label} enthält einen symbolischen Link: ${linked_path}" >&2
+    return 1
+  fi
+  status=$(git -C "$repo_dir" -c core.fsmonitor=false -c core.quotePath=false status --porcelain=v1 --untracked-files=normal 2>/dev/null) || return 1
+  while IFS= read -r status_line; do
+    [ -n "$status_line" ] || continue
+    allowed=false
+    for allowed_dir in "${allowed_untracked_dirs[@]}"; do
+      [ "$status_line" = "?? ${allowed_dir}/" ] && allowed=true && break
+    done
+    if ! $allowed; then
+      echo "ERROR: ${repo_label} enthält bereits Änderungen oder ungetrackte Dateien: ${repo_dir}" >&2
+      return 1
+    fi
+  done <<< "$status"
+}
+
+stage_owned_paths_and_commit() {
+  local repo_dir="$1"
+  local message="$2"
+  shift 2
+  local -a owned_paths=("$@")
+  local -a stage_paths=()
+  local cached_path="" candidate=""
+  local allowed=false
+
+  for candidate in "${owned_paths[@]}"; do
+    if [ -e "${repo_dir}/${candidate}" ] || [ -L "${repo_dir}/${candidate}" ] || \
+        git -C "$repo_dir" ls-files --error-unmatch -- "$candidate" >/dev/null 2>&1; then
+      stage_paths+=("$candidate")
+    fi
+  done
+  [ ${#stage_paths[@]} -gt 0 ] || return 0
+  git -C "$repo_dir" -c core.fsmonitor=false add -A -- "${stage_paths[@]}"
+  while IFS= read -r cached_path; do
+    [ -n "$cached_path" ] || continue
+    allowed=false
+    for candidate in "${owned_paths[@]}"; do
+      [ "$cached_path" = "$candidate" ] && allowed=true && break
+    done
+    if ! $allowed; then
+      echo "ERROR: unerwarteter Pfad im Git-Index: ${cached_path}" >&2
+      return 1
+    fi
+  done < <(git -C "$repo_dir" -c core.fsmonitor=false diff --cached --name-only --diff-filter=ACDMRTUXB)
+  git -C "$repo_dir" -c core.fsmonitor=false diff --cached --quiet && return 0
+  git -C "$repo_dir" -c core.fsmonitor=false -c core.hooksPath=/dev/null \
+    -c commit.gpgSign=false commit -m "$message" >/dev/null
+}
+
 migrate_workspace() {
   local ws_dir="$1"
   local ws_name
   ws_name=$(basename "$ws_dir")
+  local -a project_dirs=()
+  local discovered_dir=""
+
+  while IFS= read -r discovered_dir; do
+    [ -d "${discovered_dir}/.git" ] && project_dirs+=("$discovered_dir")
+  done < <(find "$ws_dir" -mindepth 1 -maxdepth 1 -type d 2>/dev/null | sort)
+  local -a project_names=()
+  for discovered_dir in "${project_dirs[@]}"; do
+    project_names+=("$(basename "$discovered_dir")")
+  done
+  assert_safe_clean_repository "$ws_dir" "Level-1-Workspace" "${project_names[@]}" || return 1
+  for discovered_dir in "${project_dirs[@]}"; do
+    assert_safe_clean_repository "$discovered_dir" "Level-2-Projekt" || return 1
+  done
 
   echo "Migriere: ${ws_dir/#$HOME/~}"
-
-  # Safety: check for uncommitted changes (warn but proceed)
-  if git -C "$ws_dir" diff --quiet HEAD 2>/dev/null && git -C "$ws_dir" diff --cached --quiet HEAD 2>/dev/null; then
-    true  # clean
-  else
-    echo "  WARN: uncommittete Änderungen in ${ws_name} — Rollback via git stash falls nötig"
-  fi
 
   local changed=false
 
@@ -414,8 +525,7 @@ migrate_workspace() {
   write_workflow_yml "$ws_dir"
 
   # Level-2 projects within this workspace
-  while IFS= read -r proj_dir; do
-    [ -d "${proj_dir}/.git" ] || continue
+  for proj_dir in "${project_dirs[@]}"; do
     local proj_name
     proj_name=$(basename "$proj_dir")
     echo "  Level-2: ${proj_name}/"
@@ -486,15 +596,16 @@ migrate_workspace() {
     install_hook_if_needed "$proj_dir"
 
     # Commit Level-2 changes
-    if ! $OPT_DRY_RUN && [ -n "$(git -C "$proj_dir" status --porcelain 2>/dev/null)" ]; then
-      git -C "$proj_dir" add -A 2>/dev/null || true
-      git -C "$proj_dir" commit -m "chore: migrate ${proj_name} to homogeneity baseline ${constitution_version}
+    if ! $OPT_DRY_RUN && [ -n "$(git -C "$proj_dir" -c core.fsmonitor=false status --porcelain=v1 --untracked-files=all)" ]; then
+      stage_owned_paths_and_commit "$proj_dir" "chore: migrate ${proj_name} to homogeneity baseline ${constitution_version}
 
-Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>" >/dev/null 2>&1 || true
+Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>" \
+        constitution.md README.md AGENTS.md CLAUDE.md GEMINI.md \
+        .github/copilot-instructions.md .github/workflows/homogeneity-check.yml .editorconfig || return 1
       echo "    COMMITTED: migrate ${proj_name}"
     fi
 
-  done < <(find "$ws_dir" -mindepth 1 -maxdepth 1 -type d 2>/dev/null | sort)
+  done
 
   if ! $changed; then
     echo "  INFO: already compliant — nothing to do"
@@ -507,18 +618,19 @@ Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>" >/dev/null
   fi
 
   # Git commit
-  if git -C "$ws_dir" diff --quiet HEAD 2>/dev/null && git -C "$ws_dir" diff --cached --quiet HEAD 2>/dev/null; then
+  if git -C "$ws_dir" -c core.fsmonitor=false diff --quiet HEAD 2>/dev/null && git -C "$ws_dir" -c core.fsmonitor=false diff --cached --quiet HEAD 2>/dev/null; then
     # Check for untracked new files
-    if [ -z "$(git -C "$ws_dir" status --porcelain 2>/dev/null)" ]; then
+    if [ -z "$(git -C "$ws_dir" -c core.fsmonitor=false status --porcelain 2>/dev/null)" ]; then
       echo "  INFO: nothing changed to commit"
     fi
   fi
 
-  if [ -n "$(git -C "$ws_dir" status --porcelain 2>/dev/null)" ]; then
-    git -C "$ws_dir" add -A 2>/dev/null || true
-    git -C "$ws_dir" commit -m "chore: migrate ${ws_name} to homogeneity baseline ${constitution_version}
+  if [ -n "$(git -C "$ws_dir" -c core.fsmonitor=false status --porcelain=v1 --untracked-files=all)" ]; then
+    stage_owned_paths_and_commit "$ws_dir" "chore: migrate ${ws_name} to homogeneity baseline ${constitution_version}
 
-Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>" >/dev/null 2>&1 || true
+Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>" \
+      AGENTS.md CLAUDE.md GEMINI.md constitution.md README.md .gitignore \
+      .github/copilot-instructions.md .github/workflows/homogeneity-check.yml || return 1
     echo "  COMMITTED: migrate ${ws_name} to homogeneity baseline ${constitution_version}"
   fi
 
@@ -588,7 +700,7 @@ done
 
 # ─── Post-Migration: init-stats ───────────────────────────────────────────────
 
-if [ -f "${SCRIPT_DIR}/init-stats.sh" ]; then
+if ! $PARTIAL_FAIL && [ -f "${SCRIPT_DIR}/init-stats.sh" ]; then
   echo "Starte init-stats.sh..."
   bash "${SCRIPT_DIR}/init-stats.sh" 2>/dev/null || true
 fi

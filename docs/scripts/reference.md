@@ -5,7 +5,7 @@
 > Generated from `scripts/config/script-catalog.json` and the Git index. Do not edit manually.
 
 Stand / Updated: 2026-09-09
-Kanonische Skriptdateien / Canonical script files: 157
+Kanonische Skriptdateien / Canonical script files: 161
 
 ## Workspace-Lebenszyklus / Workspace lifecycle
 
@@ -811,6 +811,17 @@ python3 scripts/tests/test_ci_budget_governance.py --help
 python3 scripts/tests/test_copilot_review_governance.py --help
 ```
 
+### `scripts/tests/test_deep_security_high_fixes.py`
+
+- **Rolle / Role:** oeffentliches Kommando / public command
+- **Kurzbeschreibung / Summary:** Siehe Quelltext und Hilfe. / See source and help.
+- **Voraussetzungen / Prerequisites:** passende Shell; weitere Anforderungen stehen in `--help` oder `Get-Help`.
+- **Nebenwirkungen / Side effects:** zuerst Check-, Dry-Run- oder WhatIf-Modus verwenden, sofern angeboten.
+
+```text
+python3 scripts/tests/test_deep_security_high_fixes.py --help
+```
+
 ### `scripts/tests/test_feature_020_documentation_architecture.py`
 
 - **Rolle / Role:** oeffentliches Kommando / public command
@@ -831,6 +842,17 @@ python3 scripts/tests/test_feature_020_documentation_architecture.py --help
 
 ```text
 python3 scripts/tests/test_home_sync_files.py --help
+```
+
+### `scripts/tests/test_learning_package_security.py`
+
+- **Rolle / Role:** oeffentliches Kommando / public command
+- **Kurzbeschreibung / Summary:** Siehe Quelltext und Hilfe. / See source and help.
+- **Voraussetzungen / Prerequisites:** passende Shell; weitere Anforderungen stehen in `--help` oder `Get-Help`.
+- **Nebenwirkungen / Side effects:** zuerst Check-, Dry-Run- oder WhatIf-Modus verwenden, sofern angeboten.
+
+```text
+python3 scripts/tests/test_learning_package_security.py --help
 ```
 
 ### `scripts/tests/test_linux_maintenance_hardening.py`
@@ -875,6 +897,17 @@ python3 scripts/tests/test_maintenance_execution_context.py --help
 
 ```text
 python3 scripts/tests/test_maintenance_tui_wrappers.py --help
+```
+
+### `scripts/tests/test_managed_output_security.py`
+
+- **Rolle / Role:** oeffentliches Kommando / public command
+- **Kurzbeschreibung / Summary:** Siehe Quelltext und Hilfe. / See source and help.
+- **Voraussetzungen / Prerequisites:** passende Shell; weitere Anforderungen stehen in `--help` oder `Get-Help`.
+- **Nebenwirkungen / Side effects:** zuerst Check-, Dry-Run- oder WhatIf-Modus verwenden, sofern angeboten.
+
+```text
+python3 scripts/tests/test_managed_output_security.py --help
 ```
 
 ### `scripts/tests/test_msl_toolchains.py`
@@ -1701,6 +1734,18 @@ Do not invoke directly; it is loaded by public scripts.
 
 - **Rolle / Role:** intern oder installiert / internal or installed
 - **Kurzbeschreibung / Summary:** Interner MSL-Treiber fuer beide Paketpfleger.
+- **Voraussetzungen / Prerequisites:** passende Shell; weitere Anforderungen stehen in `--help` oder `Get-Help`.
+- **Nebenwirkungen / Side effects:** zuerst Check-, Dry-Run- oder WhatIf-Modus verwenden, sofern angeboten.
+
+```text
+Nicht direkt aufrufen; wird von oeffentlichen Skripten geladen.
+Do not invoke directly; it is loaded by public scripts.
+```
+
+### `scripts/lib/learning_package_archive.py`
+
+- **Rolle / Role:** intern oder installiert / internal or installed
+- **Kurzbeschreibung / Summary:** Siehe Quelltext und Hilfe. / See source and help.
 - **Voraussetzungen / Prerequisites:** passende Shell; weitere Anforderungen stehen in `--help` oder `Get-Help`.
 - **Nebenwirkungen / Side effects:** zuerst Check-, Dry-Run- oder WhatIf-Modus verwenden, sofern angeboten.
 

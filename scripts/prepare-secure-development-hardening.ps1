@@ -199,22 +199,27 @@ function Get-Level2Repos {
 
 function Invoke-CommitAndPush {
     param([string]$Repo)
+    $managedPaths = @(
+        'docs/secure-development',
+        'Lastenheft_Secure-Development-Hardening.md',
+        'Lastenheft_Abarbeitungsreihenfolge.md'
+    )
 
     if (-not $Commit -and -not $Push) { return }
 
     if ($WhatIfPreference) {
-        if ($Commit) { Write-Host '  [WhatIf] git add docs/secure-development Lastenheft_Secure-Development-Hardening.md Lastenheft_Abarbeitungsreihenfolge.md && git commit' }
+        if ($Commit) { Write-Host '  [WhatIf] git add <managed paths> && git commit --only -- <managed paths>' }
         if ($Push) { Write-Host '  [WhatIf] git push origin <branch>' }
         return
     }
 
-    git -C $Repo add docs/secure-development Lastenheft_Secure-Development-Hardening.md Lastenheft_Abarbeitungsreihenfolge.md
-    git -C $Repo diff --cached --check
+    git -C $Repo add -- @managedPaths
+    git -C $Repo diff --cached --check -- @managedPaths
     if ($LASTEXITCODE -ne 0) { throw "git diff --cached --check fehlgeschlagen in $Repo" }
 
-    git -C $Repo diff --cached --quiet
+    git -C $Repo diff --cached --quiet -- @managedPaths
     if ($LASTEXITCODE -ne 0) {
-        git -C $Repo commit -m 'docs: prepare secure development hardening'
+        git -C $Repo commit --only -m 'docs: prepare secure development hardening' -- @managedPaths
         if ($LASTEXITCODE -ne 0) { throw "git commit fehlgeschlagen in $Repo" }
     }
 

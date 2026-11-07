@@ -28,6 +28,14 @@ fataler Installationsfehler und liefert Exitcode `2`.
 `scripts/lib/hg-*` were loaded. An incomplete helper package is a fatal
 installation error and returns exit code `2`.*
 
+Im Apply-Patch-Modus wird der vollstaendige neue Inhalt ueber einen
+verzeichnisgebundenen No-follow-Handle geschrieben und die gepruefte Datei
+atomar ersetzt. Dadurch bleiben externe Hardlink-Ziele unveraendert, und ein
+Link- oder Pfadtausch bricht mit Exitcode `2` ab. *In apply-patch mode, the
+complete new content is written through a directory-bound no-follow handle and
+the validated file is replaced atomically. External hard-link targets remain
+unchanged, and link or path replacement aborts with exit code `2`.*
+
 ## OPTIONS
 
 | Bash | PowerShell | Bedeutung / Meaning |

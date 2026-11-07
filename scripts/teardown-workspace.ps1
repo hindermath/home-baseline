@@ -8,7 +8,8 @@ param(
     [switch] $KeepRemote,
     [switch] $Recursive,
     [switch] $Force,
-    [switch] $Yes
+    [switch] $Yes,
+    [string] $ExpectedRemoteTarget = ''
 )
 
 Set-StrictMode -Version Latest
@@ -50,6 +51,8 @@ Optionen / Options:
   -Recursive      Verarbeitet Level-2-Repositories vor dem Workspace / Process Level-2 repositories first
   -Force          Überspringt Sicherheitsprüfungen / Skip safety checks
   -Yes            Überspringt die Rückfrage / Skip confirmation prompt
+  -ExpectedRemoteTarget ZIEL
+                  Bindet -Yes an das exakte Remote-Ziel / Bind -Yes to the exact remote target
   -WhatIf         Zeigt alle Aktionen ohne Ausführung / Show all actions without executing
 '@
 }
@@ -210,6 +213,56 @@ function Get-Level2Projects {
     }
 }
 
+function Get-HostedRemoteIdentity([string]$RemoteUrl) {
+    $provider = ''
+    $hostName = ''
+    $slug = ''
+    switch -Regex ($RemoteUrl) {
+        '^https://github\.com/([^?#]+?)(?:\.git)?$' {
+            $provider = 'GitHub'; $hostName = 'github.com'; $slug = $Matches[1]; break
+        }
+        '^git@github\.com:([^?#]+?)(?:\.git)?$' {
+            $provider = 'GitHub'; $hostName = 'github.com'; $slug = $Matches[1]; break
+        }
+        '^ssh://git@github\.com/([^?#]+?)(?:\.git)?$' {
+            $provider = 'GitHub'; $hostName = 'github.com'; $slug = $Matches[1]; break
+        }
+        '^https://gitlab\.com/([^?#]+?)(?:\.git)?$' {
+            $provider = 'GitLab'; $hostName = 'gitlab.com'; $slug = $Matches[1]; break
+        }
+        '^git@gitlab\.com:([^?#]+?)(?:\.git)?$' {
+            $provider = 'GitLab'; $hostName = 'gitlab.com'; $slug = $Matches[1]; break
+        }
+        '^ssh://git@gitlab\.com/([^?#]+?)(?:\.git)?$' {
+            $provider = 'GitLab'; $hostName = 'gitlab.com'; $slug = $Matches[1]; break
+        }
+        default { throw 'Unsupported or ambiguous hosted remote.' }
+    }
+    if ($provider -eq 'GitHub' -and $slug -notmatch '^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$') {
+        throw 'Invalid GitHub repository identity.'
+    }
+    if ($provider -eq 'GitLab' -and $slug -notmatch '^[A-Za-z0-9_.-]+(?:/[A-Za-z0-9_.-]+)+$') {
+        throw 'Invalid GitLab repository identity.'
+    }
+    [pscustomobject]@{ Provider = $provider; Host = $hostName; Slug = $slug }
+}
+
+function Confirm-ExactRemoteTarget([string]$Target) {
+    if ($Yes) {
+        if ($ExpectedRemoteTarget -and $ExpectedRemoteTarget -ceq $Target) { return $true }
+        Add-Result 'fail' "Nicht-interaktive Remote-Löschung benötigt -ExpectedRemoteTarget mit dem exakten Ziel / Non-interactive remote deletion requires -ExpectedRemoteTarget with the exact target: $Target"
+        Set-WarningExit
+        return $false
+    }
+    $answer = Read-Host "Exaktes Remote-Ziel zum Löschen eingeben / Enter exact remote target to delete [$Target]"
+    if ($answer -cne $Target) {
+        Add-Result 'fail' "Remote-Ziel nicht exakt bestätigt / Remote target not confirmed exactly: $Target"
+        Set-WarningExit
+        return $false
+    }
+    $true
+}
+
 function Get-RemotePlatform([string]$Dir) {
     if (-not (Test-Path -LiteralPath (Join-Path $Dir '.git') -PathType Container)) {
         return 'kein Remote / no remote'
@@ -222,15 +275,19 @@ function Get-RemotePlatform([string]$Dir) {
 
     $configuredPlatform = ((& git -C $Dir config --local --get home-baseline.remote-platform 2>$null) | Out-String).Trim()
     if ($configuredPlatform -in @('forgejo', 'codeberg')) {
-        return $configuredPlatform
+        $baseUrl = ((& git -C $Dir config --local --get home-baseline.remote-base-url 2>$null) | Out-String).Trim()
+        $owner = ((& git -C $Dir config --local --get home-baseline.remote-owner 2>$null) | Out-String).Trim()
+        $repository = ((& git -C $Dir config --local --get home-baseline.remote-repository 2>$null) | Out-String).Trim()
+        if ($baseUrl -and $owner -and $repository) {
+            return "$configuredPlatform ($($baseUrl.TrimEnd('/'))/$owner/$repository)"
+        }
+        return "$configuredPlatform (ungültige Metadaten / invalid metadata)"
     }
 
-    if ($remoteUrl -match 'github\.com') {
-        return 'GitHub'
-    }
-    if ($remoteUrl -match 'gitlab\.com') {
-        return 'GitLab'
-    }
+    try {
+        $identity = Get-HostedRemoteIdentity -RemoteUrl $remoteUrl
+        return "$($identity.Provider) ($($identity.Host)/$($identity.Slug))"
+    } catch { }
 
     return 'anderes Remote / other remote'
 }
@@ -321,49 +378,73 @@ function Test-Safety([string]$Label, [string]$Dir) {
         return $true
     }
 
-    $statusOutput = (& git -C $Dir status --porcelain 2>$null)
+    $statusOutput = @(& git -C $Dir status --porcelain 2>$null)
+    if ($LASTEXITCODE -ne 0) {
+        Add-Result 'fail' "Git-Status konnte nicht geprüft werden / Git status could not be verified: $Label"
+        Set-WarningExit
+        return $false
+    }
     if ($statusOutput) {
         Add-Result 'fail' "Uncommittete Änderungen erkannt / Uncommitted changes detected: $Label"
         Set-WarningExit
         return $false
     }
 
-    & git -C $Dir rev-parse '@{u}' *> $null
-    if ($LASTEXITCODE -eq 0) {
-        $unpushed = (& git -C $Dir log '@{u}..HEAD' --oneline 2>$null)
-        if ($unpushed) {
-            Add-Result 'fail' "Ungepushte Commits erkannt / Unpushed commits detected: $Label"
-            Set-WarningExit
-            return $false
-        }
+    $upstreamRef = ((& git -C $Dir rev-parse --symbolic-full-name '@{u}' 2>$null) | Out-String).Trim()
+    if ($LASTEXITCODE -ne 0) {
+        Add-Result 'fail' "Upstream konnte nicht geprüft werden / Upstream could not be verified: $Label"
+        Set-WarningExit
+        return $false
+    }
+    if (-not $upstreamRef.StartsWith('refs/remotes/origin/', [System.StringComparison]::Ordinal)) {
+        Add-Result 'fail' "Upstream gehört nicht zu origin / Upstream is not bound to origin: $Label"
+        Set-WarningExit
+        return $false
+    }
+    $unpushed = @(& git -C $Dir log '@{u}..HEAD' --oneline 2>$null)
+    if ($LASTEXITCODE -ne 0) {
+        Add-Result 'fail' "Commit-Stand konnte nicht geprüft werden / Commit state could not be verified: $Label"
+        Set-WarningExit
+        return $false
+    }
+    if ($unpushed) {
+        Add-Result 'fail' "Ungepushte Commits erkannt / Unpushed commits detected: $Label"
+        Set-WarningExit
+        return $false
     }
 
     Add-Result 'done' "Sicherheitsprüfung bestanden / Safety check passed: $Label"
     $true
 }
 
-function Get-OwnerRepo([string]$RemoteUrl, [string]$HostPattern) {
-    $RemoteUrl -replace ".*$HostPattern[:/](.*?)(\.git)?$", '$1'
-}
-
 function Invoke-Backup([string]$Label, [string]$Dir, [string]$TargetName) {
     if (-not $Backup) {
-        return
+        return $true
     }
 
     if (-not (Get-Command tar -ErrorAction SilentlyContinue)) {
         Add-Result 'fail' "Backup nicht erstellt, tar fehlt / Backup not created, tar missing: $Label"
         Set-WarningExit
-        return
+        return $false
     }
 
     $archivePath = Get-UniqueBackupPath $TargetName
     & tar czf $archivePath -C (Split-Path $Dir -Parent) (Split-Path $Dir -Leaf) *> $null
-    if ($LASTEXITCODE -eq 0) {
-        Add-Result 'done' "Backup erstellt / Backup created: $(Split-Path $archivePath -Leaf)"
+    $archiveItem = Get-Item -LiteralPath $archivePath -Force -ErrorAction SilentlyContinue
+    $archiveEntries = if ($LASTEXITCODE -eq 0 -and $archiveItem -and $archiveItem.Length -gt 0) {
+        @(& tar tzf $archivePath 2>$null)
     } else {
+        @()
+    }
+    $expectedRoot = "$(Split-Path $Dir -Leaf)/"
+    if ($archiveItem -and $archiveItem.Length -gt 0 -and $LASTEXITCODE -eq 0 -and $expectedRoot -cin $archiveEntries) {
+        Add-Result 'done' "Backup erstellt / Backup created: $(Split-Path $archivePath -Leaf)"
+        return $true
+    } else {
+        if (Test-Path -LiteralPath $archivePath) { Remove-Item -LiteralPath $archivePath -Force }
         Add-Result 'fail' "Backup fehlgeschlagen / Backup failed: $Label"
         Set-WarningExit
+        return $false
     }
 }
 
@@ -400,6 +481,20 @@ function Remove-RemoteRepo([string]$Label, [string]$Dir) {
             return $false
         }
         try {
+            $baseUrl = Resolve-HBForgejoBaseUrl -Platform forgejo -ConfiguredUrl $baseUrl
+        } catch {
+            Add-Result 'fail' "Forgejo-Basis-URL ist ungültig / Forgejo base URL is invalid: $Label"
+            Set-WarningExit
+            return $false
+        }
+        $expectedRemote = "$($baseUrl.TrimEnd('/'))/$owner/$repository"
+        if (($remoteUrl.TrimEnd('/') -replace '\.git$', '') -cne $expectedRemote) {
+            Add-Result 'fail' "Forgejo-Metadaten stimmen nicht mit origin überein / Forgejo metadata does not match origin: $Label"
+            Set-WarningExit
+            return $false
+        }
+        if (-not (Confirm-ExactRemoteTarget -Target $expectedRemote)) { return $false }
+        try {
             Remove-HBForgejoRepository -BaseUrl $baseUrl -Owner $owner -RepositoryName $repository
             Add-Result 'done' "$configuredPlatform-Remote gelöscht / remote deleted: $owner/$repository"
             return $true
@@ -410,40 +505,59 @@ function Remove-RemoteRepo([string]$Label, [string]$Dir) {
         }
     }
 
-    if ($remoteUrl -match 'github\.com') {
+    try {
+        $identity = Get-HostedRemoteIdentity -RemoteUrl $remoteUrl
+    } catch {
+        Add-Result 'fail' "Nicht unterstütztes oder mehrdeutiges Remote, bitte -KeepRemote verwenden / Unsupported or ambiguous remote, use -KeepRemote: $Label"
+        Set-WarningExit
+        return $false
+    }
+    if (-not (Confirm-ExactRemoteTarget -Target "$($identity.Host)/$($identity.Slug)")) { return $false }
+
+    if ($identity.Provider -eq 'GitHub') {
         if (-not (Get-Command gh -ErrorAction SilentlyContinue)) {
             Add-Result 'fail' "gh fehlt, Remote-Löschung abgebrochen / gh missing, remote deletion aborted: $Label"
             Set-WarningExit
             return $false
         }
 
-        $ownerRepo = Get-OwnerRepo $remoteUrl 'github\.com'
-        & gh repo delete $ownerRepo --yes *> $null
+        $priorHost = $env:GH_HOST
+        try {
+            $env:GH_HOST = $identity.Host
+            & gh repo delete $identity.Slug --yes *> $null
+        } finally {
+            $env:GH_HOST = $priorHost
+        }
         if ($LASTEXITCODE -eq 0) {
-            Add-Result 'done' "Remote-Repo gelöscht / Remote repo deleted: $ownerRepo"
+            Add-Result 'done' "Remote-Repo gelöscht / Remote repo deleted: $($identity.Slug)"
             return $true
         }
 
-        Add-Result 'fail' "GitHub-Remote konnte nicht gelöscht werden / GitHub remote could not be deleted: $ownerRepo"
+        Add-Result 'fail' "GitHub-Remote konnte nicht gelöscht werden / GitHub remote could not be deleted: $($identity.Slug)"
         Set-WarningExit
         return $false
     }
 
-    if ($remoteUrl -match 'gitlab\.com') {
-        $ownerRepo = Get-OwnerRepo $remoteUrl 'gitlab\.com'
+    if ($identity.Provider -eq 'GitLab') {
         if (-not (Get-Command glab -ErrorAction SilentlyContinue)) {
-            Add-Result 'skip' "glab fehlt, GitLab-Remote übersprungen / glab missing, GitLab remote skipped: $ownerRepo"
+            Add-Result 'skip' "glab fehlt, GitLab-Remote übersprungen / glab missing, GitLab remote skipped: $($identity.Slug)"
             Set-WarningExit
             return $true
         }
 
-        & glab repo delete $ownerRepo --yes *> $null
+        $priorHost = $env:GITLAB_HOST
+        try {
+            $env:GITLAB_HOST = $identity.Host
+            & glab repo delete $identity.Slug --yes *> $null
+        } finally {
+            $env:GITLAB_HOST = $priorHost
+        }
         if ($LASTEXITCODE -eq 0) {
-            Add-Result 'done' "GitLab-Remote gelöscht / GitLab remote deleted: $ownerRepo"
+            Add-Result 'done' "GitLab-Remote gelöscht / GitLab remote deleted: $($identity.Slug)"
             return $true
         }
 
-        Add-Result 'fail' "GitLab-Remote konnte nicht gelöscht werden / GitLab remote could not be deleted: $ownerRepo"
+        Add-Result 'fail' "GitLab-Remote konnte nicht gelöscht werden / GitLab remote could not be deleted: $($identity.Slug)"
         Set-WarningExit
         return $false
     }
@@ -605,7 +719,9 @@ function Invoke-TargetTeardown {
         -ExpectedParent $expectedParent `
         -ExpectedName $BackupName
 
-    Invoke-Backup -Label $Label -Dir $Dir -TargetName $BackupName
+    if (-not (Invoke-Backup -Label $Label -Dir $Dir -TargetName $BackupName)) {
+        return $false
+    }
 
     if (-not (Test-Safety -Label $Label -Dir $Dir)) {
         return $false

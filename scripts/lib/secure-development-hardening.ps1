@@ -1,5 +1,7 @@
 # Shared helpers for secure-development hardening intake preparation.
 
+Import-Module (Join-Path $PSScriptRoot 'managed-file-hardening.psm1') -Force
+
 $script:SdhPrepareResult = ''
 $script:SdhPrepareReason = ''
 $script:SdhDetectedLanguage = ''
@@ -191,12 +193,50 @@ function Get-SdhManifestPaths {
     return @($paths | Sort-Object -Unique)
 }
 
+function Assert-SdhSafeManagedDestination {
+    param([string]$Repo, [string]$RelativePath)
+
+    if ([string]::IsNullOrWhiteSpace($RelativePath) `
+        -or [IO.Path]::IsPathRooted($RelativePath) `
+        -or $RelativePath -match '^[A-Za-z]:[/\\]' `
+        -or $RelativePath -match '^[/\\]{2}' `
+        -or $RelativePath -match '(^|[\\/])\.\.([\\/]|$)' `
+        -or $RelativePath -match '(^|[\\/])-' `
+        -or $RelativePath -match '[\x00-\x1f]') {
+        throw 'LIE003: unsicherer verwalteter Pfad / unsafe managed path: [redacted]'
+    }
+
+    $repoFull = [IO.Path]::GetFullPath($Repo).TrimEnd(
+        [IO.Path]::DirectorySeparatorChar,
+        [IO.Path]::AltDirectorySeparatorChar
+    )
+    $targetFull = [IO.Path]::GetFullPath((Join-Path $repoFull $RelativePath))
+    $prefix = $repoFull + [IO.Path]::DirectorySeparatorChar
+    $comparison = if ($IsWindows) { [StringComparison]::OrdinalIgnoreCase } else { [StringComparison]::Ordinal }
+    if (-not $targetFull.StartsWith($prefix, $comparison)) {
+        throw "LIE005: verwalteter Pfad verlaesst das Repository / managed path escapes repository: ${RelativePath}"
+    }
+
+    $current = $repoFull
+    foreach ($component in @($RelativePath -split '[\\/]' | Where-Object { $_ })) {
+        $current = Join-Path $current $component
+        $item = Get-Item -LiteralPath $current -Force -ErrorAction SilentlyContinue
+        if ($item -and ($item.LinkType -or ($item.Attributes -band [IO.FileAttributes]::ReparsePoint))) {
+            throw "LIE005: verwalteter Pfad enthaelt einen symbolischen Link / managed path contains a symbolic link: ${RelativePath}"
+        }
+    }
+}
+
 function Sync-SdhBaseline {
     param([string]$SourceDir, [string]$TargetDir, [switch]$WhatIfMode)
 
-    $sourceManifest = Join-Path $SourceDir 'baseline-manifest.json'
+    $sourceManifest = Get-HBManagedPath -Root $SourceDir -RelativePath 'baseline-manifest.json'
     $targetManifest = Join-Path $TargetDir 'baseline-manifest.json'
-    if (-not (Test-Path $sourceManifest)) { throw "Baseline-Manifest fehlt: ${sourceManifest}" }
+    if (-not (Test-Path -LiteralPath $sourceManifest -PathType Leaf)) { throw "Baseline-Manifest fehlt: ${sourceManifest}" }
+
+    $targetRepo = [IO.Path]::GetFullPath((Join-Path $TargetDir '../..'))
+    $targetRelative = [IO.Path]::GetRelativePath($targetRepo, $TargetDir).Replace('\', '/')
+    Assert-SdhSafeManagedDestination -Repo $targetRepo -RelativePath "$targetRelative/baseline-manifest.json"
 
     $newPaths = @(Get-SdhManifestPaths -ManifestPath $sourceManifest)
     $oldPaths = if (Test-Path $targetManifest) { @(Get-SdhManifestPaths -ManifestPath $targetManifest) } else { @() }
@@ -205,6 +245,7 @@ function Sync-SdhBaseline {
 
     foreach ($relative in $oldPaths) {
         if ([IO.Path]::IsPathRooted($relative) -or $relative -match '(^|[\\/])\.\.([\\/]|$)') { throw "Unsicherer Manifestpfad: ${relative}" }
+        Assert-SdhSafeManagedDestination -Repo $targetRepo -RelativePath "$targetRelative/$relative"
         if ($relative -notin $newPaths) {
             $targetFile = Join-Path $TargetDir $relative
             if (Test-Path $targetFile -PathType Leaf) {
@@ -216,7 +257,8 @@ function Sync-SdhBaseline {
 
     foreach ($relative in $newPaths) {
         if ([IO.Path]::IsPathRooted($relative) -or $relative -match '(^|[\\/])\.\.([\\/]|$)') { throw "Unsicherer Manifestpfad: ${relative}" }
-        $sourceFile = Join-Path $SourceDir $relative
+        Assert-SdhSafeManagedDestination -Repo $targetRepo -RelativePath "$targetRelative/$relative"
+        $sourceFile = Get-HBManagedPath -Root $SourceDir -RelativePath $relative
         $targetFile = Join-Path $TargetDir $relative
         if (-not (Test-Path $sourceFile -PathType Leaf)) { throw "Verwaltete Quelldatei fehlt: ${relative}" }
         $different = -not (Test-Path $targetFile -PathType Leaf)
@@ -226,16 +268,15 @@ function Sync-SdhBaseline {
         if ($different) {
             $copied++
             if (-not $WhatIfMode -and $relative -ne 'baseline-manifest.json') {
-                $parent = Split-Path -Parent $targetFile
-                New-Item -ItemType Directory -Path $parent -Force | Out-Null
-                Copy-Item -LiteralPath $sourceFile -Destination $targetFile -Force
+                Copy-HBManagedFileAtomic -SourceRoot $SourceDir -SourceRelativePath $relative `
+                    -Root $targetRepo -RelativePath "$targetRelative/$relative" -CreateParent
             }
         }
     }
 
     if (-not $WhatIfMode) {
-        New-Item -ItemType Directory -Path $TargetDir -Force | Out-Null
-        Copy-Item -LiteralPath $sourceManifest -Destination $targetManifest -Force
+        Copy-HBManagedFileAtomic -SourceRoot $SourceDir -SourceRelativePath 'baseline-manifest.json' `
+            -Root $targetRepo -RelativePath "$targetRelative/baseline-manifest.json" -CreateParent
         Get-ChildItem -Path $TargetDir -Directory -Recurse -ErrorAction SilentlyContinue |
             Sort-Object FullName -Descending |
             Where-Object { -not (Get-ChildItem -LiteralPath $_.FullName -Force -ErrorAction SilentlyContinue) } |
@@ -259,14 +300,63 @@ function Get-SdhTemplateFile {
     return ''
 }
 
+function Assert-SdhNoUntrustedLinkComponents {
+    param([Parameter(Mandatory)][string]$Path)
+
+    $absolute = [IO.Path]::GetFullPath($Path)
+    $root = [IO.Path]::GetPathRoot($absolute)
+    $current = $root
+    $relative = [IO.Path]::GetRelativePath($root, $absolute)
+    foreach ($component in @($relative -split '[\\/]' | Where-Object { $_ -and $_ -ne '.' })) {
+        $current = Join-Path $current $component
+        $item = Get-Item -LiteralPath $current -Force -ErrorAction SilentlyContinue
+        if (-not $item -or (-not $item.LinkType -and -not ($item.Attributes -band [IO.FileAttributes]::ReparsePoint))) {
+            continue
+        }
+        if ($IsWindows) {
+            throw 'LIE005: path contains an untrusted link or reparse point.'
+        }
+        $owner = @(& stat -f '%u' $current 2>$null)
+        if ($LASTEXITCODE -ne 0) { $owner = @(& stat -c '%u' $current 2>$null) }
+        if ($LASTEXITCODE -ne 0 -or @($owner).Count -ne 1 -or [string]($owner[0]) -cne '0') {
+            throw 'LIE005: path contains an untrusted symbolic link.'
+        }
+    }
+}
+
 function Write-SdhRenderedTemplate {
     param([string]$Template, [string]$Output, [string]$ProjectName)
 
+    Assert-SdhNoUntrustedLinkComponents -Path $Template
+    $templateItem = Get-Item -LiteralPath $Template -Force
+    if ($templateItem.LinkType -or ($templateItem.Attributes -band [IO.FileAttributes]::ReparsePoint)) {
+        throw 'Template source must not be a link or reparse point.'
+    }
+    $outputParent = Split-Path -Parent $Output
+    Assert-SdhNoUntrustedLinkComponents -Path $outputParent
+    $parentItem = Get-Item -LiteralPath $outputParent -Force
+    if ($parentItem.LinkType -or ($parentItem.Attributes -band [IO.FileAttributes]::ReparsePoint)) {
+        throw 'Template output parent must not be a link or reparse point.'
+    }
+    $outputItem = Get-Item -LiteralPath $Output -Force -ErrorAction SilentlyContinue
+    if ($outputItem -and ($outputItem.LinkType -or ($outputItem.Attributes -band [IO.FileAttributes]::ReparsePoint))) {
+        throw 'Template output must not be a link or reparse point.'
+    }
     $today = Get-Date -Format 'yyyy-MM-dd'
-    $content = Get-Content $Template -Raw
+    $content = [IO.File]::ReadAllText($Template, [Text.UTF8Encoding]::new($false, $true))
     $content = $content.Replace('{{PROJECT_NAME}}', $ProjectName)
     $content = $content.Replace('{{DATE}}', $today)
-    $content | Set-Content -Path $Output -Encoding UTF8
+    $temporary = Join-Path $outputParent ('.' + [IO.Path]::GetFileName($Output) + '.' + [Guid]::NewGuid().ToString('N') + '.tmp')
+    try {
+        [IO.File]::WriteAllText($temporary, $content, [Text.UTF8Encoding]::new($false))
+        $outputItem = Get-Item -LiteralPath $Output -Force -ErrorAction SilentlyContinue
+        if ($outputItem -and ($outputItem.LinkType -or ($outputItem.Attributes -band [IO.FileAttributes]::ReparsePoint))) {
+            throw 'Template output became a link or reparse point.'
+        }
+        [IO.File]::Move($temporary, $Output, $true)
+    } finally {
+        if (Test-Path -LiteralPath $temporary) { Remove-Item -LiteralPath $temporary -Force }
+    }
 }
 
 function Get-SdhOrderRank {
@@ -788,19 +878,56 @@ function Get-SdhViewSemantics {
     return $table -join "`n"
 }
 
+function New-SdhPrivateStagedCopy {
+    param(
+        [Parameter(Mandatory)][string]$Source,
+        [Parameter(Mandatory)][string]$Parent,
+        [Parameter(Mandatory)][string]$Prefix
+    )
+
+    for ($attempt = 0; $attempt -lt 8; $attempt++) {
+        $temporary = Join-Path $Parent ('.{0}-{1}.tmp' -f $Prefix, [guid]::NewGuid().ToString('N'))
+        $destination = $null
+        $inputStream = $null
+        $succeeded = $false
+        try {
+            $destination = [IO.FileStream]::new(
+                $temporary,
+                [IO.FileMode]::CreateNew,
+                [IO.FileAccess]::Write,
+                [IO.FileShare]::None,
+                65536,
+                [IO.FileOptions]::WriteThrough
+            )
+            $inputStream = [IO.File]::Open($Source, [IO.FileMode]::Open, [IO.FileAccess]::Read, [IO.FileShare]::Read)
+            $inputStream.CopyTo($destination)
+            $destination.Flush($true)
+            $succeeded = $true
+            return $temporary
+        } catch [IO.IOException] {
+            if ($attempt -eq 7) { throw }
+        } finally {
+            if ($inputStream) { $inputStream.Dispose() }
+            if ($destination) { $destination.Dispose() }
+            if (-not $succeeded -and $temporary -and (Test-Path -LiteralPath $temporary)) {
+                Remove-Item -LiteralPath $temporary -Force -ErrorAction SilentlyContinue
+            }
+        }
+    }
+    throw 'LIE010: Private temporaere Datei konnte nicht exklusiv angelegt werden / private temporary file could not be created exclusively'
+}
+
 function Restore-SdhLinkedIntakeOutputs {
     param([string]$Repo, [string[]]$OutputPaths, [string]$BackupDirectory)
 
     for ($index = 0; $index -lt $OutputPaths.Count; $index++) {
         $target = Join-Path $Repo $OutputPaths[$index]
         $backup = Join-Path $BackupDirectory "${index}.file"
-        $restoreTemp = Join-Path (Split-Path -Parent $target) (".sdh-restore-{0}-{1}.tmp" -f $PID, $index)
         if (Test-Path -LiteralPath $backup -PathType Leaf) {
-            [IO.File]::Copy($backup, $restoreTemp, $true)
+            $restoreTemp = New-SdhPrivateStagedCopy -Source $backup -Parent (Split-Path -Parent $target) -Prefix 'sdh-restore'
             [IO.File]::Move($restoreTemp, $target, $true)
         } else {
             if (Test-Path -LiteralPath $target) { Remove-Item -LiteralPath $target -Force }
-            if (Test-Path -LiteralPath $restoreTemp) { Remove-Item -LiteralPath $restoreTemp -Force }
         }
     }
 }
@@ -979,8 +1106,9 @@ function Invoke-SdhLinkedIntakeProjection {
             $target = Join-Path $Repo $OutputPaths[$index]
             $backup = Join-Path $backupDirectory "${index}.file"
             if (Test-Path -LiteralPath $target -PathType Leaf) { [IO.File]::Copy($target, $backup, $true) }
-            $publishTemp = Join-Path (Split-Path -Parent $target) (".sdh-publish-{0}-{1}.tmp" -f $PID, $index)
-            [IO.File]::WriteAllText($publishTemp, $candidates[$index], [Text.UTF8Encoding]::new($false))
+            $candidateTemp = Join-Path $workDirectory ("candidate-{0}.md" -f $index)
+            [IO.File]::WriteAllText($candidateTemp, $candidates[$index], [Text.UTF8Encoding]::new($false))
+            $publishTemp = New-SdhPrivateStagedCopy -Source $candidateTemp -Parent (Split-Path -Parent $target) -Prefix 'sdh-publish'
             $publishTemps.Add($publishTemp)
         }
 
@@ -1031,11 +1159,12 @@ function Invoke-SdhLinkedIntakeProjection {
 function Update-SdhOrderFile {
     param([string]$Repo, [switch]$WhatIfMode)
 
-    $orderFile = Join-Path $Repo 'Lastenheft_Abarbeitungsreihenfolge.md'
+    $orderRelative = 'Lastenheft_Abarbeitungsreihenfolge.md'
+    $orderFile = Get-HBManagedPath -Root $Repo -RelativePath $orderRelative -AllowMissingParent
     $section = Get-SdhOrderSection -Repo $Repo
 
-    if (Test-Path $orderFile) {
-        $content = Get-Content $orderFile -Raw
+    if (Test-Path -LiteralPath $orderFile -PathType Leaf) {
+        $content = Read-HBManagedText -Root $Repo -RelativePath $orderRelative
         if ($content -match '(?s)<!-- secure-development-hardening-order:start -->.*?<!-- secure-development-hardening-order:end -->') {
             $newContent = [regex]::Replace($content, '(?s)<!-- secure-development-hardening-order:start -->.*?<!-- secure-development-hardening-order:end -->', [System.Text.RegularExpressions.MatchEvaluator]{ param($m) $section })
         } else {
@@ -1055,13 +1184,14 @@ $section
 
     $newContent = $newContent.TrimEnd("`r", "`n") + [Environment]::NewLine
 
-    if ((Test-Path $orderFile) -and ((Get-Content $orderFile -Raw) -eq $newContent)) {
+    if ((Test-Path -LiteralPath $orderFile -PathType Leaf) `
+        -and ((Read-HBManagedText -Root $Repo -RelativePath $orderRelative) -eq $newContent)) {
         return $false
     }
 
     if ($WhatIfMode) { return $true }
 
-    [IO.File]::WriteAllText($orderFile, $newContent, [Text.UTF8Encoding]::new($false))
+    Write-HBManagedTextAtomic -Root $Repo -RelativePath $orderRelative -Content $newContent
     return $true
 }
 
@@ -1114,7 +1244,10 @@ function Invoke-SdhPrepareRepo {
     }
 
     $targetDocs = Join-Path $Repo 'docs/secure-development'
-    $intakeFile = Join-Path $Repo 'Lastenheft_Secure-Development-Hardening.md'
+    $intakeRelative = 'Lastenheft_Secure-Development-Hardening.md'
+    $intakeFile = Get-HBManagedPath -Root $Repo -RelativePath $intakeRelative -AllowMissingParent
+    $null = Get-HBManagedPath -Root $Repo -RelativePath 'docs/secure-development/baseline-manifest.json' -AllowMissingParent
+    $null = Get-HBManagedPath -Root $Repo -RelativePath 'Lastenheft_Abarbeitungsreihenfolge.md' -AllowMissingParent
 
     if ($WhatIfMode) {
         Write-Host "  [WhatIf] docs/secure-development nach $targetDocs synchronisieren"
@@ -1128,7 +1261,14 @@ function Invoke-SdhPrepareRepo {
         if ($WhatIfMode) {
             Write-Host '  [WhatIf] Lastenheft_Secure-Development-Hardening.md erzeugen'
         } else {
-            Write-SdhRenderedTemplate -Template $templateFile -Output $intakeFile -ProjectName $ProjectName
+            $renderedIntake = [IO.Path]::GetTempFileName()
+            try {
+                Write-SdhRenderedTemplate -Template $templateFile -Output $renderedIntake -ProjectName $ProjectName
+                $renderedContent = [IO.File]::ReadAllText($renderedIntake, [Text.UTF8Encoding]::new($false, $true))
+                Write-HBManagedTextAtomic -Root $Repo -RelativePath $intakeRelative -Content $renderedContent
+            } finally {
+                if (Test-Path -LiteralPath $renderedIntake) { Remove-Item -LiteralPath $renderedIntake -Force }
+            }
         }
     }
 

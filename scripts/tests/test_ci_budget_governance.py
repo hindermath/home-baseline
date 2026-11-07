@@ -215,6 +215,7 @@ class VerticalSliceTests(unittest.TestCase):
             "--workflow-template", str(ROOT / "scripts/templates/ci-budget-governance/private-governance-minimal-gate.yml"),
             "--repository-id", "private-governance-fixture",
             "--fixture-head", self.HEAD,
+            "--test-mode",
             "--evidence-root", str(evidence),
             *extra,
         ]
@@ -225,6 +226,22 @@ class VerticalSliceTests(unittest.TestCase):
         destination = temporary / "profiles.json"
         destination.write_text(json.dumps(source), encoding="utf-8")
         return destination
+
+    def test_live_fixture_head_is_rejected_without_explicit_test_mode(self):
+        with tempfile.TemporaryDirectory() as temporary_dir:
+            temporary = pathlib.Path(temporary_dir)
+            command = self._engine_command(
+                FIXTURES / "vertical-slice/profiles.json",
+                FIXTURES / "vertical-slice/path-contracts.json",
+                temporary / "evidence",
+            )
+            command.remove("--test-mode")
+            completed = subprocess.run(
+                command, cwd=ROOT, text=True, capture_output=True, check=False
+            )
+            self.assertNotEqual(completed.returncode, 0)
+            self.assertIn("fixture identity overrides", completed.stderr)
+            self.assertFalse(any((temporary / "evidence").rglob("*.json")))
 
     def test_real_slice_publishes_ordered_atomic_success(self):
         with tempfile.TemporaryDirectory() as temporary_dir:
@@ -284,6 +301,7 @@ class VerticalSliceTests(unittest.TestCase):
                     "--workflow-template", "scripts/templates/ci-budget-governance/private-governance-minimal-gate.yml",
                     "--repository-id", "home-baseline",
                     "--fixture-head", self.HEAD,
+                    "--test-mode",
                     "--evidence-root", str(evidence_root),
                     "--changed-path", "docs/security/security-checklist.md",
                 ],
@@ -298,6 +316,7 @@ class VerticalSliceTests(unittest.TestCase):
                     encoding="utf-8"
                 )
             )
+            self.assertEqual(payload["status"], "TestOnly")
             self.assertEqual([item["order"] for item in payload["results"]], [1, 2])
             self.assertEqual(
                 [item["gateId"] for item in payload["results"]],
@@ -482,6 +501,7 @@ class HookEvidenceRulesetTests(_FleetFixtureMixin, unittest.TestCase):
         self.assertFalse(policy["adminBypassNormalPath"])
         self.assertFalse(policy["remoteConverged"])
         self.assertFalse(policy["hookRequiredForServerEnforcement"])
+        self.assertTrue(policy["activationBlocked"])
 
     def test_private_governance_template_is_deployable_and_path_bound(self):
         source = self.workflow_path.read_text(encoding="utf-8")
@@ -514,6 +534,16 @@ class HookEvidenceRulesetTests(_FleetFixtureMixin, unittest.TestCase):
             ("workflow", workflow_source.replace("  pull_request:", "  push:")),
             ("workflow", workflow_source.replace("home-baseline-full-build: false", "home-baseline-full-build: true")),
             ("workflow", workflow_source.replace("home-baseline-path-dependent: true", "home-baseline-path-dependent: false")),
+            ("workflow", workflow_source.replace("home-baseline-technical-gates-ready: false", "home-baseline-technical-gates-ready: true")),
+            ("workflow", workflow_source.replace("          exit 1\n", "          exit 0\n")),
+            ("workflow", workflow_source.replace(
+                "      - name: Block activation until technical gates are installed\n",
+                "      - name: Block activation until technical gates are installed\n        continue-on-error: true\n",
+            )),
+            ("workflow", workflow_source.replace(
+                "      - name: Block activation until technical gates are installed\n",
+                "      - name: Block activation until technical gates are installed\n        if: false\n",
+            )),
             ("workflow", workflow_source.replace("        shell: bash", "        uses: unbound/action@main")),
             ("ruleset", {**ruleset_source, "requiredStatusChecks": []}),
             ("ruleset", {**ruleset_source, "requiredStatusChecks": ["a", "b"]}),

@@ -15,7 +15,8 @@ Creates isolated temporary repositories from the accepted positive and
 negative fixtures. It tests the real projection, LIE001-LIE012, all feature-
 proof kinds, check/write, source and containment rechecks, atomic multi-output
 rollback, idempotence, Markdown escaping, and stable LF output. The target
-repository is not changed.
+repository is not changed. Fixture intake paths are validated as contained,
+unlinked relative paths before any fixture file is materialized.
 
 .EXAMPLE
 pwsh -NoProfile -File scripts/test-requirements-intake-governance.ps1
@@ -29,6 +30,38 @@ param()
 
 Set-StrictMode -Version Latest
 $ErrorActionPreference = 'Stop'
+
+function Resolve-HBFixtureOutputPath {
+    param(
+        [Parameter(Mandatory)][string]$Root,
+        [Parameter(Mandatory)][string]$RelativePath
+    )
+    if (-not $RelativePath -or $RelativePath -match '[\x00-\x1f\x7f]' -or
+        $RelativePath -match '^[A-Za-z]:' -or
+        $RelativePath.StartsWith('/') -or $RelativePath.StartsWith('\') -or
+        $RelativePath.Contains('\')) {
+        throw "Unsicherer Fixture-Pfad / unsafe fixture path: $RelativePath"
+    }
+    $parts = $RelativePath.Split('/')
+    if ($parts | Where-Object { $_ -in @('', '.', '..') }) {
+        throw "Unsicherer Fixture-Pfad / unsafe fixture path: $RelativePath"
+    }
+    $rootFull = [IO.Path]::GetFullPath($Root).TrimEnd([IO.Path]::DirectorySeparatorChar)
+    $candidate = [IO.Path]::GetFullPath((Join-Path $rootFull $RelativePath))
+    $comparison = if ($IsWindows) { [StringComparison]::OrdinalIgnoreCase } else { [StringComparison]::Ordinal }
+    if (-not $candidate.StartsWith($rootFull + [IO.Path]::DirectorySeparatorChar, $comparison)) {
+        throw "Fixture-Pfad verlaesst die temporaere Wurzel / fixture path escapes temporary root: $RelativePath"
+    }
+    $current = $rootFull
+    foreach ($part in $parts) {
+        $current = Join-Path $current $part
+        $item = Get-Item -LiteralPath $current -Force -ErrorAction SilentlyContinue
+        if ($item -and $item.LinkType) {
+            throw "Fixture-Pfad enthaelt einen Link / fixture path contains a link: $RelativePath"
+        }
+    }
+    return $candidate
+}
 
 function Test-RequirementsIntakeGovernance {
     [CmdletBinding()]
@@ -54,6 +87,9 @@ function Test-RequirementsIntakeGovernance {
         $casesFile = Join-Path $FixtureDirectory 'cases.json'
         $expectedFile = Join-Path $FixtureDirectory 'expected-root.md'
         $cases = Get-Content -LiteralPath $casesFile -Raw -Encoding UTF8 | ConvertFrom-Json
+        foreach ($entry in $cases.entries) {
+            $null = Resolve-HBFixtureOutputPath -Root $fixtureRepo -RelativePath ([string]$entry.intakePath)
+        }
 
         $manifest = [ordered]@{
             schemaVersion = [string]$cases.schemaVersion
@@ -75,7 +111,7 @@ function Test-RequirementsIntakeGovernance {
         )
 
         foreach ($entry in $cases.entries) {
-            $intakeFile = Join-Path $fixtureRepo ([string]$entry.intakePath)
+            $intakeFile = Resolve-HBFixtureOutputPath -Root $fixtureRepo -RelativePath ([string]$entry.intakePath)
             New-Item -ItemType Directory -Path (Split-Path -Parent $intakeFile) -Force | Out-Null
             $intakeContent = "# Fixture`n`n**Reihenfolge:** sichtbare Position $($entry.displayPosition)`n"
             [IO.File]::WriteAllText($intakeFile, $intakeContent, [Text.UTF8Encoding]::new($false))
@@ -233,7 +269,7 @@ function Test-RequirementsIntakeGovernance {
             }
             [IO.File]::WriteAllText($manifestPath, (($caseManifest | ConvertTo-Json -Depth 12) + "`n"), [Text.UTF8Encoding]::new($false))
             foreach ($entry in $cases.entries) {
-                $intakePath = Join-Path $caseRepo ([string]$entry.intakePath)
+                $intakePath = Resolve-HBFixtureOutputPath -Root $caseRepo -RelativePath ([string]$entry.intakePath)
                 New-Item -ItemType Directory -Path (Split-Path -Parent $intakePath) -Force | Out-Null
                 [IO.File]::WriteAllText($intakePath, "# Fixture`n`n**Reihenfolge:** sichtbare Position $($entry.displayPosition)`n", [Text.UTF8Encoding]::new($false))
             }

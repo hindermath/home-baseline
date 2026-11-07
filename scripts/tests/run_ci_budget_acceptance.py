@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Run exactly one CI-budget acceptance scope and publish one Primary record."""
+"""Run one local CI-budget scope and publish truthful Supplemental/Open evidence."""
 
 from __future__ import annotations
 
@@ -179,6 +179,34 @@ def atomic_write_json(path: pathlib.Path, value: object) -> None:
         temporary.unlink(missing_ok=True)
 
 
+def build_local_evidence_entry(
+    gate: str, requirement: dict, reviewed_head: str,
+    executed_command: str, internal_hashes: list[dict[str, str]],
+) -> dict:
+    """Local checks and self-reported inputs cannot establish Primary proof."""
+    return {
+        "gateId": gate,
+        "evidenceRole": "Supplemental",
+        "applicability": requirement["applicability"],
+        "requiredScope": requirement["requiredScope"],
+        "headSha": reviewed_head,
+        "provider": "LocalFixture",
+        "runId": str(uuid.uuid4()),
+        "workflow": "local-fixture",
+        "job": GATE_TESTS[gate],
+        "runnerOrPlatform": "macOS",
+        "executedCommand": executed_command,
+        "result": "Open",
+        "evidenceReference": json.dumps(internal_hashes, separators=(",", ":")) if internal_hashes else "local-test-scope",
+        "rationale": requirement["rationale"],
+        "reevaluationTrigger": requirement["reevaluationTrigger"],
+        "supplementalFor": gate,
+        "primaryCommandExecuted": False,
+        "providerWrites": 0,
+        "networkWrites": 0,
+    }
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--gate", choices=tuple(GATE_TESTS), required=True)
@@ -238,28 +266,11 @@ def main() -> int:
         "--repository-root . --evidence-root "
         ".specify/runtime/autonomous-routing/eca02c0f-5399-49c0-8de4-b21233834254/acceptance-evidence"
     )
-    entry = {
-        "gateId": args.gate,
-        "evidenceRole": "Primary",
-        "applicability": requirement["applicability"],
-        "requiredScope": requirement["requiredScope"],
-        "headSha": reviewed_head,
-        "provider": "LocalImplementation",
-        "runId": str(uuid.uuid4()),
-        "workflow": "speckit.implement",
-        "job": GATE_TESTS[args.gate],
-        "runnerOrPlatform": "macOS",
-        "executedCommand": executed_command,
-        "result": "Pass",
-        "evidenceReference": json.dumps(internal_hashes, separators=(",", ":")) if internal_hashes else "local-test-scope",
-        "rationale": requirement["rationale"],
-        "reevaluationTrigger": requirement["reevaluationTrigger"],
-        "supplementalFor": "",
-    }
-    output = evidence_root / "primary" / f"{args.gate}.json"
+    entry = build_local_evidence_entry(args.gate, requirement, reviewed_head, executed_command, internal_hashes)
+    output = evidence_root / "supplemental" / f"{args.gate}-local.json"
     atomic_write_json(output, entry)
     print(json.dumps(entry, ensure_ascii=False, separators=(",", ":")))
-    return 0
+    return 3
 
 
 if __name__ == "__main__":

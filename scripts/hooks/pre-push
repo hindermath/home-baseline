@@ -18,10 +18,9 @@ while IFS= read -r push_update; do
   [ -n "$push_update" ] && push_updates+=("$push_update")
 done
 
-secret_content_regex='(id_token|access_token|refresh_token|api[_-]?key|client[_-]?secret|password[[:space:]]*=|authorization:[[:space:]]*bearer|bearer[[:space:]]+[A-Za-z0-9._~+/=-]*|sk-[A-Za-z0-9]{20,}|ghp_[A-Za-z0-9]{20,}|github_pat_[A-Za-z0-9_]{20,}|AIza[0-9A-Za-z_-]{20,}|AKIA[0-9A-Z]{16}|-----BEGIN (RSA|OPENSSH|EC|DSA) PRIVATE KEY-----)'
+secret_content_regex="((id_token|access_token|refresh_token|api[_-]?key|client[_-]?secret|password)[[:space:]]*[:=][[:space:]]*['\"]?[A-Za-z0-9._~+/=-]{8,}|--api-key[[:space:]]+[^[:space:];]{8,}|authorization:[[:space:]]*bearer[[:space:]]+[A-Za-z0-9._~+/=-]{8,}|bearer[[:space:]]+[A-Za-z0-9._~+/=-]{20,}|(^|[^A-Za-z0-9])sk-[A-Za-z0-9]{20,}|ghp_[A-Za-z0-9]{20,}|github_pat_[A-Za-z0-9_]{20,}|AIza[0-9A-Za-z_-]{20,}|AKIA[0-9A-Z]{16}|-----BEGIN (RSA|OPENSSH|EC|DSA) PRIVATE KEY-----)"
 secret_name_regex='(auth\.json|(^|\/)\.env(\.[^.]+)?$|[^/]*(secret|credential|creds)[^/]*\.(json|yaml|yml|xml|ini|cfg|conf|toml)|[^/]*id_rsa[^/]*|[^/]*\.(pem|key|p12|pfx))$'
 allowed_secret_name_regex='(^|/)\.env\.(example|sample|template|dist)$'
-allowed_secret_content_path_regex='(^|/)scripts/(hooks/pre-push|scan-agent-secrets\.(sh|ps1)|lib/(hg-secrets|hg-forgejo)\.(sh|ps1))$|(^|/)docs/secure-development/.*\.md$'
 
 echo "pre-push: Prüfe git-getrackte Dateien auf Secrets …"
 
@@ -31,7 +30,21 @@ secret_content_present() {
   # DE: Ein aus der Prozessumgebung gelesener CLI-Wert ist kein eingebettetes Secret.
   # EN: A CLI value read from the process environment is not an embedded secret.
   # Keep literal values and every other detector input unchanged.
-  if [[ "$relative_path" == .github/workflows/* ]]; then
+  if [ "$relative_path" = "scripts/hooks/pre-push" ] \
+    || [ "$relative_path" = "scripts/scan-agent-secrets.sh" ] \
+    || [ "$relative_path" = "scripts/lib/hg-secrets.sh" ]; then
+    sed -E '/^(secret_content_regex|HG_SECRET_PATTERNS)=/d' \
+      | grep "$grep_option" "$secret_content_regex" > /dev/null
+  elif [ "$relative_path" = "scripts/scan-agent-secrets.ps1" ]; then
+    awk '
+      /^\$SecretContentPatterns[[:space:]]*=[[:space:]]*@\(/ { in_patterns=1; next }
+      in_patterns && /^\)[[:space:]]*$/ { in_patterns=0; next }
+      !in_patterns { print }
+    ' | grep "$grep_option" "$secret_content_regex" > /dev/null
+  elif [ "$relative_path" = "scripts/lib/hg-secrets.ps1" ]; then
+    sed -E '/^\$HG_SECRET_PATTERN[[:space:]]*=/d' \
+      | grep "$grep_option" "$secret_content_regex" > /dev/null
+  elif [[ "$relative_path" == .github/workflows/* ]]; then
     sed -E 's/--api-key[[:blank:]]+\$env:[A-Za-z_][A-Za-z0-9_]*([[:blank:];]|$)/\1/g' \
       | grep "$grep_option" "$secret_content_regex" > /dev/null
   else
@@ -125,9 +138,6 @@ scan_regex_commit_blobs() {
         echo "  HIGH: Secret-ähnlicher Dateiname in Push-Historie: $rel_file" >&2
         return 2
       fi
-      if printf '%s\n' "$rel_file" | grep -Eiq "$allowed_secret_content_path_regex"; then
-        continue
-      fi
       blob_ref="$commit:$rel_file"
       if git -C "$REPO_ROOT" cat-file -e "$blob_ref" 2>/dev/null \
         && git -C "$REPO_ROOT" cat-file blob "$blob_ref" | secret_content_present "$rel_file" -Ei; then
@@ -170,6 +180,10 @@ run_gitleaks_range_scan() {
       fi
       collect_regex_files_for_new_ref "$local_sha"
     else
+      if ! git -C "$REPO_ROOT" cat-file -e "$remote_sha^{commit}" 2>/dev/null; then
+        echo "pre-push: Remote-Basiscommit ist lokal nicht pruefbar / remote base commit is unavailable locally." >&2
+        return 2
+      fi
       if [ -z "$(git -C "$REPO_ROOT" rev-list --max-count=1 "$remote_sha..$local_sha" 2>/dev/null || true)" ]; then
         continue
       fi
@@ -209,7 +223,8 @@ verify_ci_gate_evidence() {
   local engine="${REPO_ROOT}/scripts/lib/agentic_workspace_fleet.py"
   local repository_id="${HB_CI_REPOSITORY_ID:-}"
   local profile_record visibility profile_name push_update
-  local local_ref local_sha remote_ref remote_sha expected_hash preview_output evidence_file
+  local local_ref local_sha remote_ref remote_sha expected_hash preview_output evidence_file changed_output changed_path checked_out_head
+  local -a preview_arguments=()
 
   [ -f "$profiles" ] || { echo "pre-push: CI-Profilregistry fehlt / profile registry missing." >&2; return 2; }
   [ -f "$path_contracts" ] || { echo "pre-push: CI-Pfadregistry fehlt / path registry missing." >&2; return 2; }
@@ -281,6 +296,20 @@ PY
     read -r local_ref local_sha remote_ref remote_sha <<< "$push_update"
     [ -n "${local_sha:-}" ] || continue
     [ "$local_sha" != "$zero_sha" ] || continue
+    checked_out_head="$(git -C "$REPO_ROOT" rev-parse HEAD 2>/dev/null)" || return 2
+    if [ "$local_sha" != "$checked_out_head" ]; then
+      echo "pre-push: Ausgehender Commit ist nicht der geprüfte HEAD / outgoing commit is not the tested HEAD." >&2
+      return 1
+    fi
+    if [ "$remote_sha" = "$zero_sha" ]; then
+      changed_output="$(git -C "$REPO_ROOT" ls-tree -r --name-only "$local_sha")" || return 2
+    else
+      changed_output="$(git -C "$REPO_ROOT" diff --name-only "$remote_sha" "$local_sha")" || return 2
+    fi
+    preview_arguments=()
+    while IFS= read -r changed_path; do
+      [ -n "$changed_path" ] && preview_arguments+=(--changed-path "$changed_path")
+    done <<< "$changed_output"
     preview_output="$(python3 "$engine" ci-gate \
       --repository-root "$REPO_ROOT" \
       --profiles "$profiles" \
@@ -289,6 +318,7 @@ PY
       --repository-id "$repository_id" \
       --fixture-head "$local_sha" \
       --evidence-root "$evidence_root" \
+      "${preview_arguments[@]}" \
       --dry-run)" || return $?
     expected_hash="$(printf '%s\n' "$preview_output" | sed -n 's/^Gate-Set-Hash: //p')"
     [ -n "$expected_hash" ] || { echo "pre-push: Gate-Set-Hash fehlt / is missing." >&2; return 2; }
@@ -389,9 +419,6 @@ fi
 content_hits=()
 if [ "${#tracked_files[@]}" -gt 0 ]; then
   while IFS= read -r f; do
-    if printf '%s\n' "$f" | grep -Eiq "$allowed_secret_content_path_regex"; then
-      continue
-    fi
     content_hits+=("$f")
   done < <(
     for candidate in "${tracked_files[@]}"; do

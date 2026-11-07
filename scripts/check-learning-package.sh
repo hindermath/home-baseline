@@ -4,6 +4,7 @@ set -euo pipefail
 
 SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 PACKAGE_SCRIPT="${SCRIPT_DIR}/package-learning-series.sh"
+ARCHIVE_HELPER="${SCRIPT_DIR}/lib/learning_package_archive.py"
 PACKAGE_PATH=""
 CHECKSUM_PATH=""
 SELF_TEST=0
@@ -61,17 +62,27 @@ require_tool() {
 
 check_package() {
   local package="$1" checksum="$2"
-  local work_dir entries roots root manifest
+  local original_package="$1" session_dir archive work_dir entries roots root manifest
 
   [ -f "$package" ] || { echo "ERROR: ZIP nicht gefunden: $package" >&2; return 1; }
   [ -f "$checksum" ] || { echo "ERROR: SHA-256-Datei nicht gefunden: $checksum" >&2; return 1; }
 
-  (
-    cd -- "$(dirname -- "$checksum")"
-    shasum -a 256 -c "$(basename -- "$checksum")"
-  )
+  local expected actual
+  [ "$(awk 'NF { count++ } END { print count + 0 }' "$checksum")" -eq 1 ] || {
+    echo "ERROR: SHA-256-Datei muss genau einen Eintrag enthalten: $checksum" >&2
+    return 1
+  }
+  expected="$(awk 'NR == 1 && $1 ~ /^[0-9A-Fa-f]{64}$/ {print tolower($1)}' "$checksum")"
+  [ -n "$expected" ] || { echo "ERROR: ungueltige SHA-256-Datei: $checksum" >&2; return 1; }
+  session_dir="$(mktemp -d)"
+  trap 'rm -rf "$session_dir"' RETURN
+  archive="${session_dir}/package.zip"
+  python3 "$ARCHIVE_HELPER" --snapshot "$package" "$archive"
+  actual="$(shasum -a 256 "$archive" | awk '{print tolower($1)}')"
+  [ "$expected" = "$actual" ] || { echo "ERROR: SHA-256 stimmt nicht: $checksum" >&2; return 1; }
 
-  entries="$(unzip -Z1 "$package")"
+  python3 "$ARCHIVE_HELPER" "$archive"
+  entries="$(unzip -Z1 "$archive")"
   [ -n "$entries" ] || { echo "ERROR: ZIP ist leer" >&2; return 1; }
   if grep -Eq '(^/|(^|/)\.\.(/|$))' <<< "$entries"; then
     echo "ERROR: ZIP enthaelt unsichere absolute oder aufsteigende Pfade" >&2
@@ -97,28 +108,24 @@ check_package() {
     return 1
   fi
 
-  work_dir="$(mktemp -d)"
-  trap 'rm -rf "$work_dir"' RETURN
-  unzip -q "$package" -d "$work_dir"
+  work_dir="${session_dir}/extracted"
+  python3 "$ARCHIVE_HELPER" "$archive" --extract "$work_dir"
   manifest="${work_dir}/${root}/PACKAGING-MANIFEST.txt"
   grep -Eq '^Git data included: no ' "$manifest" || { echo "ERROR: Manifest bestaetigt Git-Ausschluss nicht" >&2; return 1; }
   grep -Eq '^Original remotes included: no$' "$manifest" || { echo "ERROR: Manifest bestaetigt Remote-Ausschluss nicht" >&2; return 1; }
   grep -Eq '^Start here after extracting: START-HERE-FUER-LERNENDE\.md$' "$manifest" || { echo "ERROR: Manifest nennt die primaere Startdatei nicht" >&2; return 1; }
   grep -Eq '^Institutional hosting guide: INSTITUTIONELLES-GIT-HOSTING\.md$' "$manifest" || { echo "ERROR: Manifest nennt den Hosting-Leitfaden nicht" >&2; return 1; }
 
-  if command -v gitleaks >/dev/null 2>&1; then
-    gitleaks_args=(dir "${work_dir}/${root}" --no-banner --redact)
-    if [ -f "${SCRIPT_DIR}/templates/gitleaks.toml" ]; then
-      gitleaks_args+=(--config "${SCRIPT_DIR}/templates/gitleaks.toml")
-    fi
-    gitleaks "${gitleaks_args[@]}" >/dev/null
-  else
-    echo "WARN: gitleaks nicht verfuegbar; Secret-Scan uebersprungen" >&2
+  require_tool gitleaks
+  gitleaks_args=(dir "${work_dir}/${root}" --no-banner --redact --timeout 120)
+  if [ -f "${SCRIPT_DIR}/templates/gitleaks.toml" ]; then
+    gitleaks_args+=(--config "${SCRIPT_DIR}/templates/gitleaks.toml")
   fi
+  gitleaks "${gitleaks_args[@]}" >/dev/null
 
-  rm -rf "$work_dir"
+  rm -rf "$session_dir"
   trap - RETURN
-  echo "PASS: Lernpaket ist strukturell und gegen die Ausschlussregeln geprueft: $package"
+  echo "PASS: Lernpaket ist strukturell und gegen die Ausschlussregeln geprueft: $original_package"
 }
 
 self_test() {
@@ -148,6 +155,7 @@ self_test() {
 
 require_tool shasum
 require_tool unzip
+require_tool python3
 
 if [ "$SELF_TEST" -eq 1 ]; then
   [ -z "$PACKAGE_PATH" ] || { echo "ERROR: --self-test akzeptiert keinen ZIP-Pfad" >&2; exit 2; }

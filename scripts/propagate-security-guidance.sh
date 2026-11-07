@@ -34,6 +34,7 @@ set -euo pipefail
 
 HOME_DIR="$(cd ~ && pwd)"
 SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+. "${SCRIPT_DIR}/lib/secure-development-hardening.sh"
 # shellcheck source=scripts/lib/resolve-home-baseline-source.sh
 source "${SCRIPT_DIR}/lib/resolve-home-baseline-source.sh"
 LEVEL0_DIR="$(resolve_hb_source_repository "${BASH_SOURCE[0]}" 1)"
@@ -50,6 +51,7 @@ ONLY_CONSTITUTION=0
 ONLY_ENVIRONMENT_REGISTRY=0
 CHANGED_COUNT=0
 SKIPPED_COUNT=0
+CURRENT_REPO=""
 
 # --- Parameter / Arguments ----------------------------------------------------
 
@@ -85,8 +87,9 @@ fi
 
 # --- Vorabprüfungen / Prerequisite checks -------------------------------------
 
-for f in "$LEVEL0_CLAUDE" "$LEVEL0_AGENTS" "$LEVEL0_CONST"; do
-  if [ ! -f "$f" ]; then
+for relative_source in CLAUDE.md AGENTS.md GEMINI.md .github/copilot-instructions.md constitution.md; do
+  if ! sdh_assert_safe_managed_source "$LEVEL0_DIR" "$relative_source"; then
+    f="$LEVEL0_DIR/$relative_source"
     echo "Fehler: Level-0-Quelldatei nicht gefunden: $f" >&2
     echo "Error: Level-0 source file not found: $f" >&2
     exit 1
@@ -121,12 +124,39 @@ mark_skipped() {
 }
 
 # Prüft ob eine Datei einen String enthält / Check if file contains a string
-has_marker() { grep -qF "$1" "$2" 2>/dev/null; }
+assert_safe_guidance_read() {
+  local file="$1" relative
+  case "$file" in
+    "$LEVEL0_DIR"/*)
+      relative="${file#"$LEVEL0_DIR"/}"
+      sdh_assert_safe_managed_source "$LEVEL0_DIR" "$relative"
+      ;;
+    "$CURRENT_REPO"/*)
+      [ -n "$CURRENT_REPO" ] || return 1
+      relative="${file#"$CURRENT_REPO"/}"
+      sdh_assert_safe_managed_source "$CURRENT_REPO" "$relative"
+      ;;
+    *) return 1 ;;
+  esac
+}
+
+replace_guidance_from_temp() {
+  local file="$1" temporary="$2" relative
+  [ -n "$CURRENT_REPO" ] || return 1
+  case "$file" in "$CURRENT_REPO"/*) relative="${file#"$CURRENT_REPO"/}" ;; *) return 1 ;; esac
+  sdh_replace_managed_file_atomic "$CURRENT_REPO" "$relative" "$temporary"
+}
+
+has_marker() {
+  assert_safe_guidance_read "$2" || return 2
+  grep -qF "$1" "$2" 2>/dev/null
+}
 
 # Extrahiert einen Markdown-Abschnitt (## Heading bis nächstes ## oder EOF)
 # Args: <Datei> <Heading-Prefix z. B. "## Sicherheitsdokumentation">
 extract_section() {
   local file="$1" heading_prefix="$2"
+  assert_safe_guidance_read "$file" || return 1
   python3 - "$file" "$heading_prefix" <<'PYEOF'
 import re, sys
 with open(sys.argv[1], encoding='utf-8') as fh:
@@ -143,54 +173,81 @@ PYEOF
 # Args: <Datei> <Heading-Prefix> <neuer Abschnittsinhalt>
 replace_section_in_file() {
   local file="$1" heading_prefix="$2" new_content="$3"
+  local temporary
   [ "$DRY_RUN" -eq 1 ] && return 0
-  python3 - "$file" "$heading_prefix" "$new_content" <<'PYEOF'
+  assert_safe_guidance_read "$file" || return 1
+  temporary="$(mktemp)"
+  if ! python3 - "$file" "$temporary" "$heading_prefix" "$new_content" <<'PYEOF'
 import re, sys
-file_path, prefix, new_content = sys.argv[1], re.escape(sys.argv[2]), sys.argv[3]
+file_path, output_path, prefix, new_content = sys.argv[1], sys.argv[2], re.escape(sys.argv[3]), sys.argv[4]
 with open(file_path, encoding='utf-8') as fh:
     content = fh.read()
 pattern = r'(' + prefix + r'[^\n]*\n)(.*?)(?=\n## |\Z)'
 result = re.sub(pattern, lambda m: new_content + '\n', content, flags=re.DOTALL)
-with open(file_path, 'w', encoding='utf-8') as fh:
+with open(output_path, 'w', encoding='utf-8') as fh:
     fh.write(result)
 PYEOF
+  then
+    rm -f -- "$temporary"
+    return 1
+  fi
+  replace_guidance_from_temp "$file" "$temporary"
+  rm -f -- "$temporary"
 }
 
 # Fügt am Ende eines Abschnitts neuen Inhalt ein (nur wenn Marker fehlt)
 # Args: <Datei> <Heading-Prefix> <Marker> <hinzuzufügender Inhalt>
 append_to_section_if_missing() {
   local file="$1" heading_prefix="$2" marker="$3" content_to_add="$4"
+  local temporary
   has_marker "$marker" "$file" && return 1
   [ "$DRY_RUN" -eq 1 ] && return 0
-  python3 - "$file" "$heading_prefix" "$content_to_add" <<'PYEOF'
+  assert_safe_guidance_read "$file" || return 2
+  temporary="$(mktemp)"
+  if ! python3 - "$file" "$temporary" "$heading_prefix" "$content_to_add" <<'PYEOF'
 import re, sys
-file_path, prefix, content_to_add = sys.argv[1], re.escape(sys.argv[2]), sys.argv[3]
+file_path, output_path, prefix, content_to_add = sys.argv[1], sys.argv[2], re.escape(sys.argv[3]), sys.argv[4]
 with open(file_path, encoding='utf-8') as fh:
     content = fh.read()
 pattern = r'(' + prefix + r'[^\n]*\n)(.*?)(?=\n## |\Z)'
 def replacement(m):
     return m.group(1) + m.group(2).rstrip() + '\n' + content_to_add + '\n'
 result = re.sub(pattern, replacement, content, flags=re.DOTALL)
-with open(file_path, 'w', encoding='utf-8') as fh:
+with open(output_path, 'w', encoding='utf-8') as fh:
     fh.write(result)
 PYEOF
+  then
+    rm -f -- "$temporary"
+    return 1
+  fi
+  replace_guidance_from_temp "$file" "$temporary"
+  rm -f -- "$temporary"
 }
 
 # Fügt einen Block vor einem bestimmten Heading ein
 # Args: <Datei> <Marker für "bereits vorhanden"> <Anker-Heading> <einzufügender Block>
 insert_before_heading_if_missing() {
   local file="$1" marker="$2" anchor_heading="$3" block="$4"
+  local temporary
   has_marker "$marker" "$file" && return 1
   [ "$DRY_RUN" -eq 1 ] && return 0
-  python3 - "$file" "$anchor_heading" "$block" <<'PYEOF'
+  assert_safe_guidance_read "$file" || return 2
+  temporary="$(mktemp)"
+  if ! python3 - "$file" "$temporary" "$anchor_heading" "$block" <<'PYEOF'
 import re, sys
-file_path, anchor, block = sys.argv[1], re.escape(sys.argv[2]), sys.argv[3]
+file_path, output_path, anchor, block = sys.argv[1], sys.argv[2], re.escape(sys.argv[3]), sys.argv[4]
 with open(file_path, encoding='utf-8') as fh:
     content = fh.read()
 result = re.sub(r'(\n' + anchor + r'[^\n]*)', r'\n' + block + r'\n\1', content)
-with open(file_path, 'w', encoding='utf-8') as fh:
+with open(output_path, 'w', encoding='utf-8') as fh:
     fh.write(result)
 PYEOF
+  then
+    rm -f -- "$temporary"
+    return 1
+  fi
+  replace_guidance_from_temp "$file" "$temporary"
+  rm -f -- "$temporary"
 }
 
 # --- Canonical-Inhalte zur Laufzeit aus Level-0 lesen -------------------------
@@ -243,6 +300,7 @@ discover_repos() {
   local repos=()
   for dir in "${HOME_DIR}"/*/; do
     dir="${dir%/}"
+    [ ! -L "$dir" ] || continue
     [ -d "$dir/.git" ] || continue
     [ "$dir" = "$LEVEL0_DIR" ] && continue  # Level-0 überspringen
     { [ -f "$dir/AGENTS.md" ] || [ -f "$dir/CLAUDE.md" ]; } || continue
@@ -251,6 +309,7 @@ discover_repos() {
     # Level-2: Unterverzeichnisse dieses Level-1-Repos
     for subdir in "$dir"/*/; do
       subdir="${subdir%/}"
+      [ ! -L "$subdir" ] || continue
       [ -d "$subdir" ] || continue
       [ -d "$subdir/.git" ] || continue
       { [ -f "$subdir/AGENTS.md" ] || [ -f "$subdir/CLAUDE.md" ]; } || continue
@@ -261,6 +320,19 @@ discover_repos() {
   local i
   for i in "${!repos[@]}"; do
     printf '%s\n' "${repos[$i]}"
+  done
+}
+
+validate_guidance_targets() {
+  local repo="$1" relative
+  for relative in \
+    CLAUDE.md \
+    AGENTS.md \
+    GEMINI.md \
+    .github/copilot-instructions.md \
+    constitution.md \
+    .specify/memory/constitution.md; do
+    sdh_assert_safe_managed_destination "$repo" "$relative" || return 1
   done
 }
 
@@ -513,6 +585,11 @@ apply_environment_registry_updates() {
 # Bash 3.x-sicher: Index-Iteration statt direkter Array-Expansion
 for _main_i in "${!REPOS[@]}"; do
   repo="${REPOS[$_main_i]}"
+  CURRENT_REPO="$repo"
+  validate_guidance_targets "$repo" || {
+    echo "Fehler / Error: unsicherer Guidance-Zielpfad / unsafe guidance target: $repo" >&2
+    exit 1
+  }
   echo "┌─ $(basename "$repo") ($repo)"
 
   if [ "$ONLY_ENVIRONMENT_REGISTRY" -eq 1 ]; then

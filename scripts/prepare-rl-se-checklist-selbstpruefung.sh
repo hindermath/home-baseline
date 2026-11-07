@@ -192,6 +192,11 @@ find_selfcheck_template_file() {
 commit_and_push() {
   local repo="$1"
   local branch
+  local -a managed_paths=(docs/secure-development)
+
+  if ! $OPT_BASELINE_ONLY; then
+    managed_paths+=(Lastenheft_RL-SE-Checklist-Selbstpruefung.md Lastenheft_Abarbeitungsreihenfolge.md)
+  fi
 
   if ! $OPT_COMMIT && ! $OPT_PUSH; then
     return 0
@@ -199,26 +204,22 @@ commit_and_push() {
 
   if $OPT_DRY_RUN; then
     if $OPT_BASELINE_ONLY; then
-      $OPT_COMMIT && log "  [dry-run] git add docs/secure-development && git commit"
+      $OPT_COMMIT && log "  [dry-run] git add <managed baseline paths> && git commit --only -- <managed baseline paths>"
     else
-      $OPT_COMMIT && log "  [dry-run] git add docs/secure-development Lastenheft_RL-SE-Checklist-Selbstpruefung.md Lastenheft_Abarbeitungsreihenfolge.md && git commit"
+      $OPT_COMMIT && log "  [dry-run] git add <managed paths> && git commit --only -- <managed paths>"
     fi
     $OPT_PUSH && log "  [dry-run] git push origin <branch>"
     return 0
   fi
 
-  if $OPT_BASELINE_ONLY; then
-    git -C "$repo" add docs/secure-development
-  else
-    git -C "$repo" add docs/secure-development Lastenheft_RL-SE-Checklist-Selbstpruefung.md Lastenheft_Abarbeitungsreihenfolge.md
-  fi
-  git -C "$repo" diff --cached --check
+  git -C "$repo" add -- "${managed_paths[@]}"
+  git -C "$repo" diff --cached --check -- "${managed_paths[@]}"
 
-  if ! git -C "$repo" diff --cached --quiet; then
+  if ! git -C "$repo" diff --cached --quiet -- "${managed_paths[@]}"; then
     if $OPT_BASELINE_ONLY; then
-      git -C "$repo" commit -m "docs: update secure development baseline to 3.0.0"
+      git -C "$repo" commit --only -m "docs: update secure development baseline to 3.0.0" -- "${managed_paths[@]}"
     else
-      git -C "$repo" commit -m "docs: prepare RL-SE checklist self-assessment"
+      git -C "$repo" commit --only -m "docs: prepare RL-SE checklist self-assessment" -- "${managed_paths[@]}"
     fi
   fi
 
@@ -231,7 +232,7 @@ commit_and_push() {
 
 prepare_repo() {
   local repo="$1"
-  local status project_name language source_dir template_file target_docs intake_file dry_mode
+  local status project_name language source_dir template_file target_docs intake_file dry_mode order_status
 
   project_name="$(basename "$repo")"
   log "## $repo"
@@ -256,6 +257,7 @@ prepare_repo() {
 
   target_docs="$repo/docs/secure-development"
   intake_file="$repo/Lastenheft_RL-SE-Checklist-Selbstpruefung.md"
+  [ ! -L "$intake_file" ] || die "Lastenheft-Ziel ist ein symbolischer Link: $intake_file"
 
   if $OPT_DRY_RUN; then
     sdh_sync_baseline "$source_dir" "$target_docs" 1
@@ -283,6 +285,10 @@ prepare_repo() {
   if sdh_update_order_file "$repo" "$dry_mode"; then
     $OPT_DRY_RUN && log "  [dry-run] Lastenheft_Abarbeitungsreihenfolge.md aktualisieren"
   else
+    order_status=$?
+    if [ "$order_status" -ne 1 ]; then
+      die 'Lastenheft_Abarbeitungsreihenfolge.md konnte nicht sicher aktualisiert werden'
+    fi
     $OPT_DRY_RUN && log "  [dry-run] Lastenheft_Abarbeitungsreihenfolge.md unveraendert"
   fi
 

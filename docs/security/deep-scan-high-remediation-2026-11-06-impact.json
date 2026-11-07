@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "1.1",
+  "feature": "deep-security-non-preset-remediation",
+  "entries": [
+    {
+      "changeId": "CHG001",
+      "scope": "Eleven high, 84 non-preset medium, and 27 non-preset low findings across the scripts security boundaries; four preset findings remain separate",
+      "decision": "UpdateRequired",
+      "rationale": "The fixes change destructive-operation confirmation, path and archive acceptance, process execution, evidence authority, renderer provenance, generated workflow permissions, and multiple cross-platform maintenance boundaries. Maintainers need the new safe operating contracts and executable evidence.",
+      "documents": [
+        "docs/security/deep-scan-high-remediation-2026-11-06.md",
+        "docs/scripts/reference.md"
+      ],
+      "owner": "Thorsten Hindermann",
+      "audiences": [
+        "Workspace operators",
+        "Maintainers",
+        "Security reviewers"
+      ],
+      "readerPaths": [
+        "Deep Scan report -> high-finding remediation -> focused regression evidence",
+        "Script reference -> affected command -> safe operating boundary"
+      ],
+      "canonicalSource": "scripts/",
+      "navigationImpact": "Adds focused security evidence and regenerates the script reference for the new regression suite.",
+      "documentClass": "SecurityEvidence",
+      "languageStrategy": "German first and English second in one concise evidence document.",
+      "languagePartners": [],
+      "platformAndExampleProof": "Bash and PowerShell parsing, Python regression suites, .NET Maintenance TUI tests, macOS executable fixtures, cross-shell boundary tests, and repository-native validation commands.",
+      "distributionClass": "homeRuntime",
+      "homeSyncRequired": true,
+      "evidence": "docs/security/deep-scan-high-remediation-2026-11-06.md",
+      "risk": "Native Windows junction behavior and Linux GNU tool behavior require their matching platform suites before merge; non-interactive remote deletion requires an exact expected-target binding.",
+      "criticality": "Security",
+      "reevaluationTrigger": "Changes to any remediated execution, path, archive, evidence, provider, workflow, or home-runtime distribution boundary."
+    }
+  ]
+}

@@ -27,6 +27,16 @@ Runnerwechsel nach erfolgreichem neuem Check angepasst werden.
 *Generated CI uses Ubuntu 22.04, macOS 15 and Windows 2022. Update matching
 required-check names on the hosting platform after the new check succeeds.*
 
+Die Hook-Installation akzeptiert nur ein regulaeres, nicht verlinktes
+`.git/hooks`-Verzeichnis und veroeffentlicht `pre-push` atomar. Automatische
+Migrations-Commits deaktivieren Repository-Hooks und Commit-Signing explizit;
+repository-lokale Signierprogramme werden dabei nicht ausgefuehrt.
+
+*Hook installation accepts only a regular, unlinked `.git/hooks` directory and
+publishes `pre-push` atomically. Automatic migration commits explicitly disable
+repository hooks and commit signing, so repository-local signing programs are
+not executed.*
+
 ## OPTIONS
 
 | Bash | PowerShell | Bedeutung / Meaning |
