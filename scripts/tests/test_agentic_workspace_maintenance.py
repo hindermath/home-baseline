@@ -1018,7 +1018,7 @@ class AgenticWorkspaceMaintenanceTests(unittest.TestCase):
             }), encoding="utf-8")
             contract_path = root / "contract.json"
             contract = {
-                "schemaVersion": 2,
+                "schemaVersion": 3,
                 "container": "test-sandbox",
                 "user": "tester",
                 "source": "/opt/reference",
@@ -1026,18 +1026,14 @@ class AgenticWorkspaceMaintenanceTests(unittest.TestCase):
                 "approvalSha256": "a" * 64,
                 "approvalBindingSha256": "0" * 64,
                 "approvedImage": "sha256:" + "b" * 64,
-                "approvedSourceRevision": "c" * 40,
-                "approvalTrustState": "PendingOwnerProvisioning",
-                "approvalPublicKeyPath": ".home-baseline/trust/sandbox-owner-approval-public.pem",
-                "approvalPublicKeySha256": "0" * 64,
-                "approvalSignaturePath": ".home-baseline/trust/sandbox-owner-approval.sig",
+                "approvedSourceSha256": "c" * 64,
+                "approvalTrustState": "PendingOwnerApproval",
                 "expiresOn": "2099-12-31",
                 "mounts": [{"host": "Projects", "container": "/projects"}],
             }
             bound_keys = (
                 "container", "user", "source", "approvalPath", "approvalSha256",
-                "approvedImage", "approvedSourceRevision", "approvalTrustState",
-                "approvalPublicKeyPath", "approvalPublicKeySha256", "approvalSignaturePath",
+                "approvedImage", "approvedSourceSha256", "approvalTrustState",
                 "expiresOn", "mounts",
             )
             contract["approvalBindingSha256"] = hashlib.sha256(

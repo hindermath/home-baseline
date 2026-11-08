@@ -224,6 +224,8 @@
 | 2026-11-03 | Model Routing Governance 0.2.3 | N/A | N/A | N/A | UpdateRequired: hashgebundenes Release mit strukturiertem Harness-Rückkanal und kanonischem Adapterpfad, ein Preset aktualisiert, andere 13 erhalten; vollständige Resolver-Ressourcen und Root-/Preset-Parität geprüft. Keine Modellaufrufe oder Profilmigration. / Hash-bound release with structured harness result transport and canonical adapter path, one preset updated, other 13 preserved; complete runtime closure and root/preset parity verified. No inference or profile migration. [Evidence](maintenance/model-routing-v023-installation.md). |
 | 2026-11-05 | Model Routing 0.2.6 und Autonomous Run 0.4.10 | N/A | N/A | N/A | UpdateRequired: zwei hashgebundene Presets in der 14er-Matrix und vier autorisierten Repositories installiert; die übrigen zwölf Payloads erhalten. Root-/Preset-Parität, normale Rollenrechte, Agentenflächen, PSScriptAnalyzer und Secret-Scan sind grün. Keine Modellaufrufe, API-Key-Konfiguration oder Profilmigration. / Two hash-bound presets installed in the fourteen-preset matrix and four authorized repositories; the other twelve payloads were preserved. Root/preset parity, normal role permissions, agent surfaces, PSScriptAnalyzer and secret scanning passed. No model calls, API-key setup or profile migration. [Evidence](maintenance/model-routing-v026-installation.md). |
 
+| 2026-11-08 | Sandbox-Freigabe Schema 3 / Sandbox approval schema 3 | N/A | N/A | N/A | UpdateRequired: dokumentierte Owner-Entscheidung statt zusaetzlichem Signaturschluessel; deterministische Paketbindung ohne Selbstreferenz, UTC-Ablaufgrenze 31.12.2026 und technische Container-Gates erhalten. Lokale Regressionen, keine Aktivierung, Veroeffentlichung, Home-Synchronisation oder Container-Aenderung. / Documented owner decision replaces the additional signing key; deterministic package binding avoids self-reference, preserving expiry and technical gates. Local regression evidence only; no operational activation or distribution. [Vertrag / Contract](maintenance/container-delegation-2026-09-20.md). |
+
 ## Gesamtstand des Repositories / Repository Snapshot
 
 Stand / As of: **2026-07-19**
@@ -1700,26 +1702,26 @@ Profil 2 verwendet Git-getrackte Textdateien und sichtbare Git-Aktivitaet. Die W
 
 | Kennzahl / Metric | Wert / Value |
 |---|---:|
-| Textbasis / Text base | 783043 lines |
+| Textbasis / Text base | 783200 lines |
 | Textdateien / Text files | 3829 |
 | Beobachtbarer Zeitraum / Observable period | 2025-11-16..2026-11-08 |
 | Aktivtage / Active days | 136 |
-| Relevante Commits / Relevant commits | 1001 |
-| Zeilen je Aktivtag / Lines per active day | 5757.7 |
+| Relevante Commits / Relevant commits | 1003 |
+| Zeilen je Aktivtag / Lines per active day | 5758.8 |
 | Peak-Tag im Fenster / Peak day in window | 2026-08-01 / 161357 |
 | Peak-Woche im Fenster / Peak week in window | 2026-07-26 / 284516 |
 | Laengste Serie / Longest streak | 38 days |
 | Speedup vs. 80 lines/day | 72.0x |
 | Speedup vs. 100 lines/day | 57.6x |
-| Methodik / Methodology | v2; source `c488421dd2fa` |
+| Methodik / Methodology | v2; source `d479c57beb56` |
 
 ### Artefaktmix / Artifact Mix
 
 ```text
 Produktiv / Production          [#...................]   0.3% | 2237
-Tests                           [#...................]   4.3% | 33994
-Dokumentation / Documentation   [###########.........]  54.8% | 428994
-Skripte / Scripts               [##..................]   8.3% | 64664
+Tests                           [#...................]   4.3% | 34067
+Dokumentation / Documentation   [###########.........]  54.8% | 429074
+Skripte / Scripts               [##..................]   8.3% | 64668
 Konfiguration / Configuration   [######..............]  32.3% | 252798
 Daten und Medien / Data and media [....................]   0.0% | 0
 Sonstiger Text / Other text     [#...................]   0.0% | 356
@@ -1999,7 +2001,7 @@ Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen
 Scale: 0..10000 lines/day
 Experienced manual [#...................] 80
 Thorsten solo      [#...................] 100
-Visible repository [############........] 5757.7
+Visible repository [############........] 5758.8
 ```
 
 Die gemeinsame Skala vergleicht Referenzen und sichtbare Lieferdichte. Sie schreibt die Git-Aktivitaet keiner Person oder KI pauschal zu.
@@ -2025,6 +2027,6 @@ DE: Das Fenster beginnt am 2025-11-16 und endet am 2026-11-08. Es enthaelt 136 a
 | 2026-08 | 278228 |
 | 2026-09 | 144845 |
 | 2026-10 | 73816 |
-| 2026-11 | 38762 |
+| 2026-11 | 39149 |
 
 <!-- project-statistics-v2:end -->
