@@ -18,7 +18,7 @@ in the fourteen-preset matrix retain their published versions.
 | intake-review-governance | v0.2.8 |
 | intake-sequencing-governance | v0.2.12 |
 | model-routing-governance | v0.2.7 |
-| parallel-autonomous-run-governance | v0.2.10 |
+| parallel-autonomous-run-governance | v0.2.12 |
 | secure-development-assurance-governance | v0.1.9 |
 
 ## Nachweis und Bedienung
@@ -61,6 +61,23 @@ under .specify/presets. A single download timeout in the ABS-DD pilot was
 resolved by resuming the missing package. Three pre-existing untracked
 files there were left untouched.
 
+DE: Die Root-Runtime von Model Routing wurde in allen vier Repositories
+bytegleich zum installierten Release nachgezogen; der Paritätstest bestand
+jeweils 48 Prüfungen. Parallel v0.2.12 enthält einen Verbose-Hinweis für
+eine bereits tolerierte Prozessbeendigungs-Race-Condition und verwendet
+keine automatische PowerShell-Variable als lokalen Profilnamen. Der
+Steuerungsablauf bleibt gleich.
+Die Source- und Installed-Locks binden alle sieben aktuellen Tags und
+die tatsächlich installierten Dateien.
+
+EN: The Model Routing root runtime was aligned byte for byte with the
+installed release in all four repositories; each parity test passed 48
+assertions. Parallel v0.2.12 adds a Verbose diagnostic for an already
+tolerated process-exit race and avoids using an automatic PowerShell
+variable as a local profile name. Control flow is unchanged. Source and
+installed locks bind all seven current tags and
+actual installed files.
+
 | Tag-Archiv / Tag archive | SHA-256 |
 | --- | --- |
 | autonomous-run-governance v0.4.11 | 07889029fe3fc53d175fd8c4d9460227ebd64efc7c62ceb51a911f755369b05e |
@@ -68,7 +85,7 @@ files there were left untouched.
 | intake-review-governance v0.2.8 | ddc36c0608fcf4399d81e8a6dc8de7efc026536319b310827e9f57f7fc73acf2 |
 | intake-sequencing-governance v0.2.12 | 794bd7257d442eb4958f407d7118b7f49be9492aadc3a8edd911667e6a563ab7 |
 | model-routing-governance v0.2.7 | 921f95dfae41d0007faf6a2417917a7dcdfca046b085e2c0febd88844559be16 |
-| parallel-autonomous-run-governance v0.2.10 | 236f2bf4d6bc2ddfb957048ae296de9208f840cbf3ba4d7b921ecbfa4208b962 |
+| parallel-autonomous-run-governance v0.2.12 | 1fbd9ec88e282f412b25cce3401ae150bfb373662b7ed07ee9630a560670c030 |
 | secure-development-assurance-governance v0.1.9 | 0d7ffd14f9e1bd02f66251d30e6b5003fc57077c6c90b4c6c3e84436f83cdc55 |
 
 ## Dokumentationsauswirkung
