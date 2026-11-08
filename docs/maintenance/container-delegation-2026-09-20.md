@@ -40,9 +40,12 @@ Stand 08.11.2026: Die ausdrueckliche Owner-Entscheidung und der nachvollziehbare
 Repository-Review ersetzen die zusaetzliche kryptografische Owner-Signatur.
 Es werden weder Schluessel noch Signaturdateien benoetigt. SHA-256 erkennt
 Abweichungen; es beweist nicht die Identitaet oder Zustimmung des Owners.
-Agenten duerfen keine Freigabe selbst erteilen oder erweitern. Die aktuell
-ausgelieferte Konfiguration bleibt `PendingOwnerApproval`; erfolgreiche Tests
-und Migration setzen sie nicht automatisch auf `OwnerApproved`.
+Agenten duerfen keine Freigabe selbst erteilen oder erweitern. Die erste
+Schema-3-Lieferung blieb `PendingOwnerApproval`; erfolgreiche Tests und
+Migration aktivieren keine Freigabe. Die danach ausdruecklich erteilte
+[Owner-Entscheidung vom 08.11.2026](secure-trader-owner-approval-2026-11-08.md)
+erlaubt `OwnerApproved` ausschliesslich fuer das dort benannte Image/Paket.
+Das ist keine behauptete Containeraktivierung oder organisatorische Rollenabnahme.
 
 `approvedSourceSha256` bindet die sortierte Pfad-/Hash-Abbildung des vorhandenen
 Paketmanifests einschliesslich Manifest, Validator, Worker und Hilfsskripten.
@@ -74,8 +77,11 @@ organisatorischen Rollenfreigaben bleiben unveraendert.
 *As of 8 November 2026, an explicit owner decision and traceable repository
 review replace the additional cryptographic owner signature. No key or
 signature files are needed. SHA-256 detects drift, not owner identity or
-consent. Agents must never grant or expand approval themselves. The shipped
-contract remains `PendingOwnerApproval`; migration and tests never activate it.
+consent. Agents must never grant or expand approval themselves. The first
+schema-3 delivery remained `PendingOwnerApproval`; migration and tests never
+activate it. The subsequently explicit owner decision linked above permits
+`OwnerApproved` only for its exact image/package. It does not itself prove
+container activation or organizational role approval.
 `approvedSourceSha256` hashes the sorted path/hash map of the declared package,
 including its manifest, validator, worker and helpers. Text uses LF-normalized
 bytes; the aggregate uses sorted, compact UTF-8 JSON. Only the execution
@@ -92,6 +98,38 @@ capability drop set or ALL, no-new-privileges and an immutable embedded or
 read-only mounted reference remain required. Missing reference, package drift
 and missing owner approval have separate errors. This change does not activate
 operations or change images, containers, volumes or pending role approvals.*
+
+### Konkrete Aktivierungsbindung / Concrete activation binding
+
+Die kanonische Schema-3-Konfiguration bindet den neuen Entscheidungsnachweis
+direkt im Level-0-Quellklon, relativ zum Home-Verzeichnis. Der bestehende
+`approvalPath`-Vertrag wird verwendet; kein Maschinen-Override und keine neue
+Pfadauflogik. Andere Checkout-Layouts erfuellen diese konkrete Bindung nicht
+stillschweigend. Dokument-, Vertrags- und Paket-Hash werden getrennt geprueft.
+Die im Image eingebettete Git-Revision bleibt Herkunftsnachweis, nicht Ersatz
+fuer tatsaechliche Paketbytes. Audit-/Sicherungsgates vor dem Containerwechsel
+und ausschliesslich lokale Sandbox-Git-Operationen bleiben verbindlich.
+
+The canonical schema-3 contract binds the dated owner evidence directly in the
+Level-0 clone through the existing home-relative approvalPath field. There is
+no machine override or new path resolver. A different checkout layout does not
+silently satisfy this exact binding. Document, contract and package hashes are
+checked separately. Embedded Git revision is provenance, not a replacement
+for package bytes. Audit/backup gates and sandbox-only local Git still apply.
+
+Documentation Impact: `UpdateRequired`. Zielgruppen / audiences: Maintainer,
+Betrieb und Security-Reviewer / operators and security reviewers. Leserpfad /
+reader path: dieser Vertrag zur datierten Owner-Entscheidung und danach zum
+sicheren Preflight / this contract to dated owner evidence and safe preflight.
+Kanonische Quelle / canonical source: Owner-Nachricht und verlinkter Review,
+gebunden durch `scripts/config/maintenance-execution-contexts.json`. Owner:
+Repository Maintainer. Dokumentklasse / class: ActiveSemantic, Deutsch zuerst /
+German first, English second. Navigation: vorhandener Vertragsleserpfad /
+existing contract reader path. Distribution: sourceOnly, kein Home-Sync / none.
+Nachweis / evidence: exakte Image-/Paketpruefung und Review-Link im datierten
+Dokument; keine neue native Plattform- oder A11Y-Abnahme / exact image/package
+proof and linked review, no new platform or accessibility acceptance.
+Neu bewerten / reevaluate: Image, Paket, Dokument, Mounts, Benutzer oder Frist.
 
 - Der Host besitzt Netzwerk-Git und die zentrale Registry. Fuer beschreibbar
   eingebundene Secure-Trader-Ziele ist Host-Git-Netzwerkzugriff jedoch

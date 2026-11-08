@@ -228,6 +228,8 @@
 
 | 2026-11-08 | Begrenzter Secure-Trader-Bundle-Transport / Bounded Secure Trader bundle transport | N/A | N/A | N/A | UpdateRequired: kanonischer 21-Ziele-Download in isolierte Host-Bare-Repositories, credential-freier Sandbox-Bundle-Import und atomare origin-Tracking-Refs. Kein Host-Git gegen Secure-Trader-Checkouts, lokale Branches und Tags erhalten; Preflight und Fast-forward-Barriere bleiben verbindlich. Lokale Fixture-Tests, keine behauptete Betriebsaktivierung. / Canonical 21-target downloads use isolated host bare repositories and credential-free sandbox imports with atomic tracking refs. Local branches, tags and security gates are preserved; fixture proof does not claim live acceptance. [Vertrag / Contract](maintenance/container-delegation-2026-09-20.md). |
 
+| 2026-11-08 | Konkrete Owner-Wartungsfreigabe / Concrete owner maintenance approval | N/A | N/A | N/A | UpdateRequired: reale Owner-Entscheidung aus Review 5819120082 an exakte Image-ID, unveraenderten Paketfingerabdruck und Ablauf 31.12.2026 gebunden; Schema 3 kanonisch auf OwnerApproved gesetzt. Kein eigener Agentenentscheid, keine behauptete Containeraktivierung oder 21-Repo-Abnahme. / Bind the real owner decision to the exact image, unchanged package and expiry; no agent-granted approval or claimed operational completion. [Evidence](maintenance/secure-trader-owner-approval-2026-11-08.md). |
+
 ## Gesamtstand des Repositories / Repository Snapshot
 
 Stand / As of: **2026-07-19**
