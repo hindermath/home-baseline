@@ -3066,25 +3066,35 @@ def classify_repository(
         return target_result(target, status="REMOTE_MISMATCH", result="Blocked",
                              findingCode="RemoteMismatch", nextAction="origin nur nach manueller Prüfung korrigieren / correct origin only after review.")
     if delegated:
-        return target_result(
-            target,
-            status="HOST_GIT_TRANSPORT_BLOCKED",
-            result="Blocked",
-            findingCode="HostGitTransportBlocked",
-            nextAction=(
-                "Geprüften isolierten Git-Transport bereitstellen; Host-Git verwendet keine "
-                "Repository-Konfiguration sandboxgebundener Ziele / provide a reviewed isolated "
-                "Git transport; host Git does not consume sandbox-bound repository configuration."
-            ),
-        )
+        snapshot = EXECUTION_CONTEXTS.bundle_snapshot(path) if hasattr(EXECUTION_CONTEXTS, "bundle_snapshot") else None
+        if snapshot is None:
+            return target_result(target, status="HOST_GIT_TRANSPORT_BLOCKED", result="Blocked",
+                                 findingCode="HostGitTransportBlocked",
+                                 nextAction="Geprüften Bundle-Transport vorbereiten / prepare verified bundle transport.")
+        branch_name = snapshot["defaultBranch"]
+        expected = snapshot["refs"][f"refs/heads/{branch_name}"]
+        freshness = network_attempt("bundle-fetch", subprocess.CompletedProcess([], 0, "", ""), 1, 0)
+        tracking = run_git(path, "rev-parse", "--verify", f"refs/remotes/origin/{branch_name}", check=False)
+        if tracking.returncode or tracking.stdout.strip() != expected:
+            if EXECUTION_CONTEXTS.bundle_mode == "dry-run":
+                return target_result(target, status="BEHIND", action="WOULD_FETCH", result="Warning",
+                                     findingCode="RemoteSnapshotPending", freshnessAttempt=freshness,
+                                     nextAction="Bundle im Update- oder Check-Modus importieren / import bundle in update or check mode.")
+            return target_result(target, status="UNAVAILABLE", result="Failed", findingCode="BundleTrackingMismatch")
+        default_evidence = {"source": "VerifiedBundle", "symbolicRef": f"refs/heads/{branch_name}",
+                            "trackingRef": f"refs/remotes/origin/{branch_name}", "remoteCommit": expected,
+                            "trackingCommit": expected, "validatedAt": snapshot["createdAt"], "remoteHeadAttempt": None}
+        fetch_attempts = 1
+        default_error = None
+    else:
+        snapshot = None
 
-    local_symbolic = run_git(
-        path, "symbolic-ref", "--quiet", "refs/remotes/origin/HEAD", check=False
-    )
-    local_symbolic_ref = local_symbolic.stdout.strip() if local_symbolic.returncode == 0 else ""
-    fetch, fetch_attempts, fetch_duration = run_git_network(path, "fetch", "--prune")
-    freshness = network_attempt("fetch", fetch, fetch_attempts, fetch_duration)
-    if fetch.returncode != 0:
+    if not delegated:
+        local_symbolic = run_git(path, "symbolic-ref", "--quiet", "refs/remotes/origin/HEAD", check=False)
+        local_symbolic_ref = local_symbolic.stdout.strip() if local_symbolic.returncode == 0 else ""
+        fetch, fetch_attempts, fetch_duration = run_git_network(path, "fetch", "--prune")
+        freshness = network_attempt("fetch", fetch, fetch_attempts, fetch_duration)
+    if not delegated and fetch.returncode != 0:
         finding = "FetchTimedOut" if fetch.returncode == 124 else "FetchFailed"
         return target_result(
             target,
@@ -3096,9 +3106,8 @@ def classify_repository(
             nextAction="Remote-Zugriff wiederherstellen und erneut ausführen / restore access and retry.",
         )
 
-    default_evidence, _, default_error = resolve_default_branch_evidence(
-        target, path, local_symbolic_ref
-    )
+    if not delegated:
+        default_evidence, _, default_error = resolve_default_branch_evidence(target, path, local_symbolic_ref)
     if default_error:
         return target_result(
             target,
@@ -3143,7 +3152,7 @@ def classify_repository(
             for line in dirty.splitlines()
             if len(line) >= 4
         }
-        resume_accepted = bool(allowed_dirty_paths) and dirty_paths.issubset(allowed_dirty_paths)
+        resume_accepted = not delegated and bool(allowed_dirty_paths) and dirty_paths.issubset(allowed_dirty_paths)
     if dirty and not resume_accepted:
         return target_result(
             target,
@@ -3222,7 +3231,11 @@ def classify_repository(
                 defaultBranchEvidence=default_evidence,
                 nextAction="Update-Modus zum Fast-forward ausführen / run update to fast-forward."
             )
-        pull, pull_attempts, pull_duration = run_git_network(path, "pull", "--ff-only")
+        if delegated:
+            pull = run_git(path, "merge", "--ff-only", default_evidence["trackingCommit"], check=False)
+            pull_attempts, pull_duration = 1, 0
+        else:
+            pull, pull_attempts, pull_duration = run_git_network(path, "pull", "--ff-only")
         pull_evidence = network_attempt("pull", pull, pull_attempts, pull_duration)
         if pull.returncode != 0:
             return target_result(
@@ -3587,6 +3600,11 @@ def execute_fleet(args: argparse.Namespace) -> int:
             try:
                 EXECUTION_CONTEXTS = ExecutionContexts(args.execution_contract, args.home_dir, manifest["targets"])
                 context_evidence = EXECUTION_CONTEXTS.preflight()
+                EXECUTION_CONTEXTS.prepare_bundles(manifest["targets"], run_id, args.mode)
+                context_evidence["bundleSnapshots"] = [
+                    {"targetId": value["targetId"], "runId": value["runId"], "defaultBranch": value["defaultBranch"],
+                     "refs": value["refs"], "createdAt": value["createdAt"], "bundleSha256": value["bundleSha256"]}
+                    for value in EXECUTION_CONTEXTS.bundle_snapshots.values()]
             except (ExecutionContextError, OSError, ValueError, subprocess.SubprocessError) as exc:
                 raise ContractError(f"SandboxPreflightBlocked: {exc}") from exc
     except ContractError as exc:
@@ -3748,7 +3766,11 @@ def execute_fleet(args: argparse.Namespace) -> int:
                 item.update(status="UPDATED", action="PULL", result="Pass", behind=0, findingCode="N/A", mutationAllowed=True, nextAction="N/A")
             try:
                 refreshed_context = EXECUTION_CONTEXTS.preflight()
-                if refreshed_context != context_evidence:
+                # Commit IDs are provenance only: documentation-only pulls do
+                # not invalidate an unchanged approved runtime package.
+                ignored = {"bundleSnapshots", "sourceRevision"}
+                if ({key: value for key, value in refreshed_context.items() if key not in ignored}
+                        != {key: value for key, value in context_evidence.items() if key not in ignored}):
                     raise ContractError("Execution binding changed after fetch/fast-forward")
             except (ValueError, RuntimeError, OSError, subprocess.SubprocessError):
                 # Pulling Level 0 can change the package underneath this

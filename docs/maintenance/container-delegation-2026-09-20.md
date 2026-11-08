@@ -131,6 +131,100 @@ by the designated security or AI governance roles.*
 
 ## Noch ausstehend / Still pending
 
+### Begrenzter Bundle-Transport / Bounded bundle transport
+
+Der Transport ist in der gemeinsamen Python-Engine implementiert; Bash und
+PowerShell verwenden denselben Pfad. Direkte Netzwerk-Git-Aufrufe gegen
+Secure-Trader-Checkouts bleiben verboten. Erst ein erfolgreicher Schema-3-
+Preflight erlaubt den neuen Transport fuer genau die 21 kanonischen Ziele.
+Ein abweichendes Manifest, eine Teilmenge oder eine andere Remote-Adresse
+wird abgewiesen. Der kanonische Fleet-Katalog gehoert zur Paketbindung.
+
+Auf dem Host entstehen ausschliesslich frische temporaere Bare-Repositories,
+ohne Checkout. System-/Benutzer-Git-Konfiguration und geerbte Git-Variablen
+sind abgeschaltet; HTTPS ist das einzige Netzwerkprotokoll. Der ausdrueckliche
+Host-`gh`-Credential-Helper liest den vorhandenen Host-Credential-Store.
+Hooks, Templates, Submodule und automatische Wartung werden nicht ausgefuehrt.
+Remote-Adressen kommen nie aus den eingebundenen Zielrepositories.
+
+Alle Branch-Heads einschliesslich Release-Branches werden geladen; Tags und
+Remote-Zustand bleiben unveraendert. Ein zweiter Remote-Ref-Abgleich sowie die
+Pruefung des symbolischen Default-HEAD verhindern gemischte Snapshots. Jedes
+vollstaendige Bundle bindet Run-ID, Ziel, kanonische URL, Defaultbranch,
+Ref-/Commit-Menge, UTC-Zeit und SHA-256. Der Nachweis im Wartungsbericht
+enthaelt nur Metadaten, keine Zugangsdaten oder Quelltexte.
+
+Erst nach allen 21 Downloads werden Bundles ueber Standard-Input an den
+unveraenderlichen Sandbox-Worker uebergeben, ohne neue Mounts oder Credentials.
+Dieser prueft Pfade, Dateityp, Alter (maximal eine Stunde), Hash und Ref-Menge
+sowie `git bundle verify`. Bundles mit Voraussetzungen oder unbekannten Refs
+sind unzulaessig. Import per lokalem `unbundle` benoetigt weder Remote-URL
+noch Netzwerk. Atomare Ref-Transaktionen aktualisieren nur direkte origin-
+Tracking-Refs; lokale Branches und Tags bleiben erhalten. Ausser origin/HEAD
+sind symbolische Tracking-Refs verboten. Hooks und Credential-Helper bleiben
+auch beim Import deaktiviert.
+
+Dry-run prueft das Bundle ohne Ziel-Ref-, Index- oder Worktree-Aenderung;
+Check-only importiert Tracking-Metadaten ohne Fast-forward. Update erlaubt
+nur saubere kanonische Branches mit passendem Upstream und ausschliesslich
+Fast-forward gegen die gepruefte Commit-ID. Dirty-Resume-Ausnahmen gelten
+nicht fuer Secure Trader. Die gemeinsame Mutationsbarriere bleibt erhalten:
+ein nicht bereites Flottenziel kann Fast-forwards insgesamt sperren.
+Es erfolgt kein Reset, Stash, Branchwechsel, Commit oder Push.
+
+Limits: ein Bundle maximal 1 GiB, alle Bundles eines Laufs zusammen maximal
+2 GiB. Erfolgreiche temporaere Host- und Container-Artefakte werden entfernt;
+bei Fehlern bleibt der private Host-Laufordner als geschuetzte Diagnose
+erhalten (Pfad in der Fehlermeldung). Wiederholungen erzeugen neue Run-IDs;
+alte Artefakte werden nicht automatisch wiederverwendet. Diagnoseordner vor
+spaeterer gezielter Bereinigung pruefen; kein globales Temp- oder Podman-Prune.
+
+Vor Betriebsabnahme muessen der neue Quellstand geliefert, die Sandbox-Lock-
+Datei gepinnt, das Image gebaut und getestet sowie die konkrete Owner-
+Freigabe erneuert werden. Auditexport, Sicherungspruefung und Erhalt aller
+Volumes gehen dem Containerwechsel voraus. Der alte Container bleibt
+zunaechst gestoppt als Rueckfallmoeglichkeit. Danach Vorschau, gezielter Lauf,
+frischer Host-`gh`-Abgleich aller 21 Default-Heads und erneuter Check.
+Bei Remote-Bewegung wird einmal erneut synchronisiert; weitere Bewegung
+wird offen berichtet. Ein erfolgreicher Quelltest ist keine Betriebsabnahme.
+
+*The shared Python engine implements bounded bundle transport for both shell
+entry points. Direct host network Git against Secure Trader checkouts remains
+forbidden. Schema 3 preflight and the exact canonical 21-target catalog are
+required; the catalog is package-bound. Host downloads use fresh temporary
+bare repositories without checkout, with system/user Git configuration and
+inherited Git variables disabled. Only HTTPS and the explicit host gh helper
+are used. Hooks, templates, submodules and automatic maintenance are disabled.
+No URL comes from target configuration. All branch heads, including release
+branches, are downloaded; tags and remote repositories are untouched. A
+second ref query and symbolic default HEAD check reject moving snapshots.
+Complete bundles bind run, target, URL, default branch, refs, UTC time and
+SHA-256. Reports contain metadata, not credentials or source text.*
+
+*All 21 downloads finish before stdin transfer to the immutable sandbox worker.
+No mounts or credentials are added. The worker checks paths, type, age (one
+hour maximum), digest, exact refs and bundle verification. Prerequisite bundles
+and unexpected refs are rejected. Local unbundle needs no network or remote
+URL. Atomic no-dereference transactions update only origin tracking refs;
+local branches and tags are preserved. Only origin/HEAD may be symbolic.
+Import hooks and credential helpers are disabled. Dry-run leaves target refs,
+index and worktree unchanged; check-only imports metadata without merging.
+Update permits only clean canonical branches with correct upstream and an
+exact-OID fast-forward. Dirty resume exceptions do not apply. The shared
+fleet barrier can block all fast-forwards if a target is not ready. No reset,
+stash, branch switch, commit or push is performed. Limits are 1 GiB per bundle
+and 2 GiB per run. Successful temporary artifacts are removed; failed private
+host directories are retained for scoped diagnostic review, never reused
+automatically. No global temp or Podman pruning is allowed.*
+
+*Operational acceptance requires published source, an updated sandbox source
+pin, a tested image and renewed explicit approval for that image/package.
+Audit export, verified backup and volume retention precede container replacement;
+keep the old container stopped as a fallback. Then preview, update, compare all
+21 default heads using fresh host gh metadata and check again. Retry remote
+movement once; report further movement as unresolved. Source tests do not
+constitute live operational acceptance.*
+
 Die fruehere Fast-forward-Evidence ist durch die neue Host-Transportbarriere
 ersetzt. Gezielte Delegationstests pruefen jetzt, dass `fetch`, `ls-remote` und
 `pull` fuer gemappte Ziele keinen Host-Prozess starten. Die erste

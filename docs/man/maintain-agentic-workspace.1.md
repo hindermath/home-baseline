@@ -24,8 +24,13 @@ Podman-Sandbox zugeordnet. Podman ist die hier verwendete Container-Laufzeit.
 Lokale Git- und Wartungsoperationen dieser Ziele haben keinen Host-Fallback.
 Host-Git-Netzwerkoperationen fuer diese beschreibbar eingebundenen Ziele sind
 gesperrt, damit deren Repository-Konfiguration keine Host-Prozesse auswaehlen
-kann. Bis ein isolierter, repo-unabhaengiger Transport geprueft ist, werden
-diese Ziele mit `HostGitTransportBlocked` gemeldet. Zugangsdaten werden nicht
+kann. Der begrenzte Bundle-Transport verwendet stattdessen frische Bare-Repos
+auf dem Host und die 21 kanonischen HTTPS-Adressen. Er liest keine lokale
+Secure-Trader-Konfiguration. Alle Snapshots werden vor Fast-forwards geladen;
+Hash und Ref-Menge werden in der Sandbox geprueft. Nur origin-Tracking-Refs
+werden importiert; lokale Branches und Tags bleiben erhalten. Ohne gueltigen
+Preflight und vorbereiteten Transport bleibt `HostGitTransportBlocked` aktiv.
+Zugangsdaten werden nicht
 in den Container kopiert. Vor spaeteren Fetches und Änderungen müssen Mounts,
 Owner-Freigabe, Ablaufdatum und Hashbindung des eingebauten Quellpakets
 übereinstimmen. Ein laufender Container allein genügt nicht.
@@ -47,8 +52,12 @@ Arbeits- und Freigabestand:
 runtime used here. Local Git and maintenance operations never fall back to
 the host. Host Git network operations are blocked for these writable mounted
 targets so repository-controlled configuration cannot select host processes.
-Until an isolated repository-independent transport is reviewed, these targets
-report `HostGitTransportBlocked`. Credentials are not copied into the
+The bounded bundle transport instead uses fresh host bare repositories and
+the 21 canonical HTTPS URLs, never local Secure Trader configuration. All
+snapshots are downloaded before fast-forwards; hashes and refs are verified
+inside the sandbox. Imports update only origin tracking refs, preserving local
+branches and tags. Without valid preflight and prepared transport, targets
+still report `HostGitTransportBlocked`. Credentials are not copied into the
 container. Before later fetches or changes, mounts, Owner approval,
 expiry and embedded package hashes must match. A running container alone
 is insufficient. Schema 3 uses an explicit documented owner decision and

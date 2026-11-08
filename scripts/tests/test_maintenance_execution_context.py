@@ -41,6 +41,44 @@ def contract():
 
 
 class ExecutionContextTests(unittest.TestCase):
+    @central_only
+    def test_bundle_transport_finishes_all_downloads_before_import_and_closes_on_failure(self):
+        targets = json.loads((MODULE.parents[2] / "scripts/config/agentic-workspace-fleet.json").read_text())["targets"]
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory).resolve()
+            data = json.loads((MODULE.parents[2] / context.EXECUTION_CONTRACT_PATH).read_text())
+            config = root / "contract.json"
+            config.write_text(json.dumps(data))
+            router = context.ExecutionContexts(config, root, targets)
+            count = []
+            def download(target, run_id, workspace):
+                count.append(target["id"])
+                artifact = workspace / "snapshot.bundle"
+                artifact.write_bytes(b"fixture")
+                return artifact, {"targetId": target["id"]}
+            def receive(*args, **kwargs):
+                self.assertEqual(len(count), 21)
+                self.assertNotIn(b"fixture-secret", kwargs["input"])
+                return subprocess.CompletedProcess([], 0, b'{"status":"Verified"}', b"")
+            transport = SimpleNamespace(download=download, transport_workspace=tempfile.TemporaryDirectory)
+            evidence = {"sourceSha256": context.source_binding_sha256(context.source_bindings(MODULE.parents[2]))}
+            with patch.dict(sys.modules, {"maintenance_git_bundle": transport}), \
+                    patch.dict(os.environ, {"GH_TOKEN": "fixture-secret"}), \
+                    patch.object(router, "preflight", return_value=evidence), \
+                    patch.object(router, "inspect", return_value={}), \
+                    patch.object(context.subprocess, "run", side_effect=receive) as process:
+                router.prepare_bundles(targets, "fixture", "dry-run")
+                self.assertEqual(process.call_count, 21)
+            count.clear()
+            def failed(target, run_id, workspace):
+                raise ValueError("download failed")
+            transport.download = failed
+            with patch.dict(sys.modules, {"maintenance_git_bundle": transport}), \
+                    patch.object(router, "preflight", return_value=evidence), \
+                    patch.object(context.subprocess, "run") as process, self.assertRaises(ValueError):
+                router.prepare_bundles(targets, "fixture", "update")
+            process.assert_not_called()
+
     def test_preflight_uses_package_not_git_revision_and_reports_reference_failures(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory).resolve()

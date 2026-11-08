@@ -13,6 +13,13 @@
     before fetches or changes. Local operations never fall back to the host;
     provider credentials remain on the host.
 
+    Der gepruefte Bundle-Transport laedt die 21 kanonischen Remotes in frische
+    Host-Bare-Repositories und importiert nur Tracking-Refs in der Sandbox.
+    Dry-run veraendert keine Ziel-Refs; CheckOnly fuehrt keinen Merge aus.
+    Verified bundle transport downloads the 21 canonical remotes into fresh
+    host bare repositories and imports only tracking refs inside the sandbox.
+    Dry-run changes no target refs; CheckOnly never merges.
+
     Completes bounded fetch attempts for Level 0 and every active Git target
     before any domain mutation. Only clean canonical behind-only branches are
     fast-forwarded. It then synchronizes the local home baseline, checks the

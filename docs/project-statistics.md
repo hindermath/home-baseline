@@ -226,6 +226,8 @@
 
 | 2026-11-08 | Sandbox-Freigabe Schema 3 / Sandbox approval schema 3 | N/A | N/A | N/A | UpdateRequired: dokumentierte Owner-Entscheidung statt zusaetzlichem Signaturschluessel; deterministische Paketbindung ohne Selbstreferenz, UTC-Ablaufgrenze 31.12.2026 und technische Container-Gates erhalten. Lokale Regressionen, keine Aktivierung, Veroeffentlichung, Home-Synchronisation oder Container-Aenderung. / Documented owner decision replaces the additional signing key; deterministic package binding avoids self-reference, preserving expiry and technical gates. Local regression evidence only; no operational activation or distribution. [Vertrag / Contract](maintenance/container-delegation-2026-09-20.md). |
 
+| 2026-11-08 | Begrenzter Secure-Trader-Bundle-Transport / Bounded Secure Trader bundle transport | N/A | N/A | N/A | UpdateRequired: kanonischer 21-Ziele-Download in isolierte Host-Bare-Repositories, credential-freier Sandbox-Bundle-Import und atomare origin-Tracking-Refs. Kein Host-Git gegen Secure-Trader-Checkouts, lokale Branches und Tags erhalten; Preflight und Fast-forward-Barriere bleiben verbindlich. Lokale Fixture-Tests, keine behauptete Betriebsaktivierung. / Canonical 21-target downloads use isolated host bare repositories and credential-free sandbox imports with atomic tracking refs. Local branches, tags and security gates are preserved; fixture proof does not claim live acceptance. [Vertrag / Contract](maintenance/container-delegation-2026-09-20.md). |
+
 ## Gesamtstand des Repositories / Repository Snapshot
 
 Stand / As of: **2026-07-19**
@@ -1702,27 +1704,27 @@ Profil 2 verwendet Git-getrackte Textdateien und sichtbare Git-Aktivitaet. Die W
 
 | Kennzahl / Metric | Wert / Value |
 |---|---:|
-| Textbasis / Text base | 783200 lines |
-| Textdateien / Text files | 3829 |
+| Textbasis / Text base | 783960 lines |
+| Textdateien / Text files | 3831 |
 | Beobachtbarer Zeitraum / Observable period | 2025-11-16..2026-11-08 |
 | Aktivtage / Active days | 136 |
-| Relevante Commits / Relevant commits | 1003 |
-| Zeilen je Aktivtag / Lines per active day | 5758.8 |
+| Relevante Commits / Relevant commits | 1005 |
+| Zeilen je Aktivtag / Lines per active day | 5764.4 |
 | Peak-Tag im Fenster / Peak day in window | 2026-08-01 / 161357 |
 | Peak-Woche im Fenster / Peak week in window | 2026-07-26 / 284516 |
 | Laengste Serie / Longest streak | 38 days |
-| Speedup vs. 80 lines/day | 72.0x |
+| Speedup vs. 80 lines/day | 72.1x |
 | Speedup vs. 100 lines/day | 57.6x |
-| Methodik / Methodology | v2; source `d479c57beb56` |
+| Methodik / Methodology | v2; source `857cfa110182` |
 
 ### Artefaktmix / Artifact Mix
 
 ```text
 Produktiv / Production          [#...................]   0.3% | 2237
-Tests                           [#...................]   4.3% | 34067
-Dokumentation / Documentation   [###########.........]  54.8% | 429074
-Skripte / Scripts               [##..................]   8.3% | 64668
-Konfiguration / Configuration   [######..............]  32.3% | 252798
+Tests                           [#...................]   4.4% | 34345
+Dokumentation / Documentation   [###########.........]  54.7% | 429200
+Skripte / Scripts               [##..................]   8.3% | 65023
+Konfiguration / Configuration   [######..............]  32.2% | 252799
 Daten und Medien / Data and media [....................]   0.0% | 0
 Sonstiger Text / Other text     [#...................]   0.0% | 356
 ```
@@ -1987,7 +1989,7 @@ Die festen Slots halten den Phasenvergleich auch bei fehlenden oder spaeter erga
 
 ```text
 Scale: 0..100x
-80 lines/day       [##############......] 72.0x
+80 lines/day       [##############......] 72.1x
 100 lines/day      [############........] 57.6x
 ```
 
@@ -2001,7 +2003,7 @@ Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen
 Scale: 0..10000 lines/day
 Experienced manual [#...................] 80
 Thorsten solo      [#...................] 100
-Visible repository [############........] 5758.8
+Visible repository [############........] 5764.4
 ```
 
 Die gemeinsame Skala vergleicht Referenzen und sichtbare Lieferdichte. Sie schreibt die Git-Aktivitaet keiner Person oder KI pauschal zu.
@@ -2027,6 +2029,6 @@ DE: Das Fenster beginnt am 2025-11-16 und endet am 2026-11-08. Es enthaelt 136 a
 | 2026-08 | 278228 |
 | 2026-09 | 144845 |
 | 2026-10 | 73816 |
-| 2026-11 | 39149 |
+| 2026-11 | 39983 |
 
 <!-- project-statistics-v2:end -->
