@@ -1902,7 +1902,7 @@ Do not invoke directly; it is loaded by public scripts.
 ### `scripts/lib/maintenance_execution_context.py`
 
 - **Rolle / Role:** intern oder installiert / internal or installed
-- **Kurzbeschreibung / Summary:** Owner provisioning replaces this empty anchor in a separately reviewed change.
+- **Kurzbeschreibung / Summary:** Siehe Quelltext und Hilfe. / See source and help.
 - **Voraussetzungen / Prerequisites:** passende Shell; weitere Anforderungen stehen in `--help` oder `Get-Help`.
 - **Nebenwirkungen / Side effects:** zuerst Check-, Dry-Run- oder WhatIf-Modus verwenden, sofern angeboten.
 
