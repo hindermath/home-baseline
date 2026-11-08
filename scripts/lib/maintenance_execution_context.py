@@ -29,13 +29,9 @@ PROTECTED_WORKSPACE_ROOTS = {
     "SecureServiceHarvesterProjects",
 }
 
-OWNER_APPROVAL_TRUST_STATE_PENDING = "PendingOwnerProvisioning"
-OWNER_APPROVAL_TRUST_STATE_ACTIVE = "Active"
-OWNER_APPROVAL_PUBLIC_KEY_PATH = ".home-baseline/trust/sandbox-owner-approval-public.pem"
-OWNER_APPROVAL_SIGNATURE_PATH = ".home-baseline/trust/sandbox-owner-approval.sig"
-# Owner provisioning replaces this empty anchor in a separately reviewed change.
-# A writable approval document or contract can therefore never activate itself.
-OWNER_APPROVAL_PUBLIC_KEY_SHA256 = ""
+OWNER_APPROVAL_TRUST_STATE_PENDING = "PendingOwnerApproval"
+OWNER_APPROVAL_TRUST_STATE_ACTIVE = "OwnerApproved"
+EXECUTION_CONTRACT_PATH = "scripts/config/maintenance-execution-contexts.json"
 
 
 def relative_path(value: str) -> pathlib.PurePosixPath:
@@ -48,36 +44,28 @@ def relative_path(value: str) -> pathlib.PurePosixPath:
 
 
 def validate_contract(data: dict, today: datetime.date | None = None, *, check_expiry: bool = True) -> dict:
+    if isinstance(data, dict) and type(data.get("schemaVersion")) is int and data["schemaVersion"] == 2:
+        raise ExecutionContextError("Schema 2 muss explizit auf Schema 3 migriert werden / Schema 2 requires explicit migration to schema 3; no automatic approval")
     expected = {
         "schemaVersion", "container", "user", "source", "approvalPath",
         "approvalSha256", "approvalBindingSha256", "approvedImage",
-        "approvedSourceRevision", "approvalTrustState", "approvalPublicKeyPath",
-        "approvalPublicKeySha256", "approvalSignaturePath", "expiresOn", "mounts",
+        "approvedSourceSha256", "approvalTrustState", "expiresOn", "mounts",
     }
-    if not isinstance(data, dict) or set(data) != expected or type(data["schemaVersion"]) is not int or data["schemaVersion"] != 2:
+    if not isinstance(data, dict) or set(data) != expected or type(data["schemaVersion"]) is not int or data["schemaVersion"] != 3:
         raise ExecutionContextError("Invalid execution context contract")
     for key in ("container", "user"):
         if not isinstance(data[key], str) or not re.fullmatch(r"[a-zA-Z0-9][a-zA-Z0-9_.-]*", data[key]):
             raise ExecutionContextError(f"Invalid {key}")
     relative_path(data["approvalPath"])
-    for key in ("approvalSha256", "approvalBindingSha256", "approvalPublicKeySha256"):
+    for key in ("approvalSha256", "approvalBindingSha256", "approvedSourceSha256"):
         if not isinstance(data[key], str) or not re.fullmatch(r"[0-9a-f]{64}", data[key]):
             raise ExecutionContextError(f"Invalid {key}")
     if data["approvalTrustState"] not in (
         OWNER_APPROVAL_TRUST_STATE_PENDING, OWNER_APPROVAL_TRUST_STATE_ACTIVE,
     ):
         raise ExecutionContextError("Invalid owner approval trust state")
-    if data["approvalPublicKeyPath"] != OWNER_APPROVAL_PUBLIC_KEY_PATH:
-        raise ExecutionContextError("Owner approval public key path is not the fixed trust anchor")
-    if data["approvalSignaturePath"] != OWNER_APPROVAL_SIGNATURE_PATH:
-        raise ExecutionContextError("Owner approval signature path is not fixed")
-    if data["approvalTrustState"] == OWNER_APPROVAL_TRUST_STATE_ACTIVE:
-        if not OWNER_APPROVAL_PUBLIC_KEY_SHA256 or data["approvalPublicKeySha256"] != OWNER_APPROVAL_PUBLIC_KEY_SHA256:
-            raise ExecutionContextError("Owner approval public key is not pinned by reviewed code")
     if not isinstance(data["approvedImage"], str) or not re.fullmatch(r"sha256:[0-9a-f]{64}", data["approvedImage"]):
         raise ExecutionContextError("Invalid approved image")
-    if not isinstance(data["approvedSourceRevision"], str) or not re.fullmatch(r"[0-9a-f]{40}", data["approvedSourceRevision"]):
-        raise ExecutionContextError("Invalid approved source revision")
     if not isinstance(data["expiresOn"], str) or not re.fullmatch(r"\d{4}-\d{2}-\d{2}", data["expiresOn"]):
         raise ExecutionContextError("Invalid approval expiry")
     try:
@@ -113,13 +101,12 @@ def validate_contract(data: dict, today: datetime.date | None = None, *, check_e
 
 
 def approval_binding_sha256(data: dict) -> str:
-    """Bind owner evidence to the exact sandbox, image, source revision and mounts."""
+    """Detect drift; owner identity is established by decision/review, not hashing."""
     bound = {
         key: data[key]
         for key in (
             "container", "user", "source", "approvalPath", "approvalSha256",
-            "approvedImage", "approvedSourceRevision", "approvalTrustState",
-            "approvalPublicKeyPath", "approvalPublicKeySha256", "approvalSignaturePath",
+            "approvedImage", "approvedSourceSha256", "approvalTrustState",
             "expiresOn", "mounts",
         )
     }
@@ -129,10 +116,12 @@ def approval_binding_sha256(data: dict) -> str:
 
 
 def verify_owner_approval(
-    data: dict, approval: pathlib.Path, observed_image: str, revision: str,
-    home: pathlib.Path | None = None,
+    data: dict, approval: pathlib.Path, observed_image: str, source_sha256: str,
 ) -> str:
-    """Verify owner evidence and its detached signature against a code-pinned key."""
+    """Check documented approval and exact scope, without claiming authentication."""
+    validate_contract(data)
+    if data["approvalTrustState"] != OWNER_APPROVAL_TRUST_STATE_ACTIVE:
+        raise ExecutionContextError("Owner-Freigabe fehlt / Explicit documented owner approval is pending")
     if approval.resolve() != approval or not approval.is_file():
         raise ExecutionContextError("Owner approval evidence missing or symlinked")
     approval_sha256 = hashlib.sha256(approval.read_bytes()).hexdigest()
@@ -143,29 +132,8 @@ def verify_owner_approval(
         normalized_image = "sha256:" + normalized_image
     if normalized_image != data["approvedImage"]:
         raise ExecutionContextError("Sandbox image is not covered by the owner approval")
-    if revision != data["approvedSourceRevision"]:
-        raise ExecutionContextError("Source revision is not covered by the owner approval")
-    if data["approvalTrustState"] != OWNER_APPROVAL_TRUST_STATE_ACTIVE:
-        raise ExecutionContextError("Owner signing key and detached approval signature are not provisioned")
-    trust_home = (home or pathlib.Path.home()).resolve()
-    public_key = trust_home.joinpath(*relative_path(data["approvalPublicKeyPath"]).parts)
-    signature = trust_home.joinpath(*relative_path(data["approvalSignaturePath"]).parts)
-    for path, label in ((public_key, "public key"), (signature, "signature")):
-        if path.resolve() != path or not path.is_file():
-            raise ExecutionContextError(f"Owner approval {label} missing or symlinked")
-    key_sha256 = hashlib.sha256(public_key.read_bytes()).hexdigest()
-    if key_sha256 != OWNER_APPROVAL_PUBLIC_KEY_SHA256 or key_sha256 != data["approvalPublicKeySha256"]:
-        raise ExecutionContextError("Owner approval public key does not match the code-pinned trust anchor")
-    try:
-        verified = subprocess.run(
-            ["openssl", "dgst", "-sha256", "-verify", str(public_key), "-signature", str(signature)],
-            input=(data["approvalBindingSha256"] + "\n").encode("ascii"),
-            capture_output=True, timeout=10, check=False,
-        )
-    except (OSError, subprocess.SubprocessError) as exc:
-        raise ExecutionContextError("Owner approval signature could not be verified") from exc
-    if verified.returncode != 0:
-        raise ExecutionContextError("Owner approval signature does not match the bounded contract")
+    if source_sha256 != data["approvedSourceSha256"]:
+        raise ExecutionContextError("Paketdrift / Source package is not covered by the owner approval")
     return approval_sha256
 
 
@@ -233,7 +201,11 @@ SOURCE_PROGRAM = r'''
 import hashlib, json, os, pathlib, shutil, sys
 p = json.load(sys.stdin)
 source = pathlib.Path(p["source"])
-if source.resolve() != source or not source.is_dir() or os.access(source, os.W_OK):
+if source.resolve() != source:
+    raise SystemExit("Unsafe reference source path")
+if not source.is_dir():
+    raise SystemExit("Missing reference source")
+if os.access(source, os.W_OK):
     raise SystemExit("Canonical source must be immutable to the sandbox user")
 if not all(shutil.which(t) for t in ("git", "bash", "pwsh", "python3")):
     raise SystemExit("Missing maintenance tool")
@@ -248,7 +220,7 @@ print("ready")
 
 
 def source_bindings(source: pathlib.Path) -> dict:
-    """Bind only declared package members, including the declaration itself."""
+    """Bind declared members and declaration; approval metadata is checked separately."""
     manifest = "scripts/config/agentic-toolchain-maintenance-files.json"
     package = json.loads((source / manifest).read_text(encoding="utf-8"))
     paths = {manifest, *(entry["path"] for entry in package["files"])}
@@ -259,6 +231,9 @@ def source_bindings(source: pathlib.Path) -> dict:
                   "scripts/propagate-agentic-toolchain-maintenance.sh",
                   "scripts/config/maintenance-execution-contexts.json"})
     bindings = {}
+    # Including the approval's own package digest would create a hash cycle.
+    # This is the only exclusion, even if the manifest declares the contract.
+    paths.discard(EXECUTION_CONTRACT_PATH)
     source = source.resolve()
     for relative in sorted(paths):
         relative_path(relative)
@@ -269,6 +244,10 @@ def source_bindings(source: pathlib.Path) -> dict:
         # across Windows CRLF and the Linux image without ignoring other bytes.
         bindings[relative] = hashlib.sha256(path.read_bytes().replace(b"\r\n", b"\n")).hexdigest()
     return bindings
+
+
+def source_binding_sha256(bindings: dict) -> str:
+    return hashlib.sha256(json.dumps(bindings, sort_keys=True, separators=(",", ":")).encode("utf-8")).hexdigest()
 
 
 def filter_registry(router, registry):
@@ -305,6 +284,9 @@ def run_phase(args):
     if {entry["registry"]["path"] for entry in entries} != expected:
         raise ExecutionContextError("Registry does not cover every delegated target")
     bindings = source_bindings(args.source)
+    if source_binding_sha256(bindings) != evidence["sourceSha256"]:
+        raise ExecutionContextError("Source package changed after phase preflight")
+    router.inspect()
     payload = {"source": router.data["source"], "mode": mode, "phase": args.phase,
                "entries": entries, "bindings": bindings, "runId": report["runId"],
                "defaultPresetProfile": registry.get("defaultPresetProfile", "standard-eight-governance-presets"),
@@ -435,8 +417,26 @@ class ExecutionContexts:
             raise ExecutionContextError("Sandbox unavailable; no host fallback") from exc
         if not info.get("State", {}).get("Running") or info.get("Config", {}).get("User") != self.data["user"]:
             raise ExecutionContextError("Sandbox stopped or unexpected user")
+        if self.data["user"] in ("root", "0") or self.data["user"].split(":", 1)[0] in ("root", "0"):
+            raise ExecutionContextError("Sandbox user must be non-root")
+        host_config = info.get("HostConfig", {})
+        options = host_config.get("SecurityOpt") or []
+        dropped = set(host_config.get("CapDrop") or [])
+        # Accept ALL or the complete Podman default capability drop set, but
+        # never additional capabilities or a privileged execution context.
+        default_caps = {"CAP_CHOWN", "CAP_DAC_OVERRIDE", "CAP_FOWNER", "CAP_FSETID",
+                        "CAP_KILL", "CAP_NET_BIND_SERVICE", "CAP_SETFCAP", "CAP_SETGID",
+                        "CAP_SETPCAP", "CAP_SETUID", "CAP_SYS_CHROOT"}
+        if ("no-new-privileges" not in options or host_config.get("Privileged")
+                or host_config.get("CapAdd") or not ("ALL" in dropped or default_caps <= dropped)):
+            raise ExecutionContextError("Sandbox requires no-new-privileges and bounded dropped capabilities")
         if self.container_id and (info["Id"] != self.container_id or info["Image"] != self.image):
             raise ExecutionContextError("Sandbox identity changed during run")
+        for mount in info.get("Mounts", []):
+            destination = mount.get("Destination", "")
+            if destination == self.data["source"] or self.data["source"].startswith(destination.rstrip("/") + "/"):
+                if mount.get("RW"):
+                    raise ExecutionContextError("Reference source mount must be read-only")
         for mapping in self.data["mounts"]:
             matches = [m for m in info.get("Mounts", []) if m.get("Destination") == mapping["container"]]
             if len(matches) != 1 or matches[0].get("Type") != "bind" or not matches[0].get("RW"):
@@ -447,8 +447,9 @@ class ExecutionContexts:
 
     def preflight(self, source: pathlib.Path | None = None) -> dict:
         validate_contract(self.data)
-        # The detached owner signature covers the exact image, source revision,
-        # mount set and expiry; pending provisioning blocks execution.
+        # Pending remains pending even when every technical test succeeds.
+        if self.data["approvalTrustState"] != OWNER_APPROVAL_TRUST_STATE_ACTIVE:
+            raise ExecutionContextError("Owner-Freigabe fehlt / Explicit documented owner approval is pending")
         approval = self.home.joinpath(*relative_path(self.data["approvalPath"]).parts)
         info = self.inspect()
         self.container_id, self.image = info["Id"], info["Image"]
@@ -460,22 +461,28 @@ class ExecutionContexts:
             ).stdout.strip()
         except (OSError, subprocess.SubprocessError) as exc:
             raise ExecutionContextError("Approved source revision cannot be verified") from exc
-        approval_sha256 = verify_owner_approval(
-            self.data, approval, str(info.get("Image") or ""), revision, self.home
-        )
         bindings = source_bindings(source_root)
+        package_sha256 = source_binding_sha256(bindings)
+        approval_sha256 = verify_owner_approval(
+            self.data, approval, str(info.get("Image") or ""), package_sha256
+        )
         result = subprocess.run(
             ["podman", "exec", "-i", self.container_id, "python3", "-c", SOURCE_PROGRAM],
             input=json.dumps({"source": self.data["source"], "bindings": bindings}),
             text=True, capture_output=True, timeout=60)
         if result.returncode:
-            raise ExecutionContextError("Sandbox source binding or required tools invalid; publish and pin the reviewed package before maintenance")
+            detail = result.stderr.strip()
+            known = ("Missing reference source", "Unsafe reference source path",
+                     "Canonical source must be immutable to the sandbox user", "Missing maintenance tool",
+                     "Missing or writable source:", "Source binding mismatch:")
+            reason = next((message for message in known if detail.startswith(message)), "Reference source unavailable or invalid")
+            raise ExecutionContextError("Sandbox reference preflight blocked: " + reason)
         return {"context": "container", "containerId": self.container_id, "image": self.image,
                 "expiresOn": self.data["expiresOn"], "approvalPath": self.data["approvalPath"],
                 "approvalSha256": approval_sha256,
                 "approvalBindingSha256": self.data["approvalBindingSha256"],
-                "approvedSourceRevision": revision,
-                "sourceSha256": hashlib.sha256(json.dumps(bindings, sort_keys=True).encode()).hexdigest()}
+                "sourceRevision": revision,
+                "sourceSha256": package_sha256}
 
     def request(self, repository: pathlib.Path, action: str, arguments: tuple[str, ...] = ()) -> dict:
         mapping = self.mapping(repository)

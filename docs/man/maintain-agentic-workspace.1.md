@@ -29,12 +29,13 @@ diese Ziele mit `HostGitTransportBlocked` gemeldet. Zugangsdaten werden nicht
 in den Container kopiert. Vor spaeteren Fetches und Änderungen müssen Mounts,
 Owner-Freigabe, Ablaufdatum und Hashbindung des eingebauten Quellpakets
 übereinstimmen. Ein laufender Container allein genügt nicht.
-Die Freigabe ist nicht mehr durch Textfragmente oder gemeinsam veraenderbare
-Hashes erfuellbar: Eine externe, kryptografische Owner-Signatur deckt den
-kanonischen Binding-Hash mit Image-Digest, Mountmenge, Quellrevision und
-Ablaufdatum ab. Der oeffentliche Schluessel wird durch geprueften Code
-verankert. Bis Owner-Schluessel und Signatur separat provisioniert sind, bleibt
-der Lauf ebenso wie bei einem neueren Image fail-closed blockiert.
+Schema 3 verwendet eine ausdruecklich dokumentierte Owner-Entscheidung und
+Repository-Review statt eines zusaetzlichen Owner-Schluessels. Der Status
+`PendingOwnerApproval` bleibt gesperrt; nur eine ausdrueckliche Freigabe darf
+ihn auf `OwnerApproved` setzen. Dokument-, Vertrags- und Paket-Hashes erkennen
+Abweichungen, authentifizieren aber nicht den Owner. Image, Paket, Mounts und
+Ablaufdatum bleiben gebunden. Die Git-Commit-ID ist Herkunftsevidence, keine
+selbstreferenzielle Freigabebedingung. Schema 2 erfordert explizite Migration.
 Bei `SandboxPreflightBlocked` zuerst den Bericht prüfen und das geprüfte
 Quellpaket ausdrücklich veröffentlichen sowie im Sandbox-Image pinnen.
 Das Wartungsskript baut oder ersetzt kein Image automatisch.
@@ -50,9 +51,13 @@ Until an isolated repository-independent transport is reviewed, these targets
 report `HostGitTransportBlocked`. Credentials are not copied into the
 container. Before later fetches or changes, mounts, Owner approval,
 expiry and embedded package hashes must match. A running container alone
-is insufficient. Approval can no longer be satisfied by text fragments: its
-SHA-256 and a canonical binding hash cover the image digest, mount set, source
-revision, and expiry. The currently running newer image remains fail-closed
+is insufficient. Schema 3 uses an explicit documented owner decision and
+repository review instead of an additional owner key. `PendingOwnerApproval`
+blocks execution; only explicit approval may set `OwnerApproved`. Document,
+contract and package hashes detect drift, but do not authenticate the owner.
+Image, package, mounts and expiry remain bound. Git commit IDs are provenance,
+not a self-referential approval requirement. Schema 2 needs explicit migration.
+An unapproved newer image remains fail-closed
 until the owner explicitly renews approval. Every active Secure Trader root must be present in the
 contract, and the package hash covers every helper executed by the leaf
 worker. An incomplete mount or helper closure blocks before Git. For

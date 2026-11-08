@@ -34,6 +34,65 @@ bounded admin bypass. Technical gates remain mandatory.*
 
 ## Vertrag / Contract
 
+### Schema 3: dokumentierte Owner-Entscheidung / Documented owner decision
+
+Stand 08.11.2026: Die ausdrueckliche Owner-Entscheidung und der nachvollziehbare
+Repository-Review ersetzen die zusaetzliche kryptografische Owner-Signatur.
+Es werden weder Schluessel noch Signaturdateien benoetigt. SHA-256 erkennt
+Abweichungen; es beweist nicht die Identitaet oder Zustimmung des Owners.
+Agenten duerfen keine Freigabe selbst erteilen oder erweitern. Die aktuell
+ausgelieferte Konfiguration bleibt `PendingOwnerApproval`; erfolgreiche Tests
+und Migration setzen sie nicht automatisch auf `OwnerApproved`.
+
+`approvedSourceSha256` bindet die sortierte Pfad-/Hash-Abbildung des vorhandenen
+Paketmanifests einschliesslich Manifest, Validator, Worker und Hilfsskripten.
+Textdateien verwenden wie bisher LF-normalisierte Bytes. Der Gesamthash
+verwendet UTF-8-JSON mit sortierten Schluesseln und kompakten Trennzeichen.
+Nur `scripts/config/maintenance-execution-contexts.json` wird ausgeschlossen,
+um eine Hash-Selbstreferenz zu vermeiden. Dessen Inhalt wird separat durch
+strikte Feldvalidierung und `approvalBindingSha256` geprueft. Die Git-Revision
+wird als `sourceRevision` protokolliert, nicht als Freigabebedingung verwendet.
+Reine Dokumentations-Commits ausserhalb des Pakets erfordern damit keine neue
+Paketfreigabe; jede Aenderung eines gebundenen Paketmitglieds dagegen schon.
+
+Migration: Schema 2 wird mit einer Migrationsmeldung abgewiesen. Nach
+technischer Pruefung werden Dokumenthash, tatsaechliche Image-ID,
+Paketfingerabdruck, Mounts und Ablaufdatum zusammengestellt; erst die konkrete
+Owner-Entscheidung erlaubt `OwnerApproved`. Anschliessend wird der kanonische
+Vertrags-Binding-Hash berechnet. Kein automatisches Uebernehmen eines neueren
+Images und kein pauschales Deaktivieren von Gates. Das Ablaufdatum bleibt
+31.12.2026 einschliesslich (UTC); ab 01.01.2027 ist die Freigabe ungueltig.
+
+Die Sandbox muss non-root, ohne zusaetzliche Capabilities, mit vollstaendigem
+Drop der Podman-Default-Capabilities (oder `ALL`) und `no-new-privileges`
+laufen. Die Referenzquelle muss eingebaut oder read-only eingebunden und fuer
+den Sandbox-Benutzer unveraenderlich sein. Fehlende Referenz, Paketdrift und
+fehlende Owner-Freigabe werden getrennt gemeldet. Diese Aenderung stellt keine
+Betriebsaktivierung dar: Image, Container, Volumes und die noch offenen
+organisatorischen Rollenfreigaben bleiben unveraendert.
+
+*As of 8 November 2026, an explicit owner decision and traceable repository
+review replace the additional cryptographic owner signature. No key or
+signature files are needed. SHA-256 detects drift, not owner identity or
+consent. Agents must never grant or expand approval themselves. The shipped
+contract remains `PendingOwnerApproval`; migration and tests never activate it.
+`approvedSourceSha256` hashes the sorted path/hash map of the declared package,
+including its manifest, validator, worker and helpers. Text uses LF-normalized
+bytes; the aggregate uses sorted, compact UTF-8 JSON. Only the execution
+contract is excluded to avoid self-reference; strict field validation and its
+separate binding hash protect it against drift. Git `sourceRevision` is
+provenance only. Documentation outside the package does not change approval;
+bound package changes do. Schema 2 requires explicit migration. Review the
+document hash, actual image, package fingerprint, mounts and expiry before an
+explicit owner decision permits `OwnerApproved`; then compute the contract
+binding hash. No automatic image approval or gate bypass is allowed. Approval
+remains valid through 31 December 2026 UTC and expires on 1 January 2027.
+Non-root execution, no added capabilities, the complete Podman default
+capability drop set or ALL, no-new-privileges and an immutable embedded or
+read-only mounted reference remain required. Missing reference, package drift
+and missing owner approval have separate errors. This change does not activate
+operations or change images, containers, volumes or pending role approvals.*
+
 - Der Host besitzt Netzwerk-Git und die zentrale Registry. Fuer beschreibbar
   eingebundene Secure-Trader-Ziele ist Host-Git-Netzwerkzugriff jedoch
   gesperrt, bis ein isolierter, repository-unabhaengiger Transport geprueft
@@ -101,6 +160,22 @@ container resume evidence require separate review; neither is overwritten or
 resumed on the host.*
 
 ## Dokumentationsauswirkung / Documentation impact
+
+Lokaler Nachweis fuer Schema 3 (08.11.2026): 38 Delegationstests (davon ein
+nativer Windows-Test auf macOS uebersprungen), 34 Wartungs- und 25
+Vertragsregressionen erfolgreich; Bash-/PowerShell-Syntax, Secret-Scan und
+Diff-Pruefung erfolgreich. Keine native Windows-Abnahme und kein echter
+Secure-Trader-Lauf. Der Statistik-Check meldet Drift; der Renderer verweigert
+Schreiben im schmutzigen Arbeitsbaum. Der generierte Block bleibt bis zum
+autorisierten Inhaltscommit und getrennten Renderer-Nachlauf unveraendert.
+
+*Local schema 3 proof (8 November 2026): 38 delegation tests (one native
+Windows case skipped on macOS), 34 maintenance and 25 contract regressions
+completed successfully; Bash/PowerShell syntax, secret scan and diff checks
+passed. No native Windows acceptance or live Secure Trader run is claimed.
+Statistics verification reports drift; the renderer refuses a dirty worktree.
+The generated block remains unchanged pending an authorized content commit
+and a separate rendering follow-up.*
 
 `UpdateRequired`. Owner: Workspace-Maintainer. Zielgruppen: Maintainer und
 Wartungsoperatoren. Kanonische Quellen: Ausführungsvertrag, beide

@@ -29,52 +29,116 @@ fleet_spec.loader.exec_module(fleet)
 
 
 def contract():
-    value = {"schemaVersion": 2, "container": "test-sandbox", "user": "tester",
+    value = {"schemaVersion": 3, "container": "test-sandbox", "user": "tester",
              "source": "/opt/reference", "approvalPath": "sandbox/approval.md",
              "approvalSha256": "a" * 64, "approvalBindingSha256": "0" * 64,
              "approvedImage": "sha256:" + "b" * 64,
-             "approvedSourceRevision": "c" * 40,
-             "approvalTrustState": "PendingOwnerProvisioning",
-             "approvalPublicKeyPath": ".home-baseline/trust/sandbox-owner-approval-public.pem",
-             "approvalPublicKeySha256": "0" * 64,
-             "approvalSignaturePath": ".home-baseline/trust/sandbox-owner-approval.sig",
+             "approvedSourceSha256": "c" * 64,
+             "approvalTrustState": "PendingOwnerApproval",
              "expiresOn": "2099-12-31", "mounts": [{"host": "Projects", "container": "/projects"}]}
     value["approvalBindingSha256"] = context.approval_binding_sha256(value)
     return value
 
 
 class ExecutionContextTests(unittest.TestCase):
-    def test_owner_approval_requires_independently_signed_contract_binding(self):
+    def test_preflight_uses_package_not_git_revision_and_reports_reference_failures(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory).resolve()
+            approval = root / "sandbox/approval.md"
+            approval.parent.mkdir()
+            approval.write_text("Explicit owner decision", encoding="utf-8")
+            bindings = {"scripts/worker.py": "a" * 64}
+            value = {**contract(), "approvalTrustState": "OwnerApproved",
+                     "approvalSha256": context.hashlib.sha256(approval.read_bytes()).hexdigest(),
+                     "approvedSourceSha256": context.source_binding_sha256(bindings)}
+            value["approvalBindingSha256"] = context.approval_binding_sha256(value)
+            router = self.make_context(root)
+            router.data = value
+            observed = {"Id": "container", "Image": value["approvedImage"]}
+            for revision in ("1" * 40, "2" * 40):
+                with patch.object(router, "inspect", return_value=observed), \
+                        patch.object(context, "source_bindings", return_value=bindings), \
+                        patch.object(context.subprocess, "run", side_effect=[
+                            subprocess.CompletedProcess([], 0, revision, ""),
+                            subprocess.CompletedProcess([], 0, "ready", "")]):
+                    evidence = router.preflight(root)
+                    self.assertEqual(evidence["sourceRevision"], revision)
+                    self.assertEqual(evidence["sourceSha256"], value["approvedSourceSha256"])
+            for message in ("Missing reference source", "Canonical source must be immutable to the sandbox user",
+                            "Missing or writable source: scripts/worker.py", "Source binding mismatch: scripts/worker.py"):
+                with patch.object(router, "inspect", return_value=observed), \
+                        patch.object(context, "source_bindings", return_value=bindings), \
+                        patch.object(context.subprocess, "run", side_effect=[
+                            subprocess.CompletedProcess([], 0, "1" * 40, ""),
+                            subprocess.CompletedProcess([], 1, "", message)]), \
+                        self.assertRaisesRegex(context.ExecutionContextError, "reference preflight blocked"):
+                    router.preflight(root)
+
+    def test_schema_two_requires_explicit_migration(self):
+        with self.assertRaisesRegex(context.ExecutionContextError, "explicit migration"):
+            context.validate_contract({"schemaVersion": 2})
+
+    def test_expiry_includes_last_day_of_2026_only(self):
+        value = {**contract(), "expiresOn": "2026-12-31"}
+        value["approvalBindingSha256"] = context.approval_binding_sha256(value)
+        context.validate_contract(value, today=datetime.date(2026, 12, 31))
+        with self.assertRaisesRegex(context.ExecutionContextError, "expired"):
+            context.validate_contract(value, today=datetime.date(2027, 1, 1))
+
+    def test_approval_rejects_document_image_and_package_drift(self):
+        with tempfile.TemporaryDirectory() as directory:
+            approval = Path(directory).resolve() / "approval.md"
+            approval.write_text("Owner decision", encoding="utf-8")
+            value = {**contract(), "approvalTrustState": "OwnerApproved",
+                     "approvalSha256": context.hashlib.sha256(approval.read_bytes()).hexdigest()}
+            value["approvalBindingSha256"] = context.approval_binding_sha256(value)
+            for image, package in (("sha256:" + "d" * 64, value["approvedSourceSha256"]),
+                                   (value["approvedImage"], "d" * 64)):
+                with self.assertRaises(context.ExecutionContextError):
+                    context.verify_owner_approval(value, approval, image, package)
+            approval.write_text("Changed decision", encoding="utf-8")
+            with self.assertRaisesRegex(context.ExecutionContextError, "digest"):
+                context.verify_owner_approval(value, approval, value["approvedImage"], value["approvedSourceSha256"])
+            approval.unlink()
+            with self.assertRaisesRegex(context.ExecutionContextError, "missing"):
+                context.verify_owner_approval(value, approval, value["approvedImage"], value["approvedSourceSha256"])
+
+    @central_only
+    def test_package_fingerprint_excludes_only_contract_not_manifest_or_code(self):
+        source = MODULE.parents[2]
+        bindings = context.source_bindings(source)
+        baseline = context.source_binding_sha256(bindings)
+        self.assertEqual(baseline, context.source_binding_sha256(dict(reversed(list(bindings.items())))))
+        # Model documentation/commit changes without modifying the real source.
+        original = Path.read_bytes
+        def changed(path):
+            if path == source / context.EXECUTION_CONTRACT_PATH or path == source / "README.md":
+                return b"documentation or approval changed"
+            return original(path)
+        with patch.object(Path, "read_bytes", changed):
+            self.assertEqual(baseline, context.source_binding_sha256(context.source_bindings(source)))
+        for relative in ("scripts/config/agentic-toolchain-maintenance-files.json",
+                         "scripts/lib/maintenance_container_worker.py", "scripts/lib/maintenance_execution_context.py"):
+            altered = {**bindings, relative: "d" * 64}
+            self.assertNotEqual(baseline, context.source_binding_sha256(altered))
+
+    def test_documented_owner_approval_needs_no_key_or_openssl(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory).resolve()
             approval = root / "approval.md"
             approval.write_text("Owner\n31.12.2099\n", encoding="utf-8")
             value = contract()
             value["approvalSha256"] = context.hashlib.sha256(approval.read_bytes()).hexdigest()
-            trust = root / ".home-baseline/trust"
-            trust.mkdir(parents=True)
-            private_key = trust / "owner-private.pem"
-            public_key = trust / "sandbox-owner-approval-public.pem"
-            signature = trust / "sandbox-owner-approval.sig"
-            subprocess.run(["openssl", "genpkey", "-algorithm", "RSA", "-pkeyopt", "rsa_keygen_bits:2048", "-out", str(private_key)], check=True, capture_output=True)
-            subprocess.run(["openssl", "pkey", "-in", str(private_key), "-pubout", "-out", str(public_key)], check=True, capture_output=True)
-            key_hash = context.hashlib.sha256(public_key.read_bytes()).hexdigest()
-            value["approvalTrustState"] = "Active"
-            value["approvalPublicKeySha256"] = key_hash
+            value["approvalTrustState"] = "OwnerApproved"
             value["approvalBindingSha256"] = context.approval_binding_sha256(value)
-            with patch.object(context, "OWNER_APPROVAL_PUBLIC_KEY_SHA256", key_hash):
+            with patch.object(context.subprocess, "run", side_effect=AssertionError("No signing subprocess allowed")):
                 context.validate_contract(value)
-                subprocess.run(
-                    ["openssl", "dgst", "-sha256", "-sign", str(private_key), "-out", str(signature)],
-                    input=(value["approvalBindingSha256"] + "\n").encode("ascii"), check=True, capture_output=True,
-                )
-                self.assertEqual(context.verify_owner_approval(value, approval, value["approvedImage"], value["approvedSourceRevision"], root), value["approvalSha256"])
+                self.assertEqual(context.verify_owner_approval(value, approval, value["approvedImage"], value["approvedSourceSha256"]), value["approvalSha256"])
                 forged = {**value, "mounts": [{"host": "Other", "container": "/other"}]}
-                forged["approvalBindingSha256"] = context.approval_binding_sha256(forged)
                 with self.assertRaises(context.ExecutionContextError):
-                    context.verify_owner_approval(forged, approval, forged["approvedImage"], forged["approvedSourceRevision"], root)
+                    context.verify_owner_approval(forged, approval, forged["approvedImage"], forged["approvedSourceSha256"])
 
-    def test_pending_owner_trust_anchor_fails_closed(self):
+    def test_pending_owner_approval_fails_closed(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory).resolve()
             approval = root / "approval.md"
@@ -83,8 +147,8 @@ class ExecutionContextTests(unittest.TestCase):
             value["approvalSha256"] = context.hashlib.sha256(approval.read_bytes()).hexdigest()
             value["approvalBindingSha256"] = context.approval_binding_sha256(value)
             context.validate_contract(value)
-            with self.assertRaisesRegex(context.ExecutionContextError, "not provisioned"):
-                context.verify_owner_approval(value, approval, value["approvedImage"], value["approvedSourceRevision"], root)
+            with self.assertRaisesRegex(context.ExecutionContextError, "pending"):
+                context.verify_owner_approval(value, approval, value["approvedImage"], value["approvedSourceSha256"])
 
     def test_owner_approval_rejects_link_and_contract_binding_drift(self):
         with tempfile.TemporaryDirectory() as directory:
@@ -94,11 +158,12 @@ class ExecutionContextTests(unittest.TestCase):
             link = root / "approval-link.md"
             link.symlink_to(approval)
             value = contract()
+            value["approvalTrustState"] = "OwnerApproved"
             value["approvalSha256"] = context.hashlib.sha256(approval.read_bytes()).hexdigest()
             value["approvalBindingSha256"] = context.approval_binding_sha256(value)
             with self.assertRaises(context.ExecutionContextError):
                 context.verify_owner_approval(
-                    value, link, value["approvedImage"], value["approvedSourceRevision"]
+                    value, link, value["approvedImage"], value["approvedSourceSha256"]
                 )
             drifted = {**value, "mounts": [{"host": "Other", "container": "/other"}]}
             with self.assertRaisesRegex(context.ExecutionContextError, "binding"):
@@ -202,7 +267,7 @@ class ExecutionContextTests(unittest.TestCase):
         for changes in ({"schemaVersion": True}, {"schemaVersion": 1}, {"expiresOn": "2000-01-01"},
                         {"source": "/opt/../root"}, {"approvalPath": "../secret"}, {"unknown": True},
                         {"container": "--latest"}, {"approvalSha256": "0"},
-                        {"approvedImage": "latest"}, {"approvedSourceRevision": "main"}):
+                        {"approvedImage": "latest"}, {"approvedSourceSha256": "main"}):
             with self.subTest(changes=changes), self.assertRaises(context.ExecutionContextError):
                 candidate = {**contract(), **changes}
                 if set(candidate) == set(contract()) and "approvalBindingSha256" not in changes:
@@ -248,6 +313,7 @@ class ExecutionContextTests(unittest.TestCase):
             source = "/mnt/" + expected.drive[0].lower() + expected.as_posix()[2:]
             mount = {"Destination": "/projects", "Source": source, "Type": "bind", "RW": True}
             valid = {"Id": "abc", "Image": "def", "State": {"Running": True},
+                     "HostConfig": {"SecurityOpt": ["no-new-privileges"], "CapDrop": ["ALL"]},
                      "Config": {"User": "tester"}, "Mounts": [mount]}
             response = subprocess.CompletedProcess([], 0, json.dumps([valid]), "")
             with patch.object(context.subprocess, "run", return_value=response):
@@ -265,9 +331,17 @@ class ExecutionContextTests(unittest.TestCase):
             root = Path(directory)
             router = self.make_context(root)
             valid = {"Id": "abc", "Image": "def", "State": {"Running": True},
+                     "HostConfig": {"SecurityOpt": ["no-new-privileges"], "CapDrop": ["ALL"]},
                      "Config": {"User": "tester"}, "Mounts": [
                          {"Destination": "/projects", "Source": str(root / "Projects"), "Type": "bind", "RW": True}]}
-            for changes in ({"State": {"Running": False}}, {"Config": {"User": "root"}}, {"Mounts": []}):
+            with patch.object(context.subprocess, "run", return_value=subprocess.CompletedProcess([], 0, json.dumps([valid]), "")):
+                self.assertEqual(router.inspect()["Id"], "abc")
+            for changes in ({"State": {"Running": False}}, {"Config": {"User": "root"}}, {"Mounts": []},
+                            {"HostConfig": {}},
+                            {"HostConfig": {**valid["HostConfig"], "CapAdd": ["CAP_SYS_ADMIN"]}},
+                            {"HostConfig": {**valid["HostConfig"], "Privileged": True}},
+                            {"HostConfig": {**valid["HostConfig"], "CapDrop": []}},
+                            {"Mounts": valid["Mounts"] + [{"Destination": "/opt/reference", "RW": True}]}):
                 response = subprocess.CompletedProcess([], 0, json.dumps([{**valid, **changes}]), "")
                 with patch.object(context.subprocess, "run", return_value=response), self.assertRaises(context.ExecutionContextError):
                     router.inspect()
@@ -311,7 +385,7 @@ class ExecutionContextTests(unittest.TestCase):
         self.assertIn("scripts/lib/secure-development-hardening.sh", bindings)
         self.assertIn("scripts/register-level2-repository.sh", bindings)
         self.assertIn("scripts/propagate-agentic-toolchain-maintenance.sh", bindings)
-        self.assertIn("scripts/config/maintenance-execution-contexts.json", bindings)
+        self.assertNotIn("scripts/config/maintenance-execution-contexts.json", bindings)
         self.assertTrue(all(len(value) == 64 for value in bindings.values()))
 
     def test_contract_must_cover_every_active_protected_workspace_root(self):
@@ -500,6 +574,8 @@ class ExecutionContextTests(unittest.TestCase):
         registry = root / "registry.json"
         registry.write_text(json.dumps({"repositories": [{"path": targets[0]["path"], "level": 2}, {"path": "Other/repo", "level": 2}]}))
         evidence = {"context": "container", "containerId": "fixture", "image": "fixture-image", "approvalSha256": "a", "sourceSha256": "b"}
+        if CANONICAL_SOURCE:
+            evidence["sourceSha256"] = context.source_binding_sha256(context.source_bindings(MODULE.parents[2]))
         report = root / "report.json"
         report.write_text(json.dumps({"runId": "fixture", "executionContexts": [evidence], "mutationBarrier": {"domainMutationAllowed": True}}))
         args = SimpleNamespace(contract=contract_path, manifest=manifest, home_dir=root, source=MODULE.parents[2],
@@ -515,6 +591,7 @@ class ExecutionContextTests(unittest.TestCase):
             response = {"status": "Passed", "records": [{"targetId": "fixture", "status": "Passed"}],
                         "registry": [{"path": "/projects/repo with spaces", "level": 2, "primaryLanguage": "csharp"}]}
             with patch.object(context.ExecutionContexts, "preflight", return_value=evidence), \
+                    patch.object(context.ExecutionContexts, "inspect", return_value={}), \
                     patch.object(context.subprocess, "run", return_value=subprocess.CompletedProcess([], 0, json.dumps(response), "")), \
                     patch.dict(sys.modules, {"agentic_workspace_fleet": fleet}):
                 self.assertEqual(context.run_phase(args), 0)
