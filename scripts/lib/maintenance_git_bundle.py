@@ -85,13 +85,15 @@ def git_command(repository, arguments, *, network=False, input=None):
                     "-c", "credential.helper=!" + shlex.quote(gh) + " auth git-credential"]
     if repository is not None:
         command += ["-c", "safe.directory=", "-c", "safe.directory=" + str(repository), "-C", str(repository)]
-    result = subprocess.run([*command, *arguments], input=input, text=True,
+    # Git's transaction protocol is LF-delimited on Windows too. Text pipes
+    # would translate LF to CRLF and corrupt commands/OIDs before update-ref.
+    result = subprocess.run([*command, *arguments], input=input.encode("utf-8") if input is not None else None, text=False,
                             capture_output=True, env=isolated_env(), timeout=300,
                             cwd=str(repository) if repository is not None else tempfile.gettempdir())
     if result.returncode:
         # Do not echo raw provider stderr, URLs, helper output or credentials.
         raise BundleError("Isolated Git operation failed: " + arguments[0])
-    return result.stdout
+    return result.stdout.decode("utf-8") if isinstance(result.stdout, bytes) else result.stdout
 
 
 def parse_refs(text):

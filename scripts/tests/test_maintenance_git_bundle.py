@@ -19,6 +19,14 @@ spec.loader.exec_module(bundle)
 
 
 class BundleTests(unittest.TestCase):
+    def test_git_transaction_stdin_is_utf8_bytes_without_crlf_translation(self):
+        with patch.object(bundle.shutil, "which", return_value="/trusted/git"), \
+                patch.object(bundle.subprocess, "run", return_value=subprocess.CompletedProcess([], 0, b"commit: ok\n", b"")) as run:
+            output = bundle.git_command(Path("/fresh/repo"), ["update-ref", "--stdin"], input="start\ncommit\n")
+            self.assertEqual(run.call_args.kwargs["input"], b"start\ncommit\n")
+            self.assertFalse(run.call_args.kwargs["text"])
+            self.assertEqual(output, "commit: ok\n")
+
     def test_remote_mismatch_and_auth_failure_do_not_leak_or_mutate(self):
         with tempfile.TemporaryDirectory() as tmp:
             target, artifact, snapshot, info, run, _ = self.fixture(Path(tmp).resolve())
