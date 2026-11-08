@@ -228,6 +228,8 @@
 
 | 2026-11-08 | Begrenzter Secure-Trader-Bundle-Transport / Bounded Secure Trader bundle transport | N/A | N/A | N/A | UpdateRequired: kanonischer 21-Ziele-Download in isolierte Host-Bare-Repositories, credential-freier Sandbox-Bundle-Import und atomare origin-Tracking-Refs. Kein Host-Git gegen Secure-Trader-Checkouts, lokale Branches und Tags erhalten; Preflight und Fast-forward-Barriere bleiben verbindlich. Lokale Fixture-Tests, keine behauptete Betriebsaktivierung. / Canonical 21-target downloads use isolated host bare repositories and credential-free sandbox imports with atomic tracking refs. Local branches, tags and security gates are preserved; fixture proof does not claim live acceptance. [Vertrag / Contract](maintenance/container-delegation-2026-09-20.md). |
 
+| 2026-11-08 | Konkrete Owner-Wartungsfreigabe / Concrete owner maintenance approval | N/A | N/A | N/A | UpdateRequired: reale Owner-Entscheidung aus Review 5819120082 an exakte Image-ID, unveraenderten Paketfingerabdruck und Ablauf 31.12.2026 gebunden; Schema 3 kanonisch auf OwnerApproved gesetzt. Kein eigener Agentenentscheid, keine behauptete Containeraktivierung oder 21-Repo-Abnahme. / Bind the real owner decision to the exact image, unchanged package and expiry; no agent-granted approval or claimed operational completion. [Evidence](maintenance/secure-trader-owner-approval-2026-11-08.md). |
+
 ## Gesamtstand des Repositories / Repository Snapshot
 
 Stand / As of: **2026-07-19**
@@ -1704,25 +1706,25 @@ Profil 2 verwendet Git-getrackte Textdateien und sichtbare Git-Aktivitaet. Die W
 
 | Kennzahl / Metric | Wert / Value |
 |---|---:|
-| Textbasis / Text base | 783960 lines |
-| Textdateien / Text files | 3831 |
+| Textbasis / Text base | 784074 lines |
+| Textdateien / Text files | 3832 |
 | Beobachtbarer Zeitraum / Observable period | 2025-11-16..2026-11-08 |
 | Aktivtage / Active days | 136 |
-| Relevante Commits / Relevant commits | 1005 |
-| Zeilen je Aktivtag / Lines per active day | 5764.4 |
+| Relevante Commits / Relevant commits | 1006 |
+| Zeilen je Aktivtag / Lines per active day | 5765.3 |
 | Peak-Tag im Fenster / Peak day in window | 2026-08-01 / 161357 |
 | Peak-Woche im Fenster / Peak week in window | 2026-07-26 / 284516 |
 | Laengste Serie / Longest streak | 38 days |
 | Speedup vs. 80 lines/day | 72.1x |
-| Speedup vs. 100 lines/day | 57.6x |
-| Methodik / Methodology | v2; source `857cfa110182` |
+| Speedup vs. 100 lines/day | 57.7x |
+| Methodik / Methodology | v2; source `8bcfffa4e4c3` |
 
 ### Artefaktmix / Artifact Mix
 
 ```text
 Produktiv / Production          [#...................]   0.3% | 2237
 Tests                           [#...................]   4.4% | 34345
-Dokumentation / Documentation   [###########.........]  54.7% | 429200
+Dokumentation / Documentation   [###########.........]  54.8% | 429314
 Skripte / Scripts               [##..................]   8.3% | 65023
 Konfiguration / Configuration   [######..............]  32.2% | 252799
 Daten und Medien / Data and media [....................]   0.0% | 0
@@ -1990,7 +1992,7 @@ Die festen Slots halten den Phasenvergleich auch bei fehlenden oder spaeter erga
 ```text
 Scale: 0..100x
 80 lines/day       [##############......] 72.1x
-100 lines/day      [############........] 57.6x
+100 lines/day      [############........] 57.7x
 ```
 
 Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen Referenzen. Sie messen keine Arbeitszeit.
@@ -2003,7 +2005,7 @@ Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen
 Scale: 0..10000 lines/day
 Experienced manual [#...................] 80
 Thorsten solo      [#...................] 100
-Visible repository [############........] 5764.4
+Visible repository [############........] 5765.3
 ```
 
 Die gemeinsame Skala vergleicht Referenzen und sichtbare Lieferdichte. Sie schreibt die Git-Aktivitaet keiner Person oder KI pauschal zu.
@@ -2029,6 +2031,6 @@ DE: Das Fenster beginnt am 2025-11-16 und endet am 2026-11-08. Es enthaelt 136 a
 | 2026-08 | 278228 |
 | 2026-09 | 144845 |
 | 2026-10 | 73816 |
-| 2026-11 | 39983 |
+| 2026-11 | 40117 |
 
 <!-- project-statistics-v2:end -->
