@@ -17,7 +17,7 @@ in the fourteen-preset matrix retain their published versions.
 | intake-authoring-governance | v0.3.12 |
 | intake-review-governance | v0.2.8 |
 | intake-sequencing-governance | v0.2.12 |
-| model-routing-governance | v0.2.7 |
+| model-routing-governance | v0.2.8 |
 | parallel-autonomous-run-governance | v0.2.12 |
 | secure-development-assurance-governance | v0.1.9 |
 
@@ -91,7 +91,7 @@ actual installed files.
 | intake-authoring-governance v0.3.12 | 109aaa5f2014209695ef9ee3aa4529dfd8be6ea107f077249242ccf5a951bb81 |
 | intake-review-governance v0.2.8 | ddc36c0608fcf4399d81e8a6dc8de7efc026536319b310827e9f57f7fc73acf2 |
 | intake-sequencing-governance v0.2.12 | 794bd7257d442eb4958f407d7118b7f49be9492aadc3a8edd911667e6a563ab7 |
-| model-routing-governance v0.2.7 | 921f95dfae41d0007faf6a2417917a7dcdfca046b085e2c0febd88844559be16 |
+| model-routing-governance v0.2.8 | 8decfabfd2f59f3ddfa44e8e4744adafa3d04acda508c85dcfd4501d1b1489fb |
 | parallel-autonomous-run-governance v0.2.12 | 1fbd9ec88e282f412b25cce3401ae150bfb373662b7ed07ee9630a560670c030 |
 | secure-development-assurance-governance v0.1.9 | 0d7ffd14f9e1bd02f66251d30e6b5003fc57077c6c90b4c6c3e84436f83cdc55 |
 
