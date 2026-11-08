@@ -226,6 +226,8 @@
 
 | 2026-11-08 | Sandbox-Freigabe Schema 3 / Sandbox approval schema 3 | N/A | N/A | N/A | UpdateRequired: dokumentierte Owner-Entscheidung statt zusaetzlichem Signaturschluessel; deterministische Paketbindung ohne Selbstreferenz, UTC-Ablaufgrenze 31.12.2026 und technische Container-Gates erhalten. Lokale Regressionen, keine Aktivierung, Veroeffentlichung, Home-Synchronisation oder Container-Aenderung. / Documented owner decision replaces the additional signing key; deterministic package binding avoids self-reference, preserving expiry and technical gates. Local regression evidence only; no operational activation or distribution. [Vertrag / Contract](maintenance/container-delegation-2026-09-20.md). |
 
+| 2026-11-08 | Begrenzter Secure-Trader-Bundle-Transport / Bounded Secure Trader bundle transport | N/A | N/A | N/A | UpdateRequired: kanonischer 21-Ziele-Download in isolierte Host-Bare-Repositories, credential-freier Sandbox-Bundle-Import und atomare origin-Tracking-Refs. Kein Host-Git gegen Secure-Trader-Checkouts, lokale Branches und Tags erhalten; Preflight und Fast-forward-Barriere bleiben verbindlich. Lokale Fixture-Tests, keine behauptete Betriebsaktivierung. / Canonical 21-target downloads use isolated host bare repositories and credential-free sandbox imports with atomic tracking refs. Local branches, tags and security gates are preserved; fixture proof does not claim live acceptance. [Vertrag / Contract](maintenance/container-delegation-2026-09-20.md). |
+
 ## Gesamtstand des Repositories / Repository Snapshot
 
 Stand / As of: **2026-07-19**

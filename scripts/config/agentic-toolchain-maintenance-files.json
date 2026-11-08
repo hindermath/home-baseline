@@ -38,6 +38,14 @@
       "executable": false
     },
     {
+      "path": "scripts/lib/maintenance_git_bundle.py",
+      "executable": false
+    },
+    {
+      "path": "scripts/tests/test_maintenance_git_bundle.py",
+      "executable": false
+    },
+    {
       "path": "scripts/config/maintenance-execution-contexts.json",
       "executable": false
     },

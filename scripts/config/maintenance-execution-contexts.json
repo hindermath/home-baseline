@@ -5,9 +5,9 @@
   "source": "/opt/home-baseline",
   "approvalPath": "container-images/absdd-image-sandbox/docs/security/sandbox-freigabe.md",
   "approvalSha256": "d25cd120ff14df66d54aace1976a5548bcf2479eed0755ff1e24d10fe45f4c1e",
-  "approvalBindingSha256": "d445da342312f2945830c2e48323f174eb9ba99520d55589ff3f739ccbd7cc8a",
+  "approvalBindingSha256": "ecc22d601765dabe2d1a49b424af0230bd1204c15e5d204b5d57f26a504215f7",
   "approvedImage": "sha256:4c279f0c0f3a5abfc436deda18e87c9ca4ea966f502a7cae003fa03bd70ba84f",
-  "approvedSourceSha256": "76b88b123786e40263580a017057207510f62e158f5018ce5158fbb9bfc23c88",
+  "approvedSourceSha256": "16b2e3c35168a45dc7695a74c6c407c72ca1b190f028e4e5701cd7617125579a",
   "approvalTrustState": "PendingOwnerApproval",
   "expiresOn": "2026-12-31",
   "mounts": [

@@ -172,7 +172,9 @@ elif p["action"] == "git":
         raise SystemExit("Only bounded fast-forward merge is allowed")
     # Reset inherited trust (including '*') and trust only this validated repo.
     # Command-scope configuration survives recreation without writing .gitconfig.
-    result = subprocess.run(["git", "-c", "safe.directory=", "-c", "safe.directory=" + str(repo),
+    result = subprocess.run(["git", "-c", "core.hooksPath=/dev/null", "-c", "core.fsmonitor=false",
+                             "-c", "submodule.recurse=false", "-c", "protocol.allow=never",
+                             "-c", "credential.helper=", "-c", "safe.directory=", "-c", "safe.directory=" + str(repo),
                              "-C", str(repo), *args], capture_output=True, text=True)
     print(json.dumps({"returncode":result.returncode,"stdout":result.stdout,"stderr":result.stderr}))
 else:
@@ -194,6 +196,25 @@ with contextlib.redirect_stdout(log):
     result = worker.execute(p)
 result["log"] = log.getvalue()
 print(json.dumps(result))
+'''
+
+BUNDLE_PROGRAM = r'''
+import hashlib, json, pathlib, sys
+p = json.loads(sys.stdin.buffer.readline(1048576))
+root, repository = pathlib.Path(p["root"]), pathlib.Path(p["repository"])
+if root.resolve() != root or repository.resolve() != repository:
+    raise SystemExit("Unsafe repository path")
+repository.relative_to(root)
+source = pathlib.Path(p["source"])
+if source.resolve() != source:
+    raise SystemExit("Unsafe source path")
+for relative, expected in p["bindings"].items():
+    path = source / relative
+    if path.resolve() != path or hashlib.sha256(path.read_bytes().replace(b"\r\n", b"\n")).hexdigest() != expected:
+        raise SystemExit("Bundle worker source binding mismatch")
+sys.path.insert(0, str(source / "scripts/lib"))
+from maintenance_git_bundle import receive
+print(json.dumps(receive(p, sys.stdin.buffer)))
 '''
 
 
@@ -225,6 +246,8 @@ def source_bindings(source: pathlib.Path) -> dict:
     package = json.loads((source / manifest).read_text(encoding="utf-8"))
     paths = {manifest, *(entry["path"] for entry in package["files"])}
     paths.update({"scripts/lib/maintenance_execution_context.py",
+                  "scripts/lib/maintenance_git_bundle.py",
+                  "scripts/config/agentic-workspace-fleet.json",
                   "scripts/lib/maintenance_container_worker.py",
                   "scripts/lib/secure-development-hardening.sh",
                   "scripts/register-level2-repository.sh",
@@ -390,6 +413,61 @@ class ExecutionContexts:
             )
         self.container_id = None
         self.image = None
+        self.bundle_snapshots = {}
+        self.bundle_mode = None
+
+    def prepare_bundles(self, targets: list[dict], run_id: str, mode: str):
+        """Download every snapshot before importing; never open host target repos."""
+        from maintenance_git_bundle import download, transport_workspace
+        if mode not in ("dry-run", "check-only", "update"):
+            raise ExecutionContextError("Invalid bundle mode")
+        self.bundle_snapshots = {}
+        self.bundle_mode = None
+        self.preflight()
+        selected = [target for target in targets if target.get("active") and
+                    target.get("kind") == "git-repository" and self.mapping(self.home / target["path"])]
+        canonical_file = pathlib.Path(__file__).resolve().parents[2] / "scripts/config/agentic-workspace-fleet.json"
+        canonical = {item["path"]: item for item in json.loads(canonical_file.read_text())["targets"]
+                     if item.get("active") and item.get("kind") == "git-repository"
+                     and pathlib.PurePosixPath(item["path"]).parts[0] in PROTECTED_WORKSPACE_ROOTS}
+        if len(canonical) != 21 or {item["path"] for item in selected} != set(canonical):
+            raise ExecutionContextError("Bundle transport requires the complete canonical 21-target fleet")
+        for target in selected:
+            if any(target.get(key) != canonical[target["path"]].get(key) for key in ("id", "remote", "defaultBranch")):
+                raise ExecutionContextError("Bundle target does not match the immutable canonical fleet")
+        pending = []
+        # A failed download leaves every target's refs and worktree unchanged.
+        with transport_workspace() as temporary:
+            for target in selected:
+                workspace = pathlib.Path(temporary) / target["id"]
+                workspace.mkdir(mode=0o700)
+                bundle, snapshot = download(target, run_id, workspace)
+                pending.append((target, bundle, snapshot))
+                if sum(entry[1].stat().st_size for entry in pending) > 2 * 1024 * 1024 * 1024:
+                    raise ExecutionContextError("Bundle run exceeds 2 GiB limit")
+            evidence = self.preflight()
+            bindings = source_bindings(pathlib.Path(__file__).resolve().parents[2])
+            if source_binding_sha256(bindings) != evidence["sourceSha256"]:
+                raise ExecutionContextError("Bundle source changed after preflight")
+            for target, bundle, snapshot in pending:
+                self.inspect()
+                root, repository = self.mapping(self.home / target["path"])
+                payload = {"source": self.data["source"], "bindings": bindings,
+                           "root": root, "repository": repository, "target": target,
+                           "snapshot": snapshot, "runId": run_id, "dryRun": mode == "dry-run"}
+                body = json.dumps(payload).encode("utf-8") + b"\n" + bundle.read_bytes()
+                response = subprocess.run(["podman", "exec", "-i", self.container_id, "python3", "-c", BUNDLE_PROGRAM],
+                                          input=body, capture_output=True, timeout=300)
+                if response.returncode:
+                    raise ExecutionContextError("Sandbox bundle verification/import failed for " + target["id"])
+                result = json.loads(response.stdout)
+                if result.get("status") != ("Verified" if mode == "dry-run" else "Imported"):
+                    raise ExecutionContextError("Unexpected bundle worker response")
+                self.bundle_snapshots[target["path"]] = snapshot
+        self.bundle_mode = mode
+
+    def bundle_snapshot(self, repository: pathlib.Path) -> dict | None:
+        return self.bundle_snapshots.get(repository.relative_to(self.home).as_posix())
 
     def mapping(self, repository: pathlib.Path) -> tuple[str, str] | None:
         try:
@@ -406,6 +484,7 @@ class ExecutionContexts:
         return None
 
     def inspect(self) -> dict:
+        validate_contract(self.data)
         try:
             process = subprocess.run(["podman", "inspect", self.container_id or self.data["container"]],
                                      capture_output=True, text=True, timeout=30, check=True)
@@ -490,6 +569,9 @@ class ExecutionContexts:
             raise ExecutionContextError("Target is not delegated")
         if self.container_id is None:
             raise ExecutionContextError("Sandbox preflight required")
+        validate_contract(self.data)
+        if self.data["approvalTrustState"] != OWNER_APPROVAL_TRUST_STATE_ACTIVE:
+            raise ExecutionContextError("Owner approval is no longer active")
         self.inspect()
         process = subprocess.run(
             ["podman", "exec", "-i", self.container_id, "python3", "-c", REMOTE_PROGRAM],
