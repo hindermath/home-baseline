@@ -130,6 +130,7 @@ Change their respective canonical source first, then propagate the result.*
 | `.specify/presets/parallel-autonomous-run-governance/tests/test-coordinator.ps1` | `.specify` |
 | `.specify/presets/parallel-autonomous-run-governance/tests/test-documentation-closeout.ps1` | `.specify` |
 | `.specify/presets/parallel-autonomous-run-governance/tests/test-native-agent-campaigns.ps1` | `.specify` |
+| `.specify/presets/parallel-autonomous-run-governance/tests/test-native-field-preview.ps1` | `.specify` |
 | `.specify/presets/parallel-autonomous-run-governance/tests/test-release-documentation.ps1` | `.specify` |
 | `.specify/presets/parallel-autonomous-run-governance/tests/test-release-status.ps1` | `.specify` |
 | `.specify/presets/project-statistics-governance/scripts/lib/profile-helpers.ps1` | `.specify` |
