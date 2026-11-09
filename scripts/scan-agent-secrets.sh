@@ -165,6 +165,12 @@ def filtered_lines(relative: str, text: str):
         lines = [line for line in lines if not re.match(r"^(secret_content_regex|HG_SECRET_PATTERNS)=", line)]
     elif relative == "scripts/lib/hg-secrets.ps1":
         lines = [line for line in lines if not re.match(r"^\$HG_SECRET_PATTERN\s*=", line)]
+    # DE: Nur diese bekannten synthetischen Negativtestwerte ausblenden; weitere Treffer bleiben sichtbar.
+    # EN: Mask only these known synthetic negative-test values; additional matches remain visible.
+    if relative == ".specify/presets/intake-authoring-governance/tests/test-intake-authoring-validator.ps1":
+        lines = [line.replace("github_" + "pat_ABCDEFGHIJKLMNOPQRSTUVWXYZ123456", "fixture-value") for line in lines]
+    if relative == ".specify/presets/model-routing-governance/tests/test-adapter-transports.mjs":
+        lines = [line.replace("OPENCODE_SERVER_" + "PASSWORD: '" + "fixture-secret'", "OPENCODE_SERVER_PASSWORD: ''") for line in lines]
     if relative.startswith("tests/") or "/tests/" in relative or "/fixtures/" in relative:
         lines = [
             line for line in lines

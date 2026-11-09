@@ -70,3 +70,18 @@ EN: The complete linked-intake proof has a 45-minute Windows budget and retains
 the 20-minute Linux budget. Both shell suites and the zero-repository-writes check
 remain mandatory. This addresses an observed cancellation at the previous
 20-minute Windows limit.
+
+## PR #368: technische Wartung / Technical maintenance
+
+DE: Die fuer diesen Abhaengigkeits-PR erforderlichen CI-/Test-Anpassungen
+erhalten Versionsbindung, Sicherheitspruefungen und Plattform-Gates. Die
+konkrete Reparatur und technische Evidence stehen im PR; keine Paketmigration
+aus einem anderen zurueckgestellten PR wird uebernommen. Owner: Repository-
+Maintainer. homeRuntime; nach erfolgreichem Merge gepruefter Home-Sync. Bei Manifest-, Pin- oder Workflow-
+Aenderungen erneut pruefen.
+
+EN: CI/test repairs needed for this dependency PR retain version binding,
+security checks and platform gates. The PR records the specific repair and
+technical evidence; it does not adopt a migration from another deferred PR.
+Owner: repository maintainer. Source-only, no Home sync. Re-evaluate after
+manifest, pin or workflow changes.
