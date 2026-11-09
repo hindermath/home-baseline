@@ -1696,6 +1696,22 @@ intake archives and three specification security addenda without recounting
 runs or asserting current product/Primary acceptance. Register, snapshot,
 bilingual tables and queue are updated consistently; see the review record.
 
+### 2026-11-09 - Dependabot PR #368 / Dependabot maintenance
+
+DE: Branch codex/dependabot-repair-20261109-home-baseline--368; sichtbares Wartungsfenster 09.11.2026, keine
+Stoppuhrmessung. chore(deps): bump actions/setup-dotnet from 6.0.0 to 6.1.0 in the github-actions-minor-patch group. Dokumentationsentscheidung: UpdateRequired
+fuer die technische Aenderung; GeneratedUpdate fuer beide vorhandenen
+Statistikprofile. Bestehende Referenzwerte bleiben erhalten. Die beobachtete
+Liefermenge ist keine Messung von Lernleistung oder KI-Zeitersparnis.
+Aktuelle Head-/Plattform-Pruefungen sind vor dem Merge erforderlich.
+Owner: Repository-Maintainer; homeRuntime; Home-Sync nach geprueftem Merge.
+
+EN: Branch codex/dependabot-repair-20261109-home-baseline--368; observable maintenance window 9 November 2026,
+not stopwatch time. chore(deps): bump actions/setup-dotnet from 6.0.0 to 6.1.0 in the github-actions-minor-patch group. Documentation impact: UpdateRequired for
+the technical change; GeneratedUpdate for the existing statistics profiles.
+Existing references remain unchanged. Delivery volume is not a measurement
+of learning outcomes or AI time savings. Current head/platform checks are
+required before merge. Owner: repository maintainer; homeRuntime; Home sync after verified merge.
 ## Gesamtstatistik / Overall Statistics
 
 <!-- project-statistics-v2:begin -->
