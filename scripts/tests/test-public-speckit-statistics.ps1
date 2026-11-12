@@ -160,6 +160,17 @@ Assert-Test ($out3.Contains('**9,2× (3/5 Repos)**')) 'weighted aggregate uses u
 Assert-Test ($out3.Contains('| nicht berechenbar |')) 'empty repository retains row without invented factor'
 Assert-Test ($out3.Contains('2026-08-01 bis 2026-09-13')) 'older source dates preserved'
 Assert-Test ($out3 -ceq (Get-HBStatisticsTable (Copy-Fixture $v3) de (Copy-Fixture $agg3))) 'v3 offline deterministic replay'
+$html3 = Get-HBStatisticsTable $v3 de $agg3 -TableFormat AccessibleHtml
+$htmlDocument = [xml]$html3
+Assert-Test ($htmlDocument.div.lang -ceq 'de' -and $htmlDocument.div.table.'aria-label' -ceq 'Spec-Kit-Läufe und Repository-Schätzungen') 'accessible publication language and name'
+Assert-Test ($htmlDocument.SelectNodes('//thead/tr/th[@scope="col"]').Count -eq 11) 'all eleven column headings have scope'
+Assert-Test ($htmlDocument.SelectNodes('//tbody/tr/th[@scope="row"]').Count -eq 6) 'individual and aggregate rows retain semantic row headings'
+Assert-Test ($htmlDocument.SelectNodes('//tbody/tr[1]/td')[1].InnerText -ceq '1' -and $htmlDocument.SelectNodes('//tbody/tr[1]/th/a')[0].InnerText -ceq 'source') 'HTML preserves numeric cells and repository links'
+Assert-Test ($htmlDocument.SelectNodes('//tbody/tr')[-1].InnerText.Contains('9,2× (3/5 Repos)')) 'HTML retains weighted factors and private coverage'
+Assert-Test ($html3 -ceq (Get-HBStatisticsTable (Copy-Fixture $v3) de (Copy-Fixture $agg3) -TableFormat AccessibleHtml)) 'accessible output is deterministic'
+Assert-Test ((Get-HBStatisticsTable $v3 en $agg3 -TableFormat AccessibleHtml).Contains('<div lang="en">')) 'English accessible language partner'
+Assert-Test ($out3 -ceq (Get-HBStatisticsTable $v3 de $agg3 -TableFormat Markdown)) 'explicit Markdown replay preserves older exports'
+Assert-Rejected { ConvertTo-HBAccessibleStatisticsTable '| broken |' } 'incomplete accessible table rejected'
 $bad=Copy-Fixture $agg3;$bad.acceleration['privateName']='example/private'
 Assert-Rejected {Assert-HBPrivateAggregate $bad} 'nested private metadata rejected'
 $bad=Copy-Fixture $agg3;$bad.acceleration.activeDays='10'

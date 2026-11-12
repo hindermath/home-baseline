@@ -230,6 +230,8 @@
 
 | 2026-11-08 | Konkrete Owner-Wartungsfreigabe / Concrete owner maintenance approval | N/A | N/A | N/A | UpdateRequired: reale Owner-Entscheidung aus Review 5819120082 an exakte Image-ID, unveraenderten Paketfingerabdruck und Ablauf 31.12.2026 gebunden; Schema 3 kanonisch auf OwnerApproved gesetzt. Kein eigener Agentenentscheid, keine behauptete Containeraktivierung oder 21-Repo-Abnahme. / Bind the real owner decision to the exact image, unchanged package and expiry; no agent-granted approval or claimed operational completion. [Evidence](maintenance/secure-trader-owner-approval-2026-11-08.md). |
 
+| 2026-11-12 | Barrierearme Profilstatistik / Accessible profile statistics | N/A | N/A | N/A | GeneratedUpdate: vorhandene Statistikdaten werden als benannte DE/EN-HTML-Tabelle mit Sprachmarkierungen und expliziten Zeilen-/Spaltenüberschriften erzeugt. Schema, Zahlen, Faktoren, Quellstände, private Aggregation und historische Markdown-Replays bleiben erhalten. Ein kompatibler Profilimport validiert das neue Format vor der Übernahme. / Existing frozen evidence gains accessible HTML presentation without changing counting or privacy semantics; backward-compatible profile import validates the new format. |
+
 ## Gesamtstand des Repositories / Repository Snapshot
 
 Stand / As of: **2026-07-19**
