@@ -35,11 +35,23 @@ individual evidence stays private; only validated aggregates are imported.*
 
 - `--action`: Aktion; Standard `Validate`. / Action; default Validate.
 - `--repo`: Level-0-Quelle; sonst gemeinsame Quellauflösung. / Source checkout; otherwise uses the shared source resolver.
+- `--table-format`: `AccessibleHtml` (Standard) erzeugt Sprachmarkierungen, Tabellenname und Zeilen-/Spaltenüberschriften. `Markdown` reproduziert ältere Exporte. / AccessibleHtml (default) adds language, table name and row/column headers; Markdown replays older exports.
 - `--check-only`: keine Dateien schreiben, Drift melden. / No writes; report drift.
 - `--dry-run`: Schreibvorschau; bei Collect mit Remote-Lesezugriff. / Write preview; Collect still reads remote evidence.
 - `--help`: Hilfe. / Help.
 
 PowerShell: `-Action`, `-Repo`, `-CheckOnly`, `-WhatIf`.
+
+`-TableFormat` wählt ausschließlich die Darstellung. Daten-/Regelschema,
+Quellstände und Zählungen bleiben erhalten; `publication.json` kennzeichnet HTML
+mit `tableFormat: accessible-html-v1`. Die Ausgaben entstehen aus dem bestehenden
+Snapshot ohne neue Erhebung. Ein älterer Importer muss vor der HTML-Publikation
+kompatibel ausgeliefert werden.
+
+*TableFormat changes presentation only. Data/rule schemas, source dates and
+counts remain unchanged. The publication declares accessible-html-v1 and is
+rendered from the existing snapshot without recollection. Deploy a compatible
+profile importer before publishing HTML.*
 
 ## EXIT STATUS
 

@@ -386,8 +386,14 @@ function Get-HBStatisticsFingerprint {
 }
 
 function Get-HBStatisticsTable {
-    param([System.Collections.IDictionary]$Snapshot, [ValidateSet('de', 'en')][string]$Language = 'de', [System.Collections.IDictionary]$PrivateAggregate)
+    param([System.Collections.IDictionary]$Snapshot, [ValidateSet('de', 'en')][string]$Language = 'de', [System.Collections.IDictionary]$PrivateAggregate,
+        [ValidateSet('Markdown', 'AccessibleHtml')][string]$TableFormat = 'Markdown')
     Test-HBStatisticsSnapshot $Snapshot
+    # Keep the historical Markdown replay byte-identical. Presentation does not
+    # change data schemas, evidence dates, counting rules or private aggregation.
+    if ($TableFormat -eq 'AccessibleHtml') {
+        return ConvertTo-HBAccessibleStatisticsTable (Get-HBStatisticsTable $Snapshot $Language $PrivateAggregate) $Language
+    }
     if ($Snapshot.ruleVersion -ge 2) { return Get-HBExtendedStatisticsTable $Snapshot $Language $PrivateAggregate }
     $rows = [Collections.Generic.List[string]]::new()
     $method = 'https://github.com/hindermath/home-baseline/blob/main/docs/spec-kit-runs/README.md'
@@ -415,6 +421,55 @@ function Get-HBStatisticsTable {
     $rows.Add("| | **$label2** | **$($level2[0])** | **$($level2[1])** | **$($level2[2])** |")
     $rows.Add("| | **$labelAll** | **$($totals[0])** | **$($totals[1])** | **$($totals[2])** |")
     ($rows -join "`n") + "`n"
+}
+
+function ConvertTo-HBAccessibleStatisticsTable {
+    param([string]$Markdown, [ValidateSet('de', 'en')][string]$Language = 'de')
+    $lines = $Markdown.TrimEnd("`r", "`n").Split("`n")
+    $tableLines = @($lines | Where-Object { $_.StartsWith('|', [StringComparison]::Ordinal) })
+    if ($tableLines.Count -lt 3) { throw 'A complete generated statistics table is required.' }
+    $headers = @($tableLines[0].Trim('|').Split('|') | ForEach-Object { $_.Trim() })
+    if ($headers.Count -notin @(5, 10, 11)) { throw 'Unexpected statistics column count.' }
+    $title = if ($Language -eq 'de') { 'Spec-Kit-Läufe und Repository-Schätzungen' } else { 'Spec Kit runs and repository estimates' }
+    $output = [Collections.Generic.List[string]]::new()
+    $output.Add("<div lang=`"$Language`">")
+    $output.Add('')
+    foreach ($line in $lines) {
+        if (-not $line.StartsWith('|', [StringComparison]::Ordinal)) { $output.Add($line); continue }
+        if ($line -ceq $tableLines[0]) {
+            # GitHub moves captions outside tables. aria-label preserves the table
+            # name for assistive technology after GitHub's HTML sanitization.
+            $output.Add("<table aria-label=`"$title`" lang=`"$Language`">")
+            $output.Add("<caption>$title</caption>")
+            $output.Add('<thead>')
+            $output.Add('<tr>')
+            foreach ($header in $headers) { $output.Add('<th scope="col">' + [Net.WebUtility]::HtmlEncode($header) + '</th>') }
+            $output.Add('</tr>')
+            $output.Add('</thead>')
+            $output.Add('<tbody>')
+            continue
+        }
+        if ($line -ceq $tableLines[1]) { continue }
+        $cells = @($line.Trim('|').Split('|') | ForEach-Object { $_.Trim() })
+        if ($cells.Count -ne $headers.Count) { throw 'Unexpected statistics row width.' }
+        $output.Add('<tr>')
+        for ($index = 0; $index -lt $cells.Count; $index++) {
+            $cell = [Net.WebUtility]::HtmlEncode($cells[$index])
+            $cell = [regex]::Replace($cell, '\*\*([^*]+)\*\*', '<strong>$1</strong>')
+            $cell = [regex]::Replace($cell, '\[([A-Za-z0-9_.-]+)\]\((https://github\.com/[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+)\)', '<a href="$2">$1</a>')
+            $open = if ($index -eq 1) { '<th scope="row">' } elseif ($index -gt 1) { '<td align="right">' } else { '<td>' }
+            $close = if ($index -eq 1) { '</th>' } else { '</td>' }
+            $output.Add($open + $cell + $close)
+        }
+        $output.Add('</tr>')
+        if ($line -ceq $tableLines[-1]) {
+            $output.Add('</tbody>')
+            $output.Add('</table>')
+        }
+    }
+    $output.Add('')
+    $output.Add('</div>')
+    ($output -join "`n") + "`n"
 }
 
 function Set-HBStatisticsBlock {

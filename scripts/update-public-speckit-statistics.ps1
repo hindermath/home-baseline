@@ -16,6 +16,8 @@ Collect, Validate or Render. / Erheben, prüfen oder erzeugen.
 Level-0 checkout; defaults to the shared source resolver. / Gemeinsame Level-0-Quellauflösung.
 .PARAMETER CheckOnly
 Read-only validation/drift check. / Schreibfreie Validierung/Driftprüfung.
+.PARAMETER TableFormat
+AccessibleHtml (default) or historical Markdown replay. / Barrierearmes HTML oder historisches Markdown.
 .PARAMETER WhatIf
 Preview without writes. Collect still reads GitHub. / Vorschau ohne Schreiben.
 .EXAMPLE
@@ -27,6 +29,7 @@ pwsh -NoProfile -File scripts/update-public-speckit-statistics.ps1 -Action Rende
 param(
     [ValidateSet('Collect', 'Validate', 'Render')][string]$Action = 'Validate',
     [string]$Repo,
+    [ValidateSet('Markdown', 'AccessibleHtml')][string]$TableFormat = 'AccessibleHtml',
     [switch]$CheckOnly
 )
 Set-StrictMode -Version Latest
@@ -75,7 +78,8 @@ try {
     } else { $null }
     if ($snapshot.ruleVersion -ge 2) { Assert-HBPrivateAggregate $aggregate }
     if ($Action -eq 'Validate') { Write-Host 'PASS: public snapshot, register and applicable private aggregate.'; exit 0 }
-    $de = Get-HBStatisticsTable $snapshot de $aggregate; $en = Get-HBStatisticsTable $snapshot en $aggregate
+    $de = Get-HBStatisticsTable $snapshot de $aggregate -TableFormat $TableFormat
+    $en = Get-HBStatisticsTable $snapshot en $aggregate -TableFormat $TableFormat
     $outputs = [ordered]@{}
     $managedOutputs = @(
         'README.md',
@@ -97,11 +101,13 @@ try {
     $outputs[(Join-Path $data 'table.md')] = $de
     $outputs[(Join-Path $data 'table.en.md')] = $en
     $outputs[(Join-Path $data 'review-queue.md')] = Get-HBStatisticsReviewReport $snapshot
-    $outputs[(Join-Path $data 'publication.json')] = ConvertTo-HBJson ([ordered]@{
+    $publication = [ordered]@{
         schemaVersion = $snapshot.schemaVersion; collectedAt = $snapshot.collectedAt
         snapshotSha256 = Get-HBTextHash (ConvertTo-HBJson $snapshot)
         tableSha256 = Get-HBTextHash $de; tableEnSha256 = Get-HBTextHash $en
-    })
+    }
+    if ($TableFormat -eq 'AccessibleHtml') { $publication['tableFormat'] = 'accessible-html-v1' }
+    $outputs[(Join-Path $data 'publication.json')] = ConvertTo-HBJson $publication
     $drift = $false
     $contentByRelativePath = [ordered]@{}
     foreach ($path in $outputs.Keys) {

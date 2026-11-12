@@ -269,6 +269,33 @@ artifacts are never rewritten by this statistic.*
 
 ## Reproduktion / Reproduction
 
+### Barrierearme Darstellung / Accessible presentation
+
+Neue Exporte verwenden `tableFormat: accessible-html-v1` in `publication.json`.
+Der benannte HTML-Tabellenblock setzt `lang="de"` beziehungsweise `lang="en"`,
+`th scope="col"` für Spalten und `th scope="row"` für Repository-/Gruppennamen.
+Die elf Spalten, vier Summenzeilen und alle Zähl-/Datenschutzverträge bleiben
+erhalten. GitHub verschiebt `caption` vor die Tabelle; `aria-label` erhält den
+Tabellennamen für assistive Technik. Der deutsche Block wird unverändert ins
+Profil importiert. Die Darstellung verändert keine historische Evidence und
+erfindet keinen neuen Datenstand.
+
+*New exports declare accessible-html-v1 with German/English language boundaries,
+a table name and explicit column/row headers. The eleven columns, four totals
+and counting/privacy rules remain unchanged. GitHub moves captions before the
+table; aria-label preserves its accessible name. The profile imports the exact
+German block. Presentation changes neither historical evidence nor source dates.*
+
+Historisches Markdown bleibt über
+`bash scripts/update-public-speckit-statistics.sh --action Render --table-format Markdown --dry-run`
+nachvollziehbar; die Modul-API verwendet weiterhin Markdown als Default für
+bytegleiche frühere Replays. Die neue Profilimport-Version akzeptiert sowohl
+die bisherigen v1/v2/v3-Exporte als auch die eng validierte HTML-Darstellung.
+
+*Historical Markdown remains replayable through the explicit format option;
+the module API retains its Markdown default. The compatible profile importer
+accepts legacy v1/v2/v3 exports and the strictly validated HTML presentation.*
+
 Der reguläre Sammler läuft auf einem GitHub-gehosteten Ubuntu-Runner, ohne
 persönlichen Rechner oder lokale Agentenzustände. Nur die Erhebung benötigt
 `gh` und öffentliche GitHub-Lesezugriffe. Der versionierte Snapshot enthält

@@ -1,0 +1,29 @@
+{
+  "schemaVersion": "1.1",
+  "feature": "profile-statistics-accessibility",
+  "entries": [
+    {
+      "changeId": "CHG080",
+      "scope": "Accessible presentation of public statistics and compatible profile import",
+      "decision": "GeneratedUpdate",
+      "rationale": "Generate language-marked HTML with semantic row and column headings from existing evidence, preserving counts, dates, privacy and historical Markdown replay.",
+      "documents": ["README.md", "README.en.md", "docs/spec-kit-runs/table.md", "docs/spec-kit-runs/table.en.md", "docs/spec-kit-runs/publication.json", "docs/spec-kit-runs/README.md", "docs/man/update-public-speckit-statistics.1.md", "docs/project-statistics.md", "docs/maintenance/profile-statistics-accessibility-2026-11-12.md"],
+      "owner": "@hindermath",
+      "audiences": ["Public profile readers", "Assistive technology users", "Maintainers"],
+      "readerPaths": ["Profile or Level-0 README -> method -> frozen evidence and reproduction"],
+      "canonicalSource": "scripts/lib/public-speckit-statistics.psm1",
+      "navigationImpact": "Existing method links retained; table name and semantic row/column navigation added.",
+      "documentClass": "Generated",
+      "languageStrategy": "German and English exports with explicit language boundaries",
+      "languagePartners": ["README.en.md", "docs/spec-kit-runs/table.en.md"],
+      "platformAndExampleProof": "84 deterministic assertions; Bash and PowerShell render checks; Linux/macOS/Windows hosted CI and live GitHub DOM checks",
+      "distributionClass": "homeRuntime",
+      "homeSyncRequired": true,
+      "evidence": "docs/maintenance/profile-statistics-accessibility-2026-11-12.md",
+      "risk": "Incompatible profile import or altered public/private numeric semantics; deploy backward-compatible import first, compare every table cell, preserve frozen sources.",
+      "criticality": "Normal",
+      "reevaluationTrigger": "Renderer, importer, GitHub sanitization or table contract changes",
+      "generatedSource": {"path": "scripts/lib/public-speckit-statistics.psm1", "renderer": "bash scripts/update-public-speckit-statistics.sh --action Render"}
+    }
+  ]
+}
