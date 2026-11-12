@@ -42,3 +42,7 @@ after Level-0 merge; consumer repositories receive no Home sync.
 Re-evaluate on source, matrix, installed payload or review drift.
 
 DE/EN: Aktuelle Sequencing-Versionsverweise wurden in gemeinsamer Guidance, Leserpfaden und beiden Constitutions auf 0.2.13 angeglichen / aligned current Sequencing version references in shared guidance, reader paths and both constitutions. Andere Preset-Bindungen und historische Nachweise bleiben unveraendert / other preset bindings and historical evidence are unchanged.
+
+DE: Der macOS-Homogeneity-Job 131183081166 bestand die eigentliche Pruefung, wurde aber in den Wartungsregressionen nach dem bestaetigten Zehn-Minuten-Limit abgebrochen. Nur sein Zeitbudget steigt auf 20 Minuten; alle Schritte und Assertions bleiben erhalten.
+
+EN: macOS Homogeneity job 131183081166 passed the main check but hit the confirmed ten-minute timeout during maintenance regressions. Only its budget increases to twenty minutes; all steps and assertions remain unchanged.

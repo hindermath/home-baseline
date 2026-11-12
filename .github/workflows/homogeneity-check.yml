@@ -14,7 +14,7 @@ jobs:
   check:
     name: Homogeneity Check (${{ matrix.os }})
     runs-on: ${{ matrix.os }}
-    timeout-minutes: 10
+    timeout-minutes: ${{ matrix.os == 'macos-15' && 20 || 10 }}
 
     strategy:
       matrix:
