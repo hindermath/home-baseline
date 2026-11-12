@@ -2,6 +2,7 @@
   "schemaVersion": 3,
   "collectedAt": "2026-11-07T23:02:08Z",
   "snapshotSha256": "be9fb2a6c0e9b6563238d40ede0c5a91ffd3d9b9f64e9329eea814882911f163",
-  "tableSha256": "3b89554a6357730b1d0f3963ad9efb78333d8a2d7752a55526b745638b969f2b",
-  "tableEnSha256": "815e08bdbc4f9e0a010ed753c7dcf4fc6fa5541b33d84aa51b17647bd43e9a42"
+  "tableSha256": "1497369d4a7a98b9cc15112d1410fa7505259d4e268ae24810f68b30128c6f7d",
+  "tableEnSha256": "cd3bab878b40bf5d03b8493b369a708fb3bef2c2d6604b7d694c9094113b9188",
+  "tableFormat": "accessible-html-v1"
 }

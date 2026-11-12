@@ -7,10 +7,11 @@ while [ "$#" -gt 0 ]; do
   case "$1" in
     --action) args+=(-Action "${2:?--action requires Collect, Validate or Render}"); shift ;;
     --repo) args+=(-Repo "${2:?--repo requires a path}"); shift ;;
+    --table-format) args+=(-TableFormat "${2:?--table-format requires Markdown or AccessibleHtml}"); shift ;;
     --check-only) args+=(-CheckOnly) ;;
     --dry-run) args+=(-WhatIf) ;;
     --help|-h)
-      printf '%s\n' 'Usage / Verwendung: update-public-speckit-statistics.sh [--action Collect|Validate|Render] [--repo PATH] [--check-only|--dry-run]' 'Collect reads public GitHub via gh; Validate/Render replay offline. Exit: 0 success, 1 drift, 2 error.'
+      printf '%s\n' 'Usage / Verwendung: update-public-speckit-statistics.sh [--action Collect|Validate|Render] [--repo PATH] [--table-format AccessibleHtml|Markdown] [--check-only|--dry-run]' 'Collect reads public GitHub via gh; Validate/Render replay offline. Exit: 0 success, 1 drift, 2 error.'
       exit 0 ;;
     *) printf 'Unknown argument / Unbekanntes Argument: %s\n' "$1" >&2; exit 2 ;;
   esac
