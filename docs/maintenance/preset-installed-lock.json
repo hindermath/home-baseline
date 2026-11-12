@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
   "purpose": "Bounded Model Routing 0.2.5 and Autonomous Run 0.4.9 installation; other preset payloads and registry entries byte/semantically preserved. No model call or personal-profile migration.",
-  "baselineCommit": "3f9ecadafb36e48b64919564a88e13e4a642e633",
+  "baselineCommit": "0c7abbbb8cd3984070d5a02804b49d79fdfa21c5",
   "hashContract": "sha256-utf8-lf-bom-or-raw-v1",
-  "registrySha256": "23401a3d1316e9d4d0e2b16f4c995705edc92e41e341e73cef25769dfe9eda80",
+  "registrySha256": "837caf5664e506205252b69a97037dab9811bf67d1e15c7ef8046f7adfd9f964",
   "presets": [
     {
       "id": "security-governance",
@@ -97,12 +97,12 @@
     },
     {
       "id": "intake-sequencing-governance",
-      "version": "0.2.12",
+      "version": "0.2.13",
       "priority": 66,
       "enabled": true,
-      "manifest_hash": "sha256:984f4f9157d8a3601f30853f876a38ca1a2b3a33a70d03962337423a5fd1158b",
-      "fileCount": 61,
-      "contentSha256": "8d7863736dbb0bd4da17fdabdf681ee0e663d45e111d8af0b270700185f1145c"
+      "manifest_hash": "sha256:209a3b03ce3f12e97b6dbc6ab16088bad8433b9aaaffc159fa80c55c1916e153",
+      "fileCount": 63,
+      "contentSha256": "65fa8a20d50e92f716b29cf82d14a09bb51caf20e9094d1a221d254b35c60cc5"
     },
     {
       "id": "autonomous-run-governance",
