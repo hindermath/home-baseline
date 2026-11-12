@@ -1073,7 +1073,7 @@ Historical evidence is preserved; installation grants no execution authority.
 
 `intake-authoring-governance` v0.3.10 at priority `64`,
 `intake-review-governance` v0.2.7 at priority `65`, and
-`intake-sequencing-governance` v0.2.11 at priority `66` are optional presets,
+`intake-sequencing-governance` v0.2.13 at priority `66` are optional presets,
 not part of the standard eight. Model Routing discovers harness capabilities
 locally and binds stable roles to an explicitly selected model without
 committing machine-specific model names. Unknown or ambiguous mappings fail
@@ -1163,7 +1163,7 @@ The current standalone releases are `autonomous-run-governance` v0.4.7,
 `parallel-autonomous-run-governance` v0.2.9, optional
 `intake-authoring-governance` v0.3.10, optional
 `intake-review-governance` v0.2.7, and optional
-`intake-sequencing-governance` v0.2.11. Registered Level-0, Level-1, and Level-2
+`intake-sequencing-governance` v0.2.13. Registered Level-0, Level-1, and Level-2
 repositories with Spec Kit SHOULD install all eight presets from the central
 matrix unless the repository documents a narrow exception. Fleet evidence MUST
 cover installation, exact matrix validation, commit, push, and remote

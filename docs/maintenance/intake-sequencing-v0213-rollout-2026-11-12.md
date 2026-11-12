@@ -40,3 +40,5 @@ Distribution: installed package/source evidence plus homeRuntime profile
 matrices where assigned by the distribution manifest. Home sync is checked
 after Level-0 merge; consumer repositories receive no Home sync.
 Re-evaluate on source, matrix, installed payload or review drift.
+
+DE/EN: Aktuelle Sequencing-Versionsverweise wurden in gemeinsamer Guidance, Leserpfaden und beiden Constitutions auf 0.2.13 angeglichen / aligned current Sequencing version references in shared guidance, reader paths and both constitutions. Andere Preset-Bindungen und historische Nachweise bleiben unveraendert / other preset bindings and historical evidence are unchanged.
