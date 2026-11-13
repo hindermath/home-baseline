@@ -6,6 +6,7 @@ from __future__ import annotations
 import json
 import os
 from pathlib import Path
+import re
 import shutil
 import subprocess
 import tempfile
@@ -30,6 +31,25 @@ def run(*args: str, env: dict[str, str] | None = None) -> subprocess.CompletedPr
 
 
 class HighFindingRegressionTests(unittest.TestCase):
+    def test_homogeneity_workflow_cannot_inherit_repository_write_tokens(self) -> None:
+        workflow = (ROOT / ".github/workflows/homogeneity-check.yml").read_text(encoding="utf-8")
+        # This gate executes repository-controlled checks. Its token authority
+        # must remain read-only even when the repository default permits writes.
+        # Keep the single workflow declaration: jobs must inherit it rather than
+        # replacing it with an inline map or write-all permission shorthand.
+        def inherits_read_only_token(text: str) -> bool:
+            header = text.split("\njobs:\n", 1)[0]
+            declarations = re.findall(r"(?m)^\s*['\"]?permissions['\"]?\s*:", text)
+            return "\npermissions:\n  contents: read\n" in header and len(declarations) == 1
+
+        self.assertTrue(inherits_read_only_token(workflow))
+        for override in ("permissions: write-all", "permissions: {contents: write}",
+                         "'permissions': {contents: write}"):
+            with self.subTest(override=override):
+                altered = workflow.replace("\n  check:\n", f"\n  check:\n    {override}\n")
+                self.assertNotEqual(altered, workflow)
+                self.assertFalse(inherits_read_only_token(altered))
+
     @unittest.skipUnless(shutil.which("pwsh"), "PowerShell 7 is unavailable")
     def test_copilot_evidence_publication_rejects_linked_root(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:

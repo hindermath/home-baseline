@@ -1745,6 +1745,26 @@ Documentation Impact: UpdateRequired; see the evidence path above.
 No product logic changed; CodeQL under Tools is configured separately after
 delivery. No AI Scan activation or new practical accessibility acceptance.
 
+### 2026-11-13 — Gemeinsame CodeQL-Sicherheitsbasis / Shared CodeQL security baseline
+
+DE: Den bestätigten Befund zu geerbten Workflow-Schreibrechten durch explizite
+Leserechte im Homogenitäts-Workflow behoben. Regression zunächst rot, danach
+grün; zusätzliche negative Fälle sichern joblokale Schreibüberschreibungen ab.
+Eine unabhängige statische Prüfung betrachtete Grenze und Kompatibilität.
+Gemeinsame Alerts und Versionsunterschiede bleiben einzeln nachvollziehbar;
+keine automatische Verwerfung oder pauschale Befundfreiheit.
+Documentation Impact: UpdateRequired; [Wartungsnachweis](maintenance/codeql-shared-security-2026-11-13.md).
+Owner: Thorsten Hindermann. Source-only; erforderliche technische CI am exakten
+Head bleibt Liefergate. Git-Aktivität ist keine Stoppuhrmessung.
+
+EN: Fixed the confirmed inherited workflow write-authority finding by declaring
+read-only permissions. The regression failed before the fix and passed after;
+negative cases cover job-level write overrides. Independent static review
+assessed the boundary and compatibility. Shared alerts and version differences
+remain traceable per finding; no automatic dismissal or blanket clean claim.
+Documentation Impact: UpdateRequired; see the linked maintenance record.
+Source-only; required exact-head technical CI remains a delivery gate.
+
 ## Gesamtstatistik / Overall Statistics
 
 <!-- project-statistics-v2:begin -->
