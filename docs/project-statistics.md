@@ -1765,6 +1765,22 @@ remain traceable per finding; no automatic dismissal or blanket clean claim.
 Documentation Impact: UpdateRequired; see the linked maintenance record.
 Source-only; required exact-head technical CI remains a delivery gate.
 
+### 2026-11-13 — Aktuelle Preset-Sicherheitsreleases / Current preset security releases
+
+Vierzehn neue Patch-Versionen sind über echte Tags, Merge-Commits und bytegeprüfte GitHub-Archive gebunden. Bestehende Profile und Prioritäten bleiben erhalten; Home Runtime und die neun ausdrücklich beauftragten Level-2-Repositories erhalten die geprüften Pakete. Offene CodeQL-Beleglücken bleiben offen, ohne automatische Alert-Verwerfung.
+
+Fourteen new patches are bound to real tags, merge commits and byte-verified GitHub archives. Existing profiles and priorities remain; Home Runtime and the nine explicitly authorised Level-2 repositories receive the verified packages. Open CodeQL evidence gaps remain open without automatic alert dismissal.
+
+Documentation Impact: UpdateRequired; [Release- und Bindungsnachweis / release and binding evidence](maintenance/preset-security-patch-rollout-2026-11-13.md).
+
+### 2026-11-13 — Hashgebundene negative Secret-Fixtures / Hash-bound negative secret fixtures
+
+Der Pre-push-Detektor unterscheidet drei unveraenderte synthetische Negativ-Fixtures anhand exakter Pfade und normalisierter SHA-256-Hashes. Veraenderte Dateien, zusaetzliche Secrets, andere Pfade und Scannerfehler bleiben blockierend; grosse Ersetzungen werden begrenzt gestreamt. Keine CodeQL-Ausnahme, Alert-Verwerfung oder Aenderung historischer Tags.
+
+The pre-push detector identifies three unchanged synthetic negative fixtures by exact paths and normalized SHA-256. Modified files, additional secrets, other paths and scanner errors remain blocking; large replacements use bounded streaming. No CodeQL exclusion, alert dismissal or historical tag change.
+
+Documentation Impact: UpdateRequired; beide Statistikansichten werden reproduzierbar generiert / both statistics views are generated reproducibly. [Nachweis / evidence](maintenance/preset-security-patch-rollout-2026-11-13.md).
+
 ## Gesamtstatistik / Overall Statistics
 
 <!-- project-statistics-v2:begin -->
@@ -1775,27 +1791,27 @@ Profil 2 verwendet Git-getrackte Textdateien und sichtbare Git-Aktivitaet. Die W
 
 | Kennzahl / Metric | Wert / Value |
 |---|---:|
-| Textbasis / Text base | 785555 lines |
-| Textdateien / Text files | 3842 |
+| Textbasis / Text base | 789314 lines |
+| Textdateien / Text files | 3921 |
 | Beobachtbarer Zeitraum / Observable period | 2025-11-16..2026-11-13 |
 | Aktivtage / Active days | 139 |
-| Relevante Commits / Relevant commits | 1015 |
-| Zeilen je Aktivtag / Lines per active day | 5651.5 |
+| Relevante Commits / Relevant commits | 1022 |
+| Zeilen je Aktivtag / Lines per active day | 5678.5 |
 | Peak-Tag im Fenster / Peak day in window | 2026-08-01 / 161357 |
 | Peak-Woche im Fenster / Peak week in window | 2026-07-26 / 284516 |
 | Laengste Serie / Longest streak | 38 days |
-| Speedup vs. 80 lines/day | 70.6x |
-| Speedup vs. 100 lines/day | 56.5x |
-| Methodik / Methodology | v2; source `c06ef58cc11e` |
+| Speedup vs. 80 lines/day | 71.0x |
+| Speedup vs. 100 lines/day | 56.8x |
+| Methodik / Methodology | v2; source `57814c8d0072` |
 
 ### Artefaktmix / Artifact Mix
 
 ```text
 Produktiv / Production          [#...................]   0.3% | 2237
-Tests                           [#...................]   4.4% | 34376
-Dokumentation / Documentation   [###########.........]  54.8% | 430686
-Skripte / Scripts               [##..................]   8.3% | 65097
-Konfiguration / Configuration   [######..............]  32.2% | 252803
+Tests                           [#...................]   4.4% | 34467
+Dokumentation / Documentation   [###########.........]  55.0% | 434284
+Skripte / Scripts               [##..................]   8.3% | 65166
+Konfiguration / Configuration   [######..............]  32.0% | 252804
 Daten und Medien / Data and media [....................]   0.0% | 0
 Sonstiger Text / Other text     [#...................]   0.0% | 356
 ```
@@ -1824,7 +1840,7 @@ Mo/Mo  0 0 0 0 0 0 4 4 4 4 3 0 2 1 0 0 3 3 0 3 2 0 4 0 0 2
 Di/Tu  0 3 0 0 0 0 2 4 4 4 4 0 0 0 0 4 2 4 0 0 3 0 4 0 4 0
 Mi/We  0 0 1 0 4 0 4 4 4 4 4 4 0 4 3 0 4 2 0 0 0 0 0 0 0 0
 Do/Th  3 2 1 4 0 0 2 4 3 4 4 0 4 4 0 4 4 0 0 3 0 0 0 2 4 4
-Fr/Fr  1 2 2 1 4 2 3 4 3 4 4 4 3 0 4 0 4 1 0 0 2 0 0 3 0 2
+Fr/Fr  1 2 2 1 4 2 3 4 3 4 4 4 3 0 4 0 4 1 0 0 2 0 0 3 0 4
 Sa/Sa  0 0 0 0 4 4 4 4 4 4 4 4 4 4 4 4 4 4 2 4 3 0 4 0 4 -
 ```
 
@@ -2060,8 +2076,8 @@ Die festen Slots halten den Phasenvergleich auch bei fehlenden oder spaeter erga
 
 ```text
 Scale: 0..100x
-80 lines/day       [##############......] 70.6x
-100 lines/day      [###########.........] 56.5x
+80 lines/day       [##############......] 71.0x
+100 lines/day      [###########.........] 56.8x
 ```
 
 Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen Referenzen. Sie messen keine Arbeitszeit.
@@ -2074,7 +2090,7 @@ Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen
 Scale: 0..10000 lines/day
 Experienced manual [#...................] 80
 Thorsten solo      [#...................] 100
-Visible repository [###########.........] 5651.5
+Visible repository [###########.........] 5678.5
 ```
 
 Die gemeinsame Skala vergleicht Referenzen und sichtbare Lieferdichte. Sie schreibt die Git-Aktivitaet keiner Person oder KI pauschal zu.
@@ -2100,6 +2116,6 @@ DE: Das Fenster beginnt am 2025-11-16 und endet am 2026-11-13. Es enthaelt 139 a
 | 2026-08 | 278228 |
 | 2026-09 | 144845 |
 | 2026-10 | 73816 |
-| 2026-11 | 42002 |
+| 2026-11 | 47755 |
 
 <!-- project-statistics-v2:end -->

@@ -6,7 +6,7 @@
       "changeId": "CHG001",
       "scope": "Least-privilege homogeneity CI and shared CodeQL source/consumer assessment",
       "decision": "UpdateRequired",
-      "rationale": "Explicit read-only workflow authority prevents inheritance of the live write-enabled repository default.",
+      "rationale": "Explicit read-only workflow authority prevents inheritance of the live write-enabled repository default. Re-evaluation: the workflow and evidence are source-only, but the regression under scripts/tests is included by the Home Runtime manifest; its sync is covered by the current preset delivery.",
       "documents": [
         "docs/maintenance/codeql-shared-security-2026-11-13.md",
         "docs/scripts/reference.md"
@@ -26,8 +26,8 @@
       "languageStrategy": "Complete German first, equivalent English second; CEFR B2 and applicable WCAG 2.2 AA criteria.",
       "languagePartners": [],
       "platformAndExampleProof": "Bash and PowerShell documentation validation; exact reporting paragraphs, repository URLs, UTF-8, languages and headings. GitHub rendering checked at delivery; no new VoiceOver, NVDA or Braille acceptance claimed. Regenerated script reference from the unchanged canonical catalog after the regression source changed; renderer CheckOnly reports CURRENT.",
-      "distributionClass": "sourceOnly",
-      "homeSyncRequired": false,
+      "distributionClass": "homeRuntime",
+      "homeSyncRequired": true,
       "evidence": "docs/maintenance/codeql-shared-security-2026-11-13.md",
       "risk": "Static triage does not prove runtime exploitability; unresolved boundaries remain needs_review. No alert dismissal or new accepted risk.",
       "criticality": "Security",

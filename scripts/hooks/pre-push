@@ -27,6 +27,43 @@ echo "pre-push: Prüfe git-getrackte Dateien auf Secrets …"
 secret_content_present() {
   local relative_path="$1"
   local grep_option="${2:--E}"
+  local fixture_hash=""
+  # DE: Nur unveraenderte negative Fixtures der veroeffentlichten Presets
+  # Authoring 0.3.13 und Model Routing 0.2.9 enthalten bekannte Schein-Secrets.
+  # EN: Bind the reviewed negative fixtures to exact normalized bytes, never
+  # a directory exemption. Any edit returns to ordinary secret detection.
+  case "$relative_path" in
+    .specify/presets/intake-authoring-governance/tests/test-intake-authoring-validator.ps1)
+      fixture_hash="6ad1bbc65a4f2c99e1559bfdad36ad0d979a9dbb8a69887237e433d0ff910c20" ;;
+    .specify/presets/model-routing-governance/tests/test-live-smoke-contract.ps1)
+      fixture_hash="5e422b64ab84aebdf5d29cc06e2ff5600d132eaa39b6f87fcb5e5e164a73d9d3" ;;
+    .specify/presets/model-routing-governance/tests/test-validation-hardening.ps1)
+      fixture_hash="0211930339f84d35fe368b31ba87f7f4e4397c33efff303c712773a00950fb78" ;;
+  esac
+  if [ -n "$fixture_hash" ]; then
+    if python3 -c '
+import hashlib, shutil, sys
+raw = sys.stdin.buffer.read(1024 * 1024 + 1)
+if len(raw) > 1024 * 1024:
+    # Oversized replacements are scanned as streams, not buffered without a bound.
+    sys.stdout.buffer.write(raw)
+    shutil.copyfileobj(sys.stdin.buffer, sys.stdout.buffer, length=65536)
+else:
+    normalized = raw.removeprefix(b"\xef\xbb\xbf").replace(b"\r\n", b"\n").replace(b"\r", b"\n")
+    if hashlib.sha256(normalized).hexdigest() != sys.argv[1]:
+        sys.stdout.buffer.write(raw)
+' "$fixture_hash" | grep "$grep_option" "$secret_content_regex" > /dev/null; then
+      return 0
+    else
+      local detector_status=("${PIPESTATUS[@]}")
+      # Scanner errors must block publication rather than become a clean result.
+      if [ "${detector_status[0]}" -ne 0 ] || [ "${detector_status[1]}" -ne 1 ]; then
+        echo "pre-push: Fixture-Pruefung fehlgeschlagen / fixture verification failed; blocking." >&2
+        return 0
+      fi
+      return 1
+    fi
+  fi
   # DE: Ein aus der Prozessumgebung gelesener CLI-Wert ist kein eingebettetes Secret.
   # EN: A CLI value read from the process environment is not an embedded secret.
   # Keep literal values and every other detector input unchanged.

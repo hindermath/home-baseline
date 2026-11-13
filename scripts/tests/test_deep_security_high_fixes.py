@@ -31,6 +31,38 @@ def run(*args: str, env: dict[str, str] | None = None) -> subprocess.CompletedPr
 
 
 class HighFindingRegressionTests(unittest.TestCase):
+    @unittest.skipUnless(shutil.which("bash"), "Bash is unavailable")
+    def test_secret_hook_accepts_only_frozen_negative_fixture_bytes(self) -> None:
+        hook = (SCRIPTS / "hooks/pre-push").read_text(encoding="utf-8")
+        detector = next(line for line in hook.splitlines() if line.startswith("secret_content_regex="))
+        function = hook.split("secret_content_present() {", 1)[1].split("\nregex_file_known()", 1)[0]
+        source = detector + "\nsecret_content_present() {" + function
+
+        def detect(path: str, payload: bytes, override: str = "") -> int:
+            result = subprocess.run(
+                ["bash", "-c", source + "\n" + override + '\nsecret_content_present "$1"', "fixture", path],
+                input=payload, stdout=subprocess.PIPE, stderr=subprocess.PIPE, check=False,
+            )
+            return result.returncode
+
+        fixtures = (
+            ".specify/presets/intake-authoring-governance/tests/test-intake-authoring-validator.ps1",
+            ".specify/presets/model-routing-governance/tests/test-live-smoke-contract.ps1",
+            ".specify/presets/model-routing-governance/tests/test-validation-hardening.ps1",
+        )
+        secret = ("gh" + "p_" + "9" * 40).encode("ascii")
+        for path in fixtures:
+            payload = (ROOT / path).read_bytes()
+            with self.subTest(path=path):
+                self.assertEqual(detect(path, payload), 1, "unchanged published negative fixture")
+                normalized = payload.removeprefix(b"\xef\xbb\xbf").replace(b"\r\n", b"\n")
+                self.assertEqual(detect(path, b"\xef\xbb\xbf" + normalized.replace(b"\n", b"\r\n")), 1)
+                self.assertEqual(detect(path, payload + b"\n" + secret), 0, "modified fixture still scanned")
+                self.assertEqual(detect("tests/ordinary.ps1", payload), 0, "no path-wide exemption")
+        self.assertEqual(detect(fixtures[0], b"x" * (1024 * 1024 + 1) + b"\n" + secret), 0)
+        self.assertEqual(detect(fixtures[0], b"ordinary text", "python3() { return 2; }"), 0)
+        self.assertEqual(detect(fixtures[0], (ROOT / fixtures[0]).read_bytes(), "grep() { return 2; }"), 0)
+
     def test_homogeneity_workflow_cannot_inherit_repository_write_tokens(self) -> None:
         workflow = (ROOT / ".github/workflows/homogeneity-check.yml").read_text(encoding="utf-8")
         # This gate executes repository-controlled checks. Its token authority
