@@ -1828,6 +1828,21 @@ distribution. No Spec Kit run is added.
 
 Documentation Impact: UpdateRequired; [Nachweis / evidence](maintenance/consumer-maintenance-contracts-2026-11-13.md).
 
+### 2026-11-13 — npm-Cachepfad für Speicherwartung gebunden / Bound npm cache path for storage maintenance
+
+DE: Die Speicherwartung liest den tatsächlich konfigurierten npm-Cachepfad,
+prüft seine Home-Grenze und bindet ihn bei `verify` und `clean` ausdrücklich.
+Eine Projekt-`.npmrc` kann die anschließende Bereinigung dadurch nicht auf
+einen anderen Pfad umleiten. Ein eigener zulässiger Cache innerhalb von Home
+bleibt nutzbar. Es wird kein Spec-Kit-Lauf hinzugezählt.
+
+EN: Storage maintenance reads npm's effective cache path, checks its home
+boundary, and binds that path explicitly for `verify` and `clean`. A project
+`.npmrc` can no longer redirect the later cleanup to another location. A
+separate valid cache inside home remains supported. No Spec Kit run is added.
+
+Documentation Impact: UpdateRequired; [Nachweis / evidence](man/maintain-workspace-storage.1.md).
+
 ## Gesamtstatistik / Overall Statistics
 
 <!-- project-statistics-v2:begin -->
@@ -1838,26 +1853,26 @@ Profil 2 verwendet Git-getrackte Textdateien und sichtbare Git-Aktivitaet. Die W
 
 | Kennzahl / Metric | Wert / Value |
 |---|---:|
-| Textbasis / Text base | 790160 lines |
+| Textbasis / Text base | 790307 lines |
 | Textdateien / Text files | 3929 |
 | Beobachtbarer Zeitraum / Observable period | 2025-11-16..2026-11-13 |
 | Aktivtage / Active days | 139 |
-| Relevante Commits / Relevant commits | 1033 |
-| Zeilen je Aktivtag / Lines per active day | 5684.6 |
+| Relevante Commits / Relevant commits | 1034 |
+| Zeilen je Aktivtag / Lines per active day | 5685.7 |
 | Peak-Tag im Fenster / Peak day in window | 2026-08-01 / 161357 |
 | Peak-Woche im Fenster / Peak week in window | 2026-07-26 / 284516 |
 | Laengste Serie / Longest streak | 38 days |
 | Speedup vs. 80 lines/day | 71.1x |
-| Speedup vs. 100 lines/day | 56.8x |
-| Methodik / Methodology | v2; source `687db6d9173d` |
+| Speedup vs. 100 lines/day | 56.9x |
+| Methodik / Methodology | v2; source `f5edf39eb47c` |
 
 ### Artefaktmix / Artifact Mix
 
 ```text
 Produktiv / Production          [#...................]   0.3% | 2237
-Tests                           [#...................]   4.4% | 34595
-Dokumentation / Documentation   [###########.........]  55.0% | 434753
-Skripte / Scripts               [##..................]   8.3% | 65415
+Tests                           [#...................]   4.4% | 34681
+Dokumentation / Documentation   [###########.........]  55.0% | 434797
+Skripte / Scripts               [##..................]   8.3% | 65432
 Konfiguration / Configuration   [######..............]  32.0% | 252804
 Daten und Medien / Data and media [....................]   0.0% | 0
 Sonstiger Text / Other text     [#...................]   0.0% | 356
@@ -2124,7 +2139,7 @@ Die festen Slots halten den Phasenvergleich auch bei fehlenden oder spaeter erga
 ```text
 Scale: 0..100x
 80 lines/day       [##############......] 71.1x
-100 lines/day      [###########.........] 56.8x
+100 lines/day      [###########.........] 56.9x
 ```
 
 Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen Referenzen. Sie messen keine Arbeitszeit.
@@ -2137,7 +2152,7 @@ Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen
 Scale: 0..10000 lines/day
 Experienced manual [#...................] 80
 Thorsten solo      [#...................] 100
-Visible repository [###########.........] 5684.6
+Visible repository [###########.........] 5685.7
 ```
 
 Die gemeinsame Skala vergleicht Referenzen und sichtbare Lieferdichte. Sie schreibt die Git-Aktivitaet keiner Person oder KI pauschal zu.
@@ -2163,6 +2178,6 @@ DE: Das Fenster beginnt am 2025-11-16 und endet am 2026-11-13. Es enthaelt 139 a
 | 2026-08 | 278228 |
 | 2026-09 | 144845 |
 | 2026-10 | 73816 |
-| 2026-11 | 48885 |
+| 2026-11 | 49050 |
 
 <!-- project-statistics-v2:end -->

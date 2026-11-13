@@ -185,6 +185,38 @@
         "path": "docs/project-statistics.config.json",
         "renderer": "bash scripts/render-project-statistics.sh"
       }
+    },
+    {
+      "changeId": "CHG923",
+      "scope": "Bind npm storage maintenance to its verified effective cache path",
+      "decision": "UpdateRequired",
+      "rationale": "The documented operator boundary now requires the effective npm cache, including .npmrc settings, to be a separate verified in-home directory and binds that exact path to maintenance commands.",
+      "documents": [
+        "docs/man/maintain-workspace-storage.1.md",
+        "docs/project-statistics.md"
+      ],
+      "owner": "Workspace Maintainer",
+      "audiences": [
+        "Workspace operators",
+        "Maintainers",
+        "Security reviewers"
+      ],
+      "readerPaths": [
+        "Storage cleanup manpage",
+        "Project statistics"
+      ],
+      "canonicalSource": "scripts/lib/workspace_storage_maintenance.py",
+      "navigationImpact": "The existing maintenance portal already links the updated storage manpage.",
+      "documentClass": "ActiveSemantic",
+      "languageStrategy": "German first and equivalent English in the bilingual storage manpage and update log.",
+      "languagePartners": [],
+      "platformAndExampleProof": "Focused npm cache boundary tests and the owning Python storage test module pass on macOS; PR CI must confirm the other platforms.",
+      "distributionClass": "homeRuntime",
+      "homeSyncRequired": true,
+      "evidence": "scripts/tests/test_workspace_storage_maintenance.py",
+      "risk": "Project or user npm configuration could redirect cache cleanup away from the path checked by the storage maintainer.",
+      "criticality": "Security",
+      "reevaluationTrigger": "npm cache configuration precedence, cache cleanup behavior, or storage-maintenance provider dispatch changes."
     }
   ]
 }
