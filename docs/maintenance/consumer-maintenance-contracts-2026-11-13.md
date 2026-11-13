@@ -23,6 +23,10 @@ gehören zu dieser Grenze. Auch hier werden neue Probegrenzen im
 Projektadapter ergänzt; Container, Images und Laufzeitdaten sind nicht
 Gegenstand dieser Manifeständerung.
 
+Die Sandbox behält außerdem ihren festgelegten Maintenance-TUI-SDK-Stand,
+die Feature-004-Ausführungskontexte und Identitätsprüfungen vor einer
+Speicherbereinigung. Gemeinsame Fleet-Härtungen bleiben verteilt.
+
 Die Ausnahmen gelten nur für die benannten Pfade und Repositories.
 Quellrevisionen und Beleglinks stehen je Eintrag im Manifest. Technische
 PR-Prüfungen und CodeQL-Analyse bleiben eigenständige Auslieferungstore.
@@ -47,6 +51,10 @@ The sandbox keeps preview and compare operations free from process launches
 specified by registries. Its registry snapshot and Linux helpers form part
 of this boundary. The new probe boundaries are added to its project adapter.
 Containers, images, and runtime data are outside this manifest change.
+
+The sandbox also keeps its pinned Maintenance TUI SDK, Feature 004 execution
+contexts and identity checks before storage cleanup. Shared fleet hardening
+continues to be distributed.
 
 Exceptions apply only to the named paths and repositories. Each manifest
 entry records its source revision and evidence link. Technical PR checks

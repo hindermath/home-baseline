@@ -4,6 +4,36 @@
   "description": "Canonical files propagated from Level-0 to existing Level-1 and Level-2 repositories.",
   "exceptions": [
     {
+      "repositoryPath": "container-images/absdd-image-sandbox",
+      "path": ".github/workflows/maintenance-tui.yml",
+      "reason": "Preserve the sandbox's pinned maintenance SDK, Feature 004 execution contexts and storage-cleanup identity checks; generic Level-0 files must not weaken these boundaries.",
+      "evidence": "https://github.com/hindermath/absdd-image-sandbox/blob/9ca5aec38f5005502ac2253b95d9485ac0383792/.github/workflows/maintenance-tui.yml"
+    },
+    {
+      "repositoryPath": "container-images/absdd-image-sandbox",
+      "path": "scripts/config/maintenance-execution-contexts.json",
+      "reason": "Preserve the sandbox's pinned maintenance SDK, Feature 004 execution contexts and storage-cleanup identity checks; generic Level-0 files must not weaken these boundaries.",
+      "evidence": "https://github.com/hindermath/absdd-image-sandbox/blob/9ca5aec38f5005502ac2253b95d9485ac0383792/scripts/config/maintenance-execution-contexts.json"
+    },
+    {
+      "repositoryPath": "container-images/absdd-image-sandbox",
+      "path": "scripts/config/workspace-storage-maintenance.json",
+      "reason": "Preserve the sandbox's pinned maintenance SDK, Feature 004 execution contexts and storage-cleanup identity checks; generic Level-0 files must not weaken these boundaries.",
+      "evidence": "https://github.com/hindermath/absdd-image-sandbox/blob/9ca5aec38f5005502ac2253b95d9485ac0383792/scripts/config/workspace-storage-maintenance.json"
+    },
+    {
+      "repositoryPath": "container-images/absdd-image-sandbox",
+      "path": "scripts/lib/maintenance_execution_context.py",
+      "reason": "Preserve the sandbox's pinned maintenance SDK, Feature 004 execution contexts and storage-cleanup identity checks; generic Level-0 files must not weaken these boundaries.",
+      "evidence": "https://github.com/hindermath/absdd-image-sandbox/blob/9ca5aec38f5005502ac2253b95d9485ac0383792/scripts/lib/maintenance_execution_context.py"
+    },
+    {
+      "repositoryPath": "container-images/absdd-image-sandbox",
+      "path": "scripts/lib/workspace_storage_maintenance.py",
+      "reason": "Preserve the sandbox's pinned maintenance SDK, Feature 004 execution contexts and storage-cleanup identity checks; generic Level-0 files must not weaken these boundaries.",
+      "evidence": "https://github.com/hindermath/absdd-image-sandbox/blob/9ca5aec38f5005502ac2253b95d9485ac0383792/scripts/lib/workspace_storage_maintenance.py"
+    },
+    {
       "repositoryPath": "RiderProjects/TuiVision",
       "path": ".github/workflows/maintenance-tui.yml",
       "reason": "Run TuiVision's existing Windows registry and npm-integrity test modules; the generic module name is absent in this project.",
