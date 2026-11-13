@@ -59,12 +59,6 @@
     },
     {
       "repositoryPath": "container-images/absdd-image-sandbox",
-      "path": "scripts/lib/maintenance-tui/tests/HomeBaseline.MaintenanceTui.Tests/Integration/BoundedProcessOutputTests.cs",
-      "reason": "Preserve the sandbox's project-specific bounded diagnostic tails and fail-closed event reconciliation with their exact tests and locked dependencies.",
-      "evidence": "https://github.com/hindermath/absdd-image-sandbox/blob/9ca5aec38f5005502ac2253b95d9485ac0383792/scripts/lib/maintenance-tui/tests/HomeBaseline.MaintenanceTui.Tests/Integration/BoundedProcessOutputTests.cs"
-    },
-    {
-      "repositoryPath": "container-images/absdd-image-sandbox",
       "path": "scripts/lib/maintenance-tui/tests/HomeBaseline.MaintenanceTui.Tests/packages.lock.json",
       "reason": "Preserve the sandbox's project-specific bounded diagnostic tails and fail-closed event reconciliation with their exact tests and locked dependencies.",
       "evidence": "https://github.com/hindermath/absdd-image-sandbox/blob/9ca5aec38f5005502ac2253b95d9485ac0383792/scripts/lib/maintenance-tui/tests/HomeBaseline.MaintenanceTui.Tests/packages.lock.json"
