@@ -60,3 +60,9 @@ EN: The pre-push detector recognises only three reviewed synthetic negative fixt
 DE: Lokale Legacy-Hooks werden fuer diese Auslieferung nur kontrolliert durch den vollstaendigen kanonischen Hook mit den bereits vorhandenen zentralen CI-Vertraegen und der tatsaechlichen oeffentlichen Repository-ID ersetzt. Danach werden ihre Originalbytes wiederhergestellt. Private CI wird weder gestartet noch abgeschwaecht.
 
 EN: This delivery temporarily uses the full canonical hook with the existing central CI contracts and the actual public repository identity where a managed legacy hook blocks valid fixtures. Original hook bytes are restored afterwards. No private CI is started or weakened.
+
+## Reproduzierbare macOS-Pruefung / Reproducible macOS checks
+
+DE: Der bestehende Wartungsworkflow installiert Bash ueber Homebrew und setzt dessen bin-Verzeichnis fuer nachfolgende Schritte an den PATH-Anfang. Die verteilten Skripte benoetigen Bash 5; das macOS-System-Bash 3.2 darf nicht versehentlich verwendet werden. Verbraucher behalten ihre historischen Installationsnachweise; aktuelle Paketpruefungen verwenden neue Nachfolgerdateien.
+
+EN: The existing maintenance workflow installs Bash through Homebrew and prepends its bin directory for later steps. Distributed scripts require Bash 5; macOS system Bash 3.2 must not be selected accidentally. Consumers retain historical installation receipts; current package proofs use successor files.

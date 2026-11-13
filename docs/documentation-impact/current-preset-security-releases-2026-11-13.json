@@ -4,7 +4,7 @@
   "entries": [
     {
       "changeId": "CHG001",
-      "scope": "Fourteen verified patch releases, pinned profiles, installed bindings and authorised nine-consumer rollout; exact-byte negative-fixture handling in the shared pre-push detector",
+      "scope": "Fourteen verified patch releases, pinned profiles, installed bindings and authorised nine-consumer rollout; exact-byte negative-fixture handling in the shared pre-push detector; explicit Bash 5 runner selection and consumer successor proof receipts",
       "decision": "UpdateRequired",
       "rationale": "Current security policies and source fixes must be available through immutable installed packages.",
       "documents": [
