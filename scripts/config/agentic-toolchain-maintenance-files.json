@@ -4,6 +4,72 @@
   "description": "Canonical files propagated from Level-0 to existing Level-1 and Level-2 repositories.",
   "exceptions": [
     {
+      "repositoryPath": "RiderProjects/TuiVision",
+      "path": ".github/workflows/maintenance-tui.yml",
+      "reason": "Run TuiVision's existing Windows registry and npm-integrity test modules; the generic module name is absent in this project.",
+      "evidence": "https://github.com/hindermath/TuiVision/pull/219"
+    },
+    {
+      "repositoryPath": "container-images/absdd-image-sandbox",
+      "path": "scripts/lib/maintenance-tui/src/HomeBaseline.MaintenanceTui/Application/MaintenanceTuiApplication.cs",
+      "reason": "Preserve the sandbox's project-specific bounded diagnostic tails and fail-closed event reconciliation with their exact tests and locked dependencies.",
+      "evidence": "https://github.com/hindermath/absdd-image-sandbox/blob/9ca5aec38f5005502ac2253b95d9485ac0383792/scripts/lib/maintenance-tui/src/HomeBaseline.MaintenanceTui/Application/MaintenanceTuiApplication.cs"
+    },
+    {
+      "repositoryPath": "container-images/absdd-image-sandbox",
+      "path": "scripts/lib/maintenance-tui/src/HomeBaseline.MaintenanceTui/Contracts/MaintenanceEvent.cs",
+      "reason": "Preserve the sandbox's project-specific bounded diagnostic tails and fail-closed event reconciliation with their exact tests and locked dependencies.",
+      "evidence": "https://github.com/hindermath/absdd-image-sandbox/blob/9ca5aec38f5005502ac2253b95d9485ac0383792/scripts/lib/maintenance-tui/src/HomeBaseline.MaintenanceTui/Contracts/MaintenanceEvent.cs"
+    },
+    {
+      "repositoryPath": "container-images/absdd-image-sandbox",
+      "path": "scripts/lib/maintenance-tui/src/HomeBaseline.MaintenanceTui/Infrastructure/MaintenanceEventReader.cs",
+      "reason": "Preserve the sandbox's project-specific bounded diagnostic tails and fail-closed event reconciliation with their exact tests and locked dependencies.",
+      "evidence": "https://github.com/hindermath/absdd-image-sandbox/blob/9ca5aec38f5005502ac2253b95d9485ac0383792/scripts/lib/maintenance-tui/src/HomeBaseline.MaintenanceTui/Infrastructure/MaintenanceEventReader.cs"
+    },
+    {
+      "repositoryPath": "container-images/absdd-image-sandbox",
+      "path": "scripts/lib/maintenance-tui/src/HomeBaseline.MaintenanceTui/Infrastructure/MaintenanceProcessRunner.cs",
+      "reason": "Preserve the sandbox's project-specific bounded diagnostic tails and fail-closed event reconciliation with their exact tests and locked dependencies.",
+      "evidence": "https://github.com/hindermath/absdd-image-sandbox/blob/9ca5aec38f5005502ac2253b95d9485ac0383792/scripts/lib/maintenance-tui/src/HomeBaseline.MaintenanceTui/Infrastructure/MaintenanceProcessRunner.cs"
+    },
+    {
+      "repositoryPath": "container-images/absdd-image-sandbox",
+      "path": "scripts/lib/maintenance-tui/src/HomeBaseline.MaintenanceTui/Infrastructure/RunResultReconciler.cs",
+      "reason": "Preserve the sandbox's project-specific bounded diagnostic tails and fail-closed event reconciliation with their exact tests and locked dependencies.",
+      "evidence": "https://github.com/hindermath/absdd-image-sandbox/blob/9ca5aec38f5005502ac2253b95d9485ac0383792/scripts/lib/maintenance-tui/src/HomeBaseline.MaintenanceTui/Infrastructure/RunResultReconciler.cs"
+    },
+    {
+      "repositoryPath": "container-images/absdd-image-sandbox",
+      "path": "scripts/lib/maintenance-tui/tests/HomeBaseline.MaintenanceTui.Tests/Contracts/EventReaderTests.cs",
+      "reason": "Preserve the sandbox's project-specific bounded diagnostic tails and fail-closed event reconciliation with their exact tests and locked dependencies.",
+      "evidence": "https://github.com/hindermath/absdd-image-sandbox/blob/9ca5aec38f5005502ac2253b95d9485ac0383792/scripts/lib/maintenance-tui/tests/HomeBaseline.MaintenanceTui.Tests/Contracts/EventReaderTests.cs"
+    },
+    {
+      "repositoryPath": "container-images/absdd-image-sandbox",
+      "path": "scripts/lib/maintenance-tui/tests/HomeBaseline.MaintenanceTui.Tests/Contracts/RunResultReconcilerTests.cs",
+      "reason": "Preserve the sandbox's project-specific bounded diagnostic tails and fail-closed event reconciliation with their exact tests and locked dependencies.",
+      "evidence": "https://github.com/hindermath/absdd-image-sandbox/blob/9ca5aec38f5005502ac2253b95d9485ac0383792/scripts/lib/maintenance-tui/tests/HomeBaseline.MaintenanceTui.Tests/Contracts/RunResultReconcilerTests.cs"
+    },
+    {
+      "repositoryPath": "container-images/absdd-image-sandbox",
+      "path": "scripts/lib/maintenance-tui/tests/HomeBaseline.MaintenanceTui.Tests/HomeBaseline.MaintenanceTui.Tests.csproj",
+      "reason": "Preserve the sandbox's project-specific bounded diagnostic tails and fail-closed event reconciliation with their exact tests and locked dependencies.",
+      "evidence": "https://github.com/hindermath/absdd-image-sandbox/blob/9ca5aec38f5005502ac2253b95d9485ac0383792/scripts/lib/maintenance-tui/tests/HomeBaseline.MaintenanceTui.Tests/HomeBaseline.MaintenanceTui.Tests.csproj"
+    },
+    {
+      "repositoryPath": "container-images/absdd-image-sandbox",
+      "path": "scripts/lib/maintenance-tui/tests/HomeBaseline.MaintenanceTui.Tests/Integration/BoundedProcessOutputTests.cs",
+      "reason": "Preserve the sandbox's project-specific bounded diagnostic tails and fail-closed event reconciliation with their exact tests and locked dependencies.",
+      "evidence": "https://github.com/hindermath/absdd-image-sandbox/blob/9ca5aec38f5005502ac2253b95d9485ac0383792/scripts/lib/maintenance-tui/tests/HomeBaseline.MaintenanceTui.Tests/Integration/BoundedProcessOutputTests.cs"
+    },
+    {
+      "repositoryPath": "container-images/absdd-image-sandbox",
+      "path": "scripts/lib/maintenance-tui/tests/HomeBaseline.MaintenanceTui.Tests/packages.lock.json",
+      "reason": "Preserve the sandbox's project-specific bounded diagnostic tails and fail-closed event reconciliation with their exact tests and locked dependencies.",
+      "evidence": "https://github.com/hindermath/absdd-image-sandbox/blob/9ca5aec38f5005502ac2253b95d9485ac0383792/scripts/lib/maintenance-tui/tests/HomeBaseline.MaintenanceTui.Tests/packages.lock.json"
+    },
+    {
       "repositoryPath": "container-images/absdd-image-sandbox",
       "path": "scripts/tests/test_msl_toolchains.py",
       "reason": "Keep shared MSL module tests while matching the three parent-adapter cases to the sandbox's maintained CLI surface.",
