@@ -70,6 +70,89 @@ def create_source(root: Path) -> Path:
 
 
 class LearningPackageSecurityTests(unittest.TestCase):
+    def test_invalid_archive_preserves_preexisting_extract_destination(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            base = Path(tmp)
+            package = base / "invalid.zip"
+            package.write_bytes(b"not a ZIP archive")
+            destination = base / "existing"
+            destination.mkdir()
+            marker = destination / "owner-data.txt"
+            marker.write_text("preserve\n", encoding="utf-8")
+
+            result = run(
+                "python3",
+                str(SCRIPTS / "lib/learning_package_archive.py"),
+                str(package),
+                "--extract",
+                str(destination),
+            )
+
+            self.assertNotEqual(result.returncode, 0, result.stdout + result.stderr)
+            self.assertEqual(marker.read_text(encoding="utf-8"), "preserve\n")
+
+    def test_valid_archive_preserves_preexisting_extract_destination(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            base = Path(tmp)
+            package = base / "package.zip"
+            write_package(package)
+            destination = base / "existing"
+            destination.mkdir()
+            marker = destination / "owner-data.txt"
+            marker.write_text("preserve\n", encoding="utf-8")
+
+            result = run(
+                "python3",
+                str(SCRIPTS / "lib/learning_package_archive.py"),
+                str(package),
+                "--extract",
+                str(destination),
+            )
+
+            self.assertNotEqual(result.returncode, 0, result.stdout + result.stderr)
+            self.assertEqual(marker.read_text(encoding="utf-8"), "preserve\n")
+
+    def test_failed_extraction_removes_only_owned_partial_destination(self) -> None:
+        helper = SCRIPTS / "lib/learning_package_archive.py"
+        specification = importlib.util.spec_from_file_location("learning_package_archive_cleanup_test", helper)
+        self.assertIsNotNone(specification)
+        self.assertIsNotNone(specification.loader)
+        module = importlib.util.module_from_spec(specification)
+        specification.loader.exec_module(module)
+        with tempfile.TemporaryDirectory() as tmp:
+            base = Path(tmp)
+            package = base / "package.zip"
+            destination = base / "partial"
+            write_package(package)
+            with mock.patch.object(
+                module.time,
+                "monotonic",
+                side_effect=[0.0, module.MAX_EXTRACT_SECONDS + 1.0],
+            ):
+                with self.assertRaises(module.ArchiveError):
+                    module.extract_archive(package, destination)
+            self.assertFalse(destination.exists())
+
+    def test_valid_archive_extracts_into_new_destination(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            base = Path(tmp)
+            package = base / "package.zip"
+            destination = base / "extracted"
+            write_package(package)
+
+            result = run(
+                "python3",
+                str(SCRIPTS / "lib/learning_package_archive.py"),
+                str(package),
+                "--extract",
+                str(destination),
+            )
+
+            self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+            self.assertTrue(
+                (destination / "SecureExampleProjects" / "START-HERE-FUER-LERNENDE.md").is_file()
+            )
+
     def test_bounded_extractor_rejects_zip_bomb_ratio(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             package = Path(tmp) / "bomb.zip"
