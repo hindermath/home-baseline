@@ -1773,6 +1773,14 @@ Fourteen new patches are bound to real tags, merge commits and byte-verified Git
 
 Documentation Impact: UpdateRequired; [Release- und Bindungsnachweis / release and binding evidence](maintenance/preset-security-patch-rollout-2026-11-13.md).
 
+### 2026-11-13 — Hashgebundene negative Secret-Fixtures / Hash-bound negative secret fixtures
+
+Der Pre-push-Detektor unterscheidet drei unveraenderte synthetische Negativ-Fixtures anhand exakter Pfade und normalisierter SHA-256-Hashes. Veraenderte Dateien, zusaetzliche Secrets, andere Pfade und Scannerfehler bleiben blockierend; grosse Ersetzungen werden begrenzt gestreamt. Keine CodeQL-Ausnahme, Alert-Verwerfung oder Aenderung historischer Tags.
+
+The pre-push detector identifies three unchanged synthetic negative fixtures by exact paths and normalized SHA-256. Modified files, additional secrets, other paths and scanner errors remain blocking; large replacements use bounded streaming. No CodeQL exclusion, alert dismissal or historical tag change.
+
+Documentation Impact: UpdateRequired; beide Statistikansichten werden reproduzierbar generiert / both statistics views are generated reproducibly. [Nachweis / evidence](maintenance/preset-security-patch-rollout-2026-11-13.md).
+
 ## Gesamtstatistik / Overall Statistics
 
 <!-- project-statistics-v2:begin -->

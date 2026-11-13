@@ -4,7 +4,7 @@
   "entries": [
     {
       "changeId": "CHG001",
-      "scope": "Fourteen verified patch releases, pinned profiles, installed bindings and authorised nine-consumer rollout",
+      "scope": "Fourteen verified patch releases, pinned profiles, installed bindings and authorised nine-consumer rollout; exact-byte negative-fixture handling in the shared pre-push detector",
       "decision": "UpdateRequired",
       "rationale": "Current security policies and source fixes must be available through immutable installed packages.",
       "documents": [
@@ -29,12 +29,12 @@
       "readerPaths": [
         "SECURITY.md -> shared maintenance explanation -> exact source PR and CI evidence"
       ],
-      "canonicalSource": "Published preset repositories, scripts/config/*governance-presets.json, preset-source-lock.json and preset-installed-lock.json",
+      "canonicalSource": "Published preset repositories, scripts/config/*governance-presets.json, preset-source-lock.json and preset-installed-lock.json; scripts/hooks/pre-push and its focused regression",
       "navigationImpact": "Existing maintenance documentation family; no new top-level product navigation.",
       "documentClass": "ActiveSemantic",
       "languageStrategy": "Complete German first, equivalent English second; CEFR B2 and applicable WCAG 2.2 AA criteria.",
       "languagePartners": [],
-      "platformAndExampleProof": "Actual GitHub tag/archive byte comparison and disposable installation; exact native PR checks. No practical screen-reader or Braille acceptance claimed. Existing nine agent-surface parity tests pass after bounded CLI resolver/registrar regeneration of the three existing Claude wrapper skills.",
+      "platformAndExampleProof": "Actual GitHub tag/archive byte comparison and disposable installation; exact native PR checks. No practical screen-reader or Braille acceptance claimed. Existing nine agent-surface parity tests pass after bounded CLI resolver/registrar regeneration of the three existing Claude wrapper skills. Frozen negative fixtures passed; mutated and oversized files, unrelated paths and scanner failures still block; existing CI-evidence hook contracts preserved.",
       "distributionClass": "homeRuntime",
       "homeSyncRequired": true,
       "evidence": "docs/maintenance/preset-security-patch-rollout-2026-11-13.md",

@@ -50,3 +50,13 @@ EN: Distribution review corrects the classification for PR 372: the workflow its
 DE: Die Sandbox behaelt in ihrer CLI-Registry den Linux-Swift-Pin aus dem Dockerfile. Die Ausnahme ist auf container-images/absdd-image-sandbox und scripts/config/required-cli-tools-registry.json begrenzt; andere Registry-Felder wurden aus der aktuellen Quelle uebernommen. Der vorhandene Version-Pin-Test erkennt eine unzulaessige latest-stable-Verteilung.
 
 EN: The sandbox retains its Dockerfile-bound Linux Swift pin in the CLI registry. The exception is limited to container-images/absdd-image-sandbox and scripts/config/required-cli-tools-registry.json; other registry fields follow the current source. The existing version-pin regression rejects unintended latest-stable distribution.
+
+## Gebundene negative Secret-Fixtures / Bound negative secret fixtures
+
+DE: Der Pre-push-Detektor akzeptiert nur die drei geprueften synthetischen Negativ-Fixtures aus Intake Authoring 0.3.13 und Model Routing 0.2.9 anhand von exaktem Pfad und SHA-256 der UTF-8-/LF-normalisierten Bytes. Es gibt keine Verzeichnisausnahme und keine Aenderung an Gitleaks, CodeQL oder GitHub-Alerts. Geaenderte Dateien, neue Secrets und uebergrosse Ersetzungen werden weiter geprueft. Ein interner Scannerfehler blockiert. Die veroeffentlichten Tags und negativen Tests bleiben unveraendert; der neue Regressionstest prueft auch fremde Pfade, Mutation, BOM/CRLF und Fehlerpfade.
+
+EN: The pre-push detector recognises only three reviewed synthetic negative fixtures from Intake Authoring 0.3.13 and Model Routing 0.2.9, bound to exact paths and SHA-256 of UTF-8/LF-normalized bytes. There is no directory exemption or change to Gitleaks, CodeQL or GitHub alerts. Changed files, new secrets and oversized replacements still pass through detection. Internal scanner errors block. Published tags and negative tests remain unchanged; regression coverage includes other paths, mutation, BOM/CRLF and error paths.
+
+DE: Lokale Legacy-Hooks werden fuer diese Auslieferung nur kontrolliert durch den vollstaendigen kanonischen Hook mit den bereits vorhandenen zentralen CI-Vertraegen und der tatsaechlichen oeffentlichen Repository-ID ersetzt. Danach werden ihre Originalbytes wiederhergestellt. Private CI wird weder gestartet noch abgeschwaecht.
+
+EN: This delivery temporarily uses the full canonical hook with the existing central CI contracts and the actual public repository identity where a managed legacy hook blocks valid fixtures. Original hook bytes are restored afterwards. No private CI is started or weakened.

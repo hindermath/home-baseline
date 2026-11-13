@@ -858,7 +858,7 @@ python3 scripts/tests/test_copilot_review_governance.py --help
 ### `scripts/tests/test_deep_security_high_fixes.py`
 
 - **Rolle / Role:** oeffentliches Kommando / public command
-- **Kurzbeschreibung / Summary:** This gate executes repository-controlled checks. Its token authority
+- **Kurzbeschreibung / Summary:** Siehe Quelltext und Hilfe. / See source and help.
 - **Voraussetzungen / Prerequisites:** passende Shell; weitere Anforderungen stehen in `--help` oder `Get-Help`.
 - **Nebenwirkungen / Side effects:** zuerst Check-, Dry-Run- oder WhatIf-Modus verwenden, sofern angeboten.
 
