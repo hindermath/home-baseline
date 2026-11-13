@@ -1813,6 +1813,21 @@ review area. No Spec Kit run is added.
 
 Documentation Impact: UpdateRequired; [Nachweis / evidence](maintenance/npm-agent-probe-authorization-2026-11-13.md).
 
+### 2026-11-13 — Projektverträge bei Wartungsverteilung bewahrt / Preserved project maintenance contracts
+
+DE: Das Verteilungsmanifest nimmt die gezielten TuiVision- und
+Sandbox-Ausnahmen für eigene Wartungsadapter, Registry-Bindungen und Tests
+auf. Die vorhandenen strengeren Paket- und Vorschaugrenzen werden so bei
+späteren Verteilungen nicht überschrieben. Es wird kein Spec-Kit-Lauf
+hinzugezählt.
+
+EN: The propagation manifest adds targeted TuiVision and sandbox exceptions
+for their maintenance adapters, registry bindings, and tests. This preserves
+their existing stronger package and preview boundaries during later
+distribution. No Spec Kit run is added.
+
+Documentation Impact: UpdateRequired; [Nachweis / evidence](maintenance/consumer-maintenance-contracts-2026-11-13.md).
+
 ## Gesamtstatistik / Overall Statistics
 
 <!-- project-statistics-v2:begin -->
