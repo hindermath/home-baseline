@@ -46,3 +46,7 @@ EN: Reinstallation through the existing CLI left three Claude skills as single w
 DE: Die Distributionspruefung korrigiert die Einordnung von PR 372: Der Workflow selbst bleibt sourceOnly; der Regressionstest unter scripts/tests gehoert laut Manifest zu homeRuntime. Dieser Home-Sync nimmt ihn mit auf.
 
 EN: Distribution review corrects the classification for PR 372: the workflow itself is sourceOnly; its regression under scripts/tests is manifest-bound homeRuntime. This Home sync includes that test.
+
+DE: Die Sandbox behaelt in ihrer CLI-Registry den Linux-Swift-Pin aus dem Dockerfile. Die Ausnahme ist auf container-images/absdd-image-sandbox und scripts/config/required-cli-tools-registry.json begrenzt; andere Registry-Felder wurden aus der aktuellen Quelle uebernommen. Der vorhandene Version-Pin-Test erkennt eine unzulaessige latest-stable-Verteilung.
+
+EN: The sandbox retains its Dockerfile-bound Linux Swift pin in the CLI registry. The exception is limited to container-images/absdd-image-sandbox and scripts/config/required-cli-tools-registry.json; other registry fields follow the current source. The existing version-pin regression rejects unintended latest-stable distribution.

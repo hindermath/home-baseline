@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updated": "2026-09-20",
+  "updated": "2026-11-13",
   "description": "Canonical files propagated from Level-0 to existing Level-1 and Level-2 repositories.",
   "exceptions": [
     {
@@ -14,6 +14,12 @@
       "path": "scripts/lib/maintenance-tui/tests/HomeBaseline.MaintenanceTui.Tests/HomeBaseline.MaintenanceTui.Tests.csproj",
       "reason": "TuiVision enforces CS1591 for its public API; the distributed maintenance tests are operational tooling outside that API contract.",
       "evidence": "https://github.com/hindermath/TuiVision/pull/133"
+    },
+    {
+      "evidence": "https://github.com/hindermath/absdd-image-sandbox/blob/9ca5aec38f5005502ac2253b95d9485ac0383792/Dockerfile",
+      "repositoryPath": "container-images/absdd-image-sandbox",
+      "reason": "The sandbox registry retains the Swift version pinned by its Dockerfile; host latest-stable must not replace that image-bound Linux install target. Other registry fields follow the reviewed canonical update.",
+      "path": "scripts/config/required-cli-tools-registry.json"
     }
   ],
   "files": [
