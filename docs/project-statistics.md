@@ -1791,9 +1791,9 @@ Documentation Impact: UpdateRequired; [Quellen- und Bindungsnachweis / source an
 
 ### 2026-11-13 — AOC-Paketgrenze erhalten / Preserve the AOC package boundary
 
-DE: Zwei kanonische Dateiausnahmen erhalten die bestehende sichere AOC-Memory-Patch-Anbindung. Keine allgemeine Ausnahme, neue Produktfunktion oder Sicherheitsabnahme.
+DE: Vier kanonische Dateiausnahmen erhalten die bestehende sichere AOC-Memory-Patch-Anbindung und TinyPl0s Freigabegrenze für externe CLI-Registries. Verteilte Manpages verlinken Source-only-Dokumentation über ihre kanonischen öffentlichen URLs. Keine allgemeine Ausnahme, neue Produktfunktion oder Sicherheitsabnahme.
 
-EN: Two canonical file exceptions preserve the existing secure AOC memory-patch adapter. No general exclusion, new product feature or security acceptance.
+EN: Four canonical file exceptions preserve the existing secure AOC memory-patch adapter and TinyPl0 authority for external CLI registries. Distributed manuals link source-only documentation through canonical public URLs. No general exclusion, new product feature or security acceptance.
 
 Documentation Impact: UpdateRequired; [Nachweis / evidence](maintenance/intake-authoring-v0314-rollout-2026-11-13.md).
 
