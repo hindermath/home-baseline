@@ -4,7 +4,7 @@
   "entries": [
     {
       "changeId": "CHG001",
-      "scope": "Fourteen verified patch releases, pinned profiles, installed bindings and authorised nine-consumer rollout; exact-byte negative-fixture handling in the shared pre-push detector; explicit Bash 5 runner selection and consumer successor proof receipts",
+      "scope": "Fourteen verified patch releases, pinned profiles, installed bindings and authorised nine-consumer rollout; exact-byte negative-fixture handling in the shared pre-push detector; explicit Bash 5 runner selection and consumer successor proof receipts; physical Stage-B context/fleet containment and complete generic CI-template runtime closure",
       "decision": "UpdateRequired",
       "rationale": "Current security policies and source fixes must be available through immutable installed packages.",
       "documents": [
@@ -34,7 +34,7 @@
       "documentClass": "ActiveSemantic",
       "languageStrategy": "Complete German first, equivalent English second; CEFR B2 and applicable WCAG 2.2 AA criteria.",
       "languagePartners": [],
-      "platformAndExampleProof": "Actual GitHub tag/archive byte comparison and disposable installation; exact native PR checks. No practical screen-reader or Braille acceptance claimed. Existing nine agent-surface parity tests pass after bounded CLI resolver/registrar regeneration of the three existing Claude wrapper skills. Frozen negative fixtures passed; mutated and oversized files, unrelated paths and scanner failures still block; existing CI-evidence hook contracts preserved.",
+      "platformAndExampleProof": "Actual GitHub tag/archive byte comparison and disposable installation; exact native PR checks. No practical screen-reader or Braille acceptance claimed. Existing nine agent-surface parity tests pass after bounded CLI resolver/registrar regeneration of the three existing Claude wrapper skills. Frozen negative fixtures passed; mutated and oversized files, unrelated paths and scanner failures still block; existing CI-evidence hook contracts preserved. Stage-B: 24 focused preflight tests pass, synthetic parent-link triggers reject before external hashing, contained/root aliases and public preset fallback preserved; fresh independent investigation and candidate review complete. Native Windows proof remains CI-owned.",
       "distributionClass": "homeRuntime",
       "homeSyncRequired": true,
       "evidence": "docs/maintenance/preset-security-patch-rollout-2026-11-13.md",

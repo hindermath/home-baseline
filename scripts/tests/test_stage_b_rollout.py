@@ -554,6 +554,65 @@ class FleetPreflightTests(unittest.TestCase):
                     repository, "preset-fixture", "public-preset"
                 )
 
+    def test_environment_context_blocks_external_parent_links_before_hashing(self):
+        for linked_component in (".specify", ".specify/memory"):
+            with self.subTest(component=linked_component), tempfile.TemporaryDirectory() as directory:
+                root = pathlib.Path(directory)
+                repository = root / "repository"
+                repository.mkdir()
+                outside = root / "outside"
+                outside.mkdir()
+                if linked_component == ".specify":
+                    (outside / "memory").mkdir()
+                    external = outside / "memory/constitution.md"
+                else:
+                    (repository / ".specify").mkdir()
+                    external = outside / "constitution.md"
+                external.write_text("synthetic external context\n", encoding="utf-8")
+                (repository / linked_component).symlink_to(outside, target_is_directory=True)
+                # A safe fallback must not hide a boundary violation in the primary path.
+                (repository / "constitution.md").write_text("safe fallback\n", encoding="utf-8")
+                with mock.patch.object(self.engine, "normalized_file_sha256") as digest:
+                    with self.assertRaisesRegex(self.engine.ContractError, "boundary"):
+                        self.engine._stage_b_environment_hash(repository, "fixture", "public-product")
+                    digest.assert_not_called()
+
+    def test_environment_context_preserves_contained_and_root_aliases(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = pathlib.Path(directory)
+            repository = root / "repository"
+            repository.mkdir()
+            (repository / "contexts").mkdir()
+            (repository / "contexts/constitution.md").write_text("valid context\n", encoding="utf-8")
+            (repository / ".specify").mkdir()
+            (repository / ".specify/memory").symlink_to(repository / "contexts", target_is_directory=True)
+            alias = root / "alias"
+            alias.symlink_to(repository, target_is_directory=True)
+            direct = self.engine._stage_b_environment_hash(repository, "fixture", "public-product")
+            self.assertEqual(direct, self.engine._stage_b_environment_hash(alias, "fixture", "public-product"))
+            (repository / ".specify/memory").unlink()
+            (repository / ".specify/memory").mkdir()
+            (repository / ".specify/memory/constitution.md").symlink_to(repository / "contexts/constitution.md")
+            with self.assertRaisesRegex(self.engine.ContractError, "context is missing"):
+                self.engine._stage_b_environment_hash(repository, "fixture", "public-product")
+
+    def test_local_repository_root_enforces_physical_fleet_boundary(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = pathlib.Path(directory)
+            fleet = root / "fleet"
+            fleet.mkdir()
+            outside = root / "outside"
+            outside.mkdir()
+            (fleet / "escape").symlink_to(outside, target_is_directory=True)
+            alias = root / "fleet-alias"
+            alias.symlink_to(fleet, target_is_directory=True)
+            (fleet / "contained").mkdir()
+            with mock.patch.dict(os.environ, {"HB_STAGE_B_FLEET_ROOT": str(alias)}):
+                with self.assertRaisesRegex(self.engine.ContractError, "boundary"):
+                    self.engine._stage_b_local_repository_root(ROOT, {"path": "escape"})
+                self.assertEqual(self.engine._stage_b_local_repository_root(ROOT, {"path": "contained"}), fleet.resolve() / "contained")
+                self.assertEqual(self.engine._stage_b_local_repository_root(ROOT, None), ROOT)
+
     def test_workflow_adapter_requires_complete_public_inventory(self):
         complete = {
             "total_count": 1,

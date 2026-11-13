@@ -70,3 +70,13 @@ EN: The existing maintenance workflow installs Bash through Homebrew and prepend
 DE: Show-CommandTui400 behaelt seinen vorhandenen PSScriptAnalyzer-Adapter fuer genau zwei synthetische LH-01-Variablen. Die Verteilungsausnahme ist auf das eine Skript begrenzt. Historische Probe-Dateien bleiben unveraendert; andere globale Variablen bleiben Befunde.
 
 EN: Show-CommandTui400 retains its existing PSScriptAnalyzer adapter for exactly two synthetic LH-01 variables. The distribution exception covers that single script. Historical probes remain unchanged; other global variables remain findings.
+
+## Physische Stage-B-Grenze / Physical Stage-B boundary
+
+DE: Eine bestaetigte Pfadverletzung betraf Eltern-Symlinks vor der Kontext-Hashbildung. Kontextdateien und deklarierte Fleet-Ziele werden nun vor dem Lesen an ihre physische Repository- beziehungsweise Fleet-Grenze gebunden. Blattlinks bleiben ausgeschlossen; interne Aliase und der explizite Level-0-Aufruf bleiben moeglich. Die bestehende gemeinsame Pfadpruefung wird wiederverwendet. 24 gezielte Preflight-Tests bestehen; die unabhaengige Untersuchung und Kandidatenpruefung fanden keine verbleibende Umgehung im vereinbarten stabilen Worktree. Dies behebt keine anderen CodeQL-Alerts pauschal.
+
+EN: A confirmed path-boundary violation affected parent symlinks before context hashing. Context files and declared fleet targets are now bound to their physical repository or fleet root before reading. Leaf links stay excluded; contained aliases and the explicit Level-0 invocation remain valid. The existing shared path check is reused. All 24 focused preflight tests pass; independent investigation and candidate review found no remaining scoped bypass under the agreed stable-worktree model. This does not claim other CodeQL alerts are fixed.
+
+DE: Die zwei vorhandenen generischen CI-Gate-Vorlagen gehoeren zur Laufzeitabhaengigkeit der verteilten Engine und werden mit verteilt. Sie enthalten keine privaten Repository-Daten und starten keine private CI.
+
+EN: The two existing generic CI-gate templates are runtime dependencies of the distributed engine and are distributed with it. They contain no private repository data and do not start private CI.
