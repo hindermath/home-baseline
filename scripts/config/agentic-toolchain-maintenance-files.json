@@ -4,6 +4,18 @@
   "description": "Canonical files propagated from Level-0 to existing Level-1 and Level-2 repositories.",
   "exceptions": [
     {
+      "repositoryPath": "container-images/absdd-image-sandbox",
+      "path": "scripts/tests/test_msl_toolchains.py",
+      "reason": "Keep shared MSL module tests while matching the three parent-adapter cases to the sandbox's maintained CLI surface.",
+      "evidence": "https://github.com/hindermath/absdd-image-sandbox/pull/137"
+    },
+    {
+      "repositoryPath": "RiderProjects/TuiVision",
+      "path": "scripts/tests/test_msl_toolchains.py",
+      "reason": "Keep shared MSL module tests while matching the three parent-adapter cases to TuiVision's maintained CLI surface.",
+      "evidence": "https://github.com/hindermath/TuiVision/pull/219"
+    },
+    {
       "repositoryPath": "RiderProjects/TuiVision",
       "path": "scripts/tests/test_linux_maintenance_hardening.py",
       "reason": "Preserve TuiVision's project-specific immutable installer and probe tests beside its maintenance adapters.",
