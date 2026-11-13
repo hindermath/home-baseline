@@ -22,7 +22,14 @@ class MappingSecurityError(RuntimeError):
 
 
 def require_canonical_repository(requested):
-    if Path(requested).resolve() != CANONICAL_REPOSITORY:
+    requested_text = os.fspath(requested)
+    if requested_text == ".":
+        observed = Path.cwd().resolve()
+    elif requested_text == str(CANONICAL_REPOSITORY):
+        observed = CANONICAL_REPOSITORY
+    else:
+        observed = None
+    if observed != CANONICAL_REPOSITORY:
         raise MappingSecurityError(
             "Feature-024 validation is restricted to its canonical repository"
         )
@@ -119,11 +126,11 @@ def validate(repo, data):
     return errors
 
 def main():
-    p=argparse.ArgumentParser(); p.add_argument("--repo",default="."); p.add_argument("--write",action="store_true"); p.add_argument("--input")
+    p=argparse.ArgumentParser(); p.add_argument("--repo",default="."); p.add_argument("--write",action="store_true"); p.add_argument("--input", choices=[REVIEW_PATH])
     a=p.parse_args()
     try:
         require_canonical_repository(a.repo); repo=CANONICAL_REPOSITORY
-        data=json.loads(Path(a.input).read_text(encoding="utf-8-sig")) if a.input else build(repo)
+        data=json.loads(repository_file(repo, REVIEW_PATH).read_text(encoding="utf-8-sig")) if a.input else build(repo)
         if a.write: write_review(repo, data)
         errors=validate(repo,data)
     except (MappingSecurityError, OSError, UnicodeError, json.JSONDecodeError) as exc:
