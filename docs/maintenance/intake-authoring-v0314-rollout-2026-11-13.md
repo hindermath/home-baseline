@@ -62,3 +62,26 @@ technical delivery; only the nine already authorised Level-2 consumers.
 No practical screen-reader/Braille acceptance, new model call, Spec Kit feature
 execution, blanket alert dismissal or finding-free claim. Re-evaluate after
 caller, source, archive, matrix or installed-state changes.
+
+## Erhaltene AOC-Sicherheitsanbindung / Preserved AOC security adapter
+
+DE: Die Verbraucher-CI zeigte, dass die generische Kopie von
+`check-homogeneity.sh` und `.ps1` eine bestehende AOC-Anbindung an
+`apply_memory_patch.py` ersetzen würde. Zwei exakt benannte Ausnahmen im
+kanonischen Distributionsmanifest erhalten diese bereits gelieferte Anbindung.
+AOC bindet Patchziele an getrackte Markdown-Dateien und committet ausschließlich
+diese Ziele. Es wird keine allgemeine Skript- oder Testausnahme eingeführt.
+Die sieben bisherigen Verbraucherpakete behalten ihren bisherigen Umfang ohne
+den nur für vollständige Level-0-Quellpakete vorgesehenen Orchestrierungsmarker.
+Produkt- und portable Unit-Prüfungen bleiben aktiv; die vollständigen zentralen
+Integrationstests laufen weiterhin in Level 0. Keine neue Risikoakzeptanz.
+
+EN: Consumer CI showed that generic copies of `check-homogeneity.sh` and `.ps1`
+would replace AOC's existing adapter to `apply_memory_patch.py`. Two explicitly
+named exceptions in the canonical distribution manifest preserve this delivered
+adapter. AOC binds patch targets to tracked Markdown files and commits only
+those targets. No general script or test exclusion is introduced. The seven
+existing consumer packages retain their scope without the orchestration marker
+reserved for complete Level-0 source packages. Product and portable unit checks
+remain active; complete central integration tests continue in Level 0. No new
+risk acceptance.

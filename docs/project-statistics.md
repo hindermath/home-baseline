@@ -1789,6 +1789,14 @@ Intake Authoring 0.3.14 fixes unchanged standalone archive lookup outside a seri
 
 Documentation Impact: UpdateRequired; [Quellen- und Bindungsnachweis / source and binding record](maintenance/intake-authoring-v0314-rollout-2026-11-13.md).
 
+### 2026-11-13 — AOC-Paketgrenze erhalten / Preserve the AOC package boundary
+
+DE: Zwei kanonische Dateiausnahmen erhalten die bestehende sichere AOC-Memory-Patch-Anbindung. Keine allgemeine Ausnahme, neue Produktfunktion oder Sicherheitsabnahme.
+
+EN: Two canonical file exceptions preserve the existing secure AOC memory-patch adapter. No general exclusion, new product feature or security acceptance.
+
+Documentation Impact: UpdateRequired; [Nachweis / evidence](maintenance/intake-authoring-v0314-rollout-2026-11-13.md).
+
 ## Gesamtstatistik / Overall Statistics
 
 <!-- project-statistics-v2:begin -->
