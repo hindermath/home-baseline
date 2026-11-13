@@ -42,3 +42,7 @@ Documentation Impact: UpdateRequired. Owner: Thorsten Hindermann. Audience: user
 DE: Die vorhandene CLI schrieb bei der Neuinstallation drei Claude-Skills als einzelne Wrapper. Die bestehende Resolver-/Registrar-API erzeugt diese bereits gepflegten Flächen aus dem vollständigen Command-Stack erneut. Projekt-Templates, Preset-Prioritäten und OpenCode-Namespace bleiben erhalten. Die neun vorhandenen Paritätsprüfungen bestehen danach; keine CLI- oder Upstream-Produktänderung wird behauptet.
 
 EN: Reinstallation through the existing CLI left three Claude skills as single wrappers. Its existing resolver/registrar API renders these already managed surfaces from the complete command stack. Project templates, preset priorities and the OpenCode namespace remain. All nine existing parity checks pass afterwards; this is no claimed CLI or upstream product fix.
+
+DE: Die Distributionspruefung korrigiert die Einordnung von PR 372: Der Workflow selbst bleibt sourceOnly; der Regressionstest unter scripts/tests gehoert laut Manifest zu homeRuntime. Dieser Home-Sync nimmt ihn mit auf.
+
+EN: Distribution review corrects the classification for PR 372: the workflow itself is sourceOnly; its regression under scripts/tests is manifest-bound homeRuntime. This Home sync includes that test.
