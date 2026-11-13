@@ -7,7 +7,11 @@
       "scope": "Constrain npm agent version probes to code-owned commands and arguments in both maintenance scripts",
       "decision": "UpdateRequired",
       "rationale": "Untrusted registry command and arguments previously reached process execution in comparison, preview and normal modes.",
-      "documents": ["docs/maintenance/npm-agent-probe-authorization-2026-11-13.md"],
+      "documents": [
+        "docs/maintenance/npm-agent-probe-authorization-2026-11-13.md",
+        "docs/man/maintain-agentic-brew-apps.1.md",
+        "docs/man/maintain-agentic-winget-apps.1.md"
+      ],
       "owner": "Thorsten Hindermann",
       "audiences": ["Workspace maintainers", "Security reviewers"],
       "readerPaths": ["npm agent registry -> maintenance scripts -> security boundary record"],
