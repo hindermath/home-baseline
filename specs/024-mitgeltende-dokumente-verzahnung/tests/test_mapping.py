@@ -4,6 +4,8 @@ import importlib.util
 import json
 import os
 import shutil
+import subprocess
+import sys
 import tempfile
 import unittest
 from pathlib import Path
@@ -64,6 +66,27 @@ class MappingTests(unittest.TestCase):
                 bad["mapping"]["path"] = path
                 errors = V.validate(ROOT, bad)
                 self.assertIn("MDV-009 canonical mapping path", errors)
+
+    def test_cli_repository_root_is_bound_to_canonical_checkout(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            with self.assertRaises(V.MappingSecurityError):
+                V.require_canonical_repository(tmp)
+
+            result = subprocess.run(
+                [
+                    sys.executable,
+                    str(ROOT / "specs/024-mitgeltende-dokumente-verzahnung/tools/validate_mapping.py"),
+                    "--repo",
+                    tmp,
+                ],
+                text=True,
+                capture_output=True,
+                check=False,
+            )
+
+            self.assertEqual(result.returncode, 1)
+            self.assertIn("FAIL: Feature-024 validation is restricted", result.stdout)
+            self.assertNotIn("Traceback", result.stdout + result.stderr)
 
     def test_manifest_symlink_outside_repository_is_rejected(self):
         with tempfile.TemporaryDirectory() as tmp:

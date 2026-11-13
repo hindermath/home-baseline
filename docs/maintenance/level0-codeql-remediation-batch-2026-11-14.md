@@ -61,14 +61,15 @@ that approval.*
 ## Nachweise und nächste Aktion / Evidence and Next Action
 
 - Lernpaket-Sicherheit: 20 fokussierte Tests einschließlich Eigentumsgrenzen.
-- Feature-024-Mapping: 11 Tests einschließlich Symlink- und Modusgrenzen.
+- Feature-024-Mapping: 12 Tests einschließlich kanonischer Repository-,
+  Symlink- und Modusgrenzen.
 - Secure-Trader-Datensatz: 4 Sicherheitstests; der Stand `2026-07` ist für alle
   drei Ausgabegruppen byteidentisch zum eingecheckten Snapshot.
 - Unabhängige Patch-Reviews bestätigen die drei Korrekturen.
 - Praktische Screenreader- oder Braille-Prüfungen wurden für diesen
   textorientierten Wartungsnachweis nicht erneut durchgeführt.
 
-*Learning-package security has 20 focused tests, Feature 024 has 11 tests, and
+*Learning-package security has 20 focused tests, Feature 024 has 12 tests, and
 the dataset generator has four security tests. The regenerated `2026-07`
 dataset is byte-identical to all three committed output groups. Independent
 patch reviews confirmed the fixes. No new practical screen-reader or Braille

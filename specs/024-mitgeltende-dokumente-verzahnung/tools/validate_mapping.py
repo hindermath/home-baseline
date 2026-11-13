@@ -14,10 +14,18 @@ REQUIRED = ["kind", "applicability", "implementation", "rationale", "evidence", 
 MAPPING_PATH = "docs/secure-development/mitgeltende-dokumente/Verzahnung_Richtlinie_Checklisten_Spec-Kit-Presets.md"
 MANIFEST_PATH = "docs/secure-development/baseline-manifest.json"
 REVIEW_PATH = "specs/024-mitgeltende-dokumente-verzahnung/mapping-review.json"
+CANONICAL_REPOSITORY = Path(__file__).resolve().parents[3]
 
 
 class MappingSecurityError(RuntimeError):
     """Raised when a canonical Feature-024 path leaves its repository boundary."""
+
+
+def require_canonical_repository(requested):
+    if Path(requested).resolve() != CANONICAL_REPOSITORY:
+        raise MappingSecurityError(
+            "Feature-024 validation is restricted to its canonical repository"
+        )
 
 
 def repository_file(repo, relative):
@@ -112,8 +120,9 @@ def validate(repo, data):
 
 def main():
     p=argparse.ArgumentParser(); p.add_argument("--repo",default="."); p.add_argument("--write",action="store_true"); p.add_argument("--input")
-    a=p.parse_args(); repo=Path(a.repo).resolve()
+    a=p.parse_args()
     try:
+        require_canonical_repository(a.repo); repo=CANONICAL_REPOSITORY
         data=json.loads(Path(a.input).read_text(encoding="utf-8-sig")) if a.input else build(repo)
         if a.write: write_review(repo, data)
         errors=validate(repo,data)
