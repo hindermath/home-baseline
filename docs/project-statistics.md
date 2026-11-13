@@ -1828,6 +1828,21 @@ distribution. No Spec Kit run is added.
 
 Documentation Impact: UpdateRequired; [Nachweis / evidence](maintenance/consumer-maintenance-contracts-2026-11-13.md).
 
+### 2026-11-13 — npm-Cachepfad für Speicherwartung gebunden / Bound npm cache path for storage maintenance
+
+DE: Die Speicherwartung liest den tatsächlich konfigurierten npm-Cachepfad,
+prüft seine Home-Grenze und bindet ihn bei `verify` und `clean` ausdrücklich.
+Eine Projekt-`.npmrc` kann die anschließende Bereinigung dadurch nicht auf
+einen anderen Pfad umleiten. Ein eigener zulässiger Cache innerhalb von Home
+bleibt nutzbar. Es wird kein Spec-Kit-Lauf hinzugezählt.
+
+EN: Storage maintenance reads npm's effective cache path, checks its home
+boundary, and binds that path explicitly for `verify` and `clean`. A project
+`.npmrc` can no longer redirect the later cleanup to another location. A
+separate valid cache inside home remains supported. No Spec Kit run is added.
+
+Documentation Impact: UpdateRequired; [Nachweis / evidence](man/maintain-workspace-storage.1.md).
+
 ## Gesamtstatistik / Overall Statistics
 
 <!-- project-statistics-v2:begin -->
