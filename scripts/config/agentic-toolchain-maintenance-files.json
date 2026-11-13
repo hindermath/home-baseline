@@ -4,6 +4,198 @@
   "description": "Canonical files propagated from Level-0 to existing Level-1 and Level-2 repositories.",
   "exceptions": [
     {
+      "repositoryPath": "container-images/absdd-image-sandbox",
+      "path": "scripts/tests/test_maintenance_execution_context.py",
+      "reason": "Preserve sandbox Feature 004 execution and storage identity regressions for its project-specific maintenance contracts.",
+      "evidence": "https://github.com/hindermath/absdd-image-sandbox/blob/9ca5aec38f5005502ac2253b95d9485ac0383792/scripts/tests/test_maintenance_execution_context.py"
+    },
+    {
+      "repositoryPath": "container-images/absdd-image-sandbox",
+      "path": "scripts/tests/test_workspace_storage_maintenance.py",
+      "reason": "Preserve sandbox Feature 004 execution and storage identity regressions for its project-specific maintenance contracts.",
+      "evidence": "https://github.com/hindermath/absdd-image-sandbox/blob/9ca5aec38f5005502ac2253b95d9485ac0383792/scripts/tests/test_workspace_storage_maintenance.py"
+    },
+    {
+      "repositoryPath": "container-images/absdd-image-sandbox",
+      "path": ".github/workflows/maintenance-tui.yml",
+      "reason": "Preserve the sandbox's pinned maintenance SDK, Feature 004 execution contexts and storage-cleanup identity checks; generic Level-0 files must not weaken these boundaries.",
+      "evidence": "https://github.com/hindermath/absdd-image-sandbox/blob/9ca5aec38f5005502ac2253b95d9485ac0383792/.github/workflows/maintenance-tui.yml"
+    },
+    {
+      "repositoryPath": "container-images/absdd-image-sandbox",
+      "path": "scripts/config/maintenance-execution-contexts.json",
+      "reason": "Preserve the sandbox's pinned maintenance SDK, Feature 004 execution contexts and storage-cleanup identity checks; generic Level-0 files must not weaken these boundaries.",
+      "evidence": "https://github.com/hindermath/absdd-image-sandbox/blob/9ca5aec38f5005502ac2253b95d9485ac0383792/scripts/config/maintenance-execution-contexts.json"
+    },
+    {
+      "repositoryPath": "container-images/absdd-image-sandbox",
+      "path": "scripts/config/workspace-storage-maintenance.json",
+      "reason": "Preserve the sandbox's pinned maintenance SDK, Feature 004 execution contexts and storage-cleanup identity checks; generic Level-0 files must not weaken these boundaries.",
+      "evidence": "https://github.com/hindermath/absdd-image-sandbox/blob/9ca5aec38f5005502ac2253b95d9485ac0383792/scripts/config/workspace-storage-maintenance.json"
+    },
+    {
+      "repositoryPath": "container-images/absdd-image-sandbox",
+      "path": "scripts/lib/maintenance_execution_context.py",
+      "reason": "Preserve the sandbox's pinned maintenance SDK, Feature 004 execution contexts and storage-cleanup identity checks; generic Level-0 files must not weaken these boundaries.",
+      "evidence": "https://github.com/hindermath/absdd-image-sandbox/blob/9ca5aec38f5005502ac2253b95d9485ac0383792/scripts/lib/maintenance_execution_context.py"
+    },
+    {
+      "repositoryPath": "container-images/absdd-image-sandbox",
+      "path": "scripts/lib/workspace_storage_maintenance.py",
+      "reason": "Preserve the sandbox's pinned maintenance SDK, Feature 004 execution contexts and storage-cleanup identity checks; generic Level-0 files must not weaken these boundaries.",
+      "evidence": "https://github.com/hindermath/absdd-image-sandbox/blob/9ca5aec38f5005502ac2253b95d9485ac0383792/scripts/lib/workspace_storage_maintenance.py"
+    },
+    {
+      "repositoryPath": "RiderProjects/TuiVision",
+      "path": ".github/workflows/maintenance-tui.yml",
+      "reason": "Run TuiVision's existing Windows registry and npm-integrity test modules; the generic module name is absent in this project.",
+      "evidence": "https://github.com/hindermath/TuiVision/pull/219"
+    },
+    {
+      "repositoryPath": "container-images/absdd-image-sandbox",
+      "path": "scripts/lib/maintenance-tui/src/HomeBaseline.MaintenanceTui/Application/MaintenanceTuiApplication.cs",
+      "reason": "Preserve the sandbox's project-specific bounded diagnostic tails and fail-closed event reconciliation with their exact tests and locked dependencies.",
+      "evidence": "https://github.com/hindermath/absdd-image-sandbox/blob/9ca5aec38f5005502ac2253b95d9485ac0383792/scripts/lib/maintenance-tui/src/HomeBaseline.MaintenanceTui/Application/MaintenanceTuiApplication.cs"
+    },
+    {
+      "repositoryPath": "container-images/absdd-image-sandbox",
+      "path": "scripts/lib/maintenance-tui/src/HomeBaseline.MaintenanceTui/Contracts/MaintenanceEvent.cs",
+      "reason": "Preserve the sandbox's project-specific bounded diagnostic tails and fail-closed event reconciliation with their exact tests and locked dependencies.",
+      "evidence": "https://github.com/hindermath/absdd-image-sandbox/blob/9ca5aec38f5005502ac2253b95d9485ac0383792/scripts/lib/maintenance-tui/src/HomeBaseline.MaintenanceTui/Contracts/MaintenanceEvent.cs"
+    },
+    {
+      "repositoryPath": "container-images/absdd-image-sandbox",
+      "path": "scripts/lib/maintenance-tui/src/HomeBaseline.MaintenanceTui/Infrastructure/MaintenanceEventReader.cs",
+      "reason": "Preserve the sandbox's project-specific bounded diagnostic tails and fail-closed event reconciliation with their exact tests and locked dependencies.",
+      "evidence": "https://github.com/hindermath/absdd-image-sandbox/blob/9ca5aec38f5005502ac2253b95d9485ac0383792/scripts/lib/maintenance-tui/src/HomeBaseline.MaintenanceTui/Infrastructure/MaintenanceEventReader.cs"
+    },
+    {
+      "repositoryPath": "container-images/absdd-image-sandbox",
+      "path": "scripts/lib/maintenance-tui/src/HomeBaseline.MaintenanceTui/Infrastructure/MaintenanceProcessRunner.cs",
+      "reason": "Preserve the sandbox's project-specific bounded diagnostic tails and fail-closed event reconciliation with their exact tests and locked dependencies.",
+      "evidence": "https://github.com/hindermath/absdd-image-sandbox/blob/9ca5aec38f5005502ac2253b95d9485ac0383792/scripts/lib/maintenance-tui/src/HomeBaseline.MaintenanceTui/Infrastructure/MaintenanceProcessRunner.cs"
+    },
+    {
+      "repositoryPath": "container-images/absdd-image-sandbox",
+      "path": "scripts/lib/maintenance-tui/src/HomeBaseline.MaintenanceTui/Infrastructure/RunResultReconciler.cs",
+      "reason": "Preserve the sandbox's project-specific bounded diagnostic tails and fail-closed event reconciliation with their exact tests and locked dependencies.",
+      "evidence": "https://github.com/hindermath/absdd-image-sandbox/blob/9ca5aec38f5005502ac2253b95d9485ac0383792/scripts/lib/maintenance-tui/src/HomeBaseline.MaintenanceTui/Infrastructure/RunResultReconciler.cs"
+    },
+    {
+      "repositoryPath": "container-images/absdd-image-sandbox",
+      "path": "scripts/lib/maintenance-tui/tests/HomeBaseline.MaintenanceTui.Tests/Contracts/EventReaderTests.cs",
+      "reason": "Preserve the sandbox's project-specific bounded diagnostic tails and fail-closed event reconciliation with their exact tests and locked dependencies.",
+      "evidence": "https://github.com/hindermath/absdd-image-sandbox/blob/9ca5aec38f5005502ac2253b95d9485ac0383792/scripts/lib/maintenance-tui/tests/HomeBaseline.MaintenanceTui.Tests/Contracts/EventReaderTests.cs"
+    },
+    {
+      "repositoryPath": "container-images/absdd-image-sandbox",
+      "path": "scripts/lib/maintenance-tui/tests/HomeBaseline.MaintenanceTui.Tests/Contracts/RunResultReconcilerTests.cs",
+      "reason": "Preserve the sandbox's project-specific bounded diagnostic tails and fail-closed event reconciliation with their exact tests and locked dependencies.",
+      "evidence": "https://github.com/hindermath/absdd-image-sandbox/blob/9ca5aec38f5005502ac2253b95d9485ac0383792/scripts/lib/maintenance-tui/tests/HomeBaseline.MaintenanceTui.Tests/Contracts/RunResultReconcilerTests.cs"
+    },
+    {
+      "repositoryPath": "container-images/absdd-image-sandbox",
+      "path": "scripts/lib/maintenance-tui/tests/HomeBaseline.MaintenanceTui.Tests/HomeBaseline.MaintenanceTui.Tests.csproj",
+      "reason": "Preserve the sandbox's project-specific bounded diagnostic tails and fail-closed event reconciliation with their exact tests and locked dependencies.",
+      "evidence": "https://github.com/hindermath/absdd-image-sandbox/blob/9ca5aec38f5005502ac2253b95d9485ac0383792/scripts/lib/maintenance-tui/tests/HomeBaseline.MaintenanceTui.Tests/HomeBaseline.MaintenanceTui.Tests.csproj"
+    },
+    {
+      "repositoryPath": "container-images/absdd-image-sandbox",
+      "path": "scripts/lib/maintenance-tui/tests/HomeBaseline.MaintenanceTui.Tests/packages.lock.json",
+      "reason": "Preserve the sandbox's project-specific bounded diagnostic tails and fail-closed event reconciliation with their exact tests and locked dependencies.",
+      "evidence": "https://github.com/hindermath/absdd-image-sandbox/blob/9ca5aec38f5005502ac2253b95d9485ac0383792/scripts/lib/maintenance-tui/tests/HomeBaseline.MaintenanceTui.Tests/packages.lock.json"
+    },
+    {
+      "repositoryPath": "container-images/absdd-image-sandbox",
+      "path": "scripts/tests/test_msl_toolchains.py",
+      "reason": "Keep shared MSL module tests while matching the three parent-adapter cases to the sandbox's maintained CLI surface.",
+      "evidence": "https://github.com/hindermath/absdd-image-sandbox/pull/137"
+    },
+    {
+      "repositoryPath": "RiderProjects/TuiVision",
+      "path": "scripts/tests/test_msl_toolchains.py",
+      "reason": "Keep shared MSL module tests while matching the three parent-adapter cases to TuiVision's maintained CLI surface.",
+      "evidence": "https://github.com/hindermath/TuiVision/pull/219"
+    },
+    {
+      "repositoryPath": "RiderProjects/TuiVision",
+      "path": "scripts/tests/test_linux_maintenance_hardening.py",
+      "reason": "Preserve TuiVision's project-specific immutable installer and probe tests beside its maintenance adapters.",
+      "evidence": "https://github.com/hindermath/TuiVision/blob/a0217188166fb5eba61875891f0119bd340dda9f/scripts/tests/test_linux_maintenance_hardening.py"
+    },
+    {
+      "repositoryPath": "container-images/absdd-image-sandbox",
+      "path": "scripts/tests/test_linux_maintenance_hardening.py",
+      "reason": "Preserve sandbox preview and registry-snapshot regressions beside its maintenance adapters.",
+      "evidence": "https://github.com/hindermath/absdd-image-sandbox/blob/9ca5aec38f5005502ac2253b95d9485ac0383792/scripts/tests/test_linux_maintenance_hardening.py"
+    },
+    {
+      "repositoryPath": "RiderProjects/TuiVision",
+      "path": "scripts/maintain-agentic-brew-apps.sh",
+      "reason": "Preserve TuiVision's verified package integrity, pinned Spec Kit revision and project-specific maintenance behavior; the shared distribution must not replace this stronger contract.",
+      "evidence": "https://github.com/hindermath/TuiVision/blob/a0217188166fb5eba61875891f0119bd340dda9f/scripts/maintain-agentic-brew-apps.sh"
+    },
+    {
+      "repositoryPath": "RiderProjects/TuiVision",
+      "path": "scripts/maintain-agentic-winget-apps.ps1",
+      "reason": "Preserve TuiVision's verified package integrity, pinned Spec Kit revision and project-specific maintenance behavior; the shared distribution must not replace this stronger contract.",
+      "evidence": "https://github.com/hindermath/TuiVision/blob/a0217188166fb5eba61875891f0119bd340dda9f/scripts/maintain-agentic-winget-apps.ps1"
+    },
+    {
+      "repositoryPath": "RiderProjects/TuiVision",
+      "path": "scripts/lib/linux-maintenance-hardening.py",
+      "reason": "Preserve TuiVision's verified package integrity, pinned Spec Kit revision and project-specific maintenance behavior; the shared distribution must not replace this stronger contract.",
+      "evidence": "https://github.com/hindermath/TuiVision/blob/a0217188166fb5eba61875891f0119bd340dda9f/scripts/lib/linux-maintenance-hardening.py"
+    },
+    {
+      "repositoryPath": "RiderProjects/TuiVision",
+      "path": "scripts/lib/windows-maintenance-hardening.psm1",
+      "reason": "Preserve TuiVision's verified package integrity, pinned Spec Kit revision and project-specific maintenance behavior; the shared distribution must not replace this stronger contract.",
+      "evidence": "https://github.com/hindermath/TuiVision/blob/a0217188166fb5eba61875891f0119bd340dda9f/scripts/lib/windows-maintenance-hardening.psm1"
+    },
+    {
+      "repositoryPath": "RiderProjects/TuiVision",
+      "path": "scripts/check-homogeneity.sh",
+      "reason": "Preserve TuiVision's verified package integrity, pinned Spec Kit revision and project-specific maintenance behavior; the shared distribution must not replace this stronger contract.",
+      "evidence": "https://github.com/hindermath/TuiVision/blob/a0217188166fb5eba61875891f0119bd340dda9f/scripts/check-homogeneity.sh"
+    },
+    {
+      "repositoryPath": "RiderProjects/TuiVision",
+      "path": "scripts/check-homogeneity.ps1",
+      "reason": "Preserve TuiVision's verified package integrity, pinned Spec Kit revision and project-specific maintenance behavior; the shared distribution must not replace this stronger contract.",
+      "evidence": "https://github.com/hindermath/TuiVision/blob/a0217188166fb5eba61875891f0119bd340dda9f/scripts/check-homogeneity.ps1"
+    },
+    {
+      "repositoryPath": "RiderProjects/TuiVision",
+      "path": "scripts/config/npm-agent-cli-registry.json",
+      "reason": "Preserve TuiVision's verified package integrity, pinned Spec Kit revision and project-specific maintenance behavior; the shared distribution must not replace this stronger contract.",
+      "evidence": "https://github.com/hindermath/TuiVision/blob/a0217188166fb5eba61875891f0119bd340dda9f/scripts/config/npm-agent-cli-registry.json"
+    },
+    {
+      "repositoryPath": "RiderProjects/TuiVision",
+      "path": "scripts/config/required-cli-tools-registry.json",
+      "reason": "Preserve TuiVision's verified package integrity, pinned Spec Kit revision and project-specific maintenance behavior; the shared distribution must not replace this stronger contract.",
+      "evidence": "https://github.com/hindermath/TuiVision/blob/a0217188166fb5eba61875891f0119bd340dda9f/scripts/config/required-cli-tools-registry.json"
+    },
+    {
+      "repositoryPath": "container-images/absdd-image-sandbox",
+      "path": "scripts/maintain-agentic-brew-apps.sh",
+      "reason": "Preserve sandbox preview and compare modes that do not launch registry-specified executables; the shared distribution must not replace this project boundary.",
+      "evidence": "https://github.com/hindermath/absdd-image-sandbox/blob/9ca5aec38f5005502ac2253b95d9485ac0383792/scripts/maintain-agentic-brew-apps.sh"
+    },
+    {
+      "repositoryPath": "container-images/absdd-image-sandbox",
+      "path": "scripts/maintain-agentic-winget-apps.ps1",
+      "reason": "Preserve sandbox preview and compare modes that do not launch registry-specified executables; the shared distribution must not replace this project boundary.",
+      "evidence": "https://github.com/hindermath/absdd-image-sandbox/blob/9ca5aec38f5005502ac2253b95d9485ac0383792/scripts/maintain-agentic-winget-apps.ps1"
+    },
+    {
+      "repositoryPath": "container-images/absdd-image-sandbox",
+      "path": "scripts/lib/linux-maintenance-hardening.py",
+      "reason": "Preserve sandbox preview and compare modes that do not launch registry-specified executables; the shared distribution must not replace this project boundary.",
+      "evidence": "https://github.com/hindermath/absdd-image-sandbox/blob/9ca5aec38f5005502ac2253b95d9485ac0383792/scripts/lib/linux-maintenance-hardening.py"
+    },
+    {
       "repositoryPath": "RiderProjects/Show-CommandTui400",
       "path": "scripts/invoke-psscriptanalyzer.ps1",
       "reason": "Preserve the existing exact-rule and exact-variable treatment of two synthetic LH-01 session probes. Archived proof bytes stay unchanged; all other global-variable findings remain errors.",
