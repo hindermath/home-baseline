@@ -4,6 +4,12 @@
   "description": "Canonical files propagated from Level-0 to existing Level-1 and Level-2 repositories.",
   "exceptions": [
     {
+      "repositoryPath": "RiderProjects/Show-CommandTui400",
+      "path": "scripts/invoke-psscriptanalyzer.ps1",
+      "reason": "Preserve the existing exact-rule and exact-variable treatment of two synthetic LH-01 session probes. Archived proof bytes stay unchanged; all other global-variable findings remain errors.",
+      "evidence": "https://github.com/hindermath/Show-CommandTui400/blob/418a5686cec94db635b59da6db3562d2a29e27da/scripts/invoke-psscriptanalyzer.ps1"
+    },
+    {
       "repositoryPath": "RiderProjects/TuiVision",
       "path": "scripts/lib/maintenance-tui/src/HomeBaseline.MaintenanceTui/HomeBaseline.MaintenanceTui.csproj",
       "reason": "TuiVision enforces CS1591 for its public API; the distributed maintenance application is operational tooling outside that API contract.",

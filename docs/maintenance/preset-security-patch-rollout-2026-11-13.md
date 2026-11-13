@@ -66,3 +66,7 @@ EN: This delivery temporarily uses the full canonical hook with the existing cen
 DE: Der bestehende Wartungsworkflow installiert Bash ueber Homebrew und setzt dessen bin-Verzeichnis fuer nachfolgende Schritte an den PATH-Anfang. Die verteilten Skripte benoetigen Bash 5; das macOS-System-Bash 3.2 darf nicht versehentlich verwendet werden. Verbraucher behalten ihre historischen Installationsnachweise; aktuelle Paketpruefungen verwenden neue Nachfolgerdateien.
 
 EN: The existing maintenance workflow installs Bash through Homebrew and prepends its bin directory for later steps. Distributed scripts require Bash 5; macOS system Bash 3.2 must not be selected accidentally. Consumers retain historical installation receipts; current package proofs use successor files.
+
+DE: Show-CommandTui400 behaelt seinen vorhandenen PSScriptAnalyzer-Adapter fuer genau zwei synthetische LH-01-Variablen. Die Verteilungsausnahme ist auf das eine Skript begrenzt. Historische Probe-Dateien bleiben unveraendert; andere globale Variablen bleiben Befunde.
+
+EN: Show-CommandTui400 retains its existing PSScriptAnalyzer adapter for exactly two synthetic LH-01 variables. The distribution exception covers that single script. Historical probes remain unchanged; other global variables remain findings.
