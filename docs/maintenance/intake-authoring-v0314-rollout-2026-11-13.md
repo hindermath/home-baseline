@@ -85,3 +85,20 @@ existing consumer packages retain their scope without the orchestration marker
 reserved for complete Level-0 source packages. Product and portable unit checks
 remain active; complete central integration tests continue in Level 0. No new
 risk acceptance.
+
+## Weitere erhaltene Paketverträge / Additional preserved package contracts
+
+DE: Zwei zusätzliche konkrete Ausnahmen erhalten TinyPl0s vorhandene explizite
+Freigabe für alternative ausführbare CLI-Registries. Die zugehörigen beiden
+Negativtests bleiben aktiv. Drei verteilte Manpages verlinken kanonische
+Source-only-Dokumentation jetzt über öffentliche Level-0-URLs, statt fehlende
+lokale Kopien vorauszusetzen. Es werden keine Dokumentationskopien in Home
+oder neue Toolinstallationen eingeführt. Dokumentationsentscheidung weiterhin
+UpdateRequired; Home-Runtime-Sync erst nach geprüfter Lieferung.
+
+EN: Two additional explicit exceptions preserve TinyPl0's existing opt-in for
+alternate executable CLI registries. Both corresponding negative tests remain
+active. Three distributed manuals now link canonical source-only documentation
+through public Level-0 URLs instead of assuming missing local copies. No new
+Home documentation copies or tool installations are introduced. Documentation
+Impact remains UpdateRequired; Home Runtime sync follows reviewed delivery.
