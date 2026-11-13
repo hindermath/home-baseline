@@ -1,0 +1,32 @@
+{
+  "schemaVersion": "1.1",
+  "feature": "npm-agent-probe-authorization-2026-11-13",
+  "entries": [
+    {
+      "changeId": "CHG001",
+      "scope": "Constrain npm agent version probes to code-owned commands and arguments in both maintenance scripts",
+      "decision": "UpdateRequired",
+      "rationale": "Untrusted registry command and arguments previously reached process execution in comparison, preview and normal modes.",
+      "documents": [
+        "docs/maintenance/npm-agent-probe-authorization-2026-11-13.md",
+        "docs/man/maintain-agentic-brew-apps.1.md",
+        "docs/man/maintain-agentic-winget-apps.1.md"
+      ],
+      "owner": "Thorsten Hindermann",
+      "audiences": ["Workspace maintainers", "Security reviewers"],
+      "readerPaths": ["npm agent registry -> maintenance scripts -> security boundary record"],
+      "canonicalSource": "scripts/maintain-agentic-brew-apps.sh and scripts/maintain-agentic-winget-apps.ps1 with scripts/config/npm-agent-cli-registry.json",
+      "navigationImpact": "Existing maintenance documentation family; no top-level navigation change.",
+      "documentClass": "ActiveSemantic",
+      "languageStrategy": "Complete German first, equivalent English second; CEFR B2 and applicable WCAG 2.2 AA criteria.",
+      "languagePartners": [],
+      "platformAndExampleProof": "Controlled negative reproduction before and after; canonical probes, missing tool fallback and focused Bash and PowerShell tests. Practical screen-reader and Braille checks not repeated.",
+      "distributionClass": "homeRuntime",
+      "homeSyncRequired": true,
+      "evidence": "docs/maintenance/npm-agent-probe-authorization-2026-11-13.md",
+      "risk": "Package names and other registry fields remain a separate trust boundary for review; no blanket alert dismissal or risk acceptance.",
+      "criticality": "Security",
+      "reevaluationTrigger": "Registry, probe contract, caller or distributed script changes."
+    }
+  ]
+}

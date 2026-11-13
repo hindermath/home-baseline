@@ -1,5 +1,10 @@
 # Aktuelle Sicherheits-Patch-Releases / Current security patch releases
 
+DE: Die folgende Release-Tabelle dokumentiert die erste Lieferung. Die aktuelle Authoring-Folgebindung steht im [0.3.14-Nachweis](intake-authoring-v0314-rollout-2026-11-13.md).
+
+EN: The following table records the initial delivery. See the [0.3.14 record](intake-authoring-v0314-rollout-2026-11-13.md) for the current authoring follow-up.
+
+
 ## Deutsch
 
 Die Quellenbindung und die bestehenden Profile 8 bis 14 werden auf vierzehn neue Patch-Releases gesetzt. Der Standard bleibt bei acht Presets. Die neun beauftragten Level-2-Ziele behalten ihre bereits installierten vierzehn Preset-IDs und Prioritäten; Level 1 bleibt außerhalb dieses Rollouts. Installation startet keine Spec-Kit-Implementierung oder KI-Modellaufrufe.

@@ -27,7 +27,7 @@ primären oder begleitenden MSL-Probe autorisieren.
 *Compare and preview execute only version probes fixed in code policy.
 Registry data cannot authorize an executable or arguments for primary or
 companion MSL probes.*
-[Quellen und Nachweisgrenzen](../maintenance/msl-toolchains.md).
+[Quellen und Nachweisgrenzen](https://github.com/hindermath/home-baseline/blob/main/docs/maintenance/msl-toolchains.md).
 
 *Use `-MslOnly` for the six stable MSL toolchains and dependencies. Comparison
 and WhatIf do not change installations or the user PATH. Optional `-ResultFile`
@@ -144,7 +144,7 @@ requires a separate semantic review.*
 | `-CompareOnly` | Nur Registry-Drift melden, nichts installieren oder upgraden |
 | `-Registry PATH` | Alternative Registry-Datei verwenden |
 | `-VSCodeRegistry PATH` | Alternative VS-Code-Extension-Registry verwenden |
-| `-NpmAgentRegistry PATH` | Alternative npm-Agent-CLI-Registry verwenden |
+| `-NpmAgentRegistry PATH` | Alternative npm-Agent-CLI-Registry verwenden; Proben bleiben auf die im Code freigegebenen Befehle und Argumente begrenzt / use an alternate npm agent registry; probes remain limited to code-approved commands and arguments |
 | `-PowerShellModuleRegistry PATH` | Alternative PowerShell-Modul-Registry verwenden |
 | `-SkipUpgrade` | WinGet-Update und `winget upgrade --all` ueberspringen |
 | `-SkipVSCodeExtensions` | VS-Code-Extensions weder installieren noch vergleichen |

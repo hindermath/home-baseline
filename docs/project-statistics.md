@@ -1781,6 +1781,38 @@ The pre-push detector identifies three unchanged synthetic negative fixtures by 
 
 Documentation Impact: UpdateRequired; beide Statistikansichten werden reproduzierbar generiert / both statistics views are generated reproducibly. [Nachweis / evidence](maintenance/preset-security-patch-rollout-2026-11-13.md).
 
+### 2026-11-13 — Standalone-Archiv-Kompatibilitaet / Standalone archive compatibility
+
+Intake Authoring 0.3.14 behebt die Aufloesung unveraenderter eigenstaendiger Archiv-Intakes ausserhalb einer Serie. Der Quell-PR ist nach zwoelf technischen Checks geliefert; alle Release-Dateien sind bytegeprueft. Die bestehende Vierzehner-Installation, Profile und Agentenhinweise sind gebunden. Historische Receipts und offene menschliche Pruefgrenzen bleiben erhalten; kein neuer Spec-Kit-Lauf wird gezaehlt.
+
+Intake Authoring 0.3.14 fixes unchanged standalone archive lookup outside a series. The source PR was delivered after twelve technical checks; all release files are byte-verified. Existing fourteen-preset installation, profiles and guidance are bound. Historical receipts and open human-review boundaries remain; no new Spec Kit execution is counted.
+
+Documentation Impact: UpdateRequired; [Quellen- und Bindungsnachweis / source and binding record](maintenance/intake-authoring-v0314-rollout-2026-11-13.md).
+
+### 2026-11-13 — AOC-Paketgrenze erhalten / Preserve the AOC package boundary
+
+DE: Vier kanonische Dateiausnahmen erhalten die bestehende sichere AOC-Memory-Patch-Anbindung und TinyPl0s Freigabegrenze für externe CLI-Registries. Verteilte Manpages verlinken Source-only-Dokumentation über ihre kanonischen öffentlichen URLs. Keine allgemeine Ausnahme, neue Produktfunktion oder Sicherheitsabnahme.
+
+EN: Four canonical file exceptions preserve the existing secure AOC memory-patch adapter and TinyPl0 authority for external CLI registries. Distributed manuals link source-only documentation through canonical public URLs. No general exclusion, new product feature or security acceptance.
+
+Documentation Impact: UpdateRequired; [Nachweis / evidence](maintenance/intake-authoring-v0314-rollout-2026-11-13.md).
+
+### 2026-11-13 — npm-Agent-Proben begrenzt / Bound npm agent probes
+
+DE: Die Wartungsskripte pruefen nun auch npm-Agent-Proben vor dem Start gegen
+den im Code festgelegten Befehl samt Argumenten. Eine abgelehnte Probe loest
+keine Ersatzinstallation aus. Ein kontrollierter Negativfall und gezielte
+Bash-/PowerShell-Tests belegen diese Grenze; andere Registry-Felder bleiben
+ein gesonderter Pruefbereich. Es wird kein Spec-Kit-Lauf hinzugezaehlt.
+
+EN: Maintenance scripts now check npm agent probes against the code-owned
+command and arguments before execution. A rejected probe cannot cause a
+fallback installation. A controlled negative case and focused Bash/PowerShell
+tests demonstrate this boundary; other registry fields remain a separate
+review area. No Spec Kit run is added.
+
+Documentation Impact: UpdateRequired; [Nachweis / evidence](maintenance/npm-agent-probe-authorization-2026-11-13.md).
+
 ## Gesamtstatistik / Overall Statistics
 
 <!-- project-statistics-v2:begin -->
@@ -1791,26 +1823,26 @@ Profil 2 verwendet Git-getrackte Textdateien und sichtbare Git-Aktivitaet. Die W
 
 | Kennzahl / Metric | Wert / Value |
 |---|---:|
-| Textbasis / Text base | 789314 lines |
-| Textdateien / Text files | 3921 |
+| Textbasis / Text base | 789907 lines |
+| Textdateien / Text files | 3928 |
 | Beobachtbarer Zeitraum / Observable period | 2025-11-16..2026-11-13 |
 | Aktivtage / Active days | 139 |
-| Relevante Commits / Relevant commits | 1022 |
-| Zeilen je Aktivtag / Lines per active day | 5678.5 |
+| Relevante Commits / Relevant commits | 1027 |
+| Zeilen je Aktivtag / Lines per active day | 5682.8 |
 | Peak-Tag im Fenster / Peak day in window | 2026-08-01 / 161357 |
 | Peak-Woche im Fenster / Peak week in window | 2026-07-26 / 284516 |
 | Laengste Serie / Longest streak | 38 days |
 | Speedup vs. 80 lines/day | 71.0x |
 | Speedup vs. 100 lines/day | 56.8x |
-| Methodik / Methodology | v2; source `57814c8d0072` |
+| Methodik / Methodology | v2; source `7b16f4a5b2fc` |
 
 ### Artefaktmix / Artifact Mix
 
 ```text
 Produktiv / Production          [#...................]   0.3% | 2237
-Tests                           [#...................]   4.4% | 34467
-Dokumentation / Documentation   [###########.........]  55.0% | 434284
-Skripte / Scripts               [##..................]   8.3% | 65166
+Tests                           [#...................]   4.4% | 34595
+Dokumentation / Documentation   [###########.........]  55.0% | 434692
+Skripte / Scripts               [##..................]   8.3% | 65223
 Konfiguration / Configuration   [######..............]  32.0% | 252804
 Daten und Medien / Data and media [....................]   0.0% | 0
 Sonstiger Text / Other text     [#...................]   0.0% | 356
@@ -2090,7 +2122,7 @@ Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen
 Scale: 0..10000 lines/day
 Experienced manual [#...................] 80
 Thorsten solo      [#...................] 100
-Visible repository [###########.........] 5678.5
+Visible repository [###########.........] 5682.8
 ```
 
 Die gemeinsame Skala vergleicht Referenzen und sichtbare Lieferdichte. Sie schreibt die Git-Aktivitaet keiner Person oder KI pauschal zu.
@@ -2116,6 +2148,6 @@ DE: Das Fenster beginnt am 2025-11-16 und endet am 2026-11-13. Es enthaelt 139 a
 | 2026-08 | 278228 |
 | 2026-09 | 144845 |
 | 2026-10 | 73816 |
-| 2026-11 | 47755 |
+| 2026-11 | 48620 |
 
 <!-- project-statistics-v2:end -->

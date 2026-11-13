@@ -28,7 +28,7 @@ MSL- und Begleitproben.
 *Compare and preview may execute only version probes fixed in code policy. An
 alternate CLI registry cannot change a probe executable or its arguments,
 including primary and companion MSL probes.*
-[Quellen und Benutzerumgebung](../maintenance/msl-toolchains.md).
+[Quellen und Benutzerumgebung](https://github.com/hindermath/home-baseline/blob/main/docs/maintenance/msl-toolchains.md).
 
 *Use `--msl-only` for the six stable MSL toolchains and their dependencies.
 Comparison and preview do not change installations or profiles. Upstream,
@@ -236,7 +236,7 @@ requires a separate semantic review.*
 | `--registry PATH` | Alternative Registry-Datei verwenden |
 | `--cli-registry PATH` | Alternative Required-CLI-Registry verwenden |
 | `--vscode-registry PATH` | Alternative VS-Code-Extension-Registry verwenden |
-| `--npm-agent-registry PATH` | Alternative npm-Agent-CLI-Registry verwenden |
+| `--npm-agent-registry PATH` | Alternative npm-Agent-CLI-Registry verwenden; Proben bleiben auf die im Code freigegebenen Befehle und Argumente begrenzt / use an alternate npm agent registry; probes remain limited to code-approved commands and arguments |
 | `--powershell-module-registry PATH` | Alternative PowerShell-Modul-Registry verwenden |
 | `--skip-upgrade` | `brew update`/`brew upgrade` bzw. apt-Update/Upgrade ueberspringen |
 | `--skip-vscode-extensions` | VS-Code-Extensions weder installieren noch vergleichen |
