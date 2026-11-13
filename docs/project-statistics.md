@@ -1765,6 +1765,14 @@ remain traceable per finding; no automatic dismissal or blanket clean claim.
 Documentation Impact: UpdateRequired; see the linked maintenance record.
 Source-only; required exact-head technical CI remains a delivery gate.
 
+### 2026-11-13 — Aktuelle Preset-Sicherheitsreleases / Current preset security releases
+
+Vierzehn neue Patch-Versionen sind über echte Tags, Merge-Commits und bytegeprüfte GitHub-Archive gebunden. Bestehende Profile und Prioritäten bleiben erhalten; Home Runtime und die neun ausdrücklich beauftragten Level-2-Repositories erhalten die geprüften Pakete. Offene CodeQL-Beleglücken bleiben offen, ohne automatische Alert-Verwerfung.
+
+Fourteen new patches are bound to real tags, merge commits and byte-verified GitHub archives. Existing profiles and priorities remain; Home Runtime and the nine explicitly authorised Level-2 repositories receive the verified packages. Open CodeQL evidence gaps remain open without automatic alert dismissal.
+
+Documentation Impact: UpdateRequired; [Release- und Bindungsnachweis / release and binding evidence](maintenance/preset-security-patch-rollout-2026-11-13.md).
+
 ## Gesamtstatistik / Overall Statistics
 
 <!-- project-statistics-v2:begin -->
