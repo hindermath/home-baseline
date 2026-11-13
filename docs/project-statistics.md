@@ -1797,6 +1797,22 @@ EN: Four canonical file exceptions preserve the existing secure AOC memory-patch
 
 Documentation Impact: UpdateRequired; [Nachweis / evidence](maintenance/intake-authoring-v0314-rollout-2026-11-13.md).
 
+### 2026-11-13 — npm-Agent-Proben begrenzt / Bound npm agent probes
+
+DE: Die Wartungsskripte pruefen nun auch npm-Agent-Proben vor dem Start gegen
+den im Code festgelegten Befehl samt Argumenten. Eine abgelehnte Probe loest
+keine Ersatzinstallation aus. Ein kontrollierter Negativfall und gezielte
+Bash-/PowerShell-Tests belegen diese Grenze; andere Registry-Felder bleiben
+ein gesonderter Pruefbereich. Es wird kein Spec-Kit-Lauf hinzugezaehlt.
+
+EN: Maintenance scripts now check npm agent probes against the code-owned
+command and arguments before execution. A rejected probe cannot cause a
+fallback installation. A controlled negative case and focused Bash/PowerShell
+tests demonstrate this boundary; other registry fields remain a separate
+review area. No Spec Kit run is added.
+
+Documentation Impact: UpdateRequired; [Nachweis / evidence](maintenance/npm-agent-probe-authorization-2026-11-13.md).
+
 ## Gesamtstatistik / Overall Statistics
 
 <!-- project-statistics-v2:begin -->

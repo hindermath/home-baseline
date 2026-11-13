@@ -12,6 +12,7 @@ from pathlib import Path
 import platform
 import shlex
 import signal
+import shlex
 import stat
 import subprocess
 import sys
@@ -304,6 +305,80 @@ def base_report(run_id: str) -> dict:
 
 @unittest.skipIf(os.name == "nt", "Linux maintenance fixtures require a POSIX host.")
 class LinuxMaintenanceHardeningTests(unittest.TestCase):
+    def test_npm_registry_rejects_executable_and_argument_substitution(self) -> None:
+        for mode in (("--compare-only",), ("--dry-run",), ()):
+            for variant in ("interpreter", "executable", "arguments", "unknown-id"):
+                with self.subTest(mode=mode, variant=variant), tempfile.TemporaryDirectory() as directory:
+                    root = Path(directory)
+                    (root / "home").mkdir()
+                    paths = empty_registries(root)
+                    bin_dir, _, _ = install_fake_brew(root)
+                    marker = root / "executed"
+                    npm_log = root / "npm-called"
+                    payload = "#!/usr/bin/env bash\nprintf reached > " + shlex.quote(str(marker)) + "\n"
+                    write_executable(bin_dir / "payload", payload)
+                    write_executable(bin_dir / "codex", payload)
+                    write_executable(bin_dir / "npm", "#!/usr/bin/env bash\nprintf called >> " + shlex.quote(str(npm_log)) + "\n")
+                    command, arguments, tool_id = "codex", ["--version"], "codex"
+                    if variant == "interpreter":
+                        command, arguments = "bash", ["-c", "printf reached > " + shlex.quote(str(marker))]
+                    elif variant == "executable":
+                        command = str(bin_dir / "payload")
+                    elif variant == "arguments":
+                        arguments = ["--version", "--unexpected"]
+                    else:
+                        tool_id = "unregistered"
+                    write_json(paths["npm"], {"schemaVersion": 1, "tools": [{
+                        "id": tool_id, "scope": "required", "platforms": ["Darwin", "Linux", "Windows"],
+                        "package": "@openai/codex", "command": command, "args": arguments,
+                    }]})
+                    result = run_brew_maintainer(root, paths, extra=mode)
+                    self.assertFalse(marker.exists(), result.stdout)
+                    self.assertFalse(npm_log.exists(), "Rejected probe must not become npm installation")
+                    self.assertNotEqual(result.returncode, 0, result.stdout)
+                    report = json.loads((root / "toolchain-result.json").read_text())
+                    record = next(item for item in report["items"] if item["itemId"] == tool_id)
+                    self.assertEqual(record["probeStatus"], "CapabilityBlocked")
+                    self.assertEqual(record["finalStatus"], "Failed")
+
+    def test_missing_canonical_npm_tool_keeps_install_fallback(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            (root / "home").mkdir()
+            paths = empty_registries(root)
+            bin_dir, _, _ = install_fake_brew(root)
+            npm_log = root / "npm-called"
+            write_executable(bin_dir / "codex", "#!/usr/bin/env bash\nexit 127\n")
+            installed_probe = "#!/usr/bin/env bash\nprintf 'codex-fixture\\n'\n"
+            npm = ("#!/usr/bin/env bash\nprintf '%s\\n' \"$*\" >> " + shlex.quote(str(npm_log)) +
+                   "\nprintf '%s' " + shlex.quote(installed_probe) + " > " + shlex.quote(str(bin_dir / "codex")) + "\n")
+            write_executable(bin_dir / "npm", npm)
+            canonical = json.loads((REPOSITORY / "scripts/config/npm-agent-cli-registry.json").read_text())
+            canonical["tools"] = [tool for tool in canonical["tools"] if tool["id"] == "codex"]
+            write_json(paths["npm"], canonical)
+            result = run_brew_maintainer(root, paths)
+            self.assertEqual(result.returncode, 0, result.stdout)
+            self.assertEqual(npm_log.read_text().splitlines(), ["install -g @openai/codex"])
+            report = json.loads((root / "toolchain-result.json").read_text())
+            record = next(item for item in report["items"] if item["itemId"] == "codex")
+            self.assertEqual(record["finalStatus"], "Installed")
+
+    def test_canonical_npm_version_probes_remain_available(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            (root / "home").mkdir()
+            paths = empty_registries(root)
+            bin_dir, _, _ = install_fake_brew(root)
+            canonical = json.loads((REPOSITORY / "scripts/config/npm-agent-cli-registry.json").read_text())
+            for tool in canonical["tools"]:
+                marker = root / (tool["id"] + "-version")
+                write_executable(bin_dir / tool["command"], "#!/usr/bin/env bash\nprintf reached > " + shlex.quote(str(marker)) + "\nprintf 'fixture-version\\n'\n")
+            write_json(paths["npm"], canonical)
+            result = run_brew_maintainer(root, paths, extra=("--compare-only",))
+            self.assertEqual(result.returncode, 0, result.stdout)
+            for tool in canonical["tools"]:
+                self.assertTrue((root / (tool["id"] + "-version")).exists(), tool["id"])
+
     def test_swiftly_extraction_enforces_member_and_expanded_size_limits(self) -> None:
         def archive(path: Path, members: list[tuple[str, bytes]]) -> None:
             with tarfile.open(path, "w:gz") as bundle:

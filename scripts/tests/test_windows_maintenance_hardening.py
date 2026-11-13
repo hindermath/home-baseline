@@ -39,6 +39,59 @@ def run_json(script: str) -> object:
 
 @unittest.skipUnless(shutil.which("pwsh"), "PowerShell 7 is unavailable")
 class BoundedProcessOutputTests(unittest.TestCase):
+    def test_npm_probe_authority_precedes_process_lookup(self) -> None:
+        source = REPOSITORY / "scripts/maintain-agentic-winget-apps.ps1"
+        script = r"""
+$ErrorActionPreference='Stop'
+$tree=[Management.Automation.Language.Parser]::ParseFile('__SOURCE__',[ref]$null,[ref]$null)
+$assignment=$tree.Find({param($node) $node -is [Management.Automation.Language.AssignmentStatementAst] -and $node.Left.Extent.Text -eq '$approvedCliProbes'},$true)
+Invoke-Expression $assignment.Extent.Text
+foreach($name in @('Assert-HBCLIProbeContract','Test-HBNpmAgentTool')) {
+    $node=$tree.Find({param($item) $item -is [Management.Automation.Language.FunctionDefinitionAst] -and $item.Name -eq $name},$true)
+    Invoke-Expression $node.Extent.Text
+}
+function Get-Command {
+    [CmdletBinding()]param([string]$Name)
+    $script:Lookups++
+    [pscustomobject]@{Source='fixture-program'}
+}
+function Test-HBCommandWithTimeout {
+    param([string]$FilePath,[string[]]$Arguments)
+    $script:Executions++
+    $script:ProbeArguments=@($Arguments)
+    return $true
+}
+$cases=@(
+    @{id='codex';command='pwsh';args=@('-Command','exit 0');allowed=$false},
+    @{id='codex';command='fixture-program';args=@('--version');allowed=$false},
+    @{id='codex';command='codex';args=@('--version','--unexpected');allowed=$false},
+    @{id='unregistered';command='codex';args=@('--version');allowed=$false},
+    @{id='codex';command='codex';args=@('--version');allowed=$true},
+    @{id='claude';command='claude';args=@('--version');allowed=$true},
+    @{id='copilot';command='copilot';args=@('--version');allowed=$true}
+)
+$results=@(foreach($case in $cases) {
+    $script:Lookups=0;$script:Executions=0;$script:ProbeArguments=@();$denied=$false;$reason=""
+    try {$null=Test-HBNpmAgentTool -Tool ([pscustomobject]$case)} catch {$denied=$true;$reason=$_.Exception.Message}
+    [pscustomobject]@{allowed=$case.allowed;denied=$denied;lookups=$script:Lookups;executions=$script:Executions;arguments=$script:ProbeArguments;reason=$reason}
+})
+ConvertTo-Json -InputObject $results -Depth 6 -Compress
+""".replace("__SOURCE__", str(source).replace("'", "''"))
+        result = run_pwsh(script)
+        self.assertEqual(result.returncode, 0, result.stdout)
+        rows = json.loads(result.stdout)
+        self.assertEqual(len(rows), 7)
+        for row in rows:
+            if row["allowed"]:
+                self.assertFalse(row["denied"], row)
+                self.assertEqual(row["lookups"], 1)
+                self.assertEqual(row["executions"], 1)
+                self.assertEqual(row["arguments"], ["--version"])
+            else:
+                self.assertTrue(row["denied"])
+                self.assertEqual(row["lookups"], 0)
+                self.assertEqual(row["executions"], 0)
+
     def test_process_output_overflow_is_bounded_and_fails_closed(self) -> None:
         result = run_json(
             "$code=\"`$value='x'*4096;[Console]::Out.Write(`$value);"
