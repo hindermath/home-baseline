@@ -1,0 +1,49 @@
+{
+  "schemaVersion": "1.1",
+  "feature": "intake-authoring-v0314-followup",
+  "entries": [
+    {
+      "changeId": "CHG001",
+      "scope": "Verified Intake Authoring 0.3.14 standalone-archive compatibility, existing profiles/installation/guidance and controlled nine-consumer follow-up",
+      "decision": "UpdateRequired",
+      "rationale": "Preserve supported standalone archive lookup during the authorised current-preset security rollout.",
+      "documents": [
+        "docs/maintenance/intake-authoring-v0314-rollout-2026-11-13.md",
+        "docs/maintenance/intake-authoring-v0314-source.json",
+        "docs/maintenance/preset-source-lock.json",
+        "docs/maintenance/preset-installed-lock.json",
+        "README.md",
+        "README.en.md",
+        "AGENTS.md",
+        "CLAUDE.md",
+        "GEMINI.md",
+        "constitution.md",
+        ".specify/memory/constitution.md",
+        ".github/copilot-instructions.md",
+        ".github/agents/copilot-instructions.md",
+        "scripts/templates/speckit-workflow-section.md"
+      ],
+      "owner": "Thorsten Hindermann",
+      "audiences": [
+        "Workspace maintainers",
+        "Security reviewers",
+        "Workspace users"
+      ],
+      "readerPaths": [
+        "SECURITY.md -> shared maintenance explanation -> exact source PR and CI evidence"
+      ],
+      "canonicalSource": "Published v0.3.14 source/tag/archive, pinned existing preset matrices and separate source/installed locks.",
+      "navigationImpact": "Existing maintenance documentation family; no new top-level product navigation.",
+      "documentClass": "ActiveSemantic",
+      "languageStrategy": "Complete German first, equivalent English second; CEFR B2 and applicable WCAG 2.2 AA criteria.",
+      "languagePartners": [],
+      "platformAndExampleProof": "Twelve green source PR checks including native lifecycle/documentation/reader paths on Linux, macOS and Windows; every archive file compared to the merge commit; exact fourteen-preset check and nine existing local agent-surface parity tests pass after installation. Practical assistive-technology acceptance not repeated.",
+      "distributionClass": "homeRuntime",
+      "homeSyncRequired": true,
+      "evidence": "docs/maintenance/intake-authoring-v0314-rollout-2026-11-13.md",
+      "risk": "Static triage does not prove runtime exploitability; unresolved boundaries remain needs_review. No alert dismissal or new accepted risk.",
+      "criticality": "Security",
+      "reevaluationTrigger": "Workflow permission overrides, changed callers, package versions, source binding or rollout drift."
+    }
+  ]
+}

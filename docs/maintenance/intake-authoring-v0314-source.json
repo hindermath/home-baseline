@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "presetId": "intake-authoring-governance",
+  "previousVersion": "0.3.13",
+  "version": "0.3.14",
+  "sourcePr": "https://github.com/hindermath/spec-kit-preset-intake-authoring-governance/pull/28",
+  "reviewedHead": "53d302ccc9515612254d7b6034797a0107ba9391",
+  "mergeCommit": "aaf8da25c7545a2e69ca120d5147a0159c3a1caf",
+  "tag": "v0.3.14",
+  "release": "https://github.com/hindermath/spec-kit-preset-intake-authoring-governance/releases/tag/v0.3.14",
+  "archiveUrl": "https://github.com/hindermath/spec-kit-preset-intake-authoring-governance/archive/refs/tags/v0.3.14.zip",
+  "archiveSha256": "b70b73e6e096e2bb2e0ccfda63704938d4a9ec4ff815b134c8a892f302d5fc79",
+  "archiveBytes": 173934,
+  "verifiedFiles": 72,
+  "verifiedAt": "2026-11-13T14:29:32.695475+01:00",
+  "scope": "Standalone archive lookup compatibility; physical containment, name/hash uniqueness, series binding and historical receipt bytes retained",
+  "deliveryAuthority": "Approved shared-security source fixes and controlled Level-0/Home/nine-Level-2 rollout. No Level-1 distribution, new Spec Kit execution or risk acceptance."
+}

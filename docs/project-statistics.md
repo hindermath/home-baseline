@@ -1781,6 +1781,14 @@ The pre-push detector identifies three unchanged synthetic negative fixtures by 
 
 Documentation Impact: UpdateRequired; beide Statistikansichten werden reproduzierbar generiert / both statistics views are generated reproducibly. [Nachweis / evidence](maintenance/preset-security-patch-rollout-2026-11-13.md).
 
+### 2026-11-13 — Standalone-Archiv-Kompatibilitaet / Standalone archive compatibility
+
+Intake Authoring 0.3.14 behebt die Aufloesung unveraenderter eigenstaendiger Archiv-Intakes ausserhalb einer Serie. Der Quell-PR ist nach zwoelf technischen Checks geliefert; alle Release-Dateien sind bytegeprueft. Die bestehende Vierzehner-Installation, Profile und Agentenhinweise sind gebunden. Historische Receipts und offene menschliche Pruefgrenzen bleiben erhalten; kein neuer Spec-Kit-Lauf wird gezaehlt.
+
+Intake Authoring 0.3.14 fixes unchanged standalone archive lookup outside a series. The source PR was delivered after twelve technical checks; all release files are byte-verified. Existing fourteen-preset installation, profiles and guidance are bound. Historical receipts and open human-review boundaries remain; no new Spec Kit execution is counted.
+
+Documentation Impact: UpdateRequired; [Quellen- und Bindungsnachweis / source and binding record](maintenance/intake-authoring-v0314-rollout-2026-11-13.md).
+
 ## Gesamtstatistik / Overall Statistics
 
 <!-- project-statistics-v2:begin -->

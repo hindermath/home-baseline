@@ -35,7 +35,9 @@ Dokumentationsregeln und Lernmaterialien. Du brauchst keine Spec-Kit-Erfahrung,
 um hier zu beginnen.
 
 Veröffentlichter Governance-Quellenstand: Security v0.7.5, Architecture v0.6.6 sowie
-Intake Authoring v0.3.13, Review v0.2.9 und Sequencing v0.2.14.
+Intake Authoring v0.3.14, Review v0.2.9 und Sequencing v0.2.14.
+
+[Archiv-Kompatibilitaet und verifizierte Bindung 0.3.14](docs/maintenance/intake-authoring-v0314-rollout-2026-11-13.md).
 Historischer Authoring-Rollout: [begrenzte v0.3.7-Lieferung](docs/maintenance/intake-authoring-v037-rollout.md).
 Eine Veröffentlichung belegt keine Installation beim jeweiligen Verbraucher.
 [Neue Pakete und begrenzter Rollout](docs/maintenance/preset-documentation-rollout-2026-10-24.md): Level 0, Home Runtime und die drei benannten Piloten; keine weitere Flotte oder Community-Einreichung.
