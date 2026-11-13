@@ -41,9 +41,69 @@ import argparse
 import csv
 import datetime
 import os
+from pathlib import Path
 import random
+import stat
+import tempfile
 
 DEFAULT_SEED = 20260707
+
+
+class DatasetPathError(RuntimeError):
+    """Raised when a generated dataset path crosses its selected output root."""
+
+
+def is_link_or_reparse(path):
+    information = path.lstat()
+    reparse_point = getattr(stat, "FILE_ATTRIBUTE_REPARSE_POINT", 0x400)
+    return path.is_symlink() or bool(
+        getattr(information, "st_file_attributes", 0) & reparse_point
+    )
+
+
+def prepare_output_directory(root, name):
+    candidate = root / name
+    try:
+        candidate.mkdir(mode=0o755)
+    except FileExistsError:
+        pass
+    if is_link_or_reparse(candidate) or not candidate.is_dir():
+        raise DatasetPathError("Unsicheres Datensatz-Zielverzeichnis: %s" % candidate)
+    resolved = candidate.resolve(strict=True)
+    try:
+        resolved.relative_to(root)
+    except ValueError as exc:
+        raise DatasetPathError("Datensatz-Ziel verlaesst das Ausgabeverzeichnis: %s" % candidate) from exc
+    return resolved
+
+
+def write_csv_atomic(path, header, rows):
+    # Eine temporäre Datei im bereits geprüften Elternverzeichnis verhindert,
+    # dass ein vorhandener CSV-Symlink auf ein externes Ziel verfolgt wird.
+    try:
+        information = path.lstat()
+        target_mode = (
+            stat.S_IMODE(information.st_mode)
+            if stat.S_ISREG(information.st_mode) and not is_link_or_reparse(path)
+            else 0o644
+        )
+    except FileNotFoundError:
+        target_mode = 0o644
+    descriptor, temporary_name = tempfile.mkstemp(prefix=".%s." % path.name, dir=path.parent)
+    try:
+        if hasattr(os, "fchmod"):
+            os.fchmod(descriptor, target_mode)
+        with os.fdopen(descriptor, "w", newline="", encoding="utf-8") as fh:
+            writer = csv.writer(fh, lineterminator="\n")
+            writer.writerow(header)
+            writer.writerows(rows)
+        os.replace(temporary_name, path)
+    except BaseException:
+        try:
+            os.unlink(temporary_name)
+        except FileNotFoundError:
+            pass
+        raise
 
 
 def parse_end(value):
@@ -86,19 +146,18 @@ def main():
 def build(END_YEAR, END_MONTH, SEED, BASE_DIR):
     random.seed(SEED)
 
-    ORDERDESK = os.path.join(BASE_DIR, "orderdesk")
-    HARVESTER = os.path.join(BASE_DIR, "serviceharvester")
-    CASETRACKER = os.path.join(BASE_DIR, "casetracker")
-    for _d in (ORDERDESK, HARVESTER, CASETRACKER):
-        os.makedirs(_d, exist_ok=True)
+    output_root = Path(BASE_DIR).expanduser().resolve()
+    output_root.mkdir(mode=0o755, parents=True, exist_ok=True)
+    if not output_root.is_dir():
+        raise DatasetPathError("Datensatz-Ausgabe ist kein Verzeichnis: %s" % output_root)
+    ORDERDESK = prepare_output_directory(output_root, "orderdesk")
+    HARVESTER = prepare_output_directory(output_root, "serviceharvester")
+    CASETRACKER = prepare_output_directory(output_root, "casetracker")
 
     def write_csv(path, header, rows):
         # LF-Zeilenenden explizit (nicht csv.writer-Default \r\n), damit der
         # Arbeitsbaum den committeten LF-Dateien entspricht und Diffs sauber sind.
-        with open(path, "w", newline="", encoding="utf-8") as fh:
-            writer = csv.writer(fh, lineterminator="\n")
-            writer.writerow(header)
-            writer.writerows(rows)
+        write_csv_atomic(Path(path), header, rows)
 
     def month_range(start, end):
         y, m = start
