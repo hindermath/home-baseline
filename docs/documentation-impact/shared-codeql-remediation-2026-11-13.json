@@ -8,7 +8,8 @@
       "decision": "UpdateRequired",
       "rationale": "Explicit read-only workflow authority prevents inheritance of the live write-enabled repository default.",
       "documents": [
-        "docs/maintenance/codeql-shared-security-2026-11-13.md"
+        "docs/maintenance/codeql-shared-security-2026-11-13.md",
+        "docs/scripts/reference.md"
       ],
       "owner": "Thorsten Hindermann",
       "audiences": [
@@ -24,7 +25,7 @@
       "documentClass": "ActiveSemantic",
       "languageStrategy": "Complete German first, equivalent English second; CEFR B2 and applicable WCAG 2.2 AA criteria.",
       "languagePartners": [],
-      "platformAndExampleProof": "Bash and PowerShell documentation validation; exact reporting paragraphs, repository URLs, UTF-8, languages and headings. GitHub rendering checked at delivery; no new VoiceOver, NVDA or Braille acceptance claimed.",
+      "platformAndExampleProof": "Bash and PowerShell documentation validation; exact reporting paragraphs, repository URLs, UTF-8, languages and headings. GitHub rendering checked at delivery; no new VoiceOver, NVDA or Braille acceptance claimed. Regenerated script reference from the unchanged canonical catalog after the regression source changed; renderer CheckOnly reports CURRENT.",
       "distributionClass": "sourceOnly",
       "homeSyncRequired": false,
       "evidence": "docs/maintenance/codeql-shared-security-2026-11-13.md",
