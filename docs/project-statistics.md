@@ -1745,6 +1745,26 @@ Documentation Impact: UpdateRequired; see the evidence path above.
 No product logic changed; CodeQL under Tools is configured separately after
 delivery. No AI Scan activation or new practical accessibility acceptance.
 
+### 2026-11-13 — Gemeinsame CodeQL-Sicherheitsbasis / Shared CodeQL security baseline
+
+DE: Den bestätigten Befund zu geerbten Workflow-Schreibrechten durch explizite
+Leserechte im Homogenitäts-Workflow behoben. Regression zunächst rot, danach
+grün; zusätzliche negative Fälle sichern joblokale Schreibüberschreibungen ab.
+Eine unabhängige statische Prüfung betrachtete Grenze und Kompatibilität.
+Gemeinsame Alerts und Versionsunterschiede bleiben einzeln nachvollziehbar;
+keine automatische Verwerfung oder pauschale Befundfreiheit.
+Documentation Impact: UpdateRequired; [Wartungsnachweis](maintenance/codeql-shared-security-2026-11-13.md).
+Owner: Thorsten Hindermann. Source-only; erforderliche technische CI am exakten
+Head bleibt Liefergate. Git-Aktivität ist keine Stoppuhrmessung.
+
+EN: Fixed the confirmed inherited workflow write-authority finding by declaring
+read-only permissions. The regression failed before the fix and passed after;
+negative cases cover job-level write overrides. Independent static review
+assessed the boundary and compatibility. Shared alerts and version differences
+remain traceable per finding; no automatic dismissal or blanket clean claim.
+Documentation Impact: UpdateRequired; see the linked maintenance record.
+Source-only; required exact-head technical CI remains a delivery gate.
+
 ## Gesamtstatistik / Overall Statistics
 
 <!-- project-statistics-v2:begin -->
@@ -1755,27 +1775,27 @@ Profil 2 verwendet Git-getrackte Textdateien und sichtbare Git-Aktivitaet. Die W
 
 | Kennzahl / Metric | Wert / Value |
 |---|---:|
-| Textbasis / Text base | 785427 lines |
-| Textdateien / Text files | 3840 |
-| Beobachtbarer Zeitraum / Observable period | 2025-11-16..2026-11-12 |
-| Aktivtage / Active days | 138 |
-| Relevante Commits / Relevant commits | 1013 |
-| Zeilen je Aktivtag / Lines per active day | 5691.5 |
+| Textbasis / Text base | 785555 lines |
+| Textdateien / Text files | 3842 |
+| Beobachtbarer Zeitraum / Observable period | 2025-11-16..2026-11-13 |
+| Aktivtage / Active days | 139 |
+| Relevante Commits / Relevant commits | 1015 |
+| Zeilen je Aktivtag / Lines per active day | 5651.5 |
 | Peak-Tag im Fenster / Peak day in window | 2026-08-01 / 161357 |
 | Peak-Woche im Fenster / Peak week in window | 2026-07-26 / 284516 |
 | Laengste Serie / Longest streak | 38 days |
-| Speedup vs. 80 lines/day | 71.1x |
-| Speedup vs. 100 lines/day | 56.9x |
-| Methodik / Methodology | v2; source `2a38281ab1d3` |
+| Speedup vs. 80 lines/day | 70.6x |
+| Speedup vs. 100 lines/day | 56.5x |
+| Methodik / Methodology | v2; source `c06ef58cc11e` |
 
 ### Artefaktmix / Artifact Mix
 
 ```text
 Produktiv / Production          [#...................]   0.3% | 2237
-Tests                           [#...................]   4.4% | 34356
-Dokumentation / Documentation   [###########.........]  54.8% | 430582
+Tests                           [#...................]   4.4% | 34376
+Dokumentation / Documentation   [###########.........]  54.8% | 430686
 Skripte / Scripts               [##..................]   8.3% | 65097
-Konfiguration / Configuration   [######..............]  32.2% | 252799
+Konfiguration / Configuration   [######..............]  32.2% | 252803
 Daten und Medien / Data and media [....................]   0.0% | 0
 Sonstiger Text / Other text     [#...................]   0.0% | 356
 ```
@@ -1804,7 +1824,7 @@ Mo/Mo  0 0 0 0 0 0 4 4 4 4 3 0 2 1 0 0 3 3 0 3 2 0 4 0 0 2
 Di/Tu  0 3 0 0 0 0 2 4 4 4 4 0 0 0 0 4 2 4 0 0 3 0 4 0 4 0
 Mi/We  0 0 1 0 4 0 4 4 4 4 4 4 0 4 3 0 4 2 0 0 0 0 0 0 0 0
 Do/Th  3 2 1 4 0 0 2 4 3 4 4 0 4 4 0 4 4 0 0 3 0 0 0 2 4 4
-Fr/Fr  1 2 2 1 4 2 3 4 3 4 4 4 3 0 4 0 4 1 0 0 2 0 0 3 0 -
+Fr/Fr  1 2 2 1 4 2 3 4 3 4 4 4 3 0 4 0 4 1 0 0 2 0 0 3 0 2
 Sa/Sa  0 0 0 0 4 4 4 4 4 4 4 4 4 4 4 4 4 4 2 4 3 0 4 0 4 -
 ```
 
@@ -2040,8 +2060,8 @@ Die festen Slots halten den Phasenvergleich auch bei fehlenden oder spaeter erga
 
 ```text
 Scale: 0..100x
-80 lines/day       [##############......] 71.1x
-100 lines/day      [###########.........] 56.9x
+80 lines/day       [##############......] 70.6x
+100 lines/day      [###########.........] 56.5x
 ```
 
 Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen Referenzen. Sie messen keine Arbeitszeit.
@@ -2054,7 +2074,7 @@ Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen
 Scale: 0..10000 lines/day
 Experienced manual [#...................] 80
 Thorsten solo      [#...................] 100
-Visible repository [###########.........] 5691.5
+Visible repository [###########.........] 5651.5
 ```
 
 Die gemeinsame Skala vergleicht Referenzen und sichtbare Lieferdichte. Sie schreibt die Git-Aktivitaet keiner Person oder KI pauschal zu.
@@ -2063,9 +2083,9 @@ Die gemeinsame Skala vergleicht Referenzen und sichtbare Lieferdichte. Sie schre
 
 ### Textalternative / Text Alternative
 
-DE: Das Fenster beginnt am 2025-11-16 und endet am 2026-11-12. Es enthaelt 138 aktive und 224 inaktive vergangene Tage. Peak-Tag: 2026-08-01 / 161357. Peak-Woche: 2026-07-26 / 284516. Laengste Serie: 38 Tage (2026-06-26..2026-08-02).
+DE: Das Fenster beginnt am 2025-11-16 und endet am 2026-11-13. Es enthaelt 139 aktive und 224 inaktive vergangene Tage. Peak-Tag: 2026-08-01 / 161357. Peak-Woche: 2026-07-26 / 284516. Laengste Serie: 38 Tage (2026-06-26..2026-08-02).
 
-*EN: The window starts on 2025-11-16 and ends on 2026-11-12. It contains 138 active and 224 inactive elapsed days. Peak day: 2026-08-01 / 161357. Peak week: 2026-07-26 / 284516. Longest streak: 38 days (2026-06-26..2026-08-02).*
+*EN: The window starts on 2025-11-16 and ends on 2026-11-13. It contains 139 active and 224 inactive elapsed days. Peak day: 2026-08-01 / 161357. Peak week: 2026-07-26 / 284516. Longest streak: 38 days (2026-06-26..2026-08-02).*
 
 | Monat / Month | Geaenderte Textzeilen / Changed text lines |
 |---|---:|
@@ -2080,6 +2100,6 @@ DE: Das Fenster beginnt am 2025-11-16 und endet am 2026-11-12. Es enthaelt 138 a
 | 2026-08 | 278228 |
 | 2026-09 | 144845 |
 | 2026-10 | 73816 |
-| 2026-11 | 41868 |
+| 2026-11 | 42002 |
 
 <!-- project-statistics-v2:end -->

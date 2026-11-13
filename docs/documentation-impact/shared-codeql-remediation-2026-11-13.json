@@ -1,0 +1,37 @@
+{
+  "schemaVersion": "1.1",
+  "feature": "shared-codeql-remediation-2026-11-13",
+  "entries": [
+    {
+      "changeId": "CHG001",
+      "scope": "Least-privilege homogeneity CI and shared CodeQL source/consumer assessment",
+      "decision": "UpdateRequired",
+      "rationale": "Explicit read-only workflow authority prevents inheritance of the live write-enabled repository default.",
+      "documents": [
+        "docs/maintenance/codeql-shared-security-2026-11-13.md",
+        "docs/scripts/reference.md"
+      ],
+      "owner": "Thorsten Hindermann",
+      "audiences": [
+        "Workspace maintainers",
+        "Security reviewers",
+        "Workspace users"
+      ],
+      "readerPaths": [
+        "SECURITY.md -> shared maintenance explanation -> exact source PR and CI evidence"
+      ],
+      "canonicalSource": ".github/workflows/homogeneity-check.yml and scripts/tests/test_deep_security_high_fixes.py",
+      "navigationImpact": "Existing maintenance documentation family; no new top-level product navigation.",
+      "documentClass": "ActiveSemantic",
+      "languageStrategy": "Complete German first, equivalent English second; CEFR B2 and applicable WCAG 2.2 AA criteria.",
+      "languagePartners": [],
+      "platformAndExampleProof": "Bash and PowerShell documentation validation; exact reporting paragraphs, repository URLs, UTF-8, languages and headings. GitHub rendering checked at delivery; no new VoiceOver, NVDA or Braille acceptance claimed. Regenerated script reference from the unchanged canonical catalog after the regression source changed; renderer CheckOnly reports CURRENT.",
+      "distributionClass": "sourceOnly",
+      "homeSyncRequired": false,
+      "evidence": "docs/maintenance/codeql-shared-security-2026-11-13.md",
+      "risk": "Static triage does not prove runtime exploitability; unresolved boundaries remain needs_review. No alert dismissal or new accepted risk.",
+      "criticality": "Security",
+      "reevaluationTrigger": "Workflow permission overrides, changed callers, package versions, source binding or rollout drift."
+    }
+  ]
+}
