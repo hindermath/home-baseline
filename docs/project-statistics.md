@@ -1843,6 +1843,22 @@ separate valid cache inside home remains supported. No Spec Kit run is added.
 
 Documentation Impact: UpdateRequired; [Nachweis / evidence](man/maintain-workspace-storage.1.md).
 
+### 2026-11-14 — Gebündelte Level-0-CodeQL-Bereinigung / Consolidated Level 0 CodeQL remediation
+
+DE: Drei gemeinsame Korrekturen begrenzen Lernpaket-Cleanup,
+Feature-024-Evidence und Secure-Trader-Datensatzausgaben auf die jeweils
+besessenen beziehungsweise physisch geprüften Ziele. Zehn bisherige
+Alert-Datenflüsse werden durch Code behoben; 92 weitere Alerts sind für die
+anschließende exakte Reanalyse und eine gemeinsame Schließfreigabe gruppiert.
+Es wird kein Spec-Kit-Lauf hinzugezählt.
+
+EN: Three shared fixes bind learning-package cleanup, Feature-024 evidence,
+and Secure-Trader dataset output to owned or physically verified targets. Code
+remediates ten previous alert data flows; 92 other alerts are grouped for exact
+reanalysis and one consolidated dismissal approval. No Spec Kit run is added.
+
+Documentation Impact: UpdateRequired; [Nachweis / evidence](maintenance/level0-codeql-remediation-batch-2026-11-14.md).
+
 ## Gesamtstatistik / Overall Statistics
 
 <!-- project-statistics-v2:begin -->
