@@ -38,7 +38,7 @@ public static class Program
             "events");
         Directory.CreateDirectory(eventDirectory);
         var eventPath = Path.Combine(eventDirectory, $"maintenance-{runId}.jsonl");
-        var invocation = new MaintenanceCommandBuilder().Build(
+        var invocation = MaintenanceCommandBuilder.Build(
             context,
             selection,
             parsed.Wrapper!,
@@ -123,19 +123,19 @@ public static class Program
         bool Plain,
         string Error)
     {
-        public static ProgramArguments Parse(IReadOnlyList<string> args)
+        public static ProgramArguments Parse(string[] args)
         {
             string? wrapper = null;
             string? home = null;
             var plain = false;
-            for (var index = 0; index < args.Count; index++)
+            for (var index = 0; index < args.Length; index++)
             {
                 switch (args[index])
                 {
-                    case "--wrapper" when index + 1 < args.Count:
+                    case "--wrapper" when index + 1 < args.Length:
                         wrapper = args[++index];
                         break;
-                    case "--home-dir" when index + 1 < args.Count:
+                    case "--home-dir" when index + 1 < args.Length:
                         home = args[++index];
                         break;
                     case "--plain":

@@ -1,9 +1,14 @@
+using System.Diagnostics.CodeAnalysis;
 using HomeBaseline.MaintenanceTui.Contracts;
 
 namespace HomeBaseline.MaintenanceTui.Infrastructure;
 
 public sealed class RunResultReconciler
 {
+    [SuppressMessage(
+        "Performance",
+        "CA1822:Mark members as static",
+        Justification = "The instance is an explicit application seam for result reconciliation tests.")]
     public ReconciledRunResult Reconcile(
         Guid expectedRunId,
         int processExitCode,

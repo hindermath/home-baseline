@@ -12,7 +12,7 @@ public sealed record ProcessInvocation(
 
 public sealed class MaintenanceCommandBuilder
 {
-    public ProcessInvocation Build(
+    public static ProcessInvocation Build(
         InvocationContext context,
         MaintenanceSelection selection,
         string scriptPath,
