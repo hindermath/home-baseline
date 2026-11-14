@@ -6,9 +6,9 @@ from __future__ import annotations
 import argparse
 import os
 from pathlib import Path, PurePosixPath
-import shutil
 import stat
 import sys
+import tempfile
 import time
 import zipfile
 
@@ -172,42 +172,51 @@ def _ensure_directory(root: Path, relative: PurePosixPath) -> Path:
 
 def extract_archive(archive: Path, destination: Path) -> None:
     members = inspect_archive(archive)
-    destination.mkdir(mode=0o700, parents=True, exist_ok=False)
-    started = time.monotonic()
-    actual_total = 0
-    with zipfile.ZipFile(archive) as package:
-        for info, relative, kind in members:
-            if time.monotonic() - started > MAX_EXTRACT_SECONDS:
-                raise ArchiveError("Zeitlimit beim Entpacken ueberschritten")
-            if kind == "directory":
-                _ensure_directory(destination, relative)
-                continue
-            parent = _ensure_directory(destination, relative.parent)
-            target = parent / relative.name
-            flags = os.O_WRONLY | os.O_CREAT | os.O_EXCL
-            if hasattr(os, "O_NOFOLLOW"):
-                flags |= os.O_NOFOLLOW
-            written = 0
-            descriptor = os.open(target, flags, 0o600)
-            try:
-                with package.open(info) as source, os.fdopen(descriptor, "wb") as output:
-                    descriptor = -1
-                    while True:
-                        chunk = source.read(1024 * 1024)
-                        if not chunk:
-                            break
-                        written += len(chunk)
-                        actual_total += len(chunk)
-                        if written > MAX_ENTRY_BYTES or actual_total > MAX_TOTAL_BYTES:
-                            raise ArchiveError("tatsaechliches Entpacklimit ueberschritten")
-                        if time.monotonic() - started > MAX_EXTRACT_SECONDS:
-                            raise ArchiveError("Zeitlimit beim Entpacken ueberschritten")
-                        output.write(chunk)
-                if written != info.file_size:
-                    raise ArchiveError(f"ZIP-Groessenangabe stimmt nicht: {info.filename}")
-            finally:
-                if descriptor >= 0:
-                    os.close(descriptor)
+    destination.parent.mkdir(mode=0o700, parents=True, exist_ok=True)
+    if os.path.lexists(destination):
+        raise FileExistsError(f"Ziel existiert bereits: {destination}")
+    with tempfile.TemporaryDirectory(
+        prefix=f".{destination.name}.extract-", dir=destination.parent
+    ) as temporary_name:
+        extraction_root = Path(temporary_name)
+        started = time.monotonic()
+        actual_total = 0
+        with zipfile.ZipFile(archive) as package:
+            for info, relative, kind in members:
+                if time.monotonic() - started > MAX_EXTRACT_SECONDS:
+                    raise ArchiveError("Zeitlimit beim Entpacken ueberschritten")
+                if kind == "directory":
+                    _ensure_directory(extraction_root, relative)
+                    continue
+                parent = _ensure_directory(extraction_root, relative.parent)
+                target = parent / relative.name
+                flags = os.O_WRONLY | os.O_CREAT | os.O_EXCL
+                if hasattr(os, "O_NOFOLLOW"):
+                    flags |= os.O_NOFOLLOW
+                written = 0
+                descriptor = os.open(target, flags, 0o600)
+                try:
+                    with package.open(info) as source, os.fdopen(descriptor, "wb") as output:
+                        descriptor = -1
+                        while True:
+                            chunk = source.read(1024 * 1024)
+                            if not chunk:
+                                break
+                            written += len(chunk)
+                            actual_total += len(chunk)
+                            if written > MAX_ENTRY_BYTES or actual_total > MAX_TOTAL_BYTES:
+                                raise ArchiveError("tatsaechliches Entpacklimit ueberschritten")
+                            if time.monotonic() - started > MAX_EXTRACT_SECONDS:
+                                raise ArchiveError("Zeitlimit beim Entpacken ueberschritten")
+                            output.write(chunk)
+                    if written != info.file_size:
+                        raise ArchiveError(f"ZIP-Groessenangabe stimmt nicht: {info.filename}")
+                finally:
+                    if descriptor >= 0:
+                        os.close(descriptor)
+        if os.path.lexists(destination):
+            raise FileExistsError(f"Ziel wurde waehrend des Entpackens angelegt: {destination}")
+        os.rename(extraction_root, destination)
 
 
 def main() -> int:
@@ -230,8 +239,6 @@ def main() -> int:
             inspect_archive(args.archive)
     except (ArchiveError, OSError, zipfile.BadZipFile, zipfile.LargeZipFile) as exc:
         print(f"ERROR: {exc}", file=sys.stderr)
-        if args.extract and args.extract.exists():
-            shutil.rmtree(args.extract, ignore_errors=True)
         return 1
     return 0
 

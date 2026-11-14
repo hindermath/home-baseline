@@ -1,0 +1,37 @@
+{
+  "schemaVersion": "1.1",
+  "feature": "level0-codeql-remediation-batch-2026-11-14",
+  "entries": [
+    {
+      "changeId": "CHG001",
+      "scope": "Consolidated Level-0 CodeQL remediation and evidence",
+      "decision": "UpdateRequired",
+      "rationale": "The security behavior of archive cleanup, Feature-024 evidence rendering, and Secure-Trader dataset generation changes. The maintenance evidence records the fixed ownership and physical path boundaries before any consumer rollout.",
+      "documents": [
+        "docs/maintenance/level0-codeql-remediation-batch-2026-11-14.md",
+        "docs/project-statistics.md"
+      ],
+      "owner": "Thorsten Hindermann",
+      "audiences": [
+        "Workspace maintainers",
+        "Security reviewers",
+        "Learning-series maintainers"
+      ],
+      "readerPaths": [
+        "SECURITY.md -> consolidated remediation evidence -> exact Level-0 PR and CodeQL run"
+      ],
+      "canonicalSource": "Level-0 implementations and focused security regression tests",
+      "navigationImpact": "Existing maintenance evidence family; no new top-level navigation.",
+      "documentClass": "ActiveSemantic",
+      "languageStrategy": "Complete German first, equivalent English second; CEFR B2 and applicable WCAG 2.2 AA criteria.",
+      "languagePartners": [],
+      "platformAndExampleProof": "Focused Python tests on macOS, byte-identical 2026-07 dataset regeneration, independent patch review, and later exact-head GitHub CI. No new practical screen-reader or Braille acceptance is claimed.",
+      "distributionClass": "sourceOnly",
+      "homeSyncRequired": false,
+      "evidence": "docs/maintenance/level0-codeql-remediation-batch-2026-11-14.md",
+      "risk": "Static alerts classified as not actionable remain open until exact-head reanalysis and one explicit dismissal approval. No risk acceptance is inferred.",
+      "criticality": "Security",
+      "reevaluationTrigger": "Changed threat model, writable concurrent worktree, new callers, changed output ownership, CodeQL query changes, or consumer drift."
+    }
+  ]
+}

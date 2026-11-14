@@ -18,6 +18,21 @@ import zipfile
 
 ROOT = Path(__file__).resolve().parents[2]
 SCRIPTS = ROOT / "scripts"
+DATASET_GENERATOR = ROOT / "docs/learning-units/datasets/generate-secure-trader-dataset.py"
+
+
+def load_dataset_generator():
+    specification = importlib.util.spec_from_file_location(
+        "secure_trader_dataset_generator", DATASET_GENERATOR
+    )
+    if specification is None or specification.loader is None:
+        raise RuntimeError("Secure-Trader dataset generator could not be loaded")
+    module = importlib.util.module_from_spec(specification)
+    specification.loader.exec_module(module)
+    return module
+
+
+DATASET_GENERATOR_MODULE = load_dataset_generator()
 
 
 def run(*args: str, env: dict[str, str] | None = None) -> subprocess.CompletedProcess[str]:
@@ -70,6 +85,89 @@ def create_source(root: Path) -> Path:
 
 
 class LearningPackageSecurityTests(unittest.TestCase):
+    def test_invalid_archive_preserves_preexisting_extract_destination(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            base = Path(tmp)
+            package = base / "invalid.zip"
+            package.write_bytes(b"not a ZIP archive")
+            destination = base / "existing"
+            destination.mkdir()
+            marker = destination / "owner-data.txt"
+            marker.write_text("preserve\n", encoding="utf-8")
+
+            result = run(
+                "python3",
+                str(SCRIPTS / "lib/learning_package_archive.py"),
+                str(package),
+                "--extract",
+                str(destination),
+            )
+
+            self.assertNotEqual(result.returncode, 0, result.stdout + result.stderr)
+            self.assertEqual(marker.read_text(encoding="utf-8"), "preserve\n")
+
+    def test_valid_archive_preserves_preexisting_extract_destination(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            base = Path(tmp)
+            package = base / "package.zip"
+            write_package(package)
+            destination = base / "existing"
+            destination.mkdir()
+            marker = destination / "owner-data.txt"
+            marker.write_text("preserve\n", encoding="utf-8")
+
+            result = run(
+                "python3",
+                str(SCRIPTS / "lib/learning_package_archive.py"),
+                str(package),
+                "--extract",
+                str(destination),
+            )
+
+            self.assertNotEqual(result.returncode, 0, result.stdout + result.stderr)
+            self.assertEqual(marker.read_text(encoding="utf-8"), "preserve\n")
+
+    def test_failed_extraction_removes_only_owned_partial_destination(self) -> None:
+        helper = SCRIPTS / "lib/learning_package_archive.py"
+        specification = importlib.util.spec_from_file_location("learning_package_archive_cleanup_test", helper)
+        self.assertIsNotNone(specification)
+        self.assertIsNotNone(specification.loader)
+        module = importlib.util.module_from_spec(specification)
+        specification.loader.exec_module(module)
+        with tempfile.TemporaryDirectory() as tmp:
+            base = Path(tmp)
+            package = base / "package.zip"
+            destination = base / "partial"
+            write_package(package)
+            with mock.patch.object(
+                module.time,
+                "monotonic",
+                side_effect=[0.0, module.MAX_EXTRACT_SECONDS + 1.0],
+            ):
+                with self.assertRaises(module.ArchiveError):
+                    module.extract_archive(package, destination)
+            self.assertFalse(destination.exists())
+
+    def test_valid_archive_extracts_into_new_destination(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            base = Path(tmp)
+            package = base / "package.zip"
+            destination = base / "extracted"
+            write_package(package)
+
+            result = run(
+                "python3",
+                str(SCRIPTS / "lib/learning_package_archive.py"),
+                str(package),
+                "--extract",
+                str(destination),
+            )
+
+            self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+            self.assertTrue(
+                (destination / "SecureExampleProjects" / "START-HERE-FUER-LERNENDE.md").is_file()
+            )
+
     def test_bounded_extractor_rejects_zip_bomb_ratio(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             package = Path(tmp) / "bomb.zip"
@@ -357,6 +455,80 @@ class LearningPackageSecurityTests(unittest.TestCase):
             self.assertTrue(any(name.endswith("/build-notes.md") for name in names), names)
             for directory in ("bin", "obj", "build", "node_modules", ".vs", ".idea"):
                 self.assertFalse(any(f"/{directory}/" in f"/{name}" for name in names), (directory, names))
+
+
+class SecureTraderDatasetSecurityTests(unittest.TestCase):
+    def test_linked_output_group_is_rejected_without_touching_external_files(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            base = Path(tmp)
+            output = base / "output"
+            output.mkdir()
+            outside = base / "outside"
+            outside.mkdir()
+            marker = outside / "categories.csv"
+            marker.write_text("owner data\n", encoding="utf-8")
+            (output / "orderdesk").symlink_to(outside, target_is_directory=True)
+
+            with self.assertRaises(DATASET_GENERATOR_MODULE.DatasetPathError):
+                DATASET_GENERATOR_MODULE.build(
+                    1998, 6, DATASET_GENERATOR_MODULE.DEFAULT_SEED, output
+                )
+
+            self.assertEqual(marker.read_text(encoding="utf-8"), "owner data\n")
+
+    def test_csv_leaf_symlink_is_replaced_without_following_external_target(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            base = Path(tmp)
+            output = base / "output"
+            for name in ("orderdesk", "serviceharvester", "casetracker"):
+                (output / name).mkdir(parents=True, exist_ok=True)
+            outside = base / "outside.csv"
+            outside.write_text("owner data\n", encoding="utf-8")
+            categories = output / "orderdesk/categories.csv"
+            categories.symlink_to(outside)
+
+            DATASET_GENERATOR_MODULE.build(
+                1998, 6, DATASET_GENERATOR_MODULE.DEFAULT_SEED, output
+            )
+
+            self.assertEqual(outside.read_text(encoding="utf-8"), "owner data\n")
+            self.assertFalse(categories.is_symlink())
+            self.assertTrue(categories.read_text(encoding="utf-8").startswith("CategoryID,"))
+
+    def test_normal_run_creates_all_three_output_groups(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            output = Path(tmp) / "output"
+
+            DATASET_GENERATOR_MODULE.build(
+                1998, 6, DATASET_GENERATOR_MODULE.DEFAULT_SEED, output
+            )
+
+            self.assertTrue((output / "orderdesk/categories.csv").is_file())
+            self.assertTrue((output / "serviceharvester/machines.csv").is_file())
+            self.assertTrue((output / "casetracker/cases.csv").is_file())
+            if os.name != "nt":
+                self.assertEqual((output / "orderdesk").stat().st_mode & 0o777, 0o755)
+                self.assertEqual(
+                    (output / "orderdesk/categories.csv").stat().st_mode & 0o777,
+                    0o644,
+                )
+
+    def test_existing_regular_csv_mode_is_preserved(self) -> None:
+        if os.name == "nt":
+            self.skipTest("POSIX file modes are not portable to Windows")
+        with tempfile.TemporaryDirectory() as tmp:
+            output = Path(tmp) / "output"
+            for name in ("orderdesk", "serviceharvester", "casetracker"):
+                (output / name).mkdir(parents=True, exist_ok=True)
+            categories = output / "orderdesk/categories.csv"
+            categories.write_text("old\n", encoding="utf-8")
+            categories.chmod(0o640)
+
+            DATASET_GENERATOR_MODULE.build(
+                1998, 6, DATASET_GENERATOR_MODULE.DEFAULT_SEED, output
+            )
+
+            self.assertEqual(categories.stat().st_mode & 0o777, 0o640)
 
 
 if __name__ == "__main__":
