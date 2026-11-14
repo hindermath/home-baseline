@@ -1,3 +1,4 @@
+using System.Globalization;
 using System.Text.Json;
 using HomeBaseline.MaintenanceTui.Contracts;
 using HomeBaseline.MaintenanceTui.Presentation;
@@ -42,7 +43,7 @@ public sealed class AccessibilityTests
             1,
             Guid.NewGuid(),
             1,
-            DateTimeOffset.Parse("2026-07-29T12:00:00Z"),
+            DateTimeOffset.Parse("2026-07-29T12:00:00Z", CultureInfo.InvariantCulture),
             MaintenanceEventTypes.PhaseProgress,
             "RUNNING",
             "fleet",
@@ -62,7 +63,7 @@ public sealed class AccessibilityTests
     [TestMethod]
     public void LiveRenderingIsLimitedToTenUpdatesPerSecond()
     {
-        var now = DateTimeOffset.Parse("2026-07-29T12:00:00Z");
+        var now = DateTimeOffset.Parse("2026-07-29T12:00:00Z", CultureInfo.InvariantCulture);
         var view = new LiveMaintenanceView(() => now);
         var console = new TestConsole();
         using var details = JsonDocument.Parse("{}");
@@ -166,7 +167,7 @@ public sealed class AccessibilityTests
             1,
             Guid.Parse("73fe2ff0-2d27-4279-92dd-7d0cb0b78671"),
             sequence,
-            DateTimeOffset.Parse("2026-07-29T12:00:00Z"),
+            DateTimeOffset.Parse("2026-07-29T12:00:00Z", CultureInfo.InvariantCulture),
             MaintenanceEventTypes.PhaseProgress,
             "RUNNING",
             "fleet",
