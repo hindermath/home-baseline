@@ -11,7 +11,7 @@ public sealed class CommandBuilderTests
     {
         var runId = Guid.NewGuid();
         var context = Context(HostPlatform.MacOs);
-        var invocation = new MaintenanceCommandBuilder().Build(
+        var invocation = MaintenanceCommandBuilder.Build(
             context,
             new MaintenanceSelection(MaintenanceMode.DryRun, HomeDirectory: "/tmp/a b;echo no"),
             "/repo/scripts/maintain-agentic-workspace.sh",
@@ -33,7 +33,7 @@ public sealed class CommandBuilderTests
     [TestMethod]
     public void PowerShellUsesNativeSwitches()
     {
-        var invocation = new MaintenanceCommandBuilder().Build(
+        var invocation = MaintenanceCommandBuilder.Build(
             Context(HostPlatform.Windows),
             new MaintenanceSelection(
                 MaintenanceMode.CheckOnly,
@@ -59,7 +59,7 @@ public sealed class CommandBuilderTests
             Confirmed: true,
             CleanupProfile: StorageCleanupProfile.Deep,
             ConfirmDeepCleanup: true);
-        var invocation = new MaintenanceCommandBuilder().Build(
+        var invocation = MaintenanceCommandBuilder.Build(
             Context(HostPlatform.Linux),
             selection,
             "/repo/wrapper.sh",
