@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "1.1",
+  "feature": "secure-trader-owner-approval-2026-11-14",
+  "entries": [
+    {
+      "changeId": "CHG001",
+      "scope": "Bind exact owner approval for the current Secure Trader sandbox image and source package",
+      "decision": "UpdateRequired",
+      "rationale": "Maintenance must verify the newly approved image and package rather than inherit approval for an earlier candidate.",
+      "documents": [
+        "scripts/config/maintenance-execution-contexts.json",
+        "docs/maintenance/secure-trader-owner-approval-2026-11-14.md"
+      ],
+      "owner": "Thorsten Hindermann",
+      "audiences": [
+        "Workspace maintainers",
+        "Security reviewers"
+      ],
+      "readerPaths": [
+        "Secure Trader fleet maintenance -> execution context -> dated owner decision"
+      ],
+      "canonicalSource": "Owner decision in this conversation, dated approval evidence, immutable image and Level-0 package binding",
+      "navigationImpact": "Dated approval document in existing maintenance evidence; no top-level navigation change.",
+      "documentClass": "ActiveSemantic",
+      "languageStrategy": "German first and equivalent English second; CEFR B2 and applicable WCAG 2.2 AA.",
+      "languagePartners": [],
+      "platformAndExampleProof": "Native ARM64 image build, CycloneDX SBOM, 172-member immutable package match and offline isolated toolchain/documentation smoke passed; actual mount/activation preflight remains a separate gate.",
+      "distributionClass": "homeRuntime",
+      "homeSyncRequired": true,
+      "evidence": "docs/maintenance/secure-trader-owner-approval-2026-11-14.md",
+      "risk": "Approval of the wrong image or package could bypass the sandbox boundary. Formal CISO/ISB/KIB roles remain pending.",
+      "criticality": "Security",
+      "reevaluationTrigger": "Image ID, source package, mount boundary, owner decision or expiry change."
+    }
+  ]
+}
