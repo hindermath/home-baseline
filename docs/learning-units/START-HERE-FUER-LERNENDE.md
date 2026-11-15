@@ -54,6 +54,16 @@ agent, document the sandbox gate as justified `N/A`. Read the
 [Secure Trader Sandbox Preflight](Secure-Trader-Sandbox-Preflight.md) before the
 first agent start.
 
+**DE:** Wenn du das sichere Anlegen und Prüfen von Projekten üben möchtest,
+verwende die [angeleitete Lernübung](../runbooks/security-baseline-integration-test.md).
+Sie nutzt nur lokale Testprojekte. Der vollständige Flottentest ist eine
+gesonderte Maintainer-Aufgabe und wird nicht durch das Lesen gestartet.
+
+**EN:** To practise creating and checking projects safely, use the
+[guided exercise](../runbooks/security-baseline-integration-test.md). It uses
+local test projects only. The full fleet test is a separate maintainer task;
+reading this guide does not start it.
+
 ## 1. Betriebssystem und Shell bestimmen / Identify OS and Shell
 
 **Host - macOS/Linux:**

@@ -70,7 +70,7 @@ zusammen.
 | Governance und sichere Entwicklung | [Praxisleitfaden für sichere Entwicklung](secure-development/praxisleitfaden-sichere-entwicklung.md), [Dokumentations-Governance](documentation-governance.md), [Security](security/README.md), [Secure Development](secure-development/) |
 | AEPS-Programme | [Engineering Controls Framework](aeps/engineering-controls/README.md) |
 | Technische Referenz | [Skripte](scripts/README.md), [vollständige Skriptreferenz](scripts/reference.md) |
-| Prüfung und Fehleranalyse | [Troubleshooting](troubleshooting/README.md), [Projektstatistik](project-statistics.md) |
+| Prüfung und Fehleranalyse | [Wiederholbarer Integrationstest mit Lernübung](runbooks/security-baseline-integration-test.md), [Troubleshooting](troubleshooting/README.md), [Projektstatistik](project-statistics.md) |
 
 Optionaler Pilot, getrennt von der bestehenden Statistik:
 [Project Statistics Governance](maintenance/project-statistics-pilot-v010.md).

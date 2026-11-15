@@ -19,6 +19,16 @@
 
 **EN:** This directory contains detailed learning material for secure development with GitHub Spec Kit, memory-safe languages (MSL), sandbox use, and audit-ready documentation. The binding [Learner and A11Y Baseline](LERNENDEN-UND-A11Y-BASIS.md) applies to IT specialist apprentices, IT systems electronics technician apprentices, IT system management trainees, and digitalisation management trainees from training year 1. It requires German first, English second, CEFR B2, first-use explanations, text-first information paths, understanding without prior Spec Kit experience, and WCAG 2.2 AA.
 
+**DE:** Für eine betreute Übung zu isoliertem Projekt-Bootstrap und
+überprüfbaren Testergebnissen siehe den
+[wiederholbaren Integrationstest](../runbooks/security-baseline-integration-test.md).
+Der vollständige Flottentest ist Maintainer-Arbeit.
+
+**EN:** For a supervised exercise in isolated project bootstrap and verifiable
+test results, see the linked
+[repeatable integration test](../runbooks/security-baseline-integration-test.md).
+The full fleet test is maintainer work.
+
 ## Start fuer Lernende / Start for Learners
 
 **DE:** Beginne mit
