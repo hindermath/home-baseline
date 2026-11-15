@@ -6,6 +6,9 @@
 **Constitution-Referenz**: Prinzip XII (A.8.28), Prinzip XIII (A.8.27),
 Prinzipien XIV bis XVIII
 
+Für einen verständlichen Einstieg in Datenflüsse, Alerts und Gegenmaßnahmen
+siehe den [Praxisleitfaden für sichere Entwicklung](../secure-development/praxisleitfaden-sichere-entwicklung.md).
+
 ### Einstieg in die RL-SE-Selbstprüfung
 
 Die Richtlinie für sichere Entwicklung (RL-SE) wird für dieses Level-0-
@@ -61,6 +64,9 @@ Die aktuelle Selbstprüfung bewertet Aussageumfang und Frische getrennt.
 **Repository**: home-baseline (Level 0)
 **Constitution reference**: Principle XII (A.8.28), Principle XIII (A.8.27),
 Principles XIV through XVIII
+
+For an accessible introduction to data flows, alerts, and safeguards, read
+the [secure development practice guide](../secure-development/praxisleitfaden-sichere-entwicklung.en.md).
 
 ### Entry point for the RL-SE self-assessment
 
