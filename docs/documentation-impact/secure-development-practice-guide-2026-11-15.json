@@ -1,0 +1,45 @@
+{
+  "schemaVersion": "1.1",
+  "feature": "secure-development-practice-guide-2026-11-15",
+  "entries": [
+    {
+      "changeId": "CHG001",
+      "scope": "Bilingual secure-development practice guide and Level-0 navigation",
+      "decision": "UpdateRequired",
+      "rationale": "Learners and non-specialist developers need an evidence-linked explanation of scan findings and secure coding without expanding the root README.",
+      "documents": [
+        "docs/secure-development/praxisleitfaden-sichere-entwicklung.md",
+        "docs/secure-development/praxisleitfaden-sichere-entwicklung.en.md",
+        "README.md",
+        "docs/README.md",
+        "docs/README.en.md",
+        "docs/secure-development/README.md",
+        "docs/security/README.md"
+      ],
+      "owner": "Thorsten Hindermann",
+      "audiences": [
+        "Apprentices in the four IT occupations",
+        "Developers without specialist security knowledge",
+        "Security reviewers"
+      ],
+      "readerPaths": [
+        "README.md -> practice guide -> binding guideline and checklists -> historical evidence",
+        "docs/README.en.md -> English practice guide -> binding guideline and checklists"
+      ],
+      "canonicalSource": "docs/secure-development/praxisleitfaden-sichere-entwicklung.md",
+      "navigationImpact": "Short direct links in the root README and three existing documentation indexes.",
+      "documentClass": "ActiveSemantic",
+      "languageStrategy": "Separate German and equivalent English partner files, CEFR B2 and applicable WCAG 2.2 AA criteria.",
+      "languagePartners": [
+        "docs/secure-development/praxisleitfaden-sichere-entwicklung.en.md"
+      ],
+      "platformAndExampleProof": "Examples are mapped to the dated Level-0 Deep Scan, CodeQL remediation, and shared-alert reports; relative links and structural accessibility are checked. No new practical screen-reader or Braille test is claimed.",
+      "distributionClass": "sourceOnly",
+      "homeSyncRequired": false,
+      "evidence": "docs/secure-development/praxisleitfaden-sichere-entwicklung.md",
+      "risk": "Historical findings could be mistaken for current repository status; the guide dates examples and requires revision-bound review.",
+      "criticality": "Security",
+      "reevaluationTrigger": "Changed scan evidence, language/toolchain coverage, threat model, secure-development baseline, or reader navigation."
+    }
+  ]
+}

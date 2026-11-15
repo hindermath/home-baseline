@@ -444,7 +444,11 @@ aber keine allgemeine Voraussetzung für Lernende.
 - Remote- oder Adminrechte entstehen nur durch eine aktuelle ausdrückliche
   Autorisierung.
 
-Siehe [Sicherheitsdokumentation](docs/security/README.md),
+Für den Einstieg in sichere Programmierung siehe den
+[Praxisleitfaden](docs/secure-development/praxisleitfaden-sichere-entwicklung.md)
+([English version](docs/secure-development/praxisleitfaden-sichere-entwicklung.en.md)).
+*For an introduction to secure coding, read the linked practice guide.*
+Weitere Nachweise stehen in der [Sicherheitsdokumentation](docs/security/README.md),
 [A11Y für die Wartungs-TUI](docs/accessibility/maintenance-tui.md) und
 [Dokumentations-Governance](docs/documentation-governance.md).
 

@@ -64,7 +64,7 @@ combines all four paths in one detailed, source-bound operating model.
 | Getting started and learning | [Getting started](getting-started.en.md), [learning series](learning-units/README.md) |
 | Operation and maintenance | [Maintenance](maintenance/README.en.md), [efficiency guide](maintenance/agentic-workspace-efficiency-guide.en.md), [manpages](man/) |
 | Architecture | [Source and Home Runtime](architecture/source-and-home-runtime.en.md), [maintenance TUI](architecture/maintenance-tui.md) |
-| Governance and secure development | [Documentation governance](documentation-governance.md), [security](security/README.md), [secure development](secure-development/) |
+| Governance and secure development | [Secure development practice guide](secure-development/praxisleitfaden-sichere-entwicklung.en.md), [documentation governance](documentation-governance.md), [security](security/README.md), [secure development](secure-development/) |
 | AEPS programmes | [Engineering Controls Framework](aeps/engineering-controls/README.md) |
 | Technical reference | [Scripts](scripts/README.md), [complete script reference](scripts/reference.md) |
 | Audit and troubleshooting | [Troubleshooting](troubleshooting/README.en.md), [project statistics](project-statistics.md) |

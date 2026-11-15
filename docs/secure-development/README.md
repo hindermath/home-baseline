@@ -27,6 +27,7 @@
 
 | Dokument / Document | Zweck / Purpose |
 |---|---|
+| [Praxisleitfaden Sicher entwickeln](praxisleitfaden-sichere-entwicklung.md) / [Secure development practice guide](praxisleitfaden-sichere-entwicklung.en.md) | Ergänzende, beispielbasierte Erklärung für Lernende und Entwickler; keine Änderung der kontrollierten Baseline / Additional example-based guidance for learners and developers; no change to the controlled baseline |
 | [Richtlinie_Sichere-Entwicklung.md](Richtlinie_Sichere-Entwicklung.md) | Richtlinienaehnliche Grundlage fuer sichere Entwicklung / Policy-like secure-development baseline |
 | [checklisten/](checklisten/) | Zwoelf Einzelchecklisten fuer fokussierte Pruefungen / Twelve individual checklists for focused reviews |
 | [Checklistensammelband_Sichere-Entwicklung.md](Checklistensammelband_Sichere-Entwicklung.md) | Zusammengefuehrter Sammelband fuer vollstaendige Reviews / Combined compendium for full reviews |
