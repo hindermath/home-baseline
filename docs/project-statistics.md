@@ -1869,25 +1869,25 @@ Profil 2 verwendet Git-getrackte Textdateien und sichtbare Git-Aktivitaet. Die W
 
 | Kennzahl / Metric | Wert / Value |
 |---|---:|
-| Textbasis / Text base | 791821 lines |
-| Textdateien / Text files | 3940 |
+| Textbasis / Text base | 792403 lines |
+| Textdateien / Text files | 3953 |
 | Beobachtbarer Zeitraum / Observable period | 2025-11-23..2026-11-15 |
 | Aktivtage / Active days | 141 |
-| Relevante Commits / Relevant commits | 1046 |
-| Zeilen je Aktivtag / Lines per active day | 5615.8 |
+| Relevante Commits / Relevant commits | 1047 |
+| Zeilen je Aktivtag / Lines per active day | 5619.9 |
 | Peak-Tag im Fenster / Peak day in window | 2026-08-01 / 161357 |
 | Peak-Woche im Fenster / Peak week in window | 2026-07-26 / 284516 |
 | Laengste Serie / Longest streak | 38 days |
 | Speedup vs. 80 lines/day | 70.2x |
 | Speedup vs. 100 lines/day | 56.2x |
-| Methodik / Methodology | v2; source `b9e28a466528` |
+| Methodik / Methodology | v2; source `9aefd05380b8` |
 
 ### Artefaktmix / Artifact Mix
 
 ```text
 Produktiv / Production          [#...................]   0.3% | 2314
-Tests                           [#...................]   4.4% | 35123
-Dokumentation / Documentation   [###########.........]  55.0% | 435771
+Tests                           [#...................]   4.4% | 35169
+Dokumentation / Documentation   [###########.........]  55.1% | 436307
 Skripte / Scripts               [##..................]   8.3% | 65453
 Konfiguration / Configuration   [######..............]  31.9% | 252804
 Daten und Medien / Data and media [....................]   0.0% | 0
@@ -2168,7 +2168,7 @@ Die Faktoren vergleichen sichtbare Lieferdichte mit den dokumentierten manuellen
 Scale: 0..10000 lines/day
 Experienced manual [#...................] 80
 Thorsten solo      [#...................] 100
-Visible repository [###########.........] 5615.8
+Visible repository [###########.........] 5619.9
 ```
 
 Die gemeinsame Skala vergleicht Referenzen und sichtbare Lieferdichte. Sie schreibt die Git-Aktivitaet keiner Person oder KI pauschal zu.
@@ -2194,6 +2194,6 @@ DE: Das Fenster beginnt am 2025-11-23 und endet am 2026-11-15. Es enthaelt 141 a
 | 2026-08 | 278228 |
 | 2026-09 | 144845 |
 | 2026-10 | 73816 |
-| 2026-11 | 50968 |
+| 2026-11 | 51554 |
 
 <!-- project-statistics-v2:end -->

@@ -58,11 +58,15 @@ first agent start.
 verwende die [angeleitete Lernübung](../runbooks/security-baseline-integration-test.md).
 Sie nutzt nur lokale Testprojekte. Der vollständige Flottentest ist eine
 gesonderte Maintainer-Aufgabe und wird nicht durch das Lesen gestartet.
+Wie du später die Ergebnisse eines vollständigen Preset-Praxistests prüfst,
+steht im [Lernprüfblatt](../runbooks/preset-e2e/learner-review-template.md).
 
 **EN:** To practise creating and checking projects safely, use the
 [guided exercise](../runbooks/security-baseline-integration-test.md). It uses
 local test projects only. The full fleet test is a separate maintainer task;
 reading this guide does not start it.
+The [learner review sheet](../runbooks/preset-e2e/learner-review-template.md)
+shows how to check results from a later full preset test.
 
 ## 1. Betriebssystem und Shell bestimmen / Identify OS and Shell
 

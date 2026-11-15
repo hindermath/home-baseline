@@ -4,6 +4,8 @@
 
 Dieses Runbook hält einen wiederholbaren Test der aus Level 0 verteilten Skripte und Spec-Kit-Presets fest. Es ist eine **Anleitung**, kein Auftrag zum Start. Bootstrap, Builds, Sandbox-Tests und Secure-Trader-Läufe beginnen erst nach einem gesonderten Maintainer-Auftrag. Ein erfolgreicher Lauf belegt nur die tatsächlich geprüften Revisionen, Plattformen und Testfälle; er ist keine allgemeine Sicherheitsfreigabe.
 
+Ein gesondertes [Preset-End-to-End-Runbook](preset-e2e/README.md) beschreibt vier spätere Praxisläufe A–D mit allen 14 Presets und wählbarem Host- oder Sandbox-Ort.
+
 Die [leere Berichtsvorlage](security-baseline-integration-test-report-template.md) gehört zu jedem Lauf. Ausgefüllte Berichte bleiben zunächst lokal. Private Repository-Namen, Pfade, Revisionen, Logs und Zugangsdaten gehören nicht in öffentliche PRs.
 
 ## Zwei Leserpfade
@@ -128,6 +130,8 @@ Temporäre Arbeitskopien nach Prüfung ihrer Identität gezielt entfernen. Echte
 ## Purpose and authority
 
 This runbook records a repeatable test of scripts and Spec Kit presets distributed from Level 0. It is an **instruction**, not permission to run it. Bootstrap, builds, sandbox checks and Secure Trader tests require a separate maintainer request. A successful run supports only the tested commits, platforms and cases. It is not a general security approval.
+
+The separate [preset end-to-end runbook](preset-e2e/README.md) describes four later practical runs A–D covering all 14 presets, with Host or Sandbox chosen per run.
 
 Use the [blank report template](security-baseline-integration-test-report-template.md) for each run. Keep completed reports local at first. Do not publish private repository names, paths, commits, logs or credentials.
 

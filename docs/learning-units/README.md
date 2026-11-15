@@ -23,11 +23,15 @@
 überprüfbaren Testergebnissen siehe den
 [wiederholbaren Integrationstest](../runbooks/security-baseline-integration-test.md).
 Der vollständige Flottentest ist Maintainer-Arbeit.
+Für das spätere Prüfen aller 14 Spec-Kit-Presets gibt es ein eigenes
+[Runbook mit Lernprüfblatt](../runbooks/preset-e2e/README.md); es startet keinen Lauf.
 
 **EN:** For a supervised exercise in isolated project bootstrap and verifiable
 test results, see the linked
 [repeatable integration test](../runbooks/security-baseline-integration-test.md).
 The full fleet test is maintainer work.
+The separate [runbook with learner review sheet](../runbooks/preset-e2e/README.md)
+describes later testing of all 14 Spec Kit presets; it starts no run.
 
 ## Start fuer Lernende / Start for Learners
 
