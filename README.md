@@ -313,6 +313,7 @@ Details: [Quickstart](specs/031-github-copilot-review-governance/quickstart.md),
 |---|---|---|
 | lernen oder neu beginnen | [Lernpfad](docs/learning-units/START-HERE-FUER-LERNENDE.md) | Beruf, Lehrjahr und erste Unit auswählen |
 | sichere Tests als Übung durchführen | [Angeleiteter Integrationstest](docs/runbooks/security-baseline-integration-test.md) | Isolierten Lernpfad und Berichtsvorlage lesen; erst nach Freigabe starten |
+| alle Spec-Kit-Presets in einem Praxislauf prüfen | [Preset-End-to-End-Runbook](docs/runbooks/preset-e2e/README.md) | A–D, Host/Sandbox und leere Vorlagen lesen; Lauf nur nach Maintainer-Auftrag |
 | den Workspace täglich pflegen | [Wartung](docs/maintenance/README.md) | Plattform wählen und Vorschau ausführen |
 | als Maintainer oder KI-Agent arbeiten | [Source und Home Runtime](docs/architecture/source-and-home-runtime.md) | kanonischen Änderungsort und Sync-Bedarf bestimmen |
 | prüfen oder Fehler analysieren | [Prüfung und Fehleranalyse](docs/troubleshooting/README.md) | Head, Evidence und Proof-Grenze feststellen |

@@ -67,7 +67,7 @@ combines all four paths in one detailed, source-bound operating model.
 | Governance and secure development | [Secure development practice guide](secure-development/praxisleitfaden-sichere-entwicklung.en.md), [documentation governance](documentation-governance.md), [security](security/README.md), [secure development](secure-development/) |
 | AEPS programmes | [Engineering Controls Framework](aeps/engineering-controls/README.md) |
 | Technical reference | [Scripts](scripts/README.md), [complete script reference](scripts/reference.md) |
-| Audit and troubleshooting | [Repeatable integration test and guided exercise](runbooks/security-baseline-integration-test.md), [troubleshooting](troubleshooting/README.en.md), [project statistics](project-statistics.md) |
+| Audit and troubleshooting | [Repeatable integration test and guided exercise](runbooks/security-baseline-integration-test.md), [preset end-to-end test A–D](runbooks/preset-e2e/README.md), [troubleshooting](troubleshooting/README.en.md), [project statistics](project-statistics.md) |
 
 ## Document classes
 
