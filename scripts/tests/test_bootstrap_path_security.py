@@ -120,6 +120,20 @@ class BootstrapPathSecurityTests(unittest.TestCase):
             self.assertNotEqual(project_result.returncode, 0, project_result.stdout)
             self.assertEqual(outside.read_text(encoding="utf-8"), "sentinel\n")
 
+    def assert_compact_agent_guidance(self, target: Path, tracked: list[str]) -> None:
+        reference = "docs/agent-guidance.md"
+        self.assertIn(reference, tracked)
+        for relative in ("AGENTS.md", "CLAUDE.md", "GEMINI.md", ".github/copilot-instructions.md"):
+            with self.subTest(surface=relative):
+                entry = target / relative
+                self.assertLess(entry.stat().st_size, 32_768)
+                content = entry.read_text(encoding="utf-8")
+                self.assertIn("learner-a11y-baseline:start", content)
+                self.assertIn("BEGIN spec-kit-diagrams-completion", content)
+                link = f"../{reference}" if relative.startswith(".github/") else reference
+                self.assertIn(f"]({link})", content)
+                self.assertEqual((entry.parent / link).resolve(), target.resolve() / reference)
+
     def test_project_commit_excludes_preexisting_private_file_and_target_renderer(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:
             home = Path(temporary)
@@ -173,6 +187,7 @@ class BootstrapPathSecurityTests(unittest.TestCase):
                 stderr=subprocess.PIPE,
                 check=True,
             ).stdout.splitlines()
+            self.assert_compact_agent_guidance(target, tracked)
             self.assertNotIn("private.txt", tracked)
             self.assertNotIn("scripts/private.txt", tracked)
             self.assertFalse(outside_marker.exists(), result.stdout)
@@ -269,6 +284,7 @@ class BootstrapPathSecurityTests(unittest.TestCase):
                 stdout=subprocess.PIPE,
                 check=True,
             ).stdout.splitlines()
+            self.assert_compact_agent_guidance(workspace, tracked)
             self.assertNotIn("private.txt", tracked)
             self.assertIn("private.txt", (workspace / ".gitignore").read_text(encoding="utf-8"))
             self.assertFalse(hook_marker.exists(), result.stdout)

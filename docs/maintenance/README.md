@@ -2,6 +2,13 @@
 
 [English version](README.en.md)
 
+## Agentenregeln
+
+Starte mit [AGENTS.md](../../AGENTS.md). Wähle danach in der
+[Agentenreferenz](agent-guidance-reference.md) den Abschnitt für deine Aufgabe.
+
+Die Bootstrap-Vorlagen erzeugen kurze Agenten-Einstiege und die gemeinsame Projektdatei `docs/agent-guidance.md`. Diese enthält die Details zu Toolchain-Wartung, Hardening Intakes und Presets. Bestehende Projektfassungen der Referenz bleiben erhalten.
+
 ## Sicherer Standardablauf
 
 1. Betriebssystem erkennen und passende Skriptvariante wählen.

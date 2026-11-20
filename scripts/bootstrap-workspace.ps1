@@ -140,7 +140,7 @@ function Add-HBWorkspaceBaselineToIndex {
         '.gitignore', 'README.md', 'AGENTS.md', 'CLAUDE.md', 'GEMINI.md', 'constitution.md', 'STATS.md',
         'release-please-config.json', '.release-please-manifest.json', '.github/copilot-instructions.md',
         '.github/workflows/homogeneity-check.yml', '.github/workflows/release-please.yml',
-        'docs/project-statistics.md', 'docs/project-statistics.config.json'
+        'docs/agent-guidance.md', 'docs/project-statistics.md', 'docs/project-statistics.config.json'
     )) {
         $candidate = Join-Path $RepositoryRoot $relative
         if (Test-Path -LiteralPath $candidate) { & git -C $RepositoryRoot add -- $relative }
@@ -301,7 +301,7 @@ foreach ($relative in @(
     'release-please-config.json', '.release-please-manifest.json', 'scripts', '.github',
     '.github/copilot-instructions.md', '.github/workflows', '.github/workflows/homogeneity-check.yml',
     '.github/workflows/release-please.yml', 'docs', 'docs/project-statistics.md',
-    'docs/project-statistics.config.json', '.specify', '.specify/memory', '.specify/memory/constitution.md'
+    'docs/agent-guidance.md', 'docs/project-statistics.config.json', '.specify', '.specify/memory', '.specify/memory/constitution.md'
 )) {
     $candidate = Join-Path $workspaceDir $relative
     Assert-SdhNoUntrustedLinkComponents -Path $candidate
@@ -450,6 +450,11 @@ function Write-RenderedTemplate([string] $TemplatePath, [string] $OutputPath) {
 if ($PSCmdlet.ShouldProcess($workspaceDir, 'Agentische Level-1-Baseline erzeugen')) {
     New-Item -ItemType Directory -Path (Join-Path $workspaceDir '.github/workflows') -Force | Out-Null
     New-Item -ItemType Directory -Path (Join-Path $workspaceDir 'docs') -Force | Out-Null
+
+    $guidanceReference = Join-Path $workspaceDir 'docs/agent-guidance.md'
+    if (-not (Test-Path -LiteralPath $guidanceReference -PathType Leaf)) {
+        Write-RenderedTemplate (Join-Path $templatesDir 'agent-guidance.md.tmpl') $guidanceReference
+    }
 
     foreach ($agentFile in @('AGENTS.md', 'CLAUDE.md', 'GEMINI.md')) {
         $templatePath = Join-Path $templatesDir "$agentFile.tmpl"

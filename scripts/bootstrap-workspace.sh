@@ -88,7 +88,7 @@ assert_safe_workspace_targets() {
     release-please-config.json .release-please-manifest.json scripts .github \
     .github/copilot-instructions.md .github/workflows \
     .github/workflows/homogeneity-check.yml .github/workflows/release-please.yml \
-    docs docs/project-statistics.md docs/project-statistics.config.json \
+    docs docs/agent-guidance.md docs/project-statistics.md docs/project-statistics.config.json \
     .specify .specify/memory .specify/memory/constitution.md; do
     candidate="$WORKSPACE_DIR/$relative"
     sdh_assert_no_untrusted_link_components "$candidate" || return 1
@@ -192,7 +192,7 @@ stage_workspace_baseline() {
     .gitignore README.md AGENTS.md CLAUDE.md GEMINI.md constitution.md STATS.md \
     release-please-config.json .release-please-manifest.json \
     .github/copilot-instructions.md .github/workflows/homogeneity-check.yml \
-    .github/workflows/release-please.yml docs/project-statistics.md \
+    .github/workflows/release-please.yml docs/agent-guidance.md docs/project-statistics.md \
     docs/project-statistics.config.json; do
     if [ -e "$WORKSPACE_DIR/$relative" ] && [ ! -L "$WORKSPACE_DIR/$relative" ]; then
       git -C "$WORKSPACE_DIR" add -- "$relative"
@@ -595,6 +595,11 @@ render_workspace_template() {
 
 if [ "$DRY_RUN" -eq 0 ]; then
   mkdir -p "$WORKSPACE_DIR/.github/workflows" "$WORKSPACE_DIR/docs"
+
+  guidance_reference="$WORKSPACE_DIR/docs/agent-guidance.md"
+  if [ ! -f "$guidance_reference" ]; then
+    render_workspace_template "$TEMPLATES_DIR/agent-guidance.md.tmpl" "$guidance_reference"
+  fi
 
   for agent_file in AGENTS.md CLAUDE.md GEMINI.md; do
     tmpl="$TEMPLATES_DIR/${agent_file}.tmpl"

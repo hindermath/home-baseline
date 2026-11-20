@@ -44,6 +44,23 @@ def preset_helper_source() -> str:
 
 
 class MaintenanceContractTests(unittest.TestCase):
+    def test_agent_guidance_entries_fit_codex_default_document_budget(self) -> None:
+        entries = (
+            "AGENTS.md",
+            "CLAUDE.md",
+            "GEMINI.md",
+            ".github/copilot-instructions.md",
+            ".github/agents/copilot-instructions.md",
+        )
+        for relative in entries:
+            with self.subTest(entry=relative):
+                entry = REPOSITORY / relative
+                self.assertLess(entry.stat().st_size, 32_768)
+                self.assertIn(
+                    "agent-guidance-reference.md",
+                    entry.read_text(encoding="utf-8"),
+                )
+
     @unittest.skipIf(os.name == "nt", "Native Windows uses PowerShell 7")
     def test_required_bash_probe_rejects_old_shell(self) -> None:
         tool = next(t for t in read_json(CONFIG / "required-cli-tools-registry.json")["tools"] if t["id"] == "bash")

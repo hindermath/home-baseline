@@ -217,7 +217,7 @@ function Add-HBProjectBaselineToIndex {
         '.gitignore', 'README.md', 'AGENTS.md', 'CLAUDE.md', 'GEMINI.md', 'constitution.md', 'STATS.md',
         'release-please-config.json', '.release-please-manifest.json', '.github/copilot-instructions.md',
         '.github/workflows/homogeneity-check.yml', '.github/workflows/release-please.yml',
-        'docs/project-statistics.md', 'docs/project-statistics.config.json'
+        'docs/agent-guidance.md', 'docs/project-statistics.md', 'docs/project-statistics.config.json'
     )) {
         $candidate = Join-Path $TargetDir $relative
         if (Test-Path -LiteralPath $candidate) { & git -C $TargetDir add -- $relative }
@@ -592,6 +592,7 @@ if ($Preview) {
     $previewActions = [System.Collections.Generic.List[object[]]]::new()
     $null = $previewActions.Add(@('CREATE', $TargetDir))
     $null = $previewActions.Add(@('EXEC', "git init $TargetDir"))
+    $null = $previewActions.Add(@('CREATE', "$TargetDir/docs/agent-guidance.md", 'aus agent-guidance.md.tmpl'))
     $null = $previewActions.Add(@('CREATE', "$TargetDir/AGENTS.md", 'aus AGENTS.md.tmpl'))
     $null = $previewActions.Add(@('CREATE', "$TargetDir/CLAUDE.md", 'aus CLAUDE.md.tmpl'))
     $null = $previewActions.Add(@('CREATE', "$TargetDir/GEMINI.md", 'aus GEMINI.md.tmpl'))
@@ -706,6 +707,19 @@ if (Test-Path (Join-Path $TargetDir '.git')) {
 } else { Step-Skip "git-Repo noch nicht initialisiert / git repo not yet initialized" }
 
 # 3. AGENTS.md
+$guidanceDirectory = Join-Path $TargetDir 'docs'
+$guidanceReference = Join-Path $guidanceDirectory 'agent-guidance.md'
+Assert-SdhNoUntrustedLinkComponents -Path $guidanceReference
+foreach ($candidate in @($guidanceDirectory, $guidanceReference)) {
+    $item = Get-Item -LiteralPath $candidate -Force -ErrorAction SilentlyContinue
+    if ($item -and ($item.LinkType -or ($item.Attributes -band [IO.FileAttributes]::ReparsePoint))) {
+        throw "Agent guidance must not use a link or reparse point: $candidate"
+    }
+}
+if (-not (Test-Path -LiteralPath $guidanceReference -PathType Leaf)) {
+    New-Item -ItemType Directory -Path $guidanceDirectory -Force | Out-Null
+    Render-Template (Join-Path $TemplatesDir 'agent-guidance.md.tmpl') $guidanceReference
+}
 Step-Start "AGENTS.md erzeugen"
 $f = Join-Path $TargetDir 'AGENTS.md'
 if ((Test-Path $f) -and -not $Force) { Step-Skip "Datei existiert" }
@@ -1228,9 +1242,13 @@ $registryHelper = Join-Path $ScriptDir 'register-level2-repository.ps1'
 if (-not (Test-Path $registryHelper)) {
     Step-Warn "Registry-Helper nicht gefunden"
 } else {
-    $registryArgs = @('-Repo', $TargetDir, '-Level', '2', '-Source', 'bootstrap-project')
-    if ($PrimaryLanguage) { $registryArgs += @('-PrimaryLanguage', $PrimaryLanguage) }
-    $registryArgs += @('-PresetProfile', $ResolvedPresetProfile.Name)
+    $registryArgs = @{
+        Repo = $TargetDir
+        Level = 2
+        Source = 'bootstrap-project'
+        PresetProfile = $ResolvedPresetProfile.Name
+    }
+    if ($PrimaryLanguage) { $registryArgs.PrimaryLanguage = $PrimaryLanguage }
     try {
         & $registryHelper @registryArgs | Out-Null
         Step-Done "Level-2-Repo registriert"
