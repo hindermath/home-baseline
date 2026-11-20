@@ -291,7 +291,7 @@ if ($workspaceItem.LinkType -or ($workspaceItem.Attributes -band [IO.FileAttribu
     throw "Workspace must not be a link or reparse point: $workspaceDir"
 }
 $homeFull = [IO.Path]::GetFullPath((Get-Item -LiteralPath $homeDir -Force).FullName).TrimEnd([IO.Path]::DirectorySeparatorChar)
-$workspaceParent = [IO.Path]::GetFullPath($workspaceItem.Directory.FullName).TrimEnd([IO.Path]::DirectorySeparatorChar)
+$workspaceParent = [IO.Path]::GetFullPath($workspaceItem.Parent.FullName).TrimEnd([IO.Path]::DirectorySeparatorChar)
 $comparison = if ($IsWindows) { [StringComparison]::OrdinalIgnoreCase } else { [StringComparison]::Ordinal }
 if (-not $workspaceParent.Equals($homeFull, $comparison)) {
     throw "Workspace must be a direct child of HOME: $workspaceDir"
