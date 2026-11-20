@@ -552,6 +552,43 @@ New-HBForgejoRepository -BaseUrl 'https://forge.example' -RepositoryName 'exampl
             self.assertTrue(installed_hook.is_file())
             self.assertTrue(os.access(installed_hook, os.X_OK))
 
+    def test_bootstrap_renders_statistics_and_prepares_csharp_intakes(self) -> None:
+        for shell in ("bash", "pwsh"):
+            with self.subTest(shell=shell), tempfile.TemporaryDirectory() as temporary:
+                if not shutil.which(shell):
+                    self.skipTest(f"{shell} is required.")
+                home = Path(temporary).resolve()
+                (home / "constitution.md").write_text("# Constitution v1.0.0\n", encoding="utf-8")
+                workspace = home / "workspace"
+                workspace.mkdir()
+                target = workspace / "Example"
+
+                if shell == "bash":
+                    command = [
+                        "bash", str(PROJECT_SH), "Example", str(workspace),
+                        "--no-remote", "--no-speckit", "--no-agents", "--primary-language", "C#",
+                    ]
+                else:
+                    command = [
+                        "pwsh", "-NoProfile", "-File", str(PROJECT_PS1),
+                        "-ProjectName", "Example", "-TargetWorkspace", str(workspace),
+                        "-NoRemote", "-NoSpeckit", "-NoAgents", "-PrimaryLanguage", "C#",
+                    ]
+                result = self.run_command(command, home=home, timeout=90)
+
+                self.assertEqual(result.returncode, 0, result.stdout)
+                for path in (
+                    "docs/agent-guidance.md",
+                    "docs/secure-development/baseline-manifest.json",
+                    "Lastenheft_RL-SE-Checklist-Selbstpruefung.md",
+                ):
+                    self.assertTrue((target / path).is_file(), path)
+                revision = subprocess.check_output(
+                    ["git", "-C", str(target), "log", "-1", "--format=%s", "--", "docs/project-statistics.md"],
+                    text=True,
+                ).strip()
+                self.assertEqual(revision, "docs: initialize ASCII statistics profile 2")
+
     def test_bash_project_rejects_existing_and_dangling_release_output_links(self) -> None:
         release_paths = (
             "release-please-config.json",
