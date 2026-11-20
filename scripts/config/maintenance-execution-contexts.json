@@ -1,27 +1,27 @@
 {
-  "schemaVersion": 3,
-  "container": "absdd-image-sandbox_ade_1",
-  "user": "adedev",
-  "source": "/opt/home-baseline",
-  "approvalPath": "home-baseline-source/docs/maintenance/secure-trader-owner-approval-2026-11-20-pr389.md",
-  "approvalSha256": "92acb22d4b018cc610fb56983bb6ed988890c3aaaec314889e225a1470feeb44",
-  "approvalBindingSha256": "6d994df661f687144f3d016694f7ece8239dc67257898d89fac6791409a07da7",
-  "approvedImage": "sha256:c091becff394fdf5c5fa93fbd8345efe09855ab29da9abe369c2a902019a38f7",
-  "approvedSourceSha256": "dec0b0bff6fd2e2abf05f207a7bcfa95feb4a3ccd576a3a8495555560ec0665c",
+  "approvalBindingSha256": "6ecd27c8655a93d483074db14828490b67f276afe36c48459447276bdace3dba",
+  "approvalPath": "home-baseline-source/docs/maintenance/secure-trader-owner-approval-2026-11-20-sdk11.md",
+  "approvalSha256": "0dbd25342d5a04d2a6f66904c415b37ec9c40362c1d5ed04f59b7476ff35e1a6",
   "approvalTrustState": "OwnerApproved",
+  "approvedImage": "sha256:6db6ea41b0bfea2a1cf782ea8187a29cc6f42c59ee28dfc600f4f4ae4e88f926",
+  "approvedSourceSha256": "dec0b0bff6fd2e2abf05f207a7bcfa95feb4a3ccd576a3a8495555560ec0665c",
+  "container": "absdd-image-sandbox_ade_1",
   "expiresOn": "2026-12-31",
   "mounts": [
     {
-      "host": "SecureCaseTrackerProjects",
-      "container": "/secure-case-tracker-projects"
+      "container": "/secure-case-tracker-projects",
+      "host": "SecureCaseTrackerProjects"
     },
     {
-      "host": "SecureOrderDeskProjects",
-      "container": "/secure-order-desk-projects"
+      "container": "/secure-order-desk-projects",
+      "host": "SecureOrderDeskProjects"
     },
     {
-      "host": "SecureServiceHarvesterProjects",
-      "container": "/secure-service-harvester-projects"
+      "container": "/secure-service-harvester-projects",
+      "host": "SecureServiceHarvesterProjects"
     }
-  ]
+  ],
+  "schemaVersion": 3,
+  "source": "/opt/home-baseline",
+  "user": "adedev"
 }
