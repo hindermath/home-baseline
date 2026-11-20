@@ -910,8 +910,8 @@ $rlSeScript = Join-Path $ScriptDir 'prepare-rl-se-checklist-selbstpruefung.ps1'
 if (-not (Test-Path $rlSeScript)) {
     Step-Warn "RL-SE-/Checklist-Selbstpruefungs-Skript nicht gefunden"
 } else {
-    $rlSeArgs = @{ Repo = $TargetDir; AllowDirty = $true }
-    if ($PrimaryLanguage) { $rlSeArgs.PrimaryLanguage = $PrimaryLanguage }
+    $rlSeArgs = @('-Repo', $TargetDir, '-AllowDirty')
+    if ($PrimaryLanguage) { $rlSeArgs += @('-PrimaryLanguage', $PrimaryLanguage) }
     try {
         & $rlSeScript @rlSeArgs | Out-Null
         Step-Done "Intake und Reihenfolge vorbereitet"
