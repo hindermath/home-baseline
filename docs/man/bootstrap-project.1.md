@@ -24,6 +24,10 @@ Ein vorhandenes Projektziel mit symbolischen Links wird vor allen Ausgaben
 abgelehnt. Das gilt auch fuer bestehende oder dangling Release-Konfigurations-,
 Manifest- und Workflow-Links.
 
+Der Bootstrap erzeugt das ASCII-Statistikprofil aus dem sauberen initialen
+Git-Stand. Danach bereitet er die lokalen Lastenhefte und die
+Sicherheitsdokumente für die weitere Projektarbeit vor.
+
 *The script creates a new project idempotently: it copies templates, initializes the AI agents, installs Spec Kit and its governance presets, optionally sets up a remote repository and the Release Please workflow, and applies the declared primary language for the MSL setup. Every generated level-2 project is registered for GSDB scope independently of MSL status. Preset selection follows this precedence: explicit option, local registry default, central catalog default. The same resolved profile is installed and registered. Existing files are left untouched unless `--force` is given.*
 
 *The constitution version is read exclusively from exactly one heading matching `# Constitution vX.Y.Z`. A missing or ambiguous heading stops bootstrap before any write action.*
@@ -31,6 +35,10 @@ Manifest- und Workflow-Links.
 *An existing project target containing symbolic links is rejected before any
 output, including existing or dangling release configuration, manifest, and
 workflow links.*
+
+*Bootstrap renders the ASCII statistics profile from the clean initial Git
+checkout. It then prepares the local intake and security documents for further
+project work.*
 
 ## OPTIONS
 

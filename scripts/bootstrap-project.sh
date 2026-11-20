@@ -674,10 +674,6 @@ if $OPT_PREVIEW; then
   preview_action "COPY" "${TARGET_DIR}/constitution.md" "von ~/constitution.md"
   preview_action "CREATE" "${TARGET_DIR}/.github/workflows/homogeneity-check.yml" "Constitution ${RESOLVED_CONSTITUTION_VERSION}"
   preview_action "CREATE" "${TARGET_DIR}/docs/project-statistics.md" "Statistik-Ledger (initial)"
-  preview_action "PREPARE" "${TARGET_DIR}/docs/secure-development/" "Hardening bei erkannter MSL; RL-SE unabhaengig davon"
-  preview_action "CREATE" "${TARGET_DIR}/Lastenheft_Secure-Development-Hardening.md" "bei erkannter MSL"
-  preview_action "CREATE" "${TARGET_DIR}/Lastenheft_RL-SE-Checklist-Selbstpruefung.md" "unabhaengig von MSL"
-  preview_action "UPDATE" "${TARGET_DIR}/Lastenheft_Abarbeitungsreihenfolge.md" "Lastenheft*.md-Reihenfolge"
   preview_action "CREATE" "${TARGET_DIR}/STATS.md" "leer / empty"
   preview_action "CREATE" "${TARGET_DIR}/.gitignore" "aus gitignore-project.tmpl"
   preview_action "UPDATE" "${TARGET_WORKSPACE}/.gitignore" "Level-2-Projekt im Workspace ignorieren"
@@ -695,6 +691,9 @@ if $OPT_PREVIEW; then
   preview_action "COPY" "${TARGET_DIR}/scripts/" "von ~/scripts/"
   preview_action "INSTALL" "${TARGET_DIR}/.git/hooks/pre-push" "von ~/scripts/hooks/pre-push"
   preview_action "EXEC" "git commit -m 'feat: initial project bootstrap'"
+  preview_action "EXEC" "render-project-statistics.sh" "ASCII-Statistikprofil 2"
+  preview_action "PREPARE" "${TARGET_DIR}/docs/secure-development/" "Hardening bei erkannter MSL; RL-SE unabhaengig davon"
+  preview_action "CREATE" "${TARGET_DIR}/Lastenheft_Secure-Development-Hardening.md" "bei erkannter MSL"
   if $OPT_NO_REMOTE; then
     preview_action "SKIP" "Remote-Erstellung" "--no-remote"
   elif [ "$OPT_PLATFORM" = "github" ]; then
@@ -722,6 +721,8 @@ if $OPT_PREVIEW; then
   if [ "$RESOLVED_PRESET_PROFILE" != "none" ]; then
     preview_action "EXEC" "install-spec-kit-governance-presets.sh --repo ${TARGET_DIR} --preset-config ${RESOLVED_PRESET_CONFIG}" "$RESOLVED_PRESET_PROFILE"
   fi
+  preview_action "CREATE" "${TARGET_DIR}/Lastenheft_RL-SE-Checklist-Selbstpruefung.md" "unabhaengig von MSL"
+  preview_action "UPDATE" "${TARGET_DIR}/Lastenheft_Abarbeitungsreihenfolge.md" "Lastenheft*.md-Reihenfolge"
   preview_action "UPDATE" "~/.home-baseline/level2-repository-registry.json" "${RESOLVED_PRESET_PROFILE}; MSL getrennt klassifiziert"
   preview_action "EXEC" "check-homogeneity.sh (read-only)" "Compliance-Score"
   preview_action "EXEC" "bash scripts/init-stats.sh (Baseline)" "STATS.md"
@@ -1003,22 +1004,6 @@ STATSCONFIG
   step_done "Statistikprofil-2-Konfiguration"
 fi
 
-# ─── Step 7e: Secure-Development-Hardening vorbereiten ──────────────────────
-step_start "Secure-Development-Hardening vorbereiten"
-if [ ! -f "$SECURE_DEV_LIB" ] || ! declare -F sdh_prepare_repo >/dev/null 2>&1; then
-  step_warn "Secure-Development-Hardening-Hilfslogik nicht gefunden"
-else
-  if sdh_prepare_repo "$TARGET_DIR" "$PROJECT_NAME" "$OPT_PRIMARY_LANGUAGE" 0 0 "$SCRIPT_DIR"; then
-    case "$SDH_PREPARE_RESULT" in
-      prepared) step_done "$SDH_PREPARE_REASON" ;;
-      skipped)  step_skip "$SDH_PREPARE_REASON" ;;
-      *)        step_done "$SDH_PREPARE_RESULT $SDH_PREPARE_REASON" ;;
-    esac
-  else
-    step_warn "$SDH_PREPARE_REASON"
-  fi
-fi
-
 # ─── Step 8: STATS.md (initial) ──────────────────────────────────────────────
 step_start "STATS.md (initial) erzeugen"
 if [ -f "${TARGET_DIR}/STATS.md" ] && ! $OPT_FORCE; then
@@ -1214,6 +1199,22 @@ Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>" >/dev/null
   step_done
 else
   step_warn "ASCII-Statistikprofil 2 konnte nicht initialisiert werden"
+fi
+
+# Prepare local artifacts after the renderer has used the clean initial checkout.
+step_start "Secure-Development-Hardening vorbereiten"
+if [ ! -f "$SECURE_DEV_LIB" ] || ! declare -F sdh_prepare_repo >/dev/null 2>&1; then
+  step_warn "Secure-Development-Hardening-Hilfslogik nicht gefunden"
+else
+  if sdh_prepare_repo "$TARGET_DIR" "$PROJECT_NAME" "$OPT_PRIMARY_LANGUAGE" 0 0 "$SCRIPT_DIR"; then
+    case "$SDH_PREPARE_RESULT" in
+      prepared) step_done "$SDH_PREPARE_REASON" ;;
+      skipped)  step_skip "$SDH_PREPARE_REASON" ;;
+      *)        step_done "$SDH_PREPARE_RESULT $SDH_PREPARE_REASON" ;;
+    esac
+  else
+    step_warn "$SDH_PREPARE_REASON"
+  fi
 fi
 
 # ─── Step 13: gh repo create ─────────────────────────────────────────────────

@@ -601,9 +601,6 @@ if ($Preview) {
     $null = $previewActions.Add(@('COPY', "$TargetDir/constitution.md", 'von ~/constitution.md'))
     $null = $previewActions.Add(@('CREATE', "$TargetDir/.github/workflows/homogeneity-check.yml", "Constitution $ResolvedConstitutionVersion"))
     $null = $previewActions.Add(@('CREATE', "$TargetDir/docs/project-statistics.md", 'Statistik-Ledger (initial)'))
-    $null = $previewActions.Add(@('PREPARE', "$TargetDir/docs/secure-development/", 'Hardening bei erkannter MSL; RL-SE unabhaengig davon'))
-    $null = $previewActions.Add(@('CREATE', "$TargetDir/Lastenheft_Secure-Development-Hardening.md", 'bei erkannter MSL'))
-    $null = $previewActions.Add(@('UPDATE', "$TargetDir/Lastenheft_Abarbeitungsreihenfolge.md", 'Lastenheft*.md-Reihenfolge'))
     $null = $previewActions.Add(@('CREATE', "$TargetDir/STATS.md"))
     $null = $previewActions.Add(@('CREATE', "$TargetDir/.gitignore", 'aus gitignore-project.tmpl'))
     $null = $previewActions.Add(@('UPDATE', "$TargetWorkspace/.gitignore", 'Level-2-Projekt im Workspace ignorieren'))
@@ -621,6 +618,11 @@ if ($Preview) {
     $null = $previewActions.Add(@('COPY', "$TargetDir/scripts/", 'von ~/scripts/'))
     $null = $previewActions.Add(@('INSTALL', "$TargetDir/.git/hooks/pre-push"))
     $null = $previewActions.Add(@('EXEC', "git commit -m 'feat: initial project bootstrap'"))
+    $null = $previewActions.Add(@('EXEC', 'render-project-statistics.ps1', 'ASCII-Statistikprofil 2'))
+    $null = $previewActions.Add(@('PREPARE', "$TargetDir/docs/secure-development/", 'Hardening bei erkannter MSL; RL-SE unabhaengig davon'))
+    $null = $previewActions.Add(@('CREATE', "$TargetDir/Lastenheft_Secure-Development-Hardening.md", 'bei erkannter MSL'))
+    $null = $previewActions.Add(@('CREATE', "$TargetDir/Lastenheft_RL-SE-Checklist-Selbstpruefung.md", 'unabhaengig von MSL'))
+    $null = $previewActions.Add(@('UPDATE', "$TargetDir/Lastenheft_Abarbeitungsreihenfolge.md", 'Lastenheft*.md-Reihenfolge'))
 
     if ($NoRemote) {
         $null = $previewActions.Add(@('SKIP', 'Remote-Erstellung', '--no-remote'))
@@ -883,43 +885,6 @@ if ((Test-Path $statsConfig) -and -not $Force) {
     Step-Done "Statistikprofil-2-Konfiguration"
 }
 
-# 7e. Secure-Development-Hardening vorbereiten
-Step-Start "Secure-Development-Hardening vorbereiten"
-if (-not (Test-Path $SecureDevLib) -or -not (Get-Command Invoke-SdhPrepareRepo -ErrorAction SilentlyContinue)) {
-    Step-Warn "Secure-Development-Hardening-Hilfslogik nicht gefunden"
-} else {
-    $ok = Invoke-SdhPrepareRepo `
-        -Repo $TargetDir `
-        -ProjectName $ProjectName `
-        -PrimaryLanguage $PrimaryLanguage `
-        -ScriptDir $ScriptDir
-    if (-not $ok) {
-        Step-Warn $script:SdhPrepareReason
-    } else {
-        switch ($script:SdhPrepareResult) {
-            'prepared' { Step-Done $script:SdhPrepareReason }
-            'skipped'  { Step-Skip $script:SdhPrepareReason }
-            default    { Step-Done "$script:SdhPrepareResult $script:SdhPrepareReason" }
-        }
-    }
-}
-
-# 7f. RL-SE-/Checklist-Selbstpruefung vorbereiten
-Step-Start "RL-SE-/Checklist-Selbstpruefung vorbereiten"
-$rlSeScript = Join-Path $ScriptDir 'prepare-rl-se-checklist-selbstpruefung.ps1'
-if (-not (Test-Path $rlSeScript)) {
-    Step-Warn "RL-SE-/Checklist-Selbstpruefungs-Skript nicht gefunden"
-} else {
-    $rlSeArgs = @('-Repo', $TargetDir, '-AllowDirty')
-    if ($PrimaryLanguage) { $rlSeArgs += @('-PrimaryLanguage', $PrimaryLanguage) }
-    try {
-        & $rlSeScript @rlSeArgs | Out-Null
-        Step-Done "Intake und Reihenfolge vorbereitet"
-    } catch {
-        Step-Warn "RL-SE-/Checklist-Selbstpruefung konnte nicht vorbereitet werden: $($_.Exception.Message)"
-    }
-}
-
 # 8. STATS.md
 Step-Start "STATS.md (initial) erzeugen"
 $f = Join-Path $TargetDir 'STATS.md'
@@ -1059,7 +1024,7 @@ $statisticsRenderer = Join-Path $ScriptDir 'render-project-statistics.ps1'
 if (-not (Test-Path $statisticsRenderer)) {
     Step-Warn "Statistikrenderer nicht gefunden"
 } else {
-    & pwsh -NoProfile -File $statisticsRenderer -Repo $TargetDir 2>$null | Out-Null
+    $statisticsOutput = & pwsh -NoProfile -File $statisticsRenderer -Repo $TargetDir 2>&1
     if ($LASTEXITCODE -eq 0) {
         $statisticsStatus = (& git -C $TargetDir status --porcelain -- docs/project-statistics.md 2>$null | Out-String).Trim()
         if ($statisticsStatus) {
@@ -1074,6 +1039,47 @@ Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>
         Step-Done
     } else {
         Step-Warn "ASCII-Statistikprofil 2 konnte nicht initialisiert werden"
+        $statisticsOutput | ForEach-Object { Write-Host "          $_" }
+    }
+}
+
+# Prepare local artifacts after the renderer has used the clean initial checkout.
+Step-Start "Secure-Development-Hardening vorbereiten"
+if (-not (Test-Path $SecureDevLib) -or -not (Get-Command Invoke-SdhPrepareRepo -ErrorAction SilentlyContinue)) {
+    Step-Warn "Secure-Development-Hardening-Hilfslogik nicht gefunden"
+} else {
+    $ok = Invoke-SdhPrepareRepo `
+        -Repo $TargetDir `
+        -ProjectName $ProjectName `
+        -PrimaryLanguage $PrimaryLanguage `
+        -ScriptDir $ScriptDir
+    if (-not $ok) {
+        Step-Warn $script:SdhPrepareReason
+    } else {
+        switch ($script:SdhPrepareResult) {
+            'prepared' { Step-Done $script:SdhPrepareReason }
+            'skipped'  { Step-Skip $script:SdhPrepareReason }
+            default    { Step-Done "$script:SdhPrepareResult $script:SdhPrepareReason" }
+        }
+    }
+}
+
+# Prepare the separate learner self-assessment.
+Step-Start "RL-SE-/Checklist-Selbstpruefung vorbereiten"
+$rlSeScript = Join-Path $ScriptDir 'prepare-rl-se-checklist-selbstpruefung.ps1'
+if (-not (Test-Path $rlSeScript)) {
+    Step-Warn "RL-SE-/Checklist-Selbstpruefungs-Skript nicht gefunden"
+} else {
+    $rlSeArgs = @{
+        Repo = @($TargetDir)
+        AllowDirty = $true
+    }
+    if ($PrimaryLanguage) { $rlSeArgs.PrimaryLanguage = $PrimaryLanguage }
+    try {
+        & $rlSeScript @rlSeArgs | Out-Null
+        Step-Done "Intake und Reihenfolge vorbereitet"
+    } catch {
+        Step-Warn "RL-SE-/Checklist-Selbstpruefung konnte nicht vorbereitet werden: $($_.Exception.Message)"
     }
 }
 
