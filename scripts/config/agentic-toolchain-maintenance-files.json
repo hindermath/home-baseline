@@ -842,6 +842,10 @@
       "executable": false
     },
     {
+      "path": "scripts/templates/agent-guidance.md.tmpl",
+      "executable": false
+    },
+    {
       "path": "scripts/templates/AGENTS.md.tmpl",
       "executable": false
     },

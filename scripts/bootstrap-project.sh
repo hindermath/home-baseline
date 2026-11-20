@@ -234,7 +234,7 @@ stage_project_baseline() {
     .gitignore README.md AGENTS.md CLAUDE.md GEMINI.md constitution.md STATS.md \
     release-please-config.json .release-please-manifest.json \
     .github/copilot-instructions.md .github/workflows/homogeneity-check.yml \
-    .github/workflows/release-please.yml docs/project-statistics.md \
+    .github/workflows/release-please.yml docs/agent-guidance.md docs/project-statistics.md \
     docs/project-statistics.config.json; do
     if [ -e "$TARGET_DIR/$relative" ] && [ ! -L "$TARGET_DIR/$relative" ]; then
       git -C "$TARGET_DIR" add -- "$relative"
@@ -665,6 +665,7 @@ if $OPT_PREVIEW; then
   echo "[PREVIEW] Folgende Aktionen wuerden ausgefuehrt:"
   preview_action "CREATE" "${TARGET_DIR}/"
   preview_action "EXEC" "git init ${TARGET_DIR}"
+  preview_action "CREATE" "${TARGET_DIR}/docs/agent-guidance.md" "aus agent-guidance.md.tmpl"
   preview_action "CREATE" "${TARGET_DIR}/AGENTS.md" "aus AGENTS.md.tmpl"
   preview_action "CREATE" "${TARGET_DIR}/CLAUDE.md" "aus CLAUDE.md.tmpl"
   preview_action "CREATE" "${TARGET_DIR}/GEMINI.md" "aus GEMINI.md.tmpl"
@@ -792,6 +793,16 @@ else
 fi
 
 # ─── Step 3: AGENTS.md ───────────────────────────────────────────────────────
+guidance_reference="${TARGET_DIR}/docs/agent-guidance.md"
+sdh_assert_no_untrusted_link_components "$guidance_reference" || exit 2
+if [ -L "${TARGET_DIR}/docs" ] || [ -L "$guidance_reference" ]; then
+  echo "Fehler: Agentenreferenz darf keinen symbolischen Link verwenden." >&2
+  exit 2
+fi
+if [ ! -f "$guidance_reference" ]; then
+  mkdir -p -- "${TARGET_DIR}/docs"
+  render_template "$TEMPLATES_DIR/agent-guidance.md.tmpl" "$guidance_reference"
+fi
 step_start "AGENTS.md erzeugen"
 if [ -f "${TARGET_DIR}/AGENTS.md" ] && ! $OPT_FORCE; then
   step_skip "Datei existiert"

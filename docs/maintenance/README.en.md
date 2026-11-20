@@ -2,6 +2,13 @@
 
 [Deutsche Fassung](README.md)
 
+## Agent guidance
+
+Start with [AGENTS.md](../../AGENTS.md). Then choose the section for your task in
+the [agent guidance reference](agent-guidance-reference.md).
+
+The bootstrap templates generate short agent entry files and the shared project file `docs/agent-guidance.md`. It covers toolchain maintenance, hardening intakes and presets in detail. Bootstrap preserves existing project copies of the reference.
+
 ## Safe default sequence
 
 1. Detect the operating system and select the matching script variant.
