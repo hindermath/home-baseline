@@ -23,6 +23,10 @@ Copy this matrix for **one** requested run. Use `passed`, `failed`, `blocked` or
 
 ## Negativ-Gates / Negative gates
 
+DE: Die [Bash- und PowerShell-7-Beispiele](shell-examples.md) zeigen lesende Status- und Hashprüfungen. Erfasse die tatsächlich benutzte Shell und den ausgeführten Aufruf; ein Beispiel ist kein Nachweis.
+
+EN: The [Bash and PowerShell 7 examples](shell-examples.md#english) show read-only state and digest checks. Record the shell and invocation actually used; examples are not evidence.
+
 | Gate und getrennte Fixture / Gate and separate fixture | Erwarteter Abbruch / Expected stop | Tatsächliches Ergebnis / Actual result | Beleg / Evidence |
 |---|---|---|---|
 | _auszufüllen / to fill_ | _auszufüllen / to fill_ | _auszufüllen / to fill_ | _auszufüllen / to fill_ |

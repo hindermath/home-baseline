@@ -144,6 +144,18 @@ Bei jeder Preset-Version oder Prioritätsänderung zuerst die zentrale Matrix
 aktualisieren und danach README-Tabellen, Constitution, Agenten-Dateien und
 Templates gemeinsam prüfen.
 
+Community-Einreichungen werden nur aus Level 0 vorbereitet. Praktischer Einsatz,
+commitgebundene E2E-Feldevidence und Aussagegrenze bleiben getrennt. Evidence
+nennt Version, Plattform, Szenario, `ExactVersion` / `Historical` /
+`LaterVersion` sowie `Positive` / `Partial` / `NotCovered`; nur `Positive` ist
+ein begrenzter Funktionsnachweis. Die zentrale Vorlage steht unter
+`docs/runbooks/preset-e2e/README.md`.
+
+*Community submissions are prepared only from Level 0. Separate practical use,
+commit-bound E2E field evidence, and the claim boundary. State version,
+platform, scenario, version relation, and evidence status; only `Positive` is a
+bounded functional result. Use the central preset E2E runbook template.*
+
 Plattformnachweise laufen agentenneutral macOS-first: zuerst lokal im passenden
 Safe Mode, bei fehlendem Linux-Host in einem isolierten nativen Container oder
 eng begrenzter nativer Linux-CI und bei fehlendem Windows-Host in eng begrenzter

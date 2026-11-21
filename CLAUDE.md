@@ -33,6 +33,16 @@ and the reference for your task below.
   EN: Before authorized delivery, verify the target, exact head and its required
   checks. Technical evidence is separate from product, accessibility, platform
   and rollout approval.
+- DE: Bereite Community-Preset-Einreichungen nur aus Level 0 vor. Trenne
+  praktischen Einsatz, commitgebundene E2E-Feldevidence und Aussagegrenze.
+  Nenne Version, Plattform, Szenario, Versionsbeziehung und
+  `Positive`/`Partial`/`NotCovered`; nur `Positive` ist ein begrenzter
+  Funktionsnachweis. Verwende die zentrale Vorlage unter
+  `docs/runbooks/preset-e2e/README.md`.
+  EN: Prepare community preset submissions only from Level 0. Separate
+  practical use, commit-bound E2E field evidence, and the claim boundary.
+  State version, platform, scenario, version relation, and evidence status;
+  only `Positive` is a bounded functional result. Use the central E2E template.
 - DE: `sync-home.*` verteilt nur `homeRuntime`. Prüfe zuerst mit
   `--check-only` / `-CheckOnly` und kläre Konflikte vor einem Force-Lauf.
   In ABS-DD bleibt schreibender Home Sync auf ausdrücklich angefordertes

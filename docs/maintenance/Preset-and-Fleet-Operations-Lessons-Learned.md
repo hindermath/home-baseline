@@ -62,12 +62,33 @@ independent observations. The figures are anonymized process evidence only.*
     benannt. Mehrere gleichzeitige Issues oder Label-Anfragen erhoehen das
     Verwechslungsrisiko im Maintainer-Review. Diese Regel folgt dem
     [Maintainer-Hinweis in `github/spec-kit#3679`](https://github.com/github/spec-kit/issues/3679#issuecomment-5060400721).
+12. **Einreichungsnachweise bleiben begrenzt und unveraenderlich:** Jede
+    Community-Einreichung trennt praktischen Einsatz, einen beobachteten
+    E2E-Funktionsnachweis und dessen Aussagegrenze. Externe Evidence-Links
+    zeigen auf eine feste Commit-ID oder einen unveraenderlichen Tag und auf
+    den passenden Abschnitt. Sie nennen Preset-Version, Plattform, Szenario
+    und die Beziehung zur eingereichten Version (`ExactVersion`,
+    `Historical` oder `LaterVersion`). `Partial` und `NotCovered` sind keine
+    Funktions-Passes. Installation, CI, Review-Spuren und Repository-Nutzung
+    ersetzen keinen beobachteten Funktionsnachweis. Einreichungen werden nur
+    aus Level 0 vorbereitet; Level-2-Repositories liefern Evidence, tragen
+    aber keine eigene Kopie dieses Einreichungsvertrags.
 
 *Upstream community catalog updates for `github/spec-kit` are submitted and
 activated strictly one at a time. Wait until the generated PR is reviewed and
 merged and its issue is complete before filing the next issue or, for an
 existing queue, naming the next label candidate. This follows the maintainer's
 guidance and avoids ordering mistakes during review.*
+
+*Every community submission separates practical use, observed bounded E2E
+field evidence, and the claim boundary. External evidence links use an exact
+commit or immutable tag plus a section anchor and state the preset version,
+platform, scenario, and whether the evidence covers the exact submitted
+version, a historical version, or a later version. `Partial` and `NotCovered`
+are not functional passes. Installation, CI, review trails, and repository use
+do not replace observed functional evidence. Submissions are prepared only
+from Level 0; Level-2 repositories provide evidence without duplicating this
+submission contract.*
 
 ## Flottenbetrieb
 
