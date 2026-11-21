@@ -4,7 +4,7 @@
 
 Dieses Runbook ergänzt den [Integrationstest der Sicherheitsbasis](../security-baseline-integration-test.md). Es beschreibt vier wiederholbare **lokale** Tests des vollständigen 14-Preset-Profils. Das Lesen und Vorbereiten dieser Dokumentation startet keinen Test. Ein Maintainer beauftragt jeden Szenariolauf, eine spätere Veröffentlichung des Berichts und eine mögliche Bereinigung jeweils gesondert.
 
-**Lastenheft** bedeutet hier ein prüfbarer Arbeitsauftrag. **Serie** bedeutet vier Lastenhefte mit bindender Reihenfolge. **Preset** bedeutet eine versionierte Spec-Kit-Erweiterung. Für die Lernprüfung gilt die [Lernenden- und A11Y-Basis](../../learning-units/LERNENDEN-UND-A11Y-BASIS.md). Die Dateien in [intakes/](intakes/) sind nur Vorlagen: Sie sind keine aktiven Intakes, keine Serienmitglieder und keine Startberechtigung.
+**Lastenheft** bedeutet hier ein prüfbarer Arbeitsauftrag. **Serie** bedeutet vier Lastenhefte mit bindender Reihenfolge. **Preset** bedeutet eine versionierte Spec-Kit-Erweiterung. Ein **Hash** ist der digitale Fingerabdruck einer konkreten Dateifassung. Für die Lernprüfung gilt die [Lernenden- und A11Y-Basis](../../learning-units/LERNENDEN-UND-A11Y-BASIS.md). Die Dateien in [intakes/](intakes/) sind nur Vorlagen: Sie sind keine aktiven Intakes, keine Serienmitglieder und keine Startberechtigung.
 
 | Szenario | Produkt | Sprachen | Level-2-Repositories |
 |---|---|---|---|
@@ -44,7 +44,11 @@ Die [leere Auftragsvorlage](maintainer-order-template.md) nennt Szenario, Ausfü
 4. Aus den vier passenden Vorlagen je Level 2 die tatsächlichen Lastenhefte und die Serie erstellen. Jeder Featurelauf benutzt das geprüfte Autonomous-Run-Preset. B und D benutzen zusätzlich das Parallel-Autonomous-Run-Preset für höchstens drei Sprach-Worker gleichzeitig; die vier Features jedes Workers bleiben seriell. Fehlende oder falsche Modellbindung blockiert den Start.
 5. Tests, Preset-Wirkungen und menschliche Prüfung im [Abdeckungsblatt](preset-coverage-template.md), [Bericht](run-report-template.md) und [Lernprüfblatt](learner-review-template.md) dokumentieren. Alte Zähler oder Ergebnisse nicht übernehmen.
 
+**Vor dem Start (A–D):** Trage die für diesen Lauf relevanten [Feldlehren](#feldlehren-aus-szenario-a) in die Auftragsvorlage ein. Prüfe den tatsächlich aufgelösten Programm- und Prüfpfad, Version, Architektur und die beim Start geladene Laufzeit. Halte Caches und temporäre Dateien im Test-HOME; unterbinde für den Test unnötige Erstlaufaktionen wie Telemetrie oder Zertifikatserzeugung, soweit das Werkzeug dies unterstützt. Ein Startfehler ist kein Produkttest. Korrigiere nur die Prozessumgebung, nicht das Host-Profil. Prüfe Zielgruppe, Abnahme und Reihenfolge der vollständigen Intakes fachlich, bevor ihre genaue Fassung per Hash zur Freigabe vorgelegt wird.
+
 ### Ausführungsort
+
+[Bash- und PowerShell-7-Beispiele](shell-examples.md) zeigen Vorbereitung, lesende Prüfungen, CLI/TUI, HTTP und PDF-Abnahme. Für Bootstrap und Wartung gilt weiterhin die native Skriptvariante der Plattform.
 
 | Modus | Vorabprüfung | Was das Ergebnis belegt |
 |---|---|---|
@@ -52,6 +56,71 @@ Die [leere Auftragsvorlage](maintainer-order-template.md) nennt Szenario, Ausfü
 | Sandbox | Freigegebenes Image, native Architektur, benötigte Toolchains (für B/D alle sechs), isoliertes Test-HOME, Mounts, nicht-root Benutzer und erlaubte Ports | Host/Container-Kombination und die Linux-Umgebung im Container |
 
 Der erste geplante Host-Lauf ist macOS; Windows und WSL2/Ubuntu sind optionale spätere Wiederholungen. Im Sandbox-Modus gelten die [Sandbox-Betriebsregeln](https://github.com/hindermath/absdd-image-sandbox/blob/main/docs/betrieb/README.md); Host-Anmeldedaten bleiben außerhalb des Containers. TUI-Prüfungen brauchen eine echte interaktive Terminalsitzung. Die Web-Anwendung bindet im Host-Modus an `127.0.0.1`; im Container darf sie intern `0.0.0.0` verwenden, während nur der vorhandene Host-Loopback-App-Bereich `5100–5198` veröffentlicht ist. Fehlende Toolchains, Ports oder Hilfsmittel werden als `blockiert` berichtet; ein Image-Neubau oder ein zusätzlicher Container ist kein stiller Ersatz. Ein Vergleich von Host und Sandbox verlangt zwei getrennte Läufe mit eigenen IDs und möglichst gleichen Quellenständen.
+
+### Codex-Anmeldung auf macOS: Safari ausdrücklich öffnen
+
+Führe den Block in Terminal.app auf dem Host aus. Setze `test_home` auf das bereits für den Lauf angelegte, isolierte Test-HOME. Für `--device-auth` muss die Gerätecode-Anmeldung für dein ChatGPT-Konto oder deinen Workspace erlaubt sein ([Codex-Anmeldung](https://developers.openai.com/codex/auth)). Auf Mac B funktionierte der vorherige Ablauf mit Edge als Standardbrowser nicht. Dieser Block öffnet Safari ausdrücklich, ohne den Standardbrowser umzustellen.
+
+```bash
+(
+  set -e
+  test_home='/absoluter/pfad/zum/isolierten/test-home'
+  test -d "$test_home/.codex" && test -d "$test_home/tmp" || exit 1
+  cd "$test_home"
+
+  codex_test() {
+    env -i HOME="$test_home" CODEX_HOME="$test_home/.codex" \
+      XDG_CONFIG_HOME="$test_home/.config" TMPDIR="$test_home/tmp" \
+      USER="$USER" LOGNAME="${LOGNAME:-$USER}" \
+      PATH=/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin \
+      codex -c 'cli_auth_credentials_store="file"' "$@"
+  }
+
+  /usr/bin/open -a Safari 'https://auth.openai.com/codex/device'
+  codex_test login --device-auth
+  codex_test login status
+)
+```
+
+Gib den Einmalcode nur auf der von Codex angegebenen OpenAI-Seite in Safari ein. Erwartet wird `Logged in using ChatGPT`. Falls Safari nicht startet oder die Gerätecode-Anmeldung gesperrt ist, halte an. Kopiere keine Host-Zugangsdaten. Die Anmeldedatei im Test-HOME ist vertraulich und gehört weder in Git noch in den Bericht. Der Anmeldestatus ersetzt nicht die Modellprüfung des Runners.
+
+<a id="safari-powershell"></a>
+
+**Alternative: PowerShell 7.3+ in Terminal.app auf demselben macOS-Host.** Setze `$testHome` wie oben. Die Umgebung gilt nur für die Codex-Kindprozesse. Dieselben Grenzen für Anmeldung und Nachweis gelten.
+
+```powershell
+& {
+    if (-not $IsMacOS) { throw 'This Safari example is macOS-only.' }
+    $PSNativeCommandArgumentPassing = 'Standard'
+    $testHome = '/absoluter/pfad/zum/isolierten/test-home'
+    foreach ($dir in '.codex', 'tmp') {
+        if (-not (Test-Path -LiteralPath (Join-Path $testHome $dir) -PathType Container)) {
+            throw "Missing test HOME directory: $dir"
+        }
+    }
+    $isolatedEnv = @(
+        "HOME=$testHome"
+        "CODEX_HOME=$testHome/.codex"
+        "XDG_CONFIG_HOME=$testHome/.config"
+        "TMPDIR=$testHome/tmp"
+        "USER=$env:USER"
+        "LOGNAME=$($env:LOGNAME ?? $env:USER)"
+        'PATH=/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin'
+    )
+
+    Push-Location -LiteralPath $testHome -ErrorAction Stop
+    try {
+        & /usr/bin/open -a Safari 'https://auth.openai.com/codex/device'
+        if ($LASTEXITCODE -ne 0) { throw 'Safari did not open.' }
+        & /usr/bin/env -i @isolatedEnv codex -c 'cli_auth_credentials_store="file"' login --device-auth
+        if ($LASTEXITCODE -ne 0) { throw 'Device sign-in failed.' }
+        & /usr/bin/env -i @isolatedEnv codex -c 'cli_auth_credentials_store="file"' login status
+        if ($LASTEXITCODE -ne 0) { throw 'Codex is not signed in.' }
+    } finally {
+        Pop-Location
+    }
+}
+```
 
 ## Alle 14 Presets funktional belegen
 
@@ -76,11 +145,36 @@ Für **jedes** Preset stehen Version, Hash, konkreter Aufruf, erwartete Wirkung,
 
 Über A und B zusammen braucht jedes Preset mindestens einen positiven Funktionsnachweis; C und D prüfen die anwendbaren Wirkungen erneut an Web-Grenzen. Das Parallel-Preset wird in B und D geprüft und ist in A/C begründet `nicht anwendbar`. Schutz-Gates erhalten ungefährliche Negativ-Fälle in getrennten Fixtures, niemals durch Beschädigung eines aktiven Laufs. Ein offener oder blockierter Preset-Nachweis verhindert die Aussage „alle 14 bestanden“.
 
+### Phasenübergang und Abnahme
+
+1. **Anwendung und Tests (A–D):** Zeige zuerst einen ausführbaren Test, der aus dem erwarteten fachlichen Grund fehlschlägt, dann denselben Test erfolgreich. Leite eindeutige Pflichtfall-IDs aus dem aktuellen Vertrag ab. Prüfe an separaten Testdaten, dass fehlende, doppelte oder übersprungene Pflichtfälle erkannt werden. Bei CLI: Argumente direkt übergeben, beide Ausgabeströme und Exitcode getrennt vergleichen. Bei HTTP: Statuscode und Antwortinhalt getrennt prüfen. Baue in einem frischen isolierten Verzeichnis. Zähle Runner-Selbsttests, Produktfälle und unabhängige Abnahme getrennt.
+2. **Phasenübergang (A–D):** Eine lesende Analyse gibt ihr Ergebnis aus; der Runner speichert die Antwort außerhalb der Schreibrechte der Analyse. Warte auf das endgültige strukturierte Ergebnis des Versuchs. Prüfe Phase, Versuch, Ergebnis und Hash der zugehörigen Nutzdatei, bevor eine unabhängige Abnahmeentscheidung gebunden wird. Bei Abweichung nicht weitergehen: Fehlnachweis behalten, nur die betroffene Prüfung mit erneut bestätigten Eingaben wiederholen. Falls eine Regression alte Eingaben braucht, nutze nur eine belegte, freigegebene isolierte Archivkopie mit abgeglichenen Produktquellen. Verändere für diese Gegenprobe weder aktive Manifeste noch den echten Git-Index.
+3. **Oberfläche:** Bei A/B die tatsächlich gebaute TUI mit echter Terminaleingabe prüfen; Tastatur, Fokus, Fehlerkorrektur, Exit und Wiederherstellung des Terminalmodus beobachten. Keine Abweichungen aus dem Modusvergleich ausblenden. Ein Pseudoterminal (PTY) erlaubt automatisierte Terminaleingaben, belegt aber weder die Terminal-GUI noch Assistenztechnik. Bei C/D dieselben Bedienziele im Browser und den HTTP-Vertrag separat prüfen; keine TUI-Evidenz übernehmen.
+4. **Handbuch (A–D):** Probiere einen Sprachwechsel per Tastatur an einer kleinen getaggten PDF aus. Prüfe danach Struktur, Sprache, Lesereihenfolge, Tabellenbezüge und Links automatisch und öffne alle Seiten der endgültigen PDF zur Sichtprüfung. Teste die Navigation im Viewer praktisch. Beziehe beide Nachweise auf denselben PDF-Hash. Tabellenzellen müssen auf die richtigen Überschriften derselben Tabelle verweisen; Codezellen können einen anderen Sprach-Tag haben. Beschrifte Links eindeutig und mache sie auch ohne Farbe erkennbar. Halte persönliche Prüfung, Screenreader und Braille getrennt fest.
+
+## Aus dem Lauf lernen
+
+- **Nach jedem technisch abgeschlossenen Feature:** Eine Zeile pro relevanter Beobachtung in den bestehenden Rückblick schreiben. Benenne Problem, nachvollziehbaren Beleg, übertragbare Regel, Geltungsbereich, Entscheidung und nächste Gegenprobe. „Keine neue Beobachtung“ genügt, wenn nichts hinzugekommen ist. Mache bei einer Wiederaufnahme den kleinsten betroffenen Prüfbereich kenntlich. Ein Rückblick ersetzt keinen Pflichtnachweis.
+- **Beim Szenarioabschluss:** Der Maintainer führt alle Sprachpfade im [Laufbericht](run-report-template.md#deutsch-verbesserungen-für-den-nächsten-lauf) zusammen, entfernt Doppelungen und entscheidet, was für welchen Folgelauf übernommen wird. Ein einmalig reproduzierbarer Korrektheits-, Sicherheits-, Berechtigungs- oder Nachweisfehler kann für `Promote` genügen. Effizienzvorschläge bleiben `ObserveAgain`, bis zwei unabhängige Feldbeobachtungen vorliegen; mehrere Features desselben Laufs zählen nicht als unabhängig. Für offene Punkte Verantwortliche und Auslöser für die nächste Prüfung nennen. Blockierte Pflichtnachweise bleiben blockiert, auch wenn andere Sprachpfade fertig sind.
+- **Vor dem nächsten Start:** Die [Auftragsvorlage](maintainer-order-template.md) bindet die übernommenen Regeln an Szenario und Sprache. Rückmeldungen aus dem [Lernprüfblatt](learner-review-template.md) werden als eigene Beobachtungen ergänzt, nicht als automatische Ergebnisse. Ausstehende persönliche Prüfungen ausdrücklich so markieren. Das Verfahren startet keinen weiteren Lauf und erlaubt keine Änderung zentraler Regeln, Veröffentlichung oder Bereinigung ohne den jeweiligen Auftrag.
+
+### Feldlehren aus Szenario A
+
+Die [Belegliste](#field-evidence-refs) bindet die vier nur lokal abgeschlossenen Features an ihre Rückblicke. Die Kurzbelege unten bleiben ohne Test-HOME verständlich. `Promote` gilt hier **nur im E2E-Runbook**; neue Plattformen und Sprachen brauchen eigene Nachweise.
+
+| Quelle | Kurzbeleg, Reichweite und Entscheidung | Nächste Gegenprobe |
+|---|---|---|
+| A-F1 | Falsches SDK und falsche Startlaufzeit lieferten keine Produktbeobachtung; eine früh gebundene Entscheidung passte nicht zu den Endbytes. `Promote`, Start und Phasenübergang A–D; kein fester .NET-Pfad. | Falsche Laufzeit bzw. geänderte Nutzdatei in separater Testkopie: kein Produkt-Pass bzw. keine alte Abnahme übernehmen. |
+| A-F2 | Ein Prüfpfad war auf dem Mac ungültig. Die unabhängige Abnahme verglich eine feste Fallliste mit den tatsächlichen Ergebnissen. `Promote`, Prüfpfad, Fallinventar und gezielte Wiederaufnahme A–D; weder `/bin/test` noch die Fallzahl vorgeben. | Einen Pflichtfall weglassen, doppeln oder überspringen; der Prüflauf muss dies jeweils erkennen. |
+| A-F3 | Die ältere Regression brauchte frühere Manifestbytes. Die isolierte Archivprobe und der exakte native Modusvergleich lieferten getrennte Nachweise. `Promote`, Archivierung A–D, Terminalprüfung A/B; Darwin-Eigenheiten nicht übertragen. | Geschützte Eingaben vor/nach der Archivprobe vergleichen; bei A/B den Terminalmodus auch nach einem Fehler-Exit vergleichen. |
+| A-F4 | Der lesende Prüfer hielt die eigene Schreibsperre zunächst für einen Blocker. Der Runner speicherte die Antwort beim erneuten Versuch ohne Rechteänderung. Beim PDF wurden Tastatursprünge und Struktur am selben Endstand geprüft. `Promote`, Phasenübergang und PDF A–D; konkrete Werkzeuge und Versionen bleiben Beispiele. | Einen Nur-Lese-Versuch ohne Worker-Schreibzugriff und einen kleinen PDF-Sprachwechsel prüfen; danach Enddatei separat abnehmen. |
+| A-F1/F2 | Prüfungen zu bündeln könnte Zeit sparen. `ObserveAgain`, nur ein unabhängiger Lauf belegt; keine Messung aktiver Arbeitszeit. | E2E-Maintainer vergleicht beim nächsten unabhängigen Lauf belegte Warte- und Wiederholzeiten, ohne Pflichtprüfungen zu streichen. |
+
 ## Lernprüfung, Bericht und spätere Bereinigung
 
 Auszubildende und Entwickler ohne Spezialkenntnisse prüfen **vor** einer Bereinigung, ob sie Lastenheft, Feature, Quellcode, Test und Handbuch miteinander verbinden und Beispiele selbst ausführen können. Sie dokumentieren eigene Beobachtungen statt CI-Ergebnisse nur zu übernehmen. Private Daten, echte Zugangsdaten und ungeprüfte Testeingaben sind ausgeschlossen.
 
-Der zweisprachige Bericht wird als **eine selbstständig lesbare Markdown-Datei** außerhalb des Test-HOME gesichert. Er enthält Run-ID, Auftrag, Plattform, Level-0- und Preset-Stände, Level-1/2-Struktur, Feature-Commits, Befehle, Testzahlen, wichtige Belegauszüge, Artefakt-Hashes, menschliche Prüfung, Fehler und Aussagegrenzen. Er darf sich nicht ausschließlich auf später gelöschte Pfade stützen. Eine bereinigte öffentliche Fassung erfordert eine gesonderte menschliche Sichtung und Veröffentlichung.
+Der zweisprachige Bericht wird als **eine selbstständig lesbare Markdown-Datei** außerhalb des Test-HOME gesichert. Er enthält Run-ID, Auftrag, Plattform, Level-0- und Preset-Stände, Level-1/2-Struktur, Feature-Commits oder Basis plus geprüften lokalen Stand, Befehle, aktuelle und historische Testzahlen getrennt, wichtige Belegauszüge, Artefakt-Hashes, menschliche Prüfung, Fehler und Aussagegrenzen. Git-Statistik ist keine gemessene Arbeitszeit. Der Bericht darf sich nicht ausschließlich auf später gelöschte Pfade stützen. Eine bereinigte öffentliche Fassung erfordert eine gesonderte menschliche Sichtung und Veröffentlichung.
 
 Nur ein **neuer, gezielter Maintainer-Auftrag** darf nach abgeschlossener Lernprüfung das eindeutig identifizierte Test-Level-1-Repository, seine Level-2-Repositories, das Test-HOME und Rohbelege entfernen. Vorher werden Bericht und Hash der echten Home-Dateien geprüft; echte Repositories, Registries, Sandbox-Volumes und Nutzerdaten bleiben erhalten. Danach bleibt allein der Testbericht. Er nennt ausdrücklich, dass der damalige Quellstand nach Löschung nicht erneut geprüft werden kann; ein neuer Lauf ist aus den versionierten Vorlagen möglich.
 
@@ -92,7 +186,7 @@ Nur ein **neuer, gezielter Maintainer-Auftrag** darf nach abgeschlossener Lernpr
 
 This runbook extends the [security baseline integration test](../security-baseline-integration-test.md). It describes four repeatable **local** tests of the full 14-preset profile. Reading or preparing these documents starts no test. A maintainer separately requests each scenario run, later report publication and optional cleanup.
 
-An **intake** is a reviewable work request. A **series** is four intakes with binding order. A **preset** is a versioned Spec Kit extension. The [learner and accessibility baseline](../../learning-units/LERNENDEN-UND-A11Y-BASIS.md) applies to human review. Files in [intakes/](intakes/) are templates only: no active intake, series membership or start authority.
+An **intake** is a reviewable work request. A **series** is four intakes with binding order. A **preset** is a versioned Spec Kit extension. A **hash** is a digital fingerprint of one exact file version. The [learner and accessibility baseline](../../learning-units/LERNENDEN-UND-A11Y-BASIS.md) applies to human review. Files in [intakes/](intakes/) are templates only: no active intake, series membership or start authority.
 
 | Scenario | Product | Languages | Level 2 repositories |
 |---|---|---|---|
@@ -132,7 +226,11 @@ The [blank request template](maintainer-order-template.md) records scenario, `Ho
 4. Create the four actual intakes and series in each Level 2. Each feature uses the checked Autonomous Run preset. B and D also use Parallel Autonomous Run for at most three language workers at a time; each worker's four features remain serial. Missing or incorrect model binding blocks start.
 5. Record tests, preset behavior and human review in the [coverage sheet](preset-coverage-template.md), [report](run-report-template.md) and [learner review sheet](learner-review-template.md). Never reuse old counts.
 
+**Before starting (A–D):** Record the relevant [field lessons](#field-lessons-from-scenario-a) in the request template. Verify the resolved tool and check executable, version, architecture and the runtime actually loaded. Keep caches and temporary files in the test HOME. Where supported, disable unrelated first-run actions such as telemetry or certificate creation. A launch failure is not a product test. Correct only the process environment, not the host profile. Review the audience, acceptance criteria and order of the complete intakes before requesting approval of their exact hashed version.
+
 ### Execution location
+
+[Bash and PowerShell 7 examples](shell-examples.md#english) cover setup, read-only checks, CLI/TUI, HTTP and PDF verification. Continue to use the platform's native script variant for bootstrap and maintenance.
 
 | Mode | Preflight | What the result supports |
 |---|---|---|
@@ -140,6 +238,12 @@ The [blank request template](maintainer-order-template.md) records scenario, `Ho
 | Sandbox | Approved image, native architecture, needed toolchains (all six for B/D), isolated test HOME, mounts, non-root user and allowed ports | The host/container combination and Linux environment in the container |
 
 The first planned host run is macOS; Windows and WSL2/Ubuntu are optional later repeats. Follow the [sandbox operations guide](https://github.com/hindermath/absdd-image-sandbox/blob/main/docs/betrieb/README.md) in Sandbox mode and keep host credentials outside the container. TUI review needs a real interactive terminal. On the host, bind the web app to `127.0.0.1`. Inside the container it may bind to `0.0.0.0` while only the existing host loopback app range `5100–5198` is published. Report missing toolchains, ports or assistive tools as `blocked`; an image rebuild or extra container is not an implicit substitute. Host/sandbox comparison requires two separate runs with separate IDs and as similar source revisions as possible.
+
+### Signing in to Codex on macOS: open Safari explicitly
+
+Run either the [Bash block](#codex-anmeldung-auf-macos-safari-ausdrücklich-öffnen) or the [PowerShell 7.3+ alternative](#safari-powershell) in Terminal.app on the macOS host. Set `test_home` or `$testHome` to this run's existing isolated test home. Device-code sign-in must be allowed for your ChatGPT account or workspace ([Codex authentication](https://developers.openai.com/codex/auth)). The previous flow did not work on Mac B with Edge as the default browser. Both blocks explicitly open Safari without changing the default browser.
+
+Enter the one-time code only on the OpenAI page that Codex identifies, in Safari. Expect `Logged in using ChatGPT`. Stop if Safari does not open or device-code sign-in is blocked. Do not copy host credentials. The sign-in file in the test home is confidential; keep it out of Git and the report. Sign-in status does not replace the runner's model-access check.
 
 ## Functional evidence for all 14 presets
 
@@ -164,10 +268,48 @@ Record version, hash, invocation, expected behavior, artifact, result and eviden
 
 Across A and B, every preset needs at least one positive functional result; C and D repeat applicable checks at web trust boundaries. Parallel Autonomous Run is exercised in B and D and is justified `not applicable` in A/C. Test protective negative gates with harmless separate fixtures, never by damaging an active run. Open or blocked preset evidence prevents a claim that all 14 passed.
 
+### Phase handoff and acceptance
+
+1. **Application and tests (A–D):** Start with a runnable test that fails for the expected product reason, then show the same test passing. Derive unique required case IDs from the current contract. Use separate test data to prove that missing, duplicate or skipped required cases are detected. Pass CLI arguments directly and compare both streams and exit status separately. For HTTP, check status and response body separately. Build in a fresh isolated directory. Count runner self-tests, product cases and independent acceptance separately.
+2. **Phase handoff (A–D):** A read-only analysis returns its result; the runner saves the response outside the analysis's write permissions. Wait for the final structured attempt result. Verify phase, attempt, result and the associated artifact hash before binding the independent acceptance decision. Stop on a mismatch: retain failed evidence and repeat only the affected check after confirming its inputs. If regression needs earlier inputs, use a verified, authorized isolated archive copy and compare product sources. Do not change live manifests or the real Git index for that check.
+3. **User interface:** In A/B, check the actual TUI build with real terminal input. Observe keyboard use, focus, error recovery, exit and restored terminal mode. Do not mask mode differences. A pseudoterminal (PTY) allows automated terminal input but is not evidence of terminal GUI or assistive technology use. In C/D, verify equivalent tasks in the browser and verify the HTTP contract separately; do not borrow TUI evidence.
+4. **Handbook (A–D):** Test one keyboard language switch on a small tagged PDF first. On the final PDF, check structure, language, reading order, table associations and links automatically, open all pages for visual review and operate links in a viewer. Bind both records to the same PDF hash. Data cells must reference the correct headers in the same table; code cells may have a different language tag. Use clear link labels and cues other than color. Record personal review, screen reader and Braille separately.
+
+## Learn from each run
+
+- **After each technically completed feature:** Add one row per relevant observation to the existing retrospective. Record problem, traceable evidence, reusable rule, scope, decision and next check. If nothing new was observed, one sentence is enough. On resume, identify the smallest affected check scope. A retrospective is not a substitute for required evidence.
+- **At scenario closeout:** The maintainer combines every language track in the [run report](run-report-template.md#english-improvements-for-the-next-run), removes duplicates and decides what to carry into which next run. One reproducible correctness, security, permission or evidence defect can justify `Promote`. Efficiency suggestions remain `ObserveAgain` until there are two independent field observations; different features of one run are not independent. Name the owner and recheck trigger for open items. Blocked required evidence stays blocked even when other language tracks are complete.
+- **Before the next start:** The [request template](maintainer-order-template.md) binds adopted rules to the scenario and language. Add observations from the [learner review sheet](learner-review-template.md) as human feedback, not automated results. Explicitly mark a personal review that has not yet happened as pending. This process starts no further run and grants no authority to change central rules, publish or clean up.
+
+### Field lessons from Scenario A
+
+The [evidence references](#field-evidence-refs) bind the four locally completed features to their retrospectives. These summaries stand on their own without the test HOME. `Promote` applies **only to this E2E runbook**; new platforms and languages require their own evidence.
+
+| Source | Evidence summary, scope and decision | Next check |
+|---|---|---|
+| A-F1 | Wrong SDK and startup runtime yielded no product observation; an early decision did not match the final bytes. `Promote`: startup and phase handoff A–D; no fixed .NET path. | In a separate test copy, use a wrong runtime or changed artifact: do not declare a product pass or reuse the old approval. |
+| A-F2 | A check executable path was invalid on the Mac. Independent acceptance compared a fixed inventory with actual outcomes. `Promote`: executable path, inventory and scoped resume A–D; do not prescribe `/bin/test` or the case count. | Omit, duplicate or skip a required case; the check must detect each case. |
+| A-F3 | Older regression evidence needed earlier manifest bytes. The isolated archive run and exact native mode comparison produced separate proof. `Promote`: archive use A–D and terminal checks A/B; do not generalize Darwin behavior. | Compare protected inputs before/after the archive check. For A/B compare the restored terminal mode after an error exit as well. |
+| A-F4 | The read-only reviewer first mistook its write restriction for a blocker. On retry, the runner saved the result without granting more rights. PDF structure and real keyboard navigation were checked on the same final file. `Promote`: phase handoff and PDF A–D; specific tools and versions are examples. | Test read-only result handling and an early keyboard language switch, then validate the final file separately. |
+| A-F1/F2 | Batching checks might save time. `ObserveAgain`: only one independent run and no measurement of active work time. | The E2E maintainer compares observed wait and rerun times in the next independent run without dropping required checks. |
+
+<a id="field-evidence-refs"></a>
+
+**Belegreferenzen / Evidence references** — A, C# auf/on Mac B, 21.11.2026, `LocalImplementation`. Pfade sind relativ zum damaligen Test-Repo; SHA-256 bindet die Original-Rückblicke, die Kurzbelege oben bleiben eigenständig. / Paths are relative to the original test repository; SHA-256 identifies the original retrospectives and the summaries above stand on their own.
+
+DE: Dokumentationsregeln aus einem Feldlauf: A-F1 bis A-F4 sind direkt belegte Funktions- oder Nachweisbefunde; die Übertragung ist noch kein Plattformtest. Alle vier Features sind technisch abgeschlossen. Die persönliche Gesamtprüfung steht aus; „alle 14 Presets bestanden“ folgt aus diesem Lauf nicht. / EN: Documentation rules from one field run: A-F1 through A-F4 are directly evidenced behavior or verification findings, not proof on other platforms. All four features are technically complete. The overall personal review is pending, and this run does not establish that all 14 presets passed.
+
+| ID | Originalpfad / Original path | SHA-256 |
+|---|---|---|
+| A-F1 | `specs/001-cli-rechner/retrospective.md` | `d121a052269cf624a340838bbb5ca5407c413f475d0d5ef072b62a84f4327533` |
+| A-F2 | `specs/002-cli-tests/retrospective.md` | `b8df2235609d71bfa0795d509d4d75e2ccd60e2dca09160472f2fb851f78b05c` |
+| A-F3 | `specs/003-cli-tui/retrospective.md` | `ddf8f6cb746d8aee91d28099f0e8cd00a70560f5aa3fbd1bdbccea8c11982a6b` |
+| A-F4 | `specs/004-cli-handbuch/retrospective.md` | `576ac4fea4ec810a687b3b5ccd25f9117a9419d724e6ec0d4b88c7c78fc9b88e` |
+
 ## Learner review, report and later cleanup
 
 Before cleanup, apprentices and developers without specialist knowledge trace intake, feature, source, tests and handbook, run the examples themselves and record their own observations. Do not treat CI alone as their review. Use no private data, real credentials or unreviewed test inputs.
 
-Keep the bilingual report as **one self-contained Markdown file** outside the test HOME. Include run ID, request, platform, Level 0 and preset versions, Level 1/2 layout, feature commits, commands, test counts, key evidence excerpts, artifact hashes, human review, failures and evidence limits. Do not rely only on paths that cleanup will delete. A sanitized public version needs separate human review and publication.
+Keep the bilingual report as **one self-contained Markdown file** outside the test HOME. Include run ID, request, platform, Level 0 and preset versions, Level 1/2 layout, feature commits or base plus verified local state, commands, separate current and historical test counts, key evidence excerpts, artifact hashes, human review, failures and evidence limits. Git statistics are not measured work time. Do not rely only on paths that cleanup will delete. A sanitized public version needs separate human review and publication.
 
 Only a **new targeted maintainer request** may remove the identified test Level 1 repository, its Level 2 repositories, test HOME and raw evidence after learner review. First secure the report and verify real home-file hashes; preserve real repositories, registries, sandbox volumes and user data. Only the report remains. It states that deleted source cannot be rechecked; a new run can be built from the versioned templates.

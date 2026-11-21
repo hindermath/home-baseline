@@ -13,6 +13,7 @@ Keep this template blank until a maintainer requests an exact run. Save the comp
 | Host oder Sandbox; OS, Architektur, Image falls benutzt | _auszufüllen_ |
 | Level-0-Commit und 14-Preset-Matrix-Hash | _auszufüllen_ |
 | Modell-/Runner-Profil und Vorprüfung | _auszufüllen_ |
+| Shell, Version und tatsächliche Aufrufe | _auszufüllen; [Beispiele](shell-examples.md) sind kein Ausführungsnachweis_ |
 | Laufzeitgrenze, Abbruchregel, tatsächliche Dauer | _auszufüllen_ |
 | Isoliertes Test-HOME und Hash der echten Home-Dateien vorher/nachher | _nur geschützte Fassung: Pfad; öffentlich: abstrakter Nachweis_ |
 | DeliveryMode und Remote-Prüfung | `LocalImplementation`; _keine Remotes belegen_ |
@@ -27,9 +28,9 @@ Keep this template blank until a maintainer requests an exact run. Save the comp
 
 ## Deutsch: Features und Tests
 
-Für **jede Sprache** und jede der vier Positionen eine eigene Zeile anlegen. Befehle, Zahlen, Fehler und Skips stammen aus diesem Lauf; alte Berichte sind keine Datenquelle.
+Für **jede Sprache** und jede der vier Positionen eine eigene Zeile anlegen. Bei uncommittierter Arbeit Basiscommit und Hash-Inventar des geprüften lokalen Stands angeben. Befehle, aktuelle Zahlen, Fehler und Skips stammen aus diesem Lauf. Frühere Tests ausdrücklich als historisch markieren, statt sie mitzuzählen. Runner-Selbsttests, Produktfälle und unabhängige Abnahme getrennt ausweisen.
 
-| Sprache | Position und Lastenheft | Feature-Commit | Testbefehl und Anzahl | Bestanden / Fehlgeschlagen / Blockiert | Wichtiger Belegauszug und Hash |
+| Sprache | Position und Lastenheft | Commit oder geprüfter lokaler Stand | Testbefehl und Anzahl | Bestanden / Fehlgeschlagen / Blockiert | Wichtiger Belegauszug und Hash |
 |---|---|---|---|---|---|
 | _auszufüllen_ | 1 – Anwendung | _auszufüllen_ | _auszufüllen_ | _auszufüllen_ | _auszufüllen_ |
 | _auszufüllen_ | 2 – Tests | _auszufüllen_ | _auszufüllen_ | _auszufüllen_ | _auszufüllen_ |
@@ -44,11 +45,21 @@ Die 14 ausgefüllten Zeilen aus dem [Abdeckungsblatt](preset-coverage-template.m
 
 | Prüfpunkt | Tatsächliche Beobachtung, Hilfsmittel und Grenze |
 |---|---|
-| Lernprüfung: Person/Rolle, geprüfte Schritte und Abweichungen | _auszufüllen_ |
+| Persönliche Lernprüfung: Status, Rolle, selbst geprüfte Schritte und Abweichungen | _ausstehend oder mit Beobachtung und Beleg ausgefüllt_ |
 | CLI/TUI oder HTTP/Web: Tastatur, Text und Fehler | _auszufüllen_ |
-| Screenreader, Braille oder Textbrowser, soweit verfügbar | _auszufüllen oder begründet nicht geprüft_ |
-| PDF: Quelle, Hash, Struktur, Sprache, Reihenfolge, Links, Textalternativen | _auszufüllen_ |
+| Screenreader, Braille und ggf. Textbrowser | _jeweils getrennt ausfüllen oder begründet nicht geprüft_ |
+| PDF: Quelle, Hash, Struktur, Sprache, Reihenfolge, Links, Textalternativen | _automatische Strukturprüfung, Sichtprüfung und praktische Tastaturprüfung getrennt zur selben PDF-Fassung_ |
 | Nicht geprüfte WCAG-2.2-AA-Kriterien und Grund | _auszufüllen_ |
+
+## Deutsch: Verbesserungen für den nächsten Lauf
+
+Übernimm beim Szenarioabschluss die [Rückblicke aller Sprachpfade](README.md#aus-dem-lauf-lernen), fasse doppelte Beobachtungen zusammen und behalte blockierte Pflichtnachweise im Ergebnis sichtbar. Frühere Logpfade sind optional; der gekürzte, bereinigte Belegauszug muss ohne Test-HOME verständlich sein. Eine Zeile pro relevanter Beobachtung, sonst „keine neue Beobachtung“. Persönliche Rückmeldungen als solche kennzeichnen; ausstehende Prüfung nicht als Ergebnis ausgeben.
+
+| ID, Feature, Sprache | Problem und Belegauszug, Quellpfad/Hash soweit vorhanden | Übertragbare Regel und nicht übertragbares Detail | Szenario/Plattform und Entscheidung | Verantwortlich, Auslöser und nächste Gegenprobe |
+|---|---|---|---|---|
+| _auszufüllen_ | _auszufüllen_ | _auszufüllen_ | _z. B. Promote oder ObserveAgain_ | _auszufüllen_ |
+
+**Für den nächsten Auftrag:** _nur belegte Regel-IDs und ihren Geltungsbereich oder keine Übernahme_. Effizienz erst nach zwei unabhängigen Feldbeobachtungen bewerten. Git-Zeit oder Git-Volumen ist keine gemessene Arbeitszeit. Keine Freigabe für einen neuen Lauf oder eine Änderung zentraler Regeln.
 
 ## Deutsch: Bewertung und Bereinigung
 
@@ -75,6 +86,7 @@ Die 14 ausgefüllten Zeilen aus dem [Abdeckungsblatt](preset-coverage-template.m
 | Host or Sandbox; OS, architecture, image if used | _to fill_ |
 | Level 0 commit and 14-preset matrix hash | _to fill_ |
 | Model/runner profile and preflight | _to fill_ |
+| Shell, version and actual invocations | _to fill; [examples](shell-examples.md#english) are not evidence of execution_ |
 | Time limit, stop rule, actual duration | _to fill_ |
 | Isolated test HOME and real home-file hashes before/after | _protected copy: path; public copy: abstract evidence_ |
 | Delivery mode and remote check | `LocalImplementation`; _prove no remotes_ |
@@ -89,9 +101,9 @@ Die 14 ausgefüllten Zeilen aus dem [Abdeckungsblatt](preset-coverage-template.m
 
 ## English: features and tests
 
-Add a separate row for **every language** and all four positions. Commands, counts, errors and skips come from this run, never an older report.
+Add a separate row for **every language** and all four positions. For uncommitted work, state the base commit and hash inventory of the verified local state. Commands, current counts, errors and skips come from this run. Mark earlier tests as historical rather than counting them again. Distinguish runner self-tests, product cases and independent acceptance.
 
-| Language | Position and intake | Feature commit | Test command and count | Passed / Failed / Blocked | Key evidence excerpt and hash |
+| Language | Position and intake | Commit or verified local state | Test command and count | Passed / Failed / Blocked | Key evidence excerpt and hash |
 |---|---|---|---|---|---|
 | _to fill_ | 1 – application | _to fill_ | _to fill_ | _to fill_ | _to fill_ |
 | _to fill_ | 2 – tests | _to fill_ | _to fill_ | _to fill_ | _to fill_ |
@@ -106,11 +118,21 @@ Insert **all 14 completed rows** from the [coverage sheet](preset-coverage-templ
 
 | Check | Observed result, assistive tools and limit |
 |---|---|
-| Learner review: person/role, steps reviewed and differences | _to fill_ |
+| Personal learner review: status, role, steps personally reviewed and differences | _pending or completed with observations and evidence_ |
 | CLI/TUI or HTTP/web: keyboard, text and errors | _to fill_ |
-| Screen reader, Braille or text browser when available | _to fill or justified not tested_ |
-| PDF: source, hash, structure, language, order, links, alternatives | _to fill_ |
+| Screen reader, Braille and text browser where applicable | _record separately, or give a reason for not testing each_ |
+| PDF: source, hash, structure, language, order, links, alternatives | _separate automated structure, visual and practical keyboard checks against the same PDF version_ |
 | Untested WCAG 2.2 AA criteria and reason | _to fill_ |
+
+## English: improvements for the next run
+
+At scenario closeout, combine [the retrospectives from all language tracks](README.md#learn-from-each-run), merge duplicate observations and keep blocked required evidence visible. Old log paths are optional; the short, sanitized excerpt must make sense without the test HOME. Add one row per relevant observation, or write “no new observation.” Label personal feedback as such and never report a pending review as a result.
+
+| ID, feature, language | Problem and evidence excerpt, source path/hash if available | Reusable rule and nonportable detail | Scenario/platform and decision | Owner, trigger and next check |
+|---|---|---|---|---|
+| _to fill_ | _to fill_ | _to fill_ | _e.g. Promote or ObserveAgain_ | _to fill_ |
+
+**For the next request:** _only evidenced rule IDs and their scope, or none_. Assess efficiency only after two independent field observations. Git time or volume is not measured active work. No authority to start a new run or change central rules.
 
 ## English: assessment and cleanup
 

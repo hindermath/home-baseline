@@ -14,12 +14,18 @@ This template is **not an approved request**. Fill all required fields, check cu
 | Sprache bei A oder C / Language for A or C | _auszufüllen oder B/D: alle sechs / to fill or B/D: all six_ |
 | Level-0-Revision und Preset-Matrix-Hash / Level 0 commit and preset matrix hash | _auszufüllen / to fill_ |
 | Geprüftes Modell-/Runner-Profil / Checked model/runner profile | _auszufüllen / to fill_ |
+| Shell und Version / Shell and version | _Bash oder PowerShell 7; [Beispiele](shell-examples.md) / Bash or PowerShell 7; [examples](shell-examples.md#english)_ |
 | Laufzeitgrenze und Abbruchregel / Time limit and stop rule | _auszufüllen / to fill_ |
 | Maximal gleichzeitige Worker / Maximum concurrent workers | _A/C: 1; B/D: höchstens 3 / A/C: 1; B/D: at most 3_ |
 | Festgelegter DeliveryMode / Fixed delivery mode | `LocalImplementation` |
 | Erlaubte Testdaten und lokale Ports / Allowed test data and local ports | _auszufüllen / to fill_ |
 | Ergebnisbericht außerhalb des Test-HOME / Report outside test HOME | _auszufüllen / to fill_ |
+| Übernommene Regeln für diesen Lauf / Adopted rules for this run | _ID, Szenario/Sprache und geplante Gegenprobe; falls keine passen: kurz begründen / ID, scenario/language and planned check; if none apply, briefly explain_ |
 | Bereinigung beauftragt? / Cleanup authorized? | _Nein; eigener späterer Auftrag / No; separate later request_ |
+
+**DE:** Lies die [Feldlehren](README.md#feldlehren-aus-szenario-a) und den letzten verfügbaren Laufbericht. Übernimm nur Regeln, die zu diesem Szenario, der Sprache und dem Ausführungsort passen. Übernimm keine alten Testergebnisse oder Freigaben. Ist eine Beobachtung noch offen, kannst du eine Gegenprobe einplanen, aber sie nicht als bestanden eintragen.
+
+**EN:** Read the [field lessons](README.md#field-lessons-from-scenario-a) and the latest available run report. Carry forward only rules relevant to this scenario, language and execution location. Do not copy old results or approvals. For an open observation, plan a follow-up check without recording a pass.
 
 ## Startentscheidung / Start decision
 
