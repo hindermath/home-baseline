@@ -145,6 +145,61 @@ Für **jedes** Preset stehen Version, Hash, konkreter Aufruf, erwartete Wirkung,
 
 Über A und B zusammen braucht jedes Preset mindestens einen positiven Funktionsnachweis; C und D prüfen die anwendbaren Wirkungen erneut an Web-Grenzen. Das Parallel-Preset wird in B und D geprüft und ist in A/C begründet `nicht anwendbar`. Schutz-Gates erhalten ungefährliche Negativ-Fälle in getrennten Fixtures, niemals durch Beschädigung eines aktiven Laufs. Ein offener oder blockierter Preset-Nachweis verhindert die Aussage „alle 14 bestanden“.
 
+### Wiederverwendbarer Nachweis fuer Community-Einreichungen
+
+Community-Einreichungen werden ausschliesslich aus Level 0 vorbereitet und
+bleiben ein gesondert zu genehmigender Schritt. Consumer-Repositories liefern
+versions- und commitgebundene Evidence; sie kopieren diesen Vertrag nicht.
+Jede Einreichung trennt drei Aussagen:
+
+1. **Practical use:** benennt Level-2-Repositories, in denen das Preset
+   eingesetzt wird. Ein Link auf `main` belegt nur aktuelle Nutzung. Soll eine
+   konkrete Version belegt werden, wird auf den zugehoerigen PR, Merge-Commit
+   oder einen unveraenderlichen Tag verwiesen.
+2. **Bounded E2E field evidence:** verlinkt den passenden Abschnitt eines
+   Szenarioberichts an einer festen Commit-ID oder einem unveraenderlichen Tag.
+   Genannt werden Preset-Version, Plattform, Sprache/Runtime, Szenario und die
+   Beziehung zur eingereichten Version: `ExactVersion`, `Historical` oder
+   `LaterVersion`.
+3. **Evidence boundary:** nennt unmittelbar, was nicht geprueft wurde. Der
+   Status ist `Positive`, `Partial` oder `NotCovered`. Nur `Positive` darf als
+   begrenzter Funktionsnachweis bezeichnet werden; auch er ist keine
+   Gesamtfreigabe.
+
+Die [Abschnittslinks aus Szenario A](evidence/scenario-a-mac-b-csharp.md#preset-submission-links)
+ordnen Presets den beobachteten Nachweisen und Grenzen zu. Jeder weitere
+veroeffentlichte Szenariobericht erhaelt denselben Abschnitt. Der externe Link
+in einer GitHub-Einreichung verwendet nicht `main`, sondern den abschliessend
+geprueften Evidence-Commit. Fehlt ein passender positiver Nachweis, bleibt die
+Einreichung ehrlich bei `Partial` oder `NotCovered`; Installation, gruene CI,
+Review-Anzahlen und praktische Nutzung werden nicht zu einem Funktions-Pass
+zusammengezogen.
+
+Kopierbarer englischer Block fuer eine GitHub-Einreichung:
+
+> **Practical use:** This preset is installed and used in [version-bound
+> repositories or delivery records]. This demonstrates operational adoption,
+> not acceptance of every release capability.
+>
+> **Bounded E2E field evidence (`Positive|Partial|NotCovered`,
+> `ExactVersion|Historical|LaterVersion`):** [Scenario and preset-specific
+> section at an immutable commit or tag]. The run observed [bounded behavior]
+> on [platform/runtime] in [mode].
+>
+> **Evidence boundary:** This evidence does not establish [unverified negative
+> gates, platforms, assistive technology, security scope, delivery mode, or
+> other relevant limits].
+
+*Community submissions are prepared only from Level 0 under separate
+authority. Consumer repositories provide version- and commit-bound evidence
+without copying this contract. Each submission separates practical use,
+bounded E2E field evidence, and the immediate claim boundary. Evidence links
+use an exact commit or immutable tag and state version relation, platform,
+runtime, scenario, and `Positive`, `Partial`, or `NotCovered` status. Only
+`Positive` is a bounded functional result, never overall acceptance. A missing
+positive result remains explicit; installation, green CI, review counts, and
+use in a repository are not combined into a functional pass.*
+
 ### Phasenübergang und Abnahme
 
 1. **Anwendung und Tests (A–D):** Zeige zuerst einen ausführbaren Test, der aus dem erwarteten fachlichen Grund fehlschlägt, dann denselben Test erfolgreich. Leite eindeutige Pflichtfall-IDs aus dem aktuellen Vertrag ab. Prüfe an separaten Testdaten, dass fehlende, doppelte oder übersprungene Pflichtfälle erkannt werden. Bei CLI: Argumente direkt übergeben, beide Ausgabeströme und Exitcode getrennt vergleichen. Bei HTTP: Statuscode und Antwortinhalt getrennt prüfen. Baue in einem frischen isolierten Verzeichnis. Zähle Runner-Selbsttests, Produktfälle und unabhängige Abnahme getrennt.
