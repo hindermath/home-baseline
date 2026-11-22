@@ -12,7 +12,6 @@ from pathlib import Path
 import platform
 import shlex
 import signal
-import shlex
 import stat
 import subprocess
 import sys
@@ -64,12 +63,34 @@ def empty_registries(root: Path) -> dict[str, Path]:
     return paths
 
 
-def install_fake_brew(root: Path) -> tuple[Path, Path, Path]:
+def install_fake_brew(root: Path, *, swift_fixture: bool = False) -> tuple[Path, Path, Path]:
     bin_dir = root / "bin"
     bin_dir.mkdir()
     # Resolve Python directly: host PATH launchers add a shell startup to each
     # of the many JSON probes and can exhaust the fixture's process budget.
-    (bin_dir / "python3").symlink_to(sys.executable)
+    if not swift_fixture:
+        (bin_dir / "python3").symlink_to(sys.executable)
+    else:
+        os_release = root / "os-release"
+        os_release.write_text('ID=ubuntu\nVERSION_ID="24.04"\n', encoding="utf-8")
+        # Override the OS input for this one helper call, not the real
+        # maintainer, system /etc/os-release or its platform allowlist.
+        write_executable(
+            bin_dir / "python3",
+            "#!/usr/bin/env bash\nset -euo pipefail\n"
+            f'if [[ "${{1-}}" == {shlex.quote(str(HELPER))} && "${{2-}}" == swift-contract ]]; then\n'
+            '  args=("$@")\n'
+            '  for ((i=2; i+1<${#args[@]}; i++)); do\n'
+            '    if [[ "${args[i]}" == --os-release && "${args[i+1]}" == /etc/os-release ]]; then\n'
+            f'      args[i+1]={shlex.quote(str(os_release))}\n'
+            f'      exec {shlex.quote(sys.executable)} "${{args[@]}}"\n'
+            '    fi\n'
+            '  done\n'
+            '  echo "Swift fixture did not find the expected OS-release input" >&2\n'
+            '  exit 2\n'
+            'fi\n'
+            f'exec {shlex.quote(sys.executable)} "$@"\n',
+        )
     state = root / "brew-state"
     log = root / "brew-install-log"
     state.write_text("", encoding="utf-8")
@@ -906,7 +927,7 @@ esac
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
             paths = empty_registries(root)
-            bin_dir, _, _ = install_fake_brew(root)
+            bin_dir, _, _ = install_fake_brew(root, swift_fixture=True)
             archive, install_log = install_fake_swiftly_archive(root)
             digest = hashlib.sha256(archive.read_bytes()).hexdigest()
             write_swift_registry(paths["cli"], digest)
@@ -966,7 +987,7 @@ cp "${HB_TEST_SWIFT_ARCHIVE:?}" "$output"
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
             paths = empty_registries(root)
-            bin_dir, _, _ = install_fake_brew(root)
+            bin_dir, _, _ = install_fake_brew(root, swift_fixture=True)
             archive, install_log = install_fake_swiftly_archive(root)
             write_swift_registry(paths["cli"], "0" * 64)
             write_executable(
