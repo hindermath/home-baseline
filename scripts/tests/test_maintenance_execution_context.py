@@ -61,8 +61,10 @@ class ExecutionContextTests(unittest.TestCase):
                 self.assertNotIn(b"fixture-secret", kwargs["input"])
                 return subprocess.CompletedProcess([], 0, b'{"status":"Verified"}', b"")
             transport = SimpleNamespace(download=download, transport_workspace=tempfile.TemporaryDirectory)
-            evidence = {"sourceSha256": context.source_binding_sha256(context.source_bindings(MODULE.parents[2]))}
-            with patch.dict(sys.modules, {"maintenance_git_bundle": transport}), \
+            bindings = router.package_bindings(MODULE.parents[2])
+            evidence = {"sourceSha256": context.source_binding_sha256(bindings)}
+            with patch.object(router, "package_bindings", return_value=bindings), \
+                    patch.dict(sys.modules, {"maintenance_git_bundle": transport}), \
                     patch.dict(os.environ, {"GH_TOKEN": "fixture-secret"}), \
                     patch.object(router, "preflight", return_value=evidence), \
                     patch.object(router, "inspect", return_value={}), \
