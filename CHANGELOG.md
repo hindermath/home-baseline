@@ -8,6 +8,14 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) · Versioning: 
 
 ---
 
+## [0.20.1](https://github.com/hindermath/home-baseline/compare/v0.20.0...v0.20.1) (2026-11-26)
+
+
+### Documentation / Dokumentation
+
+* regenerate statistics for Secure-Trader pin ([a29e46a](https://github.com/hindermath/home-baseline/commit/a29e46abe9555782ecc795c326a17d4348b941b2))
+* regenerate statistics for Windows CI adjustment ([7fb49c0](https://github.com/hindermath/home-baseline/commit/7fb49c083c14dbb905224ca5ec097ee52543f9ac))
+
 ## [0.20.0](https://github.com/hindermath/home-baseline/compare/v0.19.0...v0.20.0) (2026-11-22)
 
 
