@@ -51,8 +51,12 @@ def validate_contract(data: dict, today: datetime.date | None = None, *, check_e
         "approvalSha256", "approvalBindingSha256", "approvedImage",
         "approvedSourceSha256", "approvalTrustState", "expiresOn", "mounts",
     }
-    if not isinstance(data, dict) or set(data) != expected or type(data["schemaVersion"]) is not int or data["schemaVersion"] != 3:
+    if not isinstance(data, dict) or set(data) - {"sourceRevision"} != expected or type(data["schemaVersion"]) is not int or data["schemaVersion"] != 3:
         raise ExecutionContextError("Invalid execution context contract")
+    if "sourceRevision" in data and (
+        not isinstance(data["sourceRevision"], str) or not re.fullmatch(r"[0-9a-f]{40}", data["sourceRevision"])
+    ):
+        raise ExecutionContextError("The source revision must be a full Git commit SHA")
     for key in ("container", "user"):
         if not isinstance(data[key], str) or not re.fullmatch(r"[a-zA-Z0-9][a-zA-Z0-9_.-]*", data[key]):
             raise ExecutionContextError(f"Invalid {key}")
@@ -110,6 +114,8 @@ def approval_binding_sha256(data: dict) -> str:
             "expiresOn", "mounts",
         )
     }
+    if "sourceRevision" in data:
+        bound["sourceRevision"] = data["sourceRevision"]
     return hashlib.sha256(
         json.dumps(bound, ensure_ascii=False, sort_keys=True, separators=(",", ":")).encode("utf-8")
     ).hexdigest()
@@ -219,7 +225,7 @@ print(json.dumps(receive(p, sys.stdin.buffer)))
 
 
 SOURCE_PROGRAM = r'''
-import hashlib, json, os, pathlib, shutil, sys
+import hashlib, json, os, pathlib, shutil, subprocess, sys
 p = json.load(sys.stdin)
 source = pathlib.Path(p["source"])
 if source.resolve() != source:
@@ -230,6 +236,13 @@ if os.access(source, os.W_OK):
     raise SystemExit("Canonical source must be immutable to the sandbox user")
 if not all(shutil.which(t) for t in ("git", "bash", "pwsh", "python3")):
     raise SystemExit("Missing maintenance tool")
+if p.get("revision"):
+    result = subprocess.run(
+        ["git", "-c", "safe.directory=" + str(source), "-C", str(source), "rev-parse", "HEAD"],
+        capture_output=True, text=True, timeout=10,
+    )
+    if result.returncode or result.stdout.strip() != p["revision"]:
+        raise SystemExit("Source revision mismatch")
 for relative, expected in p["bindings"].items():
     path = source / relative
     if path.resolve() != path or not path.is_file() or os.access(path, os.W_OK):
@@ -240,10 +253,42 @@ print("ready")
 '''
 
 
-def source_bindings(source: pathlib.Path) -> dict:
+def source_bindings(source: pathlib.Path, revision: str | None = None) -> dict:
     """Bind declared members and declaration; approval metadata is checked separately."""
+    source = source.resolve()
+
+    def git(*arguments: str) -> bytes:
+        return subprocess.run(
+            ["git", "-C", str(source), *arguments], capture_output=True, timeout=10, check=True,
+        ).stdout
+
+    if revision is not None:
+        if not re.fullmatch(r"[0-9a-f]{40}", revision):
+            raise ExecutionContextError("The source revision must be a full Git commit SHA")
+        root = pathlib.Path(os.fsdecode(git("rev-parse", "--show-toplevel").rstrip(b"\n")))
+        if root != source or git("cat-file", "-t", revision).strip() != b"commit":
+            raise ExecutionContextError("Cannot resolve the pinned source commit in the source repository")
+        tree = {}
+        for entry in git("ls-tree", "-rz", revision).split(b"\x00"):
+            if entry:
+                metadata, name = entry.split(b"\t", 1)
+                mode, kind, object_id = metadata.split()
+                if mode in (b"100644", b"100755") and kind == b"blob":
+                    tree[os.fsdecode(name)] = object_id.decode("ascii")
+
+    def read_member(relative: str) -> bytes:
+        relative_path(relative)
+        if revision is not None:
+            if relative not in tree:
+                raise ExecutionContextError("Unsafe or missing pinned package source: " + relative)
+            return git("cat-file", "blob", tree[relative])
+        path = source / relative
+        if path.resolve() != path or not path.is_file():
+            raise ExecutionContextError("Unsafe or missing package source: " + relative)
+        return path.read_bytes()
+
     manifest = "scripts/config/agentic-toolchain-maintenance-files.json"
-    package = json.loads((source / manifest).read_text(encoding="utf-8"))
+    package = json.loads(read_member(manifest))
     paths = {manifest, *(entry["path"] for entry in package["files"])}
     paths.update({"scripts/lib/maintenance_execution_context.py",
                   "scripts/lib/maintenance_git_bundle.py",
@@ -257,15 +302,10 @@ def source_bindings(source: pathlib.Path) -> dict:
     # Including the approval's own package digest would create a hash cycle.
     # This is the only exclusion, even if the manifest declares the contract.
     paths.discard(EXECUTION_CONTRACT_PATH)
-    source = source.resolve()
     for relative in sorted(paths):
-        relative_path(relative)
-        path = source / relative
-        if path.resolve() != path or not path.is_file():
-            raise ExecutionContextError("Unsafe or missing package source: " + relative)
         # The declared package consists of text files. Match repository text
         # across Windows CRLF and the Linux image without ignoring other bytes.
-        bindings[relative] = hashlib.sha256(path.read_bytes().replace(b"\r\n", b"\n")).hexdigest()
+        bindings[relative] = hashlib.sha256(read_member(relative).replace(b"\r\n", b"\n")).hexdigest()
     return bindings
 
 
@@ -306,7 +346,7 @@ def run_phase(args):
     expected = {item["path"] for item in manifest["targets"] if item["active"] and router.mapping(router.home / item["path"])}
     if {entry["registry"]["path"] for entry in entries} != expected:
         raise ExecutionContextError("Registry does not cover every delegated target")
-    bindings = source_bindings(args.source)
+    bindings = router.package_bindings(args.source)
     if source_binding_sha256(bindings) != evidence["sourceSha256"]:
         raise ExecutionContextError("Source package changed after phase preflight")
     router.inspect()
@@ -446,7 +486,7 @@ class ExecutionContexts:
                 if sum(entry[1].stat().st_size for entry in pending) > 2 * 1024 * 1024 * 1024:
                     raise ExecutionContextError("Bundle run exceeds 2 GiB limit")
             evidence = self.preflight()
-            bindings = source_bindings(pathlib.Path(__file__).resolve().parents[2])
+            bindings = self.package_bindings(pathlib.Path(__file__).resolve().parents[2])
             if source_binding_sha256(bindings) != evidence["sourceSha256"]:
                 raise ExecutionContextError("Bundle source changed after preflight")
             for target, bundle, snapshot in pending:
@@ -524,6 +564,10 @@ class ExecutionContexts:
                 raise ExecutionContextError("Workspace mount source mismatch")
         return info
 
+    def package_bindings(self, source: pathlib.Path) -> dict:
+        revision = self.data.get("sourceRevision")
+        return source_bindings(source, revision) if revision else source_bindings(source)
+
     def preflight(self, source: pathlib.Path | None = None) -> dict:
         validate_contract(self.data)
         # Pending remains pending even when every technical test succeeds.
@@ -534,20 +578,23 @@ class ExecutionContexts:
         self.container_id, self.image = info["Id"], info["Image"]
         source_root = (source or pathlib.Path(__file__).resolve().parents[2]).resolve()
         try:
-            revision = subprocess.run(
+            revision = self.data.get("sourceRevision") or subprocess.run(
                 ["git", "-C", str(source_root), "rev-parse", "HEAD"],
                 capture_output=True, text=True, timeout=10, check=True,
             ).stdout.strip()
+            bindings = self.package_bindings(source_root)
         except (OSError, subprocess.SubprocessError) as exc:
             raise ExecutionContextError("Approved source revision cannot be verified") from exc
-        bindings = source_bindings(source_root)
         package_sha256 = source_binding_sha256(bindings)
         approval_sha256 = verify_owner_approval(
             self.data, approval, str(info.get("Image") or ""), package_sha256
         )
+        payload = {"source": self.data["source"], "bindings": bindings}
+        if self.data.get("sourceRevision"):
+            payload["revision"] = revision
         result = subprocess.run(
             ["podman", "exec", "-i", self.container_id, "python3", "-c", SOURCE_PROGRAM],
-            input=json.dumps({"source": self.data["source"], "bindings": bindings}),
+            input=json.dumps(payload),
             text=True, capture_output=True, timeout=60)
         if result.returncode:
             detail = result.stderr.strip()

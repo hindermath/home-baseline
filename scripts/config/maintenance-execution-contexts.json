@@ -1,10 +1,10 @@
 {
-  "approvalBindingSha256": "6ecd27c8655a93d483074db14828490b67f276afe36c48459447276bdace3dba",
-  "approvalPath": "home-baseline-source/docs/maintenance/secure-trader-owner-approval-2026-11-20-sdk11.md",
-  "approvalSha256": "0dbd25342d5a04d2a6f66904c415b37ec9c40362c1d5ed04f59b7476ff35e1a6",
+  "approvalBindingSha256": "08e5f2d179312eff4d923e7d68d0e380a92e87529a80a957c39397a40ef7dced",
+  "approvalPath": "home-baseline-source/docs/maintenance/secure-trader-owner-approval-2026-11-26.md",
+  "approvalSha256": "bdd899fdb4f72e923b8ffad6d17185fcf8d096cd9d2155edd987d235f2aa7464",
   "approvalTrustState": "OwnerApproved",
-  "approvedImage": "sha256:6db6ea41b0bfea2a1cf782ea8187a29cc6f42c59ee28dfc600f4f4ae4e88f926",
-  "approvedSourceSha256": "dec0b0bff6fd2e2abf05f207a7bcfa95feb4a3ccd576a3a8495555560ec0665c",
+  "approvedImage": "sha256:d471f5e7287d10b2f12a3a77bf87a7951073d2368509bfc68da3404004acec3f",
+  "approvedSourceSha256": "37dee3bcbdb81874ba890110e7a7c4bcab0564e3d0a5f464ea5a62ec2f0ba3fd",
   "container": "absdd-image-sandbox_ade_1",
   "expiresOn": "2026-12-31",
   "mounts": [
@@ -23,5 +23,6 @@
   ],
   "schemaVersion": 3,
   "source": "/opt/home-baseline",
+  "sourceRevision": "a56d19cea928edb8048589428828727b76c51d6f",
   "user": "adedev"
 }
